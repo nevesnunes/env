@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Action
+Tooltip=Extract Files
+Name=Extract Files
+Profiles=profile-zero;
+Icon=folder-open
+
+[X-Action-Profile profile-zero]
+Exec=extract.sh %F
+SelectionCount=>0

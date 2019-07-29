@@ -1,0 +1,19 @@
+
+
+]c          - go to next difference  
+[c          - go to previous difference  
+
+do          - diff obtain (other to current), shortened ':diffget'  
+dp          - diff put    (current to other), shortened ':diffput'  
+
+:diffupdate - re-scan the files for differences  
+:diffthis   - get a diff of files on buffers (from normal mode) 
+:diffoff    - return to normal mode   
+
+zo            - open folded text  
+zc            - close folded text  
+
+Ctrl+W Ctrl+W - switch to next window  
+:ls           - show windows info 
+
+qall!         - quit all buffers  

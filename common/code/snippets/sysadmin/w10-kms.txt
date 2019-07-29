@@ -1,0 +1,7 @@
+https://forums.mydigitallife.net/
+
+magnet:?xt=urn:btih:6faec726c7bbb9248b3a3ed8d77bd1a7c4598f05&dn=en_windows_10_enterprise_ltsc_2019_x64_dvd_74865958.iso&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fzer0day.ch%3A1337&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969
+
+slmgr /ipk M7XTQ-FN8P6-TTKYV-9D4CC-J462D
+slmgr /skms kms.digiboy.ir
+slmgr /ato

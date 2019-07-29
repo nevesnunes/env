@@ -1,0 +1,2 @@
+HKLM\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy
+netsh advfirewall set currentprofile firewallpolicy blockinbound,blockoutbound

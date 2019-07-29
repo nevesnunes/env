@@ -1,0 +1,5 @@
+MailReader=thunderbird
+FileManager=nautilus
+TerminalEmulator=custom-TerminalEmulator
+
+WebBrowser=userapp-Firefox-15MVIY

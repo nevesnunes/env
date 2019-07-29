@@ -1,0 +1,4 @@
+Source:
+https://www.reddit.com/r/linux/comments/6rr07j/why_i_still_use_vim/
+
+Use sshfs, mount the server somewhere, and use your locally installed editor (whichever it is) with great performance and all your configuration. And that includes Vim.

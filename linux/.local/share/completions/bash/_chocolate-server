@@ -1,0 +1,40 @@
+_chocolate-server() {
+  IFS='' read -r -d '' descriptions <<'EOF'
+-ignoreversion: 'Ignore version mismatches between the server and the client.'
+-port: 'Use the specified UDP port for communications, instead of the default (2342).'
+-privateserver: 'Don'"'"'t register with the global master server.'
+-servername: 'Specify a name for the server.'
+
+EOF
+
+  COMPREPLY=()
+  local cur
+  cur=$(_get_cword)
+  IFS='' read -r -d '' completions <<'EOF'
+-ignoreversion
+-port
+-privateserver
+-servername
+
+EOF
+
+  if [ -z "$cur" ]; then
+      if declare -f _filedir &>/dev/null; then
+          _filedir
+      else
+          COMPREPLY=( $(compgen -f -- "$cur") )
+      fi
+      return 0
+  fi
+
+  COMPREPLY=( $( compgen -W "$completions" -- "$cur" ) )
+  if [[ ${#COMPREPLY[*]} -gt 1 ]]; then
+      selector=(fzf '-q' "$cur")
+      COMPREPLY=("$(echo "$descriptions" | \
+              eval "${selector[@]}" | \
+              cut -d':' -f1 --)")
+  fi
+
+  return 0
+}
+complete -F _chocolate-server chocolate-server

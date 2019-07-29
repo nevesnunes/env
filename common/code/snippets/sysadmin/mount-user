@@ -1,0 +1,1 @@
+mount -t vfat -o uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000,shortname=mixed,utf8=1,showexec,flush /dev/sdb /run/media/fn/9823-A08B

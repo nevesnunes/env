@@ -1,0 +1,3 @@
+ # convert markdown to html via pandoc
+  # https://unix.stackexchange.com/questions/108485/send-    email-written-in-markdown-using-mutt
+  macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset='utf-8'\n"

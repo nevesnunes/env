@@ -1,0 +1,6 @@
+#compdef chocolate-strife-setup
+
+_arguments \
+         '*:file:_files' \
+		'-config[Load configuration from the specified file, instead of default. cfg.]' \
+		'-extraconfig[Load extra configuration from the specified file, instead of chocolate-doom.]'

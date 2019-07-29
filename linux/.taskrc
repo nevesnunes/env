@@ -1,0 +1,40 @@
+# [Created by task 2.5.0 3/9/2016 14:25:35]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/Dropbox/doc/tasks
+dateformat=Y-M-D H:N
+editor=vim
+
+# User Defined Attributes
+uda.estimate.type=string
+uda.estimate.label=Est
+
+# User Defined Reports
+report.simple.description='Simple list of due tasks'
+report.simple.columns=due,description.count
+report.simple.labels=Due,Description
+report.simple.sort=due-
+report.simple.filter=status:pending
+
+# See: https://taskwarrior.org/docs/commands/list.html
+report.list.columns=id,start.age,recur.indicator,due,description.count,estimate
+report.list.labels=ID,Age,R,Due,Description,Est
+
+# Color theme
+include /usr/share/task/dark-16.theme
+
+color.alternate=
+color.recurring=cyan
+color.due.today=black on red
+color.overdue=black on red
+defaultwidth=54

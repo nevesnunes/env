@@ -1,0 +1,9 @@
+
+
+    set nocp
+    filetype plugin on
+    map <C-L> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+
+    set tags=~/.vim/stdtags,tags,.tags,../tags
+
+    autocmd InsertLeave * if pumvisible() == 0|pclose|endif

@@ -1,0 +1,10 @@
+Source:
+http://www.alandmoore.com/blog/2011/11/05/creating-a-kiosk-with-linux-and-x11-2011-edition/
+
+xset s off
+xset -dpms
+matchbox-window-manager &
+while true; do
+    rsync -qr --delete --exclude='.Xauthority' /opt/kiosk/ $HOME/
+    chromium-browser --app=http://myserver/mywebapp
+done

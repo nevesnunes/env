@@ -1,0 +1,10 @@
+Setting	State	Comment
+RemoteFX USB Device Redirection		
+Allow .rdp files from valid publishers and user's default .rdp settings	Enabled	No
+Allow .rdp files from unknown publishers	Enabled	No
+Do not allow hardware accelerated decoding	Not configured	No
+Do not allow passwords to be saved	Not configured	No
+Specify SHA1 thumbprints of certificates representing trusted .rdp publishers	Not configured	No
+Turn Off UDP On Client	Not configured	No
+Prompt for credentials on the client computer	Not configured	No
+Configure server authentication for client	Not configured	No

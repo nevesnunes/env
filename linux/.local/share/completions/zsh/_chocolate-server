@@ -1,0 +1,8 @@
+#compdef chocolate-server
+
+_arguments \
+         '*:file:_files' \
+		'-ignoreversion[Ignore version mismatches between the server and the client.]' \
+		'-port[Use the specified UDP port for communications, instead of the default (2342).]' \
+		'-privateserver[Don'"'"'t register with the global master server.]' \
+		'-servername[Specify a name for the server.]'

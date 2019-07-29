@@ -1,0 +1,14 @@
+{
+    "name": "____",
+    "description": "____",
+    "version": "0.0.1",
+    "author": "nevesnunes",
+    "homepage": "https://github.com/nevesnunes/____",
+    "bugs": "https://github.com/nevesnunes/____/issues",
+    "keywords": [ "____" ],
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/nevesnunes/____.git"
+    },
+    "license": "MIT"
+}

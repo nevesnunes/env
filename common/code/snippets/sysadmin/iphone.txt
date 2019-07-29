@@ -1,0 +1,50 @@
+# Access files
+
+Nautilus > Documents on foo's iPhone
+C-l
+afc://foo:bar > afc://foo
+
+/run/user/"$(id -u)"/gvfs
+
+# Mount
+
+1. Unplug your iPhone
+
+2. Install:
+
+sudo apt-get install libimobiledevice-utils ifuse
+
+3. Unlock, connect device and run:
+
+usbmuxd -v --user usbmuxd --systemd
+dmesg | grep ipheth
+
+idevicepair unpair && idevicepair pair
+mkdir -p ~/media/iphone &>/dev/null
+sudo -u "$(whoami)" ifuse ~/media/iphone -o rw
+
+4. Unmount:
+
+fusermount -u ~/media/iphone/
+
+# Debug
+
+chmod 4755 /usr/bin/fusermount
+ls -l /usr/bin/fusermount
+lsusb
+udevadm info --attribute-walk --name /dev/bus/usb/001/005
+
+# Backup
+
+lsusb
+dd if=/dev/bus/usb/001/003 of="$HOME"/foo.img
+
+idevice_id -l
+ideviceinstaller -l
+
+iid=$(ideviceinfo | grep -i UniqueDeviceID | cut -d':' -f2 | sed 's/\s*//g')
+mkdir -p ~/media/iphone ~/media/iphone-unback
+idevicebackup2 -u "$iid" backup ~/media/iphone
+ideviceunback_dir=~/opt/ideviceunback
+[ -d "$ideviceunback_dir" ] || git clone https://github.com/inflex/ideviceunback.git "$ideviceunback_dir"
+"$ideviceunback_dir"/ideviceunback -v -i ~/media/iphone/"$iid"/ -o ~/media/iphone-unback/

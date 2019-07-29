@@ -1,0 +1,2 @@
+
+apt-get download package; dpkg -i —force-not-root —root=$HOME package.deb

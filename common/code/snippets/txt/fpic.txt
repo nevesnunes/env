@@ -1,0 +1,29 @@
+Makefile on 32-bit machine:
+
+CXX=g++
+CXXFLAGS= -O3 -Wall
+...
+...   
+%.o:  %.c
+    $(CXX)  $(CXXFLAGS)  -fpic  -c  $<      
+
+libmylibrary.so: $(OBJECTS)
+    $(CXX) -shared -Wl,-soname,$@ -o $@   $(OBJECTS)
+
+This compiled correctly. But the same Makefile failed when I tried it on a 64-bit machine. I changed "-fpic" to "-fPIC" and it still failed. I changed the object rule to:
+
+%.o:  %.c
+    $(CXX)  -fPIC  $(CXXFLAGS)  -c  $< 
+
+and it still failed.
+
+Finally, I placed "-fPIC" in the actual compiler variable (so that now "-fPIC" appears in the rule for each object and the rule for the shared library):
+
+CXX=g++  -fPIC
+CXXFLAGS= -g -O3 -Wall
+...
+%.o:  %.c
+        $(CXX)    $(CXXFLAGS)   -c      -o $@    $<   
+
+libalglib.so: $(OBJECTS)
+        $(CXX) -shared -Wl,-soname,$@  -o $@      $(OBJECTS)

@@ -1,0 +1,25 @@
+# Passwords
+11
+U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+13
+jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY
+14
+Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1
+16
+WaIHEacj63wnNIBROHeqi3p9t0m5nhmh
+17
+8Ps3H0GWbn5rd9S7GmAdgQNdkhPkq9cw
+18
+xvKIqDjy4OPv7wCRgDlmj0pFsCsDjhdP
+19
+4IwIrekcuZlA9OsjOkoUtwU6lhokCPYs
+20
+eofm3Wsshxc5bwtVnEuGIlr7ivb9KABF
+
+# Concepts
+Referer
+Headers
+query directory transversal
+robots
+php shell upload + filename mangling to .php
+exiftool -Comment="" _

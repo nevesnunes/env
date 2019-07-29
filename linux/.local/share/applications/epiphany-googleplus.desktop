@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Google Plus
+Comment=Share and discover
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-googleplus.desktop-8fdc7549333dc4b0ca64320d70039992f53e267b" http://plus.google.com/
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-googleplus.desktop-8fdc7549333dc4b0ca64320d70039992f53e267b/app-icon.png
+StartupWMClass=epiphany-googleplus.desktop-8fdc7549333dc4b0ca64320d70039992f53e267b

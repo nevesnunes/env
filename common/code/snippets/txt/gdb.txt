@@ -1,0 +1,27 @@
+info gdb
+ctrl-l: repaint
+print struct
+gdb a.out core
+    bt
+    bt full
+
+# Step out
+until
+
+# Return from function
+finish
+
+# Reverse debugging
+b main -> 1
+b _exit -> 2
+command 1
+    record
+    continue
+    end
+command 2
+    run
+    end
+watch *addr
+...
+rsi
+rc -> maybe breaks at watch

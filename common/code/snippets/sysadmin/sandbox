@@ -1,0 +1,2 @@
+sandbox -X -H ~/sandbox firefox-clean.sh opt/firefox-clean
+firejail --private=~/sandbox --x11 --net=eth0 firefox-clean.sh ~/opt/firefox-clean

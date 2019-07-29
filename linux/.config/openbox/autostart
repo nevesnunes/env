@@ -1,0 +1,9 @@
+export $(gnome-keyring-daemon --daemonize --replace)
+systemctl --user start tint2
+
+autoruns.sh &
+run-daemons.sh &
+
+"$HOME"/.screenlayout/dual.sh
+
+cd "$HOME"

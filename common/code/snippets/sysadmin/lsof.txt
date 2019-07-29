@@ -1,0 +1,2 @@
+lsof | grep myfile
+cp /proc/4158/fd/4 myfile.saved

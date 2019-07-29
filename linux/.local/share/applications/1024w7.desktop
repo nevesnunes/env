@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Windows 7
+Comment=Run W7 VM
+Exec=vboxmanage startvm W7
+Terminal=false
+Type=Application
+Icon=w2002
+Categories=Application;Emulator;

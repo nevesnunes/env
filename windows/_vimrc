@@ -1,0 +1,437 @@
+set nocompatible
+filetype indent on
+
+" {{{ PLUGINS
+
+set rtp+=~/vimfiles
+if !empty(glob("~/vimfiles/autoload/pathogen.vim"))
+    call pathogen#infect()
+endif
+
+" vim-polyglot
+let g:vim_markdown_conceal = 0
+
+" autoformat
+nnoremap <F5> :Autoformat<CR>
+let g:formatdef_autopep8 = "'autopep8 - --aggressive'"
+let g:formatters_python = ['autopep8']
+
+" vimtex
+let g:tex_flavor = 'latex'
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_zathura_options = '&>/dev/null'
+
+" FZF
+if executable('fzf')
+    let g:fzf_colors = {
+                \ 'fg':      ['Normal'],
+                \ 'bg':      ['Normal'],
+                \ 'hl':      ['Comment'],
+                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                \ 'hl+':     ['fg', 'Statement'],
+                \ 'info':    ['fg', 'PreProc'],
+                \ 'border':  ['fg', 'Ignore'],
+                \ 'prompt':  ['fg', 'Conditional'],
+                \ 'pointer': ['fg', 'Exception'],
+                \ 'marker':  ['fg', 'Keyword'],
+                \ 'spinner': ['fg', 'Label'],
+                \ 'header':  ['fg', 'Comment'] }
+    command! CD call fzf#run({
+                \'source': 'bfs ~ -type d',
+                \'sink': 'cd'})
+    fu! ZF(...)
+        call fzf#run({
+                    \'source': 'locate -Ai ' . join(a:000),
+                    \'sink': 'cd'})
+    endfu
+    command! -nargs=+ Z call ZF(<f-args>)
+    command! Kno call fzf#run({
+                \'source': 'kno.sh ' .
+                \expand('%:p') .
+                \':' .
+                \line('.') .
+                \':' .
+                \substitute(s:LineContext(), ':', ' ', '') .
+                \':' .
+                \shellescape(getline('.')),
+                \'sink': function('<sid>kno')})
+    fu! s:kno(tags)
+        let line=getline('.')
+        if l:line=~#"^#"
+            call setline('.', line . ', ' . a:tags)
+            normal! $
+            return
+        endif
+        call append(line('.'), '# ' . a:tags)
+        normal! j$
+    endfu
+endif
+
+set rtp+=~/opt/fzf
+
+" UltiSnips
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+set runtimepath+=~/code/snippets
+let g:UltiSnipsSnippetsDir = "~/code/snippets/ultisnips"
+let g:UltiSnipsSnippetDirectories = ["ultisnips"]
+let g:UltiSnipsExpandTrigger="<c-o>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" Compatibility with other plugins (such as `clang_complete`)
+let g:UltiSnipsUsePythonVersion = 2
+
+" Ale
+let g:ale_completion_enabled = 1
+let g:ale_history_log_output = 1
+let g:ale_lint_on_text_changed = 'never'
+
+let g:ale_css_csslint_options = '--ignore=important'
+let g:ale_python_pylint_executable = 'run-pylint.sh'
+let g:ale_sh_shellcheck_options = '--exclude=SC1090,SC2004,SC2164'
+
+" Syntastic
+set statusline=%t
+set statusline+=%#warningmsg#
+if exists('*ALEGetStatusLine')
+    set statusline+=%{ALEGetStatusLine()}
+endif
+if exists('*SyntasticStatuslineFlag')
+    set statusline+=%{SyntasticStatuslineFlag()}
+endif
+set statusline+=%*
+set statusline+=%=%l,%c\ %P
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl', 'podchecker']
+
+let g:syntastic_css_csslint_args = '--ignore=important'
+let g:syntastic_python_pylint_exe = 'run-pylint.sh'
+let g:syntastic_sh_shellcheck_exe = 'shellcheck --exclude=SC1090,SC2004,SC2164'
+
+" Clang
+let g:clang_auto_select=0
+let g:clang_complete_auto=1
+let g:clang_complete_copen=1
+let g:clang_complete_macros=1
+let g:clang_complete_patterns=1
+let g:clang_jumpto_declaration_key='g>'
+let g:clang_memory_percent=70
+let g:clang_use_library=1
+let g:clang_user_options='-I/usr/include -std=c++11'
+
+set conceallevel=2
+set concealcursor=vin
+let g:clang_snippets=1
+let g:clang_conceal_snippets=1
+let g:clang_snippets_engine='clang_complete'
+
+" Jedi
+let g:jedi#auto_close_doc=1
+let g:jedi#popup_on_dot=0
+
+" Gundo
+nnoremap <F4> :GundoToggle<CR>
+
+let g:gundo_close_on_revert=1
+
+" web-indent
+let g:js_indent_log=0
+
+" }}}
+" {{{ FUNCTIONS
+
+function! GetBufferList()
+    redir => l:buflist
+    silent! ls!
+    redir END
+    return l:buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+    let l:buflist = GetBufferList()
+    for bufnum in map(filter(split(l:buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
+    endfor
+    if a:pfx == 'c' && len(getqflist()) == 0
+        echohl ErrorMsg
+        echomsg "Quickfix List is Empty."
+        echohl None
+        return
+    endif
+    if a:pfx == 'l' && len(getloclist(0)) == 0
+        echohl ErrorMsg
+        echomsg "Location List is Empty."
+        echohl None
+        return
+    endif
+    let winnr = winnr()
+    exec(a:pfx.'open')
+    if winnr() != winnr
+        wincmd p
+    endif
+endfunction
+
+nmap <silent> ,l :call ToggleList("Location List", 'l')<CR>
+nmap <silent> ,e :call ToggleList("Quickfix List", 'c')<CR>
+
+function! s:DiffSaved()
+    let filetype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+command! DiffSaved call s:DiffSaved()
+command! CompareSaved call s:DiffSaved()
+
+function! s:ToJavaString()
+    silent %s/"/\\"/g
+    silent %s/^/+ "/g
+    silent %s/$/"/g
+    normal! zR
+endfunction
+command! ToJavaString call s:ToJavaString()
+
+function! s:ToJavaStringFromJsonValues()
+    silent %s/^[^:]*:[ ]*//g
+    silent %s/",/"/g
+    normal! zR
+endfunction
+command! ToJavaStringFromJsonValues call s:ToJavaStringFromJsonValues()
+
+" https://github.com/frioux/vim-lost
+" https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
+function! s:LineContext()
+    let re = get(b:, 'line_context_regex', '\v^[[:alpha:]#$_]')
+    let found = search(re, "bn", 1, 100)
+    if found > 0
+        let line = getline(found)
+        return line
+    else
+        return '?'
+    endif
+endfunction
+command! LineContext echomsg s:LineContext()
+
+command! Reload bufdo set eventignore-=Syntax | e
+command! TagsRegenerate call job_start(['tags-regenerate.sh'])
+command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
+
+" }}}
+" {{{ MAPPINGS
+
+set pastetoggle=<F2>
+
+noremap L Lzt
+noremap H Hzb
+nnoremap <Space> <C-f>
+nnoremap <C-x>]  <Esc>:exe "ptjump " . expand("<cword>")<Esc>
+
+map ,' ciW''<Esc>P
+map ," ciW""<Esc>P
+map ,( ciW()<Esc>P
+
+" Sign/Gutter column
+sign define check_ok text=>o texthl=Search
+map ,xo :exe ":sign place " . line(".") . " line=" . line(".") . " name=check_ok file=" . expand("%:p")<CR>:redraw!<CR>
+map ,xd :exe ":sign unplace " . line(".")<CR>:redraw!<CR>
+
+" Search selected text in current buffer
+nnoremap g/ viwy/\V<C-R>"<CR>
+
+" Search selected text in all buffers
+" DEPENDENCIES: fzf
+nnoremap ,/ viwy:Lines <C-R>"<CR>
+vnoremap ,/ y:Lines <C-R>"<CR>
+
+" Sane pasting
+nnoremap "+p :set paste<CR>"+p:set nopaste<CR>
+nnoremap "*p :set paste<CR>"*p:set nopaste<CR>
+
+" Sane completion menu
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+autocmd InsertLeave,CompleteDone * pclose
+
+" Conserve split on buffer delete
+nnoremap <C-c> :bp\|bd #<CR>
+
+" Ignore diacritics while searching,
+" replacing each alphabetic character by its corresponding equivalence class.
+" See: https://vi.stackexchange.com/questions/7386/ignoring-diacritics-accents-when-searching/7394#7394
+cnoremap <CR> <C-\>e getcmdtype() =~ '[?/]' ? substitute(getcmdline(), '\a', '[[=\0=]]', 'g'): getcmdline()<CR><CR>
+
+" Remove trailing white space
+command! RemoveWhite %s/\s\+$//
+command! TrimWhite RemoveWhite
+
+" Buffers
+"map ,b    :ls<CR>:buffer<Space>
+map ,o    :b#<CR>
+map <C-j> :bn<CR>
+map <C-k> :bp<CR>
+
+"silent! unmap! <C-i>
+"imap <C-i> <C-x><C-o>
+map <C-l> <Esc>:pc<CR>:noh<CR>:redraw!<CR>
+
+" Hack to prevent omnicomplete on tab
+"function! InsertTabWrapper()
+"    return "\<tab>"
+"endfunction
+"inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+
+" }}}
+" {{{ BEHAVIOUR
+
+set autochdir
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.o,*.lo,*.obj,*.exe,*.dll,*.manifest
+set wildignore+=*.spl
+set wildignore+=*.luac
+set wildignore+=*.pyc
+set wildignore+=*.class,*.jar
+set wildignore+=*.DS_Store
+set wildignore+=*.sw?
+set tags=tags;
+if isdirectory($HOME . '/tmp')
+    set backupdir=~/tmp directory=~/tmp
+    set tags+=~/tmp/tags
+endif
+
+set number
+set cindent
+set wildmenu
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+set completeopt=menu,preview
+set diffopt+=iwhite
+set viminfo='200,<50,s10,h
+
+" Search down into subdirectories
+set path+=**
+
+" Case insensitive search for lowercase chars
+set ignorecase
+set smartcase
+
+" Match as you type
+set incsearch
+
+" Switch buffers without saving
+set hidden
+
+set hlsearch
+
+" }}}
+" {{{ APPEARANCE
+
+try
+    colorscheme yotsubaB
+catch /^Vim\%((\a\+)\)\=:E/
+    colorscheme koehler
+endtry
+
+" Fix slowdown on cmd/conemu
+set lazyredraw
+set ttyfast
+
+set belloff=all
+set previewheight=6
+set cmdheight=2
+set shortmess=a
+set showbreak=\\\  breakindent linebreak
+syntax on
+
+if has("gui_running")
+    try
+        set termguicolors
+    catch /^Vim\%((\a\+)\)\=:E/
+    endtry
+
+    set guioptions=-m
+    set guioptions=-s
+    set guioptions-=T
+    set guioptions+=c
+    set lines=40 columns=84
+endif
+
+autocmd BufEnter *
+            \ if &ft ==? 'markdown' |
+            \     syntax sync fromstart |
+            \ endif |
+            \ if line('$') < 1000 |
+            \     for i in range(1, line('$')) |
+            \         if strlen(getline(i)) >= 3000 |
+            \             setlocal syntax=off |
+            \             if exists('*SyntasticStatuslineFlag') |
+            \                 let b:syntastic_skip_checks = 1 |
+            \                 SyntasticReset |
+            \             endif |
+            \             break |
+            \         endif |
+            \     endfor |
+            \ endif
+
+if isdirectory("~/code/snippets/recipes")
+    autocmd BufNewFile *.html 0r ~/code/snippets/recipes/html
+    autocmd BufNewFile *.py 0r ~/code/snippets/recipes/py | execute "normal! G"
+    autocmd BufNewFile *.sh 0r ~/code/snippets/recipes/sh | execute "normal! G"
+    autocmd BufNewFile *.yml,*.yaml 0r ~/code/snippets/recipes/yaml | execute "normal! G"
+    autocmd BufNewFile Makefile* 0r ~/code/snippets/recipes/Makefile
+    autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json
+endif
+
+autocmd BufRead,BufNewFile *.nfo
+            \ colorscheme default |
+            \ setlocal guifont=Terminus |
+            \ setlocal lines=64 |
+            \ setlocal nonumber |
+            \ silent! e ++enc=cp437 |
+            \ execute "normal! gg"
+
+" Idiotic tab width due to poor decisions in life
+autocmd BufRead,BufNewFile *.sh,*.zsh
+            \ setlocal tabstop=2 softtabstop=2 shiftwidth=2 omnifunc=o |
+            \ setlocal omnifunc=bashcomplete#Complete
+
+" Open folds
+autocmd FileType vim setlocal foldmethod=marker | execute "normal! zR"
+autocmd FileType xml,html,xhtml,json,jsp setlocal foldmethod=indent | execute "normal! zR"
+
+" Completion
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Git
+autocmd FileType gitcommit set colorcolumn=73 textwidth=72
+
+" CMake
+autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
+autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
+autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
+
+function! HighlightedSynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+command! HighlightedSynGroup call HighlightedSynGroup()
+
+" }}}

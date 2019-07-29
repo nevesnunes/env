@@ -1,0 +1,36 @@
+UXTerm*foreground: #dddddd
+UXTerm*background: #000000
+
+! black
+UXTerm*color0: #222222
+UXTerm*color8: #000000
+
+! red
+UXTerm*color1: #c62a45
+UXTerm*color9: #c62a45
+
+! green
+UXTerm*color2: #2e5f0b
+UXTerm*color10: #2e5f0b
+
+! yellow / orange
+UXTerm*color3: #622E04
+UXTerm*color11: #622E04
+
+! blue
+UXTerm*color4: #4e6cd0
+UXTerm*color12: #4e6cd0
+
+! magenta
+UXTerm*color5: #804fa1
+UXTerm*color13: #804fa1
+
+! cyan
+UXTerm*color6: #285055
+UXTerm*color14: #285055
+
+! white
+UXTerm*color7: #dddddd
+UXTerm*color15: #707070
+
+UXTerm*reverseVideo: true

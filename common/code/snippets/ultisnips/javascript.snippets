@@ -1,0 +1,40 @@
+snippet u "usercript,greasemonkey template"
+// ==UserScript==
+// @name        _
+// @namespace   aa521357-eae5-4062-b18a-79a62c261912
+// @include     http://_/*
+// @include     https://_/*
+// @version     1
+// @grant       GM_xmlhttpRequest
+// @run-at      document-start
+// @require     http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js
+// ==/UserScript==
+
+function main() {
+	aa521357_eae5_4062_b18a_79a62c261912_createElement = document.createElement.bind(document);
+	console.log('[aa521357-eae5-4062-b18a-79a62c261912] redefining functions');
+	document.createElement = function(a) {
+		if (/(cookie.*|nextFunction)@/i.test((new Error()).stack)) {
+			console.log('[aa521357-eae5-4062-b18a-79a62c261912] NO U!');
+			return undefined;
+		} else {
+			return aa521357_eae5_4062_b18a_79a62c261912_createElement(a);
+		}
+	};
+}
+var script = document.createElement("script");
+script.textContent = "(" + main.toString() + ")();";
+document.body.appendChild(script);
+endsnippet
+
+snippet u "usercript,greasemonkey event,beforescript"
+document.addEventListener('beforescriptexecute', function(e) {
+	if (e.target === document.getElementsByTagName("script")[0]) {
+		e.stopPropagation();
+		e.preventDefault();
+		e.target.innerHTML = undefined;
+		e.target.outerHTML = undefined;
+		e.target = undefined;
+	};
+}, true);
+endsnippet

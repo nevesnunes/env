@@ -1,0 +1,10 @@
+// See examples at:
+// - /usr/share/X11/xkb
+// - https://cgit.freedesktop.org/xkeyboard-config/tree
+
+partial alphanumeric_keys
+xkb_symbols "hijinks" {
+    name[Group1]= "English (Hijinks)";
+    key <CAPS> { [ ISO_Level5_Shift ] };
+    key <SPCE> { [ space, space, nobreakspace, nobreakspace, Escape, Escape ] };
+};

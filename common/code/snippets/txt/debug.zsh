@@ -1,0 +1,2 @@
+
+setopt XTRACE VERBOSE

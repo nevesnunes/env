@@ -1,0 +1,37 @@
+The issue is apparently that tmux does not pass through all escape codes to the underlying terminal, but interprets them for itself. This article describes this. It also provides a solution. Wrapping the escape string in \ePtmux;\e and \e\ will tell tmux to just pass the escape codes straight through.
+
+So,
+
+sitm=\E[3m, ritm=\E[23m,
+
+becomes
+
+sitm=\ePtmux;\e\E[3m\e\\, ritm=\ePtmux;\e\E[23m\e\\,
+
+Here is the full resulting tmux-256color-italic file:
+
+# A xterm-256color based TERMINFO that adds the escape sequences for italic.
+#
+# Install:
+#
+#   tic xterm-256color-italic.terminfo
+#
+# Usage:
+#
+#   export TERM=xterm-256color-italic
+#
+tmux-256color-italic|tmux with 256 colors and italic,
+        sitm=\ePtmux;\e\E[3m\e\\, ritm=\ePtmux;\e\E[23m\e\\,
+                use=screen-256color,
+
+Save this and then run
+
+tic tmux-256color-italic
+
+and we're good to go!
+
+All that remains is to tell tmux to use this new terminfo file, in .tmux.conf:
+
+set-option -g default-terminal "tmux-256color-italic"
+
+And now the italic escape codes get passed straight through tmux to the underlying terminal, meaning that we get italic text inside it.

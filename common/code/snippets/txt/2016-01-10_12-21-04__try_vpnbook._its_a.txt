@@ -1,0 +1,1 @@
+try vpnbook. its a botnet most likely, but it werks. download their openvpn package, use the tcp443.ovpn file -> sudo openvpn file.ovpn.

@@ -1,0 +1,1 @@
+in Network Manager, edit the network connection, and fill in the BSSID of your access point. (This can be obtained by running the command "iwconfig" in a terminal.) This stops Network Manager from scanning for other access points

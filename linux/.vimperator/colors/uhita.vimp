@@ -1,0 +1,21 @@
+" ==VimperatorColorSchema==
+" name: uhita
+" ==/VimperatorColorSchema==
+
+hi! Hint font-family: Roboto, monospace; font-weight: bold; font-size: 16px; text-shadow: none; color: white; background: #b33330; border: 1px solid #801a10; border-radius: 2px; padding: 1px; box-shadow: 0px 2px 4px 0px rgba(20, 20, 20, 0.25)
+hi! HintElem visibility: visible
+hi! HintActive background-color: #ffec8b; color: black
+
+hi! -a CompTitle font-size: 18px; font-weight: bold; background: #D9D9D9
+hi! -a CompItem font-size: 18px
+hi! CompItem>* height: 18px; min-height: 18px; padding: 0.125ex 0.5ex
+
+hi! -a Title font-size: 18px
+hi! -a ErrorMsg font-size: 18px
+hi! -a InfoMsg font-size: 18px
+hi! -a ModeMsg font-size: 18px
+hi! -a CompMsg font-size: 18px
+hi! -a CmdLine font-size: 18px
+hi! -a PromptText font-size: 18px; padding-top: 3px
+hi! StatusLine font-size: 18px; color: black
+hi! ContentSeparator border-top: 1px solid #aaa; display: -moz-box

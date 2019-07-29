@@ -1,0 +1,108 @@
+ape.write_apev2 1
+artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
+cli_add_playlist_name Default
+cli_add_to_specific_playlist 1
+deadbeef_version 1.8.1
+filechooser.lastdir file:///home/fn/.config
+gtkui.autoresize_columns 1
+gtkui.color.bar_background 0 0 0
+gtkui.color.bar_foreground 19018 37008 55769
+gtkui.color.tabstrip_playing_text 0 0 0
+gtkui.color.tabstrip_selected_text 0 0 0
+gtkui.color.tabstrip_text 0 0 0
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"76","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"350","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"407","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"105","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.embolden_current_track 1
+gtkui.eq.visible 0
+gtkui.hide_remove_from_disk 1
+gtkui.hide_tray_icon 1
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=960 {} } 
+gtkui.mmb_delete_playlist 1
+gtkui.name_playlist_from_folder 1
+gtkui.override_bar_colors 1
+gtkui.override_listview_colors 0
+gtkui.override_tabstrip_colors 0
+gtkui.statusbar.visible 1
+gtkui.tabscroll 0
+gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF
+gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
+gui_plugin GTK2
+hotkey.key01 "Ctrl f" 0 0 find
+hotkey.key02 "Ctrl o" 0 0 open_files
+hotkey.key03 "q" 0 0 quit
+hotkey.key04 "Ctrl n" 0 0 new_playlist
+hotkey.key05 "Ctrl a" 0 0 select_all
+hotkey.key06 "Escape" 0 0 deselect_all
+hotkey.key07 "Ctrl m" 0 0 toggle_stop_after_current
+hotkey.key08 "Ctrl j" 0 0 jump_to_current_track
+hotkey.key09 "F1" 0 0 help
+hotkey.key10 "Delete" 1 0 remove_from_playlist
+hotkey.key11 "Ctrl w" 0 0 remove_current_playlist
+hotkey.key12 "Return" 0 0 play
+hotkey.key13 "Ctrl p" 0 0 toggle_pause
+hotkey.key14 "Alt 1" 0 0 playlist1
+hotkey.key15 "Alt 2" 0 0 playlist2
+hotkey.key16 "Alt 3" 0 0 playlist3
+hotkey.key17 "Alt 4" 0 0 playlist4
+hotkey.key18 "Alt 5" 0 0 playlist5
+hotkey.key19 "Alt 6" 0 0 playlist6
+hotkey.key20 "Alt 7" 0 0 playlist7
+hotkey.key21 "Alt 8" 0 0 playlist8
+hotkey.key22 "Alt 9" 0 0 playlist9
+hotkey.key23 "Alt 0" 0 0 playlist10
+hotkey.key24 "v" 0 0 prev
+hotkey.key25 "x" 0 0 play
+hotkey.key26 "c" 0 0 toggle_pause
+hotkey.key27 "z" 0 0 stop
+hotkey.key28 "b" 0 0 next
+hotkey.key29 "n" 0 0 playback_random
+hotkey.key30 "Ctrl k" 0 0 toggle_stop_after_album
+hotkey.key31 "space" 0 0 toggle_pause
+hotkeys_created 1
+ignore_archives 1
+junk.enable_cp1251_detection 1
+logwindow.geometry.h 492
+logwindow.geometry.w 670
+logwindow.geometry.x 1248
+logwindow.geometry.y 523
+mainwin.geometry.h 512
+mainwin.geometry.w 960
+mainwin.geometry.x 960
+mainwin.geometry.y 507
+mp3.id3v1_encoding iso8859-1
+mp3.id3v2_version 3
+mp3.write_id3v1 1
+mp3.write_id3v2 1
+network.http_user_agent deadbeef
+network.proxy.port 8080
+network.proxy.type HTTP
+output_plugin alsa
+playback.loop 1
+playback.order 0
+playback.volume -2.737126
+playlist.current 0
+playlist.cursor.0 -1
+playlist.cursor.1 0
+playlist.scroll.0 -7
+playlist.scroll.1 0
+playlist.scroll.cursorfollowplayback 1
+playlist.tab.00000 Default
+prefwin.geometry.h 516
+prefwin.geometry.w 700
+prefwin.geometry.x 1218
+prefwin.geometry.y 499
+replaygain_mode 0
+replaygain_scale 1
+resume.paused 0
+resume.playlist -1
+resume.position -1.000000
+resume.track -1
+streamer.8_to_16 1
+streamer.samplerate 44100
+streamer.samplerate_mult_44 44100
+streamer.samplerate_mult_48 48000
+trkproperties.geometry.h 482
+trkproperties.geometry.w 672
+trkproperties.geometry.x 1248
+trkproperties.geometry.y 537
+wildmidi.config /home/fn/.config/timidity++.cfg
+wv.write_apev2 1

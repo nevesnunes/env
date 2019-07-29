@@ -1,0 +1,1 @@
+cmd_/home/fn/code/bootstrap/kernel/hello.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/fn/code/bootstrap/kernel/hello.ko /home/fn/code/bootstrap/kernel/hello.o /home/fn/code/bootstrap/kernel/hello.mod.o

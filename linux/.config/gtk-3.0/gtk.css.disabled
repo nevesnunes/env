@@ -1,0 +1,16 @@
+.window-frame {
+    box-shadow: none;
+    border: 0;
+    margin: 0;
+}
+
+decoration,
+.titlebar {
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+headerbar.titlebar {
+    padding: 0 4px;
+}

@@ -1,0 +1,4 @@
+vim *
+
+# Of course, the substitute command only acts on the current buffer. To make it run on all buffers, we could combine the :substitute command with :argdo. Note that I’ve added the e flag to the substitute command, which prevents the error message ‘no match found’:
+:argdo %s/Vimcasts\.\zscom/org/ge

@@ -1,0 +1,13 @@
+Some of my guidelines, in no particular order:
+
+Backup your data! Use duplicity, zbackup, obnam, borg, ...
+
+Install a minimal install of your distro and use LVM. Preferably scripted by kickstart, preseed or debootstrap. Don't use your entire disk. Let lvm have some GB for snapshots. Seperate /home and /.
+
+Use Chef, Puppet, Salt or Ansible to configure your machine. Not only does it make upgrades easier, it also makes sure you don't forget anything on a new install. Use git, svn, ...
+
+Before every upgrade lvm snapshot /. If something fails you can always return to a previous state.
+
+Learn to create deb, rpm, ebuild, ... If your really into installing custom software. Try to install as much as possible unmanaged software in your home dir: virtualenv, gems as user or rvm, ...
+
+Reinstall on a new release. Or if your running Debian, Gentoo or Arch: Do it at least yearly. It's a good test for your configuration management.

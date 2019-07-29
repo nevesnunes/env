@@ -1,0 +1,19 @@
+It seems there is no priority or a single setting point to set which freedesktop notification daemon to run. I got such problem with XFCE installed on Ubuntu 14.04.
+
+Unity notification launch xfce4-notifyd as it was the default.
+
+    Check for available notification services, example:
+
+    $ grep -r org.freedesktop.Notifications /usr/share/dbus-1/services/
+    /usr/share/dbus-1/services/org.xfce.xfce4-notifyd.Notifications.service:Name=org.freedesktop.Notifications
+    /usr/share/dbus-1/services/org.freedesktop.Notifications.service:Name=org.freedesktop.Notifications
+
+    Disable non needed ones, leave only the one you want:
+
+    sudo mv /usr/share/dbus-1/services/org.xfce.xfce4-notifyd.Notifications.service /usr/share/dbus-1/services/org.xfce.xfce4-notifyd.Notifications.service.disable
+
+    pkill xfce4-notifyd
+
+    Check
+
+    notify-send test

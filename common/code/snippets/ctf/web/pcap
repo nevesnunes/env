@@ -1,0 +1,3 @@
+tshark -r usb.pcap -T fields -e usb.bus_id -e usb.device_address -e usb.idVendor -e usb.idProduct "usb.idVendor > 0" 2>/dev/null
+tshark -r ~/Downloads/usb_sniff.pcap -T fields -e usb.capdata "usb.urb_type==URB_SUBMIT" and "usb.endpoint_number.direction==OUT" and "frame.protocols==\"usb\"" > data
+((usb.transfer_type == 0x01) && (frame.len == 73)) && !(usb.capdata == 00:00:00:00:00:00:00:00)

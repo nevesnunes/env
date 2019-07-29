@@ -1,0 +1,126 @@
+---
+slade shortcuts:
+    line drawing mode:
+        space: activate
+    things mode:
+        t: activate
+        C-t: change type
+        d: direction
+        insert: create a thing
+    lines mode:
+        l: activate
+    sectors mode:
+        s: activate
+        \,: height down 8
+        \.: height up 8
+        C-Wheel: height down/up
+    c: clear selections
+    \[,\]: grid size down/up
+    3D mode:
+        q: activate
+        l: lower unpegged
+        u: upper unpegged
+doors:
+    ceiling: 0
+    texture: upper
+elevators:
+    texture: lower
+teleports:
+    - linedef
+    - thing + sector
+stairs:
+    odd sectors:
+        def: stairs special 1
+        direction: inwards
+    even sectors:
+        def: stairs special 2
+        direction: inwards
+    line before sectors:
+        def: stairs build
+        direction: outwards
+        sector tag: first step
+invisible sector:
+    linedefs:
+        direction: inwards
+        back-side: sector number
+        front-side: sector number
+    url: https://www.doomworld.com/vb/doom-editing/52802-invisible-pillars-floors/
+3D bridge:
+    url:
+        - https://www.doomworld.com/tutorials/fx8.php
+        - https://www.doomworld.com/forum/topic/66443-3d-vanilla-bridge-for-dummies/
+projectiles:
+    4: W1 Door
+    10: W1 Lift Also Monsters
+    39: W1 Teleport
+    88: WR Lift Also Monsters
+    97: WR Teleport
+    125: W1 Teleport Monsters Only
+    url: https://doomwiki.org/wiki/Projectiles_triggering_linedefs
+hitscanners:
+    46: GR Door open stay
+autorun:
+    DEFAULT.CFG > joyb_speed = 29
+limits:
+    url: https://www.doomworld.com/forum/topic/52921-thread-of-vanilla-mapping-tricks/
+metrics:
+    source: mobjinfo in info.c
+    max step height: 24
+    object height / width:
+        - Player         56  34
+        - Trooper/Sarg   56  44
+        - Imp            56  44
+        - Demon/Spectre  56  64
+        - Cacodemon      56  64
+        - Lost Soul      56  32
+        - Baron          64  48
+        - Cyberdemon    110  80
+        - Spiderdemon   100 256
+    sectors:
+        size: ~= 2500 units
+        url: https://www.doomworld.com/forum/topic/59019-sector-height-and-size-limits/
+tactics:
+    url: https://www.doomworld.com/vb/doom-general/52340-your-abusive-slaughter-frugal-map-tactics/
+crushers: For non-buggy raising crushers, use the "stairs raise" action on a dummy sector connected to the sector you want to use as a raising crusher.
+lumps: https://zdoom.org/wiki/MAPINFO/Map_definition
+resource handling:
+    nwt -as _.wad
+    nwt -af _.wad
+chocorenderlimits:
+    video driver issues: https://github.com/chocolate-doom/chocolate-doom/issues/891
+overflows:
+    url: https://www.doomworld.com/forum/topic/35214-spechits-reject-and-intercepts-overflow-lists/
+    prboom:
+        - -spechit 2230937832
+          overrun_spechit_emulate       1
+        - -spechit 0
+          overrun_spechit_emulate       0
+design:
+    loops:
+        url: https://critpoints.net/2018/02/18/good-fps-map-design/
+    flow, focal points, risk-reward:
+        url: http://www.ongamedesign.net/designing-fps-multiplayer-maps-part-2/
+    lists:
+        url: http://www.ongamedesign.net/beating-design-block-level-design/
+    cover, flanking, observability:
+        url: http://www.fullbrightdesign.com/2009/02/basics-of-effective-fps-encounter.html
+    maps:
+        cs de_dust2
+        quake dm3
+dehacked:
+  docs: http://www.aspectsweb.co.uk/dehacked/index.html
+  tables: https://doomwiki.org/wiki/DeHackEd
+  scriptable: https://github.com/fragglet/deh9000.git
+timers: |-
+   a very reliable vanilla-compatible way is to use a cacodemon in the bottom of a pit. It will float upwards with a constant speed, if you need it to spend more time before opening a door, just put some m1 teleporter lines to reset the cacodemon back down into the pit.
+sound: |-
+  add sectors to monster batteries which are joined/merged with a sector in the map
+
+  However, sound tunnels can still have use cases for staged fights where you can start with closed tunnels and slowly open them up to gradually activate monsters, rather than having them go all at once.
+bugs: falling on a floor with -32768 height will cause anything on it to infinitely fall through and teleport to the top of the ceiling in Vanilla Doom.
+skies:
+  1. vanilla: override sky1 texture's patch
+  2. sky transfer: |-
+    linedef 271 on line w/ upper texture
+    boxoskiestestmap.wad
+  usage: sector with ceiling = floor height, untextured

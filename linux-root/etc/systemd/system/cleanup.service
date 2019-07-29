@@ -1,0 +1,12 @@
+[Unit]
+Description=Clean temporary files
+DefaultDependencies=no
+Before=shutdown.target reboot.target halt.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/opt/cleanup.sh
+
+[Install]
+WantedBy=multi-user.target

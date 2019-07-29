@@ -1,0 +1,8 @@
+# This is an example for IceWM's toolbar definition file.
+#
+# Place your variants in /etc/icewm or in $HOME/.icewm
+# since modifications to this file will be discarded when you
+# (re)install icewm.
+#
+# prog "Terminal" /usr/share/icons/gnome/24x24/apps/utilities-terminal.png uxterm
+# prog "Web browser" /usr/share/icons/gnome/24x24/apps/web-browser.png firefox

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ansi-to-html": "^0.6.11",
+    "ansi-to-svg": "^1.4.3"
+  }
+}

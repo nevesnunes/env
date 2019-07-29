@@ -1,0 +1,188 @@
+_chocolate-strife() {
+  IFS='' read -r -d '' descriptions <<'EOF'
+-cdrom: '[windows only] Save configuration data and savegames in c:\strife.'
+-config: 'Load main configuration from the specified file, instead of the default.'
+-devparm: 'Developer mode. Implies -nograph.'
+-dumpsubstconfig: 'Read all MIDI files from loaded WAD files, dump an example substitution music…'
+-extraconfig: 'Load additional configuration from the specified file, instead of the default.'
+-fast: 'Monsters move faster.'
+-file: 'Load the specified PWAD files.'
+-flip: 'Flip player gun sprites (broken).'
+-iwad: 'Specify an IWAD file to use.'
+-loadgame: 'Load the game in slot s.'
+-mb: 'Specify the heap size, in MiB (default 16).'
+-mmap: 'Use the OS'"'"'s virtual memory subsystem to map WAD files directly into memory.'
+-nograph: 'Disable graphical introduction sequence .'
+-nomonsters: 'Disable monsters.'
+-nomusic: 'Disable music.'
+-nosfx: 'Disable sound effects.'
+-nosound: 'Disable all sound output.'
+-novoice: 'Disable voice dialog and show dialog as text instead, even if voices.'
+-random: 'Items respawn at random locations .'
+-respawn: 'Respawn monsters after they are killed.'
+-skill: 'Set the game skill, 1-5 (1: easiest, 5: hardest).'
+-turbo: 'Turbo mode. The player'"'"'s speed is multiplied by x%.'
+-warp: 'Start a game immediately, warping to level x.'
+-work: 'Set Rogue playtesting mode (godmode, noclip toggled by backspace) .'
+-donut: 'Use the specified magic values when emulating behavior caused by memory overr…'
+-gameversion: 'Emulate a specific version of Strife. Valid values are "1. 2" and "1. 31".'
+-setmem: 'Specify DOS version to emulate for NULL pointer dereference emulation.'
+-spechit: 'Use the specified magic value when emulating spechit overruns.'
+-maxdemo: 'Specify the demo buffer size (KiB) .'
+-playdemo: 'Play back the demo named demo. lmp.'
+-record: 'Record a demo named x. lmp.'
+-solo-net: 'Play back a demo recorded in a netgame with a single player.'
+-strictdemos: 'When recording or playing back demos, disable any extensions of the vanilla d…'
+-timedemo: 'Play back the demo named demo. lmp, determining the framerate of the screen.'
+-1: 'Don'"'"'t scale up the screen.'
+-2: 'Double up the screen to 2x its normal size.'
+-3: 'Double up the screen to 3x its normal size.'
+-8in32: 'Set the color depth of the screen to 32 bits per pixel.'
+-bpp: 'Specify the color depth of the screen, in bits per pixel.'
+-fullscreen: 'Run in fullscreen mode.'
+-geometry: 'Specify the dimensions of the window or fullscreen mode.'
+-grabmouse: 'Grab the mouse when running in windowed mode.'
+-height: 'Specify the screen height, in pixels.'
+-noblit: 'Disable blitting the screen.'
+-nodraw: 'Disable rendering the screen entirely.'
+-nograbmouse: 'Don'"'"'t grab the mouse when running in windowed mode.'
+-nomouse: 'Disable the mouse.'
+-nonovert: 'Enable vertical mouse movement.'
+-novert: 'Disable vertical mouse movement.'
+-width: 'Specify the screen width, in pixels.'
+-window: 'Run in a window.'
+-altdeath: 'Start a deathmatch game.'
+-autojoin: 'Automatically search the local LAN for a multiplayer server and join it.'
+-avg: 'Austin Virtual Gaming: end levels after 20 minutes.'
+-connect: 'Connect to a multiplayer server running on the given address.'
+-dedicated: 'Start a dedicated server, routing packets but not participating in the game i…'
+-dup: 'Reduce the resolution of the game by a factor of n, reducing the amount of ne…'
+-extratics: 'Send n extra tics in every packet as insurance against dropped packets.'
+-ignoreversion: 'When running a netgame server, ignore version mismatches between the server a…'
+-left: 'Run as the left screen in three screen mode.'
+-localsearch: 'Search the local LAN for running servers.'
+-newsync: 'Use new network client sync code rather than the classic sync code.'
+-nodes: 'Autostart the netgame when n nodes (clients) have joined the server.'
+-port: 'Use the specified UDP port for communications, instead of the default (2342).'
+-privateserver: 'When running a server, don'"'"'t register with the global master server.'
+-query: 'Query the status of the server running on the given IP address.'
+-right: 'Run as the right screen in three screen mode.'
+-search: 'Query the Internet master server for a global list of active servers.'
+-server: 'Start a multiplayer server, listening for connections.'
+-servername: 'When starting a network server, specify a name for the server.'
+-timer: 'For multiplayer games: exit each level after n minutes.'
+-aa: 'Equivalent to "-af <files> -as <files>".'
+-af: 'Simulates the behavior of NWT'"'"'s -af option, merging flats into the main IWAD …'
+-as: 'Simulates the behavior of NWT'"'"'s -as option, merging sprites into the main IWA…'
+-deh: 'Load the given dehacked patch(es) .'
+-merge: 'Simulates the behavior of deutex'"'"'s -merge option, merging a PWAD into the mai…'
+-nocheats: 'Ignore cheats in dehacked files.'
+-nwtmerge: 'Simulates the behavior of NWT'"'"'s -merge option.'
+
+EOF
+
+  COMPREPLY=()
+  local cur
+  cur=$(_get_cword)
+  IFS='' read -r -d '' completions <<'EOF'
+-cdrom
+-config
+-devparm
+-dumpsubstconfig
+-extraconfig
+-fast
+-file
+-flip
+-iwad
+-loadgame
+-mb
+-mmap
+-nograph
+-nomonsters
+-nomusic
+-nosfx
+-nosound
+-novoice
+-random
+-respawn
+-skill
+-turbo
+-warp
+-work
+-donut
+-gameversion
+-setmem
+-spechit
+-maxdemo
+-playdemo
+-record
+-solo-net
+-strictdemos
+-timedemo
+-1
+-2
+-3
+-8in32
+-bpp
+-fullscreen
+-geometry
+-grabmouse
+-height
+-noblit
+-nodraw
+-nograbmouse
+-nomouse
+-nonovert
+-novert
+-width
+-window
+-altdeath
+-autojoin
+-avg
+-connect
+-dedicated
+-dup
+-extratics
+-ignoreversion
+-left
+-localsearch
+-newsync
+-nodes
+-port
+-privateserver
+-query
+-right
+-search
+-server
+-servername
+-timer
+-aa
+-af
+-as
+-deh
+-merge
+-nocheats
+-nwtmerge
+
+EOF
+
+  if [ -z "$cur" ]; then
+      if declare -f _filedir &>/dev/null; then
+          _filedir
+      else
+          COMPREPLY=( $(compgen -f -- "$cur") )
+      fi
+      return 0
+  fi
+
+  COMPREPLY=( $( compgen -W "$completions" -- "$cur" ) )
+  if [[ ${#COMPREPLY[*]} -gt 1 ]]; then
+      selector=(fzf '-q' "$cur")
+      COMPREPLY=("$(echo "$descriptions" | \
+              eval "${selector[@]}" | \
+              cut -d':' -f1 --)")
+  fi
+
+  return 0
+}
+complete -F _chocolate-strife chocolate-strife

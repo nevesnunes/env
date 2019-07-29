@@ -1,0 +1,71 @@
+#compdef chocolate-heretic
+
+_arguments \
+         '*:file:_files' \
+		'-cdrom[[windows only] Save configuration data and savegames in c:\heretic.]' \
+		'-config[Load main configuration from the specified file, instead of the default.]' \
+		'-dumpsubstconfig[Read all MIDI files from loaded WAD files, dump an example substitution music…]' \
+		'-episode[Start playing on episode n (1-4) .]' \
+		'-extraconfig[Load additional configuration from the specified file, instead of the default.]' \
+		'-file[Load the specified PWAD files.]' \
+		'-iwad[Specify an IWAD file to use.]' \
+		'-loadgame[Load the game in savegame slot s.]' \
+		'-mb[Specify the heap size, in MiB (default 16).]' \
+		'-mmap[Use the OS'"'"'s virtual memory subsystem to map WAD files directly into memory.]' \
+		'-noartiskip[Allow artifacts to be used when the run key is held down.]' \
+		'-nomonsters[Disable monsters.]' \
+		'-nomusic[Disable music.]' \
+		'-nosfx[Disable sound effects.]' \
+		'-nosound[Disable all sound output.]' \
+		'-ravpic[Take screenshots when F1 is pressed.]' \
+		'-respawn[Monsters respawn after being killed.]' \
+		'-skill[Set the game skill, 1-5 (1: easiest, 5: hardest).]' \
+		'-warp[Start a game immediately, warping to level ExMy.]' \
+		'-setmem[Specify DOS version to emulate for NULL pointer dereference emulation.]' \
+		'-demoextend[Record or playback a demo without automatically quitting after either level e…]' \
+		'-longtics[Record or playback a demo with high resolution turning.]' \
+		'-maxdemo[Specify the demo buffer size (KiB) .]' \
+		'-playdemo[Play back the demo named demo. lmp.]' \
+		'-record[Record a demo named x. lmp.]' \
+		'-recordfrom[Record a demo, loading from the given filename.]' \
+		'-shortticfix[Smooth out low resolution turning when recording a demo.]' \
+		'-strictdemos[When recording or playing back demos, disable any extensions of the vanilla d…]' \
+		'-timedemo[Play back the demo named demo. lmp, determining the framerate of the screen.]' \
+		'-1[Don'"'"'t scale up the screen.]' \
+		'-2[Double up the screen to 2x its normal size.]' \
+		'-3[Double up the screen to 3x its normal size.]' \
+		'-8in32[Set the color depth of the screen to 32 bits per pixel.]' \
+		'-bpp[Specify the color depth of the screen, in bits per pixel.]' \
+		'-fullscreen[Run in fullscreen mode.]' \
+		'-geometry[Specify the dimensions of the window or fullscreen mode.]' \
+		'-grabmouse[Grab the mouse when running in windowed mode.]' \
+		'-height[Specify the screen height, in pixels.]' \
+		'-noblit[Disable blitting the screen.]' \
+		'-nograbmouse[Don'"'"'t grab the mouse when running in windowed mode.]' \
+		'-nomouse[Disable the mouse.]' \
+		'-nonovert[Enable vertical mouse movement.]' \
+		'-novert[Disable vertical mouse movement.]' \
+		'-width[Specify the screen width, in pixels.]' \
+		'-window[Run in a window.]' \
+		'-autojoin[Automatically search the local LAN for a multiplayer server and join it.]' \
+		'-connect[Connect to a multiplayer server running on the given address.]' \
+		'-deathmatch[Start a deathmatch game.]' \
+		'-dup[Reduce the resolution of the game by a factor of n, reducing the amount of ne…]' \
+		'-extratics[Send n extra tics in every packet as insurance against dropped packets.]' \
+		'-ignoreversion[When running a netgame server, ignore version mismatches between the server a…]' \
+		'-newsync[Use new network client sync code rather than the classic sync code.]' \
+		'-nodes[Autostart the netgame when n nodes (clients) have joined the server.]' \
+		'-port[Use the specified UDP port for communications, instead of the default (2342).]' \
+		'-privateserver[When running a server, don'"'"'t register with the global master server.]' \
+		'-server[Start a multiplayer server, listening for connections.]' \
+		'-servername[When starting a network server, specify a name for the server.]' \
+		'-solo-net[Start the game playing as though in a netgame with a single player.]' \
+		'-timer[For multiplayer games: exit each level after n minutes.]' \
+		'-aa[Equivalent to "-af <files> -as <files>".]' \
+		'-af[Simulates the behavior of NWT'"'"'s -af option, merging flats into the main IWAD …]' \
+		'-as[Simulates the behavior of NWT'"'"'s -as option, merging sprites into the main IWA…]' \
+		'-deh[Load the given dehacked patch(es) .]' \
+		'-hhever[Select the Heretic version number that was used to generate the HHE patch to …]' \
+		'-merge[Simulates the behavior of deutex'"'"'s -merge option, merging a PWAD into the mai…]' \
+		'-nocheats[Ignore cheats in dehacked files.]' \
+		'-nwtmerge[Simulates the behavior of NWT'"'"'s -merge option.]'

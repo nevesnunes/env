@@ -1,0 +1,38 @@
+>AdZHost
+https://adzhosts.eu/hosts/adzhosts-android.txt
+
+>HpHosts
+https://hosts-file.net/ad_servers.txt
+
+>Energized Basic
+https://raw.githubusercontent.com/EnergizedProtection/block/master/basic/formats/hosts
+
+>MVPS
+http://winhelp2002.mvps.org/hosts.txt
+
+>Energized Blu
+https://raw.githubusercontent.com/EnergizedProtection/block/master/blu/formats/hosts
+
+>AdAway
+https://adaway.org/hosts.txt
+
+>Energized Blu Go
+https://raw.githubusercontent.com/EnergizedProtection/block/master/bluGo/formats/hosts
+
+>Dan Pollack's Host Files
+http://someonewhocares.org/hosts/hosts
+
+>Energized Spark
+https://raw.githubusercontent.com/EnergizedProtection/block/master/spark/formats/hosts
+
+>Goodbye Ads
+https://raw.githubusercontent.com/jerryn70/GoodbyeAds/master/Hosts/GoodbyeAds.txt
+
+>Cameleon
+http://sysctl.org/cameleon/hosts
+
+>Coin Blocker
+https://zerodot1.gitlab.io/CoinBlockerLists/hosts
+
+>Peter Lowe's Host File
+https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0

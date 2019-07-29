@@ -1,0 +1,24 @@
+    for a data dump: urllib will return a string of the page you want
+    looking for a specific section in the html: lxml is pretty good
+    looking for something in unruly html: definitely beautifulsoup
+    looking for a specific item in a section: beautifulsoup, lxml, text parsing is what you need.
+    need to put the data in a database/file: use scrapy
+
+    wget --recursive --domains=ronbarak.tumblr.com --include-directories=notes \
+    http://ronbarak.tumblr.com/notes/40692813320/4Y70Zzacy
+    
+    
+    
+    For me it doesn’t display the static link, but you can get the next URL by looking at the source code: the onclick attribute of the a element contains
+
+    […] tumblrReq.open('GET','/notes/64967405021/2nsoCKZ8N?from_c=1382486492',true); […]
+
+The /notes/64967405021/2nsoCKZ8N?from_c=1382486492 part is the URL path of the next page of notes.
+
+Howto:
+
+    open the source code of a notes page (in Firefox with Ctrl+u)
+    search for /notes/ (in Firefox with Ctrfl+f)
+    copy the whole string enclosed in the two ', beginning with /notes/ and ending with a number
+    append this string at your Tumblr domain: http://uri-hyukkie.tumblr.com + paste the string
+    open this page in your browser; and repeat

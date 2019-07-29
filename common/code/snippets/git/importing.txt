@@ -1,0 +1,2 @@
+git remote add origin <url>
+git push origin master

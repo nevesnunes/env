@@ -1,0 +1,23 @@
+The distribution policy is set in /usr/share/polkit-1/actions/org.freedesktop.udisks2.policy; you can override packaged policies by copying such files to the equivalent path in /etc/polkit-1. afaik, you need to do that per action; I'm not aware of polkit magic for "let my superuser do all the things".
+
+I found that because I know that vendor policy is in /usr/share/polkit-1, and your log message reports an attempted action of org.freedesktop.udisks2.filesystem-mount-system, so grep -r org.freedesktop.udisks2.filesystem-mount-system /usr/share/polkit-1 turned up the relevant file.
+link
+Comments
+
+Thanks for the response!
+
+I looked at the file you referenced (/usr/share/polkit-1/actions/org.freedesktop.udisks2.policy) and it contained this entry:
+
+  <action id="org.freedesktop.udisks2.filesystem-mount-system">
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+  </action>
+
+If I'm understanding the documentation right, that should allow anyone registered as an admin user (i.e. anyone in the wheel group) to perform the action. Am I missing something?
+Lux Liquidus (Feb 6 '16)
+
+Whoops, I missed a step, will update the answer.
+randomuser (Feb 10 '16)
+
+Actually, I realized that the action file isn't as relevant as the rule definition; /etc/polkit-1/rules.d/50-default.rules should trigger those default allowances you cited via membership in wheel - like you said in the first place.... I'd start with getting the basics our of the way, ie sss_cache -E; dnf update; rpm -Va; fixfiles onboot && reboot. Your pam configuration might come into play as well.

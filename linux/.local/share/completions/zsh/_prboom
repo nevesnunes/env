@@ -1,0 +1,47 @@
+#compdef prboom
+
+_arguments \
+         '*:file:_files' \
+		'-complevel[This sets the compatibility mode that PrBoom runs in.]' \
+		'-width[Specifies the width of the PrBoom window, in pixels.]' \
+		'-height[Specifies the height of the PrBoom window, in pixels.]' \
+		'-viewangle[Causes the player view to be rotated by a given offset (specified in 45degree…]' \
+		'-vidmode[Use the OpenGL video mode. The default is to use the software video mode.]' \
+		{-fullscreen,-nofullscreen}'[These options toggle fullscreen mode. The default is fullscreen.]' \
+		{-window,-nowindow}'[This pair of options also toggle fullscreen mode.]' \
+		'-iwad[Specifies the location of the IWAD file, typically doom. wad or doom2.]' \
+		'-file[Specifies a list of PWAD files to load in addition to the IWAD file.]' \
+		'-deh[Tells PrBoom to load the dehacked patch deh_file. Game Options.]' \
+		'-loadgame[Instructs PrBoom to load the specified saved game immediately.]' \
+		'-warp[Tells PrBoom to begin a new game immediately.]' \
+		'-skill[Tells PrBoom to begin the game at skill level n (1 for ITYTD, 2 for Not Too R…]' \
+		'-respawn[Tells PrBoom that monsters that die should respawn (come back to life) after …]' \
+		'-fast[Tells PrBoom to make all the monsters move react faster.]' \
+		'-nomonsters[Tells PrBoom to include no monsters in the game. Multiplayer Options.]' \
+		'-net[Specifies that a TCP/IP network game is to be started.]' \
+		'-port[Specifies the local port to use to communicate with the server in a netgame.]' \
+		'-deathmatch[No longer used.]' \
+		'-altdeath[Similar to -deathmatch, but implies a different set of rules for the deathma…]' \
+		'-timer[No longer used.]' \
+		'-avg[Equivalent to -timer 20.]' \
+		'-solo-net[Used to run a single-player network game, without a network game server.]' \
+		'-record[Instructs PrBoom to begin recording a demo, to be stored in demofile. lmp.]' \
+		'-playdemo[Play the recorded demo demofile. lmp.]' \
+		'-timedemo[Play the recorded demo demofile.]' \
+		'-fastdemo[Play the recorded demo demofile. lmp as fast as possible.]' \
+		'-ffmap[Fast forward the demo (play at max speed) until reaching map num (note that t…]' \
+		'-nosound[Disables all sound effects and in-game music.]' \
+		'-nosfx[Disables sound effects during the game.]' \
+		'-nomusic[Disables playing of music in the game.]' \
+		'-nojoy[Disables joystick support.]' \
+		'-nomouse[Prevents the mouse being grabbed by the prboom window.]' \
+		'-noaccel[For prboom, this prevents it using the MITShm server extension for passing th…]' \
+		{-1,-2,-3}'[Specifies the scale factor by which to enlarge the window. The default,.]' \
+		'-nodraw[Suppress all graphical display. Only for debugging ARGUMENTS demo testing.]' \
+		'-config[Loads an alternative configuration file, named myconf. The default is boom.]' \
+		'-save[Causes prboom to save games in the directory specified by savedir instead of…]' \
+		'-devparm[Development mode.]' \
+		'-debugfile[Causes some debugging information, mainly network info I believe, to be writt…]' \
+		'-nodrawers[Causes no rendering to be done.]' \
+		'-noblit[Causes no copying to the screen from the rendering buffer to be performed.]' \
+		'-bexout[Causes diagnostics related to bex and dehacked file processing to be written …]'

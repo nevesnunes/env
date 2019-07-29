@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Title</title>
+    <meta name="description" content="Description">
+
+    <style type="text/css">
+        span {
+            font-family: monospace;
+            line-height: 1.2em;
+            white-space: pre-wrap;
+        }
+        .color {
+            border: 1px solid grey;
+            border-radius: 1em;
+            display: inline-block;
+            margin: 0 0.2em 0.2em 0;
+            min-height: 1em;
+            min-width: 1em;
+            vertical-align: middle;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+/*
+
+Zenburn style from voldmar.ru (c) Vladimir Epifanov <voldmar@voldmar.ru>
+based on dark.css by Ivan Sagalaev
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: rgb(0,0 ,0);
+  color: #dcdcdc;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-tag {
+  color: #e3ceab;
+}
+
+.hljs-template-tag {
+  color: #dcdcdc;
+}
+
+.hljs-number {
+  color: #8cd0d3;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute {
+  color: #efdcbc;
+}
+
+.hljs-literal {
+  color: #efefaf;
+}
+
+.hljs-subst {
+  color: #8f8f8f;
+}
+
+.hljs-title,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-section,
+.hljs-type {
+  color: #efef8f;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #dca3a3;
+}
+
+.hljs-deletion,
+.hljs-string,
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #cc9393;
+}
+
+.hljs-addition,
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #7f9f7f;
+}
+
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+</body>
+
+<script>
+var text = document.getElementsByTagName('body')[0].textContent;
+var colorRegExp = /#[0-9a-f]{6}|rgb\(\s*[0-9]+\s*,\s*[0-9]+\s*,\s*[0-9]+\s*\)/g
+var newBody = document.createElement('body');
+var newPart;
+var p;
+var start = 0;
+var end = 0;
+while(result = colorRegExp.exec(text)) {
+    end = result.index;
+
+    p = text.slice(start, end);
+    newPart = document.createElement('span');
+    newPart.textContent = p;
+    newBody.appendChild(newPart);
+   
+    newPart = document.createElement('div');
+    newPart.className = "color";
+    newPart.style = "background-color: " + result[0] + ";";
+    newBody.appendChild(newPart);
+
+    start = result.index;
+}
+p = text.slice(start);
+newPart = document.createElement('span');
+newPart.textContent = p;
+newBody.appendChild(newPart);
+   
+console.log(newBody.innerHTML);
+document.getElementsByTagName('body')[0].innerHTML = newBody.innerHTML;
+
+</script>
+
+</html>

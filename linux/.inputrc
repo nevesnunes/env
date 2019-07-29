@@ -1,0 +1,50 @@
+# reload in bash:
+# bind -f ~/.inputrc
+#
+# reload in zsh:
+# eval "$(sed -e '/^\"/! d;
+#     s/^/bindkey -- /;
+#     s/\\e/\x1B/g;
+#     s/\":/\"/; 
+#     s/bindkey\ --\ \([^"]*"[^"]*".*\)/bindkey -s \1/;
+#     s/history-search/history-beginning-search/' \
+#     /etc/inputrc $(test -f ~/.inputrc && echo ~/.inputrc))"
+#
+# see:
+# http://ascii-table.com/documents/vt100/chapter3.php#S3.3.3
+# https://invisible-island.net/xterm/xterm-function-keys.html
+# https://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing
+# http://www.xfree86.org/4.5.0/ctlseqs.html
+# http://bjh21.me.uk/all-escapes/all-escapes.txt
+# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
+
+$include /etc/inputrc
+
+TAB: menu-complete
+
+set colored-stats on
+
+# Perform file completion in a case insensitive fashion
+set completion-ignore-case on
+
+# Treat hyphens and underscores as equivalent
+set completion-map-case on
+
+set completion-prefix-display-length 4
+
+# Completed names which are symbolic links to
+# directories have a slash appended.
+set mark-symlinked-directories on
+
+# If you have this, you will no longer have to hit the <Tab>
+# key twice to produce a list of all possible completions.
+# A single <Tab>  will suffice.
+set show-all-if-ambiguous on
+
+set show-all-if-unmodified on
+
+set visible-stats on
+
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\eOP": "\C-x\C-e"

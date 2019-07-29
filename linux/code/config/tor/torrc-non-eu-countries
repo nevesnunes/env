@@ -1,0 +1,6 @@
+DataDirectory /home/fn/.local/share/torbrowser/tbb/x86_64/tor-browser_en-US/Browser/TorBrowser/Data/Tor
+GeoIPFile /home/fn/.local/share/torbrowser/tbb/x86_64/tor-browser_en-US/Browser/TorBrowser/Data/Tor/geoip
+GeoIPv6File /home/fn/.local/share/torbrowser/tbb/x86_64/tor-browser_en-US/Browser/TorBrowser/Data/Tor/geoip6
+
+ExitNodes {au},{us}
+StrictNodes 1

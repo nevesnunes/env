@@ -1,0 +1,2 @@
+# Check with lsusb or udevadm
+ATTR{idVendor}=="04d9", ATTR{idProduct}=="4545", RUN+="/opt/keyboard.sh"

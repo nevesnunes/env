@@ -1,0 +1,2 @@
+echo "echo hello world > `tty`" | at now + 1 minute
+echo "export DISPLAY=$DISPLAY; firefox" | at now + 1 minute

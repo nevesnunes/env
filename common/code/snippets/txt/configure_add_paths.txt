@@ -1,0 +1,1 @@
+env CPPFLAGS='-I/home/foo/sw/include' LDFLAGS='-L/home/foo/sw/lib/' ./configure

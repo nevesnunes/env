@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=feh_browser
+Comment=Browse images in directory with feh
+Exec=feh_browser.sh %f -F
+Terminal=false
+Type=Application
+Icon=/usr/share/feh/images/feh.png
+Categories=Application;Utility;TextEditor;
+StartupNotify=true
+MimeType=text/plain;
+NoDisplay=true

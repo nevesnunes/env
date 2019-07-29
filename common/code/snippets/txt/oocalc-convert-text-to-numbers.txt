@@ -1,0 +1,10 @@
+Source:
+https://neowiki.neooffice.org/index.php/Converting_a_Text_String_to_a_Number_in_Calc
+
+    Select the cell range which contains text strings.
+    Choose the Edit menu then the Find & Replace… sub-menu.
+    In the Find & Replace window, enter "^[0-9\-]" (without quotes) in the Search for field.
+    In the Replace with field, enter "&" (without quotes).
+    Click More options.
+    Check the Regular expressions case.
+    Click Replace all. 

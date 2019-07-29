@@ -1,0 +1,50 @@
+set nocompatible
+
+set backspace=indent,eol,start
+set number
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+set completeopt+=preview
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+syntax on
+
+" set default 'runtimepath' (without ~/.vim folders)
+let &runtimepath = printf('%s/vimfiles,%s,%s/vimfiles/after', $VIM, $VIMRUNTIME, $VIM)
+
+" what is the name of the directory containing this file?
+let s:portable = expand('<sfile>:p:h') . '/vimfiles'
+
+" add the directory to 'runtimepath'
+let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable)
+
+call pathogen#infect()
+
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'sh': ['bash-language-server', 'start'],
+    \ 'python': ['pyls'],
+    \ }
+let g:LanguageClient_loggingLevel = 'DEBUG'
+
+nnoremap <F3> :call LanguageClient_contextMenu()<CR>
+nnoremap ,ct :call LanguageClient#textDocument_documentSymbol()<CR>
+nnoremap ,ch :call LanguageClient#textDocument_hover()<CR>
+nnoremap ,cd :call LanguageClient#textDocument_definition()<CR>
+nnoremap ,cr :call LanguageClient#textDocument_rename()<CR>
+
+" Automatic Hover
+let g:Plugin_LanguageClient_running = 0
+augroup LanguageClient_config
+  autocmd!
+  autocmd User LanguageClientStarted let g:Plugin_LanguageClient_running = 1
+  autocmd User LanguageClientStopped let g:Plugin_LanguageClient_running = 0
+  autocmd CursorMoved * if g:Plugin_LanguageClient_running | call LanguageClient#textDocument_hover() | endif
+augroup end
+
+" Completion plugin integration
+let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
+autocmd User LanguageClientStarted call SuperTabChain(&omnifunc, "<c-p>")

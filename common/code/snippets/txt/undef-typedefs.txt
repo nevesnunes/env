@@ -1,0 +1,14 @@
+Source:
+https://stackoverflow.com/questions/27435565/undef-a-typedef-in-c
+
+#define Elf64_Half The_Elf64_Half_I_dont_care
+#include<link.h>
+#undef Elf64_Half
+#include<A.h>
+
+/*
+ * Code here and use Elf64_Half from A.h as you like.
+ * However, you can't use Elf64_Half from link.h here
+ * or you have to call it The_Elf64_Half_I_dont_care.
+ *
+ */

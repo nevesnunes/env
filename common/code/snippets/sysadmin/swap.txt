@@ -1,0 +1,15 @@
+To create a swap partition after installation, create an empty partition that should have no holes. You can then format this partition with:
+
+sudo mkswap /dev/sdX
+
+replacing /dex/sdX with your partition. Mount this partition as swap with
+
+sudo swapon -U UUID
+
+where UUID is that of your /dev/sdX as read from this:
+
+blkid /dev/sdX
+
+Bind your new swap in /etc/fstab by adding this line:
+
+UUID=xxx    none    swap    sw      0   0

@@ -1,0 +1,23 @@
+set scroll-step 200
+set scroll-hstep 200
+set scroll-full-overlap 0.1
+set zoom-step 20
+
+set adjust-open width
+set window-width 960
+set window-height 1080
+
+set font "Monospace 14"
+set window-title-basename true
+
+set recolor true
+set recolor-keephue true
+set recolor-darkcolor "#000000"
+set recolor-lightcolor "#E6E6E0"
+set render-loading-bg "#E6E6E0"
+set render-loading-fg "#000000"
+set default-bg "#000000"
+
+set page-cache-size 30
+set selection-clipboard clipboard
+set statusbar-basename true

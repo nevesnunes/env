@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Run Apps
+Exec=run-apps.sh
+Terminal=false
+Type=Application
+Icon=autoruns
+Categories=Application;

@@ -1,0 +1,5 @@
+import pdb
+pdb.set_trace()
+
+p dir(var)
+type(var)

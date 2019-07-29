@@ -1,0 +1,16 @@
+Create a .deadman file in your home directory. This file needs to be updated periodically (I added touch ~/.deadman to my .bashrc file).
+
+touch ~/.deadman
+
+Create a .deadman-actions script in your home directory to execute whatever commands you want. Make sure it's executable.
+
+#!/bin/bash
+
+# Do whatever you want here, like disable the firewall, update dyndns, delete (or shred) browser profile directories, etc.
+
+# Update ~/.deadman to prevent cron from running this script again for a while  
+touch ~/.deadman
+
+Set up a cron job to periodically check .deadman and execute the .deadman-actions script if .deadman hasn't been updated recently:
+
+*/15 * * * * find ~/ -maxdepth 1 -type f -name .deadman -ctime +3 -exec ~/.deadman-actions \; >/dev/null 2>&1

@@ -1,0 +1,61 @@
+# Gnome Session + Mouse Pointer
+
+dconf write /org/gnome/settings-daemon/plugins/cursor/active false
+
+# GTK Settings
+
+.gtkrc-2.0
+
+include ".gtkrc-2.0-gnome-color-chooser"
+gtk-theme-name = "Clearlooks"
+gtk-font-name = "Sans 8"
+
+.config/gtk-3.0/settings.ini
+
+[Settings]
+gtk-application-prefer-dark-theme=0
+gtk-theme-name = Adwaita
+gtk-font-name = Sans 8
+
+.config/gtk-3.0/gtks.css
+
+TerminalWindow {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+TerminalWindow .notebook {
+  border: 0;
+  padding: 0;
+  font-size: small;
+}
+
+TerminalScreen {
+  -VteTerminal-inner-border: 0;
+}
+
+# Gnome Keyring
+
+if [ -n "$PS1" ] && [ -z "$SSH_CONNECTION" ]; then
+  eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,secrets,ssh)
+  export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+fi
+
+# Keyboard
+
+/etc/X11/xorg.conf
+
+Section "InputClass"
+  Identifier "evdev keyboard catchall"
+  MatchIsKeyboard "on"
+  MatchDevicePath "/dev/input/event*"
+  Driver "evdev"
+  Option  "XkbOptions"  "ctrl:nocaps,compose:caps,compose:rctrl,terminate:ctrl_alt_bksp"
+EndSection
+
+# Suspend
+
+/etc/pm/sleep.d/99local
+
+service network-manager restart

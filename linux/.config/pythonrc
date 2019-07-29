@@ -1,0 +1,28 @@
+# startup script for python to enable saving of interpreter history and
+# enabling name completion
+
+import atexit
+import os
+import readline
+import rlcompleter
+
+historyPath = os.path.expanduser("~/.pyhistory")
+if not os.path.exists(historyPath):
+    with open(historyPath, 'w'):
+        pass
+
+def save_history():
+    import os
+    import readline
+
+    historyPath = os.path.expanduser("~/.pyhistory")
+    readline.set_history_length(10000)
+    readline.write_history_file(historyPath)
+
+atexit.register(save_history)
+
+readline.read_history_file(historyPath)
+readline.parse_and_bind('tab: complete')
+
+# cleanup
+del os, atexit, readline, rlcompleter, save_history, historyPath

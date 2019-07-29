@@ -1,0 +1,15 @@
+Source:
+https://realpython.com/blog/python/flask-by-example-part-3-text-processing-with-requests-beautifulsoup-nltk/
+
+            # text processing
+            raw = BeautifulSoup(r.text, 'html.parser').get_text()
+            nltk.data.path.append('./nltk_data/')  # set the path
+            tokens = nltk.word_tokenize(raw)
+            text = nltk.Text(tokens)
+            # remove punctuation, count raw words
+            nonPunct = re.compile('.*[A-Za-z].*')
+            raw_words = [w for w in text if nonPunct.match(w)]
+            raw_word_count = Counter(raw_words)
+            # stop words
+            no_stop_words = [w for w in raw_words if w.lower() not in stops]
+            no_stop_words_count = Counter(no_stop_words)

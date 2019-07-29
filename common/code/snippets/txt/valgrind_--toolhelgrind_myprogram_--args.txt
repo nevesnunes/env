@@ -1,0 +1,4 @@
+Source:
+https://stackoverflow.com/questions/6122131/tool-for-tracing-and-visualisation-of-pthread-behaviour-in-linux
+
+valgrind --tool=helgrind ./myprogram --args

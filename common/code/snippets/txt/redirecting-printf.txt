@@ -1,0 +1,11 @@
+Alternately, avoid the pitfalls of using the inconsistent echo command, and use the preferred printf instead:
+
+printf "%s\n" "yes" "password" | openconnect
+
+EDIT: I should also add that this syntax forces both sides of the pipeline to run in subshells, which can be undesirable, as they are both sort of running in their own little worlds that don't affect your current environment. If you want to keep the primary command (in this case openconnect) executing in your current shell level, and you're in bash, you can use this syntax, too:
+
+openconnect < <(printf "%s\n" "yes" "password")
+
+Or (and this is also a bashism) without spawning a subshell at all:
+
+openconnect <<< yes$'\n'password

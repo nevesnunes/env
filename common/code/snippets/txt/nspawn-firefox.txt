@@ -1,0 +1,13 @@
+Source:
+http://dabase.com/e/12009/
+
+ExecStart=/usr/bin/systemd-nspawn \
+                        --bind-ro=/home/hendry/.Xauthority:/home/hendry/.Xauthority \
+                        --bind=/home/hendry/.config:/home/hendry/.config \
+                        --bind=/tmp/.X11-unix \
+                        --bind=/dev/snd \
+                        --bind=/run/user/1000/pulse:/run/user/host/pulse \
+                        -D /home/hendry/containers/firefox \
+                        --bind /dev/shm \
+                        --bind /etc/machine-id \
+                        --network-veth -b

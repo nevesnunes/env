@@ -1,0 +1,7 @@
+Two days back over at an IRC channel someone was being helped with a support issue over ConsoleKit, some stuff didn't work and it was impossible to diagnose. I eventually "solved" the issue with a massive hack of ensuring that DBus was started after ConsoleKit in his or her RC.
+
+What was going on was that DBus was incorrectly starting ConsoleKit in the wrong way with DBus activation and DBus activation could not be disabled because his or her desktop again depended on it. So the "hack" I suggested was making DBus "depend" on ConsoleKit in his or her RC to start it after ConsoleKit which makes absolutely no sense, DBus does not depend on ConsoleKit, ConsoleKit depends on DBus, it also means that if he or she were to ever restart ConsoleKit then DBus would be restarted with it which should go in reverse. But this is the only way to stop a race condition that makes DBus start ConsoleKit rather than the RC.
+
+Welcome to Freedesktop, this stuff is super common there. It's a house of cards of absolutely poor engineering and if you take one part of it then the whole peanut gallery wants to come in because it all depends on each other's poor engineering.
+
+Maybe you would "expect it to break" if you tried, but I don't, because all stuff not from FD is engineered in a solid way that doesn't come apart if you change a single component. FD desktops are Rue Goldberg machines that stop working if the magnetic field of the Earth is slightly different from how they tested it.

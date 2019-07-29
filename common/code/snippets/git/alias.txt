@@ -1,0 +1,5 @@
+function gitpush() {                                                            
+    # usage: gitpush [ . |"file1 file2"] ["commit message"] [branchname]                                                
+    args=("$@")                                                                
+        git add ${args[0]} && git commit -m ${args[1]} && git push -u origin ${args[2]}    
+}

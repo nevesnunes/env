@@ -1,0 +1,2 @@
+# Kdenlive profile
+properties=x264-medium f=mp4 vcodec=libx264 acodec=aac g=120 crf=45 ab=320k

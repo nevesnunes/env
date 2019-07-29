@@ -1,0 +1,25 @@
+@startuml
+
+skinparam monochrome true
+skinparam shadowing false
+
+actor actor
+agent agent
+artifact artifact
+boundary boundary
+cloud cloud
+component component
+control control
+database database
+entity entity
+folder folder
+frame frame
+interface  interface
+node node
+package package
+queue queue
+rectangle rectangle
+storage storage
+usecase usecase
+
+@enduml

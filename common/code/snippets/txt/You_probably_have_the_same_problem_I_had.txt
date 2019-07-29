@@ -1,0 +1,7 @@
+You probably have the same problem I had, which is a slightly non-standard disk layout. Windows Update will fail without producing any meaningful diagnostics. It took me a lot of time and much effort to finally get past that and get my system working.
+
+Things to check:
+
+Are you UEFI booting an MBR disk? It works, but Windows Setup will fail in future upgrades.
+
+Do you have all the correct and required partitions? If you don't have the right partitions (OEM, EFI) of the right size, Windows Setup will again fail with cryptic errors, none of which say "your partitions are wrong". 

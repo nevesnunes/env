@@ -1,0 +1,22 @@
+UXTerm*foreground: #dddddd
+UXTerm*background: #000000
+
+UXTerm*color0: #000000
+UXTerm*color1: #8c0000
+UXTerm*color2: #006600
+UXTerm*color3: #8c8c00
+UXTerm*color4: #000072
+UXTerm*color5: #720072
+UXTerm*color6: #006b72
+UXTerm*color7: #dddddd
+
+UXTerm*color8: #595959
+UXTerm*color9: #a50000
+UXTerm*color10: #009900
+UXTerm*color11: #a5a500
+UXTerm*color12: #0000bf
+UXTerm*color13: #a500a5
+UXTerm*color14: #00a5a5
+UXTerm*color15: #a5a5a5
+
+UXTerm*reverseVideo: true

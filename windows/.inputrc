@@ -1,0 +1,28 @@
+TAB: menu-complete
+
+set colored-stats on
+
+set completion-ignore-case on
+
+set completion-prefix-display-length 4
+
+# Completed names which are symbolic links to
+# directories have a slash appended.
+set mark-symlinked-directories on
+
+# If you have this, you will no longer have to hit the <Tab>
+# key twice to produce a list of all possible completions.
+# A single <Tab>  will suffice.
+set show-all-if-ambiguous on
+
+set show-all-if-unmodified on
+
+set visible-stats on
+
+#$if term=xterm
+    "\eOA": history-search-backward
+    "\eOB": history-search-forward
+#$else
+    "\e[A": history-search-backward
+    "\e[B": history-search-forward
+#$endif

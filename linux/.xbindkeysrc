@@ -1,0 +1,267 @@
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+
+"keybind-guard.sh '(chrome|firefox)' 'Ctrl+W'"
+Control + Shift + w
+"keybind-guard.sh '(chrome|firefox)' 'Ctrl+q'"
+Control + q
+
+# "run-rofi.sh -show run"
+# Mod4 + x
+# "run-rofi.sh -show drun"
+# Shift + Mod4 + x
+# "run-rofi.sh -show window -window-command 'wmctrl -i -R {window}'"
+# Mod4 + space
+
+"scratchpad-terminal.sh fzf-run.sh"
+Mod4 + x
+"scratchpad-terminal.sh fzf-window.sh"
+Mod4 + space
+
+"xkill"
+Shift + Mod4 + q
+
+"/opt/screen-off.sh"
+Mod4 + Delete
+
+"fluxbox-remote Restart"
+Shift + Mod4 + r
+
+# "Resize (Up)"
+"xsize.sh --decrement-up"
+Mod1 + Mod4 + Down
+
+# "Resize (Down)"
+"xsize.sh --decrement-down"
+Mod1 + Mod4 + Up
+
+# "Resize (Left)"
+"xsize.sh --decrement-left"
+Mod1 + Mod4 + Right
+
+# "Resize (Right)"
+"xsize.sh --decrement-right"
+Mod1 + Mod4 + Left
+
+# "Resize (Up)"
+"xsize.sh --increment-up"
+Shift + Mod4 + Up
+
+# "Resize (Down)"
+"xsize.sh --increment-down"
+Shift + Mod4 + Down
+
+# "Resize (Left)"
+"xsize.sh --increment-left"
+Shift + Mod4 + Left
+
+# "Resize (Right)"
+"xsize.sh --increment-right"
+Shift + Mod4 + Right
+
+# "Move (Center)"
+"xsize.sh -z"
+Mod4 + c
+
+# "Move (Up)"
+"xsize.sh -d"
+Mod4 + Up
+
+# "Move (Down)"
+"xsize.sh -e"
+Mod4 + Down
+
+# "Move (Left)"
+"xsize.sh -f"
+Mod4 + Left
+
+# "Move (Right)"
+"xsize.sh -g"
+Mod4 + Right
+
+# "Tile (Top Right)"
+"xsize.sh -i"
+Mod1 + Mod4 + i
+
+# "Tile (Bottom Right)"
+"xsize.sh -m"
+Mod1 + Mod4 + m
+
+# "Tile (Top Left)"
+"xsize.sh -u"
+Mod1 + Mod4 + u
+
+# "Tile (Bottom Left)"
+"xsize.sh -n"
+Mod1 + Mod4 + n
+
+# "Tile (Bottom)"
+"xsize.sh -j"
+Mod1 + Mod4 + j
+
+# "Tile (Right Half)"
+"xsize.sh --half-right"
+Shift + Mod4 + l
+
+# "Tile (Left Half)"
+"xsize.sh --half-left"
+Shift + Mod4 + h
+
+# "Tile (Top)"
+"xsize.sh -k"
+Mod1 + Mod4 + k
+
+# "Tile (Right Slave)"
+"xsize.sh -l"
+Mod1 + Mod4 + l
+
+# "Tile (Left Master)"
+"xsize.sh -h"
+Mod1 + Mod4 + h
+
+# "Focus (Left)"
+"xfocus.sh -h"
+Mod4 + h
+
+# "Focus (Down)"
+"xfocus.sh -j"
+Mod4 + j
+
+# "Focus (Up)"
+"xfocus.sh -k"
+Mod4 + k
+
+# "Focus (Right)"
+"xfocus.sh -l"
+Mod4 + l
+
+# "Layouts (Digits)"
+"xlayouts-interactive.sh"
+Mod4 + y
+
+# "Layouts (Split)"
+"xlayouts.sh Split"
+Mod1 + Mod4 + y
+
+# "Run || Raise Browser"
+"xapp.sh browser"
+Mod4 + b
+
+# "Run || Raise GVim"
+"xapp.sh gvim"
+Mod4 + v
+
+# "Run || Raise Tmux"
+"xapp.sh term"
+Mod4 + Return
+
+# "Run || Raise File Manager"
+"xapp.sh pcmanfm"
+Mod4 + f
+
+# "Run || Raise Zathura"
+"xapp.sh zathura"
+Mod4 + z
+
+# "Browser"
+"user-browser"
+Shift + Mod4 + b
+
+# "File Manager"
+"pcmanfm"
+Shift + Mod4 + f
+
+# "Tmux"
+"user-terminal -e tmux"
+Shift + Mod4 + Return
+
+# "Terminal"
+"user-terminal"
+Mod1 + Mod4 + Return
+
+# "Gvim"
+"gvim"
+Shift + Mod4 + v
+
+# "Gvim" quick edits
+"user-terminal.sh gvim -v -c 'noremap q :%y+ <bar> :qa!<CR>'"
+Mod1 + Mod4 + v
+
+# Calendar 
+"scratchpad-terminal.sh status.sh"
+Mod4 + n
+
+# "Notifications Log"
+"scratchpad-terminal.sh less $XDG_RUNTIME_DIR/notify.log"
+Shift + Mod4 + n
+
+# "Set Mark"
+"xapp.sh set-mark"
+Shift + Mod4 + m
+
+# "Get Mark"
+"xapp.sh get-mark"
+Mod4 + m
+
+# "Save Video"
+"y-dl-save-link.sh"
+Shift + Mod4 + s
+
+# "Save Clipboard"
+"clip-saver.sh"
+Mod4 + s
+
+# "Screenshot to Pictures"
+"valid-screenshot.sh"
+Print
+
+# "Screenshot Area"
+"valid-screenshot.sh -a"
+Shift + Print
+
+# "Screenshot Window Contents"
+"valid-screenshot.sh -wB"
+Mod1 + Print
+
+# "OCR Screenshot Text"
+"ocr-screenshot.sh"
+Mod4 + Print
+
+# "uf"
+#"um-requester.sh uf.sh"
+"scratchpad-terminal.sh bash --norc -ci uf.sh"
+Mod4 + BackSpace
+"scratchpad-terminal.sh bash --norc -ci uf.sh"
+Mod4 + Insert
+
+# "ratpoison tribute"
+"xdotool mousemove 9999 9999"
+Mod4 + period
+
+# "Type from selection clipboard"
+"str-to-utf8.sh"
+Mod1 + Mod4 + p
+
+"xapp.sh set-above"
+Mod4 + w
+
+"xapp.sh set-normal"
+Shift + Mod4 + w
+
+"xworkspace.sh --goto"
+Mod4 + 0
+"xworkspace.sh --change"
+Shift + Mod4 + 0
+
+"xworkspace.sh -u"
+Mod4 + 1 
+"xworkspace.sh -i"
+Mod4 + 2 
+
+"killall devilspie2; devilspie2 &disown"
+Mod4 + comma

@@ -1,0 +1,14 @@
+[Unit]
+Description=Map mouse buttons
+After=suspend.target
+
+[Service]
+ExecStart=/opt/mouse.sh
+Restart=on-failure
+RestartSec=2
+TimeoutSec=10
+StartLimitInterval=10s
+StartLimitBurst=3
+
+[Install]
+WantedBy=suspend.target

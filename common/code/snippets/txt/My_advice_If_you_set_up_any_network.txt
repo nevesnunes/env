@@ -1,0 +1,1 @@
+My advice: If you set up any network services, do some basic hardening. Disable root access, use key-based authentication, put a firewall rule in place to slow brute-force attempts, use DenyHosts, etc.

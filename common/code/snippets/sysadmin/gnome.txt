@@ -1,0 +1,44 @@
+# Autostart apps
+
+    ~/.config/autostart/<APP>.desktop
+
+	[Desktop Entry]
+	Type=Application
+	Exec=/usr/local/bin/startup.sh
+	Hidden=true
+	X-GNOME-Autostart-enabled=true
+	Name=Startup
+	Comment=Startup script
+    
+    /etc/sudoers
+    username ALL=(ALL:ALL) NOPASSWD:/path/to/command
+    sudo /path/to/command
+
+# Launchers
+
+	Add .desktop file to /usr/share/applications with root
+	(user has ~/.local/share/applications also alacarte sucks)
+
+# GNOME 3 Black Windows
+
+    /etc/X11/xorg.conf.d/10-intel.conf
+
+    Section "Device"
+        Identifier "Intel Graphics"
+        Driver "intel"
+        Option "AccelMethod" "sna"
+    EndSection
+
+# GNOME 3 Menu Icons
+
+    gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/ShellShowsAppMenu': <1>, 'Gtk/ButtonImages': <1>, 'Gtk/MenuImages': <1>}"
+
+# Reset Tracker
+
+	tracker-control -rc
+
+# dconf
+
+    dconf dump / | grep "<str>"
+    dconf list
+    gsettings list-recursively | grep <TERM>

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Rdio
+Comment=An ad-free music subscription service
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-rdio.desktop-aa8127ff07800473af757ea290bdc9bc02bdab64" http://www.rdio.com/
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-rdio.desktop-aa8127ff07800473af757ea290bdc9bc02bdab64/app-icon.png
+StartupWMClass=epiphany-rdio.desktop-aa8127ff07800473af757ea290bdc9bc02bdab64

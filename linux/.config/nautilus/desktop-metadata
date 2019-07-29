@@ -1,0 +1,14 @@
+[directory]
+nautilus-icon-view-keep-aligned=true
+nautilus-desktop-icon-size=64
+nautilus-icon-view-layout-timestamp=1466376700
+
+[trash]
+nautilus-icon-position=40,14
+icon-scale=1
+nautilus-icon-position-timestamp=1466376700
+
+[home]
+nautilus-icon-position=10,14
+icon-scale=1
+nautilus-icon-position-timestamp=1466376700

@@ -1,0 +1,30 @@
+EDIT #2
+
+Create a fifo in your home directory:
+
+$ mkfifo ~/tata
+
+at the end of your job:
+
+echo "it's done" > ~/tata
+
+at the start of the other job (the one who is waiting):
+
+cat ~/tata 
+
+It's not polling it is old good blocking IO.
+EDIT #3
+
+Using signals:
+
+At the begin of the script(s) who is(are) waiting :
+
+echo $$ >>~/WeAreStopped
+kill -STOP $$
+
+at the end of your long job :
+
+if [[ -f ~/WeAreStopped ]] ; then
+    xargs kill -CONT < ~/WeAreStopped
+    rm ~/WeAreStopped
+fi

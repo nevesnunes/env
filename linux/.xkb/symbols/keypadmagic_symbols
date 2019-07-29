@@ -1,0 +1,14 @@
+// Reference: /usr/share/X11/xkb/symbols/keypad
+
+default partial alphanumeric_keys
+xkb_symbols "keypadmagic" {
+    name[Group1]= "English (Keypad Magic)";
+
+    include "keypad(operators)"
+
+    key <KP2> { [ Down, Down ] };
+    key <KP4> { [ Left, Left ] };
+    key <KP5> { [ Down, Down ] };
+    key <KP6> { [ Right, Right ] };
+    key <KP8> { [ Up, Up ] };
+};

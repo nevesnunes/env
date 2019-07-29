@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Google Drive
+Comment=Everything you need, everywhere you go
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-googledrive.desktop-07c2964c41f409a224efb389f282268e4928b85f" http://drive.google.com/
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-googledrive.desktop-07c2964c41f409a224efb389f282268e4928b85f/app-icon.png
+StartupWMClass=epiphany-googledrive.desktop-07c2964c41f409a224efb389f282268e4928b85f

@@ -1,0 +1,18 @@
+[app] (name=fbrun)
+  [Position]	(CENTER)	{0 0}
+  [Layer]	{2}
+[end]
+[app] (class=[fF]ile-roller)
+  [Position]	(CENTER)	{0 0}
+[end]
+[app] (class=mpv)
+  [Position]	(CENTER)	{0 0}
+[end]
+[app] (name=keepassx2) (class=Keepassx2)
+  [Dimensions]	{50% 48%}
+  [Position]	(UPPERLEFT)	{0% 52%}
+[end]
+[app] (name=gnome-calculator) (class=Gnome-calculator) (role=gnome-calculator)
+  [Dimensions]	{50% 48%}
+  [Position]	(UPPERLEFT)	{0% 52%}
+[end]

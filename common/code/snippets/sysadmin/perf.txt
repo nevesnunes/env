@@ -1,0 +1,8 @@
+cscope
+
+execsnoop
+opensnoop
+funcgraph
+
+ftrace
+perf

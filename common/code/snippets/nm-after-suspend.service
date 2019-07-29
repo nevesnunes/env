@@ -1,0 +1,15 @@
+[Unit]
+Description=Run start_my_connection
+After=suspend.target
+After=hibernate.target
+After=hybrid-sleep.target
+
+[Service]
+User=root
+ExecStart=/bin/systemctl restart NetworkManager
+StandardOutput=syslog
+
+[Install]
+WantedBy=suspend.target
+WantedBy=hibernate.target
+WantedBy=hybrid-sleep.target

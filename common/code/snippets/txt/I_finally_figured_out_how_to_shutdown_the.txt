@@ -1,0 +1,15 @@
+Source:
+http://www.convirture.com/forums/viewtopic.php?f=36&t=2251
+
+I finally figured out how to shutdown the guest from the command line. In case anyone else is interested I will explain quickly how it can be done.
+1. Start the VM from the web interface
+2. Open the paster.log file (~/convirt/paster.log)
+3. Go to the end of the log file and look for a line starting with CMDLINE ***** and copy everything on that line after it (mine starts with kvm.....)
+4. That line you just copied should be the command to start the guest. You can test this by shutting down the guest and running this command
+5. Look through that line you just copied for the -monitor section. Copy the text between unix: and the first ,
+Mine was -monitor "unix:/var/run/kvm/monitors/guestname,server,nowait" so the text i copy is /var/run/kvm/monitors/guestname
+6. The shutdown command is as follows:
+echo 'system_powerdown' |socat - unix-connect:/var/run/kvm/monitors/guestname >/dev/null
+
+Other commands, like keystrokes, can also be sent as follows:
+echo 'sendkey ctrl-alt-delete' |socat - unix-connect:/var/run/kvm/monitors/guestname >/dev/null

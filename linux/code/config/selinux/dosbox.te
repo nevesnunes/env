@@ -1,0 +1,39 @@
+policy_module(dosbox, 1.0.0)
+
+########################################
+#
+# Declarations
+#
+
+require {
+	role unconfined_r;
+	type unconfined_t;
+	class process execheap;
+}
+
+attribute_role dosbox_roles;
+roleattribute system_r dosbox_roles;
+
+type dosbox_t;
+type dosbox_exec_t;
+application_domain(dosbox_t, dosbox_exec_t)
+role dosbox_roles types dosbox_t;
+
+permissive dosbox_t;
+
+########################################
+#
+# dosbox local policy
+#
+
+allow dosbox_t self:fifo_file manage_fifo_file_perms;
+allow dosbox_t self:unix_stream_socket create_stream_socket_perms;
+allow dosbox_t self:process execheap;
+
+domain_use_interactive_fds(dosbox_t)
+
+files_read_etc_files(dosbox_t)
+
+auth_use_nsswitch(dosbox_t)
+
+miscfiles_read_localization(dosbox_t)

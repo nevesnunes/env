@@ -1,0 +1,22 @@
+#!/usr/bin/env stap
+
+probe syscall.* {
+  en = execname();
+  ui = uid();
+  eui = euid();
+  if (en == "<redacted>") {
+    printf("%s(%d): %s(%s)", en, pid(), name, argstr);
+    if (ui != eui) {
+      printf(" as %d/%d ", ui, eui);
+    } else {
+      printf(" as %d ", ui);
+    }
+  }
+}
+
+probe syscall.*.return {
+  en = execname();
+  if (en == "<redacted>") {
+    printf("= %s\n", retstr);
+  }
+}

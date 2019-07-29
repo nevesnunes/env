@@ -1,0 +1,45 @@
+Forker POV
+==========
+$ git clone git://repo.tld/project ~/project
+$ cd project
+$ edit file.c
+$ git add file.c
+$ git commit -m "file.c: fixed the overflow bug in function()"
+$ git diff > 0001-fix-overflow-bug.diff
+$ mail -s "[project] patch fix overflow" -a 0001-fix-overflow-bug.diff owner@repo.tld
+Hi,
+
+I found a nice way to fix your bug in `function()`. Please find attached a patch from your latest commit ("ae653fb"). You could also fetch the changes directly from my repo at
+
+    git://myrepo.tld/project
+
+Regards,
+
+-- 
+Forker
+.
+
+Owner POV
+=========
+$ cd ~/project
+$ git stash
+$ git checkout ae653fb
+$ git apply 0001-fix-overflow-bug.diff
+$ make
+$ test/overflow ./project
+OK
+$ git checkout master
+$ git remote add forker git://myrepo.tld/project
+$ git fetch forker:master
+$ git diff master forker/master
+$ git merge forker/master
+$ git commit -m "Merged fix from forker/master"
+$ mail -s "re: [patch] fix overflow bug" forker@myrepo.tld
+Hi,
+
+Thanks for your contribution. I merged your patch.
+Have a good day!
+
+-- 
+Owner
+.

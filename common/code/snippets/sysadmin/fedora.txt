@@ -1,0 +1,2 @@
+# Remove old kernel
+dnf remove kernel-core-.

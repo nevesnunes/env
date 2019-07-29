@@ -1,0 +1,2 @@
+- Adicionar `net.netfilter.nf_conntrack_helper = 1` ao /etc/sysctl.conf
+- Carregar o modulo estaticamente, através da criação do ficheiro /etc/modules-load.d/nf_conntrack.conf com `nf_conntrack` 

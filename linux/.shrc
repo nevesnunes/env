@@ -1,0 +1,65 @@
+[ -f ~/bin/load-functions.sh ] && . ~/bin/load-functions.sh
+[ -f ~/opt/z.sh ] && . ~/opt/z.sh
+
+# Use a termcap that exists in the server
+alias rsync='TERM=xterm-16color rsync'
+alias scp='TERM=xterm-16color scp'
+alias ssh='TERM=xterm-16color ssh'
+
+# Package management
+alias dnf='sudo /usr/bin/dnf'
+alias yi='sudo /usr/bin/dnf install -y'
+alias yp='sudo /usr/bin/dnf provides'
+alias yr='sudo /usr/bin/dnf remove'
+alias ys='sudo /usr/bin/dnf search'
+alias yu='sudo /usr/bin/dnf upgrade -y'
+
+# Workarounds
+alias flatpak='config-flatpak.sh; flatpak'
+alias audacity='flatpak run org.audacityteam.Audacity'
+alias chocolate-doom='sdl_wrap.sh chocolate-doom'
+alias crispy-doom='sdl_wrap.sh crispy-doom'
+alias prboom-plus='sdl_wrap.sh prboom-plus'
+alias zdoom='sdl_wrap.sh zdoom'
+
+# Shorter variants
+alias jmp='jmp.sh'
+alias uf='bash --norc -ci uf.sh'
+
+# Python version
+alias pip=pip3
+alias python=python3
+
+alias ..='cd ..'
+alias ctags='ctags --sort=yes'
+alias docker='sudo /usr/bin/docker'
+alias gdb='gdb -q'
+alias info='info --vi-keys'
+alias jo='mkdir -p ~/Documents/my/journal; eval "$EDITOR" ~/Documents/my/journal/$(date +"%Y-%m-%d_%H-%M-%S").txt'
+alias la='ls -lA'
+alias ll='ls -l'
+alias lr='ls -lAhtr'
+alias lsl='ls -t | head -n1'
+alias make='make -j $(nproc)'
+alias mcm='make clean; make'
+alias n='sudo /opt/nm.sh'
+alias o='xdg-open'
+alias noise='play -n -c2 synth pinknoise band -n 2500 6000 reverb 2 vol 1'
+alias nxargs='xargs -d"\n" -I{} -n1 -r'
+alias r='ranger'
+alias rm='rm -I'
+alias ts='tmux-switcher.sh'
+alias vim='gvim -v'
+alias z='zf'
+
+! diff --color 2>&1 | grep -qi 'unrecognized option' && \
+    alias diff='diff --color'
+command -v rlwrap &>/dev/null && \
+    alias sqlite="rlwrap -a -N -c -i -f ~/.rlwrap/sqlite3_completions sqlite3" && \
+    alias winedbg="rlwrap -a -N -c -i -z ~/.rlwrap/filters/winedbg_fzf.pl winedbg"
+
+[ -f ~/.less_termcap ] && . ~/.less_termcap
+
+pwd | grep -q '^/$' && cd ~
+
+# vim: filetype=sh

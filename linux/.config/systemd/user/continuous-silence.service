@@ -1,0 +1,16 @@
+[Unit]
+Description=Continuous silence
+# Workaround for depending on a user session
+Requires=dbus.service
+After=dbus.service
+
+[Service]
+ExecStart=/usr/bin/play -qn
+Restart=always
+RestartSec=2
+TimeoutSec=5
+StartLimitInterval=20s
+StartLimitBurst=5
+
+[Install]
+WantedBy=default.target

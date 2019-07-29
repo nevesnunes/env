@@ -1,0 +1,65 @@
+# tools
+
+javap
+JITwatch
+yourkit
+Flight Recorder
+
+# update-alternatives
+
+update-alternatives --install /usr/bin/java java /usr/lib/jvm/java-6-oracle/bin/java 200
+update-alternatives --config java
+
+update-alternatives is a very good/clever tool especially for developers who has to maintain different versions of SDK's. I frequently use this feature to manage different Ruby versions, JDK versions and many other things but I always had to google it to check how to use. I saw that having to google it every time I need is time consuming so I finally decided to learn it and I noticed that it is not that hard. Actually there a couple of parameters that you have to know, that's all.
+
+First of all, what is the idea behind? It is a way to manage symbolic links for default commands. You can create, remove, maintain and display information about the symbolic links that is managed by alternatives system. It is primarily implemented by Debian and there are other re-implementations one of which is Ubuntu.
+
+There are two main concepts;
+
+    Link groups: A set of related symlinks, intended to be updated as a group.
+    And links
+        Master links: The link in a link group which determines how the other links in the group are configured.
+        Slave links: A link in a link group which is controlled by the setting of the master link.
+
+Let's go over an example, a practical one. Setting up update-alternatives configuration for a new JDK (Java Development Kit). First of all what is JDK, as the name implies it is a development kit to develop JVM (Java Virtual Machine) based applications and it comes with handful of command line tools like every SDK. The thing is since we have other JDK's on our system, we have to configure all the command line tools that comes with JDK for update-alternatives and have to make them work as a group. We don't want to use an executable from one version and the other one from another version of JDK. They have to work as a group, if I switch to another version all of them have to switch at the same time.
+
+JDK comes with the following command line tools.
+
+    jar
+    jarsigner
+    java
+    javac
+    javadoc
+    javah
+    javap
+    javaws
+
+First we have to decide which one of these links will be the master link assuming that all the links will go under the same link group. Actually this is something I prefer since I want to switch them altogether. You might prefer some other combination, depends on your usage. For me the master is java.
+
+The syntax to install an alternative is as follows. Basically you just have to specify the link name, link group, actual executable and the priority.
+
+--install link name path priority [--slave link name path]
+
+Let's get going and install them to alternatives system. We will install java as the master link and all the other commands as slave links under java link group. You can simply execute the following command to accomplish this.
+
+sudo update-alternatives --install java java /opt/jdk1.5.0_22_64bit/bin/java  200 \
+--slave jar java /opt/jdk1.5.0_22_64bit/bin/jar \ 
+--slave jarsigner java /opt/jdk1.5.0_22_64bit/bin/jarsigner \ 
+--slave javac java /opt/jdk1.5.0_22_64bit/bin/javac \
+--slave javadoc java /opt/jdk1.5.0_22_64bit/bin/javadoc \ 
+--slave javah java /opt/jdk1.5.0_22_64bit/bin/javah \
+--slave javap java /opt/jdk1.5.0_22_64bit/bin/javap \
+--slave javaws java /opt/jdk1.5.0_22_64bit/bin/javaws
+
+Another alternative is to install all of them as master links with different groups but this means that if you want to switch to a different version of JDK then you have to switch them one by one. To do so execute the following commands.
+
+sudo update-alternatives --install java java /opt/jdk1.5.0_22_64bit/bin/java  200
+sudo update-alternatives --install jar jar /opt/jdk1.5.0_22_64bit/bin/jar  
+sudo update-alternatives --install jarsigner jarsigner /opt/jdk1.5.0_22_64bit/bin/jarsigner 
+sudo update-alternatives --install javac javac /opt/jdk1.5.0_22_64bit/bin/javac
+sudo update-alternatives --install javadoc javadoc /opt/jdk1.5.0_22_64bit/bin/javadoc 
+sudo update-alternatives --install javah javah /opt/jdk1.5.0_22_64bit/bin/javah
+sudo update-alternatives --install javap javap /opt/jdk1.5.0_22_64bit/bin/javap
+sudo update-alternatives --install javaws javavs /opt/jdk1.5.0_22_64bit/bin/javaws
+
+Or you can do something in between you can create multiple link groups and have multiple master links, e.g. java for runtime environment --and also put the commands related to runtime environment under the same link group as slave links-- and javac for development environment --and also put the commands related to development environment under the same link group as slave links--.

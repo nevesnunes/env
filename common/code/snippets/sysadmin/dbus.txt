@@ -1,0 +1,1 @@
+dbus-send --session --dest=org.gnome.Shell --type=method_call --print-reply --reply-timeout=2000 /org/gnome/Shell org.gnome.Shell.Eval string:'Main.notify("hi");'

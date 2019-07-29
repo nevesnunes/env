@@ -1,0 +1,17 @@
+.main-wrap {
+    height: 200px;
+    width: 300px;
+    background-color: red;
+    overflow: hidden;
+    position: relative;
+    margin: 2rem auto;
+}
+
+.element {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    height: 150px;
+    width: 700px;
+    background-color: green;
+}

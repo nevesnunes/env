@@ -1,0 +1,14 @@
+	
+klodolph 22 hours ago [-]
+
+.img -> disk image, open with built-in tools (Disk Copy), copy to hard drive, then unmount it
+
+.bin -> MacBinary, uncompressed binary format containing one file, use MacBinary or Stuffit
+
+.hqx -> BinHex, uncompressed ASCII format containing one file, use BinHex or Stuffit
+
+.sit -> compressed Stuffit archive, use Stuffit
+
+.sea -> self-extracting archive, must be wrapped (.bin or .hqx is common), run it as a program
+
+.cpt -> compressed Compact Pro archive, use Compact Pro or Stuffit

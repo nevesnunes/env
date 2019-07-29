@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Facebook
+Comment=Give people the power to share
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-facebook.desktop-82da67b211249624f24f3c7db5642a5112c9446f" http://www.facebook.com/
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-facebook.desktop-82da67b211249624f24f3c7db5642a5112c9446f/app-icon.png
+StartupWMClass=epiphany-facebook.desktop-82da67b211249624f24f3c7db5642a5112c9446f

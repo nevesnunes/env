@@ -1,0 +1,2 @@
+View all members:
+http://.../mailman/roster/list-name

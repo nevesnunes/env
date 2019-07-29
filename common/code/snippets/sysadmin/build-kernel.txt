@@ -1,0 +1,20 @@
+cd kernel
+make menuconfig
+make && make modules_install
+copy kernel to /boot 
+modify grub.cfg
+reboot
+
+
+Also you can press H for more info. The standard configuration is pretty good to work with anyway.
+
+Also note what lspci -k provides. It really isn't hard.
+
+
+Kernelseeds
+
+
+First of all do a memtest to exclude memory failure
+If this wont show any memory problems, inspect /var/log/messages for anyabnormalities.
+And yes, this may be the kernel/module fault. Changing it may be worth a try.
+Seems that there are fresh kernel packages in Debian experimental, or, if you like, you may build your own using the kernel.org sources. 

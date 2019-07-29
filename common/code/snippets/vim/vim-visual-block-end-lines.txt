@@ -1,0 +1,4 @@
+Put your cursor on the top-left character you want to be part of the block.
+Enter block selection mode with ctrl+v
+Select to the end of the line with $ (this is the step you're missing; if you move to the end of the first line using $ then the selection will extend to the end of subsequent lines as well)
+Move down 3 lines with 3j

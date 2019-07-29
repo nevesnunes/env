@@ -1,0 +1,36 @@
+URxvt*foreground: #dddddd
+URxvt*background: #000000
+
+! black
+URxvt*color0: #dddddd
+URxvt*color8: #808080
+
+! red
+URxvt*color1: #c62a45
+URxvt*color9: #c62a45
+
+! green
+URxvt*color2: #2e5f0b
+URxvt*color10: #2e5f0b
+
+! yellow / orange
+URxvt*color3: #421f03
+URxvt*color11: #421f03
+
+! blue
+URxvt*color4: #4e6cd0
+URxvt*color12: #4e6cd0
+
+! magenta
+URxvt*color5: #804fa1
+URxvt*color13: #804fa1
+
+! cyan
+URxvt*color6: #285055
+URxvt*color14: #285055
+
+! white
+URxvt*color7: #222222
+URxvt*color15: #000000
+
+URxvt*reverseVideo: true

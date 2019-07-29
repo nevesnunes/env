@@ -1,0 +1,79 @@
+/*
+
+Ink style, based on zenburn.css
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #ddd;
+  color: #000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-tag {
+  color: #804fa1;
+}
+
+.hljs-template-tag {
+  color: #285055;
+}
+
+.hljs-number {
+  color: #4e6cd0;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute {
+  color: #804fa1;
+}
+
+.hljs-literal {
+  color: #804fa1;
+}
+
+.hljs-subst {
+  color: #8f8f8f;
+}
+
+.hljs-title,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-section,
+.hljs-type {
+  color: #804fa1;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link {
+  color: #c62a45;
+}
+
+.hljs-deletion,
+.hljs-string,
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #c62a45;
+}
+
+.hljs-addition,
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #2e5f0b;
+}
+
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

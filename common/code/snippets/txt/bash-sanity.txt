@@ -1,0 +1,30 @@
+I use the verbose version for readability:
+
+    set -o errexit
+    set -o nounset
+    set -o pipefail
+
+Some commands need custom error handling, which means turning off -e:
+
+    set +o errexit
+
+    ansible-playbook ...
+
+    if [[ "$?" != "0" ]]; then
+        echo -e "\e[1;31m""Error when executing ansible!""\e[0m"
+        exit 1
+    fi
+
+    set -o errexit
+
+And if you use -e , you will probably need the default value helper to validate input arguments:
+
+    # the :- operator means "use the right side value if the left side ($1) is not set"
+    env=${1:-}
+    
+    inventoryFile="${baseDir}/env/${env}/inventory"
+
+    if [[ -f "${inventoryFile}" ]]; then
+        echo -e "\e[1;31m""Invalid environment specified!""\e[0m"
+        exit 1
+    fi

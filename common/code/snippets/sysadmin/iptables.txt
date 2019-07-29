@@ -1,0 +1,8 @@
+man iptables-extensions
+
+iptables -A OUTPUT -p tcp --dport 25 -m limit --limit 60/sec -j ACCEPT
+
+/sbin/iptables -N LOGDROP
+/sbin/iptables -A LOGDROP -j LOG
+/sbin/iptables -A LOGDROP -j DROP
+iptables -A OUTPUT -p tcp --dport 25 -m recent  --update --seconds 60 --hitcount 4 -j LOGDROP

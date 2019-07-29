@@ -1,0 +1,5 @@
+default partial modifier_keys
+xkb_symbols "menu2super" {
+    name[Group1]= "English (Menu2Super)";
+    key <MENU>  { [ Super_R, Super_R, Menu, Menu ] };
+};

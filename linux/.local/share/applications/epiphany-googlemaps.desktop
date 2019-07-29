@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Google Maps
+Comment=A web mapping service application and technology
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-googlemaps.desktop-40cd7fa704317acc87653800dd3c8ddbd7304eab" https://www.google.com/maps
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-googlemaps.desktop-40cd7fa704317acc87653800dd3c8ddbd7304eab/app-icon.png
+StartupWMClass=epiphany-googlemaps.desktop-40cd7fa704317acc87653800dd3c8ddbd7304eab

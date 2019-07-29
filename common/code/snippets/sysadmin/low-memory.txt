@@ -1,0 +1,75 @@
+
+
+I'm no kernel developer but I spent years philosophizing on this issue because I ran into this soooo many times. I actually came up with a metaphor for the whole situation so let me tell you that. I'll assume in my story that things like "swap" don't exist. Swap doesn't make much sense with 32 GB RAMs these days anyways.
+
+Imagine a neighborhood of yours where water is connected to each building through pipes and the towns needs to manage the capacity. Let's assume that you only have a production of 100 units of water per second (and all unused capacity goes to waste because you don't have reservoir tanks). Each home (home = a little app, a terminal, the clock widget, etc.) requires one 1 unit of water per second. This is all nice and good because your population is like 90 so everybody gets enough water.
+
+Now the mayor (=you) decide that you want to open a large restaurant (=browser). This restaurant will house multiple cooks (=browser tabs). Each cook needs 1 unit of water per second. You start with 10 cooks, so the total water consumption for the whole neighborhood is 100 units of water which is still all good.
+
+Now the fun stuff begins: you hire another cook into your restaurant which makes the total water requirements 101 which obviously you don't have. You need to do something.
+
+The water management (=kernel) has 3 options.
+
+1. The first option is just disconnect the service for the homes who didn't use the water recently. This is fine but if the disconnected home wants to use the water again, they will need to go through the lengthy registration process again. The management can disconnect multiple homes to free up more water resources. Actually, they will disconnect all homes which didn't use water recently thus keeping some amount of free water always available.
+
+Although your town keeps functioning, the downside is that progress grinds to a halt. Most of your time is spent on waiting on the water management to reinstate your service.
+
+This is what the kernel does with the file-backed pages. If you run a large executable (like chrome), its file is copied the memory. When low on memory or if there are parts which haven't been accessed recently, the kernel will can drop those parts because it can reload them from the disk anyways. If this is done excessively, this grinds your desktop to a halt because everything will be just waiting for disk IO. Note that the kernel will also drop a lot of least recently used pages when you start doing a lot of IO. This is why it takes ages to switch to a background app after you copied several large files like DVD images.
+
+This is the most annoying behavior for me because I hate hickups and you don't have any control over it. It would be nice to be able to switch it off. I'm thinking of something along the lines of
+
+sed -i 's/may_unmap = 1/may_unmap = (vm_swappiness >= 0)/' mm/vmscan.c
+
+and then you could set vm_swappiness to -1 to disable this. This worked quite well in my little tests but alas I'm no kernel developer so I didn't send it to anyone (and obviously the little modification above is not complete).
+
+2. The management could deny the new cook's request for water. This initially sounds like a good idea. However there are two downsides. First, there are companies which request a lot of water subscriptions even though they don't use them. One possible reason to do this is to avoid all the overhead of talking to the water management whenever they need some extra water. Their water usage goes up and down depending on the time of the day. E.g. in the restaurant's case, the company needs much more water during noon compared to midnight. So they request all possible water they might use but that wastes water allocations during midnight. The problem is that not all companies can foresee their peak usage correctly so they request much-much more in the hopes they will never need to worry about requesting more. Even though this makes capacity planning for the water management hard but in exchange the companies can simplify and speed up their internal processes because they will never need to work with the water management again.
+
+This is what Java's virtual machine does: it allocates a bunch of memory on startup and then works from that. By default the kernel will only allocate the memory when your Java app actually starts using it. However if you disable overcommit, the kernel will take the reservation seriously. It will only allow the allocation to succeed if it actually has the resources for it.
+
+However, there is one other, more serious problem with this approach. Let's say one company starts requesting a single unit of water every day (rather than in steps of 10). Eventually you will reach a state where you have 0 free units. Now this company will not be able to allocate more. That's fine, who cares about the big companies anyways. But the problem is that the small homes will not be able to request more water either! You will not be able the build small public bathrooms to deal with the sudden influx of tourists. You won't be able provide emergency water for the fire in the nearby forest.
+
+In computer terms: In very low memory situations without overcommit you won't be able to open a new xterm, you won't be able to ssh into your machine, you won't be able to open a new tab to search for possible fixes. In other words disabling overcommit also makes your desktop useless when low on memory.
+
+3. Now here's an interesting way of handling the problem when a company starts using too much water. The water management blows it up! Literally: it goes to the restaurant's site, throws dynamites into it and waits until it explodes. This will instantly reduce the town's water requirements by a lot so new people can move in, you can create public bathrooms, etc. You, as the mayor, can rebuild restaurant in the hopes that this time it will require less water. For example you will tell people to not go into the restaurants if there already too many people inside (e.g. you will open less browser tabs).
+
+This is actually what the kernel does when it runs out of all options and it needs memory: it calls the OOM killer. It picks a large application (based on many heuristics) and kills it, freeing up bunch of memory but maintaining a responsive desktop. Actually the Android kernel does this even more aggressively: it kills the least recently used app when the memory is low (compared to the stock kernel which does it only as a last resort). This is called the Viking Killer in Android.
+
+I think this is one of the simplest solution to the problem: it's not like you have more options than this so why not get over it sooner than later, right? The problem is that the kernel sometimes does quite a lot of work to avoid invoking the OOM killer. That's why you see that your desktop is very slow and the kernel is not doing anything about it. But fortunately there is an option to invoke the OOM killer yourself! First, make sure the magic sysrq key is enabled (e.g. echo 1 | sudo tee
+/proc/sys/kernel/sysrq) then whenever you feel that the kernel is running low on memory, just press Alt+SysRQ,Alt+f.
+
+OK so all that is nice but you want to try it out? The low memory situation is very simple to reproduce. I have a very simple app for that. You will need to run it twice. The first run will determine how much free RAM you have, the second run will create the low memory situation. Note that this method assumes that you have swap disabled (e.g. do a sudo swapoff -a ). Code and usage follows:
+
+// gcc -std=c99 -Wall -Wextra -Werror -g -o eatmem eatmem.c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+    int limit = 123456789;
+    if (argc >= 2) {
+        limit = atoi(argv[1]);
+    }
+    setbuf(stdout, NULL);
+    for (int i = 1; i <= limit; i++) {
+        memset(malloc(1 << 20), 1, 1 << 20);
+        printf("\rAllocated %5d MiB.", i);
+    }
+    sleep(10000);
+    return 0;
+}
+
+And here is how you use it:
+
+$ gcc -std=c99 -Wall -Wextra -Werror -g -o eatmem eatmem.c
+$ ./eatmem
+Allocated 31118 MiB.Killed
+$ ./eatmem 31110
+Allocated 31110 MiB.Killed
+
+The first invocation detected that we have 31,118 MiB of free RAM. So I told the application to allocate 31,110 MiB RAM so that kernel will not kill it but eat up almost all my memory. My system froze: even the mouse pointer did not budge. I've pressed Alt+SysRQ,Alt+f and it killed my eatmem process and the system got restored.
+
+Even though we covered our options what do in a low memory situation, the best approach (just like any other dangerous situation) is to avoid it in the first place. There are many ways to do this. One common way I've seen is to put the misbehaving applications (like browsers) into different containers than the rest of the system. In that case the browser won't be able to affect your desktop. But prevention itself is outside of the question's scope so I won't write about it.
+
+TL;DR: Although currently there is no way to fully avoid paging, you can mitigate full system-halt by disabling overcommit. But your system will still be unusable during low-memory situation but in a different way. Regardless of above, in a low-memory situation press Alt+SysRQ,Alt+f to kill a large process of the kernel's choosing. Your system should restore its responsiveness after a few seconds. This assumes you have the magic sysrq key is enabled (it is not by default).

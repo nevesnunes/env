@@ -1,0 +1,10 @@
+Section "Device"
+Identifier "Intel Graphics"
+Driver "intel"
+Option "TearFree" "true"
+EndSection
+
+/etc/environment has already this two lines by default:
+(only this doesn't helped, I had to add the xorg.conf lines)
+CLUTTER_PAINT=disable-clipped-redraws:disable-culling
+CLUTTER_VBLANK=True

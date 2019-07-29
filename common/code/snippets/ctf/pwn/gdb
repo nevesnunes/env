@@ -1,0 +1,5 @@
+info files
+si
+x/4xw $sp
+
+dashboard -output $(tty)
