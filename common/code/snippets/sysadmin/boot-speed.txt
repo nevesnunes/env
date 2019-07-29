@@ -1,0 +1,90 @@
+Improving boot performance is something where one could write alot about the topic. As far as disabling services goes, unfortunately only you can tell if you need a certain service or if you want to have a certain service.
+
+Do you use bluetooth devices? If not, mask bluetooth.service
+
+Do you use a 3G/UMTS etc device to connect to the internet? If you don't mask ModemManager.service
+
+Are you using your computer behind a modern router at home? Get rid of firewalld.service
+
+Do you use any lvm or raid? If you want fast boot times, you shouldn't, so you can disable all the lvm2- * and dmraid-activation.service and systemd-udev-settle.service
+
+Also who needs the automatic bug report tool? Mask abrt-ccpp.service, abrt-oops.service, abrt-vmcore.service, abrt-xorg.service, abrtd.service
+
+systemd-firstboot.service can also be masked
+
+If you don't use a tablet or some other device which needs to adjust screen rotation and brightness with the help of sensors, mask iio-sensor-proxy.service
+
+Personally I also boot without all the fedora- * services, without avahi, without plymouth (kernel parameter plymouth.enable=0, mask all plymouth services), without dev-hugepages.mount, dev-mqueue.mount, sys-fs-fuse-connections.mount, sys-kernel-debug.mount
+
+Check if you can enable some "Fast Boot" option in your BIOS, usually you loose a lot of time there.
+
+#
+
+If you need to speed it up, disable abrtd and libvirtd, and replace firewalld with iptables. And train to type your passphrase faster, since that time is included in your 2 minute boot time, too. Finally, you could build an initrd with only just the modules you really need, which should gain you some time, too.
+
+#
+
+systemd.log_level=debug
+
+#
+
+Name 	Purpose 	Result
+abrt-ccpp 	Automated Bug Reporting Tool 	removed
+abrt-oops 	Automated Bug Reporting Tool 	removed
+abrtd 	Automated Bug Reporting Tool 	removed
+accounts-daemon 	Accounts service 	start at boot
+auditd 	Logs to separate log file, if removed logs to sys log 	removed
+avahi-daemon 	mDNS/DNS-SD daemon implementing Apple's ZeroConf architecture 	removed
+boot.mount 	Loads the /boot and is needed 	start at boot
+console-kit-daemon 	Console manager 	start at boot
+console-kit-log-system-start 	Console manager startup logging 	start at boot
+cpuspeed 	Throttles your CPU runtime frequency to save power. 	start at boot
+cups 	Network printing services 	start when needed
+dbus 	Software communication protocol 	start at boot
+fedora-autoswap 	Enables swap partitions 	start at boot
+fedora-readonly 	Configures read-only root support 	start at boot
+fedora-storage-init-late 	I don't use RAID or LVM so I do not need this 	removed
+fedora-storage-init 	I don't use RAID or LVM so I do not need this 	removed
+fedora-sysinit-hack 	
+	start at boot
+fedora-sysinit-unhack 	
+	start at boot
+fedora-wait-storage 	I don't use RAID or LVM so I do not need this 	removed
+hwclock-load 	System clock UTC offset 	start at boot
+ip6tables 	Firewall 	removed
+iptables 	Firewall 	start at boot
+irqbalance 	Needed for multicore CPU's 	start at boot
+iscsi 	I don't have iscsi 	removed
+iscsid 	I don't have iscsi 	removed
+livesys-late 	live CD left over 	removed
+livesys 	live CD left over 	removed
+lldpad 	Needed for fiber channel over ethernet, I don't have that 	removed
+lvm2-monitor 	I don't use RAID or LVM so I do not need this 	removed
+mcelog 	Log machine check, memory and CPU hardware errors 	start at boot
+mdmonitor 	Software RAID 	removed
+media.mount 	
+	start at boot
+netfs 	Mount network file systems, I need this but other might not ... 	start at boot
+NetworkManager 	Networking 	start at boot
+portreserve 	I only had cups in here and since I removed that I can remove this 	removed
+rc-local 	Needed in boot process and shutdown process 	start at boot
+remount-rootfs 	
+	start at boot
+rsyslog 	System logging 	start at boot
+rtkit-daemon 	Realtime Policy and Watchdog Daemon 	start at boot
+sandbox 	Used by SELinux 	start at boot
+sendmail 	I use thunderbird so I do not need this 	removed
+smolt 	Monthly information send to fedora to assist developers 	removed
+systemd-readahead-collect 	Faster boot 	start at boot
+systemd-remount-api-vfs 	
+	start at boot
+systemd-sysctl 	
+	start at boot
+systemd-tmpfiles-setup 	Prepare /tmp 	start at boot
+systemd-user-sessions 	
+	start at boot
+systemd-vconsole-setup 	
+	start at boot
+udev-settle 	I don't use RAID or LVM so I do not need this 	removed
+udev-trigger 	Device management 	start at boot
+udev 	Device management 	start at boot

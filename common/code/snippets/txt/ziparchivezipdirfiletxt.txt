@@ -1,0 +1,4 @@
+Source:
+https://github.com/smokeleeteveryday/CTF_WRITEUPS/tree/master/2015/CODEGATE/web/owlur
+
+zip://archive.zip#dir/file.txt

@@ -1,0 +1,25 @@
+cd ~/Downloads/+
+set complete=l
+set defsearch=google
+set gui=addons,nobookmarks,nomenu,navigation,tabs
+set hlsearch
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+set history=100
+set nofocuscontent
+set urlseparator=;
+
+map , :jumps<CR>
+map J :tabp<CR>
+map K :tabn<CR>
+nmap < :tabm -1<CR>
+nmap > :tabm +1<CR>
+nmap s :st<CR>
+nmap x d
+nmap X u
+nmap go <C-6>
+noremap j 5j
+noremap k 5k
+
+ignorekeys add about:epubreader
+
+colorscheme uhita

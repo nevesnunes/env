@@ -1,0 +1,14 @@
+---
+run: runcon -r system_r -t APP_t COMMAND
+roles:
+    url: https://danwalsh.livejournal.com/75683.html
+policies:
+    url:
+        - https://selinuxproject.org/page/AVCRules
+        - https://selinuxproject.org/page/PolicyStatements
+relabel: touch /.autorelabel
+status:
+    - getenforce
+    - sestatus
+type usage: |
+    sudo semanage fcontext -l | grep -i openvpn

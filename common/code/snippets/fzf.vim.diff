@@ -1,0 +1,22 @@
+diff --git a/autoload/fzf/vim.vim b/autoload/fzf/vim.vim
+index efc4bf7..60044a0 100644
+--- a/autoload/fzf/vim.vim
++++ b/autoload/fzf/vim.vim
+@@ -843,7 +843,7 @@ endfunction
+ " Snippets (UltiSnips)
+ " ------------------------------------------------------------------
+ function! s:inject_snippet(line)
+-  let snip = split(a:line, "\t")[0]
++  let snip = split(a:line, " ■ ")[0]
+   execute 'normal! a'.s:strip(snip)."\<c-r>=UltiSnips#ExpandSnippet()\<cr>"
+ endfunction
+ 
+@@ -856,7 +856,7 @@ function! fzf#vim#snippets(...)
+     return s:warn('No snippets available here')
+   endif
+   let aligned = sort(s:align_lists(items(list)))
+-  let colored = map(aligned, 's:yellow(v:val[0])."\t".v:val[1]')
++  let colored = map(aligned, 's:yellow(v:val[0])." ■ ".v:val[1]')
+   return s:fzf('snippets', {
+   \ 'source':  colored,
+   \ 'options': '--ansi --tiebreak=index +m -n 1 -d "\t"',

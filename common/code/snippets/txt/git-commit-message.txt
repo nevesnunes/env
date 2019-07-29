@@ -1,0 +1,10 @@
+Source:
+https://emacs.stackexchange.com/questions/7816/default-commit-comment-for-magit
+
+type scope: subject
+
+Body
+
+Breaking changes with description of the change, justification
+and migration notes.
+Closes|Refs #

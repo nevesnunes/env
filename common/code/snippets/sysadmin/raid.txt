@@ -1,0 +1,11 @@
+# Rebuild partition table (Intel/PC partition)
+sudo testdisk
+
+# Check Partition
+sudo fdisk -l
+
+# Check `Data Offset`
+sudo mdadm --examine /dev/sdc5  
+
+# Mount Partition
+sudo mount -o ro,loop,offset=$((OFFSET * 512)) /dev/sdc5 tmp/disk

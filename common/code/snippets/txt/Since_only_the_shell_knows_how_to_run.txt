@@ -1,0 +1,6 @@
+
+
+Since only the shell knows how to run shell functions, you have to run a shell to run a function. You also need to mark your function for export with export -f, otherwise the subshell won't inherit them:
+
+export -f dosomething
+find . -exec bash -c 'dosomething "$0"' {} \;

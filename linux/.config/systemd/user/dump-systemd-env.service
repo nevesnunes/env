@@ -1,0 +1,17 @@
+[Unit]
+Description=Dump Systemd User Environment
+
+[Service]
+# Check exit status of script
+Type=forking
+
+ExecStartPre=/usr/bin/env bash -c "rm -f /home/%u/.local/share/systemd/env"
+ExecStart=/usr/bin/env bash -c "/home/%u/bin/dump-systemd-env.sh"
+Restart=on-failure
+RestartSec=5
+TimeoutSec=30
+StartLimitInterval=30s
+StartLimitBurst=3
+
+[Install]
+WantedBy=default.target

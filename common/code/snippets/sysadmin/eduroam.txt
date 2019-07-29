@@ -1,0 +1,19 @@
+# SOLUTION
+openssl x509 -in cacert.crt -out cacert.pem -outform PEM
+cp ... /etc/pki/tls/certs
+c_rehash
+/!\ install openssl-perl perl-WWW-Curl
+
+# DETAILS
+/var/log/wpa_supplicant.log
+/etc/sysconfig/network-scripts/ifcfg-eduroam
+
+- downgrade wpa_supplicant to 2.3.3
+--- /etc/dnf/dnf.conf exclude=wpa_supplicant
+- reinstall wpa_supplicant & NetworkManager-wifi
+- /etc/wpa_supplicant.conf
+--- phase1="tls_disable_tlsv1_2=1"
+- nmcli con mod "eduroam" ...
+- install wicd
+- no ca required (?)
+--- ca_path=/etc/pki/tls/certs

@@ -1,0 +1,11 @@
+[Unit]
+Description=Remove Systemd User Environment
+DefaultDependencies=no
+Before=shutdown.target reboot.target halt.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/env bash -c "rm -f /home/%u/.local/share/systemd/env"
+
+[Install]
+WantedBy=halt.target reboot.target shutdown.target

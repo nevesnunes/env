@@ -1,0 +1,6 @@
+<div ng-repeat="day in forecast_days" ng-init="f = forecast[day.iso]">
+  {{$index}} - {{day.iso}} - {{day.name}}
+  Temperature: {{f.temperature}}<br>
+  Humidity: {{f.humidity}}<br>
+  ...
+</div>

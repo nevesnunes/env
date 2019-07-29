@@ -1,0 +1,30 @@
+https://github.com/Laxa/HackingTools
+https://github.com/apsdehal/awesome-ctf
+
+# asm + program offsets
+objdump
+radare2 (p)
+gdb => x/40wx 0xdisasm
+
+# debugging
+gdb-dashboard
+
+# hex edit
+bvi
+
+# decompiler
+snowman
+
+# sections
+snowman
+radare2 (s)
+readelf -l
+
+# sections + binary position
+objdump -h
+
+# dump a section
+objcopy --dump-section .text=output.bin input.o
+
+? binary position <-> disasm position
+? dump chunk from one of above positions

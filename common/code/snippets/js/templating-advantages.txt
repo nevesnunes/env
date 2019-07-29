@@ -1,0 +1,8 @@
+maintain:
+Templates are good for teams because you can embed the template in the served page's HTML. Then designers can style around known markup, non-coders can adjust the HTML, and you don't have to worry about the normal string escaping that muddies HTML stored in javascript. If you've ever has to use js to store html that had attrib with quotes (cough flash embeds cough), the no escaping part alone of templates makes it worthwhile.
+
+re-usable:
+Consider that string-building marries the view and data (html and json) in javascript. If you want to translate your templates into french, you can do that to the html templates, but it could break the syntax of javascript (document.write > document.&#233;crire). Often I need to generate the template from data that is difficult to get to from js, like from a CMS that itself uses page templates. HTML is a universal output that all CMSs can spit out. By altering the HTML output in the CMS, i can re-work the template output without getting my hands dirty in JS, or having to scrape HTML in JS.
+
+robust:
+If your data object is missing a branch, obj.missing.branch will thrown an exception whereas "hello {{missing.branch}}" would typically return "hello ", or perhaps "hello (ERROR: <i>missing.branch</i> is undefined)" if you were debugging. on systems without consoles, visual error output can be a lifesaver, and it's not included functionality with string building.

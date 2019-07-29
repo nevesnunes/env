@@ -1,0 +1,70 @@
+#include <tunables/global>
+/usr/bin/skype {
+  #include <abstractions/base>
+  #include <abstractions/user-tmp>
+  #include <abstractions/audio>
+  #include <abstractions/nameservice>
+  #include <abstractions/ssl_certs>
+  #include <abstractions/fonts>
+  #include <abstractions/ibus>
+  #include <abstractions/dbus>
+  #include <abstractions/dbus-session>
+  #include <abstractions/X>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/gnome>
+  #include <abstractions/kde>
+
+  network,
+
+  /usr/bin/skype mr,
+  /opt/skype/skype pix,
+  /opt/skype/** kmr,
+  /usr/share/fonts/** m,
+  @{PROC}/*/net/arp r,
+  @{PROC}/*/cmdline r,
+  @{PROC}/*/auxv r,
+  @{PROC}/sys/kernel/ostype r,
+  @{PROC}/sys/kernel/osrelease r,
+  /usr/bin/xdg-open rUxmlk,
+  /dev/ r,
+  /dev/tty rw,
+  /dev/snd/* mrw,
+  /{dev,run}/shm/ r,
+  /{dev,run}/shm/pulse-shm-* mrw,
+  /etc/pulse/client.conf r,
+  /dev/pts/* rw,
+  /dev/video* mrw,
+  @{HOME}/.cache/fontconfig/** lkmrw,
+  @{HOME}/Downloads/* krw,
+  @{HOME}/Downloads/ krw,
+  /etc/xdg/Trolltech.conf rk,
+  @{HOME}/.config/Trolltech.conf* rwk,
+  /etc/xdg/sni-qt.conf r,
+  /usr/share/locale-langpack/* mr,
+  /usr/share/glib-2.0/schemas/gschemas.compiled rm,
+  /usr/share/nvidia-331/** rm,
+  /sys/devices/system/cpu/ r,
+  /sys/devices/system/cpu/cpu0/cpufreq/* r,
+  @{HOME}/.Skype/ krw,
+  @{HOME}/.Skype/** krw,
+  @{HOME}/.config/Skype/ krw,
+  @{HOME}/.config/Skype/** krw,
+  /usr/share/skype/** kmr,
+  /usr/share/skype/sounds/*.wav kr,
+  /etc/passwd mr,
+  /usr/share/icons/** kr,
+  /sys/class/power_supply/ r,
+
+  @{PROC}/[0-9]*/status r,
+  @{PROC}/[0-9]*/net/** r,
+  @{PROC}/[0-9]*/task/ r,
+  @{PROC}/[0-9]*/task/** r,
+
+  /usr/bin/pavucontrol rmUx,
+
+  deny @{HOME}/.mozilla/ r,
+  audit deny @{PROC}/[0-9]*/fd/ r,
+  audit deny /var/cache/fontconfig/ w,
+  deny /sys/devices/** r,
+  audit deny /etc/xdg/sni-qt.conf k,
+}

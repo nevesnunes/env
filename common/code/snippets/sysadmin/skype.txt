@@ -1,0 +1,4 @@
+# Group chat fix
+Open conversation
+/msnp24
+/dumpmsnp > Status: LoggedIn

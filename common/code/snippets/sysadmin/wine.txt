@@ -1,0 +1,2 @@
+# Create a new prefix
+WINEPREFIX="$HOME/z/wine32" WINEARCH=win32 wine wineboot

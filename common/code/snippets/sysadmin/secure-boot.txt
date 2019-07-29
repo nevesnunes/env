@@ -1,0 +1,19 @@
+1) Disable Secure Boot (temporarily) in the firmware, reboot, and register the VirtualBox kernel module with sudo /etc/init.d/vboxdrv setup.
+
+2) Create an X.509 key pair with openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=Akrog/". Replace "MOK" with the name of the file you want for the key, if desired. Replace "Akrog" with the common name you want, if desired. This will create a key pair (MOK.der and MOK.priv) in the working directory of the terminal. I keep my keys in the home folder.
+
+3) Optional: Verify no signature in the module with modinfo vboxdrv. Note that no "signer" field is displayed.
+
+4) Sign the module with sudo /usr/src/kernels/$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxdrv).
+
+5) Optional: Verify that the module has been signed with modinfo vboxdrv. Note the new fields for "signer" "sig_key" and "sig_hashalgo". Signer should say "Akrog" or whatever common name you chose in Step 2.
+
+6) Import key into firmware as a MOK (Machine Owner Key) with sudo mokutil --import MOK.der. You need to input a password. Reboot. A new screen will appear asking you to enroll a MOK or continue boot. Follow the directions on the screen to enroll the MOK. You need the password you set earlier in this step to do it.
+
+7) The system will automatically reboot after importing the MOK into the firmware. Go to the motherboard firmware and enable Secure Boot. Reboot.
+
+8) Optional: Verify that the key is loaded with sudo keyctl list %:.system_keyring and that it was UEFI who loaded it with dmesg | grep 'EFI: Loaded cert'. You should see your key with "Akrog" as the signer on both commands.
+
+9) Optional: Verify that the VirtualBox kernel module is loaded with sudo systemctl status vboxdrv and that Secure Boot is enabled with mokutil --sb-state.
+
+10) Done! You should be able to run any VMs with Secure Boot enabled now.

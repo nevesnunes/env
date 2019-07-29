@@ -1,0 +1,83 @@
+Why go to all the trouble of reverting the snapshot?
+
+Just set the disk to "non-persistent" and nothing they do will modify the system. Each time the VM is restarted it's back to its default state.
+
+I don't have any experience with VirtualBox, but with VMware include a line something like this in the .vmx file:
+
+ide0:0.mode = "independent-nonpersistent"
+
+When you want to make changes, shut down the VM and change that line to:
+
+ide0:0.mode = "persistent"
+
+then change it back when it's the way you want it.
+
+I'm sure VirtualBox has something similar.
+
+
+    For VirtualBox, the method I use is slightly different but gives similar results in the end.
+    This must be done from the command line with the vboxmanage.exe tool, I'm not aware of a GUI way to do it.
+
+    I have a 'template' VM with fully setup windows and configured how I want it.
+    Then I make a new 'guest' VM (from scratch) and copy the template disk image to a new name (cloned, from virtual media manager), from template.vdi to guestbox.vdi, and then I use a command line tool to set the new disk image immutable, so it can not be changed again.
+
+    vboxmanage modifyhd whereever/guestbox.vdi --type immutable
+
+    Then point the guest vm to the guestbox.vdi image under settings -> storage.
+
+    Each time the VM boots, disk writes go into a seperate copy-on-write file, which gets deleted once the VM is powered down. A "revert" action takes as long as a delete command unlinking an inode.
+
+    When I need to make updates, I do that in my template vm, then copy over the vdi setting it immutable again. Copy the new guest image over the old one, and the VM is updated.
+
+
+
+There was a time in the distant past that I built a "very special" win9x machine for this very purpose.
+
+Yes, I can read your mind. "Win9x? Are you fucking serious? Turn in your geek card right now!" Yadda, yadda.
+
+Just hear me out.
+
+Win9x, because it relies on realmode dos interrupt disk handlers, can be loaded from a preboot environment ram only block device. Such as that provided by Memdisk, from the syslinux tool set.
+
+Essentially, you have a disk image file on a bootable EXT2 volume (nothing ever gets written on it, so it doesn't need a journal.) With the syslinux bootloader on the MBR. It is the default boot device.
+
+On boot, syslinux starts, loads the memdisk block device driver, and copies the win9x image into ram, it patches int15 to report a different max size of installed XMS, then executes the "mbr" of the ram block device.
+
+BOOM. Win9x in a ramdisk.
+
+You can use a drivespace compressed image to achieve maximum data density for the consumed block of memory. Drivespace3 with ultrapack on gets almost 2:1 packing on normal program and file data. You can get a *lot* of stuff inside a 512mb image file.
+
+Throw in a reasonably recent firefox, courtesy of KernelEx (an open source kernel resource extender for win9x, which allows a good deal of 2k and XP native applications to run, including FF10, and a modern flashplayer with ABP and noscript.) And a good software firewall, turn off all filesahring services, and essentially lock down the 9x system as far as possible, and you have exactly what your horrible family member and or aquaintence wants: a familiar user environment that they can walk all over.
+
+It also has what you want: pull the plug, and it is magically fresh, clean, shiny and new again as soon as you power it on.
+
+9x doesn't know how to deal with EXT filesystems, so the physical HDD is never exposed to your user.
+
+The only major problems are 9x's abhorrent 2gb RAM limit, and its abysmal network safety rating, coupled with its rather dated hardware base. (Plus the difficulty of getting a 9x install up and running smoothly with all the perks a normal user could want, without breaking it, on a teensy weensie volume.)
+
+On the plus side, being 100% in RAM on a reasonably modern hardware platform, it is fast as fuck. The test systems I built had Office97, firefox 10, flashplayer10, the WEP, a pirate copy of zonealarm pro, photoshop7, media player 10, KernelEx, and a few other odds and ends on it, with 50mb of "free" space left on the compressed volume to serve as browsing cache space. It was snappy as hell.
+
+I have only done this a few times as just a lesson in self-punishment/"let's see what kind of frankenstein's monster we can build out of retro parts!" Type exercise, but the finished product is incredibly hard to kill, and keep dead. Bluescreens of death? Caught a nasty worm in the 10 seconds it was on the net? Power it off, power it back on. Good as new.
+
+Gives a whole new meaning to "zombie workstation".
+
+I have a celeron POS I am contemplating doing this to actually. I would prefer ramdisked win2k or better though, but I don't know of a way to boot the OS out of a block device after NTLDR starts, and before control is passed to NTOSKRNL. Maybe a hacked FreeLDR from reactos would work though.
+
+
+    That is quite an interesting solution!
+
+    I just wanted to see if you've ever played with BartPE before?
+
+    It's main function is to take a windows xp (or 2k i believe) installation cd, a folder of special packages to include, and optional custom config files (ie network settings) all as input.. and gives you a bootable ISO image as output.
+
+    Obviously it's meant to create a boot cd/dvd, but using syslinux similar to how you do, one can boot that ISO directly off a USB flash device as well.
+    Flash makes it fast, and easy to overwrite the ISO for any system upgrades. No optical media slowdown either.
+    ISO makes it read only while running from a RAM disk, so is quite fast.
+
+    For just running a web browser, it at least gives you a slightly newer kernel and base system to build upon.
+
+    Still, I'll have to play around with your method too, as I have some old legacy 95 and 98 boxes at work I need to keep alive for the foreseeable future, where in some of those cases virtualization isn't an option.
+    (I've managed to virtualize custom ISA cards, but can't say the same for custom PCI cards)
+
+    Thank you.
+

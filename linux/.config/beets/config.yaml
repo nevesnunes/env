@@ -1,0 +1,8 @@
+# Keep your current directory structure; importing should never move or copy files but instead just correct the tags on music
+import:
+    copy: no
+
+lastgenre:
+  count: 2
+library: ~/data/beets.db
+plugins: discogs lastgenre

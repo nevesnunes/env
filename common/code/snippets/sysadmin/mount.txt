@@ -1,0 +1,1 @@
+mount -t iso9660 -o uhelper=udisks2,nodev,nosuid,uid=1000,gid=1000,iocharset=utf8,mode=0400,dmode=0500 /dev/sdb1 /run/media/fn/Fedora-Live-WS-x86_64-23-10

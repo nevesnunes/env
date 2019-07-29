@@ -1,0 +1,12 @@
+I'm going to answer my own question! The layout is fairly easy to produce using XMonad.Layout.LayoutBuilder. Here's a barebones implementation:
+
+layoutN 1 (relBox 0 0 0.5 1) (Just $ relBox 0 0 1 1) Full
+$ layoutN 1 (relBox 0.5 0 1 0.5) (Just $ relBox 0.5 0 1 1) Full 
+$ layoutAll (relBox 0.5 0.5 1 1) simpleTabbed
+
+This behaves almost exactly the way I was hoping. There are two shortcomings:
+
+    You can't increase or decrease the number of windows in the master pane, and
+    You can't change the master pane size dynamically.
+
+I think those issues could probably be addressed by creating a layout that handles Shrink, Expand, and IncMasterM messages to generate new LayoutBuilder layouts like the above. When I have time (maybe next weekend) I'll probably try to implement that.

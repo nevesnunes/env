@@ -1,0 +1,42 @@
+the takes_ary_as_arg descTable[@] optsTable[@] line in try_with_local_arys() function sends:
+
+    This is actually creates a copy of the descTable and optsTable arrays which are accessible to the takes_ary_as_arg function.
+    takes_ary_as_arg() function receives descTable[@] and optsTable[@] as strings, that means $1 == descTable[@] and $2 == optsTable[@].
+
+    in the beginning of takes_ary_as_arg() function it uses ${!parameter} syntax, which is called indirect reference or sometimes double referenced, this means that instead of using $1's value, we use the value of the expanded value of $1, example:
+
+    baba=booba
+    variable=baba
+    echo ${variable} # baba
+    echo ${!variable} # booba
+
+    likewise for $2.
+    putting this in argAry1=("${!1}") creates argAry1 as an array (the brackets following =) with the expanded descTable[@], just like writing there argAry1=("${descTable[@]}") directly. the declare there is not required.
+
+N.B.: It is worth mentioning that array initialization using this bracket form initializes the new array according to the IFS or Internal Field Separator which is by default tab, newline and space. in that case, since it used [@] notation each element is seen by itself as if he was quoted (contrary to [*]).
+My reservation with it
+
+In BASH, local variable scope is the current function and every child function called from it, this translates to the fact that takes_ary_as_arg() function "sees" those descTable[@] and optsTable[@] arrays, thus it is working (see above explanation).
+
+Being that case, why not directly look at those variables themselves? It is just like writing there:
+
+argAry1=("${descTable[@]}")
+
+See above explanation, which just copies descTable[@] array's values according to the current IFS.
+In summary
+
+    This is passing, in essence, nothing by value - as usual.
+
+I also want to emphasize Dennis Williamson comment above: sparse arrays (arrays without all the keys defines - with "holes" in them) will not work as expected - we would loose the keys and "condense" the array.
+
+That being said, I do see the value for generalization, functions thus can get the arrays (or copies) without knowing the names:
+
+    for ~"copies": this technique is good enough, just need to keep aware, that the indices (keys) are gone.
+
+    for real copies: we can use an eval for the keys, for example:
+
+    eval local keys=(\${!$1})
+
+and then a loop using them to create a copy. Note: here ! is not used it's previous indirect/double evaluation, but rather in array context it returns the array indices (keys).
+
+    and, of course, if we were to pass descTable and optsTable strings (without [@]), we could use the array itself (as in by reference) with eval. for a generic function that accepts arrays.

@@ -1,0 +1,12 @@
+// See examples at /usr/share/X11/xkb
+
+default partial alphanumeric_keys
+xkb_symbols "altmagic" {
+    name[Group1]= "English (Alt Graph Magic)";
+
+    include "us(altgr-intl)"
+    include "ctrl(swapcaps)"
+    include "level3(ralt_switch)"
+
+    key <AC04> { [ f, F, Escape, Escape  ] };
+};

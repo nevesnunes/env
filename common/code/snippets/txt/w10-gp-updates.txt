@@ -1,0 +1,15 @@
+1. run gpedit.msc
+
+2. Go to Local Computer Policy\Computer Configuration\Administrative Templates\Windows Components\Windows Update
+
+3. Double-click Configure Automatic Updates
+
+4. Set up as follows:
+
+   - Overall group policy setting = Enabled
+   - Configure automatic updating = 3 - Auto download and notify for install
+   - Install during automatic maintenance = unticked
+   - Scheduled install day = 0 - every day
+   - Scheduled install time = 03:00
+   - "If you have blah blah" = Every week
+   - Install updates for other Microsoft products = unticked

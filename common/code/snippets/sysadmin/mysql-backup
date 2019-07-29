@@ -1,0 +1,3 @@
+#!/bin/sh
+
+umask u=r,go-wrx; /usr/bin/mysqldump -u root --routines --events --triggers --single-transaction neiist_people > /srv/mysql/neiist_people.sql

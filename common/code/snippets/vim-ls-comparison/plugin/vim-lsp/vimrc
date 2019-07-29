@@ -1,0 +1,49 @@
+set nocompatible
+
+set backspace=indent,eol,start
+set number
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+set completeopt+=preview
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+syntax on
+
+" set default 'runtimepath' (without ~/.vim folders)
+let &runtimepath = printf('%s/vimfiles,%s,%s/vimfiles/after', $VIM, $VIMRUNTIME, $VIM)
+
+" what is the name of the directory containing this file?
+let s:portable = expand('<sfile>:p:h') . '/vimfiles'
+
+" add the directory to 'runtimepath'
+let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable)
+
+call pathogen#infect()
+
+" https://github.com/prabirshrestha/vim-lsp/wiki/Servers-cquery
+" https://github.com/MaskRay/ccls/wiki/vim-lsp
+if executable('cquery')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'cquery',
+      \ 'cmd': {server_info->['cquery']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+elseif executable('ccls')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'ccls',
+      \ 'cmd': {server_info->['ccls']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls/cache' },
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+endif
+
+nnoremap <silent> <M-d> :LspDefinition<cr>
+nnoremap <silent> <M-r> :LspReferences<cr>
+nnoremap <f2> :LspRename<cr>
+nnoremap <silent> <M-a> :LspWorkspaceSymbol<cr>
+nnoremap <silent> <M-l> :LspDocumentSymbol<cr>

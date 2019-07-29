@@ -1,0 +1,9 @@
+A language is either statically typed or dynamically typed, and it is also either strongly typed or weakly typed.
+
+In a statically typed language, types are attached to variables. In a dynamically typed language, types are attached to values. Do note that many languages don't fit 100% into either category. (Note that the blog post you linked to calls types attached to values classes, but that distinction often isn't made so clearly.)
+
+A weakly typed language performs implicit type conversions as it deems necessary, while a strongly typed language does no implicit type conversions. Most languages don't fit 100% into either category. Usually languages that are considered to be strongly typed still allow you to add integers to floating point numbers, for example.
+
+It is possible for a dynamically typed language to be so strongly typed that it won't do any implicit type conversion, ever. Such a language would not allow you to, say, add an integer and a floating point number without explicitly converting one to the other.
+
+It is also possible for a statically typed language to be so weakly typed that it implicitly converts types everywhere.

@@ -1,0 +1,10 @@
+Task,Result,IP,LBC,SD
+D1,Correct,5,4,4
+D1,Incomplete,0,0,0
+D1,Fail,0,1,1
+D2,Correct,5,4,5
+D2,Incomplete,0,0,0
+D2,Fail,0,1,0
+D3,Correct,1,1,1
+D3,Incomplete,4,1,2
+D3,Fail,0,3,2

@@ -1,0 +1,34 @@
+The majority of computational problems, including those with explicit
+mathematical characterizations such as the NP-complete problems, fall
+within the category of those for which the question of how best to
+compute them is little understood. These core problems of complexity
+theory remain the most fundamental mathematical challenges of computer
+science. They are related to foundational questions in quantum physics,
+most notably through polynomial time versions of the Turing hypothesis.
+
+In computer systems major conceptual challenges remain in controlling,
+load-balancing and programming large parallel systems, whether they be
+multicore devices on a chip or highly distributed systems.. how
+to design algorithms for multi-core devices that are portable, and run
+efficiently on wide classes of architectural designs with widely varying
+ performance characteristics.
+
+A fundamental question for artificial intelligence is to characterize
+the computational building blocks that are necessary for cognition. A
+specific challenge is to build on the success of machine learning so as
+to cover broader issues in intelligence. This requires, in particular a
+reconciliation between two contradictory characteristics--the apparent
+logical nature of reasoning and the statistical nature of learning.
+
+In neuroscience a widely open problem remains how the weak model of
+computation that cortex apparently offers can support cognitive
+computation at all. .. how broad sets of primitive operations can be computed robustly and on a significant scale even on such a weak model.
+
+A challenge in a different direction is understanding how Darwinian
+evolution can evolve complex mechanisms in the numbers of generations
+and with population sizes that have apparently been available on earth.
+Darwin's notions of variation and selection are computational notions
+and offer a very direct challenge for quantitative analysis by the
+methods of computer science. What is sought is a quantitative
+understanding of the possibilities and limitations of the basic
+Darwinian process.

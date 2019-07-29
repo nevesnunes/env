@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+_INPUT_FILE=$(mktemp)
+# i3 will make this a scratch window based on the class.
+i3-sensible-terminal -c "scratch-i3-input-window" vim -c "set noswapfile" "$_INPUT_FILE"
+sleep 0.2
+# strip last byte, the newline. https://stackoverflow.com/a/12579554
+head -c -1 $_INPUT_FILE | xdotool type --clearmodifiers --delay 0 --file -
+rm $_INPUT_FILE

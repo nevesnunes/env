@@ -1,0 +1,10 @@
+set ignorecase
+set omnifunc=MyComplete
+
+fun! MyComplete(findstart, base)
+  if a:findstart
+    return match(getline('.'), '\S\+\%'.col('.').'c')
+  else
+    return  map(filter(split("January Jane Janus Jank Janitor"),
+          \ { i,v -> v =~ '^'.a:base }), "{'word': v:val, 'icase': 1}")
+endfun

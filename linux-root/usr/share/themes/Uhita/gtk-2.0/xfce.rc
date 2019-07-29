@@ -1,0 +1,245 @@
+style "theme-panel" = "dark"
+{
+	xthickness = 4
+	ythickness = 0
+    font_name = "bold"
+	
+	bg[NORMAL] = shade (0.5, @bg_color_dark)
+	bg[ACTIVE] = shade (0.25, @bg_color_dark)
+	bg[PRELIGHT] = shade (0.65, @selected_bg_color)
+	bg[SELECTED] = shade (0.25, @bg_color_dark)
+	
+	fg[NORMAL] = shade (0.9, @base_color)
+	fg[PRELIGHT] = @base_color
+	fg[ACTIVE] = shade (0.9, @base_color)
+	fg[SELECTED] = shade (0.9, @base_color)
+	
+	text[NORMAL] = shade (0.9, @base_color)
+	text[PRELIGHT] = @base_color
+	text[ACTIVE] = shade (0.9, @base_color)
+	text[SELECTED] = shade (0.9, @base_color)
+
+	engine "murrine" {
+		textstyle = 1
+		text_shade = 0.2
+
+		contrast = 0.8
+		highlight_shade = 1.0
+		lightborder_shade = 1.1
+		border_shades = { 0.9, 0.6 }
+		shadow_shades = { 0.7, 0.7 }
+		reliefstyle = 3
+		focusstyle = 3
+		roundness = 0
+		glowstyle = 0
+		glazestyle = 0
+	}
+}
+
+style "theme-panel-text"
+{
+	fg[NORMAL] = @base_color
+	fg[PRELIGHT] = "#ffffff"
+	fg[ACTIVE] = @base_color
+	
+	text[NORMAL] = @base_color
+	text[PRELIGHT] = "#ffffff"
+	text[ACTIVE] = @base_color
+
+	engine "murrine" {
+		textstyle = 1
+		text_shade = 0.2
+	}
+}
+
+style "panel-entry" = "dark"
+{
+	fg[NORMAL] = @text_color
+	fg[PRELIGHT] = @text_color
+	fg[ACTIVE] = @text_color
+	fg[SELECTED] = @text_color
+	fg[INSENSITIVE] = @text_color
+
+	text[NORMAL] = @text_color
+	text[PRELIGHT] = @text_color
+	text[ACTIVE] = @text_color
+	text[SELECTED] = @text_color
+	text[INSENSITIVE] = @text_color
+
+}
+
+style "theme-main-menu-text" = "theme-panel-text"
+{
+	fg[PRELIGHT] = "#ffffff"
+	text[PRELIGHT] = "#ffffff"
+}
+
+style "workspace-switcher" = "theme-panel"
+{
+	bg[ACTIVE] = shade (0.85, @bg_color_smooth_dark)
+	bg[SELECTED] = shade (0.85, @bg_color_smooth_dark)
+}
+
+style "window-buttons" = "theme-panel"
+{
+	xthickness = 4
+	ythickness = 0
+
+	bg[ACTIVE] = shade (0.25, @bg_color_dark)
+	bg[PRELIGHT] = shade (0.65, @selected_bg_color)
+	bg[SELECTED] = shade (0.25, @bg_color_dark)
+	
+	fg[NORMAL] = shade (0.7, @base_color)
+	fg[ACTIVE] = @base_color
+	fg[PRELIGHT] = @base_color
+	
+	engine "murrine" {
+		textstyle = 1
+		text_shade = 0.2
+
+		contrast = 0.0
+		roundness = 1
+		reliefstyle = 0
+	}
+}
+
+style "comboboxentry"
+{
+	xthickness = 4
+	text[NORMAL] = @text_color
+	text[PRELIGHT] = @text_color
+
+	fg[NORMAL] = @text_color
+	fg[PRELIGHT] = @text_color
+
+	engine "murrine"
+	{
+		contrast = 0.4
+		reliefstyle = 0
+		border_shades = {1.03,0.8}
+		shadow_shades = {0.5,0.0}
+	}
+}
+
+style "combo" = "comboboxentry"
+{
+	bg[ACTIVE] = shade (0.85, @bg_color) # Color for pressed-spinbuttons.
+}
+
+style "indicator" = "theme-panel"
+{
+	xthickness = 4
+	ythickness = 0
+}
+
+style "xfdesktop-icon-view" {
+    font_name = "bold"
+
+	XfdesktopIconView::label-alpha = 0
+	XfdesktopIconView::selected-label-alpha = 180
+	XfdesktopIconVIew::ellipsize-icon-labels = 1
+    XfdesktopIconView::shadow-y-offset = 1
+    XfdesktopIconView::selected-shadow-y-offset = 1
+
+	base[NORMAL] = @selected_bg_color
+	base[SELECTED] = @selected_bg_color
+	base[ACTIVE] = @selected_bg_color
+
+	fg[NORMAL] = @selected_fg_color
+	fg[SELECTED] = @selected_fg_color
+	fg[ACTIVE] = @selected_fg_color
+}
+widget_class "*XfdesktopIconView*" style "xfdesktop-icon-view"
+
+style "xfwm-tabwin"
+{
+	font_name = "bold"
+
+	Xfwm4TabwinWidget::border-width = 1
+	Xfwm4TabwinWidget::border-alpha = 1.0
+	Xfwm4TabwinWidget::icon-size = 64
+	Xfwm4TabwinWidget::listview-icon-size = 24
+	Xfwm4TabwinWidget::preview-size = 128
+	Xfwm4TabwinWidget::alpha = 1.0
+	Xfwm4TabwinWidget::border-radius = 4
+
+	bg[NORMAL] = shade (0.55, @bg_color_dark)
+	bg[ACTIVE] = shade (0.65, @selected_bg_color)
+	bg[PRELIGHT] = shade (0.65, @selected_bg_color)
+	bg[SELECTED] = shade (0.65, @bg_color_smooth_dark)
+
+	fg[NORMAL] = shade (0.8, @base_color)
+	fg[ACTIVE] = @base_color
+	fg[PRELIGHT] = @base_color
+
+	engine "murrine" {
+		textstyle = 1
+		text_shade = 0.2
+
+		contrast = 0.0
+		roundness = 4
+		reliefstyle = 0
+		glowstyle = 0
+		glazestyle = 0
+	}
+}
+widget "xfwm4-tabwin*" style "xfwm-tabwin"
+
+# Thunar Styles
+
+style "sidepane" {
+	base[NORMAL] = shade (0.9, @bg_color)
+	base[INSENSITIVE] = mix (0.4, shade (1.35, @selected_bg_color), shade (0.9, @base_color))
+	bg[NORMAL] = @bg_color
+	#text[NORMAL] = mix (0.9, @fg_color, @bg_color)
+}
+
+widget_class "*ThunarShortcutsView*" style "sidepane"
+widget_class "*ThunarTreeView*" style "sidepane"
+
+style "thunar-icon-view-reduced-style"
+{
+  ThunarIconView::column-spacing = 16
+  ThunarIconView::row-spacing = 8
+}
+class "ThunarIconView" style "thunar-icon-view-reduced-style"
+
+widget "*PanelWidget*" style "theme-panel"
+widget "*PanelApplet*" style "theme-panel"
+widget "*fast-user-switch*" style "theme-panel"
+widget "*CPUFreq*Applet*" style "theme-panel"
+class "PanelApp*" style "theme-panel"
+class "PanelToplevel*" style "theme-panel"
+widget_class "*PanelToplevel*" style "theme-panel"
+widget_class "*notif*" style "theme-panel"
+widget_class "*Notif*" style "theme-panel"
+widget_class "*Tray*" style "theme-panel" 
+widget_class "*tray*" style "theme-panel"
+widget_class "*computertemp*" style "theme-panel"
+widget_class "*Applet*Tomboy*" style "theme-panel"
+widget_class "*Applet*Netstatus*" style "theme-panel"
+
+# Fixes for tooltip text in some apps.
+widget_class "*Notif*Beagle*" style "theme-panel"
+widget_class "*Notif*Brasero*" style "theme-panel"
+
+# XFCE panel theming.
+widget "*Xfce*Panel*" style "theme-panel"
+class "*Xfce*Panel*" style "theme-panel"
+widget "*WnckPager*" style "workspace-switcher"
+
+# Fix gtk-entries in the panel
+class "GtkEntry" style "combo"
+class "*SexyIconEntry*" style:highest "combo" # fixes dict-plugin
+widget "*xfce4-verve-plugin*GtkEntry" style:highest "combo" # fixes verve-plugin
+
+# Make sure panel text color doesn't change
+widget_class "*Panel*MenuBar*" style "theme-main-menu-text"
+widget_class "*Panel*<GtkMenuBar>*" style "theme-main-menu-text"
+widget "*.clock-applet-button.*" style "theme-panel-text"
+widget "*PanelApplet*" style "theme-panel-text"
+
+# Override general panel-style with specific plugin-styles
+widget "*indicator-applet*" style "indicator"
+widget "*indicator-button*" style "indicator"
+widget "*XfceTasklist*" style "window-buttons"

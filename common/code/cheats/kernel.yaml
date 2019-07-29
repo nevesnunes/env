@@ -1,0 +1,54 @@
+---
+profiling:
+    - Ftrace 2.6.27
+    - perf_events 2.6.31, 3.2
+        https://github.com/brendangregg/perf-tools
+    - eBPF 3.15, 4.1
+        https://github.com/iovisor/bcc
+configs:
+    - https://github.com/systemd/systemd/blob/master/README
+    - https://www.freedesktop.org/software/systemd/man/journald.conf.html
+    - /lib/modules
+    - /proc/config.gz
+options:
+    - selinux=1 enforcing=0
+    - nomodeset
+    - systemd.unit=rescue.target
+debug:
+    - https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
+    - https://www.linux.it/~rubini/docs/kconf/
+info:
+    - modinfo *
+    - /sys/module/*/parameters/
+verify:
+    xz -dc < linux-4.4.135.tar.xz > linux-4.4.135.tar
+    gpg --verify linux-4.4.135.tar.sign
+swap: https://wiki.archlinux.org/index.php/zswap
+format handlers:
+    mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc
+    echo ':PDF:M::%PDF::/usr/bin/evince:' > /proc/sys/fs/binfmt_misc/register
+    https://www.kernel.org/doc/html/v4.11/admin-guide/binfmt-misc.html
+    https://ownyourbits.com/2018/06/13/transparently-running-binaries-from-any-architecture-in-linux-with-qemu-and-binfmt_misc/
+code dumps:
+    sudo dnf dnf debuginfo-install libmutter\*
+
+    ulimit -c unlimited
+    entry='* soft core unlimited' && \
+      sed -n -e "/^$entry/!p" -e '$a'"$entry" /etc/security/limits.conf
+    ulimit -a | grep -- -c
+    grep DumpLocation /etc/abrt/abrt.conf
+
+    key='kernel.core_pattern' && \
+      sed -n -e "/^$key=/!p" -e '$a'"$key"' = /var/crash/core-%e-%s-%u-%g-%p-%t' /etc/sysctl.conf
+    key='DAEMON_COREFILE_LIMIT' && \
+      sed -n -e "/^$key=/!p" -e '$a'"$key"' = unlimited' /etc/sysconfig/init
+    cat /proc/sys/kernel/core_pattern
+
+    semanage fcontext -a -t public_content_rw_t "/var/crash(/.*)?"
+    setsebool -P abrt_anon_write 1
+    service abrtd.service restart
+
+    coredumpctl gdb "$(coredumpctl list | tail -n1 | grep -o '  [0-9]*  ' | head -n1  | grep -o '[0-9]*')"
+kill: http://www.noah.org/wiki/Kill_-9_does_not_work
+clear cache: sudo sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
+capabilities: https://lwn.net/Articles/486306/

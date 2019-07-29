@@ -1,0 +1,71 @@
+/* css reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/* super good css right here */
+body { margin: 1em; font-family: 'Noto Sans', sans-serif; width: 85%; max-width: 768px; margin-left: auto; margin-right: auto; text-align: default; text-justify: auto; line-height: 143%; }
+h1,h2,h3,h4 { font-weight: bold; }
+h1 { font-size: 220%; }
+h1 a { color: black; text-decoration: none; }
+h2 { font-size: 130%; }
+h3,h4 { font-size: 110%; color: #222; }
+h4 { font-size: 100%; color: #333; }
+.vspace { margin-top: 1.5em; margin-bottom: 1.5em; }
+article time { color: #555; }
+.article_content { margin-top: 0.5em; }
+.blog_title { margin-bottom: 0.15em; }
+.header_content { color: #555; font-size: 120%; margin-top: 0.5em; }
+
+
+a.title_link { color: black; text-decoration: none; }
+.pilcrow {font-size: 75%; color: #555; visibility: hidden; }
+a.title_link:hover .pilcrow { visibility: visible; }
+p { margin-bottom: 1em; }
+p + .codehilite { margin-bottom : 1em; }
+code, pre, .codehilite { font-family: 'Droid Sans Mono', monospace; margin: 0; background: #f4f4f4; overflow: auto; }
+tt, .tt { font-family: 'Droid Sans Mono', monospace; }
+ul { list-style-type: disc; margin-left: 2em; margin-bottom: 1em; }
+em { font-style: italic; }
+strong { font-weight: bold; }
+blockquote {
+    background: #f9f9f9;
+    border-left: 5px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+img { display: block; margin-left: auto; margin-right: auto; }
+
+th { padding-right: 1em; }
+td { padding-right: 1em; }
+tr:nth-child(even) { background: #f4f4f4; }
+table { margin-bottom: 1em; }
+
+nav + hr { margin-bottom: 1.5em; }
+ul.nav-list { margin: 0 }
+.nav-top { font-size: 120%; font-weight: bold; padding: 0; }
+.nav-item { display: inline; margin-right: 3em; }
+.nav-top > .nav-item { margin-right: 3em; }
+
+.nav-top a:link { text-decoration: none; color: black; }
+.nav-top a:visited { text-decoration: none; color: black; }
+.nav-top a:hover { text-decoration: none; color: black; }
+.nav-top a:active { text-decoration: none; color: black; }
+
+.nav_prefix { font-weight: bold; padding-right: 1em; }
+
+.nav-bottom { color: #666; font-size: 80%; }
+.nav-bottom ul { margin-top: 0.5em; }
+.nav-bottom .nav-item { margin-right: 1.5em; }
+.nav-bottom a:link { text-decoration: none; color: #666; }
+.nav-bottom a:visited { text-decoration: none; color: #666; }
+.nav-bottom a:hover { text-decoration: none; color: #666; }
+.nav-bottom a:active { text-decoration: none; color: #666; }
+
+.sitemap_table { font-size: 110%; }
+
+.header { margin-bottom: 1.5em; }
+
+q:before { content: open-quote; }
+q:after { content: close-quote; }
+
+th { font-weight: bold; text-align: left; }

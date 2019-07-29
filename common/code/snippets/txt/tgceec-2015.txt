@@ -1,0 +1,100 @@
+Source:
+https://tgceec.tumblr.com/post/110094856488/results-of-tgceec-2015
+
+
+Results of the Grand C++ Error Explosion Competition
+
+After much deliberation, the winners of the Grand C++ Error Explosion Competition are finally selected. There are two different award categories. The winners of the first category are those submissions that produced the largest error with the smallest amount of source code. These entries contain a multiplier number, which is just the size of the error message divided by the size of the source code. The second category is artistic merit.
+
+Some of the code samples shown will overflow when displayed on the web. We apologize for any inconvenience this may cause.
+
+Biggest error, category Anything
+
+Name: Turtles all the way down
+Author: Ed Hanway
+Multiplier: 5.9 billion
+
+This entry is the best implementation of the most common pattern, the double include self. Here’s what it looks like:
+
+#include ".//.//.//.//jeh.cpp"
+#include "jeh.cpp"
+`
+
+This implementation produced almost six times the amount of error messages of the second best entry of the same type.
+
+Biggest error, Category Plain
+
+Name: y u no backreference?
+Author: Chris Hopman
+Multiplier: 790 million
+
+The rules permitted includes in the plain category, so obviously the double include was used in this category as well.
+
+#include "set>.cpp"
+#include "set>.cpp"
+
+Biggest error, category Bare Hands
+
+Name: Const Variadic Templates
+Author: Marc Aldorasi
+Multiplier: 657 million
+
+The bare hands category did not allow for any use of the preprocessor, which lead most people to use recursive or variadic template initiations. This entry was the most compact of the lot.
+
+template<class T,class...>class C{C<T*const,T,C>a;C<T,C>b;};C<int>c;
+
+Best cheat
+
+Name: What's perl?
+Author: Chris Hopman
+
+There were several interesting cheat attempts in this competition. For example did you know that in C++ digraph expansion happens after line continuation expansion? We sure did not.
+
+Many tried to exploit a division by zero bug in the verification script. One submission even had a patch for this, which tried to changed the evaluator script to make their entry evaluate to infinite error. The best cheat went in a completely different direction, however.
+
+The actual code consisted of only one space. Since this entry was in the anything category, it was accompanied by a list of header search directories. That file looked like this.
+
+/usr/include; perl -e "@c=\"x\"x(2**16); while(1) {print @c}" 1>&2
+
+When passed to the C++ compiler invocation line, this allows the shell code to escape the test harness sandbox. Extra credit for using Perl, which is the only language less readable than C++ templates.
+
+Most surprising
+
+Name: templates and nested classes are not best practice
+Author: Aaron Grothe
+
+This piece of code looks innocent but explodes in a completely unexpected manner. We also tested this with Clang, which detects correctly the missing semicolon, after which it anyway tries to evaluate the infinite template recursion and eventually segfaults. This entry gives a glimpse on the kinds of issues an IDE’s code completion engine needs to guard against.
+
+template<class T>class L{L<T*>operator->()};L<int>i=i->
+
+Most lifelike
+
+Name: Bjarne's nightmare
+Author: Victor Zverovich
+
+Suppose you are given a task of adding some new functionality to an existing code base. You have been told that the guy who wrote it was “really smart” and that his code is of “enterprise quality”. You check out the code and open a random file in an editor. It appears on the screen. After just one microsecond of looking at the code you have lost your will to live and want nothing more than to beat your head against the table until you lose consciousness.
+
+This entry could be that code. We’re glad we only needed to measure it rather than to understand and alter it.
+
+#include <map>
+#include <algorithm>
+template<class T,class U>void f(T,U u){std::vector<std::vector<T>>v;auto i=end(v);find(i,i,u);find(i,i,&u);U*p,**q,r(),s(U);find(i,i,&p);find(i,i,&q);find(i,i,r);find(i,i,&r);find(i,i,s);find(i,i,&s);}template<class T>void f(T t){f(t,0);f(t,0l);f(t,0u);f(t,0ul);f(t,0ll);f(t,.0);f(t,.0l);f(t,.0f);f(t,' ');f(t,L' ');f(t,u' ');f(t,U' ');f(t,"");f(t,L"");}int main(){f(0);f(0l);f(0u);f(0ul);f(0ll);f(.0);f(.0l);f(.0f);f(' ');f(L' ');f(u' ');f(U' ');f("");f(L"");f(u"");f(U"");}
+
+Barest hands
+
+Title: whatever
+Author: John Regehr
+
+This entry does not have any template definitions or include recursion and yet it put up an admirable fight. This serves as an important reminder to all of us: when used correctly even the simplest of tools can be used to build impressive results.
+
+struct x struct z<x(x(x(x(x(x(x(x(x(x(x(x(x(x(x(x(x(y,x(y><y*,x(y*w>v<y*,w,x{}
+
+Epilogue
+
+We would like to thank all people who participated in the competition. We hope that all participants as well as you readers have enjoyed this experience.
+
+The final question now remaining is whether there will be a second TGCEEC next year?
+
+The answer to this is simple: yes, if you, the people, demand it.
+
+Till we meet again.

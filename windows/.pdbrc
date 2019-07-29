@@ -1,0 +1,5 @@
+import rlcompleter
+pdb.Pdb.complete=rlcompleter.Completer(locals()).complete
+
+import os
+alias q os._exit(0)

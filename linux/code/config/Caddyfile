@@ -1,0 +1,10 @@
+:1234
+browse
+gzip
+markdown {
+    css /code/web/styles/github.css
+    ext .md .markdown .mdown .txt
+}
+mime {
+    .rst text/plain
+}

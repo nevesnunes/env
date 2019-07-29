@@ -1,0 +1,2 @@
+alias -a db = dashboard
+dashboard -layout assembly expressions !history memory registers source stack !threads

@@ -1,0 +1,62 @@
+_prboom-game-server() {
+  IFS='' read -r -d '' descriptions <<'EOF'
+-N: 'Specifies the number of players in the game (default 2).'
+-e: 'The episode to play (default 1).'
+-l: 'The level to play (default 1).'
+-s: 'Specify the skill level to play (1-5).'
+-d: 'Set game mode to (old) deathmatch (default is cooperative).'
+-a: 'Set game mode to '"'"'altdeath'"'"' (v2 deathmatch) (default is cooperative).'
+-f: 'Select fast mode (monsters move faster).'
+-n: 'Selects nomonsters mode, i. e. there are no monsters in the game.'
+-r: 'Respawn mode. If you don'"'"'t know what this is, you don'"'"'t want to ;-).'
+-c: 'Specifies a configuration file to read which sets parameters for the game.'
+-w: 'Specifies a WAD file to play.'
+-t: 'Reserved.'
+-x: 'This causes extra information to be sent with each network packet; this will…'
+-p: 'Tells prboom-game-server what port number to communicate via (default 5030).'
+-v: 'Increases verbosity level; causes more diagnostics to be printed, the more t…'
+
+EOF
+
+  COMPREPLY=()
+  local cur
+  cur=$(_get_cword)
+  IFS='' read -r -d '' completions <<'EOF'
+-N
+-e
+-l
+-s
+-d
+-a
+-f
+-n
+-r
+-c
+-w
+-t
+-x
+-p
+-v
+
+EOF
+
+  if [ -z "$cur" ]; then
+      if declare -f _filedir &>/dev/null; then
+          _filedir
+      else
+          COMPREPLY=( $(compgen -f -- "$cur") )
+      fi
+      return 0
+  fi
+
+  COMPREPLY=( $( compgen -W "$completions" -- "$cur" ) )
+  if [[ ${#COMPREPLY[*]} -gt 1 ]]; then
+      selector=(fzf '-q' "$cur")
+      COMPREPLY=("$(echo "$descriptions" | \
+              eval "${selector[@]}" | \
+              cut -d':' -f1 --)")
+  fi
+
+  return 0
+}
+complete -F _prboom-game-server prboom-game-server

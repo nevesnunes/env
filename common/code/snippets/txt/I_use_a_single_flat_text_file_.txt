@@ -1,0 +1,17 @@
+I use a single flat text file + VIM for all personal todos.
+
+The first header is "calendar". For each line below it, there is a date and the name of an important non-recurring meeting to attend.
+
+The second header is "schedule". For each line below it, there is a start clock time, a stop clock time, and a 1-2 word project name.
+
+The third header is "projects". There are 1-2 word subheaders beneath this of project names. Under each project name, there is an independent, non-heirarchical todo list. Projects are sorted alphabetically, not by priority.
+
+It works for me because I don't bother generating a combined task list sorted by priority, and don't bother listing more than 1-5 tasks per project.
+
+If I need to prioritize a project, I add an additional block of time via 1 line in the "schedule" section. I don't bother changing the order or sorting of items.
+
+The main benefit I get out of it is faster context switching, so if I am working on 10+ projects, or communicating with several different clients simultaneously, I can quickly pull up a single file to check the state of every project.
+
+I use a separate journalling tool for brainstorming, and git+email to more exhaustively list tasks for individual projects.
+
+My central TODO file is more of global brief and status report to keep things moving.

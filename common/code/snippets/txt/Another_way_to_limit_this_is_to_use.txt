@@ -1,0 +1,17 @@
+
+
+Another way to limit this is to use Linux's control groups. This is especially useful if you want to limit a process's (or group of processes') allocation of physical memory distinctly from virtual memory. For example:
+
+cgcreate -g memory:/myGroup
+echo $(( 500 * 1024 * 1024 )) > /sys/fs/cgroup/memory/myGroup/memory.limit_in_bytes
+echo $(( 5000 * 1024 * 1024 )) > /sys/fs/cgroup/memory/myGroup/memory.memsw.limit_in_bytes
+
+will create a control group named myGroup, cap the set of processes run under myGroup up to 500 MB of physical memory and up to 5000 MB of swap. To run a process under the control group:
+
+cgexec -g memory:myGroup pdftoppm
+
+Note that on a modern Ubuntu distribution this example requires installing the cgroup-bin package and editing /etc/default/grub to change GRUB_CMDLINE_LINUX_DEFAULT to:
+
+GRUB_CMDLINE_LINUX_DEFAULT="cgroup_enable=memory swapaccount=1"
+
+and then running sudo update-grub and rebooting to boot with the new kernel boot parameters.

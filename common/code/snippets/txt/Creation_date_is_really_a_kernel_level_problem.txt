@@ -1,0 +1,1 @@
+Creation date is really a kernel level problem. Alternatively on ext4 you can always use : debugfs -R 'stat <inode_number>' DEVICE

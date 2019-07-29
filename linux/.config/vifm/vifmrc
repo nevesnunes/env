@@ -1,0 +1,3 @@
+view
+map <Tab> <C-w><C-w>
+fileviewer *[^/] pygmentize

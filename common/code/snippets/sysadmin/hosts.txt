@@ -1,0 +1,6 @@
+/etc/hosts.allow
+sshd: 124.567.890. : allow
+sshd: 83.83.83.83 127.0.0.1 83.83.83.84 192.168.1.1 : allow
+
+/etc/hosts.deny
+sshd: ALL

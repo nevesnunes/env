@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Action
+Tooltip=Move Files
+Name=Move Files
+Profiles=profile-zero;
+Icon=document-send
+SuggestedShortcut=F3
+
+[X-Action-Profile profile-zero]
+Exec=user-terminal.sh mvf.sh %F
+SelectionCount=>0

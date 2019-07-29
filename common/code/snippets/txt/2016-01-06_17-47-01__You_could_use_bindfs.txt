@@ -1,0 +1,32 @@
+
+
+You could use bindfs like:
+
+$ ls -ld dir
+drwxr-xr-t 2 stephane stephane 4096 Aug 12 12:28 dir/
+
+That directory is owned by stephane, with group stephane (stephane being its only member). Also note the t that prevents users from renaming or removing entries that they don't own.
+
+$ sudo bindfs -u root -p u=rwD,g=r,dg=rwx,o=rD dir dir
+
+We bindfs dir over itself with fixed ownership and permissions for files and directories. All files appear owned by root (though underneath in the real directory they're still owned by stephane).
+
+Directories get drwxrwxr-x root stephane permissions while other types of files get -rw-r--r-- root stephane ones.
+
+$ ls -ld dir
+drwxrwxr-t   2 root     stephane   4096 Aug 12 12:28 dir
+
+Now creating a file works because the directory is writeable:
+
+$ echo test > dir/file
+$ ls -ld dir/file
+-rw-r--r-- 1 root stephane 5 Aug 12 12:29 dir/file
+
+However it's not possible to do a second write open() on that file as we don't have permission on it:
+
+$ echo test > dir/file
+zsh: permission denied: dir/file
+
+(note that appending is not allowed there (as not part of your initial requirements)).
+
+A limitation: while you can't remove or rename entries in dir because of the t bit, new directories that you create in there won't have that t bit, so you'll be able to rename or delete entries there.

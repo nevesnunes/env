@@ -1,0 +1,42 @@
+1) Download Eclipse. I got eclipse-SDK-3.7-linux-gtk-x86_64.tar.gz
+
+2) Extract it
+
+tar xzf eclipse-SDK-3.7-linux-gtk-x86_64.tar.gz
+
+3) Move to /opt/ folder
+
+mv eclipse /opt/
+sudo chown -R root:root eclipse
+sudo chmod -R +r eclipse
+
+4) Create an eclipse executable in your path
+
+sudo touch /usr/bin/eclipse
+sudo chmod 755 /usr/bin/eclipse
+sudo nano /usr/bin/eclipse
+
+#!/bin/sh
+#export MOZILLA_FIVE_HOME="/usr/lib/mozilla/"
+export ECLIPSE_HOME="/opt/eclipse"
+
+$ECLIPSE_HOME/eclipse $*
+
+5) Create a gnome menu item
+
+sudo nano /usr/share/applications/eclipse.desktop
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=Eclipse
+Comment=Eclipse IDE
+Exec=eclipse
+Icon=/opt/eclipse/icon.xpm
+Terminal=false
+Type=Application
+Categories=GNOME;Application;Development;
+StartupNotify=true
+
+6) Launch Eclipse for the first time
+
+/opt/eclipse/eclipse -clean &

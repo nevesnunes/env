@@ -1,0 +1,132 @@
+activation-1.1.jar <-- javax.activation, part of JDK & app server, remove
+antlr-2.7.6.jar <-- probably wrongly got in as transitive dependancy to hibernate
+antlr-3.3.jar <-- same story
+antlr-runtime-3.1.1.jar <-- same story
+aopalliance-1.0.jar <-- definitly not needed
+apacheds-all-1.5.5.jar <-- not sure where you got this from if you don't really use need it and is part of some transitive dependancy remove it
+asm-3.3.jar <-- probably part of hibernate dependency
+avalon-framework-4.1.3.jar <-- probably not needed
+bsh-1.3.0.jar <-- transitive dependency as well.
+btm-2.1.4.jar
+cglib-nodep-2.2.jar <-- really old dependancy of maven i asume
+commons-beanutils-1.8.2.jar
+commons-collections-3.2.1.jar
+commons-compress-1.0.jar
+commons-dbcp-1.4.jar
+commons-digester-2.0.jar
+commons-exec-1.0.1.jar
+commons-io-1.4.jar
+commons-lang-2.4.jar
+commons-logging-1.1.jar <-- remove, as it will just cause problems as it has known memory leak issues
+commons-net-2.0.jar
+commons-pool-1.5.5.jar  <-- if you don't directly use any of the commons-* jars remove them
+cxf-api-2.4.4.jar <-- your probably should bundling CXF as it is already part of application server. remove it.
+cxf-common-utilities-2.4.4.jar
+cxf-rt-bindings-soap-2.4.4.jar
+cxf-rt-bindings-xml-2.4.4.jar
+cxf-rt-core-2.4.4.jar
+cxf-rt-databinding-jaxb-2.4.4.jar
+cxf-rt-frontend-jaxws-2.4.4.jar
+cxf-rt-frontend-simple-2.4.4.jar
+cxf-rt-transports-common-2.4.4.jar
+cxf-rt-transports-http-2.4.4.jar
+cxf-rt-ws-addr-2.4.4.jar
+cxf-tools-common-2.4.4.jar
+drools-compiler-5.5.0.Final.jar
+drools-core-5.5.0.Final.jar
+drools-persistence-jpa-5.5.0.Final.jar
+ecj-3.5.1.jar <-- eclipse java compliler? really? you this is part of app server as well
+ehcache-core-2.3.0.jar
+el-api-1.0.jar <-- old version expression language api, part of app server and can cause problems with memory leaks
+geronimo-javamail_1.4_spec-1.7.1.jar <-- part of app server, remove
+hamcrest-core-1.3.jar <-- par of junit, testing framework which you probably don't need at runtime, scope=test
+hibernate-commons-annotations-4.0.1.Final.jar
+hibernate-core-4.0.1.Final.jar
+hibernate-ehcache-4.0.1.Final.jar
+hibernate-entitymanager-4.0.1.Final.jar <-- all hibernate-* jars shouldn't be here, as they are part of server itself, scope=provided
+hibernate-jpa-2.0-api-1.0.1.Final.jar <-- jpa API, definitely needs to be scope=provided
+hibernate-jpa-2.1-api-1.0.0.Final.jar <-- two version of JPA api, good thing anything works, scope=provided
+hornetq-core-2.2.10.Final.jar <-- part of app server, don't include it as part of deployment
+javassist-3.14.0-GA.jar <-- definitely shouldn't be here, probably dependency of hibernate,
+javassist-3.4.GA.jar <-- same as above
+jaxb-impl-2.1.13.jar <-- remove, scope=provided, this is part of jdk & app server
+jaxb-xjc-2.1.13.jar <-- part of app server, scope=provided
+jboss-el-1.0_02.CR2.jar <-- another EL jar? remove
+jboss-logging-3.1.0.CR2.jar <-- scope=provided
+jboss-transaction-api_1.1_spec-1.0.0.Final.jar part of app server, scope=provided
+jbpm-bam-5.4.0.Final.jar
+jbpm-bpmn2-5.4.0.Final.jar
+jbpm-flow-5.4.0.Final.jar
+jbpm-flow-builder-5.4.0.Final.jar
+jbpm-human-task-core-5.4.0.Final.jar
+jbpm-human-task-hornetq-5.4.0.Final.jar
+jbpm-persistence-jpa-5.4.0.Final.jar
+jbpm-workitems-5.4.0.Final.jar
+jdom-1.0.jar <-- really? probably dep of hibernate
+jna-4.1.0.jar <-- not sure if you need it but keep if you do
+jna-platform-4.1.0.jar
+jndi-1.2.1.jar <-- what is this? jndi is part of jdk probably shouldn't be part of runtime, scope=provided
+jsch.agentproxy.connector-factory-0.0.7.jar
+jsch.agentproxy.core-0.0.7.jar
+jsch.agentproxy.pageant-0.0.7.jar
+jsch.agentproxy.sshagent-0.0.7.jar
+jsch.agentproxy.svnkit-trilead-ssh2-0.0.7.jar
+jsch.agentproxy.usocket-jna-0.0.7.jar
+jsch.agentproxy.usocket-nc-0.0.7.jar
+jstl-1.1.2.jar <-- part of server, remove, scope=provided
+jta-1.1.jar <-- second jta jar on classpath, remove, scope = provided
+junit-4.11.jar <-- this is needed for testing, scope = provided
+knowledge-api-5.5.0.Final.jar
+knowledge-internal-api-5.5.0.Final.jar
+log4j-1.2.14.jar <-- log4j? remove, part of app server, scope=provided
+logkit-1.0.1.jar <-- another logging lib, remove
+mail-1.4.jar <-- javamail jar again, scope=provided
+mina-core-2.0.0-RC1.jar
+mvel2-2.1.3.Final.jar
+mysql-connector-java-5.1.18.jar <-- jdbc driver doesn't belong into deployment, scope = provided
+neethi-3.0.2.jar
+netty-3.2.0.Final.jar
+persistence-api-1.0.jar <-- third JPA jar on classpath, remove
+platform-3.4.0.jar
+protobuf-java-2.4.1.jar
+rome-1.0.jar
+sequence-library-1.0.2.jar
+serializer-2.7.1.jar <-- part of jdk & app server, remove
+servlet-api-2.5.jar <-- absolutely remove, i would say this is one of bigger reasons for memory leak, scope = provided
+shared-asn1-0.9.15.jar
+shared-ldap-0.9.15.jar
+shared-ldap-constants-0.9.15.jar
+slf4j-api-1.7.7.jar <-- another logging lib, remove, it is part of app sever, scope = provided
+slf4j-jdk14-1.7.7.jar <-- same as above
+slf4j-log4j12-1.7.7.jar <-- same as above
+smack-3.1.0.jar
+spring-aop-4.1.3.RELEASE.jar
+spring-beans-4.1.3.RELEASE.jar
+spring-context-4.1.3.RELEASE.jar
+spring-context-support-4.1.3.RELEASE.jar
+spring-core-4.1.3.RELEASE.jar
+spring-expression-4.1.3.RELEASE.jar
+spring-jdbc-4.1.3.RELEASE.jar
+spring-orm-4.1.3.RELEASE.jar
+spring-tx-4.1.3.RELEASE.jar
+spring-web-4.1.3.RELEASE.jar
+spring-webmvc-4.1.3.RELEASE.jar
+sqljet-1.1.10.jar
+standard-1.1.2.jar <-- another server provided lib, scope = provided
+stax2-api-3.1.1.jar <-- jdk & server provided, scope = provided
+stringtemplate-3.2.jar
+svnkit-1.8.6.jar
+trilead-ssh2-1.0.0-build217.jar
+woodstox-core-asl-4.1.1.jar
+wsdl4j-1.6.2.jar <-- part of server, remove
+xalan-2.7.1.jar <-- jdk & server, remove
+xml-apis-1.0.b2.jar <-- same as above
+xml-resolver-1.2.jar <-- same as above
+xmlschema-core-2.0.2.jar <-- part of the server
+xpp3_min-1.1.4c.jar <-- same as above
+xstream-1.3.1.jar <-- same as above
+ 
+http://maven.apache.org/plugins/maven-dependency-plugin/tree-mojo.html
+http://maven.apache.org/plugins/maven-war-plugin/examples/skinny-wars.html
+
+-- https://developer.jboss.org/thread/251378

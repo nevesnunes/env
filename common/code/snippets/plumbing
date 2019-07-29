@@ -1,0 +1,43 @@
+# to update: cat $HOME/lib/plumbing | 9p write plumb/rules
+
+editor = acme
+
+# Ocaml error messages
+type is text
+data matches 'File "([.a-zA-Z¡-<U+FFFF>0-9_/\-]*[a-zA-Z¡-<U+FFFF>0-9_/\-])", line ([0-9]+)?'
+arg isfile      $1
+data set        $file
+attr add        addr=$2
+plumb to edit
+plumb client $editor
+
+type is text
+data matches 'File "([.a-zA-Z¡-<U+FFFF>0-9_/\-]*[a-zA-Z¡-<U+FFFF>0-9_/\-])", line ([0-9]+), characters ([0-9]+)-([0-9]+):'
+arg isfile      $1
+data set        $file
+attr add        addr=$2-#0+#$3,$2-#0+#$4
+plumb to edit
+plumb client $editor
+
+# Erl Man Pages
+type is text
+data matches '([a-zA-Z¡-￿0-9_\-./]+)\(([1-8])erl\)'
+plumb start rc -c 'erl -man '$2' '$1' >[2=1] | nobs | plumb -i -d edit -a ''action=showdata filename=/man/'$1'('$2')'''
+
+# Github
+type is text
+data matches 'GH/([a-zA-z0-9]+)/([a-zA-Z0-9_\-]+)/([0-9a-f]+)'
+plumb to web
+plumb start web http://github.com/$1/$2/commit/$3
+
+type is text
+data matches 'GH/([a-zA-z0-9]+)/([a-zA-Z0-9_\-]+)#([0-9]+)'
+plumb to web
+plumb start web http://github.com/$1/$2/issues/$3
+
+type is text
+data matches 'GH/([a-zA-z0-9]+)/([a-zA-Z0-9_\-]+)'
+plumb to web
+plumb start web http://github.com/$1/$2
+
+include basic

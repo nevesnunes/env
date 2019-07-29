@@ -1,0 +1,24 @@
+html,body {
+  overflow:hidden;
+  margin:0;
+  padding:0;
+}
+
+
+#black {
+  position:fixed;
+  width:80vw;
+  height:90vh;
+  left:10vw;
+  top:5vh;
+  border:5px solid #000;
+}
+
+#red {
+  position:fixed;
+  width:90vw;
+  height:50vh;
+  left:5vw;
+  top:25vh;
+  border:5px solid #ff0000;
+}

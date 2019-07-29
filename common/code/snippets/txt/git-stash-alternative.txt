@@ -1,0 +1,24 @@
+$ git branch
+  master
+* cool-feature-1
+$ git checkout -b stash-2016.09.30T01.10
+$ git add -A; git commit -m "stashing WIP for later; maybe add some commentary to remind myself what I'm doing"
+$ git branch
+  master
+  cool-feature-1
+* stash-2016.09.30T01.10
+$ git checkout master
+$ git branch
+* master
+  cool-feature-1
+  stash-2016.09.30T01.10
+# do other things
+# later...
+$ git checkout cool-feature-1
+$ git merge --no-commit --no-ff stash-2016.09.30T01.10
+Automatic merge went well; stopped before committing as requested
+$ git reset
+$ git status
+On branch cool-feature-1
+Untracked files:
+ ...

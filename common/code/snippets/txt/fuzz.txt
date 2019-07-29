@@ -1,0 +1,4 @@
+Source:
+https://news.ycombinator.com/item?id=14013444
+
+peachfuzz, quickfuzz, dharma, grammfuzz. They get done a bunch and usually people wind up re-inventing lisp to make a data specification DSL, then write some generators around it and call it a day. The generation strategy usually winds up being domain specific too (are you looking for OOB bugs? dangling refs / UAF? different patterns in different structured data lead to these errors without feedback) so honestly you should pick some parser combinator in a language that you know (like construct for python, or hammer for C) and then turn it into a fuzzer for your application yourself, using the faults you want to find as inspiration for the generators you write.

@@ -1,0 +1,45 @@
+cd ~/Downloads/+
+set hintkeys=hjklasdfgyuiopqwertnmzxcvb
+set guioptions=brsT
+set urlseparator=;
+set complete=location
+
+nmap <A-b> <C-v><A-b>
+nmap <C-u> <C-v><C-u>
+nmap , :jumps<CR>
+nmap J :tabp<CR>
+nmap K :tabn<CR>
+nmap s :st<CR>
+nmap -builtin j 5j
+nmap -builtin k 10k
+map -builtin -m autocomplete <S-Space> <Down>
+map -builtin -m autocomplete <C-S-Space> <Up>
+
+hi FontCode font-size: 14px; font-family: monospace
+hi FontFixed font-size: 18px; font-family: monospace
+
+hi Hint font-family: Roboto, monospace; font-weight: bold; font-size: 16px; color: white; background: #b33320; border: 1px solid #801a10; border-radius: 2px; padding: 0px 2px; box-shadow: 0px 2px 4px 0px rgba(20, 20, 20, 0.25)
+hi HintElem visibility: visible
+hi HintActive background-color: #ffec8b; color: black
+hi Hint[active] visibility: visible
+
+hi StatusLine -moz-appearance: none !important; color: black !important; background: white !important; border: 0px !important; border-top: 1px solid #aaa !important; padding: 0px 2px !important; min-height: 18px !important; text-shadow: none !important;
+hi StatusLineNormal   border-left: 4px solid black;
+hi StatusLineBroken   border-left: 4px solid #FFa0a0;
+hi StatusLineExtended border-left: 4px solid #a0FFa0;
+hi StatusLineSecure   border-left: 4px solid #a0a0FF;
+
+javascript <<EOM
+group.options.add(
+    ["australis-gui", "agi"],
+    "Turn on the australis gui settings",
+    "boolean",
+    false,
+    {
+        setter: function (value) {
+            document.getElementById("main-window").setAttribute("dactyl-australis", value);
+            return value;
+        }
+    }
+);
+EOM

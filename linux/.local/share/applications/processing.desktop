@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Processing
+Exec=processing
+Terminal=false
+Type=Application
+Icon=processing
+Categories=Application;Graphics;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PopUnder Demo</title>
+<script>
+
+function edge_popunder() {
+    a = window.open('https://liveoverflow.com/?popunder','popunder','resizable=1,width=533,height=300,top=400');
+    a.blur();
+    window.focus();
+}
+
+function chrome_popunder() {
+    a = window.open('https://liveoverflow.com/?popunder','popunder','resizable=1,width=533,height=300,top=400');
+
+    var object = document.createElement('object');
+    object.style='width:0;height:0;obacity:100%;border:none;';
+    object.data='data:application/pdf;base64,JVBERi0xLjYKdHJhaWxlcjw8L1Jvb3QgMSAwIFI+PiAxIDAgb2JqPDwvVHlwZSAvQ2F0YWxvZy9QYWdlcyAyIDAgUi9OYW1lcyAyIDAgUj4+ZW5kb2JqMiAwIG9iajw8L0phdmFTY3JpcHQgMyAwIFI+PmVuZG9iajMgMCBvYmo8PC9OYW1lcyBbIChmKSA0IDAgUiBdPj5lbmRvYmo0IDAgb2JqPDwvSlMgKGFwcC5hbGVydFwoJ1BsZWFzZSB3YWl0Li4uJ1wpOykvUyAvSmF2YVNjcmlwdD4+JSVFT0YK'; // app.alert('Please wait...')
+    // %PDF-1.6
+    //trailer<</Root 1 0 R>> 1 0 obj<</Type /Catalog/Pages 2 0 R/Names 2 0 R>>endobj2 0 obj<</JavaScript 3 0 R>>endobj3 0 obj<</Names [ (f) 4 0 R ]>>endobj4 0 obj<</JS (app.alert\('Please wait...'\);)/S /JavaScript>>%%EOF
+    document.body.appendChild(object);
+    setTimeout(function() { document.body.removeChild(object);}, 1900);
+    setTimeout(function() {
+        var iframe = document.createElement('iframe');
+        iframe.style='width:0;height:0;obacity:100%;border:none;';
+        document.body.appendChild(iframe);
+        iframe.contentWindow.eval("Notification.requestPermission();")
+        setTimeout(function() { document.body.removeChild(iframe);}, 1800);
+    },100);
+}
+</script>
+</head>
+<body>
+<a id='anch' onclick='edge_popunder()' href="#">Edge pop-under</a><br/>
+<a id='anch' onclick='chrome_popunder()' href="#">Chrome pop-under</a><br/>
+</body>
+</html>

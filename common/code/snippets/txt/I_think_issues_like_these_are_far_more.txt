@@ -1,0 +1,4 @@
+Source:
+https://www.reddit.com/r/programming/comments/6khytm/as_a_systems_hacker_you_must_be_prepared_to_do/
+
+I think issues like these are far more common by having a NULL pointer to a struct and trying to access an element that happens to be packed at offset 7 (e.g. struct { u32 a; u8 b; u8 c; u8 d; }; and then accessing mystruct->d without checking (mystruct != NULL) first). 

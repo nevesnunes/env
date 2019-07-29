@@ -1,0 +1,22 @@
+#!/bin/sh
+# <oldrev> <newrev> <refname>
+# update a blame tree
+DENY_FAST_FORWARD_FOR="refs/heads/master"
+
+while read oldrev newrev ref
+do
+	if [[ "$oldrev" == "0000000000000000000000000000000000000000" ]]; then
+		#create new branch
+		continue;
+	fi
+	if [[ "${DENY_FAST_FORWARD_FOR}" =~ "${ref}" ]] ; then
+		base=`git merge-base $oldrev $newrev`
+		if [[ "${base}" != "${oldrev}" ]]; then
+			#non fast-forward, mean force
+			echo "Force update of $ref forbidden."
+			exit 1
+		fi
+	fi
+done
+
+exit 0

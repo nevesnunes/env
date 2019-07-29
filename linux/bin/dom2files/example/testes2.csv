@@ -1,0 +1,13 @@
+Task,Result,LNLG,TLC,SMH
+C1,Correct,3,3,3
+C1,Incomplete,0,0,0
+C1,Fail,2,2,2
+C2,Correct,4,5,5
+C2,Incomplete,0,0,0
+C2,Fail,1,0,0
+C3,Correct,4,5,5
+C3,Incomplete,0,0,0
+C3,Fail,1,0,0
+C4,Correct,2,1,2
+C4,Incomplete,0,0,0
+C4,Fail,3,4,3

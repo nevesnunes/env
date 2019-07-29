@@ -1,0 +1,20 @@
+Source:
+https://www.reddit.com/r/linux/comments/73lywi/when_did_linux_become_so_good/
+
+scan your subnet like:
+
+nmap 10.1.1.*
+
+Then when you find something on some of the common printer ports (I think 9100 is one off the top of my head, but nmap will identify them for you):
+
+cat my_document.txt | nc $whatever_ip_address_you_found $printer_port
+
+I'm not sure this is helpful, or even useful, but it will usually work. Older printers might require you to convert say a pdf to postscript first. You're going to miss out on anything like scaling, duplex, etc.
+
+If your requirements are as simple as "I want this text on paper" though, and you're on Linux (or bsd, osx, plan9, etc.), it should mostly work. You could even put a function in your shell configuration, something like:
+
+print(){  cat $1 | nc $office_printer 9100 }
+
+So on the shell, you can do:
+
+print /path/to/list_of_annoying_users.pdf

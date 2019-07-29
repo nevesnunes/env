@@ -1,0 +1,15 @@
+[Unit]
+Description=AutoRuns
+After=syslog.target
+After=network.target
+
+[Service]
+Type=forking
+User=root
+Group=root
+ExecStart=/opt/serviceruns.sh
+KillMode=process
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,58 @@
+# Based on:
+# https://github.com/jmcclare/jm-shell/blob/master/ps1
+
+prompt_fg="\[$(tput setaf 6)\]"
+prompt_red_fg="\[$(tput bold; tput setaf 1)\]"
+prompt_reset="\[$(tput sgr0)\]"
+
+prompt_git() {
+    git branch &>/dev/null || return
+    HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
+    BRANCH="${HEAD##*/}"
+    [ -n "$(git status 2>/dev/null | \
+        grep -E 'working (tree|directory) clean')" ] || STATUS="*"
+    printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
+}
+
+prompt_hg() {
+    hg branch &>/dev/null || return
+    BRANCH="$(hg branch 2>/dev/null)"
+    [ -n "$(hg status 2>/dev/null)" ] && STATUS="*"
+    printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
+}
+
+prompt_svn() {
+    svn info &>/dev/null || return
+    URL="$(svn info 2>/dev/null | \
+        awk -F': ' '$1 == "URL" {print $2}')"
+    ROOT="$(svn info 2>/dev/null | \
+        awk -F': ' '$1 == "Repository Root" {print $2}')"
+    BRANCH=${URL/$ROOT}
+    BRANCH=${BRANCH#/}
+    BRANCH=${BRANCH#branches/}
+    BRANCH=${BRANCH%%/*}
+    [[ -n "$(svn status 2>/dev/null)" ]] && STATUS="*"
+    printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
+}
+
+prompt_vcs() {
+    local status=$(prompt_git || prompt_svn || prompt_hg)
+    [ -n "$status" ] && echo -n "$prompt_reset$status$prompt_fg"
+}
+
+prompt_main() {
+    local exit_status=$?
+    local prompt_exit_status=""
+    if [ $exit_status -ne 0 ]; then
+        prompt_exit_status=" $prompt_red_fg$exit_status$prompt_fg"
+    fi
+    local prompt_jobs=""
+    count_jobs=$(jobs -l | wc -l)
+    if [ "$count_jobs" -gt 0 ]; then
+        prompt_jobs=" $prompt_reset[$count_jobs]$prompt_fg"
+    fi
+    local prompt_vcs_status=$(prompt_vcs)
+    PS1="$prompt_fg\u@\h \W$prompt_vcs_status$prompt_jobs$prompt_exit_status ▬▬▬▬ $prompt_reset"
+}
+
+# vim: filetype=sh

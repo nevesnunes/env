@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Action
+Tooltip=Make ISO
+Name=Make ISO
+Profiles=profile-zero;
+Icon=media-optical
+
+[X-Action-Profile profile-zero]
+Exec=mkisofs -r -N -allow-leading-dots -d -J -o w.iso %F
+SelectionCount=>0

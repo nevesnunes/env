@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=spek
+Exec=spek
+Terminal=false
+Type=Application
+Icon=spek
+Categories=Application;
+Keywords=audio;spectrum

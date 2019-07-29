@@ -1,0 +1,13 @@
+program structure -- computer science is constantly reinventing how to represent functionality most intuitively, concisely, and flexibly. First there were procedural languages, then object oriented programming. Now program structure is represented as a hybrid mixture of loosely typed languages, opensource libraries, and decentralized multithreaded cloud architectures over multi-layer data representations. What are the central patterns underlying the optimality of these new architectures? How are open APIs changing the definition of an application?
+
+virtualization -- Time-sharing operating systems and virtual memory were the first attempts at virtualization. Then it was the virtual machine for software execution (e.g. Java VM, Microsoft CLR). Then the virtual machine architecture that enabled cloud computing. How far can virtualization as an approach to abstraction go?
+
+statistical machine learning -- The use of statistics against large data sets has taken over artificial intelligence. This has been proven in industry as well (Google, collaborative filtering, ad targeting, "big data"). This area of math has also taken over theoretical neuroscience, not to mention computer vision.
+
+representation of data at scale -- How do you represent data when there is too much to fit in one database and millions of people are accessing it simultaneously? Many hybrid complex data structures have evolved that include clever caching, layers of servers, NoSQL, sharding, inverted text indexes, and cloud base archives. What ties all these patterns together?
+
+computer security -- Computer security is the central contact point at which the irresistable force of openness meets the immovable object of privacy. Whether this is encryption, security layers, permission models, or system integrity techniques, the future is both open and protected. How to achieve both?
+
+network models -- Networks and the graphical models that underlie them have become profoundly complex. Networks now include social networks, computing node networks, web-page link graphs, network data models, and neural networks. Network structures are unwieldly to analyze, but central to the future of computing.
+
+boundary between hardware and software -- Since the formulation of the Von Neumann architecture, this has been under continuous evolution in CS. Hardware is becoming more programmable and configurable (GPU computing, FPGAs), and hardware is adapting to software (hyperthreading and virtualization features in CPUs). Cloud computing is arguably a form of soft-configurable large-scale hardware infrastructure.

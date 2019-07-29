@@ -1,0 +1,3 @@
+/etc/resolv.conf:
+Custom DNS first, then 192.168.1.1
+/!\ chattr +i
