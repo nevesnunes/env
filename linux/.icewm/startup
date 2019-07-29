@@ -1,0 +1,9 @@
+#!/bin/bash
+
+xset r rate 300 25
+#tint2 &
+xbindkeys &
+
+autoruns.sh &
+run-daemons.sh &
+run-apps.sh &

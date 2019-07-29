@@ -1,0 +1,8 @@
+default partial modifier_keys
+xkb_symbols "numpad" {
+    name[Group1]= "English (Emulated NumPad)";
+    key <HOME> { [ KP_7 ] };
+    key <END>  { [ KP_1 ] };
+    key <PGUP> { [ KP_9 ] };
+    key <PGDN> { [ KP_3 ] };
+};

@@ -1,0 +1,32 @@
+History of config changes for custom 4.4 kernel:
+
+#1 (Unbootable)
+oldconfig from 4.12 distro kernel
+
+#2 (Unbootable)
+localmodconfig
+
+#3
+systemd requirements
+
+#4
+selinux requirements
+
+#5
+wifi driver
+
+#6
+usb-storage driver
+
+#7
+vfat & ntfs
+
+#8
+code pages (nls_iso8859-*)
+
+#9
+loopback device support
+
+#10
+network block device support
+BLK_DEV_NBD=y

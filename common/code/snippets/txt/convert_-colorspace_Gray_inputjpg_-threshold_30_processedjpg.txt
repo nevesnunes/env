@@ -1,0 +1,3 @@
+
+
+    convert -colorspace Gray input.jpg -threshold 30% processed.jpg

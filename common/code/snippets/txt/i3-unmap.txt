@@ -1,0 +1,4 @@
+Source:
+https://www.reddit.com/r/i3wm/comments/6aww4r/possible_to_keep_floating_window_behind_all_others/
+
+You can make it an override_redirect window. The upside is that i3 will not manage this window anymore, the downside is that i3 will not manage this window anymore. It'll also require a bit of scripting to unmap the window, make it override_redirect and map it again. After that you can stack it to the bottom.

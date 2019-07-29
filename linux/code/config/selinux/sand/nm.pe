@@ -1,0 +1,18 @@
+
+module nm 1.0;
+
+require {
+	type etc_t;
+	type unconfined_t;
+	type NetworkManager_t;
+	class process execheap;
+	class file unlink;
+}
+
+#============= NetworkManager_t ==============
+allow NetworkManager_t etc_t:file unlink;
+
+#============= unconfined_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow unconfined_t self:process execheap;

@@ -1,0 +1,27 @@
+stage {
+    font-family: sans-serif;
+}
+
+.legacy-tray {
+    background-color: transparent;
+    border: 0 transparent;
+    color: transparent; 
+}
+
+.legacy-tray-icon-box {
+    border: 1px solid #1c1f1f;
+    border-bottom-width: 0;
+    background-color: #393f3f;
+    spacing: 4px;
+    padding: 0;
+}
+
+.legacy-tray-icon:active,
+.legacy-tray-handle:active,
+.legacy-tray-icon:focus,
+.legacy-tray-handle:focus,
+.legacy-tray-icon:hover,
+.legacy-tray-handle:hover {
+    background-color: #4a5050;
+    color: #ededed;
+}

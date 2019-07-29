@@ -1,0 +1,6 @@
+./configure --prefix=*
+make install DESTDIR=*
+
+LD_LIBRARY_PATH
+env LD_DEBUG=symbols ./_
+nm -D

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Twitter
+Comment=Start a conversation, explore your interests, and be in the know
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-twitter.desktop-5392c950bdde4be7e5f5b8fdc6a1ca5f21e905cf" http://www.twitter.com/
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-twitter.desktop-5392c950bdde4be7e5f5b8fdc6a1ca5f21e905cf/app-icon.png
+StartupWMClass=epiphany-twitter.desktop-5392c950bdde4be7e5f5b8fdc6a1ca5f21e905cf

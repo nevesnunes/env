@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Action
+Tooltip=Open in Terminal
+Name=Open in Terminal
+Profiles=profile-zero;
+Icon=utilities-terminal
+
+[X-Action-Profile profile-zero]
+Exec=gnome-terminal --working-directory %f

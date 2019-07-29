@@ -1,0 +1,32 @@
+#compdef hello
+ 
+_hello() { 
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+ 
+    _arguments \
+        '1: :->country'\
+        '*: :->city'
+ 
+    case $state in
+    country)
+        _arguments '1:Countries:(France Germany Italy)'
+    ;;
+    *)
+        case $words[2] in
+        France)
+            compadd "$@" Paris Lyon Marseille
+        ;;
+        Germany)
+            compadd "$@" Berlin Munich Dresden
+        ;;
+        Italy)
+            compadd "$@" Rome Napoli Palermo
+        ;;
+        *)
+            _files 
+        esac
+    esac
+}
+ 
+_hello "$@"

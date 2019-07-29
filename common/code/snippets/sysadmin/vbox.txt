@@ -1,0 +1,26 @@
+# INSTALL
+akmod-VirtualBox
+virtualbox-guest-dkms
+
+# Extension pack
+sudo VBoxManage extpack install <extpack>
+
+# Mount shares
+sudo mount -t vboxsf <NAME> <GUEST-PATH>
+
+# Phone Bluetooth
+sudo usermod -aG vboxusers <username>
+grep vboxusers /etc/group
+
+install 'Virtualbox Extention Pack' on OS Host
+chech mark 'USB 2.0 EHCI' on setting Guest OS
+VBoxManage list usbhost
+
+GX17 Phone Manager
+- Usar COM3 (Dial-Up Networking) + Software para PC
+- COM4 é para outgoing
+
+C:\Documents and Settings\fn\Application Data\MobileAction\HandsetManager\EMS
+
+# Mouse issues
+Try disabling mouse integration

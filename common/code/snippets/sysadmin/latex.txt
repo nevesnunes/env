@@ -1,0 +1,10 @@
+# Bibliography
+
+/usr/share/texlive/texmf-dist/bibtex/bst
+
+Compile pdfLaTeX + BibTeX + pdfLaTeX
+
+# Marteladas
+
+\noindent
+\pagebreak

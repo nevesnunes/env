@@ -1,0 +1,78 @@
+# Backup packages
+
+    Debian / Ubuntu
+
+    dpkg --get-selections > installed-software.log
+    dpkg --set-selections < installed-software.log
+    apt-get dselect-upgrade
+
+    Fedora
+
+    rpm -qa > installed-software.bak
+    yum -y install $(cat installed-software.bak)
+
+    OpenSuse
+
+    rpm -qa –queryformat ‘%{NAME} ‘ > installed-software.bak
+    sudo zypper install $(cat installed-software.bak)
+
+# [FED] Backup
+
+	rpm -qa --qf '%{NAME} %{VERSION}-%{RELEASE} %{ARCH}\n' > ~/old-pkglist.txt
+
+	awk '{print $1}' ~/old-pkglist.txt | sort | uniq > ~/old-pkgnames.txt
+	rpm -qa --qf '%{NAME}\n' | sort | uniq > ~/new-pkgnames.txt
+	diff -u ~/old-pkgnames.txt ~/new-pkgnames.txt | grep '^-' | sed 's/^-//' > /tmp/pkgs-to-install.txt
+
+	su -c 'yum install `cat /tmp/pkgs-to-install.txt`'
+
+# [FED] Automatic Bug Reporting Tool Disable
+
+	/sbin/service abrtd stop
+	chkconfig abrtd off 
+
+# [DEB] Installing sw without su
+
+    ~/bin + PATH
+    ~/lib + LD_LIBRARY_PATH
+    ~/includes.
+
+    dpkg-deb -x
+    
+# [FED] Uninstalling sw with groups
+
+    /etc/yum.conf
+    groupremove_leaf_only=1 directive to the [main] section
+
+    yum grouplist
+    yum groupremove
+    
+# [FED] MISC
+
+    yum install -y yum-cron
+    su -c "gedit /etc/yum/yum-cron.conf"
+    apply_updates = yes    
+    
+    yum list available 'openoffice*'
+    
+    systemctl disable gdm
+    systemctl enable lightdm
+    
+# [DEB] MISC
+
+    dpkg -i package.deb
+    dpkg --configure -a
+    sudo apt-get purge openjdk-6-jre
+    sudo apt-get install openjdk-6-jre
+    
+    apt-mark unmarkauto packagename
+    
+    apt-get clean
+    apt-get autoclean
+    apt-get -f install
+    dpkg --configure -a
+    apt-get -f install
+    
+    apt-get -u dist-upgrade
+    apt-get -o Debug::pkgProblemResolver=yes dist-upgrade
+    apt-get remove --dry-run package-name

@@ -1,0 +1,7 @@
+Converting decimal to hexadecimal:
+
+printf 0x%x 69206716
+
+Converting hexadecimal to decimal:
+
+printf %i 0x42002bc

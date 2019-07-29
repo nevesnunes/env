@@ -1,0 +1,18 @@
+File dump = new File("D:\dump");
+try{
+    PrintWriter writer = new PrintWriter("D:\asdf", "UTF-8");
+    writer.println(clazz.toString());
+    writer.println(name.toString());
+    writer.close();
+} catch (IOException e) {
+	return "shit";
+}
+
+return clazz.toString() + " ---- " + name.toString();
+
+method breakpoint using the outline view 
+
+Evaluation failed. Reason(s):
+		Unable to evaluate the selected expression:
+		
+		To perform an evaluation, an expression must be compiled in the context of a Java project's build path. The current execution context is not associated with a Java project in the workspace.

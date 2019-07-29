@@ -1,0 +1,29 @@
+=== EASILY INSTALL CHROME ON FEDORA 22 ===
+
+For some reason, Google Chrome is kind of a pain in the butt to install on 
+Fedora, and then another pain in the butt to make it not have two icons in your 
+dock. Let's fix that. Just open a Terminal (no, you don't need to be root) and 
+paste these lines in to get pain-free Google Chrome. After you run this, press 
+Alt+F2 and type "r" to make GNOME update.
+
+
+cat << EOF | sudo tee /etc/yum.repos.d/google-chrome.repo
+[google-chrome]
+name=google-chrome - \$basearch
+baseurl=http://dl.google.com/linux/chrome/rpm/stable/\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+EOF
+sudo yum install google-chrome-stable
+sudo sed -i.bak '/\[Desktop Entry\]/a StartupWMClass=Google-chrome-stable' /usr/share/applications/google-chrome.desktop
+
+
+=== CURIOUS? HERE'S HOW THESE COMMANDS WORK ===
+
+If you're curious, here's an explanation. The first 8 lines add the official 
+Google Chrome repository to Yum's list of repositories. The penultimate line 
+then installs Google Chrome using Yum. The last line edits Chrome's .desktop 
+file (which is the file that adds Google Chrome to your application launcher) 
+to fix an issue where Chrome would launch as "Google-chrome-stable" and you'd 
+have two different icons in your dock and it just looked silly.

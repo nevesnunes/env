@@ -1,0 +1,14 @@
+ OpenSuse: Cannot map Low Memory Globals: Permission denied.
+Due to a change in how programs in Linux are allowed to use memory, before using SheepShaver you need to set a variable in the file /etc/sysctl.conf. Add this line: vm.mmap_min_addr = 0
+and do as root:
+echo 0 > /proc/sys/vm/mmap_min_addr
+
+In addition to this general issue, for OpenSuse to run SheepShaver, you need to disable Novell AppArmor. You can do this by entering the startup parameter “apparmor=0” at boot (at every boot) or choose a more permanent solution by using Yast2 and set the apparmor service to not start at all.
+
+Ubuntu 11.04 32 bit: Compile the sheep_net driver
+Goto SheepShaver/src/Unix/Linux/Netdriver and enter
+“make”,
+“sudo make install”,
+“sudo chown “yourusername” /dev/sheep_net”
+Use the sheep_net driver:
+“sudo modprobe sheep_net”

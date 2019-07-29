@@ -1,0 +1,2 @@
+# Check with lsusb or udevadm
+ATTR{idVendor}=="046d", ATTR{idProduct}=="c069", RUN+="/opt/mouse.sh"

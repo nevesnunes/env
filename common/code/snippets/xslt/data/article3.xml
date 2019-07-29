@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ARTICLE>
+  <TITLE>A Sample Article</TITLE>
+  <SECT>The First Major Section
+     <PARA>This section will introduce a subsection.</PARA>
+     <SECT>The Subsection Heading
+       <PARA>This is the text of the subsection.
+       </PARA>
+     </SECT>
+  </SECT>
+  <SECT>The Second Major Section
+     <PARA>This section adds a LIST and a NOTE.
+     </PARA>
+     <PARA>Here is the LIST:
+       <LIST type="ordered">
+           <ITEM>Pears</ITEM>
+           <ITEM>Grapes</ITEM>
+       </LIST>
+     </PARA>
+     <PARA>And here is the NOTE:
+       <NOTE>Don't forget to go to the hardware store on your
+             way to the grocery!
+       </NOTE>
+     </PARA>
+  </SECT>   
+  <SECT>The <I>Third</I> Major Section
+     <PARA>In addition to the inline tag in the heading, this section
+           defines the term <DEF>inline</DEF>, which literally means
+           "no line break". It also adds a simple link to the main page 
+           for the Java platform (<LINK>http://java.sun.com</LINK>), 
+           as well as a link to the 
+           <LINK target="http://java.sun.com/xml">XML</LINK> page.
+     </PARA>
+  </SECT>  
+</ARTICLE>

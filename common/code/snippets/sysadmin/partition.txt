@@ -1,0 +1,13 @@
+# Swap
+
+parted /dev/hdb
+print
+mkpart TYPE linux-swap START END
+
+mkswap /dev/hdb2
+swapon /dev/hdb2
+
+/etc/fstab:
+/dev/hdb2               swap                    swap    defaults        0 0
+
+cat /proc/swaps

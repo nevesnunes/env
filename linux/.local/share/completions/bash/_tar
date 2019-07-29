@@ -1,0 +1,393 @@
+_tar() {
+  IFS='' read -r -d '' descriptions <<'EOF'
+                              --check-device: 'Check device numbers when creating incremental archives (default).'
+                     -g,--listed-incremental: 'Handle new GNU-format incremental backups.'
+                            --hole-detection: 'Use METHOD to detect holes in sparse files. This option implies --sparse.'
+                            -G,--incremental: 'Handle old GNU-format incremental backups.'
+                        --ignore-failed-read: 'Do not exit with nonzero on unreadable files.'
+                                     --level: 'Set dump level for created listed-incremental archive.'
+                                   -n,--seek: 'Assume the archive is seekable.'
+                           --no-check-device: 'Do not check device numbers when creating incremental archives.'
+                                   --no-seek: 'Assume the archive is not seekable.'
+                                --occurrence: 'Process only the Nth occurrence of each file in the archive.'
+                                  --restrict: 'Disable the use of some potentially harmful options.'
+                            --sparse-version: 'Set version of the sparse format to use (implies --sparse).'
+                                 -S,--sparse: 'Handle sparse files efficiently.'
+                         -k,--keep-old-files: 'Don'"'"'t replace existing files when extracting.'
+                          --keep-newer-files: 'Don'"'"'t replace existing files that are newer than their archive copies.'
+                          --no-overwrite-dir: 'Preserve metadata of existing directories.'
+                             --one-top-level: 'Extract all files into DIR, or, if used without argument, into a subdirectory…'
+                                 --overwrite: 'Overwrite existing files when extracting.'
+                             --overwrite-dir: 'Overwrite metadata of existing directories when extracting (default).'
+                          --recursive-unlink: 'Recursively remove all files in the directory prior to extracting it.'
+                              --remove-files: 'Remove files from disk after adding them to the archive.'
+                            --skip-old-files: 'Don'"'"'t replace existing files when extracting, silently skip over them.'
+                           -U,--unlink-first: 'Remove each file prior to extracting over it.'
+                                 -W,--verify: 'Verify the archive after writing it. SS Output stream selection.'
+                   --no-ignore-command-error: 'Treat non-zero exit codes of children as error (default).'
+                              -O,--to-stdout: 'Extract files to standard output.'
+                                --to-command: 'Pipe extracted files to COMMAND.'
+                            --atime-preserve: 'Preserve access times on dumped files, either by restoring the times after re…'
+                   --delay-directory-restore: 'Delay setting modification times and permissions of extracted directories unt…'
+                                     --group: 'Force NAME as group for added files.'
+                                 --group-map: 'Read group translation map from FILE. Empty lines are ignored.'
+                                      --mode: 'Force symbolic mode CHANGES for added files.'
+                                     --mtime: 'Set mtime for added files.'
+                                  -m,--touch: 'Don'"'"'t extract file modified time.'
+                --no-delay-directory-restore: 'Cancel the effect of the prior --delay-directory-restore option.'
+                             --no-same-owner: 'Extract files as yourself (default for ordinary users).'
+                       --no-same-permissions: 'Apply the user'"'"'s umask when extracting permissions from the archive (default …'
+                             --numeric-owner: 'Always use numbers for user/group names.'
+                                     --owner: 'Force NAME as owner for added files.'
+                                 --owner-map: 'Read owner translation map from FILE. Empty lines are ignored.'
+-p,--preserve-permissions,--same-permissions: 'extract information about file permissions (default for superuser).'
+                                  --preserve: 'Same as both -p and -s.'
+                                --same-owner: 'Try extracting files with the same ownership as exists in the archive (defaul…'
+            -s,--preserve-order,--same-order: 'Sort names to extract to match archive.'
+                                      --sort: 'When creating an archive, sort directory entries according to ORDER, which is…'
+                                      --acls: 'Enable POSIX ACLs support.'
+                                   --no-acls: 'Disable POSIX ACLs support.'
+                                   --selinux: 'Enable SELinux context support.'
+                                --no-selinux: 'Disable SELinux context support.'
+                                    --xattrs: 'Enable extended attributes support.'
+                                 --no-xattrs: 'Disable extended attributes support.'
+                            --xattrs-exclude: 'Specify the exclude pattern for xattr keys.'
+                            --xattrs-include: 'Specify the include pattern for xattr keys.'
+                                   -f,--file: 'Use archive file or device ARCHIVE.'
+                               --force-local: 'Archive file is local even if it has a colon.'
+        -F,--info-script,--new-volume-script: 'Run COMMAND at the end of each tape (implies -M).'
+                            -L,--tape-length: 'Change tape after writing Nx1024 bytes.'
+                           -M,--multi-volume: 'Create/list/extract multi-volume archive.'
+                               --rmt-command: 'Use COMMAND instead of rmt when accessing remote archives.'
+                               --rsh-command: 'Use COMMAND instead of rsh when accessing remote archives.'
+                                --volno-file: 'When this option is used in conjunction with --multi-volume , tar will keep…'
+                        -b,--blocking-factor: 'Set record size to BLOCKSx512 bytes.'
+                      -B,--read-full-records: 'When listing or extracting, accept incomplete input records after end-of-file…'
+                           -i,--ignore-zeros: 'Ignore zeroed blocks in archive.'
+                               --record-size: 'Set record size. NUMBER is the number of bytes per record.'
+                                 -H,--format: 'Create archive of the given format. Valid formats are: . RS.'
+                 --old-archive,--portability: 'Same as --format=v7.'
+                                --pax-option: 'Control pax keywords when creating PAX archives (-H pax).'
+                                     --posix: 'Same as --format=posix.'
+                                  -V,--label: 'Create archive with volume name TEXT.'
+                          -a,--auto-compress: 'Use archive suffix to determine the compression program.'
+                   -I,--use-compress-program: 'Filter data through COMMAND.'
+                                  -j,--bzip2: 'Filter the archive through bzip2 (1).'
+                                     -J,--xz: 'Filter the archive through xz (1).'
+                                      --lzip: 'Filter the archive through lzip (1).'
+                                      --lzma: 'Filter the archive through lzma (1).'
+                                      --lzop: 'Filter the archive through lzop (1).'
+                          --no-auto-compress: 'Do not use archive suffix to determine the compression program.'
+                 -z,--gzip,--gunzip,--ungzip: 'Filter the archive through gzip (1).'
+                  -Z,--compress,--uncompress: 'Filter the archive through compress (1). SS Local file selection.'
+                                  --add-file: 'Add FILE to the archive (useful if its name starts with a dash).'
+                                    --backup: 'Backup before removal.'
+                              -C,--directory: 'Change to DIR before performing any operations.'
+                                   --exclude: 'Exclude files matching PATTERN, a glob (3)-style wildcard pattern.'
+                           --exclude-backups: 'Exclude backup and lock files.'
+                            --exclude-caches: 'Exclude contents of directories containing file CACHEDIR.'
+                        --exclude-caches-all: 'Exclude directories containing file CACHEDIR. TAG and the file itself.'
+                      --exclude-caches-under: 'Exclude everything under directories containing CACHEDIR. TAG.'
+                            --exclude-ignore: 'Before dumping a directory, see if it contains FILE.'
+                  --exclude-ignore-recursive: 'Same as --exclude-ignore, except that patterns from FILE affect both the dire…'
+                               --exclude-tag: 'Exclude contents of directories containing FILE, except for FILE itself.'
+                           --exclude-tag-all: 'Exclude directories containing FILE.'
+                         --exclude-tag-under: 'Exclude everything under directories containing FILE.'
+                               --exclude-vcs: 'Exclude version control system directories.'
+                       --exclude-vcs-ignores: 'Exclude files that match patterns read from VCS-specific ignore files.'
+                            -h,--dereference: 'Follow symlinks; archive and dump the files they point to.'
+                          --hard-dereference: 'Follow hard links; archive and dump the files they refer to.'
+                          -K,--starting-file: 'Begin at the given member in the archive.'
+                               --newer-mtime: 'Work on files whose data changed after the DATE. If DATE starts with / or .'
+                                   --no-null: 'Disable the effect of the previous --null option.'
+                              --no-recursion: 'Avoid descending automatically in directories.'
+                                --no-unquote: 'Do not unquote input file or member names.'
+                    --no-verbatim-files-from: 'Treat each line read from a file list as if it were supplied in the command l…'
+                                      --null: 'Instruct subsequent -T options to read null-terminated names verbatim (disabl…'
+                     -N,--newer,--after-date: 'Only store files newer than DATE. If DATE starts with / or .'
+                           --one-file-system: 'Stay in local file system when creating archive.'
+                         -P,--absolute-names: 'Don'"'"'t strip leading slashes from file names when creating archives.'
+                                 --recursion: 'Recurse into directories (default).'
+                                    --suffix: 'Backup before removal, override usual suffix.'
+                             -T,--files-from: 'Get names to extract or create from FILE.'
+                                   --unquote: 'Unquote file or member names (default).'
+                       --verbatim-files-from: 'Treat each line obtained from a file list as a file name, even if it starts w…'
+                           -X,--exclude-from: 'Exclude files matching patterns listed in FILE. SS File name transformations.'
+                          --strip-components: 'Strip NUMBER leading components from file names on extraction.'
+                         --transform,--xform: 'Use sed replace EXPRESSION to transform file names.'
+                                  --anchored: 'Patterns match file name start.'
+                               --ignore-case: 'Ignore case.'
+                               --no-anchored: 'Patterns match after any / (default for exclusion).'
+                            --no-ignore-case: 'Case sensitive matching (default).'
+                              --no-wildcards: 'Verbatim string matching.'
+                  --no-wildcards-match-slash: 'Wildcards do not match /.'
+                                 --wildcards: 'Use wildcards (default for exclusion).'
+                     --wildcards-match-slash: 'Wildcards match / (default for exclusion). SS Informative output.'
+                                --checkpoint: 'Display progress messages every Nth record (default 10).'
+                         --checkpoint-action: 'Run ACTION on each checkpoint.'
+                               --clamp-mtime: 'Only set time when the file is more recent than what was given with --mtime.'
+                                 --full-time: 'Print file time to its full resolution.'
+                                --index-file: 'Send verbose output to FILE.'
+                            -l,--check-links: 'Print a message if not all links are dumped.'
+                            --no-quote-chars: 'Disable quoting for characters from STRING.'
+                               --quote-chars: 'Additionally quote characters from STRING.'
+                             --quoting-style: 'Set quoting style for file and member names.'
+                           -R,--block-number: 'Show block number within archive with each message.'
+                         --show-omitted-dirs: 'When listing or extracting, list each directory that does not match search cr…'
+--show-transformed-names,--show-stored-names: 'Show file or archive names after transformation by --strip and --transform op…'
+                                    --totals: 'Print total bytes after processing the archive.'
+                                       --utc: 'Print file modification times in UTC.'
+                                -v,--verbose: 'Verbosely list files processed.'
+                                   --warning: 'Enable or disable warning messages identified by KEYWORD.'
+             -w,--interactive,--confirmation: 'Ask for confirmation for every action. SS Compatibility options.'
+                 -A,--catenate,--concatenate: 'Append archive to the end of another archive.'
+                                 -c,--create: 'Create a new archive.'
+                         -d,--diff,--compare: 'Find differences between archive and file system.'
+                                    --delete: 'Delete from the archive.'
+                                 -r,--append: 'Append files to the end of an archive.'
+                                   -t,--list: 'List the contents of an archive. Arguments are optional.'
+                                --test-label: 'Test the archive volume label and exit.'
+                                 -u,--update: 'Append files which are newer than the corresponding copy in the archive.'
+                          -x,--extract,--get: 'Extract files from an archive. Arguments are optional.'
+                             --show-defaults: 'Show built-in defaults for various tar options and exit.'
+                                 -'?',--help: 'Display a short option summary and exit. No arguments allowed.'
+                                     --usage: 'Display a list of available options and exit. No arguments allowed.'
+                                   --version: 'Print program version and copyright information and exit.'
+                                     -print0: 'predicate.'
+                                          -o: 'When creating, same as --old-archive.'
+
+EOF
+
+  COMPREPLY=()
+  local cur
+  cur=$(_get_cword)
+  IFS='' read -r -d '' completions <<'EOF'
+--check-device
+-g
+--listed-incremental
+--hole-detection
+-G
+--incremental
+--ignore-failed-read
+--level
+-n
+--seek
+--no-check-device
+--no-seek
+--occurrence
+--restrict
+--sparse-version
+-S
+--sparse
+-k
+--keep-old-files
+--keep-newer-files
+--no-overwrite-dir
+--one-top-level
+--overwrite
+--overwrite-dir
+--recursive-unlink
+--remove-files
+--skip-old-files
+-U
+--unlink-first
+-W
+--verify
+--no-ignore-command-error
+-O
+--to-stdout
+--to-command
+--atime-preserve
+--delay-directory-restore
+--group
+--group-map
+--mode
+--mtime
+-m
+--touch
+--no-delay-directory-restore
+--no-same-owner
+--no-same-permissions
+--numeric-owner
+--owner
+--owner-map
+-p
+--preserve-permissions
+--same-permissions
+--preserve
+--same-owner
+-s
+--preserve-order
+--same-order
+--sort
+--acls
+--no-acls
+--selinux
+--no-selinux
+--xattrs
+--no-xattrs
+--xattrs-exclude
+--xattrs-include
+-f
+--file
+--force-local
+-F
+--info-script
+--new-volume-script
+-L
+--tape-length
+-M
+--multi-volume
+--rmt-command
+--rsh-command
+--volno-file
+-b
+--blocking-factor
+-B
+--read-full-records
+-i
+--ignore-zeros
+--record-size
+-H
+--format
+--old-archive
+--portability
+--pax-option
+--posix
+-V
+--label
+-a
+--auto-compress
+-I
+--use-compress-program
+-j
+--bzip2
+-J
+--xz
+--lzip
+--lzma
+--lzop
+--no-auto-compress
+-z
+--gzip
+--gunzip
+--ungzip
+-Z
+--compress
+--uncompress
+--add-file
+--backup
+-C
+--directory
+--exclude
+--exclude-backups
+--exclude-caches
+--exclude-caches-all
+--exclude-caches-under
+--exclude-ignore
+--exclude-ignore-recursive
+--exclude-tag
+--exclude-tag-all
+--exclude-tag-under
+--exclude-vcs
+--exclude-vcs-ignores
+-h
+--dereference
+--hard-dereference
+-K
+--starting-file
+--newer-mtime
+--no-null
+--no-recursion
+--no-unquote
+--no-verbatim-files-from
+--null
+-N
+--newer
+--after-date
+--one-file-system
+-P
+--absolute-names
+--recursion
+--suffix
+-T
+--files-from
+--unquote
+--verbatim-files-from
+-X
+--exclude-from
+--strip-components
+--transform
+--xform
+--anchored
+--ignore-case
+--no-anchored
+--no-ignore-case
+--no-wildcards
+--no-wildcards-match-slash
+--wildcards
+--wildcards-match-slash
+--checkpoint
+--checkpoint-action
+--clamp-mtime
+--full-time
+--index-file
+-l
+--check-links
+--no-quote-chars
+--quote-chars
+--quoting-style
+-R
+--block-number
+--show-omitted-dirs
+--show-transformed-names
+--show-stored-names
+--totals
+--utc
+-v
+--verbose
+--warning
+-w
+--interactive
+--confirmation
+-A
+--catenate
+--concatenate
+-c
+--create
+-d
+--diff
+--compare
+--delete
+-r
+--append
+-t
+--list
+--test-label
+-u
+--update
+-x
+--extract
+--get
+--show-defaults
+-'?'
+--help
+--usage
+--version
+--ignore-command-error
+-print0
+-o
+
+EOF
+
+  COMPREPLY=( $( compgen -W "$completions" -- "$cur" ) )
+  if [[ ${#COMPREPLY[*]} -gt 1 ]]; then
+      echo ""
+      while read -r line; do
+          [[ "$line" == "$cur"* ]] && echo "$line"
+      done <<< "$descriptions"
+  fi
+
+  return 0
+}
+complete -F _tar tar

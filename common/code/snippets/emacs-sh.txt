@@ -1,0 +1,19 @@
+#+BEGIN_SRC sh
+ag 'static int lo_release' .
+#+END_SRC
+
+#+results:
+: static int lo_release(struct gendisk *disk, fmode_t mode)
+
+#+NAME:function-match-rhel6
+#+BEGIN_SRC sh
+grep  -h --include='*.c' "static int lo_release" * -R -A 5   
+#+END_SRC
+
+#+RESULTS: function-match-rhel6
+: static int lo_release(struct gendisk *disk, fmode_t mode)
+: {
+: 	struct loop_device *lo = disk->private_data;
+: 	int err;
+: 
+: 	mutex_lock(&lo->lo_ctl_mutex);

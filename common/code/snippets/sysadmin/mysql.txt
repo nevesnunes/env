@@ -1,0 +1,6 @@
+mysql -u root -p
+
+show databases
+select * from database.table
+
+select table_name, column_name from information_schema.columns where column_name like '%wild%' and table_schema='name';

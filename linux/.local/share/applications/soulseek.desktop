@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Soulseek
+Exec=soulseek
+Terminal=false
+Type=Application
+Icon=soulseek
+Categories=Application;
+Keywords=seek;p2p;music

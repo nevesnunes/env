@@ -1,0 +1,11 @@
+# `-XX:+TieredCompilation -XX:TieredStopAtLevel=1`: Faster start with just-in-time compilation
+MAVEN_OPTS=" \
+    -Xmx512m \
+    -XX:+TieredCompilation -XX:TieredStopAtLevel=1 \
+    -Dmaven.wagon.http.ssl.insecure=true \
+    -Dmaven.wagon.http.ssl.allowall=true \
+    -Dmaven.wagon.http.ssl.ignore.validity.dates=true \
+    -Djavax.net.ssl.trustStore=$HOME/opt/maven-keystore \
+    -Djavax.net.ssl.trustStorePassword=SECRET  \
+    -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2 \
+    "

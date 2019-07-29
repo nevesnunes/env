@@ -1,0 +1,36 @@
+_chocolate-setup() {
+  IFS='' read -r -d '' descriptions <<'EOF'
+-config: 'Load configuration from the specified file, instead of default. cfg.'
+-extraconfig: 'Load extra configuration from the specified file, instead of chocolate-doom.'
+
+EOF
+
+  COMPREPLY=()
+  local cur
+  cur=$(_get_cword)
+  IFS='' read -r -d '' completions <<'EOF'
+-config
+-extraconfig
+
+EOF
+
+  if [ -z "$cur" ]; then
+      if declare -f _filedir &>/dev/null; then
+          _filedir
+      else
+          COMPREPLY=( $(compgen -f -- "$cur") )
+      fi
+      return 0
+  fi
+
+  COMPREPLY=( $( compgen -W "$completions" -- "$cur" ) )
+  if [[ ${#COMPREPLY[*]} -gt 1 ]]; then
+      selector=(fzf '-q' "$cur")
+      COMPREPLY=("$(echo "$descriptions" | \
+              eval "${selector[@]}" | \
+              cut -d':' -f1 --)")
+  fi
+
+  return 0
+}
+complete -F _chocolate-setup chocolate-setup

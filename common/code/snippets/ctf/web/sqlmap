@@ -1,0 +1,4 @@
+POST / HTTP/1.1
+Host: http://basiq.pwn.seccon.jp/keiba.cgi
+
+data={action:'login', user:*, pass:*}

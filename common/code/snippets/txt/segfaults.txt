@@ -1,0 +1,24 @@
+Source:
+https://www.reddit.com/r/programming/comments/6khytm/as_a_systems_hacker_you_must_be_prepared_to_do/
+
+[–]kirbyfan64sos 32 points 9 hours ago 
+
+TFW gdb segfaults while trying to debug a segfault
+
+    permalinkembedparent
+
+[–]crusoe 32 points 8 hours ago 
+
+It's even more fun when gdb makes the segfault go away. Then you're like fuck it let's just the software with gdb attached...
+
+    permalinkembedparent
+
+[–]kirbyfan64sos 7 points 8 hours ago 
+
+That's the point where I start shoving puts statements everywhere to figure out where the segfault was/is...
+
+    permalinkembedparent
+
+[–]pkmxtw 18 points 5 hours ago* 
+
+Yeah, and then calling puts introduces a context switch which somehow avoids that rare race condition and the segfault disappears. Oh the joys of concurrency bugs.

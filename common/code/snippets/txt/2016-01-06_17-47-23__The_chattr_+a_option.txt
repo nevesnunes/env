@@ -1,0 +1,19 @@
+
+
+The chattr +a option will allow appending only. Files may be altered that way, but only by adding (i.e. appending lines) to them. You cannot delete existing files, but create new ones. This might fit your needs:
+
+sudo chattr -R +a /dir/to/apply/to
+
+from man chattr
+
+    A file with the `a' attribute set can only be open in append mode for writing. Only the superuser or a process possessing the CAP_LINUX_IMMUTABLE capability can set or clear this attribute.
+
+(note that it applies to directories, too)
+
+So your list would look like:
+
+echo hello > test # succeeds, because test doesn't exist, and creation is allowed
+echo hello2 > test # fails, because test already exists, and overwriting is not allowed
+echo hello3 >> test # succeeds, because appending is allowed
+cat test # succeeds, because reads are allowed
+rm test # fails, because delete is not allowed

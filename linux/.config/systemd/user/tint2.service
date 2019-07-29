@@ -1,0 +1,12 @@
+[Unit]
+Description=Tint2
+# Workaround for depending on a user session
+Requires=dbus.service
+After=dbus.service graphical.target
+
+[Service]
+ExecStart=/usr/local/bin/tint2
+Restart=always
+TimeoutSec=5
+StartLimitInterval=20s
+StartLimitBurst=3

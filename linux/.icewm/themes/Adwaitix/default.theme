@@ -1,0 +1,113 @@
+ThemeDescription="Modern Flat Theme"
+ThemeAuthor="notsatya"
+Look=flat
+
+TitleButtonsRight="xmi"
+TitleButtonsSupported="xmi"
+TitleBarJustify=1
+TitleBarHeight=22
+ShowMenuButtonIcon=1
+DesktopBackgroundColor="#446666"
+DesktopBackgroundImage=""
+BorderSizeX=1
+BorderSizeY=1
+CornerSizeX=1
+CornerSizeY=1
+DlgBorderSizeX=1
+DlgBorderSizeY=1
+
+ColorNormalButton="#292929"
+ColorNormalButtonText="#ffffff"
+ColorActiveButton="#595959"
+ColorActiveButtonText="#ffffff"
+
+ColorNormalTitleBarText="#292929"
+ColorActiveTitleBarText="#292929"
+ColorActiveBorder="#000000"
+ColorNormalBorder="#000000"
+
+ColorDialog="#ffffff"
+ColorListBox="#ffffff"
+ColorListBoxText="#000000"
+ColorListBoxSelection="#000080"
+ColorListBoxSelectionText="#ffffff"
+ColorScrollBar="#c0c0c0"
+ColorScrollBarSlider="#b0b0b0"
+ColorScrollBarButton="#c0c0c0"
+ColorScrollBarButtonArrow="#000000"
+ColorLabel="#ffffff"
+ColorLabelText="#000000"
+
+ColorNormalMenu="#ffffff"
+ColorActiveMenuItem="#595959"
+ColorNormalMenuItemText="#000000"
+ColorActiveMenuItemText="#ffffff"
+ColorDisabledMenuItemText="#595959"
+
+ColorDefaultTaskBar="#292929"
+ColorNormalTaskBarApp="#292929"
+ColorNormalTaskBarAppText="#cccccc"
+ColorActiveTaskBarApp="#595959"
+ColorActiveTaskBarAppText="#ffffff"
+ColorMinimizedTaskBarApp="#292929"
+ColorMinimizedTaskBarAppText="#898989"
+
+ColorInput="#292929"
+ColorInputText="#ffffff"
+ColorClock="#292929"
+ColorClockText="#ffffff"
+
+ColorApm="#ffffff"
+ColorApmText="#c0c0c0"
+
+ColorToolTip="#ffffff"
+ColorToolTipText="#000000"
+ColorMoveSizeStatus="#ffffff"
+ColorMoveSizeStatusText="#000000"
+ColorQuickSwitch="#c0c0c0"
+ColorQuickSwitchText="#000000"
+ColorQuickSwitchActive="#ffffff"
+
+#  User load on the CPU monitor
+ ColorCPUStatusUser="#4444ff"
+
+#  System load on the CPU monitor
+ ColorCPUStatusSystem="#cc4444"
+
+#  Interrupts on the CPU monitor
+ ColorCPUStatusInterrupts="rgb:FF/FF/00"
+
+#  IO Wait on the CPU monitor
+ ColorCPUStatusIoWait="rgb:60/00/60"
+
+#  Soft Interrupts on the CPU monitor
+ ColorCPUStatusSoftIrq="rgb:00/FF/FF"
+
+#  Nice load on the CPU monitor
+ ColorCPUStatusNice="rgb:00/00/FF"
+
+#  Idle (non) load on the CPU monitor, leave empty to force transparency
+ ColorCPUStatusIdle="#c0c0c0"
+
+#  Outgoing load on the network monitor
+ ColorNetSend="#333333"
+
+#  Incoming load on the network monitor
+ ColorNetReceive="#777777"
+
+#  Idle (non) load on the network monitor, leave empty to force transparency
+ ColorNetIdle="#c0c0c0"
+
+TitleFontNameXft	   = 	"Sans:size=12:bold"
+MenuFontNameXft	           =    "Sans:size=12"
+MinimizedWindowFontNameXft =    "Sans:size=12"
+ActiveButtonFontNameXft    =    "Sans:size=12:bold"
+NormalButtonFontNameXft    =    "Sans:size=12:bold"
+QuickSwitchFontNameXft     =    "Sans:size=12"
+ListBoxFontNameXft         =    "Sans:size=12"
+StatusFontNameXft          =    "Sans:size=12"
+ToolTipFontNameXft         =    "Sans:size=12"
+ActiveTaskBarFontNameXft   =    "Sans:size=12:bold"
+NormalTaskBarFontNameXft   =    "Sans:size=12:bold"
+ClockFontNameXft           =    "Sans:size=12:bold"
+ApmFontNameXft             =    "Sans:size=12"

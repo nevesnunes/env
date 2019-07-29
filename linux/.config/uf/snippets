@@ -1,0 +1,20 @@
+# load init vimtex (vim)
+call vimtex#init()
+
+# emoji shrug
+¯\_(ツ)_/¯
+
+# latex reset the counter of subfigure
+\setcounter{subfigure}{0} 
+
+# vim highlight non-ascii chars
+[^\x00-\x7F]\+
+
+# vim debug
+vim -D
+
+# vim log verbose
+vim -V9log
+
+# vim delete lines matching pattern
+g/_/d

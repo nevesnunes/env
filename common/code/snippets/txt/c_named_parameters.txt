@@ -1,0 +1,15 @@
+struct toto {
+  unsigned age;
+  char name[25];
+};
+
+void func(struct toto);
+
+...
+
+func((struct toto){ .name = "you", .age = 18 });
+or if you want you may wrap that in a macro
+
+#define FUNC(...) func((struct toto){ __VA_ARGS__ })
+...
+FUNC(.name = "you", .age = 18 );

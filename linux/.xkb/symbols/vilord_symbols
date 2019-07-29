@@ -1,0 +1,8 @@
+default partial modifier_keys
+xkb_symbols "vilord" {
+    name[Group1]= "English (ViLord)";
+    key <ESC>  { [ Caps_Lock ] };
+    key <TAB>  { [ Escape ] };
+    key <CAPS> { [ Control_L ] };
+    key <LCTL> { [ Tab ] };
+};

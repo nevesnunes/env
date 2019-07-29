@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Kindle Cloud Reader
+Comment=Read instantly in your browser
+Exec=epiphany --application-mode --profile="/home/fn/.config/epiphany/app-epiphany-kindlecloud.desktop-ddf819bab74a37c99b67df4f99f3019d552da582" https://read.amazon.com
+StartupNotify=true
+Terminal=false
+NoDisplay=true
+Type=Application
+Icon=/home/fn/.config/epiphany/app-epiphany-kindlecloud.desktop-ddf819bab74a37c99b67df4f99f3019d552da582/app-icon.png
+StartupWMClass=epiphany-kindlecloud.desktop-ddf819bab74a37c99b67df4f99f3019d552da582

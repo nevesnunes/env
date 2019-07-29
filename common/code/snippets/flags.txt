@@ -1,0 +1,10 @@
+CONFIG_BPF=y
+CONFIG_BPF_SYSCALL=y
+# [optional, for tc filters]
+CONFIG_NET_CLS_BPF=m
+# [optional, for tc actions]
+CONFIG_NET_ACT_BPF=m
+CONFIG_BPF_JIT=y
+CONFIG_HAVE_BPF_JIT=y
+# [optional, for kprobes]
+CONFIG_BPF_EVENTS=y

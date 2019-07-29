@@ -1,0 +1,37 @@
+#!/bin/bash
+
+down_output="Disconnected"
+ethernet_output=""
+interface="ens2"
+if [[ -d /sys/class/net/${interface} ]] &&
+        [[ ! "$(cat /sys/class/net/"$interface"/operstate)" = 'down' ]]; then
+    ethernet_output="E: Up"
+
+    down_output=""
+fi
+
+wireless_output=""
+interface=$(iw dev | grep -i interface | awk '{print $2}' | head -n 1)
+if [[ -d /sys/class/net/${interface}/wireless ]] &&
+        [[ ! "$(cat /sys/class/net/"$interface"/operstate)" = 'down' ]]; then
+    ssid=$(iw dev "$interface" link | grep SSID | cut -d ":" -f 2)
+    wireless_output="W:$wireless_output""$ssid"
+
+    if [[ "$ethernet_output" != "" ]]; then
+        wireless_output=", $wireless_output"
+    fi
+
+    down_output=""
+fi
+
+vpn_output=""
+ip link | grep POINTOPOINT 1>/dev/null 2>&1 
+if ! [[ $? -eq 1 ]]; then
+    vpn_output="VPN"
+
+    if [[ "$ethernet_output" != "" ]] || [[ "$wireless_output" != "" ]]; then
+        vpn_output=", $vpn_output"
+    fi
+fi
+
+echo -n "$down_output""$ethernet_output""$wireless_output""$vpn_output"

@@ -1,0 +1,5 @@
+Because wordsplitting basically means you should pretty much always use "$foo" and not $foo unless there is a good reason to. When in doubt, use "$foo", this is wordy, the default should be the least wordy one of course. Same with read -r vs read.
+
+The "POSIX shell" in general is a pretty awkward construct. I still want to write my own shell at one point which tosses all that crap out of the window but it's quite a project to undertake in your spare time. It's filled with historical mistakes. Zsh does attempt to correct some of those, but not nearly enough.
+
+Wordsplitting should work in reverse in fact. It should not be split by default and there should be a syntax to explicitly split which also lets you specify the character on which to split which should in some way be able to choose NUL as well of course. It would be nice if a syntax like &\0(locate -0 mah\ nigga) existed which would basically be as save as xargs -0

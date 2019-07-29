@@ -1,0 +1,8 @@
+#!/bin/sh
+
+search='Battery 0: '
+echo -n $(acpi -b | grep "$search" | cut -d ' ' -f 3-5 | sed \
+    -e "s/$search//" \
+    -e 's/, discharging//' \
+    -e 's/, charging//' \
+    -e 's/,//g')

@@ -1,0 +1,3 @@
+And that's why I both chown root my snapshot and setattr +i them (Also sha256sum them for good measure).
+
+It's quite hard to accidentally delete files like that. The only feasible way would be to wipe the disk itself using dd.

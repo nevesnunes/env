@@ -1,0 +1,9 @@
+Source:
+https://github.com/neovim/neovim/issues/2048
+
+OSX includes wrong terminfo information for xterm-256color(used by iterm), it sets the backspace key description to ctrl+h, which results in libvterm/nvim parsing it as backspace.
+
+My guess is that most programs parse ctrl+h correctly because they ignore the kbs description. One way to work around the problem is to fix the terminfo entry for your terminal by replacing kbs=^H by kbs=\177(ascii del). These commands will create a fixed terminfo entry in your HOME directory:
+
+infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+tic $TERM.ti

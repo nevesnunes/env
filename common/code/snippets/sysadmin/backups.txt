@@ -1,0 +1,17 @@
+Possible solutions:
+
+    Use Synthing with versioning enabled. Keep your files securely backed up across multiple devices.
+
+    Write a script that launches your backup program. At the start of the script, spot check known files to see if they are encrypted. if they are, display an error and abort.
+
+    Sandbox your data.
+
+    a. Switch to Linux. Use firejail with a relocated home directory. (--private=~/myrelocatedhomedirectory)
+
+    b. Use Sandboxie Pro when running your Internet based apps (browser, Skype, bittorrent, etc). Ransomware won't be able to make permanent changes to your files.
+
+Other solutions I like less:
+
+    When backing up to another computer, use git for backup with history protection on and with limited access. Don't allow direct file access to the server. This might not work well for lots of big binaries, but that's debatable.
+
+    When using USB/removeable drives, use multiple drives. Have a daily drive for normal backups and have another for a separate weekly backup, and maybe a 3rd for monthly. It's more expensive and won't protect your more current data, but it will prevent total data loss.

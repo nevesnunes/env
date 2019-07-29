@@ -1,0 +1,2 @@
+# Selective list
+rofi -show window &; xdotool windowactivate --sync 37748742 key t e r m i n a l

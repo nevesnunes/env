@@ -1,0 +1,2 @@
+# Possible options/parameters when loading a kernel module
+/sys/module/$MODULE/parameters/

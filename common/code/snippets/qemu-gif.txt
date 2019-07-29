@@ -1,0 +1,18 @@
+i386-softmmu\qemu.exe -L pc-bios -hda c:\temp\127disk.img -monitor telnet:127.0.0.1:23,server,nowait -hdb fat:\temp\dosb
+
+#!/usr/bin/expect
+set timeout -60
+set capture 1
+spawn telnet localhost
+expect “(qemu)”
+send “brake 1000\r”;
+expect “(qemu)”
+while { 1 == 1 } {
+set fstring [format %04s $capture]
+send “screendump /temp/$fstring.ppm\r”;
+expect “(qemu)”
+incr capture
+sleep 3
+}
+
+d:\ImageMagick-7.0.7-18-Q16>convert -loop 0 -delay 100 \temp\*.ppm \temp\GHZ.gif

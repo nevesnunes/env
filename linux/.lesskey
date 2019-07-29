@@ -1,0 +1,9 @@
+#command
+
+\eB back-search
+\eF forw-search
+/ noaction gg\eF
+? noaction G\eB
+
+h left-scroll
+l right-scroll

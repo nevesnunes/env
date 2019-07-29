@@ -1,0 +1,20 @@
+---
+man: cmake --help-module FindPkgConfig
+debug:
+    - cmake --trace --debug-output --debug-trycompile
+    - cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
+    - make VERBOSE=1
+flags:
+    - -DCMAKE_CXX_FLAGS="-std=c++14"
+include conflicts: |
+    #ifdef __WXGTK20__
+    #define GSocket GlibGSocket
+    #include <gtk-2.0/gtk/gtk.h>
+    #undef GSocket
+    #endif
+override: |
+    bin_overrides=$(mktemp -d) && \
+    ln -s /usr/lib64/wx/config/gtk2-unicode-3.0 "$bin_overrides/wx-config" && \
+    PATH="$bin_overrides":$PATH
+
+    export WX_CONFIG=/usr/lib64/wx/config/gtk2-unicode-3.0

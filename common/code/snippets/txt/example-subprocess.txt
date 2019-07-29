@@ -1,0 +1,45 @@
+# parses a configuration file of simple key = value pairs into a dict
+def parse_config ( configfile ):
+    # it is an error if the file exists but is a directory or cannot be opened
+    # if it does not exist, just return an empty dict
+    if not os.path.exists(configfile):
+        return {}
+
+    config_dict = {}
+    import shlex
+    with open(configfile) as fh:
+        for line in fh:
+            line = line.lstrip()
+            # any line starting with # or purely whitespace is a comment
+            if not line or line[0] == '#':
+                continue
+
+            i = line.find('=')
+            if i > 0:
+                key = line[:i].strip()
+                values = shlex.split(line[i+1:])
+                config_dict[key] = values
+            else:
+                raise Exception('malformed config file: ' + line)
+
+    return config_dict
+
+# we use the xdg base dir standard
+config_home = os.getenv('XDG_CONFIG_HOME') or os.path.join(home, '.config')
+config_file     = os.path.join(config_home, 'change_wallpaper_reddit.conf')
+
+config_dict = parse_config(config_file)
+
+wallpaper_command = config_dict.get(
+    'WallpaperCommand',
+    # worth nothing that the author does not endorse usage of GNOME
+    # this is just the default because it was the only thing used in the original code
+    # as to not break backwards compatibility
+    # if you use GNOME, you are in fact a giant faggot and should get shot in the face
+    ['gsettings', 'set', 'org.gnome.desktop.background picture-uri']
+    )
+
+import subprocess
+# we use the more robust subprocess.call over os.system
+# this takes a list rather than a string and will thus not bork if the saveLocation contains any spaces or other special shell syntax
+subprocess.call(wallpaper_command + [saveLocation])

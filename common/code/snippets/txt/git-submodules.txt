@@ -1,0 +1,23 @@
+In your repository, do:
+
+git submodule add path_to_repo path_where_you_want_it
+
+So, if the library's repository had a URL of git://github.com/example/some_lib.git and you wanted it at lib/some_lib in your project, you'd enter:
+
+git submodule add git://github.com/example/some_lib.git lib/some_lib
+
+Note that this needs to be done from the top-level directory in your repository. So don't cd into the directory where you're putting it first.
+
+After you add a submodule, or whenever someone does a fresh checkout of your repository, you'll need to do:
+
+git submodule init
+git submodule update
+
+And then all submodules you've added will be checked out at the same revision you have.
+
+When you want to update to a newer version of one of the libraries, cd into the submodule and pull:
+
+cd lib/some_lib
+git pull
+
+Then, when you do a git status you should see lib/somelib listed in the modified section. Add that file, commit, and you're up to date. When a collaborator pulls that commit into their repository, they'll see lib/somelib as modified until they run git submodule update again.

@@ -1,0 +1,34 @@
+Textbook RSA
+
+(e,m)
+(d,p,q) p.q=m, e.d=1 mod phi(m)
+
+Enc
+x^e mod m
+y^d = (x^e)^d = x mod m
+(2x)^e = 2^e x^e
+
+Sig
+x^d mod m
+y^e = (x^d)^e = x
+(2x)^d = 2^d x^d
+
+# Problem
+We want
+a => a^d
+We can only have
+b => b^d
+
+### one way
+1st send
+(xa)^d = x^d a^d
+2nd send
+(x)^d = x^d
+
+((x^d)^-1) mod m
+We need to pick an x that x^d has an inverse
+
+### another way
+x = 2^e
+we send 2^e
+(xa)^d = (2^e a)^d = 2^ed a^d = 2 a^d

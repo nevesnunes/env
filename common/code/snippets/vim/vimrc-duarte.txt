@@ -1,0 +1,102 @@
+if version >= 700
+
+"call pathogen#infect()
+
+"------ Meta ------"
+set nocompatible                " break away from old vi compatibility
+filetype off			" require by Vundle
+set showcmd                     " show the command being typed
+set shell=zsh
+if $TERM == "xterm-256color"
+    set t_Co=256                    " sets 256 colors mode
+endif
+
+
+"------ Console UI & Text display ------"
+
+set encoding=utf-8
+if has('gui_running')
+    "set guifont=Inconsolata\ for\ Powerline\ Medium\ 12
+    set guifont=Inconsolata\ Medium\ 12
+    ":set guioptions-=m  "remove menu bar  might as well run vim...
+    :set guioptions-=T  "remove toolbar
+    :set guioptions-=r  "remove right-hand scroll bar
+endif
+colorscheme jellybeans
+syntax on
+filetype plugin indent on       " load filetype plugins and indent settings
+set list                        " we do that to show tabs 
+set listchars=tab:>-,trail:-    " show tabs and trailing 
+set number                      " yay line numbers
+set ruler                       " show current position at bottom
+set noerrorbells                " don't whine
+set visualbell t_vb=            " and don't make faces
+set scrolloff=5                 " keep at least 5 lines around the cursor
+"---- Reconhecer a extenção .pl como prolog
+au BufNewFile,BufRead *.pl setfiletype prolog
+
+"------ Text editing and searching behavior ------"
+
+set nohlsearch                  " turn off highlighting for searched expressions
+set incsearch                   " highlight as we search however
+set showmatch                   " show matching brackets
+
+"------ Indents and tabs ------"
+
+set autoindent                  " set the cursor at same indent as line above
+set smartindent                 " try to be smart about indenting (C-style)
+set expandtab                   " expand <Tab>s with spaces; death to tabs!
+set shiftwidth=4                " spaces for each step of (auto)indent
+set softtabstop=4               " set virtual tab stop (compat for 8-wide tabs)
+set tabstop=8                   " for proper display of files with tabs
+set shiftround                  " always round indents to multiple of shiftwidth
+set copyindent                  " use existing indents for new indents
+set preserveindent              " save as much indent structure as possible
+
+"	Vundle stuff
+ " Brief help
+ " :BundleList          - list configured bundles
+ " :BundleInstall(!)    - install(update) bundles
+ " :BundleSearch(!) foo - search(or refresh cache first) for foo
+ " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+ "
+ " see :h vundle for more details or wiki for FAQ
+ " NOTE: comments after Bundle command are not allowed..
+ " Launch vim, run :BundleInstall
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Repos on github
+Bundle 'gmarik/vundle'
+Bundle 'gmarik/github-search.vim'
+Bundle 'gmarik/gist.sh'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-surround'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Townk/vim-autoclose'
+Bundle 'mbadran/headlights'
+
+"vim-scripts repos
+Bundle 'c.vim'
+Bundle 'taglist.vim'
+Bundle 'java_getset.vim'
+
+"non github repos
+Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+
+"--------  PLUGINS CONFIG -------------------------------------
+"Syntasitc
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+
+" Powerline
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
+"--------------------------------------------------------------
+
+"------ END VIM-500 ------"
+
+endif " version >= 500

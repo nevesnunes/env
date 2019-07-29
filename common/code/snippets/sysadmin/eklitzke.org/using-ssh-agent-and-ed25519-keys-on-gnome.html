@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans%7CDroid+Sans+Mono" type="text/css" rel="stylesheet">
+    <link href="blog.css" type="text/css" rel="stylesheet">
+    <link href="pygments.css" type="text/css" rel="stylesheet">
+    <link href="https://eklitzke.org/index.rss" type="application/rss+xml" rel="alternate" title="eklitzke.org rss">
+    <link rel="icon" href="https://eklitzke.org/favicon.ico">
+    <link rel="author" href="https://plus.google.com/109565435135252737612">
+                <link rel="prev" href="https://eklitzke.org/gocd">
+            <link rel="next" href="https://eklitzke.org/systemd-socket-activation">
+        <base href="">
+    <title>Using ssh-agent and ED25519 Keys on GNOME</title>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-85757367-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+          <nav class="nav-top">
+      <ul class="nav-list">
+                <li class="nav-item"><a href="https://eklitzke.org/">Home</a></li>
+                <li class="nav-item"><a href="https://eklitzke.org/index">Index</a></li>
+                <li class="nav-item"><a href="https://eklitzke.org/about">About</a></li>
+              </ul>
+    </nav>
+    <hr>
+        <article itemscope itemtype="http://schema.org/BlogPosting">
+      <h2 class="article_header">
+        <a class="title_link" href="using-ssh-agent-and-ed25519-keys-on-gnome.html" id="using-ssh-agent-and-ed25519-keys-on-gnome" title="permalink">
+          <span itemprop="name">Using ssh-agent and ED25519 Keys on GNOME</span>
+          <span class="pilcrow">&#182;</span>
+        </a>
+      </h2>
+      <time itemprop="datePublished" datetime="2016-09-02">2016-09-02</time>
+      <div class="article_content" itemprop="articleBody">
+        <p>The default GNOME keyring (<code>gnome-keyring-daemon</code>) provides an inferior version
+of <code>ssh-agent</code>. The GNOME
+version
+<a href="https://bugzilla.gnome.org/show_bug.cgi?id=641082">doesn't support ED25519 keys</a>,
+and it doesn't have proper support for removing keys. I figured out a kind of
+elegant way to fix this in Fedora 24 which should be compatible in the future
+with the bright and glorious Wayland future, including with
+<code>gdm-wayland-session</code>.</p>
+<p>First I disabled the SSH component of <code>gnome-keyring-daemon</code> by removing the
+<code>Autostart</code> lines from <code>/etc/xdg/autostart/gnome-keyring-ssh.desktop</code>. From a
+clean install of GNOME/Fedora you should see after doing this that upon login
+<code>SSH_AUTH_SOCK</code> is no longer set.</p>
+<p>Next I created a systemd user unit file at
+<code>~/.config/systemd/user/ssh-agent.service</code> with the following content:</p>
+<div class="codehilite"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">OpenSSH private key agent</span>
+<span class="na">IgnoreOnIsolate</span><span class="o">=</span><span class="s">true</span>
+
+<span class="k">[Service]</span>
+<span class="na">Type</span><span class="o">=</span><span class="s">forking</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">SSH_AUTH_SOCK=%t/ssh-agent.socket</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/ssh-agent -a $SSH_AUTH_SOCK</span>
+<span class="na">ExecStartPost</span><span class="o">=</span><span class="s">/usr/bin/systemctl --user set-environment SSH_AUTH_SOCK=${SSH_AUTH_SOCK}</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+</pre></div>
+
+
+<p>I also enabled this unit with <code>systemctl --user enable ssh-agent.service</code>. After
+doing this, upon logging in to a GNOME session you should see that
+<code>SSH_AUTH_SOCK</code> is still not set, but now you will see that an <code>ssh-agent</code>
+process is started with a command like <code>/usr/bin/ssh-agent -a
+/run/user/1000/ssh-agent.socket</code>. You'll also see that <code>systemctl --user
+show-environment</code> has the correct value for <code>SSH_AUTH_SOCK</code>.</p>
+<p>Finally I put this in my <code>~/.bash_profile</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nb">eval</span> <span class="k">$(</span>systemctl --user show-environment <span class="p">|</span> grep SSH_AUTH_SOCK<span class="k">)</span>
+<span class="nb">export</span> SSH_AUTH_SOCK
+</pre></div>
+
+
+<p>This will cause the right value for <code>SSH_AUTH_SOCK</code> to be propagated to your X11
+session. This works because <code>gdm-x-session</code> sources <code>~/.bash_profile</code> when
+logging in (or at least it does on Fedora).</p>
+<p>From what I understand from the GNOME bugzilla, <code>gdm-wayland-session</code> will
+automatically know how to get <code>SSH_AUTH_SOCK</code> from the systemd user session, I
+believe starting in GNOME 3.22. This means in the future you won't need these
+lines in <code>~/.bash_profile</code>.</p>
+      </div>
+    </article>
+    <hr>
+        <nav class="nav_bottom">
+      <span class="nav_prefix">More Content:</span>
+            <span class="nav_link">
+        <a href="https://eklitzke.org/gocd">Gocd</a>
+        (newer)      </span>
+            <span class="nav_link">
+        <a href="https://eklitzke.org/systemd-socket-activation">Systemd Socket Activation</a>
+        (older)      </span>
+          </nav>
+        <div class="nav-bottom">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="https://eklitzke.org/index.rss">rss</a></li>
+        <li class="nav-item"><a href="https://twitter.com/eklitzke">twitter</a></li>
+        <li class="nav-item"><a href="https://instagram.com/evanklitzke/">instagram</a></li>
+        <!-- <li class="nav-item"><a href="http://eklitzke.tumblr.com/">tumblr</a></li> -->
+        <li class="nav-item"><a href="https://github.com/eklitzke">github</a></li>
+        <li class="nav-item">evan&nbsp;/at/&nbsp;eklitzke&nbsp;/dot/&nbsp;org</li>
+      </ul>
+    </div>
+  </body>
+</html>

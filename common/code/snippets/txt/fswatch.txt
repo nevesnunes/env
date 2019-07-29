@@ -1,0 +1,4 @@
+Source:
+https://news.ycombinator.com/item?id=13856623
+
+fswatch -0 -event ./main.lua | xargs -0 -n 1 -I {} lua ./main.lua

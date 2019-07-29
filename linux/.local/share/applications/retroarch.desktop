@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=RetroArch
+Comment=
+Exec=/home/fn/games/emus/ra/usr/local/bin/retroarch
+Terminal=false
+Type=Application
+Icon=/home/fn/games/emus/ra/usr/local/share/pixmaps/retroarch.svg
+Categories=Application;Game;Emulator

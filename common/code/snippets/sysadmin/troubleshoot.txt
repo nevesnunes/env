@@ -1,0 +1,44 @@
+# PENDING
+
+	python-cups 1.9.62 deb (Ubuntu)
+	radeon_cp.0 failed to load firmware (Not using GPU Accel)
+
+# Firefox Big Images
+
+    Try setting MOZ_DISABLE_IMAGE_OPTIMIZE=1 in environ(7) or
+    disabling gfx.xrender.enabled in about:config.
+    layer.accel.disabled -> TRUE
+
+# Sound
+
+    Open up a terminal window, paste the following line and hit enter. You will be asked for your admin password
+
+        sudo gedit /usr/lib/pm-utils/power.d/intel-audio-powersave
+
+    Look for this line
+
+        INTEL_AUDIO_POWERSAVE=${INTEL_AUDIO_POWERSAVE:-true}
+
+    put a # in front of the line to "deactivate" it
+    underneath copy/paste the following line
+
+        INTEL_AUDIO_POWERSAVE=false
+
+    The first lines of the file should now look like this:
+
+        #INTEL_AUDIO_POWERSAVE=${INTEL_AUDIO_POWERSAVE:-true}
+        INTEL_AUDIO_POWERSAVE=false
+        help() {
+        cat <<EOF
+        --------
+
+# Skype
+
+    /etc/pulse/default.pa
+    load-module module-hal-detect tsched=0
+
+    load-module module-udev-detect tsched=0
+
+    If you are packaging Skype for your distribution, you need to change the Exec line in your Skype .desktop file as follows:
+
+        Exec=env PULSE_LATENCY_MSEC=60 skype %U

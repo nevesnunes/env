@@ -1,0 +1,12 @@
+---
+tab: switch edit/object mode
+C-j: join
+l, p (edit mode): separate
+z: wireframe
+a: select all
+C-LMB: select elements
+A: add
+
+moving:
+    F: fly mode
+    S-MMB: pan

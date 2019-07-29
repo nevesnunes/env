@@ -1,0 +1,2 @@
+# cmake configure option
+cmake -DMyOption=ON MyProjectFolder
