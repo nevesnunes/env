@@ -67,6 +67,8 @@ URxvt.clipboard.pastecmd: xclip -selection clipboard -o
 !! xterm
 !!
 
+xterm*termName: xterm-16color
+
 UXTerm*faceNameDoublesize: Source Han Sans CN
 UXTerm*faceName: Monospace
 UXTerm*faceSize: 10

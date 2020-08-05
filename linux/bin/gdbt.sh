@@ -1,11 +1,13 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 cleanup() {
+  err=$?
   cp "$HOME"/.gdbinit-backup "$HOME"/.gdbinit
   rm "$HOME"/.gdbinit-backup
-  trap - EXIT
+  trap '' EXIT
+  exit $err
 }
-trap cleanup EXIT HUP INT QUIT TERM
+trap cleanup EXIT INT QUIT TERM
 
 cp "$HOME"/.gdbinit "$HOME"/.gdbinit-backup
 

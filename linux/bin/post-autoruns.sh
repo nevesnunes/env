@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # /usr/bin/gnome-keyring-daemon --daemonize --login
 # /usr/libexec/polkit-gnome-authentication-agent-1

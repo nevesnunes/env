@@ -1,3 +1,6 @@
+# References:
+# - https://pep8.readthedocs.io/en/stable/intro.html
+
 [pycodestyle]
 ignore = E501
 max-line-length = 120

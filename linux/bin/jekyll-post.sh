@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 if [ ! -d ./_posts ] ; then
   echo "Not in a jekyll base directory." >&2

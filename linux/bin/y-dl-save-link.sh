@@ -1,10 +1,10 @@
-#!/usr/usr/bin/env bash
+#!/bin/sh
 
 description=$(xclip -o)
-output=$((youtube-dl -o "~/Videos/%(title)s.%(ext)s" "${description}") 2>&1)
+output=$( (youtube-dl -o "$HOME/Videos/%(title)s.%(ext)s" "${description}") 2>&1)
 
 # Check download success
-rc=$?; if [[ $rc != 0 ]]; then
+rc=$?; if [ $rc != 0 ]; then
     title="Video NOT saved!"
     description="${output}"
 else

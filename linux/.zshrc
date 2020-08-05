@@ -82,7 +82,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export HISTIGNORE="cd:pwd:[bf]g*:history*:clear:exit"
+export HISTIGNORE="&:[ ]*:cd:cp:l[alrs]:mv:pwd*:[bf]g*:history*:clear:exit"
+
+export HISTTIMEFORMAT='%s '
+
 export HISTSIZE=50000
 export SAVEHIST=20000
 
@@ -90,13 +93,11 @@ setopt complete_aliases
 setopt hist_ignore_all_dups
 setopt no_auto_remove_slash
 
-# Plugins
-zstyle ':deer:*' height 10
-source ~/opt/deer/deer
-zle -N deer
-bindkey '\eo' deer
-
 source ~/.shrc
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #zprof
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/fn/.sdkman"
+[[ -s "/home/fn/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fn/.sdkman/bin/sdkman-init.sh"

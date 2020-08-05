@@ -8,21 +8,37 @@ diff-dirs() {
 }
 
 dup-dirs() {
-  find "$1" -type f -exec basename {} \; | \
-    sed 's/\(.*\)\..*/\1/' | \
-    sort | \
-    uniq -c | \
-    grep -v "^[ \t]*1 "
+  find "$1" -type f -exec basename {} \; \
+    | sed 's/\(.*\)\..*/\1/' \
+    | sort \
+    | uniq -c \
+    | grep -v "^[ \t]*1 "
 }
 
 ssh() {
-    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
-        tmux rename-window "$(echo $* | rev | cut -d ' ' -f1 | rev | cut -d . -f 1)"
-        command ssh "$@"
-        tmux set-window-option automatic-rename "on" 1>/dev/null
-    else
-        command ssh "$@"
-    fi
+  # grep -w: match command names such as "tmux-2.1" or "tmux: server"
+  if ps -p $$ -o ppid= \
+    | xargs -i ps -p {} -o comm= \
+    | grep -qw tmux; then
+    # Note: Options without parameter were hardcoded,
+    # in order to distinguish an option's parameter from the destination.
+    #
+    #                   s/[[:space:]]*\(\( | spaces before options
+    #     \(-[46AaCfGgKkMNnqsTtVvXxYy]\)\| | option without parameter
+    #                     \(-[^[:space:]]* | option
+    # \([[:space:]]\+[^[:space:]]*\)\?\)\) | parameter
+    #                      [[:space:]]*\)* | spaces between options
+    #                        [[:space:]]\+ | spaces before destination
+    #                \([^-][^[:space:]]*\) | destination
+    #                                   .* | command
+    #                                 /\6/ | replace with destination
+    tmux rename-window "$(echo "$@" \
+      | sed 's/[[:space:]]*\(\(\(-[46AaCfGgKkMNnqsTtVvXxYy]\)\|\(-[^[:space:]]*\([[:space:]]\+[^[:space:]]*\)\?\)\)[[:space:]]*\)*[[:space:]]\+\([^-][^[:space:]]*\).*/\6/')"
+    command ssh "$@"
+    tmux set-window-option automatic-rename "on" 1> /dev/null
+  else
+    command ssh "$@"
+  fi
 }
 
 # rcfile in a hosted folder:
@@ -32,35 +48,70 @@ sshrc() {
 }
 
 verify-certificate() {
-    curl --insecure -v "$1" 2>&1 | awk 'BEGIN { cert=0 } /^\* Server certificate:/ { cert=1 } /^\*/ { if (cert) print }'
+  curl --insecure -v "$1" 2>&1 | awk 'BEGIN { cert=0 } /^\* Server certificate:/ { cert=1 } /^\*/ { if (cert) print }'
 }
 
 man-cat() {
   #groff -te -mandoc -rHY=0 -Tascii <(zcat "$1") | sed -e "s/\x1b\[[^m]\{1,5\}m//g" | col -bx
-  for i in /usr/share/man/man*; do
-    find "$i" -iname '*'"$1"'*gz' | \
-      xargs -d'\n' -n1 -I{} zcat {} | \
-      groff -te -mandoc -rHY=0 -Tascii | \
-      grep -i "$2"
-  done
+  #find . -iname '*fc*' -print0 | xargs -0 -i sh -c 'zcat "$1" | grep -in charset && echo "$1"' _ {} | vim -
+  find /usr/share/man -iname '*'"$1"'*gz' -print0 \
+    | xargs -0 -i zcat {} \
+    | groff -te -mandoc -rHY=0 -Tascii 2> /dev/null \
+    | grep -i "$2"
 }
 
 jar-decompile() {
-  jar -xf "$1" && find . -iname "*.class" | xargs jad -r
+  while [ $# -gt 0 ]; do
+    jar -xf "$1" && find . -iname "*.class" -print0 \
+      | xargs -0 -i jad -r {}
+    shift
+  done
 }
 
 gf() {
-    git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s" --graph --color=always | \
-        fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
-        --header 'Press CTRL-S to toggle sort' \
-        --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES | \
-        grep -o "[a-f0-9]\{7,\}"
+  git log \
+    --color=always \
+    --date=short \
+    --format="%C(green)%C(bold)%cd %C(auto)%h%d %s" \
+    --graph \
+    | fzf \
+      --ansi --multi --no-sort --reverse \
+      --bind 'ctrl-s:toggle-sort' \
+      --header 'ctrl-s:toggle-sort,ctrl-u:preview-page-down,ctrl-i:preview-page-up' \
+      --preview-window 'right:65%' \
+      --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES \
+    | grep -o "[a-f0-9]\{7,\}"
 }
 
 f() {
-  find . -iname '*'"$*"'*'
+  find . \
+    ! -path '*/.bzr/*' \
+    ! -path '*/.git/*' \
+    ! -path '*/.hg/*' \
+    ! -path '*/.svn/*' \
+    ! -path '*/__pycache__/*' \
+    ! -path '*/node_modules/*' \
+    -iname '*'"$*"'*'
 }
 
 g() {
-  grep -Rin -- "$*" .
+  grep -Rin \
+    --binary-files=without-match \
+    --color=always \
+    --exclude-dir='.bzr' \
+    --exclude-dir='.git' \
+    --exclude-dir='.hg' \
+    --exclude-dir='.svn' \
+    --exclude-dir='__pycache__' \
+    --exclude-dir='node_modules' \
+    --line-buffered \
+    -- "$*" . \
+    | awk '{ print substr($0, 0, 256) }'
+}
+
+o() {
+  while [ $# -gt 0 ]; do
+    xdg-open "$1"
+    shift
+  done
 }

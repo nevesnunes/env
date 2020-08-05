@@ -1,4 +1,4 @@
-set scroll-step 200
+set scroll-step 50
 set scroll-hstep 200
 set scroll-full-overlap 0.1
 set zoom-step 20

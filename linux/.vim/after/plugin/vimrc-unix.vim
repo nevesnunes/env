@@ -62,5 +62,7 @@ let g:netrw_browsex_viewer='xdg-open'
 nnoremap ,a diW:execute 'r !url-add-label.sh "' . substitute(@", "#", "\\\\#", "g") . '"'<CR>:redraw!<CR>kdd
 vnoremap ,a d:execute 'r !url-add-label.sh "' . substitute(@", "#", "\\\\#", "g") . '"'<CR>:redraw!<CR>kdd
 
+set dictionary+=/usr/share/dict/words
+
 " }}}
 " vim: foldmethod=marker foldopen=all

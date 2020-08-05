@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-tmp="${XDG_RUNTIME_DIR:-/tmp}/$0"
+tmp_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mkdir -p "$tmp_dir"
+chmod 700 "$tmp_dir"
+tmp="$tmp_dir/$0"
 mkdir -p "$tmp"
 
 for ((i=0; i<6; i++)); do
