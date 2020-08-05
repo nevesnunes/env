@@ -1,8 +1,32 @@
-default partial modifier_keys
+// References: 
+// - /usr/share/X11/xkb/symbols/keypad
+// - https://cgit.freedesktop.org/xkeyboard-config/tree
+
+// FIXME:
+// - dosbox does not recognize layouts applied with xkbcomp
+//     e.g. key <AD01> { [ a ] };
+// - <PRSC> is hold by gnome-shell
+
+// partial
+// xkb_symbols "numpad" {
+//     name[Group1]= "English (Emulated NumPad)";
+//     key <HOME> { [ KP_7 ] };
+//     key <END>  { [ KP_1 ] };
+//     key <PGUP> { [ KP_9 ] };
+//     key <PGDN> { [ KP_3 ] };
+// };
+
+partial
 xkb_symbols "numpad" {
     name[Group1]= "English (Emulated NumPad)";
-    key <HOME> { [ KP_7 ] };
-    key <END>  { [ KP_1 ] };
-    key <PGUP> { [ KP_9 ] };
+    key.type = "ONE_LEVEL";
+    key <PRSC> { [ KP_7 ] };
+    key <SCLK> { [ KP_8 ] };
+    key <PAUS> { [ KP_9 ] };
+    key <INS>  { [ KP_4 ] };
+    key <HOME> { [ KP_5 ] };
+    key <PGUP> { [ KP_6 ] };
+    key <DELE> { [ KP_1 ] };
+    key <END>  { [ KP_2 ] };
     key <PGDN> { [ KP_3 ] };
 };

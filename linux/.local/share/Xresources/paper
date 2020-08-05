@@ -6,24 +6,24 @@ UXTerm*color0: #222222
 UXTerm*color8: #000000
 
 ! red
-UXTerm*color1: #c62a45
-UXTerm*color9: #c62a45
+UXTerm*color1: #d22d48
+UXTerm*color9: #d22d48
 
 ! green
-UXTerm*color2: #2e5f0b
-UXTerm*color10: #2e5f0b
+UXTerm*color2: #37730d
+UXTerm*color10: #37730d
 
 ! yellow / orange
-UXTerm*color3: #622E04
-UXTerm*color11: #622E04
+UXTerm*color3: #622e04
+UXTerm*color11: #622e04
 
 ! blue
 UXTerm*color4: #4e6cd0
 UXTerm*color12: #4e6cd0
 
 ! magenta
-UXTerm*color5: #804fa1
-UXTerm*color13: #804fa1
+UXTerm*color5: #8854ab
+UXTerm*color13: #8854ab
 
 ! cyan
 UXTerm*color6: #285055

@@ -1,8 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-file="$XDG_RUNTIME_DIR/bin/task-count.data"
+tmp_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mkdir -p "$tmp_dir"
+chmod 700 "$tmp_dir"
+file="$tmp_dir/task-count.data"
+touch "$file"
 
-function inc() {
+inc() {
   due_result="$(echo "$1" | head -n 1)"
   if ! echo "$due_result" | grep -q -i "No matches"; then
     echo "$1" | tail -n +4 | head -n -2 | wc -l
@@ -23,26 +27,26 @@ reset="#[fg=default,nobold]"
 
 needSeparator=false
 description=""
-if [[ $((count_week + count_today + count_tomorrow)) -gt 0 ]]; then
-  description+="["
-  if [[ $count_week -gt 0 ]]; then
+if [ $((count_week + count_today + count_tomorrow)) -gt 0 ]; then
+  description="${description}["
+  if [ "$count_week" -gt 0 ]; then
     needSeparator=true
-    description+="-1w:$bold$count_week$reset"
+    description="${description}-1w:$bold$count_week$reset"
   fi
-  if [[ $count_today -gt 0 ]]; then
-    if [[ "$needSeparator" = true ]]; then
-      description+=" "
+  if [ "$count_today" -gt 0 ]; then
+    if [ "$needSeparator" = true ]; then
+      description="${description} "
     fi
     needSeparator=true
-    description+="0d:$bold$count_today$reset"
+    description="${description}0d:$bold$count_today$reset"
   fi
-  if [[ $count_tomorrow -gt 0 ]]; then
-    if [[ "$needSeparator" = true ]]; then
-      description+=" "
+  if [ "$count_tomorrow" -gt 0 ]; then
+    if [ "$needSeparator" = true ]; then
+      description="${description} "
     fi
     needSeparator=true
-    description+="+1d:$bold$count_tomorrow$reset"
+    description="${description}+1d:$bold$count_tomorrow$reset"
   fi
-  description+="]"
+  description="${description}]"
 fi
 echo "$description" > "$file"

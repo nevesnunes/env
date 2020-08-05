@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-file="$XDG_RUNTIME_DIR/bin/switchlayout.data"
-keymap_file="$XDG_CONFIG_HOME/switchlayout/keymap"
-mkdir -p "$(dirname "$file")"
+tmp_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mkdir -p "$tmp_dir"
+chmod 700 "$tmp_dir"
+file="$tmp_dir/switchlayout.data"
 touch "$file"
+keymap_file="$XDG_CONFIG_HOME/switchlayout/keymap"
 
 function off {
   setxkbmap us -variant intl -option ''

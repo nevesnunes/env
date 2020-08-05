@@ -7,7 +7,38 @@ if ! echo "$session" | grep -q -i "GNOME"; then
   xdotool key Scroll_Lock && xdotool key Scroll_Lock
 fi
 
-gnome-screenshot "$@"
+cmd=(gnome-screenshot --remove-border)
+args=()
+using_shutter=0
+while [ $# -gt 0 ]; do
+  case $1 in
+    shutter)
+      cmd=(shutter --disable_systray --exit_after_capture --no_session --min_at_startup)
+      using_shutter=1
+      killall -9 shutter
+      ;;
+    -a)
+      if [ $using_shutter -gt 0 ]; then
+        args+=("--select")
+      else
+        args+=("-a")
+      fi
+      ;;
+    *)
+      args+=("$1")
+  esac
+  shift
+done
+if [ ${#args[@]} -eq 0 ] && [ $using_shutter -gt 0 ]; then
+  args+=("--full")
+fi
+volume=$(amixer sget Master | awk -F '[],[,%]'  '/%/{print $2; exit}')
+amixer sset Master 0
+"${cmd[@]}" "${args[@]}"
+amixer sset Master "$volume"%
+if [ $using_shutter -gt 0 ]; then
+  exit 0
+fi
 
 # Compute dates, accounting for possible change in minute or hour
 prefix="*$(date +%Y-%m-%d) "

@@ -41,7 +41,7 @@
 
 --langdef=markdown
 --langmap=markdown:.md
---langmap=Markdown:+.markdown
+--langmap=markdown:+.markdown
 --langmap=markdown:+.mdown
 --langmap=markdown:+.mkd
 --langmap=markdown:+.mkdown

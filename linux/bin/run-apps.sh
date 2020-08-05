@@ -2,6 +2,7 @@
 
 log_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 mkdir -p "$log_dir"
+chmod 700 "$log_dir"
 log_file="$log_dir/$(basename "$0").$$"
 touch "$log_file"
 exec  > >(tee -ia "$log_file")
@@ -81,7 +82,9 @@ function run-app {
   app_command+=("&>/dev/null &disown")
 
   # Launch and wait for any instance of class
-  eval "${app_command[@]}"
+  if [ -z "$move_only" ]; then
+    eval "${app_command[@]}"
+  fi
   TRIES=60
   while [ -z $(wmctrl -lx | \
       cut -d' ' -f-4 | \
@@ -120,13 +123,17 @@ function run-app {
 }
 
 # Run app passed as argument instead of pre-defined apps
-app=$1
-workspace=$2
-tile=$3
-if [ -n "$app" ] && [ -n "$workspace" ]; then
-  wmctrl -s "$workspace"
-  run-app "$app" "$workspace" "$tile" &
-  exit 0
+if [ "$1" == "--move-only" ]; then
+  move_only=1
+else
+  app=$1
+  workspace=$2
+  tile=$3
+  if [ -n "$app" ] && [ -n "$workspace" ]; then
+    wmctrl -s "$workspace"
+    run-app "$app" "$workspace" "$tile" &
+    exit 0
+  fi
 fi
 
 # Run pre-defined apps

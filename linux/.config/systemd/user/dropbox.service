@@ -11,6 +11,7 @@ After=local-fs.target dump-systemd-env.service
 [Service]
 EnvironmentFile=/home/%u/.local/share/systemd/env
 Type=forking
+ExecStartPre=-/usr/bin/pkill dropbox
 ExecStart=/usr/bin/dropbox start
 ExecStop=/usr/bin/dropbox stop
 PIDFile=/home/%u/.dropbox/dropbox.pid

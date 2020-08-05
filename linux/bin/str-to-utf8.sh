@@ -1,4 +1,9 @@
-str_to_utf8=($(echo -en "$(xclip -selection primary -o)" | \
+#!/usr/bin/env bash
+
+read -r str
+[ -z "$str" ] && str=$(xclip -selection primary -o)
+[ -z "$str" ] && str=$(xclip -selection clipboard -o)
+str_to_utf8=($(printf '%s' "$str" | \
     iconv -f utf8 -t utf32be | \
     xxd -p | \
     tr -d '\n' | \

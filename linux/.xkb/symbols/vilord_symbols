@@ -1,3 +1,7 @@
+// References: 
+// - /usr/share/X11/xkb/symbols/keypad
+// - https://cgit.freedesktop.org/xkeyboard-config/tree
+
 default partial modifier_keys
 xkb_symbols "vilord" {
     name[Group1]= "English (ViLord)";

@@ -1,17 +1,29 @@
 #!/usr/bin/env sh
 
-# See:
-# https://wiki.gentoo.org/wiki/Simple_sandbox
-# https://apuntesderootblog.wordpress.com/2016/07/14/sandbox-steam-running-it-under-a-different-account/
-# https://github.com/netblue30/firejail/issues/1197
-# https://unix.stackexchange.com/questions/421184/restrict-clipboard-for-untrusted-x11-clients
+# References:
+# - https://wiki.gentoo.org/wiki/Simple_sandbox
+# - https://apuntesderootblog.wordpress.com/2016/07/14/sandbox-steam-running-it-under-a-different-account/
+# - https://github.com/netblue30/firejail/issues/1197
+# - https://unix.stackexchange.com/questions/421184/restrict-clipboard-for-untrusted-x11-clients
 
 set -eux
 
-if [ -z "$*" ]; then
+if [ -z "$1" ]; then
   echo "Usage: $(basename "$0") command"
   exit 1
 fi
+
+no_sound=
+cmd=
+while [ "$#" -gt 0 ]; do
+  arg=$1
+  if echo "$arg" | grep -q -- "--no-sound"; then
+    no_sound=1
+  else
+    cmd="$cmd $arg"
+  fi
+  shift
+done
 
 pulse_socket=/tmp/pulse-socket
 
@@ -45,10 +57,12 @@ if ! id -u nonet; then
 fi
 
 # Configure host's PulseAudio daemon
-#pactl load-module module-native-protocol-unix auth-anonymous=1 socket=$pulse_socket
-pactl load-module module-native-protocol-unix auth-group=nonets auth-group-enable=yes socket=$pulse_socket
-pactl -s "$pulse_socket" info
-trap 'rm $pulse_socket' EXIT QUIT INT TERM
+if [ -z "$no_sound" ]; then
+  #pactl load-module module-native-protocol-unix auth-anonymous=1 socket=$pulse_socket
+  pactl load-module module-native-protocol-unix auth-group=nonets auth-group-enable=yes socket=$pulse_socket
+  pactl -s "$pulse_socket" info
+  trap 'rm $pulse_socket' EXIT QUIT INT TERM
+fi
 
 # Block client's outgoing network packets
 sudo iptables -A OUTPUT -m owner --uid-owner "$(id -u nonet)" -j DROP
@@ -63,4 +77,4 @@ else
   xhost +SI:localuser:nonet
 fi
 
-sudo -u nonet -H bash -c "unset XAUTHORITY; $*"
+sudo -u nonet -H bash -c "unset XAUTHORITY; $cmd"

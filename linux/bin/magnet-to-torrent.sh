@@ -11,13 +11,19 @@ echo "$magnet" | grep -q 'xt=urn:btih:[^&/]\+'
 # Note: Must be 1024 or greater, to avoid collisions with the 'Well Known Ports'
 used_ports=$(netstat -antu | \
   sed -ne 's/.*[0-9\.]\+:\([0-9]\+\).*/\1/p' | \
-  sort -u)
-port=""
-while [ -z "$port" ] || "$port" -lt 1024 || echo "$used_ports" | grep -q "$port"; do
-  port=$(tr -dc '0-9' </dev/urandom | head -c 4)
+  uniq)
+is_port_range_valid=1
+while [ "$is_port_range_valid" -eq 1 ]; do
+  port=$(tr -dc '0-9' </dev/urandom | \
+    head -c 5 | \
+    sed 's/^0*//g')
+  [ "$port" -gt 1024 ] && \
+    [ "$port" -lt 65535 ] && \
+    ! echo "$used_ports" | grep -q "$port" && \
+    is_port_range_valid=0
 done
 
-aria2c \
+exec aria2c \
   --bt-metadata-only=true \
   --bt-save-metadata=true \
   --listen-port="$port" \

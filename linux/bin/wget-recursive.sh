@@ -15,7 +15,7 @@ wget \
   --adjust-extension \
   --convert-links \
   -e robots=off \
-  --limit-rate=500k --random-wait --wait=0.5 \
+  --limit-rate=500k --random-wait --wait=0.2 \
   --load-cookies "$cookies" \
   --max-redirect=20 \
   --no-parent \

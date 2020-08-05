@@ -1,4 +1,6 @@
-// Reference: /usr/share/X11/xkb/symbols/keypad
+// References: 
+// - /usr/share/X11/xkb/symbols/keypad
+// - https://cgit.freedesktop.org/xkeyboard-config/tree
 
 default partial alphanumeric_keys
 xkb_symbols "keypadmagic" {

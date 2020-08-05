@@ -6,7 +6,9 @@
 # Don't put duplicate lines or lines starting with space in the history
 HISTCONTROL=ignoreboth:erasedups
 
-HISTIGNORE="&:[ ]*:cd:pwd*:[bf]g*:history*:clear:exit"
+HISTIGNORE="&:[ ]*:cd:cp:l[alrs]:mv:pwd*:[bf]g*:history*:clear:exit"
+
+HISTTIMEFORMAT='%s '
 
 HISTFILESIZE=20000
 HISTSIZE=50000
@@ -60,3 +62,7 @@ fi
 
 # Reset exit status for first prompt
 :
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/fn/.sdkman"
+[[ -s "/home/fn/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fn/.sdkman/bin/sdkman-init.sh"

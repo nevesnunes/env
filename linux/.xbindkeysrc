@@ -1,21 +1,31 @@
-# A list of keys is in /usr/include/X11/keysym.h and in
-# /usr/include/X11/keysymdef.h
+# List of keys: 
+# - /usr/include/X11/keysym.h
+# - /usr/include/X11/keysymdef.h
 # The XK_ is not needed.
 #
-# List of modifier:
-#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
-#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+# List of modifiers:
+# - Control
+# - Mod1 (Alt)
+# - Mod2 (NumLock)
+# - Mod3 (CapsLock)
+# - Mod4 (Super)
+# - Mod5 (Scroll)
+# - Release
+# - Shift
+
+# FIXME: Unbind keys grabbed by desktop manager
+# Verification: `k=Print; xdotool keydown $k; xdotool key XF86LogGrabInfo; xdotool keyup $k`
 
 "keybind-guard.sh '(chrome|firefox)' 'Ctrl+W'"
 Control + Shift + w
 "keybind-guard.sh '(chrome|firefox)' 'Ctrl+q'"
 Control + q
 
-# "run-rofi.sh -show run"
+# "rofi -show run"
 # Mod4 + x
-# "run-rofi.sh -show drun"
+# "rofi -show drun"
 # Shift + Mod4 + x
-# "run-rofi.sh -show window -window-command 'wmctrl -i -R {window}'"
+# "rofi -show window -window-command 'wmctrl -i -R {window}'"
 # Mod4 + space
 
 "scratchpad-terminal.sh fzf-run.sh"
@@ -225,7 +235,7 @@ Print
 Shift + Print
 
 # "Screenshot Window Contents"
-"valid-screenshot.sh -wB"
+"valid-screenshot.sh shutter -w"
 Mod1 + Print
 
 # "OCR Screenshot Text"
@@ -247,6 +257,11 @@ Mod4 + period
 "str-to-utf8.sh"
 Mod1 + Mod4 + p
 
+# "Copy from unicode picker"
+# "unipicker --command 'rofi -dmenu' --copy"
+"env FZF_DEFAULT_OPTS='--no-border --color=16,pointer:2' SCRATCHPAD_LANG=en_US.UTF-8 scratchpad-terminal.sh unipicker --copy-command 'xsel --clipboard'"
+Mod4 + comma
+
 "xapp.sh set-above"
 Mod4 + w
 
@@ -263,5 +278,10 @@ Mod4 + 1
 "xworkspace.sh -i"
 Mod4 + 2 
 
-"killall devilspie2; devilspie2 &disown"
-Mod4 + comma
+"xworkspace.sh -u"
+Mod4 + b:5 
+"xworkspace.sh -i"
+Mod4 + b:4 
+
+"killall devilspie2; devilspie2 &disown; run-apps.sh --move-only"
+Mod1 + Mod4 + period

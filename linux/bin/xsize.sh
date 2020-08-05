@@ -1,10 +1,30 @@
 #!/usr/bin/env bash
 
-number='^(0x)*[0-9a-f]+(\.[0-9])?$'
-data_file="$XDG_RUNTIME_DIR/bin/xtilefactor.data"
-log_file="$XDG_RUNTIME_DIR/bin/xsize.log"
-mkdir -p "$(dirname "$data_file")"
+# Validation:
+# - WM supports X11: objdump -T /usr/bin/i3 | grep 'XInternAtom\|xcb_intern_atom'
+# - WM supports EWMH: 
+# readelf -p .rodata /usr/bin/i3 | grep _NET_WM_NAME
+# || using libbfd, reference: https://stackoverflow.com/questions/1685483/how-can-i-examine-contents-of-a-data-section-of-an-elf-file-on-linux
+# objcopy /usr/bin/i3 /dev/null --dump-section .rodata=/dev/stdout | grep _NET_WM_NAME
+# || hex dump
+# objdump -s -j .rodata /usr/bin/i3 | tail -n +5 | sed 's/.*\(.\{16\}\)$/\1/g' | paste -s -d '' | grep _NET_WM_NAME
+# Case Studies:
+# - https://unix.stackexchange.com/questions/594903/are-basic-posix-utilities-parallelized
+# - https://stackoverflow.com/questions/384121/creating-a-module-system-dynamic-loading-in-c
+# ~/code/snippets/dlsym.c
+
+# TODO:
+# - Check _NET_WM_NAME loaded before intern atom calls
+#     - With static analysis?
+
+tmp_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mkdir -p "$tmp_dir"
+chmod 700 "$tmp_dir"
+data_file="$tmp_dir/xtilefactor.data"
+log_file="$tmp_dir/xsize.log"
 touch "$data_file" "$log_file"
+
+number='^(0x)*[0-9a-f]+(\.[0-9])?$'
 
 session=$(wmctrl -m | head -n1 | awk '{print $2}')
 
@@ -15,7 +35,7 @@ GAP_SIZE=0
 RESIZE_STEP=75
 
 DEBUG=0
-TMP="${XDG_RUNTIME_DIR:-/tmp}/$(date +'%s')"
+TMP="$tmp_dir/$(date +'%s')"
 
 function set_tile_factors {
   notify=true
@@ -63,18 +83,31 @@ function make_desktop_geometry {
     reset_tile_factors
   fi
 
-  geo=$(wmctrl -d | grep '\*' | grep -Eho '[0-9]{3,4}x[0-9]{3,4}')
+  # TODO: Support multi-monitor: Need to get active window's screen
+  geo=$(xrandr | awk '
+    /[[:space:]]connected/ {
+      r = match($0, "[0-9]{3,4}x[0-9]{3,4}\\+0\\+0");
+      if (r > 0) print substr($0, RSTART, RLENGTH - 4);
+    }
+  ')
   geo_desktop=$(echo -e "$geo" | sed -n 1p)
   w=$(echo -e "$geo_desktop" | cut -d'x' -f1)
   h=$(echo -e "$geo_desktop" | cut -d'x' -f2)
 
   # wmctrl may omit the second dimensions
+  geo=$(wmctrl -d | grep '\*' | grep -Eho '[0-9]{3,4}x[0-9]{3,4}')
   geo_workarea=$(echo -e "$geo" | sed -n 2p)
-  if [[ -z $geo_workarea ]]; then
+  if [ -z $geo_workarea ]; then
     geo_workarea=$geo
   fi
 
-  h_workarea=$(echo -e "$geo_workarea" | cut -d'x' -f2)
+  # TODO: wmctrl reports smallest workarea given multiple screens, detect it by finding single screen with combined width of all screens (may not work on vertically arranged screens)
+  w_workarea=$(echo -e "$geo_workarea" | cut -d'x' -f1)
+  if [ "$w" -lt "$w_workarea" ]; then
+    h_workarea=$h
+  else
+    h_workarea=$(echo -e "$geo_workarea" | cut -d'x' -f2)
+  fi
   geo_offset=$(wmctrl -d | grep '\*' | grep -Eho '[0-9]+,[0-9]+')
 
   # wmctrl may omit the second dimensions
@@ -85,7 +118,10 @@ function make_desktop_geometry {
 
   h_workarea_offset=$(echo -e "$geo_workarea_offset" | cut -d',' -f2)
   workarea_factor=$(($h - $h_workarea))
+  echo "workarea_factor = $workarea_factor = $h - $h_workarea"
   minor_workarea_factor=$(($workarea_factor * $minor_h_factor / 100))
+
+  echo "geo: $w $h (offset: $h_workarea_offset)"
 }
 
 function make_window_geometry {
@@ -97,8 +133,8 @@ function make_window_geometry {
 
   minor_w=$(($w * $minor_w_factor / 100))
   minor_h=$(($h * $minor_h_factor / 100))
-  master_w=$(($w * 65 / 100))
-  slave_w=$(($w * 35 / 100))
+  master_w=$(($w * 65 / 100 - 1))
+  slave_w=$(($w * 35 / 100 - 1))
   master_factor_w=$(($w * $master_factor / 100))
   slave_factor_w=$(($w * $slave_factor / 100))
 
@@ -113,9 +149,8 @@ function make_window_geometry {
   window_pos_abs=$(xdotool getwindowgeometry "$window_id" \
       | sed -n 2p | cut -d' ' -f4)
   window_pos=$(xwininfo -id "$window_id")
-  window_pos_rel_y=$(echo "$window_pos" | grep -i "Relative upper-left Y" | sed 's/.*:[ \t\n]*/usr/')
-  window_pos_rel_x=$(echo "$window_pos" | grep -i "Relative upper-left X" | sed 's/.*:[ \t\n]*/usr/')
-  window_pos_rel_y=$(echo "$window_pos" | grep -i "Relative upper-left Y" | sed 's/.*:[ \t\n]*/usr/')
+  window_pos_rel_x=$(echo "$window_pos" | grep -i "Relative upper-left X" | sed 's/.*:[ \t\n]*//')
+  window_pos_rel_y=$(echo "$window_pos" | grep -i "Relative upper-left Y" | sed 's/.*:[ \t\n]*//')
   window_x=$(($(echo "$window_pos_abs" | cut -d',' -f1) - $window_pos_rel_x))
   window_y=$(($(echo "$window_pos_abs" | cut -d',' -f2) - $window_pos_rel_y))
 
@@ -174,6 +209,7 @@ function make_window_geometry {
     fi
 
     adjusted_h=$(($h - $workarea_factor - $frame_top - $frame_bottom))
+    echo "adjusted_h = $adjusted_h = $h - $workarea_factor - $frame_top - $frame_bottom"
     adjusted_minor_h=$(($minor_h - $minor_workarea_factor - $frame_top - $frame_bottom))
     adjusted_master_w=$(($master_w))
     adjusted_master_factor_w=$(($master_factor_w))
@@ -198,8 +234,8 @@ function make_window_geometry {
   right_move_x=$move_x
   adjusted_right_move_x=$adjusted_move_x
   if echo "$session" | grep -q -i "GNOME"; then
-    right_move_x=$(($right_move_x - 1))
-    adjusted_right_move_x=$(($adjusted_right_move_x + 1))
+    right_move_x=$((-$right_move_x - 1))
+    adjusted_right_move_x=$((-$adjusted_right_move_x + 1))
   fi
 
   # Some window managers force `StaticGravity` on windows, so
@@ -214,7 +250,7 @@ function make_window_geometry {
 
   # Compensate normal gravities
   adjusted_window_x=$(($window_x - $frame_left))
-  adjusted_window_y=$(($window_y - $frame_top))
+  adjusted_window_y=$(($window_y))
   if echo "$session" | grep -q -i "openbox"; then
     adjusted_window_y=$(($adjusted_window_y - $frame_top))
   fi
@@ -225,6 +261,8 @@ function make_window_geometry {
   PRESERVED_Y=$(($adjusted_window_y - $GAP_SIZE))
   PRESERVED_W=$(($window_w + $GAP_SIZE * 2))
   PRESERVED_H=$(($window_base_h + $GAP_SIZE * 2))
+  
+  echo "window: $PRESERVED_X $PRESERVED_Y $PRESERVED_W $PRESERVED_H"
 }
 
 function make_geometry {
@@ -294,6 +332,7 @@ function put_window_by_id {
       new_height=$PRESERVED_H
   fi
   wmctrl -i -r "$1" -e "$2,$new_x,$new_y,$new_width,$new_height"
+  echo "put window cmd: wmctrl -i -r $1 -e $2,$new_x,$new_y,$new_width,$new_height"
 }
 
 function put_other_windows {

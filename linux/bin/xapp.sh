@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 
-file="$XDG_RUNTIME_DIR/bin/xapp.data"
-mkdir -p "$(dirname "$file")"
+tmp_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mkdir -p "$tmp_dir"
+chmod 700 "$tmp_dir"
+file="$tmp_dir/xapp.data"
 touch "$file"
 
 number='^\(0x\)*[0-9a-f]\+$'

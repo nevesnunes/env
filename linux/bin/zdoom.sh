@@ -21,7 +21,10 @@ while [ "$1" != "" ]; do
   shift
 done
 
+zdoom_bin=${ZDOOM_BIN:-zdoom}
+zdoom_dir=${ZDOOM_DIR:-$HOME/opt/zdoom/build}
+
 (
-cd ~/opt/zdoom/build
-./zdoom "${args[@]}" disown&
+cd "$zdoom_dir"
+exec ./"$zdoom_bin" "${args[@]}"
 )
