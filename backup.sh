@@ -15,7 +15,7 @@ dirty_name=$(date +%s)
 git checkout -b "$dirty_name"
 cleanup() {
   err=$?
-  #git branch -D "$dirty_name"
+  git branch -D "$dirty_name"
   trap '' EXIT
   exit $err
 }

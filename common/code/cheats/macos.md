@@ -170,8 +170,7 @@ https://stackoverflow.com/questions/36139020/macos-on-vmware-doesnt-recognize-io
 ### linux
 
 install via libimobiledevice
-
-```bash
+```
 ideviceinstaller -i _.ipa
 ```
 
@@ -211,43 +210,52 @@ vm
     vmware - best compatibility
     || virtualbox - usb 3 passthrough compatibility => macos version
 
-# profiling
+# syscall / signal tracing
 
-system_profiler SPSoftwareDataType
-
-# unpack
-
-https://github.com/NiklasRosenstein/pbzx
-
-```bash
-open -W _.xip
-xip -x _.xip
-```
-
-# install
-
-https://github.com/donnemartin/dev-setup
-https://github.com/nicolashery/mac-dev-setup
-https://github.com/boxen/our-boxen
-
-https://github.com/serhii-londar/open-source-mac-os-apps
+~= strace
+http://www.brendangregg.com/DTrace/dtruss_example.txt
+[Behind the scenes of shell IO redirection &\#8211; Zoned Out](https://rhardih.io/2017/11/behind-the-scenes-of-shell-io-redirection/)
+    [Reboot OS X in recovery mode](https://support.apple.com/en-us/HT201314)
 
 ```bash
-xcode-select --install
+csrutil enable --without dtrace
 
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-grep -qi '/usr/local/bin' ~/.bash_profile || echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
-brew install git vim
+sudo dtruss -f -p 43334
 ```
 
-# ios packaging
+# jailbreak
 
-vm - usb 3 may not work
-    https://developer.ridgerun.com/wiki/index.php?title=How_to_setup_and_use_USB/IP
-    https://forums.virtualbox.org/viewtopic.php?f=35&t=82639
-linux - install via libimobiledevice
+change root password
+update hosts file
 
-# dict
+https://www.reddit.com/r/jailbreak/wiki/index
 
-https://github.com/josh-/DictionaryPlusPlus
-https://github.com/willhains/Kotoba
+### iOS 10
+
+https://h3lix.tihmstar.net/
+https://www.reddit.com/r/jailbreak/wiki/ios10jailbreakhelp
+
+# firewall
+
+https://github.com/objective-see/LuLu
+
+# unified logging
+
+Since: macOS 10.12 Sierra
+
+```bash
+log stream
+log stream --process `pgrep -f /usr/local/bin/foo` --info --debug
+log show --predicate 'process == "foo"' --last 1h --info --debug
+log collect --device
+log collect device-name="foo's iPhone"
+log collect device-udid=foo
+```
+
+# dissassemly
+
+```bash
+otool -tV /usr/libexec/foo
+```
+
+

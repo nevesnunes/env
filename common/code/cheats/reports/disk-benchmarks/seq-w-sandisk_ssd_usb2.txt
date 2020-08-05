@@ -1,0 +1,36 @@
+benchmark: (groupid=0, jobs=1): err= 0: pid=1014088: Mon Jul  6 14:58:19 2020
+  write: IOPS=46, BW=46.8MiB/s (49.1MB/s)(13.7GiB/300002msec); 0 zone resets
+    slat (usec): min=794, max=221379, avg=14895.38, stdev=13317.82
+    clat (usec): min=19, max=91333k, avg=661939.59, stdev=4263293.67
+     lat (msec): min=23, max=91360, avg=676.84, stdev=4265.00
+    clat percentiles (msec):
+     |  1.00th=[   30],  5.00th=[   31], 10.00th=[   32], 20.00th=[   35],
+     | 30.00th=[   43], 40.00th=[  165], 50.00th=[  443], 60.00th=[  818],
+     | 70.00th=[  852], 80.00th=[  869], 90.00th=[  877], 95.00th=[  911],
+     | 99.00th=[  969], 99.50th=[ 1053], 99.90th=[17113], 99.95th=[17113],
+     | 99.99th=[17113]
+   bw (  KiB/s): min=20439, max=1028096, per=100.00%, avg=68185.97, stdev=133333.69, samples=418
+   iops        : min=   19, max= 1004, avg=66.03, stdev=130.32, samples=418
+  lat (usec)   : 20=0.01%
+  lat (msec)   : 50=31.97%, 100=6.80%, 250=5.27%, 500=6.80%, 750=5.65%
+  lat (msec)   : 1000=42.76%, 2000=0.52%, >=2000=0.22%
+  fsync/fdatasync/sync_file_range:
+    sync (nsec): min=1248, max=1248, avg=1248.00, stdev= 0.00
+    sync percentiles (nsec):
+     |  1.00th=[ 1256],  5.00th=[ 1256], 10.00th=[ 1256], 20.00th=[ 1256],
+     | 30.00th=[ 1256], 40.00th=[ 1256], 50.00th=[ 1256], 60.00th=[ 1256],
+     | 70.00th=[ 1256], 80.00th=[ 1256], 90.00th=[ 1256], 95.00th=[ 1256],
+     | 99.00th=[ 1256], 99.50th=[ 1256], 99.90th=[ 1256], 99.95th=[ 1256],
+     | 99.99th=[ 1256]
+  cpu          : usr=0.60%, sys=1.12%, ctx=126630, majf=0, minf=16
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=99.8%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,14049,0,1 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+
+Run status group 0 (all jobs):
+  WRITE: bw=46.8MiB/s (49.1MB/s), 46.8MiB/s-46.8MiB/s (49.1MB/s-49.1MB/s), io=13.7GiB (14.7GB), run=300002-300002msec
+
+Disk stats (read/write):
+  sdc: ios=14/46701, merge=0/2717688, ticks=1944/10535063, in_queue=10513733, util=19.35%

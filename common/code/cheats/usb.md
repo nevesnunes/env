@@ -1,10 +1,47 @@
-# Checking version
+# Hub ports, 2.0 vs. 3.0
 
-`lsusb -v` > bcdUSB
+```bash
+lsusb | sort
+lspci | grep USB
 
-https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-descriptors
+# Match paths from /sys with /dev
+find /sys/bus/usb/devices/usb*/ -name dev | while IFS= read -r sysdevpath; do
+    syspath="${sysdevpath%/dev}"
+    devname="$(udevadm info -q name -p "$syspath")"
+    case "$devname" in
+      'bus/'*)
+        eval "$(udevadm info -q property --export -p "$syspath" | grep ID_SERIAL)"
+        if [ -n "$ID_SERIAL" ]; then
+            echo "$ID_SERIAL - /dev/$devname - $sysdevpath"
+        fi
+        unset ID_SERIAL
+    esac
+done | sort
+```
+
+Check hardware port: 
+
+- extra conductors
+- super speed (SS) label
+
+https://askubuntu.com/questions/217676/how-do-i-find-out-whether-my-system-has-usb-3-0-ports
+
+# Version
+
+```bash
+lsusb -v
+```
 
 Look at board, google `$ID datasheet`
+
+### Windows
+
+```
+devcon hwids =usb
+```
+
+https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-descriptors
+https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/devcon
 
 # USB1 support
 

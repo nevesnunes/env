@@ -1,48 +1,62 @@
-# +
+# memory efficient
 
-ip.addr==93.184.216.34 and http.request.method==GET
-http.request.method==CONNECT
+split:
 
-ip.host matches "192.168.70." && ip.host matches "^2..\."
-
-tcp.flags.fin eq 1 or tcp.flags.reset eq 1
-ip.host matches "\.149$"
-
-# Winpcap, npf
-
-sc qc npf 
-sc start npf
-sc config npf start= auto
-
-# Capture raw sockets
-
-rawcap -f 127.0.0.1 localhost.pcap
-tail -c +1 -f localhost.pcap | wireshark -k -i -
-
-http://www.nirsoft.net/utils/socket_sniffer.html
-    java.exe
-
-https://github.com/simsong/tcpflow
-
-# Filters
-
-```
-tcp matches "(?i)soap.*action"
+```bash
+# wireshark > Create new profile 
+#     wireshark > Analyze > Enabled Protocols > Disable All
+tshark -C new_profile
+# https://github.com/wanduow/libtrace/wiki/tracesplit
+tracesplit --starttime=1484908320 --endtime=1484937840 -compress-type=none pcapfile:dia5_20Jan17.pcap pcapfile:1.pcap
+# https://www.wireshark.org/docs/man-pages/editcap.html
+editcap -A "2017-01-20 10:32:00" -B "2017-01-20 18:44:00" infile.pcap outfile.pcap
 ```
 
-https://stackoverflow.com/questions/31426860/read-all-http-urls-from-pcap-file
+# specific packets
 
-# DNS resolution, hostname
+- range: `frame.number > 865900 && frame.number < 865999`
+- conversation: `tcp.stream == 70098`
 
-View > Name Resolution
+# statistics
 
-# RDP
+```bash
+tshark -r foo.pcap -qz io,stat,0,ip.src==1.2.3.4,ip.dst==1.2.3.4,tcp.dstport==80
+tshark -r foo.pcap -qz conv,ip,ip.src==1.2.3.4
+tshark -r foo.pcap -qz endpoints,ip,ip.src==1.2.3.4
+tshark -r foo.pcap -qz flow,tcp,any,ip.src==1.2.3.4
+tshark -r foo.pcap -qz follow,tcp,raw,ip.src==1.2.3.4
+tshark -r foo.pcap -qz http,stat
+tshark -r foo.pcap -qz http,tree
+# Also `grep` to remove payload-less TCP packets
+tshark -r foo.pcap -qz proto,colinfo,ip.src==1.2.3.4,foo.bar -T fields -e _ws.col.Info | grep foo.bar
+```
 
-tcp.dstport == 3389 and tcp.flags.syn == 1
-tcp port 3389 and tcp[0xd]&18=2
+```
+===================================================================
+IO Statistics
+Column #0: ip.src==1.2.3.4
+Column #1: ip.dst==1.2.3.4
+Column #2: tcp.dstport==80
+                |   Column #0    |   Column #1    |   Column #2
+Time            |frames|  bytes  |frames|  bytes  |frames|  bytes
+000.000-            725     52048    663    340474     28      2494
+===================================================================
+```
 
-https://wiki.wireshark.org/RDP
+# packet crafting / creation
 
-# OpenVPN
+```python
+from scapy import *
+packet = Ether()/IP(dst='8.8.8.8')/TCP(dport=53,flags='S')
+send(packet)
+```
 
-udp port 1194 or tcp port 1194
+https://0xbharath.github.io/art-of-packet-crafting-with-scapy/network_recon/pcap_analysis/index.html
+https://github.com/kbandla/dpkt
+
+# tcp replay / session mocking
+
+```python
+from scapy import *
+sendp(rdpcap("/tmp/pcapfile"))
+```

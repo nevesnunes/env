@@ -1,23 +1,142 @@
-# Debugger
+# Debugging
 
-node inspect _
-repl
+```bash
+node inspect app.js
+# Input:
+# repl
+```
 
+```javascript
 debugger;
-
----
-
-npm install -g ndb
-
----
-
 
 let user = null;
 console.log({user});
-
 console.table(["apples", "oranges", "bananas"]);
+```
 
 https://developer.mozilla.org/en-US/docs/Web/API/Console/count
+
+### DevTools
+
+```bash
+# debug and run script
+node --inspect app.js
+# debug and break before running script
+node --inspect-brk app.js
+# => chrome://inspect/#devices > Open dedicated Devtools for Node
+
+# ||
+npm install -g ndb
+ndb node app.js
+```
+
+https://nodejs.org/en/docs/guides/debugging-getting-started/
+https://nodejs.org/en/docs/inspector
+https://github.com/GoogleChromeLabs/ndb
+https://github.com/11ways/janeway
+
+conditional breakpoint on func call
+    debug(postMessage, 'arguments[1] == "*"')
+log dom events for object
+    monitorEvents(window, 'message')
+modify dom response from requests
+    overrides > enable local overrides
+network tab - file dependencies
+    ctrl-click JS and DOC
+    shift-select file - other are highlighted
+memory tab > heap snapshot - strings in memory
+    retainers > object
+    :) strings already concatenated / evaled, could be missed when searching source code
+https://www.youtube.com/watch?v=Y1S5s3FmFsI
+
+### V8
+
+https://eternalsakura13.com/2018/08/02/v8_debug/
+
+# Linting
+
+```bash
+# Output: package.json
+npm init
+# Output: .eslintrc.js
+npm install eslint --save-dev
+./node_modules/.bin/eslint --init
+# ||
+npm install typescript
+```
+
+https://eslint.org/docs/user-guide/configuring
+
+# Linking
+
+### Enable
+
+```bash
+cd some-dep
+# Output: symlink at global modules dir, target is local `some-dep` dir
+npm link
+
+cd my-app
+# Output: symlink at `my-app` modules dir, target is global `some-dep` dir
+npm link some-dep
+```
+
+### Disable
+
+```bash
+cd my-app
+npm uninstall --no-save some-dep && npm install 
+
+cd some-dep
+npm uninstall
+```
+
+### Enabling breakpoints on `some-dep`
+
+On `launch.json`:
+
+```json
+"runtimeArgs": [
+  "--preserve-symlinks"
+]
+```
+
+https://medium.com/dailyjs/how-to-use-npm-link-7375b6219557
+
+### Globals
+
+```json
+"env": {
+    "node": true,
+    "commonjs": true,
+    "browser": true,
+    "es6": true
+}
+```
+
+```json
+"globals": {
+    "process": true
+}
+```
+
+https://stackoverflow.com/questions/50894000/eslint-process-is-not-defined
+
+# Benchmarking
+
+https://localvoid.github.io/uibench/
+https://github.com/krausest/js-framework-benchmark
+
+# WebSocket
+
+https://github.com/websockets/ws/issues/353
+
+# Virtual DOM, diff patch trees
+
+https://github.com/Matt-Esch/virtual-dom
+https://reactjs.org/docs/reconciliation.html
+https://programming.vip/docs/realization-and-analysis-of-virtual-dom-diff-algorithm.html
+[React in 33 lines | Hacker News](https://news.ycombinator.com/item?id=22776753)
 
 # Frameworks
 
@@ -25,13 +144,21 @@ https://stackoverflow.com/questions/34700438/global-events-in-angular
 
 # Selectors
 
+```javascript
 document.querySelectorAll('iframe').forEach( item =>
     console.log(item.contentWindow.document.body.querySelectorAll('a'))
 )
 
+setTimeout(() => Array.prototype.filter.call(document.querySelectorAll('a'), e => {return /evening/.test(e.textContent);})[0].click(), 2000)
+```
+
 # Introspection
 
 Function.prototype.toString
+
+```javascript
+o=window; do Object.getOwnPropertyNames(o).forEach(name => {console.log(name, o[name]);}); while(o = Object.getPrototypeOf(o));
+```
 
 # Overriding
 
@@ -60,3 +187,89 @@ https://yarnpkg.com/lang/en/docs/selective-version-resolutions/
 vim package.json
 rm package-lock.json
 npm install
+
+# Promises
+
+```javascript
+// https://github.com/petkaantonov/bluebird
+Promise.longStackTraces();
+
+// || manual
+Promise.resolve()
+    .then(outer)
+    .then(inner)
+    .then(evenMoreInner())
+    .catch(function (err) {
+            console.log(err.message);
+            console.log(err.stack);
+        });
+```
+
+# Deobfuscation
+
+http://blog.kotowicz.net/2010/04/beating-javascript-obfuscators-with.html
+
+examples
+    https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651
+
+```javascript
+// Running:
+// - VM or sandbox - e.g. https://repl.it
+
+var _original_unescape = window.unescape;
+window.unescape = function() {
+    var u = _original_unescape.apply(this, arguments); // this calls the _original_ function
+    console.log('unescape ', arguments, u);
+    return u;
+}
+
+var _original_fromCharCode = String.fromCharCode;
+String.fromCharCode = function() {
+    var u = _original_fromCharCode.apply(this, arguments);
+    console.log('fromcharcode ', arguments, u);
+    return u;
+}
+
+var _original_eval = window.eval;
+window.eval = function() {
+    var args = arguments;
+    console.log('eval ', arguments, u);
+    var u = _original_eval.apply(this, arguments);
+    debugger;
+    return u;
+}
+```
+
+# Running untrusted code
+
+https://cuckoosandbox.org/
+https://www.freecodecamp.org/news/running-untrusted-javascript-as-a-saas-is-hard-this-is-how-i-tamed-the-demons-973870f76e1c/
+    https://github.com/apocas/dockerode
+    https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
+    https://github.com/patriksimek/vm2
+https://medium.com/@devnullnor/a-secure-node-sandbox-f23b9fc9f2b0
+    https://github.com/asvd/jailed
+    https://gvisor.dev/
+        https://github.com/google/gvisor/issues/115
+https://gist.github.com/pfrazee/8949363
+    https://www.owasp.org/index.php/HTML5_Security_Cheat_Sheet#Web_Workers
+    http://www.w3.org/TR/CSP11/#processing-model
+    https://github.com/martindrapeau/csvjson-app/blob/master/js/src/sandbox.js
+
+# webpack
+
+DevTools > Settings > Preferences > Sources > Check: Enable JavaScript source maps
+DevTools > Sources > Page > webpack://
+
+https://www.mikeglopez.com/source-mapping-webpack-for-chrome/
+
+# typescript
+
+https://www.typescriptlang.org/play/index.html
+
+# observers
+
+[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) - monitored object has DOM tree changes
+[IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) - monitored object enters or exits another element or viewport
+
+

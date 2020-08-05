@@ -1,3 +1,27 @@
+# +
+
+google: mdn foo
+
+https://www.webpagetest.org/
+
+https://github.com/clowwindy/Awesome-Networking
+http://www.kegel.com/c10k.html
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
+
+bypass URL access rules is to abuse redirections (responses with code 3xx)
+    Open URL Redirection
+        repeat parameter: 2nd url redirects to 3rd url
+
+https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
+https://hc.apache.org/httpclient-3.x/performance.html
+
+Ping-scan to discover reachable prefixes.
+Traceroute to discover topology.
+ZMap on reachable prefixes for common service ports.
+DNS AXFR to learn host names.
+wget crawling of seeded HTTP servers for content.
+
 # security
 
 https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
@@ -36,6 +60,23 @@ handler = {
 }
 window.open = new Proxy(window.open, handler);
 Element.prototype.appendChild = new Proxy(Element.prototype.appendChild, handler);
+
+# Remote debug
+
+```ps1
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=48333 connectaddress=127.0.0.1 connectport=9222
+netsh advfirewall firewall add rule name="Open Port 48333" dir=in action=allow protocol=TCP localport=48333
+Start-Process "Chrome" "https://www.google.com --headless --remote-debugging-port=9222 --user-data-dir=remote-profile"
+# || Without port forwarding
+Start-Process "Chrome" "https://www.google.com --headless --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222"
+# || Using previous session
+Start-Process "Chrome" "--remote-debugging-port=9222 --restore-last-session"
+
+# Rollback
+netsh interface portproxy reset
+netsh advfirewall firewall del rule name="Open Port 48333"
+Get-Process chrome | Stop-Process
+```
 
 # RESTful API
 
@@ -82,63 +123,3 @@ option interface_mtu
 I enabled it and it worked.
 
 Now I understand why only the local websites could not be loaded, because the server responded with frames that were too big whereas those from the router never exceeded 1500B because they came from my ISP network.
-
-# +
-
-https://github.com/clowwindy/Awesome-Networking
-http://www.kegel.com/c10k.html
-
-https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
-
-bypass URL access rules is to abuse redirections (responses with code 3xx)
-    Open URL Redirection
-        repeat parameter: 2nd url redirects to 3rd url
-
-https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
-https://hc.apache.org/httpclient-3.x/performance.html
-
-Ping-scan to discover reachable prefixes.
-Traceroute to discover topology.
-ZMap on reachable prefixes for common service ports.
-DNS AXFR to learn host names.
-wget crawling of seeded HTTP servers for content.
-
----
-
-Private IP addresses are not recognized by Internet routers. 
-Packets with either source or destination private addresses are not forwarded across Internet links.
-
-The private IP adresses are the following blocks: 
-
-Class A 10.0.0.0 - 10.255.255.255 
-Class B 172.16.0.0 - 172.31.255.255 
-Class C 192.168.0.0 - 192.168.255.255 
-
-See: https://tools.ietf.org/html/rfc1918
-
----
-
-https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
-
----
-
-Reset WINSOCK entries to installation defaults:
-netsh winsock reset catalog
-
-Reset TCP/IP stack to installation defaults:
-netsh int ip reset reset.log
-
-Reset Firewall to installation defaults:
-netsh advfirewall reset
-
-Flush DNS resolver cache:
-ipconfig /flushdns
-
-Renew DNS client registration and refresh DHCP leases:
-ipconfig /registerdns
-
-Flush routing table (reboot required):
-route /f
-
-pkgmgr /iu:"TelnetClient"
-telnet www.example.com 80
