@@ -3,7 +3,10 @@
 source ~/bin/bin-choosers.sh
 source ~/bin/bin-colors.sh
 
-logfile=$XDG_RUNTIME_DIR/clip-saver.log
+tmp_dir="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+mkdir -p "$tmp_dir"
+chmod 700 "$tmp_dir"
+logfile="$tmp_dir/clip-saver.log"
 touch "$logfile"
 
 function report {

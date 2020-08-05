@@ -1,30 +1,44 @@
--- For debug_print() output, run:
+-- Enable debug_print() output:
 -- devilspie2 --debug
 
--- To invoke an external script:
+-- Invoke external script:
 -- os.execute(os.getenv("HOME").."/bin/script.sh")
+
+-- References:
+-- [Allow reading of XA_WINDOW properties](http://git.savannah.gnu.org/cgit/devilspie2.git/commit/?id=6eb874931371b260e80cbc00e15cc895bc582ff5)
+-- http://git.savannah.gnu.org/cgit/devilspie2.git/tree/src/xutils.h
+-- http://git.savannah.gnu.org/cgit/devilspie2.git/tree/src/script_functions.h
 
 function size_window (xid, operation)
     os.execute(os.getenv("HOME").."/bin/xsize.sh --id "..xid.." "..operation)
 end
 
+-- Reference: https://specifications.freedesktop.org/wm-spec/1.3/ar01s05.html
+transient = get_window_property('WM_TRANSIENT_FOR')
+n = string.gsub(string.lower(get_window_name()), "%s+", "")
 t = string.upper(get_window_type())
-window_name = string.gsub(string.lower(get_window_name()), "%s+", "")
-if (string.match(window_name, "scratchpad") or
+if (transient ~= '' or
+        string.match(n, "scratchpad") or
+        string.match(t, "WINDOW_TYPE_DESKTOP") or
         string.match(t, "WINDOW_TYPE_DIALOG") or
+        string.match(t, "WINDOW_TYPE_DOCK") or
         string.match(t, "WINDOW_TYPE_MENU") or
+        string.match(t, "WINDOW_TYPE_TOOLBAR") or
         string.match(t, "WINDOW_TYPE_UTILITY") or
+        string.match(t, "WINDOW_TYPE_SPLASH") or
         string.match(t, "WINDOW_TYPE_SPLASHSCREEN")) then
     return
 end
 
+class = string.gsub(string.lower(get_window_class()), "%s+", "")
 xid = get_window_xid()
 x,y,w,h = get_window_geometry()
 xs,ys = get_screen_geometry()
-debug_print("get_window_name: "..get_window_name()..
+debug_print("get_window_name: "..n..
         "\nget_application_name: "..get_application_name()..
+        "\nget_window_class: "..class..
         "\nget_window_role: "..get_window_role()..
-        "\nget_window_type: "..get_window_type()..
+        "\nget_window_type: "..t..
         "\nget_window_xid: "..xid..
         "\nx,y: "..x.." "..y..
         "\nw,h: "..w.." "..h..
@@ -37,8 +51,9 @@ w_minor_factor = (xs > 1400) and 0.35 or 0.50
 name = string.gsub(string.lower(get_application_name()), "%s+", "")
 role = string.gsub(string.lower(get_window_role()), "%s+", "")
 debug_print("name: "..name.."\n")
-if ((string.match(name, "firefox") and not 
+if ((string.match(name, "firefox") and not
         string.match(role, "about")) or
+        string.find(class, "calibre") or
         string.find(name, "e%-bookviewer") or
         string.find(name, "fbreader") or
         string.match(name, "thunderbird") or
@@ -46,16 +61,17 @@ if ((string.match(name, "firefox") and not
     -- set_window_geometry(0,0,xs*w_major_factor,ys)
     size_window(xid, "-h")
 elseif (string.match(name, "keepassx") or
-        string.find(name, "telegram") or
+        string.find(class, "telegram") or
         string.match(name, "terminal") or
         string.match(name, "vim")) then
     -- set_window_geometry(xs*w_major_factor+1,0,xs*w_minor_factor-1,ys)
     size_window(xid, "-l")
-elseif ((string.match(name, "nautilus") or
+elseif ((string.match(class, "VirtualBox Manager") or
+        string.match(name, "nautilus") or
         string.match(name, "pcmanfm") or
         string.match(name, "spacefm") or
         string.match(name, "thunar")) and not (
-        string.find(window_name, "execute%s*file"))) then
+        string.find(n, "execute%s*file"))) then
     -- set_window_geometry(0,0,xs*0.50,ys)
     size_window(xid, "--half-left")
 elseif (string.match(name, "spek")) then

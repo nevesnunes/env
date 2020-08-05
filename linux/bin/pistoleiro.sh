@@ -7,7 +7,7 @@
 set -e
 
 function cleanup() {
-  killall -9 "$port_name" &>/dev/null || true
+  killall -9 "$port_name" &> /dev/null || true
   clear
 }
 trap cleanup EXIT
@@ -30,8 +30,8 @@ next_warp() {
 }
 
 port=$1
-port_name=${port//.sh}
-command -v "$port" &>/dev/null
+port_name=${port//.sh/}
+command -v "$port" &> /dev/null
 shift
 
 args=()
@@ -49,22 +49,23 @@ while [ "$1" != "" ]; do
     file=$1
     [ -f "$file" ]
     args+=("$1")
-  ;;
+    ;;
   -iwad)
     args+=("$1")
     shift
     iwad=$1
     [ -f "$iwad" ]
     args+=("$1")
-  ;;
+    ;;
   -warp)
     args+=("$1")
     shift
     warp=$1
     no_warp=false
-  ;;
+    ;;
   *)
     args+=("$1")
+    ;;
   esac
   shift
 done
@@ -82,17 +83,51 @@ if [ -s "$warp_file" ]; then
   warp=$(head -n 1 "$warp_file")
 fi
 
-# Adjust window resolution
-if command -v wmctrl &>/dev/null; then
-  if echo "$port" | grep -qi prboom; then
-    h=$(wmctrl -d | \
-      grep '\*' | \
-      sed 's/.*[0-9]\+x[0-9]\+.*[0-9]\+x\([0-9]\+\).*/\1/')
-    target_resolution='1152x864'
-    if [ "$h" -lt 800 ]; then
-      target_resolution='896x672'
-    fi
-    sed -i 's/\(screen_resolution[[:space:]]*\)"[0-9]*x[0-9]*"/\1"'$target_resolution'"/' ~/.prboom-plus/prboom-plus.cfg
+# Adjust window resolution,
+# using 4/3 ratio (e.g. 320/240),
+# to match vertically stretched 8/5 ratio (e.g. 320/200)
+# as displayed by VGA cards in mode 13h on CRT monitors.
+#
+# On multi-monitor setups, use geometry of monitor in which the largest area of active window resides.
+#
+# References:
+# - https://doomwiki.org/wiki/Aspect_ratio
+#
+# Alternatives:
+# - https://superuser.com/questions/196532/how-do-i-find-out-my-screen-resolution-from-a-shell-script
+# - https://askubuntu.com/questions/584688/how-can-i-get-the-monitor-resolution-using-the-command-line
+# h=$(wmctrl -d \
+#   | grep '\*' \
+#   | sed 's/.*[0-9]\+x[0-9]\+.*[0-9]\+x\([0-9]\+\).*/\1/')
+h=$(xgeo.py 2>/dev/null \
+  | sed 's/.*[0-9]\+x\([0-9]\+\).*/\1/')
+if [ "$h" -lt 800 ]; then
+  target_w=896
+  target_h=672
+else
+  target_w=1152
+  target_h=864
+fi
+if command -v wmctrl &> /dev/null; then
+  if echo "$port" | grep -qi gzdoom; then
+    sed -i '
+      s/^\(win_w=\)[0-9]*/\1'${target_w}'/;
+      s/^\(win_h=\)[0-9]*/\1'${target_h}'/;
+      ' ~/.config/gzdoom/gzdoom.ini
+  elif echo "$port" | grep -qi prboom; then
+    sed -i '
+      s/^\(screen_resolution[[:space:]]*\)"[0-9]*x[0-9]*"/\1"'${target_w}x${target_h}'"/
+      ' ~/.prboom-plus/prboom-plus.cfg
+  elif echo "$port" | grep -qi crispy-doom; then
+    sed -i '
+      s/^\(window_width[[:space:]]*\)[0-9]*/\1'${target_w}'/;
+      s/^\(window_height[[:space:]]*\)[0-9]*/\1'${target_h}'/;
+      ' ~/.local/share/crispy-doom/crispy-doom.cfg
+  elif echo "$port" | grep -qi chocolate-doom; then
+    sed -i '
+      s/^\(screen_width[[:space:]]*\)[0-9]*/\1'${target_w}'/;
+      s/^\(screen_height[[:space:]]*\)[0-9]*/\1'${target_h}'/;
+      ' ~/.chocolate-doom/chocolate-doom.cfg
   fi
 fi
 
@@ -101,19 +136,19 @@ while true; do
 
   echo "$warp" > "$warp_file"
 
-  command -v xdotool &>/dev/null && \
-    xdotool getactivewindow windowminimize;
+  command -v xdotool &> /dev/null \
+    && xdotool getactivewindow windowminimize
 
   # shellcheck disable=SC2086
   env SDL_AUDIODRIVER=alsa PULSE_LATENCY_MSEC=150 \
-    "$port" "${args[@]}" $warp &>/dev/null &
+    "$port" "${args[@]}" $warp &> /dev/null &
 
   warp=$(next_warp "$warp")
   if echo "$warp" | grep -q '^7\|12\|21$'; then
     echo '/!\ This map has a text screen.'
   fi
-  read -r -n1 -p "Press any key to start map $warp." _
+  read -r -n1 -p "Press any key to pistol-start map $warp." _
 
   # Process was terminated outside this script
-  pgrep "$port_name" &>/dev/null || exit
+  pgrep "$port_name" &> /dev/null || exit
 done

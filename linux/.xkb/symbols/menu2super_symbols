@@ -1,3 +1,7 @@
+// References: 
+// - /usr/share/X11/xkb/symbols/keypad
+// - https://cgit.freedesktop.org/xkeyboard-config/tree
+
 default partial modifier_keys
 xkb_symbols "menu2super" {
     name[Group1]= "English (Menu2Super)";

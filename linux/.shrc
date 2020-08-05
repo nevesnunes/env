@@ -1,3 +1,5 @@
+#!/bin/sh
+
 [ -f ~/bin/load-functions.sh ] && . ~/bin/load-functions.sh
 [ -f ~/opt/z.sh ] && . ~/opt/z.sh
 
@@ -9,43 +11,40 @@ alias ssh='TERM=xterm-16color ssh'
 # Package management
 alias dnf='sudo /usr/bin/dnf'
 alias yi='sudo /usr/bin/dnf install -y'
-alias yp='sudo /usr/bin/dnf provides'
+alias yp='sudo /usr/bin/dnf -C provides'
 alias yr='sudo /usr/bin/dnf remove'
-alias ys='sudo /usr/bin/dnf search'
+alias ys='sudo /usr/bin/dnf -C search'
 alias yu='sudo /usr/bin/dnf upgrade -y'
 
 # Workarounds
-alias flatpak='config-flatpak.sh; flatpak'
-alias audacity='flatpak run org.audacityteam.Audacity'
 alias chocolate-doom='sdl_wrap.sh chocolate-doom'
 alias crispy-doom='sdl_wrap.sh crispy-doom'
 alias prboom-plus='sdl_wrap.sh prboom-plus'
 alias zdoom='sdl_wrap.sh zdoom'
 
 # Shorter variants
-alias jmp='jmp.sh'
 alias uf='bash --norc -ci uf.sh'
 
 # Python version
-alias pip=pip3
+alias pip='python3 -m pip'
+alias pip2='python2 -m pip'
+alias pip3='python3 -m pip'
 alias python=python3
 
 alias ..='cd ..'
 alias ctags='ctags --sort=yes'
-alias docker='sudo /usr/bin/docker'
+alias docker='(systemctl status docker | grep -q "Active: inactive" && sudo systemctl start docker); sudo /usr/bin/docker'
 alias gdb='gdb -q'
 alias info='info --vi-keys'
-alias jo='mkdir -p ~/Documents/my/journal; eval "$EDITOR" ~/Documents/my/journal/$(date +"%Y-%m-%d_%H-%M-%S").txt'
+alias j='mkdir -p ~/Documents/my/journal; eval "$EDITOR" ~/Documents/my/journal/$(date +"%Y-%m-%d_%H-%M-%S").md'
 alias la='ls -lA'
 alias ll='ls -l'
 alias lr='ls -lAhtr'
 alias lsl='ls -t | head -n1'
-alias make='make -j $(nproc)'
 alias mcm='make clean; make'
 alias n='sudo /opt/nm.sh'
-alias o='xdg-open'
 alias noise='play -n -c2 synth pinknoise band -n 2500 6000 reverb 2 vol 1'
-alias nxargs='xargs -d"\n" -I{} -n1 -r'
+alias nxargs='xargs -d"\n" -i -n1 -r'
 alias r='ranger'
 alias rm='rm -I'
 alias ts='tmux-switcher.sh'
@@ -54,7 +53,16 @@ alias z='zf'
 
 ! diff --color 2>&1 | grep -qi 'unrecognized option' && \
     alias diff='diff --color'
-command -v rlwrap &>/dev/null && \
+grep -qa -- \
+    '\[-s | --sector\] \[-m | --maximize\] \[--color\]' \
+    "$(command -v hexedit)" && \
+    alias hexedit="hexedit --color --maximize --sector"
+if command -v nproc >/dev/null 2>&1; then
+    alias make='make -j $(nproc)'
+elif command -v getconf >/dev/null 2>&1; then
+    alias make='make -j $(getconf _NPROCESSORS_ONLN)'
+fi
+command -v rlwrap >/dev/null 2>&1 && \
     alias sqlite="rlwrap -a -N -c -i -f ~/.rlwrap/sqlite3_completions sqlite3" && \
     alias winedbg="rlwrap -a -N -c -i -z ~/.rlwrap/filters/winedbg_fzf.pl winedbg"
 

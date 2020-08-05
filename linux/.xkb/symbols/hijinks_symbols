@@ -1,5 +1,5 @@
-// See examples at:
-// - /usr/share/X11/xkb
+// References: 
+// - /usr/share/X11/xkb/symbols/keypad
 // - https://cgit.freedesktop.org/xkeyboard-config/tree
 
 partial alphanumeric_keys
