@@ -23,7 +23,8 @@ trap cleanup EXIT INT QUIT TERM
 
 repo_path=$(realpath .)
 while read -r role_file; do
-  local_file="$target/${${role_file//$repo_path/}//$role/}"
+  local_role_file="${role_file//$repo_path/}"
+  local_file="$target/${local_role_file//$role/}"
   [ -f "$local_file" ] || continue
   git diff \
     --no-index \
