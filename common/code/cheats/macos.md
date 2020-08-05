@@ -230,6 +230,8 @@ https://github.com/donnemartin/dev-setup
 https://github.com/nicolashery/mac-dev-setup
 https://github.com/boxen/our-boxen
 
+https://github.com/serhii-londar/open-source-mac-os-apps
+
 ```bash
 xcode-select --install
 

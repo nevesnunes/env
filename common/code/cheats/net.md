@@ -70,3 +70,7 @@ SYN and ACK bits sent and received in both directions
 
 DynDNS
 https://dyn.com/
+
+https://kb.itzecurity.com/2015/08/how-to-debug-via-http-live-headers-to.html
+https://github.com/wmetcalf/har2pcap
+https://github.com/jmatj/har2pcap

@@ -139,6 +139,20 @@ print(hex(struct.unpack('<L', socket.inet_aton('$addr'))[0])[2:10].upper().zfill
 # https://docs.python.org/3/library/struct.html
 ```
 
+```python
+bytes.fromhex("deadbeef")
+# b'\xde\xad\xbe\xef'
+
+bytearray.fromhex("deadbeef")
+# bytearray(b'\xde\xad\xbe\xef')
+
+# ||
+import binascii
+a='45222e'
+s=binascii.unhexlify(a)
+b=[ord(x) for x in s]
+```
+
 # +
 
 pycharm
