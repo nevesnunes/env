@@ -9,3 +9,13 @@ vim -E -c "TOhtml" -c "w" -c "qa!" -- test.c >/dev/null
 -n
 https://github.com/ofavre/vimcat
 http://code.google.com/p/vimcolorschemetest/
+
+java
+```bash
+# On opt directory:
+git clone https://github.com/eclipse/eclipse.jdt.ls
+(cd eclipse.jdt.ls && ./mvnw clean verify)
+# On wip directory:
+gradle init
+# Input: Application > Java
+```

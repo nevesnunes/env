@@ -1,3 +1,22 @@
-digraph g{
-  imgnode[image="1.png", label="", shape="circle"];
+/*
+Issues:
+- file must start with `<?xml version="1.0" encoding="UTF-8"?>`
+- svg tag must contain `width` and `height`, proportional to `viewBox`
+- [ ] script fixes in python
+Resources:
+- ~/code/src/graf/twemoji/
+References:
+- https://graphicdesign.stackexchange.com/questions/84163/svg-and-viewbox-values
+- https://graphicdesign.stackexchange.com/questions/15401/change-viewbox-attribute-in-svg-exported-by-illustrator
+- https://emojipedia.org/desktop-computer/
+- https://emojipedia.org/file-cabinet/
+ */
+digraph G {
+    a [label=<<table><tr><td fixedsize="true" width="50" height="50"><img src="./assets/Test.svg"/></td></tr></table>>];
+    //b [label=<<table><tr><td fixedsize="true" width="50" height="50"><img src="./assets/1f483.svg"/></td></tr></table>>];
+    b [width="0.5rem" height="0.5rem" fixedsize="true" image="./assets/1f483.svg", label=""];
+    c [label="💃"];
+    d [image="./assets/1.png", label="", shape="circle"];
+    a -> b;
+    a -> c;
 }
