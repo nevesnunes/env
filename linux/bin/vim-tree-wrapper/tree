@@ -1,0 +1,3 @@
+#!/bin/sh
+
+printf "%s" "$(~/bin/graph2tree.py | sed 's/$/\//g')"
