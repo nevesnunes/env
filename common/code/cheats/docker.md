@@ -5,7 +5,7 @@ docker swarm - automatic rollback
     https://github.com/moby/moby/issues/33427
 
 ```bash
-# yi moby-engine
+# Given: yi moby-engine
 sudo dockerd
 # ||
 sudo systemctl start docker.service
@@ -14,6 +14,7 @@ docker pull ubuntu
 docker run ubuntu bash -c "apt-get -y install nginx"
 docker run -it ubuntu bash
 
+docker container ls
 docker ps -l
 docker commit 5976e4ae287c ubuntu-nginx
 docker images
@@ -30,35 +31,35 @@ docker exec -it CONTAINER_ID_OR_NAME /bin/bash
 docker attach CONTAINER_ID_OR_NAME
 ```
 
----
+# Dockerfile
+
+https://github.com/LiveOverflow/pwn_docker_example/blob/master/challenge/Dockerfile
+
+# create vm for containers
+
+[GitHub \- docker/machine: Machine management for a container\-centric world](https://github.com/docker/machine)
 
 ```bash
-# https://packages.ubuntu.com/
-update-dlocatedb
-dlocate
-apt-cache search package_name
-dpkg-query -L package_name
-dpkg-query -S file_name
-
-rpm -ql package_name
-
-apt-get install apt-file
-apt-file update
-apt-file find file_name
-apt-file search file_name
-apt-file list package_name
-
-dnf provides file_name
+docker-machine create -d virtualbox default
+eval "$(docker-machine env default)"
 ```
 
 # permissions
 
 ```bash
 mkdir -p /data1/Downloads
-docker volume create --driver local --name hello --opt type=none --opt device=/data1/Downloads --opt o=uid=root,gid=root --opt o=bind
-docker run -i -v hello:/Downloads ubuntu bash
-# || with selinux
-docker run -i -v hello:/Downloads:z ubuntu bash
+docker run -it -v /data1/Downloads:/Downloads ubuntu bash
+# ||
+docker volume create \
+    --driver local \
+    --name hello \
+    --opt type=none \
+    --opt device=/data1/Downloads \
+    --opt o=uid=root,gid=root \
+    --opt o=bind 
+docker run -it -v hello:/Downloads ubuntu bash
+# || Given: selinux enabled
+docker run -it -v hello:/Downloads:z ubuntu bash
 ```
 
 # build
@@ -68,6 +69,10 @@ docker run -i -v hello:/Downloads:z ubuntu bash
 docker build . --tag whipper/whipper
 # Then:
 docker images | grep 'whipper/whipper'
+# Cleanup:
+docker images --filter "dangling=true" -q --no-trunc | xargs -i docker rmi {}
+# ||
+docker image prune -af
 ```
 
 # architeture, e.g. 32bit vs 64bit
@@ -90,11 +95,12 @@ https://forums.docker.com/t/how-do-i-change-the-docker-image-installation-direct
 docker inspect
 https://docs.docker.com/engine/reference/commandline/inspect/
 
-# Multiple containers
+# persistence, updates
 
-docker network create --driver bridge
-docker run --network=foo --name=bar
+https://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker
+https://thenewstack.io/methods-dealing-container-storage/
 
-https://stackoverflow.com/a/48243640
-https://dev.to/abiodunjames/why-docker-creating-a-multi-container-application-with-docker--1gpb
-https://docs.docker.com/compose/overview/
+# binding user ids
+
+https://github.com/lemire/docker_programming_station
+https://seravo.fi/2019/align-user-ids-inside-and-outside-docker-with-subuser-mapping

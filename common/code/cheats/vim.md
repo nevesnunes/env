@@ -1,5 +1,14 @@
 # Debug
 
+http://vimhelp.appspot.com/vim_faq.txt.html#faq-2.5
+
+```bash
+vim -u NONE -U NONE -N -i NONE
+vim -u ~/.vimrc --noplugin -N -i NONE
+vim -V15logfile
+```
+
+```vim
 :set vbs=15 vfile=vimdebug
 :e _
 :set vbs& vfile&
@@ -9,12 +18,7 @@
 " move around in your file and then
 :syntime report
 
-http://vimhelp.appspot.com/vim_faq.txt.html#faq-2.5
-
-vim -u NONE -U NONE -N -i NONE
-vim -u ~/.vimrc --noplugin -N -i NONE
-vim -V15logfile
-
+" log levels
 " >= 1  When the viminfo file is read or written.
 " >= 2  When a file is ":source"'ed.
 " >= 5  Every searched tags file and include file.
@@ -26,7 +30,7 @@ vim -V15logfile
 " >= 15 Every executed Ex command (truncated at 200 characters).
 
 " opens vim in debug mode
-vim -D somefile.txt
+" vim -D somefile.txt
 
 " debug a command
 debug CommandName
@@ -35,8 +39,52 @@ debug CommandName
 breakadd func [lineNumber] functionName
 
 " this will write startup info to a file: vim.log
-vim --startuptime vim.log
+" vim --startuptime vim.log
+```
 
 # Jumping
 
 gx, gf, ge (vim-markdown)
+
+# Replacing
+
+```vim
+" From cursor position until end of line
+:s/\(\%#.*\)\@<=find/replace/g
+
+" Whole words
+:%s/\<find\>/replace/g
+```
+
+# Remote editing
+
+```
+vim ftp://[user@]host[[:#]port]/path
+vim scp://user@host//absolute/path
+```
+
+# Search
+
+|Selection|Keys|
+|---|---|
+|Unnamed register = text of delete or yank|`<C-R>"`|
+|Visual|`\V<C-R>=escape(@",'/\')`|
+|Clipboard|`<C-R>"`|
+|File|`<C-R><C-F>`|
+|WORD|`<C-R><C-A>`|
+
+```vim
+:help c_<C-R>
+```
+
+# Executed processes
+
+Run sub-process listing parent pid, corresponding to vim process, taken as `$vim_pid`:
+
+```vim
+:!ps --no-heading -l $PPID
+```
+
+```bash
+strace -f -s 9999 -e process -p $vim_pid
+```

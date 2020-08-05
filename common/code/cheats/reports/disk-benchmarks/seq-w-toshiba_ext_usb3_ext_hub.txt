@@ -1,0 +1,36 @@
+benchmark: (groupid=0, jobs=1): err= 0: pid=1029714: Mon Jul  6 17:05:02 2020
+  write: IOPS=131, BW=131MiB/s (137MB/s)(38.4GiB/300005msec); 0 zone resets
+    slat (usec): min=816, max=257995, avg=5398.58, stdev=5608.94
+    clat (usec): min=12, max=30921k, avg=236521.29, stdev=1415459.96
+     lat (msec): min=9, max=30934, avg=241.92, stdev=1415.75
+    clat percentiles (msec):
+     |  1.00th=[   31],  5.00th=[   32], 10.00th=[   34], 20.00th=[   39],
+     | 30.00th=[  100], 40.00th=[  182], 50.00th=[  218], 60.00th=[  228],
+     | 70.00th=[  234], 80.00th=[  245], 90.00th=[  253], 95.00th=[  259],
+     | 99.00th=[  264], 99.50th=[  266], 99.90th=[17113], 99.95th=[17113],
+     | 99.99th=[17113]
+   bw (  KiB/s): min=18432, max=980992, per=100.00%, avg=188388.69, stdev=166431.20, samples=426
+   iops        : min=   18, max=  958, avg=183.68, stdev=162.62, samples=426
+  lat (usec)   : 20=0.01%
+  lat (msec)   : 10=0.01%, 20=0.01%, 50=23.91%, 100=6.19%, 250=56.02%
+  lat (msec)   : 500=13.63%, >=2000=0.24%
+  fsync/fdatasync/sync_file_range:
+    sync (nsec): min=1198, max=1418, avg=1328.00, stdev=115.33
+    sync percentiles (nsec):
+     |  1.00th=[ 1192],  5.00th=[ 1192], 10.00th=[ 1192], 20.00th=[ 1192],
+     | 30.00th=[ 1192], 40.00th=[ 1368], 50.00th=[ 1368], 60.00th=[ 1368],
+     | 70.00th=[ 1416], 80.00th=[ 1416], 90.00th=[ 1416], 95.00th=[ 1416],
+     | 99.00th=[ 1416], 99.50th=[ 1416], 99.90th=[ 1416], 99.95th=[ 1416],
+     | 99.99th=[ 1416]
+  cpu          : usr=1.48%, sys=2.62%, ctx=353976, majf=0, minf=18
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=99.9%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.1%, 64=0.0%, >=64=0.0%
+     issued rwts: total=0,39312,0,3 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=32
+
+Run status group 0 (all jobs):
+  WRITE: bw=131MiB/s (137MB/s), 131MiB/s-131MiB/s (137MB/s-137MB/s), io=38.4GiB (41.2GB), run=300005-300005msec
+
+Disk stats (read/write):
+  sdb: ios=288/122123, merge=4/9104477, ticks=2170/589587, in_queue=527390, util=29.39%

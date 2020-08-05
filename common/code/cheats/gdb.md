@@ -1,16 +1,220 @@
 # +
 
+http://bl0rg.krunch.be/segfault-gdb-strace.html
+
+https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb
+
 https://github.com/taskcluster/react-gdb
 
 step through stack frame
 
 compile a dummy file with -g that has the types you need and then symbol-file it into gdb to get access to the types. This of course has caveats, you have to use the correct compiler and library versions, correct compiler target and ABI-changing flags, etc.
 
+```bash
+# address space layout
+cat /proc/789/maps
+
+# disable ASLR
+echo 0 > /proc/sys/kernel/randomize_va_space
+
+# disable NX
+execstack -s foo
+
+# toggle core dumps
+ulimit -c unlimited / ulimit -c 0
+```
+
+```gdb
+# trace syscalls, do nothing on break
+# references:
+# - https://stackoverflow.com/questions/6517423/how-to-do-an-specific-action-when-a-certain-breakpoint-is-hit-in-gdb
+# - https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html
+catch syscall
+commands
+c
+end
+
 info f
 info args
+info stack
+
+info all-registers
+info registers eflags
+
+info frame
+frame n
+
+info threads
+thread n
+
+bt full
+
+printf "%p\n", __libc_start_main
+printf "%x\n", (0x7ffff7e2afb0 + 0x043980)
+disass 0x7ffff7e2afb0
+
+p/x $rbp - 0xc
+$5 = 0x7fffffffd124
+x/d $rbp - 0x0c
+0x7fffffffd124: 2078
+x/x $rbp - 0x0c
+0x7fffffffd124: 0x0000081e
+x/10x $rsp
+0x7fffffffd120: 0xffffd220      0x0000081e      0x55554973      0x00005555
+0x7fffffffd130: 0x55554ee0      0x00005555      0xf7ddd042      0x00007fff
+0x7fffffffd140: 0xffffd228      0x00007fff
+# xref. return addresses
+bt
+0  0x0000555555554a7a in ?? ()
+1  0x00007ffff7ddd042 in __libc_start_main (main=0x555555554bea, argc=1, argv=0x7fffffffd228, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffd218) at ../csu/libc-start.c:308
+2  0x000055555555483a in ?? ()
+
+# /!\ rbp is char**
+# Modifies one char:
+set *(char*)($rbp - 0x18) = 0x41424344
+# Modifies all chars:
+set *(char**)($rbp - 0x18) = 0x41424344
+```
+
+# scripting
+
+```python
+import gdb
+
+gdb.execute("break *0x4009dc")
+gdb.execute("r <<< $(echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')")
+address = int(str(gdb.parse_and_eval("$eax")),16)
+value = int(str(gdb.parse_and_eval("$eax")))
+gdb.execute("set $dl = $al")
+gdb.execute("set *(char**)($rbp - 0x18) = {}".format(candidate))
+
+# loop for breakpoints that are hit more than once
+while True:
+    rip = int(str(gdb.parse_and_eval("$rip")), 16)
+    if rip == 0x555555554000 + 0x97C:
+        gdb.execute("set $rip = (0x555555554000 + 0x99A)")
+        gdb.execute("c")
+    elif rip == 0x555555554000 + 0xA52:
+        break
+
+# Debugging (ipdb doesn't work)
+time.sleep(99999)
+# Then send `C-c`, expect gdb prompt
+```
+
+[CTFtime\.org / EKOPARTY CTF 2017 / WarmUp / Writeup](https://ctftime.org/writeup/7519)
+https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-In-Python.html#Inferiors-In-Python
+
+# dump memory
+
+```bash
+grep rw-p /proc/$1/maps \
+    | sed -n 's/^\([0-9a-f]*\)-\([0-9a-f]*\) .*$/\1 \2/p' \
+    | while read -r start stop; do \
+        gdb --batch --pid $1 -ex \
+            "dump memory $1-$start-$stop.dump 0x$start 0x$stop"; \
+    done
+```
+
+https://serverfault.com/questions/173999/dump-a-linux-processs-memory-to-file/486304
+
+# shellcode
+
+```c
+char shellcode[] = "\xbb\x14\x00\x00\x00"
+    "\xb8\x01\x00\x00\x00"
+    "\xcd\x80";
+```
+
+```gdb
+(gdb) print /x &shellcode
+$1 = 0x804a010
+(gdb) disas &shellcode
+Dump of assembler code for function shellcode:
+   0x0804a010 :	mov    $0x14,%ebx
+   0x0804a015 :	mov    $0x1,%eax
+   0x0804a01a :	int    $0x80
+   0x0804a01c :	add    %al,(%eax)
+```
+
+https://hack3rlab.wordpress.com/gdb-disassemble-instructions-in-hex-format/
+
+# Watchpoints, break on memory access
+
+```gdb
+rwatch *0xfeedface
+
+# Specific type
+rwatch *(int*)0xfeedface
+
+# Member of method
+rwatch -location mTextFormatted
+
+# Validation
+show can-use-hw-watchpoints
+```
+
+# Countdown latch equivalent
+
+```c
+int debug_wait = 1;
+while (debug_wait);
+```
+
+After all processes reached `while` loop:
+
+```
+(gdb) set debug_wait = 0
+```
+
+http://heather.cs.ucdavis.edu/~matloff/pardebug.html
+
+# Catch syscall
+
+```
+(gdb) catch syscall access
+Catchpoint 1 (syscall 'access' [21])
+(gdb) condition 1 $_streq((char *)$rdi, "/etc/ld.so.preload")
+(gdb) ru
+Starting program: /bin/ls 
+
+Catchpoint 1 (call to syscall access), 0x00007ffff7df3537 in access ()
+    at ../sysdeps/unix/syscall-template.S:81
+81      ../sysdeps/unix/syscall-template.S: No such file or directory.
+(gdb) p (char *)$rdi
+$1 = 0x7ffff7df9420 <preload_file> "/etc/ld.so.preload"
+```
+
+https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html
+https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Funs.html
+
+# Follow child processes
+
+```gdb
+set follow-fork-mode child
+set detach-on-fork off
+catch exec
+```
+
+# Address in binary
+
+```
+(gdb) bt
+#0 0x00005555555546a8 in fillBuffer ()
+#1 0x00005555555546e1 in main ()
+(gdb) info proc mappings
+Mapped address spaces:
+Start Addr End Addr Size Offset objfile
+0x555555554000 0x555555555000 0x1000 0x0 /vagrant/shouldve_gone_for_the_head
+[output truncated]
+=>
+0x00005555555546a8 - 0x555555554000 + 0x0 = 0x6a8
+```
+-- https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/
 
 # Functions
 
+```
 define callstack
      set $Cnt = $arg0
 
@@ -43,3 +247,19 @@ gdb -ex run --args prog arg
 checkpoint
 i checkpoint
 restart checkpoint-id
+```
+
+# compiling
+
+```bash
+wget https://ftp.gnu.org/gnu/gdb/gdb-8.1.tar.gz
+tar -xvf gdb-8.1.tar.gz
+cd gdb-8.1
+mkdir build
+cd build
+../configure --prefix=/usr --disable-nls --disable-werror --with-system-readline --with-python=/usr/bin/python3.6 --with-system-gdbinit=/etc/gdb/gdbinit --enable-targets=all
+make -j7
+sudo make install
+```
+
+https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
