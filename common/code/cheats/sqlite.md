@@ -1,14 +1,8 @@
-sqlite3 foo.db .dump | vim -
-echo 'select * from sqlite_master;' | sqlite3 foo.db | vim -
+sqlite3 foo.sqlite .dump | vim -
 
 .mode list
 .output out.txt
 .read in.sql
-
-# csv
-
-.mode csv
-.import foo.csv foo
 
 # columns
 
