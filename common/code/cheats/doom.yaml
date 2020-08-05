@@ -45,6 +45,8 @@ invisible sector:
         back-side: sector number
         front-side: sector number
     url: https://www.doomworld.com/vb/doom-editing/52802-invisible-pillars-floors/
+sky:
+    url: https://web.archive.org/web/19970526100743fw_/http://www.nitehawk.com/jensh/doom/special/
 3D bridge:
     url:
         - https://www.doomworld.com/tutorials/fx8.php
@@ -107,6 +109,16 @@ design:
     maps:
         cs de_dust2
         quake dm3
+    romero rules: |-
+      - Always changing floor height when I wanted to change floor textures.
+      - Using special border textures between different wall segments and doorways.
+      - Being strict about texture alignment.
+      - Conscious use of contrast everywhere in a level between light and dark areas, cramped and open areas.
+      - Making sure that if a player could see outside that they should be able to somehow get there.
+      - Being strict about designing several secret areas on every level.
+      - Making my levels flow so the player will revisit areas several times so they will better understand the 3D space of the level.
+      - Creating easily recognizable landmarks in several places for easier navigation. 
+      https://web.archive.org/web/20080830035843/http://archive.gamespy.com/articles/december03/doom/romero/index.shtml
 dehacked:
   docs: http://www.aspectsweb.co.uk/dehacked/index.html
   tables: https://doomwiki.org/wiki/DeHackEd
@@ -124,3 +136,36 @@ skies:
     linedef 271 on line w/ upper texture
     boxoskiestestmap.wad
   usage: sector with ceiling = floor height, untextured
+  split: |-
+    for i in $(seq 1 4); do convert HCLDSKY4.png -crop 256x128+$(($((i-1))*256))+128 "HCLDS4_$i.png"; done
+shadowcasting: |-
+    = floors and ceilings with different brightness levels
+    https://www.doomworld.com/tutorials/fx6.php
+    https://www.doomworld.com/forum/topic/60823-shadowcasting/
+threads:
+  - vanilla conveyor belt
+  - Dehacked - Scifista, printz
+  - Mechadon - turning a Lost Soul into a projectile
+  - 'https://www.doomworld.com/forum/topic/114757-some-useless-data-on-doom-2s-new-linedef-actions/?tab=comments#comment-2137223'
+config:
+  - hudadd_secretarea             1
+  - hudadd_smarttotals            1
+  - mus_fluidsynth_chorus         0
+  - mus_fluidsynth_reverb         0
+finding bad data:
+    1. Entries > SECTORS > Check columns of interest in entry contents, take $sectors_table_row_number
+    2. Map Editor > View > Show Item... > Type = Sector, Index = $sectors_table_row_number
+demo format:
+  parser: XDRE
+  actions:
+    WT: noop
+  case studies: |-
+    https://www.doomworld.com/forum/topic/102900-100-for-100-doom-2-demo-challenge/?page=2&tab=comments#comment-1932015
+      - Tic 755: Forward 50, strafe 40
+      - Tic 756: Forward 50, strafe 50
+      - Tic 757: no inputs at all
+      - Tic 758: Forward 50, strafe 50
+mapinfo: https://zdoom.org/wiki/CVARs:Configuration
+snippets: ~/code/snippets/doom
+
+

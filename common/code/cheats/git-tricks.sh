@@ -1,5 +1,3 @@
-https://github.com/git-tips/tips
-
 # The "I forgot something in my last commit" Trick
 
 # first: stage the changes you want incorporated in the previous commit
@@ -71,3 +69,6 @@ cd mcplugins
 git checkout origin/master -b mylib
 git filter-branch --prune-empty --subdirectory-filter plugins/mylib mylib
 git push ssh://stash/proj/mylib.git mylib:master
+
+# References:
+# - https://github.com/git-tips/tips

@@ -59,8 +59,17 @@ xwininfo -root -all
 # VirtualBox - Install extension pack (VBoxManage)
 sudo VBoxManage extpack install %%%
 
-# Patch diff ala git
+# Make unified format diff (same as `git diff`)
 diff -Naurw %%%OLD %%%NEW > %%%.diff
+
+# Patch using diff file (removes prefix added by `git diff`)
+patch -p1 < %%%.diff
+
+# Patch specific file using diff file
+patch %%% < %%%.diff
+
+# Undo/revert patch
+patch -R < %%%.diff
 
 # Run command file fuzzy sorted list by latest modified time/date (find; fzf)
 find "%%%" -maxdepth 2 -type f | \

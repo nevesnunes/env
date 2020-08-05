@@ -1,3 +1,7 @@
+sudo mount -o loop foo.img ~/media/img
+# Validation
+dmesg | tail -f
+
 sudo systemctl start nbd-server.service
 sudo nbd-server -C /dev/null -r 9000 /dev/cdrom
 

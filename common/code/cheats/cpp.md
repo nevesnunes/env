@@ -1,6 +1,71 @@
-# compiler flags - includes, libraries
+# building
 
+```bash
+# Optional: Outputs `configure`
+autoreconf -fi
+./configure
+make
+sudo make install
+# ||
+make prefix="$HOME/foo" install
 ```
+
+### position-independent code
+
+```bash
+gcc -fPIE -pie
+# vs.
+gcc -no-pie -fno-pic
+```
+
+# 32bit vs 64bit binary
+
+- IA-32, a variant of x86, commonly known as i386 (the name used by Debian) or i686 (which, like IA-32, are generations of the x86 architecture series)
+- x86-64, also known as x64 or amd64 (the name used by Debian) (not to be confused with IA-64 which is completely different)
+
+```bash
+od -An -t x1 -j 4 -N 1 foo
+# Output: 01 if 32bit, 02 if 64bit
+```
+
+References:
+
+- https://unix.stackexchange.com/questions/125295/32-bit-vs-64-bit-vs-arm-in-regards-to-programs-and-oses
+
+# debug info
+
+`strip` - removes symbol names
+
+# language servers - clangd
+
+```bash
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+# || From build commands
+# References: https://github.com/rizsotto/Bear
+bear make
+
+# Validation
+test -f compile_commands.json
+```
+
+# compiler
+
+### testing
+
+```bash
+printf '#include<stdio.h>
+int main() { puts("Hi!"); return 0; }' \
+    | i686-linux-musl-gcc -xc - \
+    && ./a.out; rm -f a.out
+```
+
+### includes, libraries
+
+```bash
+# create shared library
+gcc foo.c -o foo -shared -fPIC
+
 # both c and c++
 ./configure \
     CPPFLAGS="-I/foo" \
@@ -15,10 +80,39 @@
 ./configure \
     CXXFLAGS="-I/foo" \
     CPLUS_INCLUDE_PATH="/foo"
-
-# Reference:
-# https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
 ```
+
+https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
+
+### override include
+
+On /include/foo.h:
+
+```c
+#include "foo.h"
+#include "bar.h"
+```
+
+CPPFLAGS="-I/include"
+
+### guards
+
+https://stackoverflow.com/questions/31115366/make-error-multiple-definitions-of-despite-include-guard
+
+### GNU extensions
+
+https://stackoverflow.com/questions/10613126/what-are-the-differences-between-std-c11-and-std-gnu11
+
+### static build
+
+```
+./configure "LDFLAGS=--static"
+env CXXFLAGS=-static --enable-static --disable-shared -fPIC --prefix="$(pwd)" make
+```
+
+libtool makes static linking impossible
+    https://debbugs.gnu.org/cgi/bugreport.cgi?bug=11064
+    https://github.com/esnet/iperf/issues/632
 
 # tooling
 
@@ -56,6 +150,8 @@ strace -k
 https://github.com/dalance/flexlint
 
 http://www.mingw.org/wiki/MS_resource_compiler
+
+https://chromium.googlesource.com/chromium/src.git/+/master/docs/linux/eclipse_dev.md
 
 ---
 
@@ -125,8 +221,10 @@ Lackey / None: demo/unit test of valgrind itself.
 
 # typo key initialization
 
+```cpp
 foo(const map<string, string>& bar)
 map::at()
+```
 
 # temporary default values
 
@@ -134,38 +232,33 @@ map::at()
 
 # synchronization with volatile
 
+```cpp
 std::atomics, mutex
+```
 
 # thread safety
 
+```cpp
 shared_ptr<T>
     ok: reference count, control block
     ko: T
     ko: shared_ptr pointers
 
 atomic<shared_ptr>
+```
 
 # shadow declaration
 
+```cpp
 // RAII types + default constructor
 std::string(foo);
 
--Wshadow
+// -Wshadow
 // good but ko: -Wshadow-compatible-local
 unique_lock<mutex> g(m_mutex);
+```
 
 ---
-
-# Testing
-
-ctest -VV
-
-# Packaging
-
-cpack
-    generates: CPackConfig.cmake
-
-set(CMAKE_DEBUG_POSTFIX "-d")
 
 # Dependencies
 
@@ -187,68 +280,6 @@ Support for
 - sources + prebuilt binaries (improves build performance)
 - binaries only (for closed source projects and development tools)
 Offline use
-
-### cmake
-
-```
-file://~/code/snippets/*.cmake
-```
-
-https://github.com/boostcon/cppnow_presentations_2017/blob/master/05-19-2017_friday/effective_cmake__daniel_pfeifer__cppnow_05-19-2017.pdf
-
-ExternalProject_Add() + add_subdirectory()
-find_package()
-
-add_library()
-target_link_library()
-    logical dependencies
-    public vs private
-        => workaround cyclic dependencies
-        public -target-prop-> LINK_LIBRARIES, INTERFACE_LINK_LIBRARIES
-        private -target-prop-> LINK_LIBRARIES
-
-phases
-    build
-        CMAKE_BUILD_TYPE
-    config
-        generator expressions
-            target_compile_definitions()
-            e.g. $<IF:$<CONFIG:Debug>:foo,bar>
-
-hierarchy
-    add_subdirectory()
-        requires CMakeLists.txt
-
-scripts
-    cmake -P foo.cmake
-
-modules
-    include()
-        requires CMAKE_MODULE_PATH
-
-variables
-    undefined => expands to empty string
-    not in environment
-
-targets
-    constructors
-        - add_executable()
-        - add_library()
-    member variables
-        - target properties
-    member functions
-        - get_target_property()
-        - set_target_properties()
-        - get_property(TARGET)
-        - set_property(TARGET)
-        - target_compile_definitions()
-        - target_compile_features()
-        - target_compile_options()
-        - target_include_directories()
-        - target_link_libraries()
-        - target_sources()
-
----
 
 # space-efficient algorithms
 
@@ -295,3 +326,79 @@ sudo dnf install -y boost-build boost-devel boost-jam boost-python3-devel python
 sudo ln -fs /usr/bin/bjam /usr/bin/b2
 sudo ln -fs /usr/lib64/libpython3.7m.so /usr/lib64/libpython3.7.so
 source ~/code/sand/boost-build/profile.sh
+
+# debug
+
+```c
+#define protected public
+#define private public
+#include <foo.h>
+```
+
+assert state has not changed between function calls
+
+# windows
+
+```bash
+# crosscompiling from linux to exe for 32-bit
+i686-w64-mingw32-gcc 646.c -lws2_32 -o 646.exe
+```
+
+https://virtuallyfun.com/wordpress/2020/02/01/cross-compiling-sdl-1-2-15-for-arm-win32/
+
+```
+C:\proj\ss\SDL-1.2.15\VisualC\SDL>link /dll -out:sdl.dll *.obj winmm.lib dxguid.lib gdi32.lib user32.lib advapi32.lib dxguid.lib uuid.lib dxguid.lib Version.res
+Microsoft (R) Incremental Linker Version 14.24.28315.0
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Creating library sdl.lib and object sdl.exp
+SDL_dx5events.obj : error LNK2001: unresolved external symbol GUID_SysMouse
+```
+
+```bash
+strings ~/Downloads/dxguid.lib | grep GUID_SysMouse
+# Output:
+# _GUID_SysMouse
+```
+
+https://github.com/tpn/winsdk-10/blob/9b69fd26ac0c7d0b83d378dba01080e93349c2ed/Include/10.0.16299.0/um/dinput.h#L117
+
+```c
+DEFINE_GUID(GUID_SysMouse, 0x6F1D2B60,0xD5A0,0x11CF,0xBF,0xC7,0x44,0x45,0x53,0x54,0x00,0x00);
+```
+
+https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/shared/guiddef.h#L59
+
+```c
+#ifndef DECLSPEC_SELECTANY
+#if (_MSC_VER >= 1100)
+#define DECLSPEC_SELECTANY  __declspec(selectany)
+#else
+#define DECLSPEC_SELECTANY
+#endif
+#endif
+
+// ...
+
+#ifdef INITGUID
+#define DEFINE_GUID(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
+    EXTERN_C const GUID DECLSPEC_SELECTANY name \
+        = { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }
+#else
+#define DEFINE_GUID(name, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
+    EXTERN_C const GUID FAR name
+#endif // INITGUID
+```
+
+https://docs.microsoft.com/en-us/cpp/cpp/declspec?view=vs-2019
+https://stackoverflow.com/questions/2284610/what-is-declspec-and-when-do-i-need-to-use-it
+
+=> define INITGUID
+
+# examples - build issues
+
+[Undefined reference \`\_\_powf\_finite\` with clang 9\.0\.1, Linux 5\.5\.4\-arch1\-1 and glibc 2\.31\-1 · Issue \#2146 · google/filament · GitHub](https://github.com/google/filament/issues/2146)
+[c \- What exactly is \-fno\-builtin doing here? \- Stack Overflow](https://stackoverflow.com/questions/54281780/what-exactly-is-fno-builtin-doing-here)
+[Audacity &\#8211; New Major Release &\#8211; Compile Fix, for Portaudio\.\. &\#8211; Adventures With Linux ™](http://rglinuxtech.com/?p=2093)
+
+

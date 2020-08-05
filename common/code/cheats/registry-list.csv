@@ -1,0 +1,694 @@
+$MFT Zone Definition,XP,7,8,10,SYSTEM\ControlSet###\ControlFileSystem / NtfsMftZoneReservation
+64 BitShim Cache,7,HKLM\System\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache
+AIM,NTUSER.DAT\Software\America Online\AOL Instant MessengerCurrentVersion\Users
+AIM,NTUSER.DAT\Software\America Online\AOL InstantMessengerCurrentVersion\Usersusername
+AIM Away Messages,NTUSER.DAT\Software\America Online\AOL Instant Messenger(TM)CurrentVersion\Users\screen nameIAmGoneList
+AIM File Transfers & Sharing,NTUSER.DAT\Software\America Online\AOL Instant MessengerCurrentVersion\Users\screen nameXfer
+AIM Last User,NTUSER.DAT\Software\America Online\AOL Instant Messenger (TM)CurrentVersion\Login - Screen Name
+AIM Profile Info,NTUSER.DAT\Software\America Online\AOL Instant MessengerCurrentVersion\Users\screen name\DirEntry
+AIM Recent Contacts,NTUSER.DAT\Software\America Online\AOL Instant MessengerCurrentVersion\usersusernamerecent IM ScreenNames
+AIM Saved Buddy List,NTUSER.DAT\Software\America Online\AOL Instant MessengerCurrentVersion\Users\username\Config Transport
+AOL 8 Messenger Away Messages,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger(TM)\CurrentVersion\Users\[screen name]\IAmGoneList
+AOL 8 Messenger Buddy List,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger\CurrentVersion\Users\username\Config Transport
+AOL 8 Messenger File Transfers,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger (TM)\Current Version\Users\[screen name]\Xfer
+AOL 8 Messenger Information,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger\CurrentVersion\Users\username
+AOL 8 Messenger Last User,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger (TM)\CurrentVersion\[Login - Screen Name]
+AOL 8 Messenger Profile Info,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger (TM)\CurrentVersion\Users\[screen name]\DirEntry
+AOL 8 Messenger Recent Contact,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger\CurrentVersion\users\username\[recent IM ScreenNames]
+AOL 8 Messenger Registered User,7,NTUSER.DAT\Software\America Online\AOL Instant Messenger\CurrentVersion\Users
+AccessData FTK Time Zone Cache,NTUSER.DAT\Software\AccessDataProducts\Forensic Toolkit\SettingsTimeZoneCache
+AccessData Registry Viewer Recent File List,NTUSER.DAT\Software\AccessdataRegistry Viewer\Recent File List
+Acro Software CutePDF,NTUSER.DAT\Software\Acro Software Inc\CPW
+Adobe,NTUSER.DAT\Software\Adobe\
+Adobe Acrobat,NTUSER.DAT\Software\Adobe\Acrobat Reader\AVGeneral\cRecentFiles\c#
+Adobe Photoshop Last Folder,NTUSER.DAT\Software\AdobePhotoshop\\VisitedDirs
+Adobe Photoshop MRUs,NTUSER.DAT\Software\AdobeMediaBrowser\MRU\PhotoshopFileList\
+All UsrClass data in HKCR hive,7,8,10,HKCR\Local Settings
+App Information,10,UsrClass.dat\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppModel\Repository\Packages\Microsoft.Microsoftedge\Microsoft.MicrosoftEdge_20.10240.16384.0_neutral 8wekyb3d8b bwe\MicrosoftEdge\Capabilities\FileAssociations
+App Install Date/Time,10,UsrClass.dat\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppModel\Repository\Families\Microsoft.Microsoftedge_8wekyb3d8bbwe\Microsoft.MicrosoftEdge_20.10240.16384.0_neut ral 8wekyb3d8bbwe / InstallTime
+App Install Date/Time,8,10,UsrClass.dat\Local Settings\SoftwareMicrosoft\Windows\CurrentVersionAppModel\Repository\Families\\/ InstallTime
+AppX App Values,8,10,UsrClass.dat\
+Application Information,XP,7,8,10,NTUSER.DAT\Software\%Application Name%
+Application Last Accessed,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\
+Application MRU Last Visited,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\
+Application MRU Open Saved,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU
+Application MRU Recent Document,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+Auto Run Programs List,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Run
+Autorun USBs, CDs, DVDs,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerAutoplayHandlers / DisableAutoplay
+Background Activity Moderator,SYSTEM\CurrentControlSet\Services\bam\UserSettings\{SID}
+Background Activity Moderator,SYSTEM\CurrentControlSet\Services\dam\UserSettings\{SID
+BitComet Agent 1,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{C8FF2A06-638A-4913-8403-50294CFF6608}
+BitComet Agent 1.0,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Typelib\{2D2C1FBD-624D-4789-9AE0-F4B66F9EE6E2}
+BitComet Agent 2,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AppID\{B99B5DF3-3AD2-463F-8F8C-86787623E1D5}
+BitComet BHO,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AppID\{00980C9D-751F-4A5F-B6CE-6D81998264FD}
+BitComet DL Manager,7,HKEY_USERS\(SID)\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{A8DC7D60-AD8F-491E-9A84-8FF901E7556E}
+BitComet DM Class,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{A8DC7D60-AD8F-491E-9A84-8FF901E7556E}
+BitComet File Types,7,HKEY_CURRENT_USER\(SID)\Software\Classes\.bc!\: "BitComet"
+BitComet GUID,7,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\{39F7E362-828A-4B5A-BCAF-5B79BFDFEA60}\: "BitComet ClickCapture
+BitComet Helper,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{39F7E362-828A-4B5A-BCAF-5B79BFDFEA60}
+BitComet Helper,7,HKEY_USERS\(SID)\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{39F7E362-828A-4B5A-BCAF-5B79BFDFEA60}
+BitComet IBcAgent,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Interface\{E8A058D1-C830-437F-A029-10D777A8DD40}
+BitComet IDownloadMan,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Interface\{6CFA2528-2725-491D-8E0D-E67AB5C5A17A}
+BitComet IE DL Manage,7,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Extensions
+BitComet IE Extension,7,HKEY_USERS\(SID)\Software\Microsoft\Windows\CurrentVersion\Ext\Stats\{D18A0B52-D63C-4ED0-AFC6-C1E3DC1AF43A}
+BitComet IE Link 1,7,HKEY_USERS\(SID)\Software\Microsoft\InternetExplorer\Down-loadUI: "{A8DC7D60-AD8F-491E-9A84-8FF901E7556E}
+BitComet IE Link 2,7,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\InternetExplorer\DownloadUI:"{A8DC7D60-AD8F-491E-9A84-8FF901E7556E}"
+BitComet IIEClickCapt,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Interface\{F08F65A5-7F91-45D7-A119-12AC4AB3D229}
+BitComet Inst. Path,7,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppPaths\BitComet.exe
+BitComet Installation,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Typelib\{66A8414F-F2E4-4766-BE09-8F72CDDACED4}
+BitLocker Drive Encryption Driver Service,XP,7,8,10,SYSTEM\ControlSet001\servicesfvevol\Enum
+BitLocker To Go,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\FveAutoUnlock\
+BitLocker To Go,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersionFveAutoUnlock\
+BitTorrent Clients,7,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\(BitTorrent Client Name)
+BitTorrent Compatabil,7,HKEY_USERS\(SID)\Software\Microsoft\WindowsNT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Persisted\
+BitTorrent MRUList,7,HKEY_USERS\(SID)\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.torrent\OpenWithList
+BitTorrent Mag Links,7,HKEY_USERS\(SID)\Software \Classes\Magnet\shell\open\commsnd\:""C:\Program Files\(BitTorrent Client Name)\(BitTorrent Client Executable File.exe)" "%1""
+BitTorrent Recent,7,HKEY_USERS\(SID)\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.torrent
+BitTorrent Reg Values,7,HKEY_LOCAL_MACHINE\SOFTWARE\Classes
+BitTorrent Tracing 1,7,HKEY_LOCAL_MACHINE\(SID)\SOFTWARE\Microsoft\Tracing\(BitTorrent Client Name)_RASMANCS
+BitTorrent Tracing 2,7,HKEY_LOCAL_MACHINE\(SID)\SOFTWARE\Microsoft\Tracing\(BitTorrent Client Name)_RASAPI32
+CD Burning,7,8,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerCD Burning\Drives\VolumeCurrent Media
+CD Burning,XP,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerCD BurningCurrent Media /Disc Label
+CDROM Enumeration Service,XP,7,8,10,SYSTEM\ControlSet001\servicescdrom\Enum
+Cached Passwords,7,SECURITY\Policy\Secrets\DefaultPassword/[CurrVal and OldVal]
+Camera App,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerRecentDocs\.jpg&ls=0&b=0
+Camera Mounting,7,8,10,SYSTEM\ControlSet001\Enum\USB\
+Class GUID for HDD Drivers,XP,7,8,10,SYSTEM\ControlSet001\ControlClass\{4D36E967-E325-11CE- BFC1- 08002BE10318}
+Class GUID for Storage Volumes,XP,7,8,10,SYSTEM\ControlSet001\ControlClass\{71A27CDD-812A-11D0- BEC7-08002BE2092F}
+Class GUID for USB Host Controllers and Hubs,XP,7,8,10,SYSTEM\ControlSet001\ControlClass\{36FC9E60-C465-11CF- 8056-444553540000}
+Class GUID for Windows Portable Devices WPD,7,8,10,SYSTEM\ControlSet001\ControlClass\{EEC5AD98-8080-425F- 922A-DABF3DE3F69A}
+Class Identifiers,XP,7,8,10,SOFTWARE\Classes\CLSID
+Classes,HKEY_CLASSES_ROOT
+Clearing Page File at Shutdown,XP,7,8,10,SYSTEM\ControlSet###\ControlSession Manager\Memory Management / ClearPageFileAtShutdown
+Clearing PageFile at Shutdown,7,SYSTEM\ControlSet###\Control\Session Manager\Memory Management\ClearPageFileAtShutdown
+Common Dialog,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU\.vhd
+Common Dialog 32 CID Size MRU App Access,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerComDlg32\CIDSizeMRU
+Common Dialog 32 First Folder App Access,7,8,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerComDlg32\FirstFolder
+Common Dialog 32 Last Visited MRU App Access,XP,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\Explorer\ComDlg32\LastVisitedMRU
+Common Dialog 32 Last Visited PIDL MRU App Access,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerComDlg32\LastVisitedPidlMRU
+Common Dialog 32 Open Save document Access by Extension,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerComDlg32\OpenSaveMRU\
+Common Dialog ComDlg32 Access,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerComDlg32\LastVisitedPidlMRULegacy
+Common Dialog ComDlg32 Access,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerComDlg32\OpenSavePidlMRU\
+Communications App E-Mail ID,Settings.dat\
+Communications App E-Mail User Name,settings.dat\LocalState\Platform / UserName
+Communications App ID info,Settings.dat\RoamingState\Accounts
+Computer Name,XP,7,8,10,SYSTEM\ControlSet###\ControlComputerName\ComputerName
+Computer Name Active Computer Name,XP,7,8,10,SYSTEM\ControlSet###\ControlComputerName\ComputerNameActiveComputerName
+Computer Name and Volume Serial Number,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows Media\WMSDK\General
+Converted Wallpaper,XP,7,8,10,NTUSER.DAT\\Control Panel\Desktop
+Cortana Search,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerFileExts\.com/search?q=
+Cortana Search,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerRecentDocs\.&input=2&FORM=WNS BOX&cc=US&setlang=en- US&sbts=/ 0
+Credential Provider Filters,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*
+Credential Provider Filters,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*
+Credential Providers,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*
+Credential Providers,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*
+Current Configuration,HKEY_CURRENT_CONFIG
+Current Control Set,7,SYSTEM\Select
+Current Control Set,XP,7,8,10,SYSTEM\Select
+Current Control Set Information,7,SYSTEM\Select\Current
+Current Drive Enumeration Service,XP,7,8,10,SYSTEM\ControlSet001\servicesDisk\Enum
+Current Theme,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Themes
+Current USB Storage Enumeration Service,XP,7,8,10,SYSTEM\ControlSet001\servicesUSBSTOR\Enum
+Current Version Information,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\
+Currently Defined Printer,7,SYSTEM\ControlSet###\Control\Print\Printers
+Currently Mounted Drives MRU,7,8,10,SYSTEM\CurrentControlSet\ServicesDisk\Enum
+Custom Group List by RID,7,SAM\Domains\Account\Aliases\
+Custom Group Names,7,SAM\Domains\Account\Aliases\Names
+DAP Categories,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\Category
+DAP Context Menu 1,XP,HKEY_USERSS-1-5-21-1757981266-1708537768-725345543-500\Software\Microsoft\InternetExplorer\MenuExt
+DAP Context Menu 2,XP,HKEY_USERSS-1-5-21-1757981266-1708537768-725345543-500\Software\Microsoft\InternetExplorer\MenuExt
+DAP DL Activity,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator
+DAP Download Dir,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\FileList\(Site/Server)\DownloadDir
+DAP Download URLs,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\HistoryCombo
+DAP FileList,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\FileList
+DAP Host Data,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\FileList\HostsData
+DAP Ignored Sites,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\FileList\(Site/Server)\BlackList
+DAP Install/V/Path,XP,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Download Accelerator Plus
+DAP Protected URLs,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\FileList\(Site/Server)
+DAP Proxy Data,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\Proxy
+DAP Searched Words,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\SearchTab
+DAP Unique File ID,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\FileList\(Unique File ID)
+DAP User Credentials,XP,HKEY_USERS\SID\Software\SpeedBit\Download Accelerator\UserInfo
+DLLs Loaded at Bootup,7,SYSTEM\ControlSet###\Control\SessionManager\KnownDLLs
+DLLs Loaded at Bootup,XP,7,8,10,SYSTEM\ControlSet###\ControlSessionManager\KnownDLLs
+Defrag Last Run Time,7,8,10,SOFTWARE\Microsoft\Dfrg\StatisticsVolume/ LastRunTime
+Disables (or stores if 1) clear-text creds,8,HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest\UseLogonCredential
+Disk Class Filter Driver stdcfltn,10,SYSTEM\ControlSet001\servicesstdcfltn
+Display Enumeration,XP,7,8,10,SYSTEM\ControlSet001\EnumDISPLAY\\
+Display Monitor Settings,7,SYSTEM\ControlSet###\Enum\Display
+Display Monitors,XP,7,8,10,SYSTEM\ControlSet###\Enum\Display
+Drives Mounted by User,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerMountPoints2\
+Dynamic Disk,XP,7,SYSTEM\\ControlSet###\ServicesDMIO\Boot Info\Primary Disk Group
+Dynamic Disk Identification,7,SYSTEM\ControlSet###\Services\DMIO\Boot Info\Primary Disk Group
+EFS,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows NT\CurrentVersion\EFSCurrentKeys
+EFS Attribute in File Explorer Green Color,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerAdvanced
+Edge Browser Favorites, Edge Favorites,10,UsrClass.dat\Local Settings\SoftwareMicrosoft\Windows\CurrentVersionAppContainer\Storage\microsoft. microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FavOrder\Favorites\/ Order
+Edge History Days to Keep,10,UsrClass.dat \Local Settings\SoftwareMicrosoft\Windows\CurrentVersionAppContainer\Storage\microsoft. microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\InternetSettingsUrl History / DaysToKeep
+Edge Typed URLs,10,UsrClass.dat Local Settings\SoftwareMicrosoft\Windows\CurrentVersionApp Container\Storage\microsoft. microsoftedge_8wekyb3d8bbweMicrosoftEdge\TypedURLs
+Edge Typed URLs Time,10,UsrClass.dat Local Settings\Software\MicrosoftWindows\CurrentVersion\App Container\Storage\microsoft. microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\TypedURLsTime
+Edge Typed URLs Visit Count,10,UsrClass.dat Local Settings\SoftwareMicrosoft\Windows\CurrentVersionApp Container\Storage\microsoft. microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\TypedURLsVisitCount
+Encrypted Page File,7,8,10,SYSTSEM\ControlSet###\ControlFileSystem / NtfsEncryptPagingFile
+Event Log Restrictions,7,SYSTEM\ControlSet###\Services\EventLog\Application
+Event Log Restrictions,XP,7,8,10,SYSTEM\ControlSet###\ServicesEventLog\Application / RestrictGuest Access
+FTP,7,NTUSER.DAT\Software\Microsoft\FTP\Accounts\
+FTP,XP,7,NTUSER.DAT\Software\Microsoft\FTPAccounts\
+Favorites,10,UsrClass.dat\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FavOrder\
+File Access Windows Apps,10,UsrClass.dat\Local Settings\SoftwareMicrosoft\Windows\CurrentVersionAppModel\SystemAppData\\PersistedStorage ItemTable\ManagedByApp
+File Associations for Immersive Apps/Windows Apps,8,10,UsrClass.dat\Local Settings\SoftwareMicrosoft\Windows\CurrentVersionAppModel\Repository\Packages\\App\CapabilitiesFileAssociations
+File Extension Association Apps MRU,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerFileExts\.\OpenWithList
+File Extension Associations,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\Explorer\FileExts\.
+File Extension Associations Global,XP,7,8,10,SOFTWARE\Classes\.ext
+File Extensions Program Association,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerFileExts\./OpenWithProgids
+File History,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\FileHistory
+File History Home Group Settings,8,10,SOFTWARE\Microsoft\Windows\Current Version\FileHistory\HomeGroup\Target
+File History Last Backup Time,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\FileHistory/ ProtectedUpToTime
+File History User(s) Initiating,8,10,SYSTEM\ControlSet###\Services\fhsvcParameters\Configs
+Firewall Enabled,XP,7,8,10,SYSTEM\ControlSet###\ServicesSharedAccess\ParametersFirewall Policy\StandardProfile / EnableProfile
+Firewall On or Off,7,SYSTEM\ControlSet###\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\EnableFirewall
+Floppy Disk Information,XP,V,SYSTEM\ControlSet###\Enum\FDC\
+Folder Descriptions,7,8,10,SOFTWARE\Microsoft\Windows\Current Version\Explorer\FolderDescriptions\
+Folders Stream MRUs,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersionExplorer\StreamMRU
+General Open/Saved,XP,7,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU
+General Recent Docs,XP,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+General Recent Files,XP,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+General USB Devices,7,HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USBSTOR
+Google Chrome Last Browser Run Time,NTUSER.DAT\Software\GoogleUpdate\ClientState\{8A69D345- D564-463c-AFF1-A69D9Ec-AFF1-A69D9E530F96} / lastrun
+Google Chrome Version,NTUSER.DAT\Software\GoogleChrome\BLBeacon
+Google Client History,7,NTUSER.DAT\Software\Google\NavClient\1.1\History
+Google Client History,NTUSER.DAT\Software\GoogleNavClient\1.1\History
+Google Update Date/Time,NTUSER.DAT\Software\GoogleGoogle Toolbar\GoogleUpdate / InstallTimestamp
+Group Memberships,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\Group Policy\
+Group Memberships,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\Group PolicyGroupMembership
+Group Names - Default,XP,7,8,10,SAM\SAM\Domains\Builtin\AliasesNames
+Groups - Default,XP,7,8,10,SAM\SAM\Domains\Builtin\Aliases\
+Groups Names User or App Defined,XP,7,8,10,SAM\SAM\Domains\Account\Aliases\
+Groups Names User or App Defined,XP,7,8,10,SAM\SAM\Domains\Account\AliasesNames
+History - Days to Keep,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\Url History /DaysToKeep
+History days to keep,10,UsrClass.dat\SOFTWARE\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppContainerStorage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\InternetSettings\Url History /DaysToKeep
+Hive List Paths,XP,7,8,10,SYSTEM\ControlSet###\Controlhivelist
+Home Group,7,8,10,SYSTEM\ControlSet###\Services\Home GroupProvider\ServiceData\
+Home Group,7,SYSTEM\ControlSet###\services\HomeGroupProvider\ServiceData
+Home Group Host,7,8,10,NTUSER.DAT\SOFTWARE\MicrosoftWindows\CurrentVersion\HomeGroupUIStatusCache
+Home Group ID GUID,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\HomeGroup\HME\
+Home Group Info,7,8,10,SYSTEM\ControlSet###\ServicesHomeGroupProvider\ServiceData\
+Home Group Initiated,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\HomeGroup\HME
+Home Group Members,7,8,10,SYSTEM\ControlSet###\Services\Home GroupProvider\ServiceData\Members\
+Home Group Members MAC Address(es),7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\HomeGroup\HME\Members
+Home Group Network Locations Home,7,8,10,SOFTWARE\Microsoft\Windows\Current Version\HomeGroup\NetworkLocationsHome
+Home Group Network Locations Work,7,8,10,SOFTWARE\Microsoft\Windows\Current Version\HomeGroup\NetworkLocationsWork
+Home Group Sharing Preferences,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\HomeGroupSharingPreferences\\
+Home Group Sharing Preferences,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\HomeGroup\HME\\SharingPreferences\
+Human Interface Devices,7,SYSTEM\ControlSet###\Enum\HID
+Human Interface Devices,XP,7,8,10,SYSTEM\ControlSet###\Enum\HID
+ICQ,NTUSER.DAT\Software\Mirabilis\ICQ\*
+ICQ Information,SOFTWARE\Mirabilis\ICQ\Owner
+ICQ Last User,NTUSER.DAT\Software\Mirabilis\ICQOwners - LastOwner
+ICQ Nickname,NTUSER.DAT\Software\Mirabilis\ICQOwners\UIN - Name
+ICQ Registered Users,NTUSER.DAT\Software\Mirabilis\ICQOwners\UIN
+IDE Device Information,7,SYSTEM\ControlSet###\Enum\IDE\
+IDE Device Information,XP,7,8,10,SYSTEM\ControlSet###\Enum\IDE\
+IDE Enumeration,XP,7,8,10,SYSTEM\ControlSet001\EnumIDE\\
+IDM Incomplete DLs,XP,HKEY_CURRENT_USER\Software\DownloadManager\Queue
+IDM Install, Proxy,XP,HKEY_CURRENT_USER\Software\DownloadManager
+IDM Installation,XP,KEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Internet Download Manager
+IDM Offline Browsing,XP,HKEY_CURRENT_USER\Software\DownloadManager\GrabberSts\Projects
+IDM Passwords,XP,HKEY_CURRENT_USER\Software\DownloadManager\Passwords\(URL)
+IDM Total DL Count,XP,HKEY_CURRENT_USER\Software\DownloadManager\maxID
+IE 6 Auto Logon and password,7,NTUSER.DAT\Software\Microsoft\Protected Storage\System Provider\SID\Internet Explorer\Internet Explorer\- URL: StringData
+IE 6 Clear Browser History,7,NTUSER.DAT\Software\Microsoft\Internet Explorer\Privacy\ClearBrowserHistoryOnExit
+IE 6 Default Download Directory,7,NTUSER.DAT\Software\Microsoft\Internet Explorer
+IE 6 Favorites List,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder\Favorites\
+IE 6 Settings,7,NTUSER.DAT\Software\Microsoft\Internet Explorer\Main
+IE 6 Typed URLs,7,NTUSER.DAT\Software\Microsoft\Internet Explorer\Typed URLs
+IE Auto Complete Form Data,NTUSER.DAT\Software\MicrosoftProtected Storage System Provider
+IE Auto Logon and Password,NTUSER.DAT\Software\MicrosoftProtected Storage System ProviderSID\Internet Explorer\Internet Explorer
+IE Cleared Browser History on Exit on/off,NTUSER.DAT\Software\MicrosoftInternet ExplorerPrivacy / ClearBrowserHistoryOnExit
+IE Default Download Directory,NTUSER.DAT\Software\MicrosoftInternet Explorer
+IE Favorites List,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerMenuOrderFavorites / Order
+IE History Status,XP,7,8,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\Internet Settings5.0\Cache\Extensible Cache\
+IE IntelliForms,NTUSER.DAT\Software\MicrosoftInternet ExplorerIntelliForms
+IE Preferences, IE Settings,NTUSER.DAT\Software\MicrosoftInternet ExplorerMain
+IE Protected Storage,XP,HKEY_CURRENT_USER\SOFTWARE\Microsoft\ProtectedStorageSystemProvider
+IE Search Terms,NTUSER.DAT\Software\Microsoft\Protected Storage System Provider\SID\Internet Explorer\Internet Explorer - q:StringIndex
+IE Typed URLs,NTUSER.DAT\Software\Microsoft\Internet Explorer\TypedURLs
+IE Typed URLs Time,NTUSER.DAT\Software\MicrosoftInternet Explorer\TypedURLsTime
+IE URL History Days to Keep,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\Internet Settings\UrlHistory / DaysToKeep
+IE Web Form Data,NTUSER.DAT\Software\Microsoft\Protected Storage System Provider\SID\Internet Explorer\Internet Explorer -
+IE/Edge Auto Passwd,10,HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\IntelliForms\Storage2
+IM Contact List,NTUSER.DAT\Software\MicrosoftMessengerService\ListCache\.NET Messenger Service
+IM File Sharing,NTUSER.DAT\Software\MicrosoftMSNMessenger\FileSharing - Autoshare
+IM File Transfers,NTUSER.DAT\Software\MicrosoftMSNMessenger\- FTReceiveFolder
+IM File Transfers,NTUSER.DAT\Software\MicrosoftMessenger Service - FtReceiveFolder
+IM Last User,NTUSER.DAT\Software\MicrosoftMessengerService\ListCache\.NET Messenger Service - IdentityName
+IM Logging Enabled,NTUSER.DAT\Software\Microsoft\MSN Messenger\PerPassportSettings##########\- MessageLoggingEnabled
+IM MSN Messenger,NTUSER.DAT\Software\Microsoft MessengerServiceListCache\.NET MessengerService\*
+IM Message History,NTUSER.DAT\Software\Microsoft\MSN Messenger\PerPassportSettings##########\- MessageLog Path
+IM Saved Contact List,NTUSER.DAT\Software\MicrosoftMessenger Service - ContactListPath
+IMV Usage,NTUSER.DAT\Software\Yahoo\PagerIMVironments (global value)
+IMVs MRU list,SNTUSER.DAT\Software\Yahoo\Pagerprofiles\screen name\IMVironments
+Identity,10,settings.dat\LocalState\HKEY_CURRENT_USER\Software\Microsoft\Office\16.0\Common\Identity\Identities\
+Identity Live Account,10,NTUSER\SOFTWARE\Microsoft\15.0\Common\Identity\Identities\
+If hidden from timeline view, key is present,10,HKCU\Software\Microsoft\Windows\CurrentVersion\ActivityDataModel\ActivityAccountFilter\
+Index Locations for local searches,7,8,10,SOFTWARE\Microsoft\Windows Search\Gather\Windows\SystemIndex\StartPages\#> /URL
+Indexed Folders,7,8,10,SOFTWARE\Microsoft\Window SearchCrawlScopeManagerWindowsSystemIndexWorkingSetRules\#>/ URL
+Installed Application,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\App Paths\
+Installed Applications,7,8,10,SOFTWARE\Wow6432Node\
+Installed Applications,7,8,10,SOFTWARE\Wow6432Node\MicrosoftWindows\CurrentVersion\SharedDLLs
+Installed Applications,XP,7,8,10,SOFTWARE\
+Installed Apps,HKEY_LOCAL_ MACHINE\SOFTWARE\Microsoft\WindoWs\CurrentVersion\(AppPaths)
+Installed Default Internet Browsers,XP,7,8,10,SOFTWARE\Clients\StartMenuInternet / default
+Installed Internet Browser,XP,7,8,10,SOFTWARE\Clients\StartMenuInternet\
+Installed Metro Apps - Per Computer,8,10,SOFTWARE\Software\MicrosoftWindows\CurrentVersion\Appx\AppxAll UserStore\Applications\
+Installed Metro Apps Per User,8,10,SOFTWARE\Software\MicrosoftWindows\CurrentVersion\Appx\AppxAllU serS tore\\
+Installed Printers Properties,7,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Print\Printers\
+Installed Windows Apps,8,10,UsrClass.dat\Local Settings\SoftwareMicrosoft\Windows\CurrentVersionAppContainer\Storage
+Interface class GUID,7,8,10,SYSTEM\ControlSet001\ControlDeviceClasses{10497b1b- ba51- 44e5-8318-a65c837b6661}
+Internet Explorer 1,HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer
+Internet Explorer 2,7,HKEY_CURRENT_USER\Software\Microsoft\InternetExplorer\TypedUrls
+Jump List on Taskbar,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerTaskband / Favorites and FavoritesResolve
+Jump List on Taskbar,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\[Taskband Favorites and FavoritesResolve]
+Jumplist Settings,HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced\
+KaZaA Credentials,XP,HKEY_USERS\USER_HDD003_A\Software\KAZAA\UserDetails
+Kazaa,NTUSER.DAT\Software\Kazaa\*
+LANDesk softmon utility monitors application execution,HKLM\SOFTWARE\[Wow6432Node]\LANDesk\ManagementSuite\WinClient\SoftwareMonitoring\MonitorLog\
+LPT Device Information,7,SYSTEM\ControlSet###\Enum\LPTENUM\
+LPT Device Information,XP,7,8,10,SYSTEM\ControlSet###\EnumLPTENUM\
+LPTENUM Enumeration,XP,7,8,10,SYSTEM\ControlSet001\EnumLPTENUM\\
+Last Accessed Date and Time setting,XP,7,8,10,SYSTEM\ControlSet###\ControlFileSystem\NtfsDisableLastAccess Update Value
+Last Defrag,10,SOFTWARE\Microsoft\Dfrg\Statistics\Volume
+Last Failed Login,7,SAM\Domains\Account\Users\F Key
+Last Logged on User,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\Authentication\LogonUI
+Last Logon Time,7,SAM\Domains\Account\Users\F Key
+Last Theme,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Themes\Last Theme
+Last Time Password Changed,7,SAM\Domains\Account\Users\F Key
+Last Visited MRU,7,8,10,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedPidlMRU
+Last Visited MRU,XP,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedMRU
+Last-Visited MRU,7,8,10,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedPidlMRU
+Last-Visited MRU,XP,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32LastVisitedMRU
+Links a ConnectedDevicePlatform PlatformDeviceId to the name, type, etc of the device,10,HKCU\Software\Microsoft\Windows\CurrentVersion\TaskFlow\DeviceCache
+Live Account ID,10,NTUSER.DAT\SOFTWARE\Microsoft\AuthCookies\Live\Default\CAW / Id
+Live Account ID,10,NTUSER.DAT\SOFTWARE\Microsoft\IdentityCRL\UserExtendedProperties\/ cid
+Live Account ID,10,NTUSER.DAT\SOFTWARE\Microsoft\Office\15.0\Common\Identity\Identities\_LiveId
+Local Group List by RID,7,SAM\Domains\Builtin\Aliases\
+Local Group Names,7,SAM\Domains\Builtin\Aliases\Names
+Local Groups Identifiers,7,SAM\Domains\Builtin\Aliases\Names
+Local Searches from Search Charm,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerSearchHistory\Microsoft.Windows. FileSearch App
+Local Settings,UsrClass.dat
+Local User Names,XP,7,8,10,SAM\SAM\Domains\Account\UsersNames
+Local User Security Identifiers,7,SAM\Domains\Account\Users\Names
+Logged In Winlogon,XP,7,8,10,SOFTWARE\\Microsoft\Windows NTCurrentVersion\Winlogon
+Logon Banner Caption and Message,XP,8,10,SOFTWARE\\Microsoft\WindowsCurrentVersion\Policies\System / LegalNoticeCaption and LegalNoticeText
+Logon Banner Message,7,SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeText
+Logon Banner Title,7,SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LegalNoticeCaption
+MRU Live Account,10,NTUSER\SOFTWARE\Microsoft\Office\15.0\Word\User MRU\LiveId#>\File MRU
+MRU Non Live Account,10,NTUSER\SOFTWARE\Microsoft\Office\15.0\Word\File MRU
+MRUs Common Dialog,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersions\Explorer\ComDlg32
+MUICache Vista,NTUSER.DAT\Software\MicrosoftWindows\Shell\MUICache
+Machine SID Location,7,SAM\Domains\Account/V
+Machine SID Location,XP,7,8,10,SAM\SAM\Domains\Account / V
+Map Network Drive MRU,XP,7,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\Explorer\Map Network Drive MRU
+Media Player 10 Recent List,7,NTUSER.DAT\Software\Microsoft\MediaPlayer\Player\RecentFileList
+Media Player Recent List,XP,NTUSER.DAT\Software\MicrosoftMediaPlayer\Player\RecentFileList
+Memory Saved During Crash,XP,7,8,10,SYSTEM\ControlSet###\ControlCrashControl / DumpFile
+Memory Saved During Crash Enabled,XP,7,8,10,SYSTEM\ControlSet###\ControlCrashControl / CrashDumpEnabled
+Memory Saved Path During Crash,7,SYSTEM\ControlSet###\Control\CrashControl\DumpFile
+Memory Saved While Crash Detail,7,SYSTEM\ControlSet###\Control\CrashControl\CrashDumpEnabled
+Messenger Contacts,XP,HKEY_USERS\Software\Microsoft\InternetExplorer\TypedUrls
+Microsoft Access 2007 MRU,7,NTUSER.DAT\Software\Microsoft\Office\12.0\Access\Settings
+Microsoft Access 2007 MRU Date,7,NTUSER.DAT\Software\Microsoft\Office\12.0\Access\Settings
+Monitors Currently Attached,8,10,SYSTEM\ControlSet001\servicesmonitor\Enum
+Mounted Devices,XP,7,8,10,SYSTEM\MountedDevices
+Mounted Devices,XP,7,8,10,SYSTEM\MountedDevices
+MuiCache Post Vista,7,8,10,UsrClass.dat\Local Settings\MuiCache\#52C64B7E
+MuiCache Post Vista,7,8,10,UsrClass.dat\Local Settings\SoftwareMicrosoft\Windows\Shell\MuiCache
+MuiCache XP,XP,NTUSER.DAT\Software\MicrosoftWindows\ShellNoRoam\MUICache
+NTUSER Info,HKEY_USERS\
+Network - Computer Description,XP,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerComputerDescriptions
+Network - Mapped Network Drive MRU,XP,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerMap Network Drive MRU
+Network Cards,XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersionNetworkCards\#
+Network History,7,8,10,SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Nla\Cach
+Network History,7,8,10,SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Managed
+Network History,7,8,10,SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
+Network Workgroup Crawler,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\WorkgroupCrawler\Shares
+Network Workgroup Crawler,XP,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerWorkgroupCrawler\Shares
+Nikon View Photo Editor MRU,NTUSER.DAT\Software\NikonNikonViewEditor\6.0\Recent File List
+Number of Processors in System,7,SYSTEM\ControlSet###\Control\Session Manager\Environment\NUMBER_OF_PROCESSORS
+Number of Processors in System,XP,7,8,10,SYSTEM\ControlSet###\ControlSession Manager\Environment / NUMBER_OF_PROCESSORS
+Office Access 2007 MRU,NTUSER.DAT\Software\Microsoft\Office\12.0\AccessSettings
+Office Access 2007 MRU Dates,NTUSER.DAT\Software\Microsoft\Office\12.0\Access\Settings
+Office Access MRU,NTUSER.DAT\Software\Microsoft\Office\\\Access\File MRU
+Office Access Recent Databases,NTUSER.DAT\Software\Microsoft\Office\Common\Open FindMicrosoft Office Access\Settings\File New Database\File Name MRU
+Office Access Trusted Documents RU,NTUSER.DAT\Software\Microsoft\Office\\Access\Security\Trusted Documents\TrustRecords
+Office Access Trusted Locations MRU,NTUSER.DAT\Software\MicrosoftOffice\Access\SecurityTrusted Locations\Location2
+Office Excel Autosave (File Recovery),NTUSER.DAT\Software\MicrosoftOffice\ver#\ExcelResiliencyDocument Recovery\
+Office Excel MRU,NTUSER.DAT\Software\MicrosoftOffice\\Excel\File MRU
+Office Excel MRU Live Account,NTUSER.DAT\Software\MicrosoftOffice\\Excel\User MRU\LiveId_\File MRU
+Office Excel Place MRU,NTUSER.DAT\Software\MicrosoftOffice\\Excel\Place MRU
+Office Excel Place MRU Live Account,NTUSER.DAT\Software\MicrosoftOffice\\Excel\User MRU\LiveId_\Place MRU
+Office Excel Recent Spreadsheets,NTUSER.DAT\Software\Microsoft\office\\Common\Open FindMicrosoft Office Excel\SettingsSave As\File Name MRU
+Office Excel Trusted Documents MRU,NTUSER.DAT\Software\MicrosoftOffice\\Excel\Security\Trusted Documents
+Office Excel Trusted Locations MRU,NTUSER.DAT\Software\MicrosoftOffice\\Excel\Security\Trusted Locations
+Office PowerPoint Autosave (File Recovery),NTUSER.DAT\Software\MicrosoftOffice\PowerPoint\ResiliencyDocumentRecovery\
+Office PowerPoint MRU,NTUSER.DAT\Software\MicrosoftOffice\ver#\PowerPointFileMRU
+Office PowerPoint MRU Live Account,NTUSER.DAT\Software\MicrosoftOffice\\PowerPoint\User MRULiveId_\File MRU
+Office PowerPoint Place MRU,NTUSER.DAT\Software\MicrosoftOffice\\PowerPoint \Place MRU
+Office PowerPoint Place MRU Live Account,NTUSER.DAT\Software\MicrosoftOffice\\PowerPoint\User MRULiveId_\Place MRU
+Office PowerPoint Recent PPTs,NTUSER.DAT\Software\Microsoftoffice\ver#Common\Open FindMicrosoft Office PowerPoint\SettingsSave As\File Name MRU
+Office PowerPoint Trusted Documents MRU,NTUSER.DAT\Software\MicrosoftOffice\\PowerPoint\SecurityTrusted Documents\TrustRecords
+Office PowerPoint Trusted Locations MRU,NTUSER.DAT\Software\MicrosoftOffice\\PowerPoint\SecurityTrusted Locations\Location#
+Office Publisher MRU,NTUSER.DAT\Software\MicrosoftOffice\\Publisher\File MRU
+Office Publisher Recent Documents,NTUSER.DAT\Software\Microsoftoffice\Common\Open FindMicrosoft Office Publisher\SettingsSave As\File Name MRU
+Office Word Autosave (File Recovery),NTUSER.DAT\Software\MicrosoftOffice\\Word\ResiliencyDocument Recovery\
+Office Word MRU,NTUSER.DAT\Software\MicrosoftOffice\\Word\File MRU
+Office Word MRU Live Account,NTUSER.DAT\Software\MicrosoftOffice\\Word\User MRULiveId_\File MRU
+Office Word OneDrive Synch Roaming Identities,10,NTUSER.DAT\Software\MicrosoftOffice\\Common\RoamingIdentities\Settings\1133\ListItems\\
+Office Word Place MRU,NTUSER.DAT\Software\MicrosoftOffice\\Word\Place MRU
+Office Word Place MRU Live Account,NTUSER.DAT\Software\MicrosoftOffice\\Word\User MRULiveId_\Place MRU
+Office Word Reading Locations,NTUSER.DAT\Software\MicrosoftOffice\\Word\Reading Locations\Document#
+Office Word Recent Docs,NTUSER.DAT\Software\Microsoftoffice\Common\Open FindMicrosoft Office\Word\Settings\Save As\File Name MRU
+Office Word Trusted Documents MRU,NTUSER.DAT\Software\Microsoft\Office\\Word\Security\Trusted Documents
+Office Word Trusted Locations MRU,NTUSER.DAT\Software\MicrosoftOffice\14.0\Word\Security\Trusted Locations\Location#
+Office Word User Info,NTUSER.DAT\Software\Microsoftoffice\\Common\UserInfo
+OneDrive App Info,10,NTUSER.DAT\SOFTWARE\MicrosoftOneDrive
+OneDrive User ID Associated with User,10,NTUSER.DAT\SOFTWARE\MicrosoftIdentityCRL\UserExtendedProperties\/ cid
+OneDrive User ID and Login URL,10,NTUSER.DAT\SOFTWARE\MicrosoftAuthCookies\Live\Default\CAW
+OneDrive User ID, Live ID,10,NTUSER.DAT\SOFTWARE\MicrosoftOffice\\Common\Identity\Identities\_LiveId
+OneNote User Information,10,Settings.dat\LocalStateHKEY_CURRENT_USER\SoftwareMicrosoft\Office\16.0\CommonIdentity\Identities\_LiveId
+Open/Save MRU,7,8,10,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePIDlMRU
+Open/Save MRU,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU
+Open/Save MRU,XP,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU
+Outlook 2007 Account Passwords,7,NTUSER.DAT\Software\Microsoft\Protected Storage SystemProvider\SID\Identification\INETCOMM Server Passwords
+Outlook 2007 Recent Attachments,7,NTUSER.DAT\Software\Microsoft\office\version\Common\Open Find\Microsoft Office Outlook\Settings\Save Attachment\File Name MRU
+Outlook 2007 Temp file location,7,NTUSER.DAT\Software\Microsoft\Office\version\Outlook\Security
+Outlook Account Passwords,NTUSER.DAT\Software\MicrosoftProtected Storage System Provider\SIDIdentification\INETCOMM Server Passwords
+Outlook Accounts,XP,HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Account Manager
+Outlook Recent Attachments,NTUSER.DAT\Software\Microsoftoffice\versionCommon\Open FindMicrosoft Office Outlook\Settings\Save Attachment\File Name MRU
+Outlook Settings,XP,HKEY_USERS\(User_ID)\Software\Microsoft\Office\Outlook\OMI Account Manager\Accounts\
+Outlook Temporary Attachment Directory,NTUSER.DAT\Software\Microsoft\Office\versionOutlook\Security
+PAP Device Interface,7,8,10,SYSTEM\ControlSet001\ControlDeviceClasses\{f33fdc04- d1ac-4e8e- 9a30-19bbd4b108ae}
+PCI Bus Device Information,7,SYSTEM\ControlSet###\Enum\PCI
+PCI Bus Device Information,XP,7,8,10,SYSTEM\ControlSet###\Enum\PCI
+PCI Enumeration,XP,7,8,10,SYSTEM\ControlSet001\EnumPCI\\
+POP3 Passwords,XP,NTUSER.DAT\Software\MicrosoftInternet Account Manager\Accounts0000000#
+POP3 Passwords,XP,NTUSER.DAT\Software\Microsoft\Internet Account Manager\Accounts\0000000#
+Pagefile Control,XP,7,8,10,SYSTEM\ControlSet###\ControlSession Manager\Memory Management
+Pagefile Settings,7,SYSTEM\ControlSetXXX\Control\Session Manager\Memory Management
+Paint MRU,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Applets\Paint\Recent File List
+Paint MRU List,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\AppletsPaint\Recent File List
+Partition Management Driver Service,XP,7,8,10,SYSTEM\ControlSet001\servicespartmgr\Enum
+Password Face Enabled,10,SOFTWARE\Software\MicrosoftWindows\CurrentVersionAuthentication\LogonUI\FaceLogon\
+Password Fingerprint Enabled,8,10,SOFTWARE\Software\MicrosoftWindows\CurrentVersionAuthentication\LogonUIFingerprintLogon\
+Password Hint,7,SAM\Domains\Account\Users\\F_Value\UserPasswordHint
+Password Hint XP,XP,SOFTWARE\Microsoft\WindowsCurrentVersion\Hints\
+Password PIN Enabled,8,10,SOFTWARE\Software\MicrosoftWindows\CurrentVersionAuthentication\LogonUIPINLogonEnrollment\
+Password Picture Gesture,8,10,SOFTWARE\Software\MicrosoftWindows\CurrentVersionAuthentication\LogonUI\PicturePassword\/ bgPath
+Passwords Cached Logon Password Maximum,XP,SOFTWARE\Microsoft\Windows NTCurrentVersion\Winlogon
+Photos App Associated User,10,Settings.dat\LocalState\OD\
+Place MRU,10,NTUSER\SOFTWARE\Microsoft\Office\15.0\Word\User MRU\LiveId#>\Place MRU
+Portable Operating System Drive,8,10,SYSTEM\ControlSet001\Control / PortableOperatingSystem
+PowerPoint 2007 Autosave Info,7,NTUSER.DAT\Software\Microsoft\Office\12.0\PowerPoint\Resiliency\DocumentRecovery\
+PowerPoint 2007 MRU,7,NTUSER.DAT\Software\Microsoft\Office\12.0\PowerPoint\File MRU
+Pre-Logon Access Provider,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*
+Pre-Logon Access Provider,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*
+Prefetch Information,7,SYSTEM\ControlSet###\Control\Session Manager\Memory Management\PrefetchParameters\EnablePrefetcher
+Printer Default,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows NT\CurrentVersion\WindowsDevices
+Printer Default,XP,7,8,10,NTUSER.DAT\printers\DevModesPer User and DevModes#
+Printer Information,7,SYSTEM\ControlSet###\Control\Print\Environments\WindowsNTx86\Drivers\Version#
+Printer Properties for Installed Printers,XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersion\Print\Printers\
+Product ID,7,SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductId
+Product Name,7,SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductName
+Profile list,XP,7,8,10,SOFTWARE\\Microsoft\Windows NTCurrentVersion\ProfileList
+Program Compatibility Assistant (PCA) Archive for Apps,8,NTUSER.DAT\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers
+Program Compatibility Assistant (PCA)Tracking of User Launched Applications,8,10,NTUSER.DAT\Software\MicrosoftWindows NT\CurrentVersionAppCompatFlags\Compatibility Assistant\Store
+Program Compatibility Assistant Archive for Apps,7,SOFTWARE\Software\MicrosoftWindows NT\CurrentVersion\AppCompatFlags\Layers
+Publisher 2007 MRU,7,NTUSER.DAT\Software\Microsoft\Office\12.0\Publisher\Recent File List
+Reading Locations,10,NTUSER\SOFTWARE\Microsoft\Office\15.0\Word\Reading Locations
+ReadyBoost Attachments,7,SOFTWARE\Microsoft\Windows NT\CurrentVersion\EMDMgmt\
+ReadyBoost Attachments, USB Identification,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersionEMDMgmt\
+ReadyBoost Driver,8,10,SYSTEM\ControlSet001\servicesrdyboost\Enum
+Recent Docs,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.&input=
+Recent Docs MRU Recent Documents,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerRecentDocs\
+Recent Documents,7,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+Recent Documents,HKEY_ CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSaveMRU
+RecentApps,10,NTUSER.DAT\Software\Microsoft\Windows\Current Version\Search\RecentApps
+RecentDocs,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+RecentDocs,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.iso
+RecentDocs,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.vhd
+RecentDocs for .jpg,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.jpg&ls=0&b=0
+RecentDocs for .jpg,10,NTUSER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.jpg
+Recycle Bin Info,10,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\BitBucket\Volume\
+Recycle Bin Info,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerBitBucket\Volume\
+Recycle Bin Info XP,XP,SOFTWARE\Microsoft\WindowsCurrentVersion\Explorer\BitBucket\
+References devices, services, drivers enabled for Safe Mode.,HKLM\System\CurrentControlSet\Control\SafeBoot
+Regedit - Favorites,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersionApplets\RegeditFavorites
+Regedit - Last Key Saved,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\AppletsRegedit / LastKey
+Regedit Last Key Saved,10,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Applets\Regedit\LastKey
+Register.com search,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileExts / .com
+Registered Applications,7,8,10,SOFTWARE\RegisteredApplications /
+Registered Organization,7,SOFTWARE\Microsoft\Windows NT\CurrentVersion\RegisteredOrganization
+Registered Owner,7,SOFTWARE\Microsoft\Windows NT\CurrentVersion\RegisteredOwner
+Registry Windows 7 32 Bit Shim Cache,7,HKLM\System\CurrentControlSet\Control\Session Manager\AppCompatCache\AppCompatCache
+Registry Windows 7 List Mounted Devices,7,HKLM\System\MountedDevices\
+Registry Windows 7 Network Adapter Configuration,7,HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\(interface-name)\
+Registry Windows 7 Network List Profiles,7,HKLM\Software\Microsoft\WindowsNT\CurrentVersion\NetworkList\Profiles\{GUID}\
+Registry Windows 7 List Applications Installed,7,HKLM\Software\Microsoft\Windows\CurrentversionXUninstall\{Application. Name)
+Registry Windows 7 Security Audit Policies,7,HKLM\Security\Policy
+Registry Windows 7 Time Zone Information,7,HKLM\System\CurrentControlSet\Control\TimeZonelnformation
+Registry Windows 7 User Profile Logon,7,HKLM\Software\Microsoft\WindowsNT\CurrentVersion\ProfileList\{SID}\
+Registry Windows 7 Winlogon shell,7,HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell
+Remote Desktop,XP,7,8,10,SYSTEM\ControlSet###\ControlTerminal Server / fDenyTSConnections
+Remote Desktop Information,7,SYSTEM\ControlSet###\Control\Terminal Server\fDenyTSConnections
+Roaming Identities (1125 PowerPoint, 1133 Word, 1141 Excel),10,NTUSER.DAT\SOFTWARE\Microsoft\Office\15.0\Common\Roaming\Identities\\
+Run Box Recent commands,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU
+Run MRU,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerRunMRU
+Run subkey - Active,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Run / OneDrive
+Run, Startup,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\Run
+SCSI Device Information,7,SYSTEM\ControlSet###\Enum\SCSI
+SCSI Device Information,XP,7,8,10,SYSTEM\ControlSet###\Enum\SCSI
+SCSI Enumeration,7,8,10,SYSTEM\ControlSet001\EnumSCSI\\
+SRUM,SOFTWARE\Microsoft\WindowsNT\CurrentVersion\SRUM\Extensions {d10ca2fe-6fcf-4f6d-848e-b2e99266fa89} = Application Resource Usage Provider C:\Windows\System32\SRU\
+SRUM Resource Usage History,7,8,10,SOFTWARE\Microsoft\WindowsNT\CurrentVersion\SRUM\Extensions
+STORAGE Enumeration,XP,7,8,10,SYSTEM\ControlSet001\EnumSTORAGE\Volume\\
+Screen Saver Enabled,7,NTUSER.DAT\Control Panel\Desktop/ScreenSaveActive
+Screen Saver Enabled,XP,7,8,10,NTUSER.DAT\Control Panel\Desktop / ScreenSaveActive
+Screen Saver Password Enabled,7,NTUSER.DAT\Control Panel\Desktop/ScreenSaverIsSecure
+Screen Saver Secure Password Enabled,XP,7,8,10,NTUSER.DAT\Control Panel\Desktop / ScreenSaverIsSecure
+Screen Saver Timeout,7,NTUSER.DAT\Control Panel\Desktop/ScreenSaveTimeOut
+Screen Saver Timeout,XP,7,8,10,NTUSER.DAT\Control Panel\Desktop / ScreenSaveTimeOut
+Screen Saver Wallpaper,7,NTUSER.DAT\Control Panel\Desktop/WallPaper
+Screen Savers and Wallpaper,XP,7,8,10,NTUSER.DAT\Control Panel\Desktop\
+Search Charm Entries for Internet Addresses and Sites,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerSearchHistory\DefaultBrowser_ NOPUBLISHERID!Microsoft.Internet Explorer. Default
+Search WordWheelQuery,7,10,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery
+Serial Port Device Information,7,SYSTEM\ControlSet###\Enum\SERENUM
+Services,XP,7,8,10,SYSTEM\ControlSet###\Services
+Services List,7,SYSTEM\ControlSet###\Services
+Session Manager Execute,HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager
+Shared Folders, Shared Printers,XP,7,8,10,SYSTEM\ControlSet###\ServicesLanmanServerShares /
+Shared Photos,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\SharingMFU
+Shared data to: e-mail,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\SharingMFU
+Shared photos,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\SharingMFU
+Sharing MFU,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerSharingMFU
+Shell Bags,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\Shell\Bags\1\Desktop
+Shell Bags,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\Shell\Bags\1\Desktop
+Shell Bags,7,8,10,UsrClass.dat\Local\Settings\SoftwareMicrosoft\Windows\Shell\Bags
+Shell Bags,UsrClass.dat\Local\Settings\SoftwareMicrosoft\Windows\Shell\BagMRU
+Shell Execute Hooks,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*
+Shell Execute Hooks,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*
+Shell Extensions,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved
+Shell Extensions,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved
+Shell Extensions,HKEY_USERS\%SID%\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved
+Shell Extensions,HKEY_USERS\%SID%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved
+Shell Load and Run,HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows
+Shell Load and Run,HKEY_CURRENT_USER\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows
+ShellBags,XP,NTUSER.DAT\Software\MicrosoftWindows\ShellBagMRU
+ShellBags,XP,NTUSER.DAT\Software\MicrosoftWindows\ShellBags
+ShellBags,XP,NTUSER.DAT\Software\MicrosoftWindows\Shell\ShellNoRoamBagMRU
+ShellBags,XP,NTUSER.DAT\Software\MicrosoftWindows\Shell\ShellNoRoam\Bags
+Shim Cache,XP,HKLM\SYSTEM\CurrentControlSet\Control\SessionManager\AppCompatibility\AppCompatCache
+Shimcache,7,8,10,SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache
+Shimcache,XP,SYSTEM\CurrentControlSet\Control\SessionManager\AppCompatibility
+Shutdown Time,7,SYSTEM\ControlSetXXX\Control\Windows\ShutdownTime
+Shutdown Time,XP,7,8,10,SYSTEM\ControlSet###\ControlWindows / ShutdownTime
+SkyDrive E-Mail Account Name,8,Settings.dat\LocalState\Platform
+SkyDrive User Name,8,settings.dat\RoamingState
+Skype App Install,10,HKEY_CLASSES_ROOT\ActivatableClasses\Package\Microsoft.SkypeApp_3.2.1.0_x86__kzf8qxf38zg5c
+Skype Assoc. Files 1,10,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\MIME\Database\Content Type\application/x-skype
+Skype Assoc. Files 2,10,HKEY_LOCAL_MACHINE\SOFTWARE\Classes\.skype
+Skype Assoc. Files 3,10,HKEY_CURRENT_USER\SOFTWARE\Classes\.skype
+Skype Assoc. Files 4,10,HKEY_CLASSES_ROOT\.skype
+Skype Cached IP Data,HKEY_CURRENT_USER\Software/SKYPE/PHONE/LIB/Connection/HOSTCACHE
+Skype Install Path,10,HKEY_CURRENT_USER\SOFTWARE\Skype\Phone
+Skype Installation,10,HKEY_CLASSES_ROOT\AppX(RandomValue)
+Skype Language,10,HKEY_CURRENT_USER\SOFTWARE\Skype\Phone\UI\General
+Skype Process Name,10,HKEY_LOCAL_MACHINE\SOFTWARE\IM Providers\Skype
+Skype Update App ID,10,HKEY_CLASSES_ROOT\AppID\{27E6D007-EE3B-4FF7-8AE8-28EF0739124C}
+Skype User CID,8,settings.dat\LocalState / skype.account.name
+Skype User List,10,HKEY_CURRENT_USER\SOFTWARE\Skype\Phone\Users\
+Skype User Name E-Mail,settings.dat\LocalState / skype.liveuser.CID
+Skype Version 1,10,HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Components\(UID)\(UID)
+Skype Version 2,10,HKEY_CLASSES_ROOT\Installer\Products\74A569CF9384AC046B81814F680F246C
+Start Menu Program List,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerMenuOrderPrograms\
+Start Searches Entered by User,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery
+Start Searches entered by user,NTUSER.DAT\Software\MicrosoftSearchAssistantACMru\5###
+Start and File Explorer Searches entered by user,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerWordWheelQuery
+Startup Location,XP,7,8,10,SOFTWARE\Microsoft\Command Processor / AutoRun
+Startup Location,XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersion\Winlogon/Userinit
+Startup Location,XP,7,8,10,SYSTEM\ControlSet###\ControlSessionManager\BootExecute
+Startup Software,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\RunOnce
+Startup Software Run,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\Run
+Startup Software Run Once,XP,7,8,10,SOFTWARE\\Microsoft\WindowsCurrentVersion\RunOnce
+Storage Class Drivers,XP,7,8,10,SYSTEM\ControlSet001\ControlDeviceClasses{53f56307- b6bf-11d0- 94f2-00a0c91efb8b}
+Storage Device Information,XP,7,8,10,SYSTEM\ControlSet###\EnumSTORAGE
+Storage Spaces Drive ID,8,10,SYSTEM\ControlSet###\Servicesspaceport\Parameters
+System Restore Info,XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersionSystemRestore
+System Restore Information,7,SOFTWARE\Microsoft\WindowsNT\CurrentVersion\SystemRestore
+TCPIP Data, Domain Names, Internet Connection Info,XP,7,8,10,SYSTEM\ControlSet###\ServicesTcpip\Parameters\Interfaces\
+TCPIP Network Cards,XP,7,8,10,SYSTEM\ControlSet###\ServicesTcpip\Parameters\Interfaces\
+TaskBar Application List,10,NTUSER.DAT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Taskband / FavoritesResolve
+TechSmith SnagIt MRU,NTUSER.DAT\Software\TechSmithSnagIt\\Recent Captures
+Theme Current Theme,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\Themes / CurrentTheme
+Theme Last Theme,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ThemesLast Theme
+Time Sync with Internet Servers,7,SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers
+Time Synch with Internet Choices,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\DateTime\Servers
+Time Synch with Internet Enabled,XP,7,8,10,SYSTEM\ControlSet###\ServicesW32Time\Parameters / Type
+Time Synch with Internet Servers,XP,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\DateTime\Servers
+Time Zone Information,XP,7,8,10,SYSTEM\ControlSet###\ControlTimeZoneInformation
+Trusted Documents,10,NTUSER\SOFTWARE\Microsoft\Office\15.0\Word\Security\Trusted Documents\TrustRecords
+Trusted Locations,10,NTUSER\SOFTWARE\Microsoft\Office\15.0\Word\Security\Trusted Locations
+Turn off UAC Behavior,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\Policies\System / ConsentPromptBehaviorAdmin
+Turn off UAC Behavior,7,SOFTWARE\Microsoft\Widows\CurrentVersion\Policies\System\ConsentPromptBehaviorAdmin
+Typed Paths in Windows Explorer,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths
+Typed Paths into Windows Explorer or File Explorer,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerTypedPaths
+TypedURLs,10,NTUSER.DAT\SOFTWARE\Microsoft\Internet Explorer\TypedURLs
+TypedURLs,10,UsrClass.dat\SOFTWARE\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppContainerStorage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\TypedURLs
+TypedURLs Hyperlink,10,NTUSER.DAT\SOFTWARE\Microsoft\Internet Explorer\TypedURLs
+TypedURLsTime,10,NTUSER.DAT\SOFTWARE\Microsoft\Internet Explorer\TypedURLsTime
+TypedURLsTime,10,UsrClass.dat\SOFTWARE\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppContainerStorage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\TypedURLs
+TypedURLsVisitCount,10,UsrClass.dat\SOFTWARE\LocalSettings\Software\Microsoft\Windows\CurrentVersion\AppContainerStorage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\TypedURLsVisitCount
+UAC On or Off,7,8,10,SOFTWARE\Microsoft\WindowsCurrentVersion\Policies\System / EnableLUA
+UAC On or Off,SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\EnableLUA
+UMB Bus Driver Interface,7,8,10,SYSTEM\ControlSet001Control\DeviceClasses\{65a9a6cf- 64cd-480b-843e-32c86e1ba19f}
+USB Device Classes,XP,7,8,10,SYSTEM\ControlSet###\ControlDeviceClasses\{53f56307-b6bf-11d0- 94f2-00a0c91efb8b}\/ DeviceInstance
+USB Device Containers,8,10,SYSTEM\ControlSet###\Control\Device Containers\BaseContainers\
+USB Device Information Values,7,8,10,SYSTEM\ControlSet001\Enum\USB\\
+USB Device Interface,XP,7,8,10,SYSTEM\ControlSet001Control\DeviceClasses\{a5dcbf10-6530-11d2-901f-00c04fb951ed}
+USB Enumeration,XP,7,8,10,SYSTEM\ControlSet001\Enum\USB
+USB First Install Date,7,8,10,SYSTEM\ControlSet###\EnumUSBSTOR\\Properties\{83da6326-97a6-4088-9453- a1923f573b29}\00000064\00000000/ Data
+USB Install Date,7,8,10,SYSTEM\ControlSet###\EnumUSBSTOR\\Properties\{83da6326-97a6-4088-9453- a1923f573b29}\00000065\00000000/ Data
+USB Last Arrival Date,8,10,SYSTEM\ControlSet###\EnumUSBSTOR\\Properties\{83da6326-97a6-4088-9453- a1923f573b29}\0066
+USB Last Removal Date,8,10,SYSTEM\ControlSet###\EnumUSBSOR\\Properties{83da6326-97a6-4088-9453- a1923f573b29}\0067
+USB Logged On User at Time of Access,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerMountPoints2\
+USB ROM Descriptors,HKEY_LOCAL_MACHINE\USBSTOR\
+USB Windows Portable Devices,7,8,10,SOFTWARE\Microsoft\Windows Portable Devices\Devices
+USB to Volume Serial Number,7,SOFTWARE\Microsoft\WindowsNT\CurrentVersion\EMDMgmt
+USBPRINT,XP,7,8,10,SYSTEM\ControlSet001\EnumUSBPRINT\\
+USBS Hub Information,XP,7,8,10,SYSTEM\ControlSet001\servicesusbhub\Enum
+USBSTOR Container ID,7,8,10,SYSTEM\ControlSet###\EnumUSBSTOR\\/ ContainerID
+USBSTOR Drive Identification,XP,7,8,10,SYSTEM\ControlSet###\EnumUSBSTOR\\
+USBSTOR Enumeration,XP,7,8,10,SYSTEM\ControlSet###\EnumUSBSTOR\\
+USBSTOR Parent ID Prefix (PIP),SYSTEM\ControlSet###\EnumUSBSTOR\\/ ParentIdPrefix
+User Account Expiration,7,SAM\Domains\Account\Users\F Key
+User Account Status,XP,7,8,10,SAM\SAM\Domains\Account\Users\/ V
+User Information F Value,XP,7,8,10,SAM\SAM\Domains\Account\Users\/ F
+User Information V Value,XP,7,8,10,SAM\SAM\Domains\Account\Users\/ V
+User Information Values,XP,7,8,10,SAM\SAM\Domains\Account\Users\
+User Live Accounts,8,10,SAM\SAM\Domains\Account\Users\/ F
+User Logon Account Hidden on Startup,7,8,10,SAM\SAM\Domains\Account\Users\/ UserDontShowInLogonUI
+User Logon Account Hidden on Startup,7,8,10,SOFTWARE\Microsoft\Windows NT\CurrentVersion\WinlogonSpecialAccounts\UserList /
+User Mode Bus Enumerator,V,7,8,10,SYSTEM\ControlSet001\servicesumbus\Enum
+User Name and SID,XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersion\ProfileList\
+User Password Hint,V,8,10,SAM\SAM\Domains\Account\Users\/ UserPasswordHint
+User Password Hint XP,XP,SOFTWARE\Microsoft\Windows NTCurrentVersion\ProfileList\
+UserAssist,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerUserAssist\
+UserAssist,NTUSER.DAT\Software\Microsoft\Windows\Currentversion\Explorer\UserAssist\{GUID}\Coun
+UserAssist,XP,NTUSER.DAT\Software\MicrosoftWindowsCurrentVersion\ExplorerUserAssist\
+UsrClass Info,HKEY_USERS\_Classes
+VMware Player Recents List,NTUSER.DAT\Software\VMware, Inc.\VMWare Player\VMplayer\Window position
+Volume Device Interface Class,XP,7,8,10,HKLM\SYSTEM\ControlSet001Control\Device Classes\{53f5630d- b6bf-11d0-94f2-00a0c91efb8b}
+Volume Shadow Copy service driver,XP,7,8,10,SYSTEM\ControlSet001\servicesvolsnap\Enum
+Vuze Install Path 1,7,HKEY_USERS\(SID)\Software\Azureus
+Vuze Install Path 2,7,HKEY_LOCAL_MACHINE\SOFTWARE\Azureus
+Vuze Install4j,7,HKEY_LOCAL_MACHINE\SOFTWARE\ej-technologies\install4j\installations\allinstdirs8461-7759-5462-8226
+Vuze Installer,7,HKEY_LOCAL_MACHINE\SOFTWARE\ej-technologies\install4j\installations\instdir8461-7759-5462-8226
+Vuze install4jprogram,7,HKEY_USERS\(SID)\Software\ej-technologies\exe4j\pids
+WPD Bus Enum Enumeration,8,10,SYSTEM\ControlSet001\EnumSWD\WPDBUSENUM
+WPD Bus Enum Root Enumeration User Mode Bus Drive Enumeration,7,8,10,SYSTEM\ControlSet001\EnumWpdBusEnumRoot\UMB\
+WPD Device Interface,7,8,10,SYSTEM\ControlSet001Control\DeviceClasses\{6ac27878- a6fa-4155-ba85-f98f491d4f33}
+WinRAR,NTUSER.DAT\Software\WinRARDialogEditHistory\ExtrPath
+WinRAR,NTUSER.DAT\Software\WinRAR\Dialog EditHistory\ArcName
+WinRAR Extracted Files MRU,NTUSER.DAT\Software\WinRARArcHistory
+WinZip 11.1 Accessed Archives,7,NTUSER.DAT\Software\Nico Mak Computing\filemenu/filemenu##
+WinZip 11.1 Extraction MRU,7,NTUSER.DAT\Software\Nico Mak Computing\Extract/extract#
+WinZip 11.1 Registered User,7,NTUSER.DAT\Software\Nico Mak Computing\WinIni/Name 1
+WinZip 11.1 Temp File,7,NTUSER.DAT\Software\Nico Mak Computing\Directories/ZipTemp
+WinZip Accessed Archives,NTUSER.DAT\Software\Nico Mak Computing\filemenu / filemenu##
+WinZip Extraction MRU,NTUSER.DAT\Software\Nico Mak ComputingExtract / extract#
+WinZip Location Extracted To,NTUSER.DAT\Software\Nico Mak ComputingDirectories / ExtractTo
+WinZip Registered User,NTUSER.DAT\Software\Nico Mak ComputingWinIni / Name 1
+WinZip Temp File,NTUSER.DAT\Software\Nico Mak ComputingDirectories / ZipTemp
+WinZip Zip Creation Location,NTUSER.DAT\Software\Nico Mak ComputingDirectories / AddDir
+WinZip Zip Creation Location,NTUSER.DAT\Software\Nico Mak ComputingDirectories / DefDir
+Windows Explorer Settings,7,NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+Windows Explorer Settings,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\ExplorerAdvanced
+Windows Portable Devices,7,8,10,SOFTWARE\Microsoft\Windows Portable Devices\Devices\
+WindowsBootVerificationProgram,HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\BootVerificationProgram
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*
+WindowsRunKeys,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Microsoft\Windows\CurrentVersion\RunOnce\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Microsoft\Windows\CurrentVersion\Run\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*
+WindowsRunKeys,HKEY_USERS\%SID%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*
+WindowsRunServices,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*
+WindowsRunServices,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*
+WindowsRunServices,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*
+WindowsRunServices,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*
+WindowsSystemPolicyShell,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System
+WindowsSystemPolicyShell,HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System
+WindowsWinlogonNotify,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*
+WindowsWinlogonNotify,HKEY_USERS\%SID%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*
+WindowsWinlogonShell,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+WindowsWinlogonShell,HKEY_USERS\%SID%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+WindowsWinlogonShell (GINA DLL),HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+WindowsWinlogonShell (GINA DLL),HKEY_USERS\%SID%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+Winlogon Userinit,7,HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\Userinit
+Winlogon Userinit,HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+Winlogon Userinit,HKEY_USERS\%SID%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon
+Wireless Connections Post XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersionNetworkList\Profiles\
+Wireless Post XP,7,8,10,SOFTWARE\Microsoft\Windows NTCurrentVersionNetworkListSignatures\Managed(or Unmanaged)\
+Wireless XP,XP,SOFTWARE\Microsoft\EAPOLParameters\Interfaces\{0E271E68-9033- 4A25-9883-A020B191B3C1} / #
+Wireless XP,XP,SOFTWARE\Microsoft\WZCSVCParameters\Interfaces\{0E271E68-9033- 4A25-9883-A020B191B3C1} /Static#####
+Wireless associations to SSIDs by user,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\Internet Settings\Wpad\
+WordPad MRU,XP,7,8,10,NTUSER.DAT\Software\MicrosoftWindows\CurrentVersion\AppletsWordpad\Recent File List
+Write Block USB Devices,7,SYSTEM\ControlSet###\Control\storageDevicePolicies\
+Write Block USB Devices,XP,7,8,SYSTEM\ControlSet###\ControlStorageDevicePolicies / WriteProtect
+XP Search Assistant history,XP,NTUSER.DAT\Software\Microsoft\Search Assistant\ACMru\####
+Yahoo Chat Rooms,NTUSER.DAT\Software\Yahoo\Pagerprofiles\\Chat
+Yahoo!,NTUSER.DAT\Software\Yahoo\PagerProfiles\*
+Yahoo! File Transfers,NTUSER.DAT\Software\Yahoo\PagerFile Transfer
+Yahoo! File Transfers,NTUSER.DAT\Software\Yahoo\Pagerprofiles\screen name FileTransfer
+Yahoo! Identities,NTUSER.DAT\Software\Yahoo\Pager\ profiles\screen name / All Identities, Selected Identities
+Yahoo! Last User,NTUSER.DAT\Software\YahooPager - Yahoo! User ID
+Yahoo! Message Archiving,NTUSER.DAT\Software\Yahoo\Pagerprofiles\screen name\Archive
+Yahoo! Password,NTUSER.DAT\Software\YahooPager - EOptions string
+Yahoo! Recent Contacts,NTUSER.DAT\Software\Yahoo\Pagerprofiles\screen name\IMVironmentsRecent
+Yahoo! Saved Password,NTUSER.DAT\Software\YahooPager - Save Password
+Yahoo! Screen Names,NTUSER.DAT\Software\Yahoo\Pagerprofiles\screen name
+Yserver,NTUSER.DAT\Software\Yahoo\Yserver
+iPhone, iPad Mounting,8,10,SYSTEM\ControlSet001\Enum\USB\
+mTorrent Build,7,HKEY_USERS\(SID)\Software\BitTorrent\(BitTorrent Client Name)\
+mTorrent File Types,7,HKEY_CURRENT_USER\(SID)\Software\Classes\.btsearch\: "mTorrent"
+mTorrent Install Path,7,HKEY_USERS\(SID)\Software\Classes\Applications\mTorrent.exe\shell\open\command

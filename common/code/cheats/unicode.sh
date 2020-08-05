@@ -1,5 +1,25 @@
 #!/bin/sh
 
+# unicode code point to hex
+
+python3 -c 'import sys; sys.stdout.write("".join([chr(int(i, 16)) for i in sys.argv[1:]]).encode("utf-8"))' '1f602' 'fe0f'
+
+# References
+# - https://stackoverflow.com/questions/6240055/manually-converting-unicode-codepoints-into-utf-8-and-utf-16
+# - https://stackoverflow.com/questions/47716217/converting-emojis-to-unicode-and-vice-versa-in-python-3
+
+# variation selector-16 is non-printable, produces seemingly duplicate names
+
+touch 'foo'
+touch "$(printf '%b' 'foo\xef\xb8\x8f')"
+# || bash: use c-style-escapes
+# touch $'foo\xef\xb8\x8f'
+
+ls
+# -rw-rw-r--.    1 fn      fn         0 Nov 23 18:42  foo️
+rm foo
+# rm: cannot remove 'foo': No such file or directory
+
 # `wc -m`: number of code points
 # `wc -c`: number of bytes
 
