@@ -9,7 +9,3 @@ openssl x509 -inform der -in _ -noout -text
 # => diff public keys
 openssl rsa -pubout -in mydomain.key
 openssl x509 -noout -pubkey -in mydomain.crt
-
-# Reference:
-# https://www.tldp.org/HOWTO/SSL-Certificates-HOWTO/x64.html
-# http://world.std.com/~cme/html/web.html

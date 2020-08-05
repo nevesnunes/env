@@ -1,3 +1,7 @@
+/*
+References:
+- https://graphviz.org/doc/info/attrs.html
+ */
 digraph G {
     size ="4,4";
     main [shape=box]; /* this is a comment */

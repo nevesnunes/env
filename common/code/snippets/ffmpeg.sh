@@ -3,6 +3,17 @@
 # Convert source to flac 16bits:22khz
 for i in *.wav; do ffmpeg -i "$i" -af aformat=s16:44100 "${i%.*}".flac; done
 
+# Copy metadata of specific stream
+ffmpeg -i _ -map_metadata 0 -map 0:a -c:a copy _
+for i in *.wav; do ffmpeg -i "$i" -map_metadata 0 -map 0:a -af aformat=s16:44100 "${i%.*}".flac; done
+
+# Transform metadata tags
+# -- https://unix.stackexchange.com/questions/250130/copy-file-creation-date-to-metadata-in-ffmpeg/492338#492338
+exiftool -tagsFromFile inputfile.mov -all:all>all:all outputfile.mp4
+
+# increase volume
+for i in *.flac; do ffmpeg -i "$i" -filter:a "volume=6.5dB,aformat=s16:44100" "${i%.*}".v.flac </dev/null; done
+
 # ---
 
 # Video, 4K/UltraHD
@@ -21,6 +32,9 @@ ffmpeg -pix_fmt yuv420p -i any-source-video.webm output.y4m
 
 # Convert a sequence of images to YUU4MPEG
 ffmpeg -f image2 -i "A004_C001_0122K7.00%05d.png" -pix_fmt yuv420p ouput.y4m
+
+# cut without reencoding
+ffmpeg -i input.mp4 -c copy -ss 00:01:00.000 -t 00:00:10.000 output.mp4
 
 # extract a single frame
 ffmpeg -i input.avi -f image2 -ss 14.342 -vframes 1 frame.png
@@ -89,3 +103,18 @@ file 'file001-new.mp4'
 file 'filelast-new.mp4'
 ```
 ffmpeg -f concat -i parts.txt -c copy -fflags +genpts recording-encoded.mp4
+
+# record
+
+# -- https://trac.ffmpeg.org/wiki/Capture/Desktop
+# -- http://ffmpeg.org/ffmpeg-devices.html#gdigrab
+ffmpeg -f gdigrab -show_region 1 -framerate 6 -video_size cif -offset_x 10 -offset_y 20 -i desktop out.mpg
+
+# convert to gif
+
+# -- https://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmpeg-with-reasonable-quality
+# For web: fps=50
+# -- https://wunkolo.tumblr.com/post/160942515402
+ffmpeg -ss 30 -t 3 -i input.mp4 -vf "fps=50,scale=320:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output.gif
+
+
