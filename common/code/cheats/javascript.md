@@ -12,6 +12,12 @@ debugger;
 let user = null;
 console.log({user});
 console.table(["apples", "oranges", "bananas"]);
+
+console.trace();
+console.log(new Error().stack);
+
+eval('console.log((function() { return !this; })());')
+eval('"use strict"; console.log((function() { return !this; })());')
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/API/Console/count
@@ -166,7 +172,9 @@ https://stackoverflow.com/questions/9267157/why-is-it-impossible-to-change-const
 
 # Generated code
 
+```bash
 node --print-opt-code
+```
 
 # Cross-Origin script errors
 
@@ -175,18 +183,32 @@ https://portswigger.net/blog/json-hijacking-for-the-modern-web
 
 # Packages - Deduplication, Version Pinning
 
+```bash
 npm ls
 yarn why
 
 npm shrinkwrap
+```
+
 https://docs.npmjs.com/files/package-locks
 https://yarnpkg.com/lang/en/docs/selective-version-resolutions/
 
 # Packages - Updating version
 
+```bash
 vim package.json
 rm package-lock.json
 npm install
+```
+
+# execute
+
+```bash
+npx some-package
+# ~=
+npm install some-package
+./node_modules/.bin/some-package
+```
 
 # Promises
 
@@ -271,5 +293,22 @@ https://www.typescriptlang.org/play/index.html
 
 [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) - monitored object has DOM tree changes
 [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) - monitored object enters or exits another element or viewport
+
+# csp w/ 3rd party scripts
+
+<% response.setHeader("Content-Security-Policy", "style-src 'unsafe-inline' 'self' https://cdn.cookielaw.org; frame-ancestors 'self'; default-src 'unsafe-inline' 'self' data: https://cdn.cookielaw.org https://code.jquery.com https://geolocation.onetrust.com;"); %>
+
+# heap
+
+```bash
+node --max-old-space-size=4096
+```
+
+# tasks
+
+```bash
+grunt --verbose --debug
+grunt --gruntfile app/templates/Gruntfile.js --base .
+```
 
 
