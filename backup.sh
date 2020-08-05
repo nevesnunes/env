@@ -9,7 +9,6 @@ target=${2:-/home/$USER/}
 git add -A
 git commit -m 'sync'
 git pull
-
 set -e
 
 dirty_name=$(date +%s)
@@ -24,7 +23,7 @@ trap cleanup EXIT INT QUIT TERM
 
 repo_path=$(realpath .)
 while read -r role_file; do
-  local_file="$target/${role_file//$repo_path/}"
+  local_file="$target/${${role_file//$repo_path/}//$role/}"
   [ -f "$local_file" ] || continue
   git diff \
     --no-index \
@@ -33,8 +32,11 @@ while read -r role_file; do
     "$role_file" || \
     cp "$local_file" "$role_file"
 done < <(find "$(realpath ./"$role")" -type f)
+
+set +e
 git add -A
 git commit -m 'sync'
+set -e
 
 git checkout master
 git merge \
