@@ -1,9 +1,15 @@
+```
 KERNEL=="ttyACM*", ATTRS{idVendor}=="2341", NAME="network_interface"
 SYMLINKS+=...
+```
+
+```bash
 udevadm test $(udevadm info -q path -n /dev/ttyACM0)
+```
 
 https://unix.stackexchange.com/questions/25776/detecting-headphone-connection-disconnection-in-linux
 
+```bash
 cat > /etc/systemd/system/systemd-udev-monitor.service <<EOF
 [Unit]
 Description=udev Monitoring
@@ -19,3 +25,4 @@ ExecStart=/usr/bin/sh -c "/usr/sbin/udevadm monitor --udev --env > /udev_monitor
 [Install]
 WantedBy=sysinit.target
 EOF
+```
