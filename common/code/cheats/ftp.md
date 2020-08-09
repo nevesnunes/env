@@ -112,4 +112,15 @@ https://stackoverflow.com/questions/19516263/200-port-command-successful-conside
 
 http://slacksite.com/other/ftp.html
 
+# maximum connections
+
+max in total vs. max per ip / user
+https://help.directadmin.com/item.php?id=491
+http://www.proftpd.org/docs/directives/linked/config_ref_MaxClientsPerUser.html
+
+# ambiguous error codes
+
+550
+https://kb.globalscape.com/KnowledgebaseArticle10305.aspx?Keywords=mix+error
+
 

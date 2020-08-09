@@ -1,3 +1,29 @@
+# +
+
+pycharm
+https://github.com/psf/black
+
+numpy, pandas, django, sqlalchemy, requests
+scipy, sklearn, pandas, cvxpy, pytorch, Keras
+Django does routing, forms, ORM, templates, APIs, GIS
+
+https://stackoverflow.com/questions/18671528/processpoolexecutor-from-concurrent-futures-way-slower-than-multiprocessing-pool
+
+```bash
+python3 -c '
+import inspect
+a=1
+b=2
+c=f"""
+   foo {a}
+   bar {b}
+   """
+print(inspect.cleandoc(c))
+'
+# foo 1
+# bar 2
+```
+
 # REPL
 
 https://ipython.org/ipython-doc/stable/interactive/qtconsole.html
@@ -70,6 +96,8 @@ with ipdb.launch_ipdb_on_exception():
 
 print(type(foo))
 print(foo.__dict__)
+
+traceback.print_stack()
 ```
 
 ~/.pdbrc
@@ -83,6 +111,11 @@ https://stackoverflow.com/questions/3702675/how-to-print-the-full-traceback-with
 ```bash
 python -m trace -trace foo.py
 python -m trace --listfuncs --trackcalls foo.py
+
+# increasing granularity
+python -m trace -T _
+python -m trace -l _
+python -m trace --ignore-dir=$(python -c 'import sys; print(":".join(sys.path)[1:])') -t _
 ```
 
 # Imports
@@ -137,6 +170,75 @@ python2 -c '
   sys.path.insert(0,"'"$OVERRIDE_PATH"'")
   execfile("'"$(command -v $FILE)"'")
 '
+```
+
+# venv, ensurepip
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1464570
+
+```bash
+pip install --ignore-installed --upgrade pip setuptools && \
+cat <<EOF > requirements.txt
+appdirs==1.4.0
+packaging==16.8
+pyparsing==2.1.10
+setuptools==39.2.0
+six==1.10.0
+EOF
+pip wheel -r requirements.txt && \
+mv *.whl /usr/lib/python3.6/ensurepip/_bundled/.
+```
+
+# packaging
+
+```bash
+pip install -r requirements.txt --target=python_modules
+PYTHONPATH=python_modules python myscript.py
+```
+
+https://docs.python.org/3/tutorial/venv.html
+https://docs.pipenv.org/en/latest/
+https://github.com/jazzband/pip-tools/
+https://github.com/sdispater/poetry
+
+https://github.com/pyinstaller/pyinstaller
+https://github.com/Nuitka/Nuitka
+
+https://medium.com/knerd/the-nine-circles-of-python-dependency-hell-481d53e3e025
+
+# hex
+
+```bash
+addr=200.0.10.1; python -c "
+import socket; 
+print(socket.inet_aton('$addr'))"
+# b'\xc8\x00\n\x01'
+
+addr=200.0.10.1; python -c "
+import socket, struct;
+print(struct.unpack('<L', socket.inet_aton('$addr'))[0])"
+# 17432776
+
+addr=200.0.10.1; python -c "
+import socket, struct; 
+print(hex(struct.unpack('<L', socket.inet_aton('$addr'))[0])[2:10].upper().zfill(8))"
+# 010A00C8
+
+# References
+# https://docs.python.org/3/library/struct.html
+```
+
+```python
+# Python 2
+"7368616b6564".decode("hex")
+print "\x73 \x68 \x61 \x6b \x65 \x64"
+
+# Python 2 + 3
+bytearray.fromhex("7368616b6564").decode()
+
+# Python 3
+bytes.fromhex('7368616b6564').decode('utf-8')
+print("\x73 \x68 \x61 \x6b \x65 \x64")
 ```
 
 # Testing
@@ -267,7 +369,11 @@ def foo(grid: List[List[str]]) -> int:
 ```bash
 pyre init
 pyre
+# ||
+mypy --strict
 ```
+
+https://github.com/python/mypy
 
 # foreign functions (ffi)
 

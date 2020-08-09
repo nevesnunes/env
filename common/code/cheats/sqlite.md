@@ -1,8 +1,18 @@
-sqlite3 foo.sqlite .dump | vim -
+# +
+
+```bash
+sqlite3 foo.db .dump | vim -
+echo 'select * from sqlite_master;' | sqlite3 foo.db | vim -
+```
 
 .mode list
 .output out.txt
 .read in.sql
+
+# csv
+
+.mode csv
+.import foo.csv foo
 
 # columns
 
@@ -11,6 +21,7 @@ PRAGMA table_info('foo')
 
 # iphone
 
+```sql
 select znb.zcontent from znotebody znb;
 select ci.summary, ci.description from CalendarItem ci;
 select ci.summary, ci.description from CalendarItem ci where creation_date is not null;
@@ -19,6 +30,6 @@ select ci.summary, ci.description from CalendarItem ci where last_modified is no
 
 select
 'ROWID',
-count(distinct ROWID),
-...
+count(distinct ROWID)
 from CalendarItem;
+```

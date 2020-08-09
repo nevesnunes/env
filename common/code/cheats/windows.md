@@ -660,4 +660,19 @@ gpedit.msc > Computer Configuration > Administrative Templates > Windows Compone
 
 https://www.tenforums.com/tutorials/112476-enable-ctrl-alt-delete-secure-desktop-uac-prompt-windows.html
 
+# shares
 
+https://superuser.com/questions/199387/elevated-command-line-prompt-cant-access-shared-drives
+    https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee844140(v=ws.10)?redirectedfrom=MSDN
+https://nikolar.com/2015/03/10/creating-network-share-with-anonymous-access/
+=>
+cmd.exe > Run as Administrator
+```ps1
+mklink /d "C:\Users\foo\bar.link" "\\1.2.3.4\c$\tmp"
+
+fsutil file queryfileid C:\Users\foo\bar.link
+# Error:  The user name or password is incorrect.
+
+fsutil file queryfileid C:\Users\foo\bar.link
+# File ID is 0x0000000000000000005f000000021246
+```

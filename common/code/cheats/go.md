@@ -17,4 +17,7 @@ https://github.com/jpillora/cloud-gox
 GOOS=darwin GOARCH=386 go build
 ```
 
+# Modules
+
+https://blog.golang.org/using-go-modules
 
