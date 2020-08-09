@@ -2,6 +2,7 @@ Manually copy the content of the XSD into the types section of the WSDL and repl
 
 # Maven
 
+```xml
 <plugin>
   <groupId>org.jvnet.jax-ws-commons</groupId>
   <artifactId>jaxws-maven-plugin</artifactId>
@@ -23,3 +24,4 @@ Manually copy the content of the XSD into the types section of the WSDL and repl
     </execution>
   </executions>
 </plugin>
+```

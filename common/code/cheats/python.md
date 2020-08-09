@@ -76,6 +76,7 @@ print(foo.__dict__)
 ~/bin/post_mortem.py
 
 https://ikhlestov.github.io/pages/languages/python/packages/ipdb/
+https://stackoverflow.com/questions/3702675/how-to-print-the-full-traceback-without-halting-the-program
 
 # Trace
 
@@ -118,6 +119,8 @@ https://setuptools.readthedocs.io/en/latest/setuptools.html
 
 ```bash
 pip freeze > requirements.txt
+# On checkout
+pip install -r requirements.txt
 ```
 
 # Install remote dependency not in PyPI

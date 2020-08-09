@@ -1,5 +1,6 @@
 # Running
 
+```ps1
 net stop com.docker.service
 taskkill /IM "dockerd.exe" /F
 taskkill /IM "Docker for Windows.exe" /F
@@ -8,13 +9,16 @@ net start com.docker.service
 
 cd ~/opt/graylog
 docker-compose up
+```
 
 # Windows
 
+```bash
 docker exec --user root -it graylog_graylog_1 /bin/bash
 sed -i 's/\(message_journal_enabled\).*/\1 = false/g' data/config/graylog.conf
-||
-http://docs.graylog.org/en/3.0/pages/installation/virtual_machine_appliances.html#virtual-machine-appliances
+```
+
+Alternative: http://docs.graylog.org/en/3.0/pages/installation/virtual_machine_appliances.html#virtual-machine-appliances
 
 # Testing
 

@@ -1,3 +1,12 @@
+# tcp server
+
+```bash
+# listen
+nc -lvp 4444 -e /bin/bash
+# connect
+nc 127.0.0.1 4444
+```
+
 # log pid
 
 ### firewall

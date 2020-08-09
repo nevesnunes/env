@@ -2,6 +2,85 @@
 
 https://community.osr.com/
 
+```
+get-command notepad.exe | select Source
+for %i in (java.exe) do @echo. %~$PATH:i
+dir /s /b c:\*java.exe
+
+cd HKCU:\
+
+shutdown /r /t 0
+
+findstr /I /S /P /C:"foo" *
+dir /s/b *.wsdl
+
+tasklist /fi "pid eq 15004"
+taskkill /IM firefox.exe /F
+taskkill /PID 26356 /F
+
+https://www.sans.org/security-resources/sec560/windows_command_line_sheet_v1.pdf
+https://www.lemoda.net/windows/windows2unix/windows2unix.html
+
+wget "_" -Verbose | select -ExpandProperty "Headers"
+
+ffmpeg -f gdigrab -framerate 30 -i desktop output.mkv
+
+./Windows/Microsoft.NET/Framework/v4.0.30319/ASP.NETWebAdminFiles/web.config
+./Windows/Microsoft.NET/Framework/v4.0.30319/Config/web.config
+```
+
+```ps1
+gci env:*
+$env:Path.split(';')
+
+[Environment]::SetEnvironmentVariable("k", "v", "User")
+
+Get-Command _ | Select-Object -ExpandProperty Definition
+
+[System.Net.ServicePointManager]::CertificatePolicy | Get-Member -Type All
+[System.Reflection.Assembly]::GetAssembly([System.Net.ServicePointManager]::CertificatePolicy.GetType()) | Format-Table -Wrap 
+
+# == ls -ltr
+dir | Sort-Object LastAccessTime
+
+# https://winaero.com/blog/find-hard-disk-serial-number-windows-10/
+# https://superuser.com/questions/498083/how-to-get-hard-drive-serial-number-from-command-line
+GWMI -namespace root\cimv2 -class win32_volume | FL -property DriveLetter, DeviceID
+Get-WmiObject Win32_volume | Format-table Name, @{Label = "SerialNumber"; Expression = {"{0:X}" -f $_.SerialNumber}}  -auto
+Get-WmiObject Win32_logicaldisk | Format-table Name, volumeserialnumber
+
+# detect vm
+Get-WmiObject -Class "Win32_computersystem" | Select-Object *
+gwmi Win32_BaseBoard
+
+# detect 32/64 bits, os version
+gwmi win32_operatingsystem | select osarchitecture
+```
+
+```
+vol
+mountvol
+
+REG QUERY HKLM\Software\Microsoft\Windows\CurrentVersion\DateTime\Servers
+w32tm /query /configuration
+w32tm /monitor
+w32tm /config /manualpeerlist:x.x.x.x /syncfromflags:manual /update
+w32tm /resync /force
+
+w32tm /config /syncfromflags:domhier /update
+Restart-Service w32time
+```
+
+C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll
+
+https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-member?view=powershell-6
+
+https://github.com/d1pakda5/PowerShell-for-Pentesters/blob/master/20-Remoting-Part-1.md
+
+– PowerShell functions. These are easy, since the function "is" the source code. You can do something like this to open the file up in the ise, if the command is a function: powershell_ise (Get-Command Get-CMSoftwareUpdate).ScriptBlock.File
+– Cmdlets. These are .NET classes, usually written in C#. Unless the source code is open-source, you can't get its original form, but you can decompile back to a somewhat-readable C# file using free tools such as ILSpy or DotPeek. If it's a cmdlet, you can find the file that needs to be decompiled like this: (Get-Command Get-CMSoftwareUpdate).ImplementingType.Assembly.Location
+– CIM commands. These are auto-generated PowerShell wrappers around WMI classes; they're generated from cdxml files in the module directory. I'm not sure if there's an easy way to open an individual command's file, but once you know that's what you're dealing with, you can browse to the module's folder and open up the cdxml files to see what it's doing.
+
 # vms
 
 https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
@@ -297,5 +376,288 @@ wine ~/.wine/drive_c/Python27/Scripts/pyinstaller.exe --onefile test.py
 ```
 reg add "HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "DisableSearchBoxSuggestions" /t REG_DWORD /d 1 /f
 ```
+
+# Paths, Shortcuts
+
+```
+%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+%AppData%\Microsoft\Windows\Start Menu\Programs\Startup
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup
+%AppData%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar
+C:\ProgramData\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar
+
+%USERPROFILE%\AppData\Roaming\Mozilla\Firefox\Profiles
+
+%USERPROFILE%\AppData\Local\Google\Chrome\User Data\Default\Extensions*
+`grep 'foo\|bar' Extensions` > hashes
+chrome://extensions > Load unpacked extension... > hash1/version1,hash2/version2...
+
+%windir%\system32\cmd.exe /c "D:\foo.cmd"
+
+//VBOXSVR/z
+```
+
+### Forbidden names
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileAssociation\AddRemoveNames
+
+# Special Folders, URL Monikers
+
+```
+start shell:RecycleBinFolder
+
+regedit /e C:\folderDescriptions 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\explorer\FolderDescriptions'
+```
+
+https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775149(v=vs.85)
+https://stackoverflow.com/questions/3605148/where-can-i-learn-about-the-shell-uri
+
+# Restart Shell
+
+taskmgr.exe (Task Manager) > File > Run New Task > explorer.exe
+
+# Task Scheduler
+
+https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2000/bb726974(v=technet.10)
+"C:\WINDOWS\system32\mmc.exe" C:\WINDOWS\system32\taskschd.msc
+
+# Event Viewer
+
+```
+eventvwr
+```
+
+Computer management > System Tools > Event Viewer > Windows Logs > System
+
+# Certificates, Policies
+
+```
+certmgr.msc
+gpedit.msc
+gpupdate
+```
+
+### Prevent exe from running
+
+ClickToRunSvc
+
+https://docs.microsoft.com/en-us/previous-versions/technet-magazine/cc510322(v=msdn.10)
+
+User Configuration > Administrative Templates > System > Don't run specified Windows applications
+Software\Policies\Microsoft\Windows\EventLog\Security\System
+
+# Process using file
+
+```
+resmon
+perfmon > CPU > Associated Handles
+```
+
+# Process Monitor, env vars of process
+
+- Operation is Process Create
+- Operation is Process Start
+- Sort Column => Tools > File Summary
+
+# Process Monitor, file access
+
+- Operation is ReadFile
+- Operation is WriteFile
+- Path contains ...
+
+# Network, Hosts, IP
+
+```ps1
+netstat -bano
+
+ipconfig /flushdns
+
+getmac
+ipconfig -all
+nbtstat -A $IP
+ping -a $IP
+nslookup $IP
+```
+
+# Disable warnings
+
+```
+REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoLowDiskSpaceChecks /t REG_DWORD /d 1
+```
+
+# Allow remove/uninstall program
+
+HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
+
+# DHCP
+
+```
+REG ADD HKLM\SOFTWARE\Microsoft\NetSh /v dhcpmon /t REG_SZ /d dhcpmon.dll
+
+netsh dhcp server 10.254.64.188 show clients 1
+netsh -r 10.254.64.188 dhcp server dump
+```
+
+https://www.microsoft.com/en-us/download/details.aspx?id=45520
+
+# Routing and Remote Access
+
+```
+net stop dns; net start dns; net stop remoteaccess; net start remoteaccess
+```
+
+# Clear cached credentials
+
+```
+net use * /delete
+klist purge
+
+cmdkey /delete:targetname
+    batch script to iterate through targets
+
+rundll32.exe keymgr.dll,KRShowKeyMgr
+```
+
+# Run as another user credentials
+
+```ps1
+$username = 'user'
+$password = 'password'
+
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword
+Start-Process Notepad.exe -Credential $credential
+
+# ||
+Start-Process powershell.exe -Credential $Credential -Verb RunAs -ArgumentList ("-file $args")
+Start-Process -Verb RunAs powershell.exe -Args "-executionpolicy bypass -command Set-Location \`"$PWD\`"; .\install.ps1"
+Powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -WindowStyle Hidden -File .\Install.ps1
+```
+
+# Language bar
+
+```
+ctfmon.exe
+```
+
+# Registry
+
+```
+regedit /e C:\dump.txt "HKEY_LOCAL_MACHINE\SYSTEM"
+```
+
+# flags, compatibility mode
+
+HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers
+
+# event tracing
+
+```
+logman start "NT Kernel Logger" –p "Windows Kernel Trace" (process,thread,img,disk,net,registry) –o systemevents.etl –ets
+logman stop "NT Kernel Logger" –ets
+tracerpt systemevents.etl
+
+logman start -ets mywinsocksession -o winsocklogfile.etl -p Microsoft-Windows-Winsock-AFD
+logman stop -ets mywinsocksession
+tracerpt winsocktracelog.etl –o winsocktracelog.txt
+```
+
+# tcp, connection
+
+```
+netstat -t
+```
+
+https://blogs.technet.microsoft.com/nettracer/2010/08/02/have-you-ever-wanted-to-see-which-windows-process-sends-a-certain-packet-out-to-network/
+https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview
+
+https://community.microstrategy.com/s/article/KB16328-How-to-enable-and-configure-Keep-Alive-options-for
+HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+
+# dns
+
+- Can ping dns server, can't resolve addresses
+    - DNS Manager > Properties > Interfaces > Listen on: Only the following IP addresses: $VPN_IP
+
+# run as current login user
+
+1. C:\Windows\System32\runas.exe /user:CORPPRO\776079E /savecreds cmd.exe
+2. D:\msys2-32bits\msys2.exe > start cmd
+
+# wireless password
+
+```
+netsh.exe wlan show profiles name='Profile Name' key=clear
+```
+
+# import root certificates
+
+```ps1
+$files = Get-ChildItem -File .\*; foreach ($f in $files) { Import-Certificate -FilePath $f.FullName -CertStoreLocation Cert:\LocalMachine\Root }
+# ||
+certutil -addstore -user "Trusted Root Certification Authorities" cert.pem
+```
+
+# groups
+
+```
+gpresult /v
+gpresult /r
+whoami /groups
+net user USERNAME /domain
+```
+
+# file handlers
+
+https://blogs.technet.microsoft.com/markrussinovich/2009/09/29/pushing-the-limits-of-windows-handles/
+https://stackoverflow.com/questions/31108693/increasing-no-of-file-handles-in-windows-7-64-bit
+
+# Environment Variables
+
+https://en.wikipedia.org/wiki/Environment_variable#Windows
+
+# Windows Defender Firewall with Advanced Security
+
+wf.msc
+
+# Test WMI access
+
+https://support.infrasightlabs.com/article/how-to-confirm-winrm-and-remote-scripting/
+
+```ps1
+# WMI access through DCOM (default)
+New-CimSession -ComputerName REMOTEMACHINE -SessionOption (New-CimSessionOption -Protocol Dcom) -Credential "MYDOMAIN\MYUSER"
+
+# WMI access through DCOM
+Get-WmiObject -ComputerName REMOTEMACHINE -Credential "MYDOMAIN\MYUSER" -Query "SELECT * FROM Win32_ComputerSystem"
+
+# WinRM access
+Test-WSMan -ComputerName REMOTEMACHINE -Credential "MYDOMAIN\MYUSER" -Authentication default
+
+# WMI access through WinRM
+Get-WSManInstance -ComputerName REMOTEMACHINE -Credential "MYDOMAIN\MYUSER" -Enumerate -ResourceURI wmicimv2/* -Filter "SELECT * FROM Win32_ComputerSystem"
+```
+
+# disasm
+
+```
+dumpbin /pdbpath
+dumpbin /map foo.exe > foo.map
+dumpbin /disasm foo.exe
+link.exe /dump /linenumbers /disasm foo.exe
+```
+
+https://stackoverflow.com/questions/2451369/how-to-create-a-map-file-from-a-pdb-file
+    https://ecs.syr.edu/faculty/fawcett/Handouts/TestingSeminar/Chapter12And14_CodeAndDocs/PDB2MAP.cpp
+
+http://www.geoffchappell.com/studies/msvc/link/dump/options/map.htm?tx=12,27,35,37,46,50&ts=0,3852
+
+# UAC
+
+Disable Windows Security prompt:
+
+gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Credential User Interface > Require trusted path for credential entry
+
+https://www.tenforums.com/tutorials/112476-enable-ctrl-alt-delete-secure-desktop-uac-prompt-windows.html
 
 
