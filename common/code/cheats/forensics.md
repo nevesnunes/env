@@ -2,6 +2,8 @@
 
 https://bitvijays.github.io/LFC-Forensics.html
 
+http://freshports.org/sysutils/sleuthkit
+
 # event log
 
 - 592/4688 - A new process has been created
@@ -151,13 +153,27 @@ For windows, contents may still be recovered via `vaddump`, if references not br
     [Hidding Module from the Virtual Address Descriptor Tree | Lilxam](http://lilxam.tuxfamily.org/blog/?p=326&lang=en)
     https://reverseengineering.stackexchange.com/questions/16176/volatility-manually-inspect-heap-of-a-process
 
-### zip password attacks
+# zip 
+
+```bash
+zip -F foo --out foo.out
+zip -FF foo --out foo.out
+binwalk --dd='.*' foo
+binwalk -e foo
+```
+
+- binwalk expects p7zip, so install p7zip to fix this problem.
+    - The UnZip implementation is the cause of your problem. When binwalk extracts full, the first ZIP actually contains both ZIPs, but UnZip only extracts the last one (which is also stored independently in the second ZIP that binwalk extracted).
+    - https://reverseengineering.stackexchange.com/questions/13944/automatically-extract-known-file-types-eg-zip-using-binwalk
+- https://reverseengineering.stackexchange.com/questions/13616/simple-carving-of-zip-file-using-binwalk
+
+### password attacks
 
 Requirements:
 - uncompressed copy of one file
 - encryption algorithm = ZipCrypto
 
-https://www.hackthis.co.uk/articles/known-plaintext-attack-cracking-zip-files
-https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
+- https://www.hackthis.co.uk/articles/known-plaintext-attack-cracking-zip-files
+- https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
 
 

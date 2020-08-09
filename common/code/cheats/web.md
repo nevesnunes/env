@@ -22,6 +22,33 @@ ZMap on reachable prefixes for common service ports.
 DNS AXFR to learn host names.
 wget crawling of seeded HTTP servers for content.
 
+https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
+
+```ps1
+# Reset WINSOCK entries to installation defaults
+netsh winsock reset catalog
+
+# Reset TCP/IP stack to installation defaults
+netsh int ip reset reset.log
+
+# Reset Firewall to installation defaults
+netsh advfirewall reset
+
+# Flush DNS resolver cache
+ipconfig /flushdns
+
+# Renew DNS client registration and refresh DHCP leases
+ipconfig /registerdns
+
+# Flush routing table (reboot required)
+route /f
+```
+
+```
+pkgmgr /iu:"TelnetClient"
+telnet www.example.com 80
+```
+
 # security
 
 https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
@@ -123,3 +150,28 @@ option interface_mtu
 I enabled it and it worked.
 
 Now I understand why only the local websites could not be loaded, because the server responded with frames that were too big whereas those from the router never exceeded 1500B because they came from my ISP network.
+
+# private addresses
+
+Private IP addresses are not recognized by Internet routers. 
+Packets with either source or destination private addresses are not forwarded across Internet links.
+
+The private IP adresses are the following blocks: 
+
+    Class A 10.0.0.0 - 10.255.255.255 
+    Class B 172.16.0.0 - 172.31.255.255 
+    Class C 192.168.0.0 - 192.168.255.255 
+
+[RFC 1918 \- Address Allocation for Private Internets](https://tools.ietf.org/html/rfc1918)
+
+# qvalue
+
+Suffix ';q=' immediately followed by a value between 0 and 1 included, with up to three decimal digits, the highest value denoting the highest priority. When not present, the default value is 1.
+
+HTTP headers using q-values in their syntax: Accept, Accept-Charset, Accept-Language, Accept-Encoding, TE.
+
+- https://developer.mozilla.org/en-US/docs/Glossary/Quality_values
+- [HTTP/1\.1: Protocol Parameters](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.9)
+- [HTTP/1\.1: Content Negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html#sec12)
+- [RFC 7230 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230#section-4.3)
+- [RFC 7231 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Semantics and Content](https://tools.ietf.org/html/rfc7231#section-5.3.1)

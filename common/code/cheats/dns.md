@@ -1,10 +1,14 @@
-https://superuser.com/questions/262799/how-to-launch-a-command-on-network-connection-disconnection
+# +
 
-Deleting DNS servers clears cached resolutions for those servers.
-`nslookup` does not add entries to the cache.
-Entries added by `ping` are not used by anything else???
-Verify with:
+- Deleting DNS servers clears cached resolutions for those servers.
+- `nslookup` does not add entries to the cache.
+- Entries added by `ping` are not used by anything else???
+- Verify with:
+    ```
     ipconfig /displaydns
+    ```
+
+https://superuser.com/questions/262799/how-to-launch-a-command-on-network-connection-disconnection
 
 ---
 

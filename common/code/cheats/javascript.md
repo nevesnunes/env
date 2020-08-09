@@ -11,6 +11,7 @@ debugger;
 
 let user = null;
 console.log({user});
+console.log(arguments[0]);
 console.table(["apples", "oranges", "bananas"]);
 
 console.trace();
@@ -22,6 +23,34 @@ eval('"use strict"; console.log((function() { return !this; })());')
 
 https://developer.mozilla.org/en-US/docs/Web/API/Console/count
 
+```bash
+env \
+    DEBUG='*' \
+    NODE_DEBUG='*' \
+    node -e 'console.log(2+2)'
+
+# syntax check
+node --check ./index.js
+
+node --stack-trace-limit=100 ./index.js
+
+node --cpu-prof --heap-prof -e "require('request')"
+# On browser: F12 > Memory > Load profile...
+# On browser: F12 > Performance > Load profile...
+# -- https://electronjs.org/docs/tutorial/performance
+
+NODE_OPTIONS="--perf-basic-prof --perf-prof-unwinding-info" npm run
+artillery quick -r 200 -d 0 http://localhost:3000
+sudo perf record -F 99 -g -p $NODEJS_APP_PID -- sleep 60
+sudo perf script -f --header > stacks.test.$(date --iso-8601)
+# -- https://medium.com/yld-blog/cpu-and-i-o-performance-diagnostics-in-node-js-c85ea71738eb
+
+# --trace-sync-io
+#     Print a stack trace whenever synchronous I/O is detected after the first turn of the event loop.
+# --zero-fill-buffers
+#     Automatically zero-fills all newly allocated Buffer and SlowBuffer instances.
+```
+
 ### DevTools
 
 ```bash
@@ -30,6 +59,7 @@ node --inspect app.js
 # debug and break before running script
 node --inspect-brk app.js
 # => chrome://inspect/#devices > Open dedicated Devtools for Node
+# -- https://marmelab.com/blog/2018/04/03/how-to-track-and-fix-memory-leak-with-nodejs.html
 
 # ||
 npm install -g ndb
@@ -310,5 +340,34 @@ node --max-old-space-size=4096
 grunt --verbose --debug
 grunt --gruntfile app/templates/Gruntfile.js --base .
 ```
+
+### loading resources
+
+- Network Throttling = Enabled
+- Online > speed = Fast 3G
+
+=> app waits for network request to complete despite not needing resource
+
+https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+
+### cpu profiling
+
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
+https://github.com/node-inspector/v8-profiler
+
+### memory profiling
+
+```bash
+node --track-heap-objects
+
+node --expose-gc
+# On browser: F12 > gc()
+
+node --v8-options | grep -i 'expose\|prof'
+```
+
+https://github.com/bretcope/node-gc-profiler
+    https://www.dynatrace.com/news/blog/understanding-garbage-collection-and-hunting-memory-leaks-in-node-js/
 
 

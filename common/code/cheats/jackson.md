@@ -1,6 +1,8 @@
 # Read Object List From JSON Array String
 
+```java
 List<Car> cars1 = objectMapper.readValue(jsonArray, new TypeReference<List<Car>>(){});
+```
 
 # Serialization features/options
 

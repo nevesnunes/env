@@ -1,3 +1,91 @@
+# Filters
+
+```
+ip.addr==1.2.3.4 and http.request.method==GET
+http.request.method==CONNECT
+
+ip.host matches "1.2.3." && ip.host matches "^2..\."
+
+tcp.flags.fin eq 1 or tcp.flags.reset eq 1
+ip.host matches "\.123$"
+
+tcp matches "(?i)soap.*action"
+```
+
+```bash
+tshark -p -n -i eno1 -f "tcp port 40000" -a files:10 -b files:10 -b filesize:1024 -w /var/log/tshark/tcpds
+tshark -Y http.request.uri -r foo.pcap
+tshark -T json -r foo.pcap
+```
+
+```ps1
+.\tshark.exe -r tcpdump.pcap -Y 'tcp.flags.reset == 1' > ~\tmp\tcpdump-tcp_flags_reset_eq_1.txt
+```
+
+- capture filter syntax
+    - https://wiki.wireshark.org/CaptureFilters
+- read filter syntax
+    - https://www.wireshark.org/docs/man-pages/wireshark-filter.html
+
+### Display Filter Reference
+
+```bash
+tshark -G fields | grep _
+```
+
+https://www.wireshark.org/docs/dfref/
+
+# Capture raw sockets
+
+```bash
+rawcap -f 127.0.0.1 localhost.pcap
+tail -c +1 -f localhost.pcap | wireshark -k -i -
+```
+
+- http://www.nirsoft.net/utils/socket_sniffer.html
+- https://github.com/simsong/tcpflow
+
+# Winpcap, npf
+
+```
+sc qc npf 
+sc start npf
+sc config npf start= auto
+```
+
+# DNS resolution, hostname
+
+View > Name Resolution
+
+# RDP
+
+```
+tcp.dstport == 3389 and tcp.flags.syn == 1
+tcp port 3389 and tcp[0xd]&18=2
+```
+
+https://wiki.wireshark.org/RDP
+
+# OpenVPN
+
+```
+udp port 1194 or tcp port 1194
+```
+
+# sqlserver
+
+```
+tds
+```
+
+# dump certificates
+
+- Ensure traffic decoded as SSL - Analyze > Decode As > SSL analyzer
+- Packet Details > Secure Socket Layer > select: certificate > open: context menu > Export Packet Bytes (e.g. cert.der)
+
+- Validation: `openssl x509 -inform der -in cert.der -text`
+- Convert to PEM: `openssl x509 -inform der -in cert.der -outform pem -out cert.crt`
+
 # memory efficient
 
 split:
