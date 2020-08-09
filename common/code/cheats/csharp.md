@@ -24,3 +24,24 @@ internal static extern int ldap_connect(IntPtr ldapHandle, IntPtr timeout);
     - .NET assembly editor
 - https://github.com/0xd4d/de4dot
     - deobfuscator
+
+# Building
+
+```ps1
+& "C:\Program Files (x86)\Microsoft Visual Studio\2017\TeamExplorer\Common7\IDE\devenv.exe" C:\Users\foo\opt\WMIWatcher\WMIWatcher.sln /Build Release
+# ||
+$env:MSBuildSDKsPath = 'C:\Program Files\dotnet\sdk\3.1.101\Sdks'
+& "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin\MSBuild.exe" C:\Users\foo\opt\WMIWatcher\WMIWatcher.sln /p:Configuration=Release /t:Restore
+# ||
+& "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe" C:\Users\foo\opt\WMIWatcher\WMIWatcher.sln /p:Configuration=Release /t:Restore
+```
+
+# Debug
+
+```ps1
+$env:COREHOST_TRACE = 1
+```
+
+# References
+
+- [error MSB4236: The SDK &\#39;Microsoft\.NET\.Sdk&\#39; specified could not be found\. · Issue \#2532 · dotnet/msbuild · GitHub](https://github.com/microsoft/msbuild/issues/2532)

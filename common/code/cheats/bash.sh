@@ -1,5 +1,5 @@
 # Parameters, Expansions
-# Reference: http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06
+# - http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06
 
 # Debug
 
@@ -8,7 +8,7 @@ set -vx
 i=0; while caller $i; do ((i++)); done
 
 # Profiling
-# Reference: https://stackoverflow.com/a/20855353/8020917
+# - [profiling \- How to profile a bash shell script slow startup? \- Stack Overflow](https://stackoverflow.com/a/20855353/8020917)
 
 exec 3>&2 2> >( tee /tmp/sample-$$.log |
   sed -u 's/^.*$/now/' |
@@ -27,7 +27,7 @@ paste <(
 ) sample-time.24804.log
 
 # Pipe buffer
-# Reference: http://www.gibney.de/the_output_of_linux_pipes_can_be_indeter
+# - http://www.gibney.de/the_output_of_linux_pipes_can_be_indeter
 
 # Sum times skipping builtins
 
@@ -67,7 +67,7 @@ basename -azs .mp4 ./*.mp4 | \
     {}.mkv
 
 # Bracketed paste
-# https://superuser.com/questions/1532688/pasting-required-text-into-terminal-emulator-results-in-200required-text
+# - https://superuser.com/questions/1532688/pasting-required-text-into-terminal-emulator-results-in-200required-text
 
 # add command to history
 read -r target_file
@@ -86,3 +86,117 @@ man hier
 man 7 signal
 man 3 errno
 errno -l
+
+# Trace with specific shell options
+env \
+    SHELLOPTS="$(echo xtrace${SHELLOPTS:+:${SHELLOPTS}} | \
+    gawk '
+        BEGIN {
+            buf = ""
+            RS = ":"
+        }
+        /emacs|histexpand|history|monitor/ {
+            next
+        } 
+        NF {
+            gsub(/[\s\r\n]*/,"",$0);
+            buf = buf ? buf":"$0 : $0
+        }
+        END {
+            print buf
+        }
+    ')" \
+    BASH_XTRACEFD=7 \
+    PS4='[${BASH_SOURCE:-$BASH_EXECUTION_STRING}:$LINENO]> ' \
+    foo.sh \
+    7>/1
+
+# diff files filtered by timestamp
+
+diff -aurwq dir_1/ dir_2/ | \
+  grep '^Files' | \
+  xargs -i sh -c '
+    [ "$2" -ot "$4" ] && printf "%s\n" "$*"
+  ' _ {}
+# ||
+diff -aurwq dir_1/ dir_2/ | \
+  grep '^Files' | \
+  xargs -i sh -c '
+    source_ts=$(date +"%s%N" -d "$(stat --printf="%y\n" "$2")")
+    target_ts=$(date +"%s%N" -d "$(stat --printf="%y\n" "$4")")
+    [ "$source_ts" -lt "$target_ts" ] && printf "%s\n" "$*"
+  ' _ {}
+
+# xargs behaviour with input
+printf '%s\n' '1 2' | xargs -L1 sh -c 'echo $1' _  
+# 1                                                    
+printf '%s\n' '1 2' | xargs -n1 sh -c 'echo $1' _  
+# 1                                                    
+# 2                                                    
+printf '%s\n' '1 2' | xargs -i sh -c 'echo $1' _ {}
+# 1 2                                                  
+
+# xargs behaviour without input
+true | xargs -L1 sh -c 'echo 0' _
+# 0
+true | xargs -n1 sh -c 'echo 0' _
+# 0
+true | xargs -i sh -c 'echo 0' _ {}
+#
+
+# sort files with encoding different from locale
+
+echo '
+./foo
+./bar
+' | xargs -i diff -uw dir_1/{} dir_2/{} | cat | vim -
+
+echo '
+./foo
+./bar
+' | xargs -i bash -c '
+    export LC_ALL=C
+    diff -uw \
+        <(dos2unix < dir_1/"$1" | sort) \
+        <(dos2unix < dir_2/"$1" | sort)' _ {} | \
+    cat | \
+    vim -
+
+echo '
+./foo
+./bar
+' | xargs -i bash -c '
+    f1=dir_1/"$1"
+    f2=dir_2/"$1"
+    f1_mime=$(file --brief --mime-encoding "$f1")
+    f2_mime=$(file --brief --mime-encoding "$f2")
+    diff -uw \
+        <(iconv -f "$f1_mime" -t utf-8 "$f1" | dos2unix | sort) \
+        <(iconv -f "$f2_mime" -t utf-8 "$f2" | dos2unix | sort)' _ {} | \
+    cat | \
+    vim -
+
+echo '
+./foo
+./bar
+' | xargs -i bash -c '
+    f1=dir_1/"$1"
+    f2=dir_2/"$1"
+    f1_mime=$(file --brief --mime-encoding "$f1")
+    f2_mime=$(file --brief --mime-encoding "$f2")
+    diff -uw \
+        <(if echo "$f1_mime" | \
+            grep -v "ascii\|binary\|utf-8"; then \
+            iconv -f "$f1_mime" -t utf-8 "$f1"; else \
+            cat "$f1"; fi | dos2unix | sort) \
+        <(if echo "$f2_mime" | \
+            grep -v "ascii\|binary\|utf-8"; then \
+            iconv -f "$f2_mime" -t utf-8 "$f2"; else \
+            cat "$f2"; fi | dos2unix | sort)' _ {} | \
+    cat | \
+    vim -
+
+# preview input to pipe
+a=$(printf '%s\n' 1 2 3) && printf '%s' "$a" >&2 && read -r && printf '%s\n' "$a" | xargs -i ls {};
+
+
