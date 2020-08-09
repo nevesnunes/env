@@ -1,0 +1,233 @@
+select {obj:x, referrers:filter(referrers(x), "/Context/(classof(it).name)")}
+from org.glassfish.web.loader.WebappClassLoader x
+
+select {obj:x, referrers:map(filter(referrers(x), "/Context/(classof(it).name)"), "it.name"), length:length(referrers)}
+from org.glassfish.web.loader.WebappClassLoader x
+
+select filter(heap.classes(), "it.name.contains('Context')")
+select x.statics
+from org.glassfish.web.loader.WebappClassLoader x
+
+select map(filter(referrers(x), "classof(it).name.contains('Context')"), "index + ' ' + x.started + ' ' + x.contextName.toString() + ' - ' + toHtml(it)")
+from org.glassfish.web.loader.WebappClassLoader x
+
+select [x, map(filter(referrers(x), "x.started == false && classof(it).name.contains('Context')"), "index + ' ' + x.id + ' ' + x.contextName.toString() + ' - ' + toHtml(it)")]
+from org.glassfish.web.loader.WebappClassLoader x
+
+select [ x, "x.name:", x.name.toString(), "referrers:", referrers(x) ]
+from instanceof java.lang.Thread x
+where identical(x.contextClassLoader, heap.findClass('org.springframework.web.context.support.XmlWebApplicationContext').loader)
+
+select [x, referrers(x)]
+from org.springframework.web.context.support.XmlWebApplicationContext x
+
+select [x, referees(x)]
+from instanceof java.lang.Thread x
+
+select [x, x.threadStatus < 6 ?
+	java.lang.Thread.State.values()[x.threadStatus] :
+	x.threadStatus
+]
+from instanceof java.lang.Thread x
+where x.id = "0x1234abcd"
+
+// BLOCKED = waiting for intrinsic lock / monitor lock
+// Reference: http://download.oracle.com/javase/tutorial/essential/concurrency/locksync.html
+select x
+from instanceof java.lang.Thread x
+where x.threadStatus == java.lang.Thread.State.valueOf(java.lang.Thread.State.BLOCKED).ordinal()
+
+// - Tomcat > Heap Dump
+//     - select x from org.apache.catalina.loader.WebappClassLoader x
+//     - LeftClick Query Result > RightClick Instance > Show Nearest GC Root
+
+// https://github.com/eclipse-ee4j/glassfish/issues/16917#issuecomment-421844492
+// https://cdn.app.compendium.com/uploads/user/e7c690e8-6ff9-102a-ac6d-e4aebca50425/f4a5b21d-66fa-4885-92bf-c4e81c06d916/File/30ba02a656e6f6e05da94eac8661e88a/oql.htm#map
+
+// https://blogs.oracle.com/sundararajan/permanent-generation-analysis-with-oql
+
+// Show each class loader and number of classes loaded by it
+select { loader: cl, parent: cl.parent, count: cl.classes.elementCount }
+from instanceof java.lang.ClassLoader cl
+
+// Show entire child-parent chain for each loader
+select map(heap.objects('java.lang.ClassLoader'), function(it) {
+    var res='';
+    while (it != null) {
+        res += toHtml(it) + "->";
+        it = it.parent;
+    }
+    res += "null";
+    return res + "<br>";
+})
+
+// Show classes of ClassLoaders
+select unique(map(heap.objects('java.lang.ClassLoader'), 'classof(it)'))
+
+// https://blogs.oracle.com/sundararajan/querying-java-heap-with-oql
+
+// referents that are not referred by another object
+select f.referent
+from java.lang.ref.SoftReference f
+where f.referent != null && referrers(f.referent).length == 1
+
+// finalizable objects with size of heap retained
+select { obj: f.referent, size: sum(map(reachables(f.referent), "sizeof(it)")) }
+from java.lang.ref.Finalizer f
+where f.referent != null
+
+// https://www.cnblogs.com/princessd8251/articles/3998126.html
+
+// show content of Strings that match a regular expression
+
+select {instance: s, content: s.toString()} from java.lang.String s
+where /java/(s.toString())
+
+// https://stackoverflow.com/questions/24166290/increasing-the-max-size-of-jvisualvm-oql-resultset
+//    %JDK_HOME%\lib\visualvm\etc\visualvm.conf
+//    ```
+//    visualvm_default_options="-J-DOQLController.limitResults=999"
+//    ```
+
+// Patterns
+// Use 'from Object o' and filter the results by checking the type
+
+// number of unique char[] instances referenced from any String
+select count(unique(map(heap.objects('java.lang.String'), 'it.value')))
+
+// total number of Strings
+select count(heap.objects('java.lang.String'))
+
+// Print histogram of each class loader and number of classes loaded by it
+select map(sort(map(
+            heap.objects('java.lang.ClassLoader'),
+            '{ loader: it, count: it.classes.elementCount }'),
+        'lhs.count < rhs.count'),
+    'toHtml(it) + "<br>"')
+
+// Direct buffer native memory
+// -- https://tech.ebayinc.com/engineering/sre-case-study-triage-a-non-heap-jvm-out-of-memory-issue/
+SELECT x, x.capacity
+FROM java.nio.DirectByteBuffer x
+WHERE ((x.capacity > 1024 * 1024) and (x.cleaner != null))
+
+// Strings
+// https://www.javamex.com/tutorials/memory/string_memory_usage.shtml
+SELECT toString(s), rsizeof(s), sizeof(s)
+FROM java.lang.String s
+
+// Heap allocations
+sum(filter(heap.objects(), "/^java.util.regex./(classof(it).name)"), 'rsizeof(it)'
+
+// ---
+
+select count(heap.objects('sun.nio.ch.SocketAdaptor'))
+
+select x
+from instanceof sun.nio.ch.SocketAdaptor x
+where x.closed == false &&
+    x.sc != null &&
+	x.sc.fd != null
+
+select heap.livepaths(x)
+select heap.roots(x)
+
+var paths1 = heap.livepaths(heap.findObject("1234123412"));
+unique(rcs2array(paths1), 'objectid(it)');
+
+// convert an array of reference chains to a flat array of objects
+function rcs2array(rcs) {
+  var arr = new Array()
+
+  for(var i=0;i<rcs.length;i++) {
+    var rc = rcs[i];
+    for(var j=0;j<rc.length;j++) {
+        arr.push(rc[j])
+    }
+  }
+  return arr
+}
+
+var println = function(o) {
+  return o;
+}
+referrers(heap.findObject("1234123412"));
+
+select [ x, "x.name:", x.name.toString(), "referrers:", referrers(x) ]
+from instanceof org.xnio.nio.WorkerThread x
+
+java.lang.Thread
+    .target
+
+// ---
+
+select unique(map(heap.objects('java.lang.String'), 'it.parent'))
+
+function loop(iter, limit) {
+    if ((('hasMoreElements' in iter) && !iter.hasMoreElements()) || (('hasNext' in iter) && !iter.hasNext())) {
+        return "<b>Nothing found!</b>";
+    }
+    var out = "";
+    var count = limit;
+    while(count > 0) {
+        out += toHtml(iter.next()) + "<br>";
+        count -= 1;
+    }
+}
+loop(heap.objects('java.lang.String'), 3)
+
+x = filter(heap.objects("java.lang.String"), "/hibernate\\.ejb/(it.toString())")
+x
+
+// On instance view > On Fields section, right-click entry > Copy ID
+// On OQL Console > heap.findObject("0x123456789")
+
+// Searching for instances of a class which has duplicate qualified name in classes view
+// e.g. com.artesia.metadata.admin.DatabaseTable
+classof(heap.findObject('0x123456789')).id
+select o from instanceof 12345678912 o
+
+select o._tableName from instanceof 12345678912 o
+
+select s from java.lang.String s where s.value.length >= 10000
+
+heap.objects('java.util.HashMap')
+
+select {instance: s, content: s.toString()}
+from java.lang.String s
+where /java/(s.toString())
+
+// http://cr.openjdk.java.net/~sundar/8022483/webrev.01/raw_files/new/src/share/classes/com/sun/tools/hat/resources/oqlhelp.html
+
+---
+
+/*
+{Heap before GC invocations=4 (full 0):
+ PSYoungGen      total 17408K, used 17392K [0x00000000fdf00000, 0x0000000100000000, 0x0000000100000000)
+  eden space 16384K, 100% used [0x00000000fdf00000,0x00000000fef00000,0x00000000fef00000)
+  from space 1024K, 98% used [0x00000000fef00000,0x00000000feffc010,0x00000000ff000000)
+  to   space 1024K, 0% used [0x00000000fff00000,0x00000000fff00000,0x0000000100000000)
+ ParOldGen       total 68608K, used 34096K [0x00000000f9c00000, 0x00000000fdf00000, 0x00000000fdf00000)
+  object space 68608K, 49% used [0x00000000f9c00000,0x00000000fbd4c000,0x00000000fdf00000)
+ Metaspace       used 2612K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 285K, capacity 386K, committed 512K, reserved 1048576K
+
+[GC (Allocation Failure) [PSYoungGen: 17392K->1024K(32768K)] 51488K->52816K(101376K), 0.0101398 secs] [Times: user=0.00 sys=0.00, real=0.00
+
+Heap after GC invocations=4 (full 0):
+ PSYoungGen      total 32768K, used 1024K [0x00000000fdf00000, 0x0000000100000000, 0x0000000100000000)
+  eden space 31744K, 0% used [0x00000000fdf00000,0x00000000fdf00000,0x00000000ffe00000)
+  from space 1024K, 100% used [0x00000000fff00000,0x0000000100000000,0x0000000100000000)
+  to   space 1024K, 0% used [0x00000000ffe00000,0x00000000ffe00000,0x00000000fff00000)
+ ParOldGen       total 68608K, used 51792K [0x00000000f9c00000, 0x00000000fdf00000, 0x00000000fdf00000)
+  object space 68608K, 75% used [0x00000000f9c00000,0x00000000fce94050,0x00000000fdf00000)
+ Metaspace       used 2612K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 285K, capacity 386K, committed 512K, reserved 1048576K
+}
+=>
+*/
+SELECT * FROM INSTANCEOF java.lang.Object t WHERE (toHex(t.@objectAddress) >= "0xfbd4c000" AND toHex(t.@objectAddress) <= "0xfce94050")
+
+// https://blogs.oracle.com/poonam/how-do-i-find-whats-getting-promoted-to-my-old-generation
+
+

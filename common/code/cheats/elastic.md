@@ -10,7 +10,11 @@ e.g. elasticsearch index guidelines
 
 https://thoughts.t37.net/designing-the-perfect-elasticsearch-cluster-the-almost-definitive-guide-e614eabc1a87#9898
 
-# Related Work
+# Logging
+
+Filebeat is a lightweight log-shipper for logstash
+
+# Comparisons
 
 https://stackshare.io/elasticsearch
 http://solr-vs-elasticsearch.com/
@@ -53,5 +57,18 @@ hierarchical facets
     https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html
     http://www.springyweb.com/2012/01/hierarchical-faceting-with-elastic.html
     https://sharing.luminis.eu/blog/faceted-search-with-elasticsearch/
+
+https://news.ycombinator.com/item?id=21327443
+
+https://www.elastic.co/guide/en/logstash/current/event-api.html
+https://www.elastic.co/guide/en/logstash/current/input-plugins.html
+    https://www.elastic.co/guide/en/logstash/current/plugins-inputs-tcp.html
+        https://stackoverflow.com/questions/35143576/sending-data-to-logstash-via-tcp
+    https://www.elastic.co/guide/en/logstash/current/plugins-inputs-gelf.html
+
+https://github.com/deviantony/docker-elk#how-to-add-plugins
+    ~/opt/docker-elk
+https://www.elastic.co/guide/en/logstash/current/config-examples.html
+https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
 
 

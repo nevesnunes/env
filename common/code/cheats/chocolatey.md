@@ -1,0 +1,2 @@
+- [Chocolatey Software | Troubleshooting](https://chocolatey.org/docs/troubleshooting)
+- [Already referencing a newer version of &\#39;packagename&\#39; · Issue \#227 · chocolatey/choco · GitHub](https://github.com/chocolatey/choco/issues/227)

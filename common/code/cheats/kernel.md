@@ -138,7 +138,9 @@ http://www.noah.org/wiki/Kill_-9_does_not_work
 
 # clear cache
 
+```bash
 sudo sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
+```
 
 # capabilities
 

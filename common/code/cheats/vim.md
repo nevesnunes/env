@@ -88,3 +88,9 @@ Run sub-process listing parent pid, corresponding to vim process, taken as `$vim
 ```bash
 strace -f -s 9999 -e process -p $vim_pid
 ```
+
+# Fix highlighting
+
+```vim
+:syntax sync fromstart
+```

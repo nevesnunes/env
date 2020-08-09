@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# normalize unicode
+python3 -c "import re, sys, unicodedata; print(unicodedata.normalize('NFKD', re.sub(r'[^\w]', '_', sys.argv[1])).encode( 'ASCII', 'ignore').decode('utf-8'))"
+
 # unicode code point to hex
 
 python3 -c 'import sys; sys.stdout.write("".join([chr(int(i, 16)) for i in sys.argv[1:]]).encode("utf-8"))' '1f602' 'fe0f'
@@ -46,10 +49,10 @@ echo 👏🏿 | sed 's/../A/' | xxd
 00000000: 410a                                     A.
 
 # References
-# https://www.regular-expressions.info/unicode.html
-# https://crashcourse.housegordon.org/coreutils-multibyte-support.html
-# https://www.pixelbeat.org/docs/coreutils_i18n/
-# https://unix.stackexchange.com/questions/160497/number-of-characters-in-a-shell-commands-output
-# https://stackoverflow.com/questions/27331819/whats-the-difference-between-a-character-a-code-point-a-glyph-and-a-grapheme
-# https://stackoverflow.com/questions/24840667/what-is-the-regex-to-extract-all-the-emojis-from-a-string
-# https://stackoverflow.com/questions/36331572/regular-expression-for-capturing-all-skin-tone-variations-of-an-emoji
+# - https://www.regular-expressions.info/unicode.html
+# - https://crashcourse.housegordon.org/coreutils-multibyte-support.html
+# - https://www.pixelbeat.org/docs/coreutils_i18n/
+# - https://unix.stackexchange.com/questions/160497/number-of-characters-in-a-shell-commands-output
+# - https://stackoverflow.com/questions/27331819/whats-the-difference-between-a-character-a-code-point-a-glyph-and-a-grapheme
+# - https://stackoverflow.com/questions/24840667/what-is-the-regex-to-extract-all-the-emojis-from-a-string
+# - https://stackoverflow.com/questions/36331572/regular-expression-for-capturing-all-skin-tone-variations-of-an-emoji

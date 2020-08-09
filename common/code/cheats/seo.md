@@ -1,0 +1,3 @@
+- descriptive - title, url
+- robots.txt, sitemap.xml
+    - e.g. ignore unsupported version of documentation

@@ -1,8 +1,8 @@
 # +
 
-https://docs.docker.com/toolbox/toolbox_install_windows/
-docker swarm - automatic rollback
-    https://github.com/moby/moby/issues/33427
+- https://docs.docker.com/toolbox/toolbox_install_windows/
+- docker swarm - automatic rollback
+    - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
 
 ```bash
 # Given: yi moby-engine
@@ -83,24 +83,60 @@ standard_init_linux.go:190: exec user process caused "exec format error"
 
 Reported architecture inside container is from host
 => ENTRYPOINT ["linux32"]
--- https://stackoverflow.com/questions/26490935/how-to-fake-cpu-architecture-in-docker-container
+    - https://stackoverflow.com/questions/26490935/how-to-fake-cpu-architecture-in-docker-container
 
 # container path
 
-https://stackoverflow.com/questions/32070113/how-do-i-change-the-default-docker-container-location
-https://forums.docker.com/t/how-do-i-change-the-docker-image-installation-directory/1169
+- https://stackoverflow.com/questions/32070113/how-do-i-change-the-default-docker-container-location
+- https://forums.docker.com/t/how-do-i-change-the-docker-image-installation-directory/1169
 
 # system info - cpu architecture
 
+```bash
 docker inspect
-https://docs.docker.com/engine/reference/commandline/inspect/
+```
+    - https://docs.docker.com/engine/reference/commandline/inspect/
 
 # persistence, updates
 
-https://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker
-https://thenewstack.io/methods-dealing-container-storage/
+- https://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker
+- https://thenewstack.io/methods-dealing-container-storage/
 
 # binding user ids
 
-https://github.com/lemire/docker_programming_station
-https://seravo.fi/2019/align-user-ids-inside-and-outside-docker-with-subuser-mapping
+- https://github.com/lemire/docker_programming_station
+- https://seravo.fi/2019/align-user-ids-inside-and-outside-docker-with-subuser-mapping
+
+# Multiple containers
+
+```bash
+docker network create --driver bridge
+docker run --network=foo --name=bar
+```
+
+- https://stackoverflow.com/a/48243640
+- https://dev.to/abiodunjames/why-docker-creating-a-multi-container-application-with-docker--1gpb
+- https://docs.docker.com/compose/overview/
+
+# Delete containers
+
+```bash
+docker system purge -af
+```
+
+```batch
+@echo off
+FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker rm %%i
+FOR /f "tokens=*" %%i IN ('docker images --format "{{.ID}}"') DO docker rmi %%i
+```
+
+```ps1
+docker ps -aq | foreach {docker rm -f $_}
+docker images -aq | foreach {docker rmi -f $_}
+```
+
+# References
+
+- https://docs.docker.com/articles/dockerfile_best-practices/
+- http://crosbymichael.com/dockerfile-best-practices.html
+- https://github.com/wsargent/docker-cheat-sheet

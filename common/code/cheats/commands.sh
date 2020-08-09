@@ -393,3 +393,9 @@ printf '%s' '324F8D8A20561205631920' | xxd -r -p
 
 # match hex byte sequence in binary
 xxd -p foo | tr -d '\n' | grep -aboP '2056(?=(?:[\da-fA-F]{2})*$)' | awk '{p=index($0,":"); printf("0x%x:%s\n",substr($1,0,p-1)/2, substr($1,p+1))}'
+
+# sha checksum
+cat foo.xml | openssl dgst -binary -sha1 | openssl base64
+sha1sum foo.xml | cut -f1 -d\  | xxd -r -p | base64
+
+

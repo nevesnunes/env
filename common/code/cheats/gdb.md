@@ -76,6 +76,10 @@ set *(char*)($rbp - 0x18) = 0x41424344
 set *(char**)($rbp - 0x18) = 0x41424344
 ```
 
+# saving / restoring state
+
+https://sourceware.org/gdb/current/onlinedocs/gdb/Checkpoint_002fRestart.html
+
 # scripting
 
 ```python
