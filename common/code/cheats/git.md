@@ -194,3 +194,175 @@ commit -va
 git pull
 git submodule update --init --recursive
 ```
+
+# Migrate SVN to GIT
+
+```bash
+svn log --quiet http://foo.com/trunk/foo_project | \
+    awk '/^r/{print $3" = foo_user <foo_user@foo_host>"} {next}' | \
+    sort -u \
+    > authors-transform.txt
+git svn clone http://foo.com/ \
+    -A authors-transform.txt \
+    --tags=./tags/foo_project/ \
+    --trunk=./trunk/foo_project/ \
+    --username foo_user \
+    foo_project
+git svn show-ignore -i trunk > .gitignore
+git add .gitignore
+git commit -m 'Convert svn:ignore to .gitignore'
+```
+
+### sync commits
+
+```bash
+git svn rebase
+git pull
+git push
+```
+
+# unable to stat just written file
+
+```bash
+git log -p $file
+
+git checkout -- $file
+# ||
+git show $rev:$file > $file
+git clean -d -f .
+git reset HEAD $file
+git add $file
+
+# ||
+git checkout -b wat
+git add --force .
+git commit -m "wat"
+git checkout master
+git branch -D wat
+```
+
+=>
+~/Downloads/git-antivirus-silent_rm_file.CSV
+ekrn.exe | SetDispositionInformationFile | C:\Users\foo\code\src\PowerShell-lazywinadmin\foo | SUCCESS | Delete: True
+
+# index
+
+```bash
+# files in index
+git ls-files --stage
+# files in working tree
+git ls-tree -r HEAD
+```
+
+https://mincong.io/2018/04/28/git-index/
+
+# Validate tracked changes
+
+```bash
+# xref changes
+git reflog show HEAD
+# ! git symbolic-ref HEAD | grep -q refs/heads/master
+git reflog show master
+git reflog show stash
+git reflog show --all
+
+# compare files in working tree and index
+git diff-files
+
+# rebuild index for a given file
+git update-index --no-assume-unchanged path/to/file
+# || git update-index --no-skip-worktree path/to/file
+git rm --cached path/to/file
+git reset path/to/file
+# || git add -f path/to/file
+
+# rebuild and validate index
+git update-index --unmerged --refresh
+git ls-files --cached --exclude-standard
+git diff-files
+git ls-files --others --exclude-standard
+
+# checksum
+diff -auw \
+    <(git ls-tree -r HEAD | \
+        awk '{for(i=3; i<=NF; ++i) printf $i""FS; print ""}') \
+    <(git ls-tree -r --name-only HEAD | \
+        xargs -n1 sh -c 'echo "$(git hash-object "$1")" "$1"' _)
+
+# author date before file modification date
+paste -d '\n' \
+    <(git ls-tree -r --name-only HEAD | \
+        xargs -n1 sh -c 'echo "$(git log -1 --format="%at" -- "$1")" "$1"' _) \
+    <(git ls-tree -r --name-only HEAD | \
+        xargs -n1 sh -c 'echo "$(stat --format='%Y' -- "$1")" "$1"' _) | \
+    xargs -L2 sh -c '[ "$1" -lt "$3" ] && printf "%s\n%s" "$1 $2" "$3 $4"' _
+
+# commit date before file modification date
+paste -d '\n' \
+    <(git ls-tree -r --name-only HEAD | \
+        xargs -n1 sh -c 'echo "$(git log -1 --format="%ct" -- "$1")" "$1"' _) \
+    <(git ls-tree -r --name-only HEAD | \
+        xargs -n1 sh -c 'echo "$(stat --format='%Y' -- "$1")" "$1"' _) | \
+    xargs -L2 sh -c '[ "$1" -lt "$3" ] && printf -- "%s\n%s" "$1 $2" "$3 $4"' _
+```
+
+# manual index blob hash
+
+```bash
+git-hash-object () {
+    local type=blob
+    [ "$1" = "-t" ] && shift && type=$1 && shift
+    # depending on eol/autocrlf settings, you may want to substitute CRLFs by LFs
+    # by using `perl -pe 's/\r$//g'` instead of `cat` in the next 2 commands
+    local size=$(cat $1 | wc -c | sed 's/ .*$//')
+    ( echo -en "$type $size\0"; cat "$1" ) | sha1sum | sed 's/ .*$//'
+}
+git-hash-object ./foo
+
+# https://matthew-brett.github.io/curious-git/reading_git_objects.html
+git ls-files --stage | xargs -L1 sh -c '
+dirname=$(echo "$2" | cut -c-2)
+filename=$(echo "$2" | cut -c3-)
+echo ".git/objects/$dirname/$filename"
+' _ | xargs -i python3 -c '
+import sys, zlib
+print(zlib.decompress(open(sys.argv[1], "rb").read()))
+' {}
+
+git ls-files --stage | xargs -L1 sh -c '
+dirname=$(echo "$2" | cut -c-2)
+filename=$(echo "$2" | cut -c3-)
+echo ".git/objects/$dirname/$filename"
+' _ | xargs -i python3 -c '
+from hashlib import sha1
+import sys, zlib
+print(sha1(zlib.decompress(open(sys.argv[1], "rb").read())).hexdigest())
+' {}
+```
+
+```python
+def git_blob_hash(data):
+    if isinstance(data, str):
+        data = data.encode()
+    data = data.replace('\r\n', '\n')
+    data = b'blob ' + str(len(data)).encode() + b'\0' + data
+    h = hashlib.sha1()
+    h.update(data)
+    return h.hexdigest()
+```
+
+# show changes in commit
+
+https://stackoverflow.com/questions/17563726/how-to-see-the-changes-in-a-git-commit
+
+```bash
+git diff COMMIT~ COMMIT
+git diff COMMIT^!
+git show COMMIT
+```
+
+# clone using ssh key
+
+```bash
+git clone git@foo.com:foo-team/foo.git
+```

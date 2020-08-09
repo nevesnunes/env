@@ -13,3 +13,7 @@ f=a.pdf && { \
   sed 's/.*\[\(.*\)\]/\1/; s/\([0-9]\+\)\(, \)\?/stream \1\n/g' | \
   peepdf "$f" -i
 } 2>/dev/null
+
+# Add bookmarks / outline / table of contents
+djvused ./foo.djvu -e 'set-outline ./outline.txt' -s
+k2pdfopt -mode copy -n -toclist ./toclist.txt ./foo.pdf -o ./output.pdf

@@ -200,4 +200,109 @@ User Authentication against Active Directory, Dissecting EAP-TLS
     SAM Account Name (short name) vs User Principle Name (UPN, includes domain)
     ~/Downloads/BRKSEC-3229.pdf
 
+# methods
+
+Portmirroring / SPAN, arp poisoning
+
+# zone transfer
+
+nmap gateway_ip_or_host
+port 53 domain
+
+### linux
+
+host -t axfr domain.name dns-server
+dig axfr @dns-server domain.name
+
+### windows
+
+nslookup
+
+> set type=any
+> ls -d wayne.net > dns.wayne.net
+> ls -t wayne.net > list.wayne.net
+> exit
+
+# sqlserver trace
+
+Microsoft Message Analyzer
+    https://www.microsoft.com/en-us/download/details.aspx?id=44226
+
+1. New Session
+2. New Data Source > Live Trace
+3. Scenario > Select:
+    If AppFoo and SQL on same system: Loopback and Unencrypted IPsec
+    If AppFoo and SQL on separate systems: Local Network Interfaces
+4. Start
+5. Message Table > Column Header > Add Columns > TDS > SQLBatch > SqlBatchPacketData > Right Click: SQLText > Add as column
+    -- https://stackoverflow.com/questions/2023589/how-can-i-decode-sql-server-traffic-with-wireshark
+
+clear log
+    restart session
+
+mma
+    - `TDS`
+    - `*SQLText contains "a"`
+    ```
+    Fail to start live consumer 
+    Please reinstall Message Analyzer to correct the problem. If the PEF-WFP-MessageProvider continues to fail, you may have a conflict with a third party filter driver or your computer might have reached the maximum number of drivers allowed, for example, on a Windows 7 machine. To resolve this issue, you can try increasing the filter driver limit in the registry.
+    ```
+
+test
+    sqlcmd without `-N` (encrypt connection)
+
+validate TDS packets are sent
+    Transact-SQL session > Query menu > Include Client Statistics
+
+https://dragos.com/blog/industry-news/threat-hunting-with-python-part-4-examining-microsoft-sql-based-historian-traffic/
+https://www.anitian.com/hacking-microsoft-sql-server-without-a-password/
+https://cqureacademy.com/blog/secure-server/tabular-data-stream
+https://docs.microsoft.com/en-us/message-analyzer/applying-and-managing-filters
+
+|| dump tables and diff before and after action on app
+
+---
+
+tshark -i lo -d tcp.port==1433,tds -T fields -e tds.query
+    https://www.wireshark.org/docs/dfref/t/tds.html
+
+tcpdump -i any -s 0 -l -vvv -w - dst port 3306 | strings
+tcpdump -i any -s 0 -l -vvv -w /tmp/1.pcap
+
+The "Microsoft-Windows-NDIS-PacketCapture" provider is used by Message Analyzer, the "netsh trace" command and the "NetEventPacketCapture" PowerShell cmdlets (in particular, the "Add-NetEventPacketCaptureProvider" cmdlet).
+-- http://gary-nebbett.blogspot.com/2018/06/gary-gary-2-2132-2018-06-06t153500z.html
+
+Loopback
+    On: WMA > Add System Providers
+    - Microsoft-Windows-WFP
+        = Windows Filtering Provider
+    - MSSQLSERVER Trace
+    - sqlserver
+
+```
+netsh trace start scenario=NetConnection capture=yes report=yes persistent=no maxsize=1024 correlation=no traceFile=C:\Temp\NetTrace.etl
+netsh trace stop
+```
+
+https://blogs.technet.microsoft.com/yongrhee/2018/05/25/network-tracing-packet-sniffing-built-in-to-windows-server-2008-r2-and-windows-server-2012-2/
+
+# enumerate app servers
+
+```bash
+netstat -tulpn | \
+    gawk 'match($0, /.*:([0-9]+).*LISTEN/, r){print r[1]}' | \
+    xargs -i sh -c '
+        printf "HEAD / HTTP/1.0\r\n\r\n" | \
+        nc -n -i 2 localhost "$1" | \
+        grep "HTTP/[0-9\.]\+\ " && echo "Found server listening at port = $1"\
+    ' _ {}
+```
+
+# +
+
+http://noahdavids.org/self_published/Tracing_packets_without_collecting_data.html
+=> at least "-s 94" for IPv4 or "-s 114" for IPv6
+
+https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
+
 
