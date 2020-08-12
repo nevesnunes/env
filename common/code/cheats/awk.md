@@ -1,3 +1,10 @@
+# delimiters
+
+```bash
+echo '1:2 3' | awk -F '[[:space:]:]*' '{print $2 " " $3}'
+# 2 3
+```
+
 # 2 columns
 
 ```bash
