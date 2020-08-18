@@ -664,6 +664,8 @@ command! HighlightedSynGroup call HighlightedSynGroup()
 " Usage (command):
 "     Match foo\|bar
 "     call matchdelete(w:matches.My0)
+" Usage (cli):
+"     printf '%s\n' 1 2 3 123 | vim -c 'Match 2\(3\)\@!' -
 " References:
 " - https://superuser.com/questions/211916/setting-up-multiple-highlight-rules-in-vim
 " - https://vim.fandom.com/wiki/Highlight_long_lines
@@ -671,6 +673,8 @@ hi My0 cterm=bold ctermbg=magenta guibg=magenta ctermfg=black guifg=black
 hi My1 cterm=bold ctermbg=blue    guibg=blue    ctermfg=black guifg=black
 hi My2 cterm=bold ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
 hi My3 cterm=bold ctermbg=green   guibg=green   ctermfg=black guifg=black
+hi My4 cterm=bold ctermbg=yellow   guibg=yellow   ctermfg=black guifg=black
+hi My5 cterm=bold ctermbg=red   guibg=red   ctermfg=black guifg=black
 function! Match(...)
     if !exists('w:matches')
         let w:matches = {}
