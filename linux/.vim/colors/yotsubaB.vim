@@ -149,10 +149,10 @@ hi PMenuSel   guifg=#ffffff guibg=#e03f00 gui=bold   ctermbg=1    ctermfg=white
 hi PMenu      guifg=#000000 guibg=#8993cd gui=NONE   ctermbg=0    ctermfg=3
 hi PMenuThumb guifg=#ffffff guibg=#55567a gui=NONE   ctermbg=NONE ctermfg=white
 
-hi cformat           guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE ctermfg=1
-hi cspecialcharacter guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE ctermfg=1
-hi MatchParen        guifg=#ffffff guibg=#e03f00 gui=bold ctermbg=3    ctermfg=0 cterm=bold
-hi preproc           guifg=#64648f guibg=NONE    gui=NONE ctermbg=NONE ctermfg=5
+hi cformat           guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=1
+hi cspecialcharacter guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=1
+hi MatchParen        guifg=#ffffff guibg=#e03f00 gui=bold ctermbg=white ctermfg=blue cterm=bold,reverse term=bold,reverse
+hi preproc           guifg=#64648f guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=5
 
 hi SignColumn guifg=#8993cd guibg=#d6daf0 gui=bold ctermbg=NONE ctermfg=3 cterm=bold
 
