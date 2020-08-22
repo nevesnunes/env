@@ -1,0 +1,24 @@
+[submodule "common/code/snippets/latex/awesome-LaTeX"]
+	path = common/code/snippets/latex/awesome-LaTeX
+	url = https://github.com/egeerardyn/awesome-LaTeX
+[submodule "common/code/snippets/templates/markdown-styles"]
+	path = common/code/snippets/templates/markdown-styles
+	url = https://github.com/mixu/markdown-styles.git
+[submodule "common/code/snippets/markdown-styles"]
+	path = common/code/snippets/markdown-styles
+	url = https://github.com/mixu/markdown-styles.git
+[submodule "common/code/snippets/templates/gitignore"]
+	path = common/code/snippets/templates/gitignore
+	url = git@github.com:github/gitignore.git
+[submodule "common/code/snippets/templates/bash3boilerplate"]
+	path = common/code/snippets/templates/bash3boilerplate
+	url = https://github.com/kvz/bash3boilerplate.git
+[submodule "common/code/snippets/ctf/web/yolovault"]
+	path = common/code/snippets/ctf/web/yolovault
+	url = https://github.com/pashosh-ctf/yolovault.git
+[submodule "common/code/snippets/txt/security-cheatsheets"]
+	path = common/code/snippets/txt/security-cheatsheets
+	url = https://github.com/andrewjkerr/security-cheatsheets.git
+[submodule "common/code/snippets/lzone-cheat-sheets"]
+	path = common/code/snippets/lzone-cheat-sheets
+	url = https://github.com/lwindolf/lzone-cheat-sheets
