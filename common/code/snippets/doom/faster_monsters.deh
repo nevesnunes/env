@@ -1,0 +1,30 @@
+Patch File for DeHackEd v3.0
+
+# General version information
+Doom version = 21
+Patch format = 6
+
+# Based on: https://doomwiki.org/wiki/Fast_monsters
+
+# Original Speed = 10
+Thing 13 (Demon)
+Speed = 15
+
+# Original Duration = 8
+Frame 487
+Duration = 4
+
+# Original Speed = !echo $((65536 * 15))
+# Modified Speed = !echo $((65536 * 20))
+Thing 17 (Baron Fireball)
+Speed = 1310720
+
+# Original Speed = !echo $((65536 * 10))
+# Modified Speed = !echo $((65536 * 15))
+Thing 32 (Imp Fireball)
+Speed = 983040
+
+# Original Speed = !echo $((65536 * 10))
+# Modified Speed = !echo $((65536 * 15))
+Thing 33 (Caco Fireball)
+Speed = 983040

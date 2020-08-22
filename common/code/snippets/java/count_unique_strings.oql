@@ -1,0 +1,29 @@
+// https://stackoverflow.com/questions/8242205/java-heap-analysis-with-oql-count-unique-strings
+
+var counts = {};
+var alreadyReturned = {};
+
+filter(
+    sort(
+        map(heap.objects("java.lang.String"),
+            function(heapString) {
+                if (!counts[heapString.toString()]) {
+                    counts[heapString.toString()] = 1;
+                } else {
+                    counts[heapString.toString()] = counts[heapString.toString()] + 1;
+                }
+                return {
+                    string: heapString.toString(),
+                    count: counts[heapString.toString()]
+                };
+            }),
+        'lhs.count < rhs.count'),
+    function(countObject) {
+        if (!alreadyReturned[countObject.string]) {
+            alreadyReturned[countObject.string] = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+);

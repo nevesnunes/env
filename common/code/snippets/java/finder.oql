@@ -1,0 +1,23 @@
+function finder(pat, clazz) {
+  var pat = new RegExp(pat)
+  var objs = toArray(heap.objects(clazz));
+  return map(objs, function(obj) {
+    var rchs = filter(reachables(obj), function(rch) {
+      try {
+        return classof(rch).name.match(pat);
+      } catch (e) {
+        return false;
+      }
+    });
+    return map(rchs, function(rch) {
+      return toHtml(obj) + " =&gt; " + toHtml(rch);
+    });
+  });
+}
+
+/*
+ * Find instances of all classes matching pattern .*byte held by transitive references 
+ * from classes matching pattern com.mycompany.myapp
+ */
+var myclasses = filter(heap.classes(), "it.name.match(/com.mycompany.myapp/)");
+map(myclasses, "finder('.*byte', it)")

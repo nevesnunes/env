@@ -1,0 +1,14 @@
+for (int i2 = 0; i2 < n + 1; i2++) {
+	String s = "";
+	for (int j2 = 0; j2 < 8; j2++) {
+		s += String.format("%1$10s", dp[i2][j2]) + ",";
+	}
+	System.out.println(s);
+}
+for (int i2 = 1; i2 < 5; i2*=2) {
+	String s = "";
+	for (int j2 = 0; j2 < 8; j2++) {
+		s += String.format("%s", j2 | i2) + ",";
+	}
+	System.out.println(s);
+}

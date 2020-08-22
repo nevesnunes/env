@@ -1,0 +1,39 @@
+<!-- A sample configuration file for testing Sysmon -->
+<!-- Tested on: Sysmon v11.0 -->
+
+<Sysmon schemaversion="4.3">
+    <!-- Hash algorithm(s) to apply for hashing -->
+    <HashAlgorithms>md5,sha256,IMPHASH</HashAlgorithms>
+    <!-- Controls reverse DNS lookup -->
+    <DnsLookup>False</DnsLookup>
+    <!-- Name of SYSTEM ACL protected directory at volume root which copy-on-delete files are moved -->
+    <ArchiveDirectory>SysmonFileDelete</ArchiveDirectory>
+    <!-- Controls signature revocation checks -->
+    <CheckRevocation/>
+
+    <EventFiltering>
+        <ProcessCreate onmatch="exclude"/>
+        <FileCreateTime onmatch="include"/>
+        <NetworkConnect onmatch="include"/>
+        <ProcessTerminate onmatch="include"/>
+        <DriverLoad onmatch="include"/>
+        <ImageLoad onmatch="include"/>
+        <CreateRemoteThread onmatch="include"/>
+        <RawAccessRead onmatch="include"/>
+        <ProcessAccess onmatch="include"/>
+        <FileCreate onmatch="include"/>
+        <RegistryEvent onmatch="include"/>
+        <FileCreateStreamHash onmatch="include"/>
+        <PipeEvent onmatch="include"/>
+        <WmiEvent onmatch="include"/>
+        <DnsQuery onmatch="include"/>
+        <FileDelete onmatch="include">
+            <!--
+                Files deleted matching the filters will be copied
+                to the system root ArchiveDirectory
+                See FileDelete demo: https://youtu.be/_MUP4tgdM7s?t=156
+            -->
+            <TargetFilename condition="begin with">c:\foo</TargetFilename>
+        </FileDelete>
+    </EventFiltering>
+</Sysmon>
