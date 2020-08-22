@@ -1,0 +1,60 @@
+// find object that (indirectly) references to all target objects.
+// list all objects that the objects we search for should (indirectly) refer to.
+
+var targetObjects = [
+    heap.findObject("811819664"), //eg. obj that contains a player's health
+    heap.findObject("811820024") //eg. obj that contains the same player's name
+];
+
+//list all objects here that every or most objects have as an indirect referer (eg. base class loaders)
+var ignoreReferers = []; //eg. [heap.findObject("ignId1")];
+
+//set array with all elements that refer to each target object
+var targetObjectsReferers = [];
+for (var tarObjIndex in targetObjects) {
+    var targetObjRefElements = [];
+
+    //get the live path of this target object
+    var livePaths = heap.livepaths(targetObjects[tarObjIndex]);
+
+    //cleanup every live path
+    for (var livePathsIndex in livePaths) {
+        var curLivePath = livePaths[livePathsIndex];
+        if ((curLivePath == null) || (curLivePath == "undefined")) continue;
+
+        //remove last element from live path as it is the actual object
+        curLivePath.pop();
+
+        //remove elements that equal an ignore referer object
+        for (var pathElementIndex in curLivePath) {
+            if ((curLivePath[pathElementIndex] == null) || (curLivePath[pathElementIndex] == "undefined")) continue;
+
+            for (var ignoreIndex in ignoreReferers) {
+                if (identical(curLivePath[pathElementIndex], ignoreReferers[ignoreIndex])) curLivePath.splice(pathElementIndex, 1); //FIXME: this might fail if index is not updated
+            }
+        }
+    }
+
+    //merge remaining life paths elements into targetObjRefElements
+    for (var livePathsIndex in livePaths) {
+        var curLivePath = livePaths[livePathsIndex];
+
+        for (var curLivePathIndex in curLivePath) {
+            targetObjRefElements.push(curLivePath[curLivePathIndex]);
+        }
+    }
+
+    //remove duplicate referers
+    targetObjRefElements = unique(targetObjRefElements, 'objectid(it)');
+
+    //add to target objects referers
+    targetObjectsReferers.push(targetObjRefElements);
+}
+
+//filter and return
+filter(targetObjectsReferers[0], function(it1) {
+    var rslt = contains(targetObjectsReferers[1], function(it2) { //FIXME: this limits it to 2 objects!
+        return identical(it1, it2);
+    });
+    return rslt;
+});
