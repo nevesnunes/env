@@ -153,6 +153,11 @@ For windows, contents may still be recovered via `vaddump`, if references not br
     [Hidding Module from the Virtual Address Descriptor Tree | Lilxam](http://lilxam.tuxfamily.org/blog/?p=326&lang=en)
     https://reverseengineering.stackexchange.com/questions/16176/volatility-manually-inspect-heap-of-a-process
 
+# pdf
+
+- [GitHub \- RUB\-NDS/PDF101: Artifacts for the Black Hat talk\.](https://github.com/RUB-NDS/PDF101)
+    - https://medium.com/bugbountywriteup/hacker101-ctf-android-challenge-writeups-f830a382c3ce
+
 # zip 
 
 ```bash
@@ -166,6 +171,10 @@ binwalk -e foo
     - The UnZip implementation is the cause of your problem. When binwalk extracts full, the first ZIP actually contains both ZIPs, but UnZip only extracts the last one (which is also stored independently in the second ZIP that binwalk extracted).
     - https://reverseengineering.stackexchange.com/questions/13944/automatically-extract-known-file-types-eg-zip-using-binwalk
 - https://reverseengineering.stackexchange.com/questions/13616/simple-carving-of-zip-file-using-binwalk
+
+### extraction path
+
+[GitHub \- snyk/zip\-slip\-vulnerability: Zip Slip Vulnerability \(Arbitrary file write through archive extraction\)](https://github.com/snyk/zip-slip-vulnerability)
 
 ### password attacks
 

@@ -21,4 +21,6 @@ FNAME=~/tmp/git.md.swp; tmux switch -t $(tmux list-panes -a -F '#{session_name}:
 # copy paste
 # 1. enter copy mode = [
 # 2. select = V
-# 3. copy = Enter
+# 3. copy = Enter || y
+
+

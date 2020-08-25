@@ -140,3 +140,9 @@ docker images -aq | foreach {docker rmi -f $_}
 - https://docs.docker.com/articles/dockerfile_best-practices/
 - http://crosbymichael.com/dockerfile-best-practices.html
 - https://github.com/wsargent/docker-cheat-sheet
+
+# Nesting, docker-in-docker
+
+bind-mounting the host machine's Docker socket in the container
+
+TODO

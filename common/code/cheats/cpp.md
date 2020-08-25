@@ -204,6 +204,12 @@ set dprintf-style gdb|call|agent
 set dprintf-function fprintf
 set dprintf-channel mylog
 
+### errno
+
+```gdb
+print *((int*(*)())__errno_location)()
+```
+
 # valgrind
 
 Cachegrind: cache profiler. simulates l1, D1, L2 caches
@@ -395,10 +401,17 @@ https://stackoverflow.com/questions/2284610/what-is-declspec-and-when-do-i-need-
 
 => define INITGUID
 
-# examples - build issues
+# case studies
+
+IOCCC's Best Abuse of the Rules in 1988
+    ```c
+    #include "/dev/tty"
+    ```
+    > it waits for you to type c code at your terminal, then compiles that. /dev/tty is the device representing the current terminal and can be read or written like a regular file
+    - https://twitter.com/eevee/status/678720136061169664
+
+### build issues
 
 [Undefined reference \`\_\_powf\_finite\` with clang 9\.0\.1, Linux 5\.5\.4\-arch1\-1 and glibc 2\.31\-1 · Issue \#2146 · google/filament · GitHub](https://github.com/google/filament/issues/2146)
 [c \- What exactly is \-fno\-builtin doing here? \- Stack Overflow](https://stackoverflow.com/questions/54281780/what-exactly-is-fno-builtin-doing-here)
 [Audacity &\#8211; New Major Release &\#8211; Compile Fix, for Portaudio\.\. &\#8211; Adventures With Linux ™](http://rglinuxtech.com/?p=2093)
-
-

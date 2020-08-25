@@ -230,4 +230,6 @@ https://uwnthesis.wordpress.com/2016/12/26/basics-of-making-a-rootkit-from-sysca
 unshare --fork --pid --kill-child
 ```
 
+# memory
 
+https://stackoverflow.com/questions/5463800/linux-memory-reporting-discrepancy?stw=2
