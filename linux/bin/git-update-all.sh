@@ -26,8 +26,8 @@ while read -r i; do
     if ! echo "$current_branch" | grep -q -i "$latest_tag"; then
       git checkout "$latest_tag"
       (
-        read -p "$i: Build $latest_tag? (default = NO): " dobuild
-        if [[ -n "$dobuild" ]]; then
+        read -r -p "$i: Build $latest_tag? (default = NO): " dobuild
+        if [ -n "$dobuild" ]; then
           ./configure; make; make install
         fi
       ) </dev/tty

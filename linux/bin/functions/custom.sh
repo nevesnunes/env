@@ -95,23 +95,33 @@ f() {
 }
 
 g() {
+  # TODO: Manual recursion to handle specific file formats
+  # e.g. pdftotext -enc UTF-8 "$target_file" -
   grep -Rin \
     --binary-files=without-match \
-    --color=always \
     --exclude-dir='.bzr' \
     --exclude-dir='.git' \
     --exclude-dir='.hg' \
     --exclude-dir='.svn' \
     --exclude-dir='__pycache__' \
     --exclude-dir='node_modules' \
-    --line-buffered \
-    -- "$*" . \
-    | awk '{ print substr($0, 0, 256) }'
+    -- "$*" .
 }
 
 o() {
+  local open_cmd
+  case "$OSTYPE" in
+    darwin*) open_cmd='open' ;;
+    cygwin*) open_cmd='cygstart' ;;
+    linux*) open_cmd='xdg-open' ;;
+    msys*) open_cmd='start ""' ;;
+    *)
+      echo "Platform $OSTYPE not supported"
+      return 1
+      ;;
+  esac
   while [ $# -gt 0 ]; do
-    xdg-open "$1"
+    "$open_cmd" "$1"
     shift
   done
 }
