@@ -118,6 +118,8 @@ python -m trace -l _
 python -m trace --ignore-dir=$(python -c 'import sys; print(":".join(sys.path)[1:])') -t _
 ```
 
+https://pymotw.com/2/sys/tracing.html
+
 # Imports
 
 https://alex.dzyoba.com/blog/python-import/
@@ -210,7 +212,7 @@ https://medium.com/knerd/the-nine-circles-of-python-dependency-hell-481d53e3e025
 
 ```bash
 addr=200.0.10.1; python -c "
-import socket; 
+import socket;
 print(socket.inet_aton('$addr'))"
 # b'\xc8\x00\n\x01'
 
@@ -220,7 +222,7 @@ print(struct.unpack('<L', socket.inet_aton('$addr'))[0])"
 # 17432776
 
 addr=200.0.10.1; python -c "
-import socket, struct; 
+import socket, struct;
 print(hex(struct.unpack('<L', socket.inet_aton('$addr'))[0])[2:10].upper().zfill(8))"
 # 010A00C8
 
@@ -412,5 +414,16 @@ from mypackage.myothermodule import add
 
 https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
 https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html
+
+# generate markdown from csv
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({"A": [1, 2, 3],
+                   "B": [1.1, 2.2, 3.3]},
+                    index =['a', 'a', 'b'])
+print(df.to_markdown())
+```
 
 

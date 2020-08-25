@@ -136,13 +136,29 @@ file:///c:/con/con
 c:\con\con
 c:\$MFT\123
 
-# fix ntfs corruption
+# fix NTFS corruption
 
 ```bash
 # From: sudo fdisk -l
 sudo ntfsfix /dev/sdb1
 # ||
 chkdsk /R
+```
+
+# NTFS alternative data streams (ADS)
+
+- aka. extended attributes
+- format: filename:streamname
+
+```
+dir /r
+
+|| unix
+sudo mount -t ntfs foo /mnt/foo
+getfattr --only-values FILE0
+
+|| browser
+file:///C:/foo.txt:FILE0:$DATA
 ```
 
 # windows update

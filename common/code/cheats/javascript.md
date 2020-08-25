@@ -1,3 +1,10 @@
+# Vanilla
+
+- https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/#document-ready
+    - ~/Downloads/moving-from-jquery-to-vanilla-js.md
+- https://gist.github.com/thegitfather/9c9f1a927cd57df14a59c268f118ce86#add-elements-to-the-dom-cont
+    - ~/Downloads/vanilla-js-cheatsheet.md
+
 # Debugging
 
 ```bash
@@ -370,4 +377,6 @@ node --v8-options | grep -i 'expose\|prof'
 https://github.com/bretcope/node-gc-profiler
     https://www.dynatrace.com/news/blog/understanding-garbage-collection-and-hunting-memory-leaks-in-node-js/
 
+# case studies
 
+https://stackoverflow.com/questions/38637003/what-s-happening-in-this-code-with-number-objects-holding-properties-and-increme#38637228

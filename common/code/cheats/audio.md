@@ -22,6 +22,12 @@ for i in *.mp3; do mp3gain -u "$i"; done
 ffmpeg -i "input.webm" -vn -acodec copy "output.oga"
 ```
 
+# Generate blank video and audio
+
+```bash
+ffmpeg -f lavfi -i color=size=8x8:rate=25:color=black -f lavfi -i anullsrc=channel_layout=mono:sample_rate=8000 -t $((60 * 60 * 4)) output.mp4
+```
+
 # Remove tone, spectogram edit, notch filter
 
 https://manual.audacityteam.org/man/spectral_selection.html
