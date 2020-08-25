@@ -5,11 +5,8 @@
 
 # Don't put duplicate lines or lines starting with space in the history
 HISTCONTROL=ignoreboth:erasedups
-
 HISTIGNORE="&:[ ]*:cd:cp:l[alrs]:mv:pwd*:[bf]g*:history*:clear:exit"
-
 HISTTIMEFORMAT='%s '
-
 HISTFILESIZE=20000
 HISTSIZE=50000
 
@@ -42,7 +39,6 @@ set -o notify
 # Custom completions
 complete -W "$([ -f Makefile ] && grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' Makefile | sed 's/[^a-zA-Z0-9_-]*$//')" make
 
-# Imports
 completions_dir="$HOME/.local/share/completions/bash"
 [ -d "$completions_dir" ] && for i in "$completions_dir/"*; do
     source "$i"
@@ -53,16 +49,10 @@ if [ -f ~/.bash_prompt ]; then
     PROMPT_COMMAND=prompt_main
 fi
 [ -f ~/.shrc ] && source ~/.shrc
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 [ -f ~/opt/bash-complete-partial-path/bash_completion ] && \
     source ~/opt/bash-complete-partial-path/bash_completion && \
     _bcpp --defaults
 
 # Reset exit status for first prompt
 :
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/fn/.sdkman"
-[[ -s "/home/fn/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fn/.sdkman/bin/sdkman-init.sh"

@@ -102,7 +102,7 @@ let g:ale_fixers = {
             \ }
 let g:ale_linters = {
             \ 'java': ['javac'],
-            \ 'javascript': ['javascript-typescript-stdio', 'tsserver', 'eslint', 'jshint'],
+            \ 'javascript': ['javascript-typescript-stdio', 'tsserver', 'eslint'],
             \ 'python': ['pyls'],
             \ 'sh': ['shellcheck'],
             \ }

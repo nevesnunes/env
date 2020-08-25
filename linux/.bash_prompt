@@ -1,8 +1,6 @@
-# Based on:
-# https://github.com/jmcclare/jm-shell/blob/master/ps1
-
 prompt_fg="\[$(tput setaf 6)\]"
-prompt_red_fg="\[$(tput bold; tput setaf 1)\]"
+prompt_red_fg="\[$(tput setaf 1)\]"
+prompt_bold="\[$(tput bold)\]"
 prompt_reset="\[$(tput sgr0)\]"
 
 prompt_git() {
@@ -44,15 +42,38 @@ prompt_main() {
     local exit_status=$?
     local prompt_exit_status=""
     if [ $exit_status -ne 0 ]; then
-        prompt_exit_status=" $prompt_red_fg$exit_status$prompt_fg"
+        prompt_exit_status=" $prompt_bold$prompt_red_fg$exit_status$prompt_fg"
     fi
+
+    # If the exit status was 127, the command was not found. Let's remove it from history
+    local number=$(history 1 | awk '{print $1}')
+    if [ -n "$number" ]; then
+        if [ "$exit_status" -eq 127 ] && { [ -z "$HISTLASTENTRY" ] || [ "$HISTLASTENTRY" -lt "$number" ]; }; then
+            history -d "$number"
+        else
+            HISTLASTENTRY=$number
+        fi
+    fi
+
     local prompt_jobs=""
     count_jobs=$(jobs -l | wc -l)
     if [ "$count_jobs" -gt 0 ]; then
-        prompt_jobs=" $prompt_reset[$count_jobs]$prompt_fg"
+        prompt_jobs=" ${prompt_reset}[${count_jobs}]${prompt_fg}"
     fi
+
     local prompt_vcs_status=$(prompt_vcs)
-    PS1="$prompt_fg\u@\h \W$prompt_vcs_status$prompt_jobs$prompt_exit_status ▬▬▬▬ $prompt_reset"
+
+    user_at_host=
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_TTY" ]; then
+        user_at_host='\u@\h '
+    fi
+
+    # Note: if reset is not followed by a printable character, terminals with column length matching prompt length have invalid line wrapping
+    PS1="$prompt_fg$user_at_host\W$prompt_vcs_status$prompt_jobs$prompt_exit_status ▬▬▬▬$prompt_reset "
 }
+
+# References:
+# - https://github.com/jmcclare/jm-shell/blob/master/ps1
+# - https://blog.dhampir.no/content/avoiding-invalid-commands-in-bash-history
 
 # vim: filetype=sh

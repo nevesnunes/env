@@ -1,5 +1,15 @@
 #!/usr/bin/env sh
 
+term=xterm-16color
+term_found=$(find /usr/share/terminfo/ -type f | grep "$term")
+if [ -z "$term_found" ]; then
+  term_found=$(find /lib/terminfo/ -type f | grep "$term")
+fi
+if [ -z "$term_found" ]; then
+  term=xterm-color
+fi
+tmux set -g default-terminal "$term"
+
 TMUX_VERSION=$(tmux -V | \
   gawk '/^\s*$/{next}; match($0, /tmux\s*([0-9\.]*)/, e) {print e[1]}')
 
