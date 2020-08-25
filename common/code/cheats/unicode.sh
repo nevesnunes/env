@@ -56,3 +56,5 @@ echo 👏🏿 | sed 's/../A/' | xxd
 # - https://stackoverflow.com/questions/27331819/whats-the-difference-between-a-character-a-code-point-a-glyph-and-a-grapheme
 # - https://stackoverflow.com/questions/24840667/what-is-the-regex-to-extract-all-the-emojis-from-a-string
 # - https://stackoverflow.com/questions/36331572/regular-expression-for-capturing-all-skin-tone-variations-of-an-emoji
+# > Create two files in a #git repository with equal names, but differing a letter: á = U+00E1; á = U+0061 U+0301. Clone on a mac. #UnicodeHell
+#     - https://github.com/Kayvlim/badrepo

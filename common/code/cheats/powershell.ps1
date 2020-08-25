@@ -515,6 +515,9 @@ ls \\?\C:\Users\foo\*
 ls \\localhost\C$\Users\foo
 ls \\?\UNC\localhost\C$\Users\foo\*
 
+# list processes
+Get-CimInstance -Class Win32_Process | Format-Table -Property ProcessId, ProcessName, CommandLine -Autosize
+
 # killall
 Get-Process | Where-Object {$_.ProcessName -like "winword"} | Stop-Process -Force
 
@@ -754,4 +757,8 @@ Get-Help Format-Table -Full
 # - System.Windows.Forms.NotifyIcon
 #     - https://www.powershellgallery.com/packages/BurntToast/0.6.2
 msg.exe 5 /server:server1 This is a message to the user in Session 5 on server 1
+
+# remove registry item
+Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' | Remove-ItemProperty -Name 'Foo Service' Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
+
 

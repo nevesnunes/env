@@ -58,6 +58,12 @@ curl wttr.in 2>/dev/null | head -n7; read -n 1
 # Retrieve page with cookies
 curl -O -J -L -b cookies.txt _
 
+# POST multipart file from stdin
+curl http://foo/bar -F 'file=@-' < _
+
+# PUT file from stdin
+curl http://foo/bar --upload-file - < _
+
 # Display keyboard layout (gkbd-keyboard-display) [show]
 gkbd-keyboard-display -l "$(~/bin/blocks/keymap | awk '{print $2}')"
 
@@ -383,6 +389,7 @@ MANPAGER='sh -c whoami' man ls
 
 # lolbins - Read file
 diff /dev/null 1
+iconv 1
 
 # binary diff
 cmp -l 1 2
@@ -397,5 +404,40 @@ xxd -p foo | tr -d '\n' | grep -aboP '2056(?=(?:[\da-fA-F]{2})*$)' | awk '{p=ind
 # sha checksum
 cat foo.xml | openssl dgst -binary -sha1 | openssl base64
 sha1sum foo.xml | cut -f1 -d\  | xxd -r -p | base64
+
+# replace current shell
+exec sudo -u $(id -u -n) -i
+
+# match window class and name
+class=
+name=
+xdotool search --onlyvisible --class "$class" getwindowpid %@ | xargs -i xdotool search --all --pid {} --name "$name"
+
+# hide window from dock
+# - don't search with `xprop`, since window id may not match visible window
+# - don't sync on window map, it can hang when an incorrect id was picked for window unmap
+# Alternatives:
+# - https://stackoverflow.com/questions/19035043/setting-x11-type-property-for-xmessage
+# - https://stackoverflow.com/questions/31361859/simple-window-without-titlebar
+# - https://tronche.com/gui/x/xlib/window-information/XChangeProperty.html
+class=
+id=$(xdotool search --onlyvisible --class "$class" | xargs -i printf '0x%x' {})
+xprop -id "$id" -f _NET_WM_WINDOW_TYPE 32a -set _NET_WM_WINDOW_TYPE _NET_WM_WINDOW_TYPE_NORMAL
+xdotool windowunmap --sync "$id"
+xdotool windowmap "$id"
+# rollback
+xprop -id "$id" -f _NET_WM_WINDOW_TYPE 32a -set _NET_WM_WINDOW_TYPE _NET_WM_WINDOW_TYPE_NORMAL
+xdotool windowunmap --sync "$id"
+xdotool windowmap "$id"
+
+# add repos as submodules
+target_root=
+target=$target_root/
+find . -path '*/.git/*' -iname 'config' -exec awk 'FNR == 1{ print FILENAME } /url/{print $3}' {} \; | xargs -L2 sh -c 'r=${1%\/\.git\/config} && cd "'"$target_root"'" && rm -rf "'"$target"'/$r" && git submodule add "$2" "'"$target"'/$r"' _
+### sync
+rsync --cvs-exclude
+
+# send raw data
+curl -H "Content-Type: text/plain" --data "foo" http://foo
 
 

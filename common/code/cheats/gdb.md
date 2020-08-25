@@ -1,5 +1,8 @@
 # +
 
+hardware breakpoint - evades checks for int3
+    https://sourceware.org/gdb/onlinedocs/gdb/Set-Breaks.html
+
 http://bl0rg.krunch.be/segfault-gdb-strace.html
 
 https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb
@@ -16,6 +19,8 @@ cat /proc/789/maps
 
 # disable ASLR
 echo 0 > /proc/sys/kernel/randomize_va_space
+# ||
+setarch "$(uname -m)" -R /bin/zsh
 
 # disable NX
 execstack -s foo
@@ -267,3 +272,61 @@ sudo make install
 ```
 
 https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
+
+# case studies
+
+### Dump bash command history of an active shell user
+
+```bash
+APID=1234
+gdb \
+    -batch \
+    --eval "attach $APID" \
+    --eval "call write_history(\"/tmp/bash_history-$APID.txt\")" \
+    --eval 'detach' \
+    --eval 'q'
+```
+
+- https://www.commandlinefu.com/commands/view/11427/dump-bash-command-history-of-an-active-shell-user
+
+Alternative:
+
+1. get function virtual address
+
+```gdb
+info function write_history
+# Non-debugging symbols:
+# 0x000056206763e420  write_history
+```
+    - || `objdump --dynamic-syms /usr/bin/bash | grep write_history`
+    - || `strace` - trace process with stack traces, take all addresses where file open/write is called
+
+2. get source code, find `write_history` function signature
+
+```bash
+grep -rin write_history
+# ./lib/readline/history.h:207:extern int write_history PARAMS((const char *));
+```
+
+3. get base virtual address
+
+```gdb
+info proc map
+# take first address
+# 0x56206755e000     0x56206758b000    0x2d000        0x0 /usr/bin/bash
+```
+
+4. get current tty
+
+```gdb
+! tty
+# /dev/pts/7
+```
+
+5. call
+
+```gdb
+print ((int*(*)(const char *))(0x56206755e000 + 0x00000000000e0420))("/dev/pts/7")
+```
+
+

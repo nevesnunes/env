@@ -199,4 +199,12 @@ echo '
 # preview input to pipe
 a=$(printf '%s\n' 1 2 3) && printf '%s' "$a" >&2 && read -r && printf '%s\n' "$a" | xargs -i ls {};
 
+# cannot declare a function with same name as alias
+# e.g.
+# bash: foo.sh: line 18: syntax error near unexpected token `('
+# bash: foo.sh: line 18: `ssh() {'
+unalias ssh
+eval 'ssh() { :; }'
+
+
 
