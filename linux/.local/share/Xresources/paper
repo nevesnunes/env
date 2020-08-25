@@ -1,3 +1,4 @@
+! TODO: Parse into dconf format: awk -F '[ :\*]*' '/#/{print $2 " " $3}' ~/.local/share/Xresources/paper
 UXTerm*foreground: #dddddd
 UXTerm*background: #000000
 

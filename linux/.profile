@@ -21,7 +21,7 @@ PERL_MM_OPT="INSTALL_BASE=$HOME/opt/perl5"; export PERL_MM_OPT;
 # References: 
 # - https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Basic_settings
 # - https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true -Dsun.java2d.dpiaware=true -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dswing.plaf.metal.controlFont="Liberation Sans-16" -Dswing.plaf.metal.systemFont="Liberation Sans-16" -Dswing.plaf.metal.userFont="Liberation Sans-16" -Dswing.plaf.metal.smallFont="Liberation Sans-12"'
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true -Dsun.java2d.dpiaware=true -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dswing.plaf.metal.controlFont="Liberation Sans-16" -Dswing.plaf.metal.systemFont="Liberation Sans-16" -Dswing.plaf.metal.userFont="Liberation Sans-16" -Dswing.plaf.metal.smallFont="Liberation Sans-14"'
 
 # Go
 #export GOROOT="$HOME/.local/share/go"
@@ -29,7 +29,7 @@ export GOPATH="$HOME/opt/go"
 
 # Paths
 # Comment $HOME/.local/bin:$HOME/bin in global configs (i.e. /etc/...{env|rc|login})
-export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin"
+export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin"
 export MANPATH="$MANPATH:/usr/local/man"
 
 # Editors

@@ -1,12 +1,18 @@
 #!/bin/sh
 
 [ -f ~/bin/load-functions.sh ] && . ~/bin/load-functions.sh
-[ -f ~/opt/z.sh ] && . ~/opt/z.sh
+[ -f ~/opt/z/z.sh ] && . ~/opt/z/z.sh
 
 # Use a termcap that exists in the server
 alias rsync='TERM=xterm-16color rsync'
 alias scp='TERM=xterm-16color scp'
 alias ssh='TERM=xterm-16color ssh'
+
+# Python version
+alias pip='python3 -m pip'
+alias pip2='python2 -m pip'
+alias pip3='python3 -m pip'
+alias python=python3
 
 # Package management
 alias dnf='sudo /usr/bin/dnf'
@@ -22,14 +28,10 @@ alias crispy-doom='sdl_wrap.sh crispy-doom'
 alias prboom-plus='sdl_wrap.sh prboom-plus'
 alias zdoom='sdl_wrap.sh zdoom'
 
-# Shorter variants
-alias uf='bash --norc -ci uf.sh'
-
-# Python version
-alias pip='python3 -m pip'
-alias pip2='python2 -m pip'
-alias pip3='python3 -m pip'
-alias python=python3
+# Convert 256 to 16 color
+# Validation (replace 256 color, pass 16 color):
+# printf '\x1b[38;5;200m foo \x1b[0m \x1b[38;5;1m bar \x1b[0m' | 16
+alias 16="awk '{gsub(/\x1b\[[0-9]*;[0-9]*;([0-9]{3,}|([2-9][0-9])|(1[7-9]))m/, "'"'"\x1b[38;5;5m"'"'"); print;}'"
 
 alias ..='cd ..'
 alias ctags='ctags --sort=yes'
@@ -37,26 +39,23 @@ alias docker='(systemctl status docker | grep -q "Active: inactive" && sudo syst
 alias gdb='gdb -q'
 alias info='info --vi-keys'
 alias j='mkdir -p ~/Documents/my/journal; eval "$EDITOR" ~/Documents/my/journal/$(date +"%Y-%m-%d_%H-%M-%S").md'
-alias la='ls -lA'
-alias ll='ls -l'
+alias l='ls -lAh'
 alias lr='ls -lAhtr'
 alias lsl='ls -t | head -n1'
 alias mcm='make clean; make'
-alias n='sudo /opt/nm.sh'
 alias noise='play -n -c2 synth pinknoise band -n 2500 6000 reverb 2 vol 1'
 alias nxargs='xargs -d"\n" -i -n1 -r'
 alias r='ranger'
 alias rm='rm -I'
-alias ts='tmux-switcher.sh'
+alias s='git-grep-detached.sh'
 alias vim='gvim -v'
-alias z='zf'
 
+# Force help to be output instead of error due to small terminal size
+env COLS=80 hexedit -h </dev/null 2>&1 | \
+    grep -qa -- '\[-s | --sector\] \[-m | --maximize\] \[--color\]' && \
+    alias hexedit="hexedit --color --maximize --sector"
 ! diff --color 2>&1 | grep -qi 'unrecognized option' && \
     alias diff='diff --color'
-grep -qa -- \
-    '\[-s | --sector\] \[-m | --maximize\] \[--color\]' \
-    "$(command -v hexedit)" && \
-    alias hexedit="hexedit --color --maximize --sector"
 if command -v nproc >/dev/null 2>&1; then
     alias make='make -j $(nproc)'
 elif command -v getconf >/dev/null 2>&1; then
@@ -69,5 +68,8 @@ command -v rlwrap >/dev/null 2>&1 && \
 [ -f ~/.less_termcap ] && . ~/.less_termcap
 
 pwd | grep -q '^/$' && cd ~
+
+export SDKMAN_DIR="$HOME/.sdkman"
+[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # vim: filetype=sh

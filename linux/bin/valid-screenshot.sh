@@ -32,10 +32,7 @@ done
 if [ ${#args[@]} -eq 0 ] && [ $using_shutter -gt 0 ]; then
   args+=("--full")
 fi
-volume=$(amixer sget Master | awk -F '[],[,%]'  '/%/{print $2; exit}')
-amixer sset Master 0
 "${cmd[@]}" "${args[@]}"
-amixer sset Master "$volume"%
 if [ $using_shutter -gt 0 ]; then
   exit 0
 fi
