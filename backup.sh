@@ -11,15 +11,15 @@ git commit -m 'sync'
 git pull
 set -e
 
-#dirty_name=$(date +%s)
-#git checkout -b "$dirty_name"
-#cleanup() {
-#  err=$?
-#  git branch -D "$dirty_name"
-#  trap '' EXIT
-#  exit $err
-#}
-#trap cleanup EXIT INT QUIT TERM
+dirty_name=$(date +%s)
+git checkout -b "$dirty_name"
+cleanup() {
+  err=$?
+  git branch -D "$dirty_name"
+  trap '' EXIT
+  exit $err
+}
+trap cleanup EXIT INT QUIT TERM
 
 repo_path=$(realpath .)
 while read -r role_file; do
@@ -39,12 +39,12 @@ git add -A
 git commit -m 'sync'
 set -e
 
-#git checkout master
-#git merge \
-#  --allow-unrelated-histories \
-#  --no-edit \
-#  -Xignore-all-space \
-#  -Xpatience \
-#  "$dirty_name"
+git checkout master
+git merge \
+  --allow-unrelated-histories \
+  --no-edit \
+  -Xignore-all-space \
+  -Xpatience \
+  "$dirty_name"
 
 #git push origin master

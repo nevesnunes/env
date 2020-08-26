@@ -47,7 +47,6 @@ alias noise='play -n -c2 synth pinknoise band -n 2500 6000 reverb 2 vol 1'
 alias nxargs='xargs -d"\n" -i -n1 -r'
 alias r='ranger'
 alias rm='rm -I'
-alias s='git-grep-detached.sh'
 alias vim='gvim -v'
 
 # Force help to be output instead of error due to small terminal size
