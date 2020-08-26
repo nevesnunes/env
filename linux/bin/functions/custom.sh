@@ -83,6 +83,14 @@ gf() {
     | grep -o "[a-f0-9]\{7,\}"
 }
 
+e() {
+  entry=$(git-grep-detached.sh "$*")
+  [ -z "$entry" ] && return
+  filename=${entry//:*}
+  lineno=${entry#$filename:}
+  gvim -v "$filename" +"$lineno"
+}
+
 f() {
   find . \
     ! -path '*/.bzr/*' \
