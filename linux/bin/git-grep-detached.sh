@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# TODO:
+# - If repo for parent dir available, do not create repo for child dir
+
 set -eu
 
 git_grep_root=$HOME/code/git_grep_root
