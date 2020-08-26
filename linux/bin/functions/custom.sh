@@ -1,3 +1,10 @@
+# Reference: https://akikoskinen.info/image-diffs-with-git/
+diff-img() {
+  compare "$2" "$1" png:- \
+    | montage -geometry +4+4 "$2" - "$1" png:- \
+    | display -title "$1" -
+}
+
 diff-dirs() {
   tree1=$(mktemp)
   tree2=$(mktemp)
