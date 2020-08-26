@@ -8,7 +8,9 @@ done
 [ -d "$import_dir/themes/" ] && for i in "$import_dir/themes/"*; do
     source "$i"
 done
+
 autoload -Uz compinit && compinit
+compdef _gnu_generic fzf
 
 export HISTFILE=$HOME/.zsh_history
 export HISTIGNORE="&:[ ]*:cd:cp:l[alrs]:mv:pwd*:[bf]g*:history*:clear:exit"
