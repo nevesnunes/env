@@ -8,7 +8,7 @@
     - https://www.andreafortuna.org/2017/07/03/volatility-my-own-cheatsheet-part-2-processes-and-dlls/
     - https://www.andreafortuna.org/2017/07/10/volatility-my-own-cheatsheet-part-3-process-memory/
 - https://github.com/5h3r10ck/CTF_Writeups/tree/master/InCTF
-    - pstree > cmdline > filescan > dumpfiles
+    - pstree > cmdline > filescan > dumpfiles -Q
 
 # Command Sequences
 

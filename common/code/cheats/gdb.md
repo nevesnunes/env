@@ -127,6 +127,8 @@ grep rw-p /proc/$1/maps \
 
 https://serverfault.com/questions/173999/dump-a-linux-processs-memory-to-file/486304
 
+Alternatives: `gcore -a $pid`
+
 # shellcode
 
 ```c
@@ -274,6 +276,10 @@ sudo make install
 https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
 
 # case studies
+
+### Stack frame manipulation
+
+[GitHub \- c3r34lk1ll3r/gdb\_2\_root: This python script adds some usefull command to stripped vmlinux image](https://github.com/c3r34lk1ll3r/gdb_2_root)
 
 ### Dump bash command history of an active shell user
 
