@@ -366,3 +366,25 @@ git show COMMIT
 ```bash
 git clone git@foo.com:foo-team/foo.git
 ```
+
+# grep / search
+
+
+```bash
+# across commits / history
+query=
+git rev-list --all | xargs -i git grep "$query" {}
+subtree=
+git rev-list --all -- "$subtree" | xargs -i git grep "$query" {} -- "$subtree"
+
+# across branches
+git log -S foo -c
+git log -S foo --all -- '*.js'
+
+# by filetype, from worktree root
+git grep foo -- '/*.js' '/*.cs'
+```
+
+https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history
+
+

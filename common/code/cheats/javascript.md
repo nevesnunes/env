@@ -58,6 +58,17 @@ sudo perf script -f --header > stacks.test.$(date --iso-8601)
 #     Automatically zero-fills all newly allocated Buffer and SlowBuffer instances.
 ```
 
+# Tracing
+
+```javascript
+handler = {
+   apply: function(target, thisArg, argumentsList) {
+   }
+}
+window.open = new Proxy(window.open, handler);
+Element.prototype.appendChild = new Proxy(Element.prototype.appendChild, handler);
+```
+
 ### DevTools
 
 ```bash

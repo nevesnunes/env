@@ -1,5 +1,10 @@
 # +
 
+https://binaryresearch.github.io/2020/01/22/more-angr-defeating-5-ELF-crackmes.html
+https://jkrshnmenon.wordpress.com/2019/01/31/even-the-king-bows-before-angr/
+    ~/code/snippets/angr/king.py
+[CTFtime\.org / SwampCTF 2018 / Journey / Writeup](https://ctftime.org/writeup/9452)
+
 https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md
 
 https://github.com/AlyaGomaa/CTFs/tree/master/redpwn/r1sc
