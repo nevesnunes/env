@@ -1,0 +1,6 @@
+# GIMP color profile history
+
+(color-profile "ISO Coated v2 300% (ECI)" "file:///home/fn/.local/share/color/eci/ISOcoated_v2_300_eci.icc")
+(color-profile "Chemical proof" "file:///usr/share/color/icc/krita/cmyk.icm")
+
+# end of color profile history

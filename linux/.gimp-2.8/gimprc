@@ -1,0 +1,58 @@
+# GIMP gimprc
+# 
+# This is your personal gimprc file.  Any variable defined in this file takes
+# precedence over the value defined in the system-wide gimprc:
+# /etc/gimp/2.0/gimprc
+# Most values can be set within GIMP by changing some options in the
+# Preferences dialog.
+
+(tile-cache-size 1024M)
+(default-grid
+    (style solid)
+    (fgcolor (color-rgba 0.000000 0.000000 0.000000 1.000000))
+    (bgcolor (color-rgba 1.000000 1.000000 1.000000 1.000000))
+    (xspacing 32.000000)
+    (yspacing 32.000000)
+    (spacing-unit inches)
+    (xoffset 0.000000)
+    (yoffset 0.000000)
+    (offset-unit inches))
+(undo-levels 10)
+(undo-size 256M)
+(color-management
+    (mode display)
+    (cmyk-profile "/home/fn/.local/share/color/eci/ISOcoated_v2_300_eci.icc")
+    (display-profile-from-gdk yes)
+    (display-rendering-intent perceptual)
+    (simulation-rendering-intent perceptual)
+    (simulation-gamut-check no)
+    (out-of-gamut-color (color-rgb 0.501961 0.501961 0.501961))
+    (display-module "CdisplayLcms"))
+(color-profile-policy convert)
+(default-view
+    (show-menubar yes)
+    (show-statusbar yes)
+    (show-rulers no)
+    (show-scrollbars yes)
+    (show-selection yes)
+    (show-layer-boundary no)
+    (show-guides yes)
+    (show-grid no)
+    (show-sample-points yes)
+    (padding-mode default)
+    (padding-color (color-rgb 1.000000 1.000000 1.000000)))
+(default-fullscreen-view
+    (show-menubar yes)
+    (show-statusbar yes)
+    (show-rulers no)
+    (show-scrollbars yes)
+    (show-selection yes)
+    (show-layer-boundary no)
+    (show-guides yes)
+    (show-grid no)
+    (show-sample-points yes)
+    (padding-mode default)
+    (padding-color (color-rgb 1.000000 1.000000 1.000000)))
+
+
+# end of gimprc
