@@ -1,0 +1,1369 @@
+# Thing 1 (Player)
+# Hit points = 100
+# Reaction time = 0
+# Pain chance = 255
+# Speed = 0
+# Width = 16
+# Height = 56
+# Mass = 100
+# Missile damage = 0
+
+# Thing 2 (Trooper)
+# Hit points = 20
+# Reaction time = 8
+# Pain chance = 200
+# Speed = 8
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 3 (Sergeant)
+# Hit points = 30
+# Reaction time = 8
+# Pain chance = 170
+# Speed = 8
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 4 (Arch-vile)
+# Hit points = 700
+# Reaction time = 8
+# Pain chance = 10
+# Speed = 15
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 500
+# Missile damage = 0
+
+# Thing 5 (Arch-vile Fire)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 6 (Revenant)
+# Hit points = 300
+# Reaction time = 8
+# Pain chance = 100
+# Speed = 10
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 500
+# Missile damage = 0
+
+# Thing 7 (Revenant Rocket)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 10*FRACUNIT
+# Width = 11*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 10
+
+# Thing 8 (Fireball Trail)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 9 (Mancubus)
+# Hit points = 600
+# Reaction time = 8
+# Pain chance = 80
+# Speed = 8
+# Width = 48*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 1000
+# Missile damage = 0
+
+# Thing 10 (Mancubus Fireball)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 20*FRACUNIT
+# Width = 6*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 8
+
+# Thing 11 (Chaingunner)
+# Hit points = 70
+# Reaction time = 8
+# Pain chance = 170
+# Speed = 8
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 12 (Imp)
+# Hit points = 60
+# Reaction time = 8
+# Pain chance = 200
+# Speed = 8
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 13 (Demon)
+# Hit points = 150
+# Reaction time = 8
+# Pain chance = 180
+# Speed = 10
+# Width = 30*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 400
+# Missile damage = 0
+
+# Thing 14 (Spectre)
+# Hit points = 150
+# Reaction time = 8
+# Pain chance = 180
+# Speed = 10
+# Width = 30*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 400
+# Missile damage = 0
+
+# Thing 15 (Cacodemon)
+# Hit points = 400
+# Reaction time = 8
+# Pain chance = 128
+# Speed = 8
+# Width = 31*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 400
+# Missile damage = 0
+
+# Thing 16 (Baron of Hell)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 50
+# Speed = 8
+# Width = 24*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 1000
+# Missile damage = 0
+
+# Thing 17 (Baron Fireball)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 15*FRACUNIT
+# Width = 6*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 8
+
+# Thing 18 (Hell Knight)
+# Hit points = 500
+# Reaction time = 8
+# Pain chance = 50
+# Speed = 8
+# Width = 24*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 1000
+# Missile damage = 0
+
+# Thing 19 (Lost Soul)
+# Hit points = 100
+# Reaction time = 8
+# Pain chance = 256
+# Speed = 8
+# Width = 16*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 50
+# Missile damage = 3
+
+# Thing 20 (Spiderdemon)
+# Hit points = 3000
+# Reaction time = 8
+# Pain chance = 40
+# Speed = 12
+# Width = 128*FRACUNIT
+# Height = 100*FRACUNIT
+# Mass = 1000
+# Missile damage = 0
+
+# Thing 21 (Arachnotron)
+# Hit points = 500
+# Reaction time = 8
+# Pain chance = 128
+# Speed = 12
+# Width = 64*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 600
+# Missile damage = 0
+
+# Thing 22 (Cyberdemon)
+# Hit points = 4000
+# Reaction time = 8
+# Pain chance = 20
+# Speed = 16
+# Width = 40*FRACUNIT
+# Height = 110*FRACUNIT
+# Mass = 1000
+# Missile damage = 0
+
+# Thing 23 (Pain Elemental)
+# Hit points = 400
+# Reaction time = 8
+# Pain chance = 128
+# Speed = 8
+# Width = 31*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 400
+# Missile damage = 0
+
+# Thing 24 (SS Nazi)
+# Hit points = 50
+# Reaction time = 8
+# Pain chance = 170
+# Speed = 8
+# Width = 20*FRACUNIT
+# Height = 56*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 25 (Commander Keen)
+# Hit points = 100
+# Reaction time = 8
+# Pain chance = 256
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 72*FRACUNIT
+# Mass = 10000000
+# Missile damage = 0
+
+# Thing 26 (Big Brain)
+# Hit points = 250
+# Reaction time = 8
+# Pain chance = 255
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 10000000
+# Missile damage = 0
+
+# Thing 27 (Demon Spawner)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 32*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 28 (Demon Spawn Spot)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 32*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 29 (Demon Spawn Cube)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 10*FRACUNIT
+# Width = 6*FRACUNIT
+# Height = 32*FRACUNIT
+# Mass = 100
+# Missile damage = 3
+
+# Thing 30 (Demon Spawn Fire)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 31 (Barrel)
+# Hit points = 20
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 10*FRACUNIT
+# Height = 42*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 32 (Imp Fireball)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 10*FRACUNIT
+# Width = 6*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 3
+
+# Thing 33 (Caco Fireball)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 10*FRACUNIT
+# Width = 6*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 5
+
+# Thing 34 (Rocket In Air)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 20*FRACUNIT
+# Width = 11*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 20
+
+# Thing 35 (Plasma Bullet)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 25*FRACUNIT
+# Width = 13*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 5
+
+# Thing 36 (BFG Shot)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 25*FRACUNIT
+# Width = 13*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 100
+
+# Thing 37 (Arachnotron Fireball)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 25*FRACUNIT
+# Width = 13*FRACUNIT
+# Height = 8*FRACUNIT
+# Mass = 100
+# Missile damage = 5
+
+# Thing 38 (Bullet Puff)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 39 (Blood Splat)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 40 (Teleport Flash)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 41 (Item Respawn Fog)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 42 (Teleport Exit)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 43 (BFG Hit)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 44 (Green Armor)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 45 (Blue Armor)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 46 (Health Potion)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 47 (Armor Helmet)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 48 (Blue Key Card)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 49 (Red Key Card)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 50 (Yellow Key Card)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 51 (Yellow Skull Key)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 52 (Red Skull Key)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 53 (Blue Skull Key)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 54 (Stim Pack)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 55 (Medical Kit)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 56 (Soul Sphere)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 57 (Invulnerability Sphere)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 58 (Berserk Pack)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 59 (Blur Sphere)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 60 (Radiation Suit)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 61 (Computer Map)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 62 (Lite Amp. Visor)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 63 (Mega Sphere)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 64 (Ammo Clip)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 65 (Box of Ammo)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 66 (Rocket)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 67 (Box of Rockets)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 68 (Energy Cell)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 69 (Energy Pack)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 70 (Shells)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 71 (Box of Shells)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 72 (Backpack)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 73 (BFG9000)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 74 (Chaingun)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 75 (Chainsaw)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 76 (Rocket Launcher)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 77 (Plasma Gun)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 78 (Shotgun)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 79 (Super Shotgun)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 80 (Tall Lamp)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 81 (Tall Lamp 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 82 (Short Lamp)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 83 (Tall Green Pillar)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 84 (Short Green Pillar)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 85 (Tall Red Pillar)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 86 (Short Red Pillar)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 87 (Pillar with Skull)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 88 (Pillar with Heart)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 89 (Eye in Symbol)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 90 (Flaming Skulls)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 91 (Grey Tree)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 92 (Tall Blue Torch)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 93 (Tall Green torch)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 94 (Tall Red Torch)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 95 (Small Blue Torch)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 96 (Small Green Torch)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 97 (Small Red Torch)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 98 (Brown Stub)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 99 (Technical Column)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 100 (Candle)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 101 (Candelabra)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 102 (Swaying Body)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 68*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 103 (Hanging Arms Out)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 84*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 104 (One-legged Body)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 84*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 105 (Hanging Torso)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 68*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 106 (Hanging Leg)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 52*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 107 (Hanging Arms Out 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 84*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 108 (Hanging Torso 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 68*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 109 (One-legged Body 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 52*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 110 (Hanging Leg 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 52*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 111 (Swaying Body 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 68*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 112 (Dead Cacodemon)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 113 (Dead Marine)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 114 (Dead Trooper)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 115 (Dead Demon)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 116 (Dead Lost Soul)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 117 (Dead Imp)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 118 (Dead Sergeant)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 119 (Guts and Bones)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 120 (Guts and Bones 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 121 (Skewered Heads)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 122 (Pool of Blood)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 123 (Pole with Skull)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 124 (Pile of Skulls)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 125 (Impaled Body)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 126 (Twitching Body)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 127 (Large Tree)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 32*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 128 (Burning Barrel)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 129 (Hanging Body 1)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 88*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 130 (Hanging Body 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 88*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 131 (Hanging Body 3)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 132 (Hanging Body 4)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 133 (Hanging Body 5)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 134 (Hanging Body 6)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 16*FRACUNIT
+# Height = 64*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 135 (Pool Of Blood 1)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 136 (Pool Of Blood 2)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0
+
+# Thing 137 (Brains)
+# Hit points = 1000
+# Reaction time = 8
+# Pain chance = 0
+# Speed = 0
+# Width = 20*FRACUNIT
+# Height = 16*FRACUNIT
+# Mass = 100
+# Missile damage = 0

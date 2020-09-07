@@ -1,0 +1,589 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: gimp-plugin-bimp\n"
+"POT-Creation-Date: 2014-11-16 12:11+0100\n"
+"PO-Revision-Date: 2014-11-16 12:21+0100\n"
+"Last-Translator: Pedro Cunha\n"
+"Language-Team: Alessandro Francesconi <alessandrofrancesconi@live.it>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ..\\..\\..\\src\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\\manipulation-gui\n"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:37
+msgid "Format settings"
+msgstr "Definições de formato"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:58
+msgid "Interlaced"
+msgstr "Interlaçado"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:78
+#: LC_MESSAGES/manipulation-gui/gui-changeformat.c:118
+msgid "Quality"
+msgstr "Qualidade"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:84
+#: LC_MESSAGES/manipulation-gui/gui-changeformat.c:213
+msgid "Advanced params"
+msgstr "Parâmetros avançados"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:88
+msgid "Smoothing"
+msgstr "Suavização"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:95
+msgid "Optimize"
+msgstr "Optimizar"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:96
+msgid "Progressive"
+msgstr "Progressivo"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:97
+msgid "Save baseline"
+msgstr "Guardar patamar"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:100
+msgid "Comment"
+msgstr "Comentário"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:107
+msgid "Markers rows"
+msgstr "Linhas marcadoras"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:112
+msgid "Subsampling"
+msgstr "Subamostragem"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:116
+msgid "Small size"
+msgstr "Tamanho pequeno"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:123
+msgid "DCT algorithm"
+msgstr "Algoritmo DCT"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:127
+msgid "Integer"
+msgstr "Inteiro"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:128
+msgid "Fast integer"
+msgstr "Inteiro rápido"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:129
+msgid "Float"
+msgstr "Flutuante"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:205
+msgid "Interlace (Adam7)"
+msgstr "Interlaçar (Adam7)"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:207
+#: LC_MESSAGES/manipulation-gui/gui-changeformat.c:303
+msgid "Compression"
+msgstr "Compressão"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:216
+msgid "Save background color"
+msgstr "Guardar cor de fundo"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:217
+msgid "Save gamma"
+msgstr "Guardar gama"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:218
+msgid "Save layer offset"
+msgstr "Guardar camada de compensação"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:219
+msgid "Save resolution"
+msgstr "Guardar resolução"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:220
+msgid "Save creation date"
+msgstr "Guardar data de criação"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:221
+msgid "Save comments"
+msgstr "Guardar comentários"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:222
+msgid "Save color from transparent pixels"
+msgstr "Guardar cor para pixeis transparentes"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:270
+msgid "RLE compression"
+msgstr "Compressão RLE"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:273
+msgid "Image origin"
+msgstr "Origem da imagem"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:278
+#: LC_MESSAGES/manipulation-gui/gui-watermark.c:241
+msgid "Top-left"
+msgstr "Topo-esquerda"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:279
+#: LC_MESSAGES/manipulation-gui/gui-watermark.c:259
+msgid "Bottom-left"
+msgstr "Fundo-esquerda"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:308
+#: LC_MESSAGES/manipulation-gui/gui-fliprotate.c:40
+msgid "None"
+msgstr "Nenhum"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:309
+msgid "LZW"
+msgstr "LZW"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:310
+msgid "Pack bits"
+msgstr "Pack bits"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:311
+msgid "Deflate"
+msgstr "Deflate"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:312
+msgid "JPEG"
+msgstr "JPEG"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:313
+msgid "CCITT G3 Fax"
+msgstr "CCITT G3 Fax"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:314
+msgid "CCITT G4 Fax"
+msgstr "CCITT G4 Fax"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-changeformat.c:329
+msgid "This format has no params"
+msgstr "Este formato não tem parâmetros"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-color.c:21
+msgid "Brightness"
+msgstr "Brilho"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-color.c:29
+msgid "Contrast"
+msgstr "Contraste"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-color.c:36
+msgid "Convert to grayscale"
+msgstr "Converter para escala de cinza"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-color.c:38
+msgid "Automatic color levels correction"
+msgstr "Correcção automática de níveis de cor"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-color.c:41
+msgid "Change color curve from settings file:"
+msgstr "Mudar cor da curva de ficheiro de configuração: "
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-color.c:42
+msgid "Select GIMP Curve file"
+msgstr "Seleccione ficheiro de curva GIMP"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:27
+msgid "Crop to a standard aspect ratio"
+msgstr "Cortar para uma proporção padrão"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:53
+msgid "Manual crop (pixel values)"
+msgstr "Corte manual (valores de pixeis)"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:58
+#: LC_MESSAGES/manipulation-gui/gui-resize.c:63
+msgid "Width"
+msgstr "Largura"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:62
+#: LC_MESSAGES/manipulation-gui/gui-resize.c:65
+msgid "Height"
+msgstr "Altura"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:108
+msgid "One-to-one"
+msgstr "Um-para-um"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:111
+msgid "Classic 35 mm film"
+msgstr "Filme clássico de 35 mm"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:114
+msgid "Standard VGA monitor"
+msgstr "Monitor VGA padrão"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:117
+msgid "Widescreen"
+msgstr "Ecrã panoramico"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:120
+msgid "Widescreen extended"
+msgstr "Ecrã panoramico extendido"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:123
+msgid "EU Passport portrait"
+msgstr "Retrato de passaporte da UE"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:126
+msgid "Classic smartphone screen"
+msgstr "Ecrã clássico de smartphone"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:129
+msgid "Tall smartphone screen"
+msgstr "Ecrã alto de smartphone"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:132
+msgid "Classic tablet screen"
+msgstr "Ecrã clássico de tablet"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-crop.c:135
+msgid "Custom ratio"
+msgstr "Proporção personalizado"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-fliprotate.c:19
+msgid "Flip"
+msgstr "Inverter"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-fliprotate.c:23
+msgid "Horizontally"
+msgstr "Horizontalmente"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-fliprotate.c:29
+msgid "Vertically"
+msgstr "Verticalmente"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-fliprotate.c:37
+msgid "Rotation"
+msgstr "Rotação"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-rename.c:26
+msgid "Keywords"
+msgstr "Palavras-chave"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-rename.c:30
+msgid "Original filename (without extension)"
+msgstr "Nome de ficheiro original (sem extensão)"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-rename.c:31
+msgid "Incremental number"
+msgstr "Número incremental"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-rename.c:32
+msgid "Date and time (YYYY-MM-DD_hh-mm)"
+msgstr "Data e hora (YYYY-MM-DD_hh-mm)"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-rename.c:52
+#, c-format
+msgid ""
+"Can't save!\n"
+"'%s' or '%s' symbol must be present."
+msgstr ""
+"Não é possível guardar!\n"
+"O símbolo '%s' ou '%s' tem que estar presente."
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-rename.c:64
+msgid ""
+"Can't save!\n"
+"Pattern contains invalid characters."
+msgstr ""
+"Não é possivel gardar!\n"
+"Padrão contém caracteres inválidos."
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:37
+msgid "Set to a percentage of the original"
+msgstr "Definir para uma percentagem do original"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:39
+msgid "Set exact size in pixel"
+msgstr "Definir tamanho exacto em pixeis"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:45
+msgid "For both dimensions"
+msgstr "Para ambas as dimensões"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:47
+msgid "Set width only"
+msgstr "Definir apenas largura"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:49
+msgid "Set height only"
+msgstr "Definir apenas altura"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:52
+msgid "Preserve aspect ratio"
+msgstr "Preservar proporção"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:56
+msgid "Interpolation quality"
+msgstr "Qualidade da interpolação"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:69
+msgid "Change resolution"
+msgstr "Alterar resolução"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:74
+msgid "X axis"
+msgstr "Eixo X"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-resize.c:77
+msgid "Y axis"
+msgstr "Eixo Y"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-sharpblur.c:17
+msgid "More sharpen"
+msgstr "Mais aguçado"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-sharpblur.c:23
+msgid "More blurred"
+msgstr "Mais desfocado"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-userdef.c:49
+msgid ""
+"Choose a supported GIMP procedure from the list on the left\n"
+"and define its parameters on the right."
+msgstr ""
+"Escolha um procedimento suportado do GIMP da lista da esquerda\n"
+"e defina os parâmetros na direita."
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-userdef.c:61
+msgid "Search"
+msgstr "Procurar"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-userdef.c:303
+msgid ""
+"Can't save because\n"
+"no procedure has been selected"
+msgstr ""
+"Não é possível guardar porque\n"
+"nenhum procedimento foi seleccionado"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-userdef.c:349
+msgid "Author"
+msgstr "Autor"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-userdef.c:570
+msgid "This procedure takes no editable params"
+msgstr "Este procedimento leva parâmetros não editáveis"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:32
+msgid "Text watermark"
+msgstr "Marca d'água de texto"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:36
+msgid "Text"
+msgstr "Texto"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:45
+msgid "Font"
+msgstr "Tipo de Letra"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:51
+msgid "Color"
+msgstr "Cor"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:58
+msgid "Image watermark"
+msgstr "Marca d'água de imagem"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:62
+msgid "Select image"
+msgstr "Seleccione imagem"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:67
+msgid "All supported types"
+msgstr "Todos os tipos suportados"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:112
+msgid "Opacity"
+msgstr "Opacidade"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:122
+msgid "Position on the image"
+msgstr "Posição da imagem"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:244
+msgid "Top-center"
+msgstr "Topo-centro"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:247
+msgid "Top-right"
+msgstr "Topo-direita"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:250
+msgid "Center-left"
+msgstr "Centro-esquerda"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:253
+msgid "Center"
+msgstr "Centro"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:256
+msgid "Center-right"
+msgstr "Centro-direita"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:262
+msgid "Bottom-center"
+msgstr "Fundo-centro"
+
+#: Desktop/Link to LC_MESSAGES/manipulation-gui/gui-watermark.c:265
+msgid "Bottom-right"
+msgstr "Fundo-direita"
+
+#~ msgid "The manipulations set is empty!"
+#~ msgstr "O conjunto de manipulações está vazio!"
+
+#~ msgid "The file list is empty!"
+#~ msgstr "A lista de ficheiros está vazia!"
+
+#~ msgid "Manipulation set"
+#~ msgstr "Conjunto de manipulação"
+
+#~ msgid "Input files and options"
+#~ msgstr "Ficheiros de entrada e opções"
+
+#~ msgid "Add images"
+#~ msgstr "Adicionar imagens"
+
+#~ msgid "Add folders"
+#~ msgstr "Adicionar pastas"
+
+#~ msgid "Remove selected"
+#~ msgstr "Remover seleccionado"
+
+#~ msgid "Remove all"
+#~ msgstr "Remover tudo"
+
+#~ msgid "Output folder"
+#~ msgstr "Pasta de destino"
+
+#~ msgid "Alert when overwriting existing files"
+#~ msgstr "Alertar ao substituir os ficheiros existentes"
+
+#~ msgid "Keep folder hierarchy"
+#~ msgstr "Manter a hierarquia da pasta"
+
+#~ msgid "Delete original file when done"
+#~ msgstr "Apagar o ficheiro original quando concluído"
+
+#~ msgid "Click for preview"
+#~ msgstr "Clique para pré-visualização"
+
+#~ msgid "Couldn't read into \"%s\" directory."
+#~ msgstr "Não foi possível ler a pasta \"%s\""
+
+#~ msgid "Can't show a preview because the manipulations set is empty"
+#~ msgstr ""
+#~ "Não é possível mostrar uma pré-visualização porque o conjunto de "
+#~ "manipulação está vazio"
+
+#~ msgid "Preview"
+#~ msgstr "Pré-visualizar"
+
+#~ msgid ""
+#~ "This is how the selected image will look like after the batch process"
+#~ msgstr ""
+#~ "Isto é como a imagem seleccionada vai ficar depois do processamento em "
+#~ "lote"
+
+#~ msgid "Select images"
+#~ msgstr "Seleccione as imagens"
+
+#~ msgid "Select folders containing images"
+#~ msgstr "Seleccione pastas que contenham imagens"
+
+#~ msgid "Add files from the whole hierarchy"
+#~ msgstr "Adicionar ficheiros de toda a hierarquia"
+
+#~ msgid "Save this set..."
+#~ msgstr "Guardar este conjunto..."
+
+#~ msgid "Load set..."
+#~ msgstr "Carregar conjunto..."
+
+#~ msgid "Edit properties..."
+#~ msgstr "Editar propriedades"
+
+#~ msgid "Remove this manipulation"
+#~ msgstr "Remover esta manipulação"
+
+#~ msgid "Can't add another manipulation of this kind. Only one is permitted!"
+#~ msgstr ""
+#~ "Não é possível adicionar outra manipulação deste tipo. Apenas uma é "
+#~ "permitida!"
+
+#~ msgid "An error occured when importing a saved batch file :("
+#~ msgstr "Ocorreu um erro ao importar um ficheiro de lote :("
+
+#~ msgid "This will overwrite current manipulations set. Continue?"
+#~ msgstr "Isto irá substituir o conjunto de manipulação actual. Continuar?"
+
+#~ msgid "Applies GIMP manipulations on groups of images"
+#~ msgstr "Aplica manipulações do GIMP a grupos de imagens"
+
+#~ msgid "translator-name <translator-email>"
+#~ msgstr "Pedro Cunha <gimpextensions@gmail.com>"
+
+#~ msgid "Resize"
+#~ msgstr "Redimensionar"
+
+#~ msgid "Crop"
+#~ msgstr "Cortar"
+
+#~ msgid "Flip or Rotate"
+#~ msgstr "Inverter ou Rodar"
+
+#~ msgid "Color correction"
+#~ msgstr "Correcção de cor"
+
+#~ msgid "Sharp or Blur"
+#~ msgstr "Aguçar ou Desfocar"
+
+#~ msgid "Add a Watermark"
+#~ msgstr "Adicionar marca de água"
+
+#~ msgid "Change format and compression"
+#~ msgstr "Alterar formato e compressão"
+
+#~ msgid "Rename with a pattern"
+#~ msgstr "Renomear com um padrão"
+
+#~ msgid "Other GIMP procedure..."
+#~ msgstr "Outro procedimento GIMP..."
+
+#~ msgid ""
+#~ "Can't save image %s: input file has no extension.\n"
+#~ "You can solve this error by adding a \"Change format or compression\" step"
+#~ msgstr ""
+#~ "Não é possível guardar imagem %s: ficheiro de entrada não tem extensão.\n"
+#~ "Pode resolver este problema adicionando um passo \"Change format or "
+#~ "compression\""
+
+#~ msgid "Working on file %s..."
+#~ msgstr "A trabalhar no ficheiro %s..."
+
+#~ msgid "Operations stopped"
+#~ msgstr "Operações paradas"
+
+#~ msgid "End, all files have been processed with %d errors"
+#~ msgstr "Terminado, todos os ficheiros foram processados com %d erros"
+
+#~ msgid "File %s already exists, overwrite it?"
+#~ msgstr "O ficheiro %s já existe, substituir?"
+
+#~ msgid "Yes, don't ask again"
+#~ msgstr "Sim, não perguntar novamente"
+
+#~ msgid "Overwrite?"
+#~ msgstr "Substituir?"

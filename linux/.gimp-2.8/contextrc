@@ -1,0 +1,12 @@
+# GIMP user context
+
+(tool "gimp-rotate-tool")
+(paint-info "gimp-paintbrush")
+(brush "2. Hardness 050")
+(dynamics "Pressure Opacity")
+(pattern "Pine")
+(gradient "FG to BG (RGB)")
+(palette "Default")
+(font "Sans")
+
+# end of user context

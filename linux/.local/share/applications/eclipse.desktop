@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Eclipse
+Comment=Eclipse IDE
+Type=Application
+Encoding=UTF-8
+Exec=eclipse
+Icon=/home/fn/opt/eclipse/icon.xpm
+Categories=GNOME;Application;Development;
+Terminal=false
+StartupNotify=true

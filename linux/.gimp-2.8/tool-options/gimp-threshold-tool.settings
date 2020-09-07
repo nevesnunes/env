@@ -1,0 +1,16 @@
+# settings
+
+(GimpThresholdConfig "2015-09-20 02:21:17"
+    (time 1442712077)
+    (low 0.498039)
+    (high 1.000000))
+(GimpThresholdConfig "2015-09-20 02:21:16"
+    (time 1442712076)
+    (low 0.627451)
+    (high 1.000000))
+(GimpThresholdConfig "2015-09-20 02:19:53"
+    (time 1442711993)
+    (low 0.529412)
+    (high 1.000000))
+
+# end of settings

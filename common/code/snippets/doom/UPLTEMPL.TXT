@@ -1,0 +1,76 @@
+===========================================================================
+Archive Maintainer      : (special instructions if any)
+Update to               : (original filename if updating an existing file)
+Advanced engine needed  : (ZDoom, Boom, Legacy, etc. if REQUIRED)
+Primary purpose         : Single+Coop play / Deathmatch / No levels included
+===========================================================================
+Title                   : (title of your masterpiece)
+Filename                : (filename of primary file (xxx.WAD))
+Release date            : 
+Author                  : (your name here)
+Email Address           :
+Other Files By Author   :
+Misc. Author Info       : 
+
+Description             : (Set the mood here but put any long story at the end)
+
+Additional Credits to   : 
+===========================================================================
+* What is included *
+
+New levels              : (Number of levels or "None")
+Sounds                  : Yes / No
+Music                   : Yes / No
+Graphics                : Yes / No
+Dehacked/BEX Patch      : Yes / No
+Demos                   : Yes / No
+Other                   : Yes / No (describe if yes)
+Other files required    : (list unusual files the player is expected to have)
+
+
+* Play Information *
+
+Game                    : DOOM / DOOM2 / Heretic / Hexen...
+Map #                   : (For DOOM2 maps, format is Mapxx. Others are ExMx.)
+Single Player           : Designed for / Player starts only / No
+Cooperative 2-4 Player  : Designed for / Player starts only / No
+Deathmatch 2-4 Player   : Designed for / Player starts only / No
+Other game styles       : (specify such things as Skulltag, etc.)
+Difficulty Settings     : Yes / Not implemented
+
+
+* Construction *
+
+Base                    : New from scratch / Modified (name of original file)
+Build Time              :  
+Editor(s) used          : 
+Known Bugs              : 
+May Not Run With        : Engines/exes known to have a problem with it
+Tested With             : Engines/exes used during testing (include versions)
+
+
+
+* Copyright / Permissions *
+
+Authors (MAY/may NOT) use the contents of this file as a base for
+modification or reuse.  Permissions have been obtained from original
+authors for any of their resources modified or included in this file.
+
+(delete one of these two paragraphs:)
+
+You MAY not distribute this file in any format.
+
+You MAY distribute this file, provided you include this text
+file, with no modifications.  You may distribute this file in any
+electronic format (BBS, Diskette, CD, etc) as long as you include
+this file intact.  I have received permission from the original
+authors of any modified or included content in this file to allow
+further distribution.
+
+
+* Where to get the file that this text file describes *
+
+The Usual: ftp://archives.gamers.org/pub/idgames/ and mirrors
+Web sites:
+FTP sites:
+
