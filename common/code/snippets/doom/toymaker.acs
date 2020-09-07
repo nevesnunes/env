@@ -1,0 +1,115 @@
+#include "zcommon.acs"
+
+// You can crash most programs with bad data. For Doom: WADs with bad pointers, recursive node data, negative-sized/huge textures, sounds with bad headers, etc., etc. It's much more difficult, and more clever (and more enjoyable) to make something that does not crash... 
+
+script 1 ENTER
+{
+    Thing_ChangeTID(0,1337);
+    SetLineSpecial(1,71,1,1,0,0);
+    if (!GetCVar ("vid_renderer"))
+    {
+        terminate;
+    }
+    else
+    {
+        Print(s:"Your engine is in OpenGL mode. The WAD must be in software mode in order to be played correctly.");
+    }
+}
+
+script 2 (void)
+{
+    Delay(35*1);
+    TeleportOther(1337,3,0);
+    Light_ChangeToValue(4,96);
+    LocalAmbientSound("SOUND02",128);
+}
+
+
+script 3 (void)
+{
+    Light_ChangeToValue(4,64);
+    LocalAmbientSound("SOUND01",128);
+    SpawnSpot("HoleInHead",5,0,0);
+}
+
+script 4 (void)
+{
+    SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+    SetFont("JSCARE");
+    Print(s:"A");
+    LocalAmbientSound("SOUND03",128);
+    Delay(35*2);
+    Delay(20);
+    SetFont("GLITCHED");
+    Print(s:"A");
+    Delay(15);
+    ACS_Execute(999,0);
+}
+
+script 5 (void)
+{
+    SetLineSpecial(1,71,4,1,0,0);
+}
+
+script 6 (void)
+{
+    SetMusic("");
+    Thing_Remove(8);
+    LocalAmbientSound("SOUND04",128);
+    Floor_LowerToNearest(9,64);
+}
+
+script 7 (void)
+{
+    LocalAmbientSound("SOUND04",128);
+}
+
+script 8 (void)
+{
+    SetMusic("");
+    Floor_LowerToNearest(10,999);
+}
+
+script 9 (void)
+{
+    SetMusic("GLITCHY");
+    Floor_RaiseByValue(10,999,280);
+}
+    
+script 10 (void)
+{
+    Thing_Activate(11);
+    LocalAmbientSound("SOUND04",128);
+    Delay(10);
+    LocalAmbientSound("SOUND04",128);
+    Delay(10);
+    LocalAmbientSound("SOUND04",128);
+}
+
+script 11 (void)
+{
+    SetMusic("");
+    LocalAmbientSound("SOUND04",128);
+    SpawnSpot("MysteriousWomanEvil",12,0,0);
+}
+
+script 12 (void)
+{
+    SetPlayerProperty(1,1,PROP_TOTALLYFROZEN);
+    LocalAmbientSound("SOUND05",128);
+    Delay(35);
+    ACS_Execute(999,0);
+}
+
+script 13 (void)
+{
+    ACS_Execute(999,0);
+}
+
+script 999 (void)
+{
+    While(True)
+    {
+    Autosave();
+    }
+}

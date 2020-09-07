@@ -1,11 +1,5 @@
-[submodule "common/code/snippets/latex/awesome-LaTeX"]
-	path = common/code/snippets/latex/awesome-LaTeX
-	url = https://github.com/egeerardyn/awesome-LaTeX
 [submodule "common/code/snippets/templates/markdown-styles"]
 	path = common/code/snippets/templates/markdown-styles
-	url = https://github.com/mixu/markdown-styles.git
-[submodule "common/code/snippets/markdown-styles"]
-	path = common/code/snippets/markdown-styles
 	url = https://github.com/mixu/markdown-styles.git
 [submodule "common/code/snippets/templates/gitignore"]
 	path = common/code/snippets/templates/gitignore
