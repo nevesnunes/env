@@ -20,7 +20,6 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
 
 rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --copy-links \
-  --exclude='.config/retroarch/playlists' \
   --exclude='.dosbox/capture' \
   --exclude='.local/share/applications/wine*' \
   --exclude='.tmux/resurrect' \
@@ -107,7 +106,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/pythonrc \
   /home/"$USER"/./.config/qt5ct \
   /home/"$USER"/./.config/ranger \
-  /home/"$USER"/./.config/retroarch \
+  /home/"$USER"/./.config/retroarch/*.cfg \
   /home/"$USER"/./.config/spacefm \
   /home/"$USER"/./.config/switchlayout \
   /home/"$USER"/./.config/sxiv \
@@ -121,7 +120,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/yamllint \
   /home/"$USER"/./.config/zathura \
   /home/"$USER"/./.config/zdoom/*.ini \
-  /home/"$USER"/./.FBReader \
+  /home/"$USER"/./.FBReader/ui.xml \
   /home/"$USER"/./.local/share/applications \
   /home/"$USER"/./.local/share/completions \
   /home/"$USER"/./.local/share/crispy-doom/*.cfg \
