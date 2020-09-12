@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <group name="Colors">
+    <option name="Background" value="14540253"/>
+  </group>
+  <group name="InfoDialog">
+    <option name="SelectedTab" value="Common"/>
+  </group>
+  <group name="Options">
+    <option name="BottomMargin" value="80"/>
+    <option name="Height" value="710"/>
+    <option name="LeftMargin" value="180"/>
+    <option name="RightMargin" value="180"/>
+    <option name="TopMargin" value="80"/>
+    <option name="Width" value="886"/>
+    <option name="XPosition" value="0"/>
+    <option name="YPosition" value="0"/>
+  </group>
+  <group name="OptionsDialog">
+    <option name="Height" value="370"/>
+    <option name="SelectedTab" value="Styles"/>
+    <option name="Width" value="580"/>
+  </group>
+  <group name="Style">
+    <option name="Base:alignment" value="1"/>
+    <option name="Base:fontFamily" value="URW Palladio L"/>
+    <option name="Base:fontSize" value="18"/>
+    <option name="Code:fontFamily" value="Meslo LG M DZ"/>
+    <option name="Header 1:alignment" value="0"/>
+    <option name="Header 2:alignment" value="0"/>
+    <option name="Preformatted text:alignment" value="0"/>
+    <option name="Preformatted text:fontFamily" value="Courier"/>
+    <option name="Section Title:alignment" value="0"/>
+    <option name="Title:alignment" value="0"/>
+    <option name="UseCustomFonts" value="true"/>
+  </group>
+  <group name="ToggleButtonGroup">
+    <option name="booksOrder" value="byAuthor"/>
+  </group>
+</config>
