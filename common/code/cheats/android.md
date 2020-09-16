@@ -4,6 +4,10 @@ https://ibotpeaches.github.io/Apktool
 http://www.javadecompilers.com/apk
 http://www.decompileandroid.com/
 
+[GitHub \- androguard/androguard: Reverse engineering, Malware and goodware analysis of Android applications \.\.\. and more \(ninja !\)](https://github.com/androguard/androguard)
+    https://code.google.com/archive/p/elsim/wikis/Similarity.wiki#Android
+    https://www.phrack.org/issues.html?issue=68&id=15#article
+
 # emulation
 
 ### anbox
