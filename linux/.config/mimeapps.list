@@ -1,8 +1,8 @@
 [Added Associations]
 application/x-shellscript=gvim.desktop;
-application/x-mobipocket-ebook=FBReader.desktop;calibre-ebook-viewer.desktop;
+application/x-mobipocket-ebook=FBReader.desktop;calibre-ebook-viewer.desktop;com.github.johnfactotum.Foliate.desktop;
 image/vnd.djvu=calibre-ebook-viewer.desktop;evince.desktop;
-application/epub+zip=calibre-ebook-viewer.desktop;org.pwmt.zathura-pdf-mupdf.desktop;FBReader.desktop;
+application/epub+zip=calibre-ebook-viewer.desktop;org.pwmt.zathura-pdf-mupdf.desktop;FBReader.desktop;com.github.johnfactotum.Foliate.desktop;
 video/mp4=org.gnome.Totem.desktop;audacity.desktop;mpv.desktop;
 audio/x-xm=milkytracker.desktop;audacious.desktop;deadbeef.desktop;
 image/svg+xml=viewnior.desktop;gvim.desktop;inkscape.desktop;gimp.desktop;viewnior-dark.desktop;gimp-dark.desktop;
@@ -140,8 +140,8 @@ application/pgp-keys=gvim.desktop;
 
 [Default Applications]
 image/vnd.djvu=evince.desktop
-application/x-mobipocket-ebook=calibre-ebook-viewer.desktop
-application/epub+zip=calibre-ebook-viewer.desktop
+application/x-mobipocket-ebook=com.github.johnfactotum.Foliate.desktop
+application/epub+zip=com.github.johnfactotum.Foliate.desktop
 audio/mpeg=deadbeef.desktop
 audio/x-wav=deadbeef.desktop
 audio/x-xm=milkytracker.desktop

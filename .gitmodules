@@ -16,3 +16,6 @@
 [submodule "common/code/snippets/lzone-cheat-sheets"]
 	path = common/code/snippets/lzone-cheat-sheets
 	url = https://github.com/lwindolf/lzone-cheat-sheets
+[submodule "common/code/snippets/templates/plaintext"]
+	path = common/code/snippets/templates/plaintext
+	url = https://github.com/joedavis/plaintext
