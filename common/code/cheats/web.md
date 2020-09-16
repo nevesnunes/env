@@ -1,6 +1,33 @@
+# +
+
+https://snyk.io/vuln/
+
+# prototype pollution
+
+- [GitHub \- Kirill89/prototype\-pollution\-explained: Prototype Pollution in JavaScript](https://github.com/Kirill89/prototype-pollution-explained)
+    - [Prototype Pollution in lodash | Snyk](https://snyk.io/vuln/SNYK-JS-LODASH-73638)
+        - https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf
+
+# request forgery
+
+- [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
+
+# request smuggling
+
+https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-cleartext-h2c
+
+# directory traversal
+
+- writing arbitrary files
+    - ./forensics.md #zip ###extraction-path
+
+- [Directory Traversal in st | Snyk \- Open Source Security](https://snyk.io/vuln/SNYK-JS-MINHTTPSERVER-608658)
+    - https://blog.npmjs.org/post/80277229932/newly-paranoid-maintainers
+    - ~/Downloads/st-20140206_0_0_6b54ce2d2fb912eadd31e2c25c65456d2c8666e1.patch
+
 # xss
 
-https://security.stackexchange.com/questions/162436/example-of-reflected-client-xss-which-is-not-dom-based-xss
+- https://security.stackexchange.com/questions/162436/example-of-reflected-client-xss-which-is-not-dom-based-xss
 
 Mitigations:
 
@@ -84,6 +111,26 @@ for i in xrange(1, 50):
             break
 ```
 
-https://www.40huo.cn/blog/0ctf-2017-writeup.html
+- https://www.40huo.cn/blog/0ctf-2017-writeup.html
 
+# deserialization
 
+- https://bling.kapsi.fi/blog/jvm-deserialization-broken-classldr.html
+- https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-608664
+- https://blog.orange.tw/2020/09/how-i-hacked-facebook-again-mobileiron-mdm-rce.html
+
+# command injection
+
+- https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
+- [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
+    - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
+
+# side channels
+
+- https://snyk.io/blog/node-js-timing-attack-ccc-ctf/
+
+# filter bypass, waf
+
+php, non alphanumeric
+    https://github.com/ExTi0p/ctf/tree/master/2020/FwordCTF_2020/Jailoo_Warmup
+    https://securityonline.info/bypass-waf-php-webshell-without-numbers-letters/

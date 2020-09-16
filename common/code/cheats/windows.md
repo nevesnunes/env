@@ -692,3 +692,15 @@ fsutil file queryfileid C:\Users\foo\bar.link
 fsutil file queryfileid C:\Users\foo\bar.link
 # File ID is 0x0000000000000000005f000000021246
 ```
+
+# isolation, sandboxing
+
+https://superuser.com/questions/975912/how-can-i-disable-network-access-for-specific-user
+https://4sysops.com/archives/windows-10-sandbox-running-applications-in-an-isolated-environment/
+
+# conhost vs csrss
+
+https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
+    http://blogs.technet.com/b/askperf/archive/2009/10/05/windows-7-windows-server-2008-r2-console-host.aspx
+
+

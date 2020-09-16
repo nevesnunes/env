@@ -71,6 +71,17 @@ git clean -fX
 
 # ignored and non-ignored files
 git clean -fx
+
+# rewrite history by object ids
+p=foo/bar \
+&& git log --all --pretty=format:%H -- "$p" \
+    | xargs -i git ls-tree {} "$p" \
+    | awk '{print $3}' \
+    | xargs -i bash -c 'java \
+        -jar ~/opt/bfg.jar \
+        --delete-files \
+        --no-blob-protection \
+        --strip-blobs-with-ids <(printf "%s\n" "$1") .' _ {}
 ```
 
 # interactive mode
@@ -369,7 +380,6 @@ git clone git@foo.com:foo-team/foo.git
 
 # grep / search
 
-
 ```bash
 # across commits / history
 query=
@@ -378,13 +388,32 @@ subtree=
 git rev-list --all -- "$subtree" | xargs -i git grep "$query" {} -- "$subtree"
 
 # across branches
+query=
+git show-ref --heads | awk '{print $2}' | xargs -i git grep "$query" {}
+# ||
 git log -S foo -c
 git log -S foo --all -- '*.js'
+
+# changes of specific commit
+git log -1 -c $sha1sum
 
 # by filetype, from worktree root
 git grep foo -- '/*.js' '/*.cs'
 ```
 
 https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history
+
+# case studies
+
+https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/
+https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-to-rce-32c217727baa
+
+[GitHub \- newren/git\-filter\-repo: Quickly rewrite git repository history \(filter\-branch replacement\)](https://github.com/newren/git-filter-repo)
+[GitHub \- Kayvlim/badrepo: Don&\#39;t clone this on a Mac\. Test repository to play around with glitches](https://github.com/Kayvlim/badrepo)
+    - issues on `git status` under macos: different results when run twice: either no changes, or one of the files has been modified, or one of the files has been deleted...
+        - Feb 10, 2015
+    https://twitter.com/kayvlim/status/565234659081338881
+        > Create two files in a #git repository with equal names, but differing a letter: á = U+00E1; á = U+0061 U+0301. Clone on a mac. #UnicodeHell
+    ~/code/guides/sysadmin/badrepo
 
 

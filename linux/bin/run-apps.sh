@@ -145,8 +145,8 @@ for i in /home/fn/Dropbox/doc/goals/*.md; do
     rm -f ~/tmp/"$name".sw* &>/dev/null
   fi
 done
-task_keys=("\"tl\"" C-m)
-vim_keys=("\"cd /home/fn/Dropbox/doc/goals && vim "'*'".md -c 'e next.md'\"" C-m)
+task_keys=("\"t\"" C-m)
+vim_keys=("\"cd /home/fn/Dropbox/doc/goals && vim "'*'".md -c 'e roadmap.md'\"" C-m)
 
 switch_to_main_workspace &
 

@@ -30,9 +30,7 @@ compare i1.png i2.png -metric RMSE o.png
 - python - selenium webdriver `save_screenshot()` + Pillow `ImageChops.difference()`
     - https://jounileino.com/2019/05/17/visual-regression-testing.html
     - https://stackoverflow.com/questions/41721734/take-screenshot-of-full-page-with-selenium-python-with-chromedriver
-
 - {!} changes in one element displace others => compute diff in DOM tree, style only changed elements
-
 
 ### responsive layouts
 
@@ -52,3 +50,7 @@ Details > Sharpening
 
 - Richardson-Lucy Deconvolution
 - Gold-Meinel Deconvolution
+
+# aligning rotations
+
+[By FFT, what rotation?](http://im.snibgo.com/whatrotfft.htm)
