@@ -175,6 +175,7 @@ let g:jedi#popup_on_dot=0
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_follow_anchor = 1
 let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_fenced_languages = ['batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'powershell=ps1']
 map gx <Plug>Markdown_OpenUrlUnderCursor
 
 " vimtex
@@ -553,7 +554,7 @@ augroup filetype_group
                 \         endif |
                 \     endfor |
                 \ endif
-    set synmaxcol=500
+    set synmaxcol=800
 
     autocmd BufWritePost *
                 \ if getline(1) =~ "^#!" |
@@ -567,6 +568,7 @@ augroup filetype_group
     " redir @">|silent echo '# ' . expand('%:t:r')|redir END|put
     autocmd BufNewFile *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown} put = '# ' . expand('%:t:r') | normal! ggdd2o
 
+    autocmd BufNewFile *.awk 0r ~/code/snippets/recipes/awk | normal! Gdd
     autocmd BufNewFile *.java 0r ~/code/snippets/recipes/java |
                 \ for i in range(1, line('$')) |
                 \     call setline(i, substitute(getline(i), '%%%', expand('%:t:r'), '')) |
@@ -574,6 +576,7 @@ augroup filetype_group
                 \ normal! 6gg
     autocmd BufNewFile *.py 0r ~/code/snippets/recipes/py | normal! Gdd
     autocmd BufNewFile *.sh 0r ~/code/snippets/recipes/sh | normal! Gdd
+    autocmd BufNewFile *.zsh 0r ~/code/snippets/recipes/zsh | normal! Gdd
     autocmd BufNewFile *.yml,*.yaml 0r ~/code/snippets/recipes/yaml | normal! Gdd
     autocmd BufNewFile Makefile* 0r ~/code/snippets/recipes/Makefile | normal! Gddgg
     autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json | normal! Gddgg

@@ -85,7 +85,15 @@ re.sub("(abc)bcd","\1efg","abcbcd");
 re.sub("(abc)bcd","\g<1>222","abcbcd");
 ```
 
+# performance
+
+https://learnbyexample.github.io/substitution-with-ripgrep/
+
 # case studies
+
+- match "foo" without "bar" (invert matching)
+    - use negative lookaround for "bar"
+    - or: delete "foo" and "bar" matching lines, then match "foo"
 
 https://alf.nu/RegexGolf
     [Best known Regex Golf solutions \(SPOILERS\) \- Classic level set \- \(SPOILERS\) · GitHub](https://gist.github.com/Davidebyzero/9221685)

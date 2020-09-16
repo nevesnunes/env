@@ -238,7 +238,7 @@ rsync -rv --delete --existing --ignore-existing --ignore-errors foo/ bar/
 # HTTP/2 web server with automatic HTTPS
 caddy -conf ~/config/Caddyfile
 
-# edit file in differnet branch
+# edit file in different branch
 git show branch_name:/path/to/file.pl | vim - -c 'set syntax=perl'
 
 # input on stdin for commands taking input on file
@@ -378,9 +378,6 @@ grep -Po '(?<=<family>)(.*Emoji.*)(?=</family>)' /usr/share/fontconfig/conf.avai
 # https://unix.stackexchange.com/questions/162305/find-the-best-font-for-rendering-a-codepoint/268286
 fc-list ":charset=$(printf '%x' \'<0001f921>)"
 
-# Find identical files matching input file
-f=foo; find . -type f -exec sh -c 'diff -q '{}' '"$f"' >/dev/null && echo '{} \;
-
 # Test history on non-interactive bash shells
 echo 1 | xargs -i bash -ci 'set -o history; echo $HISTFILE; history' _ {}
 
@@ -390,10 +387,6 @@ MANPAGER='sh -c whoami' man ls
 # lolbins - Read file
 diff /dev/null 1
 iconv 1
-
-# binary diff
-cmp -l 1 2
-diff -Nauwq <(xxd 1) <(xxd 2)
 
 # hex byte sequence to binary
 printf '%s' '324F8D8A20561205631920' | xxd -r -p
@@ -440,4 +433,22 @@ rsync --cvs-exclude
 # send raw data
 curl -H "Content-Type: text/plain" --data "foo" http://foo
 
+# visually select images (mark with `m`)
+find . -maxdepth 1 -type f -exec file --mime-type {} + \
+  | awk -F: '$2 ~ /image\//{printf "%s%c", $1, 0}' \
+  | xargs -0 sxiv -qto 2>/dev/null
 
+# convert between newlines and null bytes
+# e.g. paste image paths in vim:
+#     map <leader>i :r !find . -maxdepth 1 -type f -exec file --mime-type {} + \| awk -F: '$2 ~ /image\//{printf "%s%c", $1, 0}' \| xargs -0 sxiv -qto 2>/dev/null <CR><CR>
+#     reference: https://www.reddit.com/r/vim/comments/ic51kg/visually_select_images_and_paste_their_paths_into/
+printf '%s\n' 'a 1' 'a 2' | tr '\n' '\0'
+printf '%s\n' 'a 1' 'a 2' | paste -sd $'\x1e' | sed 's/\x1e/\x00/g' | xargs -0
+printf '%s\x00' 'a 1' 'a 2' | tr '\0' '\n'
+printf '%s\x00' 'a 1' 'a 2' | xargs -0 -n1
+
+# mirror pages matching expression
+wget -rc --accept-regex '.*http://foo.org/bar.*\..*' 'http://foo.org/bar'
+
+# convert chm to epub
+ebook-convert input.chm output.epub --dont-split-on-page-breaks --no-default-epub-cover
