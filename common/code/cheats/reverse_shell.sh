@@ -17,6 +17,23 @@ printf '%s\n' \
 # 2. target_host
 # [ Paste clipboard content... ]
 
+# ||
+ssh hostname tar cvjf - ./foo/ | tar xjf -
+
+# Workaround remote commands without a login shell
+# Reference: https://susam.in/blog/file-transfer-with-ssh-tee-and-base64/
+
+# 1. source_host
+ssh user@host | tee ssh.txt
+sha1sum /tmp/payload
+base64 /tmp/payload
+exit
+
+# 2. target_host
+sed '1,/$ base64/d;/$ exit/,$d' ssh.txt | base64 --decode > payload
+grep -A 1 sha1sum ssh.txt
+sha1sum payload
+
 # Static binary
 
 # https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
@@ -70,7 +87,8 @@ tty
 # ||
 [[ $- == *i* ]] &&  echo "y" || echo "n"
 
-# References:
+# References
+
 # https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
 # https://guide.offsecnewbie.com/shells
 # https://highon.coffee/blog/reverse-shell-cheat-sheet/
