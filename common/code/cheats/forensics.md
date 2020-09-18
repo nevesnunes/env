@@ -114,7 +114,7 @@ https://www.hecfblog.com/2018/08/daily-blog-451-defcon-dfir-ctf-2018.html
 https://klanec.github.io/inctf/2020/08/02/inctf-lookout-foxy.html
     firefed (firefox), undbx (mails), mpack (MIME attachments)
 
-### zeroing section headers to thwart dissassemblers 
+### zeroing section headers to thwart dissassemblers
 
 windows
     GetModuleHandle
@@ -157,8 +157,16 @@ For windows, contents may still be recovered via `vaddump`, if references not br
 
 - [GitHub \- RUB\-NDS/PDF101: Artifacts for the Black Hat talk\.](https://github.com/RUB-NDS/PDF101)
     - https://medium.com/bugbountywriteup/hacker101-ctf-android-challenge-writeups-f830a382c3ce
+- [Apprentice Alf’s Blog | Everything you ever wanted to know about DRM and ebooks, but were afraid to ask\.](https://apprenticealf.wordpress.com/)
 
-# zip 
+```bash
+# disable security / drm / no copy restriction bits
+qpdf --decrypt input.pdf out.pdf
+pdftk input.pdf output out.pdf allow AllFeatures
+gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOutputFile=%stdout% -c .setpdfwrite -f input.pdf > output.pdf
+```
+
+# zip
 
 ```bash
 zip -F foo --out foo.out
@@ -185,4 +193,32 @@ Requirements:
 - https://www.hackthis.co.uk/articles/known-plaintext-attack-cracking-zip-files
 - https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
 
+# steg
 
+- https://fotoforensics.com/
+    - https://www.hackerfactor.com/blog/index.php?/archives/894-PNG-and-Hidden-Pixels.html
+
+# polyglots, mock files, file formats
+
+Mocks:
+
+- ./files/mis-identified-files.jpg
+
+No magic enforced at offset zero:
+
+- PDF, PostScript, BMFF (mp4, mov, heic...), DICOM (medical images), TAR, ZIP, Rar, 7z, Arj, raw dumps (.iso, roms)
+
+Examples:
+
+- jpeg + mp3
+- jpeg + php archive
+    ```
+    \xFF\xD8......................JPEG DATA.....................\xFF\xD9
+    __HALT_COMPILER(); ............PHAR DATA............................
+    ```
+    - execute with: phar://
+    - https://medium.com/swlh/polyglot-files-a-hackers-best-friend-850bf812dd8a
+- gif + jar
+    - https://en.wikipedia.org/wiki/Gifar
+- msi + jar
+    - https://blog.virustotal.com/2019/01/distribution-of-malicious-jar-appended.html

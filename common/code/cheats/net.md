@@ -410,6 +410,15 @@ User Authentication against Active Directory, Dissecting EAP-TLS
     SAM Account Name (short name) vs User Principle Name (UPN, includes domain)
     ~/Downloads/BRKSEC-3229.pdf
 
+### HTTP/2
+
+```bash
+# Validate server push requests
+nghttp -ans https://foo/index.html
+# ||
+# chrome://net-export
+```
+
 # methods
 
 Portmirroring / SPAN, arp poisoning
