@@ -452,3 +452,9 @@ wget -rc --accept-regex '.*http://foo.org/bar.*\..*' 'http://foo.org/bar'
 
 # convert chm to epub
 ebook-convert input.chm output.epub --dont-split-on-page-breaks --no-default-epub-cover
+
+# image remote disk
+socat openssl-listen:9999 | bunzip2 | dd of=/dev/sdc1
+dd if=/dev/sdb1 | bzip2 | socat - openssl:target_host:9999
+
+

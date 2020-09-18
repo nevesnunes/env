@@ -1083,6 +1083,9 @@ locals
 dump fooObject
 
 eval ((com.fasterxml.jackson.databind.ObjectMapper) java.lang.Thread.currentThread().getContextClassLoader().loadClass("com.fasterxml.jackson.databind.ObjectMapper").newInstance()).writerWithDefaultPrettyPrinter().writeValueAsString(foo)
+
+eval String.class.getProtectionDomain().getCodeSource().getLocation()
+eval String.class.getResource('/' + String.class.getName().replace('.', '/') + ".class");
 ```
 
 ### Debug info

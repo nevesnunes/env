@@ -1,6 +1,10 @@
 # +
 
+~/code/cheats/reverse_shell.sh
+
 google: mdn foo
+
+https://wiki.wireshark.org/Tools
 
 https://www.webpagetest.org/
 
@@ -12,6 +16,11 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
 bypass URL access rules is to abuse redirections (responses with code 3xx)
     Open URL Redirection
         repeat parameter: 2nd url redirects to 3rd url
+
+http://noahdavids.org/self_published/Tracing_packets_without_collecting_data.html
+=> at least "-s 94" for IPv4 or "-s 114" for IPv6
+
+https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
 
 https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
 https://hc.apache.org/httpclient-3.x/performance.html
@@ -48,6 +57,38 @@ route /f
 pkgmgr /iu:"TelnetClient"
 telnet www.example.com 80
 ```
+
+# relay
+
+```bash
+# debug
+socat - EXEC:filan,pipes,stderr
+
+# tls tunnel
+# alternatives:
+# - https://www.stunnel.org/
+# - https://github.com/ghostunnel/ghostunnel
+socat -v tcp-listen:6667,reuseaddr,fork,bind=127.0.0.1 ssl:"$foo_server":6697
+./foo_client -s 127.0.0.1
+
+# http requests
+echo "HEAD / HTTP/1.1\r\nHost: google.com\r\nConnection: close\r\n\r\n" | socat -v -x -,ignoreeof openssl:google.com:443,verify=0
+echo "HEAD / HTTP/1.1\r\nHost: google.com\r\nConnection: close\r\n\r\n" | socat -v -x -,ignoreeof tcp:google.com:80
+# ||
+exec 3<>/dev/tcp/www.google.com/80 printf '%s' 'HEAD / HTTP/1.1
+Host: http://www.google.com
+Connection: close
+
+' >&3 cat <&3
+
+# web server
+socat TCP-LISTEN:8080,fork,crnl SYSTEM:'printf \"HTTP/1.1 200 OK\\n\\n\"\; cat test.html'
+
+# chat service - bind to multicast group 239.255.1.1 on interface that has unicast IP 10.0.0.10, sending and receiving on port 4242 over UDP, reading from stdin and writing to stdout.
+socat - UDP-DATAGRAM:239.255.1.1:4242,ip-add-membership=239.255.1.1:10.0.0.10,ip-multicast-loop=0,bind=:4242
+```
+
+https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
 
 # security
 
@@ -108,10 +149,11 @@ Cacheability — a client can cache a server's reponse
 
 # CRUD
 
-HTTP POST - Creates a resource
-HTTP GET - Reads data for a resource
-HTTP PUT - Update a resource's data
-HTTP DELETE - Deletes a resource
+HTTP methods:
+- POST - Creates a resource
+- GET - Reads data for a resource
+- PUT - Update a resource's data
+- DELETE - Deletes a resource
 
 # GraphQL
 
@@ -286,9 +328,7 @@ https://sourceforge.net/projects/callflow/
 
 ~/code/snippets/arp_spoof.py
 
-# +
-
-https://wiki.wireshark.org/Tools
+# HTTP
 
 SYN and ACK bits sent and received in both directions
 
@@ -467,12 +507,5 @@ netstat -tulpn | \
         grep "HTTP/[0-9\.]\+\ " && echo "Found server listening at port = $1"\
     ' _ {}
 ```
-
-# +
-
-http://noahdavids.org/self_published/Tracing_packets_without_collecting_data.html
-=> at least "-s 94" for IPv4 or "-s 114" for IPv6
-
-https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
 
 

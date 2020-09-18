@@ -52,6 +52,8 @@ https://gitlab.gnome.org/GNOME/vte/-/blob/master/src/caps.hh
 
 [X11 Color Names](https://www.x.org/releases/X11R7.7/doc/man/man7/X.7.xhtml#heading11)
 
+~/bin/keypress-2-control-sequence.sh
+
 Extract background color:
 
 ```bash
@@ -75,3 +77,16 @@ man 5 termcap
 ```
 
 ~/Downloads/[A Nutshell handbook] Linda Mui, Tim O'Reilly, John Strang - Termcap and Terminfo (1988, O'Reilly).djvu
+
+# case studies
+
+[tcgetpgrp\(\) behavior and tmux · Issue \#1063 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/1063)
+[Intermittent client hang after closing stdin to attached container · Issue \#36516 · moby/moby · GitHub](https://github.com/moby/moby/issues/36516)
+
+[Everything you ever wanted to know about terminals \(2018\) | Hacker News](https://news.ycombinator.com/item?id=24436860)
+
+### ncurses
+
+[GitHub \- xoreaxeaxeax/sandsifter: The x86 processor fuzzer](https://github.com/xoreaxeaxeax/sandsifter)
+
+

@@ -13,6 +13,7 @@
 --exclude=GTAGS
 --exclude=GPATH
 --exclude=GRTAGS
+--extra=f
 --tag-relative=yes
 --recurse=yes
 
