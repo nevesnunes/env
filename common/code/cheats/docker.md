@@ -3,6 +3,7 @@
 - https://docs.docker.com/toolbox/toolbox_install_windows/
 - docker swarm - automatic rollback
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
+- [GitHub \- google/cadvisor: Analyzes resource usage and performance characteristics of running containers\.](https://github.com/google/cadvisor)
 
 ```bash
 # Given: yi moby-engine
@@ -30,6 +31,12 @@ docker logs -f CONTAINER_ID_OR_NAME
 docker exec -it CONTAINER_ID_OR_NAME /bin/bash
 docker attach CONTAINER_ID_OR_NAME
 ```
+
+# References
+
+- https://docs.docker.com/articles/dockerfile_best-practices/
+- http://crosbymichael.com/dockerfile-best-practices.html
+- https://github.com/wsargent/docker-cheat-sheet
 
 # Dockerfile
 
@@ -135,14 +142,22 @@ docker ps -aq | foreach {docker rm -f $_}
 docker images -aq | foreach {docker rmi -f $_}
 ```
 
-# References
-
-- https://docs.docker.com/articles/dockerfile_best-practices/
-- http://crosbymichael.com/dockerfile-best-practices.html
-- https://github.com/wsargent/docker-cheat-sheet
-
 # Nesting, docker-in-docker
 
 bind-mounting the host machine's Docker socket in the container
 
-TODO
+**TODO**
+
+# debug processes across pid namespaces
+
+```bash
+# against host
+docker run -it --rm --pid=host myhtop
+
+# against another container
+docker run --name my_redis -d redis
+docker run -it --pid=container:my_redis my_strace_docker_image bash
+strace -p 1
+```
+
+https://docs.docker.com/engine/reference/run/#pid-settings---pid

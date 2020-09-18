@@ -328,6 +328,8 @@ map ,' ciW''<Esc>P
 map ," ciW""<Esc>P
 map ,( ciW()<Esc>P
 
+vmap <Space> "xy:@x<CR>
+
 function! VisualSelection()
     if mode() ==# 'v'
         let [line_start, column_start] = getpos('v')[1:2]

@@ -44,7 +44,25 @@ breakadd func [lineNumber] functionName
 
 # Jumping
 
-gx, gf, ge (vim-markdown)
+- C-] = follow tag
+- gx = pass link to file handler
+- ge = follow named anchors in links
+    - https://github.com/plasticboy/vim-markdown
+    - https://github.com/chmp/mdnav
+    - https://vi.stackexchange.com/questions/9344/open-markdown-filename-under-cursor-like-gf-and-jump-to-the-section
+- gf = jump to file
+- gF = gf + jumps to line number
+    - https://stackoverflow.com/questions/36500099/vim-gf-should-open-file-and-jump-to-line/36500454
+
+```vim
+" Follow wiki anchor
+" - https://github.com/vimwiki/vimwiki
+" e.g. [[Task List#Tomorrow|Tasks for tomorrow]]
+
+" Jump to match
+" Usage: Visual select, yank, :@"
+e foo | exe search('bar')
+```
 
 # Replacing
 
@@ -93,4 +111,13 @@ strace -f -s 9999 -e process -p $vim_pid
 
 ```vim
 :syntax sync fromstart
+```
+
+# Natural copy-paste
+
+```vim
+vmap <C-c> "+yi
+vmap <C-x> "+c
+vmap <C-v> c<ESC>"+p
+imap <C-v> <C-r><C-o>+
 ```

@@ -167,5 +167,19 @@ demo format:
       - Tic 758: Forward 50, strafe 50
 mapinfo: https://zdoom.org/wiki/CVARs:Configuration
 snippets: ~/code/snippets/doom
+retrieving_old_forum_links: |-
+  https://www.doomworld.com/vb/post/740136
+  https://web.archive.org/web/20171113020931/https://www.doomworld.com/forum/topic/44143-essels-mapping-tips-and-tricks/?do=findComment&comment=740136
 
+  https://web.archive.org/web/20081204180050/http://www.doomworld.com/forums/editing/messages/10960.shtml
+  https://www.doomworld.com/forum/topic/82016-state-table-and-code-pointers/?tab=comments#comment-1498579
 
+  https://warosu.org/vr/?task=search2&ghost=yes&search_text=http%3A%2F%2Fwww.doomworld.com&search_subject=&search_username=&search_tripcode=&search_email=&search_filename=&search_datefrom=&search_dateto=2014-01-01&search_op=all&search_del=dontcare&search_int=dontcare&search_ord=new&search_capcode=all&search_res=post
+
+  https://www.google.com/search?q=%22Essel%27s+Mapping+Tips+and+Tricks%22+http%3A%2F%2Fwww.doomworld.com%2Fforums%2Fediting&oq=%22Essel%27s+Mapping+Tips+and+Tricks%22+http%3A%2F%2Fwww.doomworld.com%2Fforums%2Fediting
+  [ZDoom &bull; View topic \- Essel's Mapping Tips \(crosspost from DW\)](https://forum.zdoom.org/viewtopic.php?f=3&t=25096)
+  http://www.doomworld.com/vb/doom-editing/44143-essels-mapping-tips-and-tricks/
+  https://web.archive.org/web/20090314155158/http://www.doomworld.com/vb/doom-editing/44143-essels-mapping-tips-and-tricks/
+DoomEd:
+    collaborative editor with networking
+    https://rome.ro/news/2016/2/14/apple-next-merger-birthday
