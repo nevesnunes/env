@@ -60,13 +60,20 @@ adb install foo.apk
 ~/opt/android-studio/bin/studio.sh
 ```
 
+# virtual device
+
+```bash
+sudo /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager 'system-images;android-30;google_apis_playstore;x86_64'
+/opt/android-sdk/cmdline-tools/latest/bin/avdmanager create avd -n osint -d 10 -k 'system-images;android-30;google_apis_playstore;x86_64'
+ANDROID_SDK_ROOT=/opt/android-sdk /opt/android-sdk/emulator/emulator @osint
+```
+
 # issues
 
-[Difficult to install on Fedora system · Issue \#771 · anbox/anbox · GitHub](https://github.com/anbox/anbox/issues/771)
-[Kernel oops caused by ashmem\_mem on Fedora 31 running 5\.3\.16\-300\.fc31\.x86\_64 · Issue \#41 · anbox/anbox\-modules · GitHub](https://github.com/anbox/anbox-modules/issues/41)
+- [Difficult to install on Fedora system · Issue \#771 · anbox/anbox · GitHub](https://github.com/anbox/anbox/issues/771)
+- [Kernel oops caused by ashmem\_mem on Fedora 31 running 5\.3\.16\-300\.fc31\.x86\_64 · Issue \#41 · anbox/anbox\-modules · GitHub](https://github.com/anbox/anbox-modules/issues/41)
 
 # case studies
 
-https://upbhack.de/posts/2018/06/writeup-shallweplayagame-from-google-ctf-qualifier-2018/
-
-
+- https://upbhack.de/posts/2018/06/writeup-shallweplayagame-from-google-ctf-qualifier-2018/
+- https://medium.com/bugbountywriteup/recovering-a-lost-phone-number-using-hacker-mindset-5e7e7a30edbd
