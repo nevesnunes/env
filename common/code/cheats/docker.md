@@ -161,3 +161,9 @@ strace -p 1
 ```
 
 https://docs.docker.com/engine/reference/run/#pid-settings---pid
+
+# ip address
+
+```bash
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID_OR_NAME
+```

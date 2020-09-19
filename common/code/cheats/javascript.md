@@ -194,6 +194,10 @@ https://programming.vip/docs/realization-and-analysis-of-virtual-dom-diff-algori
 
 # Frameworks
 
+~/code/src/web/todomvc/examples/vanilla-es6/
+~/code/src/web/todomvc/examples/vanillajs
+    http://todomvc.com/examples/vanillajs/#/
+
 https://stackoverflow.com/questions/34700438/global-events-in-angular
 
 # Selectors
