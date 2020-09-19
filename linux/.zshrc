@@ -6,12 +6,6 @@ import_dir="$HOME/bin/zsh"
 done
 [ -d "$import_dir/themes/" ] && . "$import_dir/themes/fishier.zsh-theme"
 
-# Appearance
-autoload -U colors && colors
-setopt auto_cd
-setopt multios
-setopt prompt_subst
-
 # Completion
 autoload -Uz compinit && compinit
 compdef _gnu_generic fzf markdown-toc mountpoint openvpn youtube-dl
@@ -38,9 +32,9 @@ setopt hist_verify
 setopt inc_append_history
 setopt share_history
 
-[ -f ~/.shrc ] && source ~/.shrc
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.shrc ] && . ~/.shrc
+[ -f ~/.fzf.zsh ] && . ~/.fzf.zsh
 [ -f ~/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
-    source ~/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    . ~/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #zprof
