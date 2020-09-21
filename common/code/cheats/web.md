@@ -19,7 +19,7 @@ https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-
 # directory traversal
 
 - writing arbitrary files
-    - ./forensics.md #zip ###extraction-path
+    - [extraction path](./forensics.md#extraction-path)
 
 - [Directory Traversal in st | Snyk \- Open Source Security](https://snyk.io/vuln/SNYK-JS-MINHTTPSERVER-608658)
     - https://blog.npmjs.org/post/80277229932/newly-paranoid-maintainers
