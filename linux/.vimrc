@@ -369,7 +369,9 @@ function! OpenURI(...)
     if l:uri !~? '^[a-z]\+:\/\/.*' && l:uri =~? '.*#.*'
         let l:filename = substitute(l:uri, '#[^#]*$', '', '')
         let l:anchor = substitute(l:uri, '^.*#\([^#]*\)$', '\1', '')
-        let l:anchor_pattern = '#[ \t]\+' . substitute(l:anchor, '-', '[ \\t-]\\+', 'g')
+        let l:anchor_header_pattern = '#[ \t]\+' . substitute(l:anchor, '-', '[ \\t-]\\+', 'g')
+        let l:anchor_tag_pattern = '<a.* name="' . l:anchor . '".*>'
+        let l:anchor_pattern = '\(' . l:anchor_header_pattern . '\)\|\(' . l:anchor_tag_pattern . '\)'
         execute 'edit' l:filename
         silent! execute search(l:anchor_pattern)
         return
@@ -656,13 +658,13 @@ augroup END
 
 " Reference: https://github.com/travisjeffery/vim-auto-mkdir
 augroup auto_mkdir
-  autocmd!
-  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'))
-  function! s:auto_mkdir(dir)
-    if !isdirectory(a:dir)
-      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-    endif
-  endfunction
+    autocmd!
+    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'))
+    function! s:auto_mkdir(dir)
+        if !isdirectory(a:dir)
+            call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+        endif
+    endfunction
 augroup END
 
 function! HighlightedSynGroup()
