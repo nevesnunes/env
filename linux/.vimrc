@@ -365,6 +365,12 @@ function! OpenURI(...)
         return
     endif
 
+    " Handle filenames with anchors
+    if l:uri !~? '^[a-z]\+:\/\/.*' && l:uri =~? '.*#.*'
+        silent! execute 'MDNavExec'
+        return
+    endif
+
     " Handle brackets being interpreted as invalid character range
     " References:
     " - [Issues with \`:file\` and square brackets / unexpected pattern matching · Issue \#2749 · vim/vim · GitHub](https://github.com/vim/vim/issues/2749)
@@ -374,12 +380,6 @@ function! OpenURI(...)
         let l:uri = substitute(l:uri, '^\s*\([^\[]*\)\[\(\([^-]*\)\-\)\+\([^\]]*\)\]\(.*\)$', '\1\\[\2\4]\5', 'g')
         let l:uriExpanded = expand(l:uri)
     endtry
-
-    " Handle filenames with anchors
-    if l:uriExpanded !~? '^[a-z]\+:\/\/.*' && l:uriExpanded =~? '.*#.*'
-        silent! execute 'MDNavExec'
-        return
-    endif
 
     " If expanded pattern isn't a file, try glob
     if !filereadable(l:uriExpanded)
