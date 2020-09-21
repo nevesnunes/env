@@ -62,6 +62,8 @@ breakadd func [lineNumber] functionName
 " Jump to match
 " Usage: Visual select, yank, :@"
 e foo | exe search('bar')
+" Check if matched
+search('bar', 'n') > 0
 ```
 
 # Replacing

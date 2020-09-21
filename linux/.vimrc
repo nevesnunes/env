@@ -367,7 +367,10 @@ function! OpenURI(...)
 
     " Handle filenames with anchors
     if l:uri !~? '^[a-z]\+:\/\/.*' && l:uri =~? '.*#.*'
-        silent! execute 'MDNavExec'
+        let l:filename = substitute(l:uri, '#[^#]*$', '', '')
+        let l:anchor = substitute(l:uri, '^.*#\([^#]*\)$', '\1', '')
+        let l:anchor_search = '#[ \t]\+' . substitute(l:anchor, '-', '[ \\t-]\\+', 'g')
+        exe 'e' l:filename | silent! exe search(l:anchor_search)
         return
     endif
 
