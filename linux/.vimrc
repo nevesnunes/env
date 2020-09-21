@@ -173,10 +173,9 @@ let g:jedi#popup_on_dot=0
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_follow_anchor = 1
+let g:vim_markdown_follow_anchor = 0
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_fenced_languages = ['batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'powershell=ps1']
-map gx <Plug>Markdown_OpenUrlUnderCursor
 
 " vimtex
 let g:tex_flavor = 'latex'
@@ -322,7 +321,7 @@ set pastetoggle=<F2>
 noremap L Lzt
 noremap H Hzb
 nnoremap <Space> <C-f>
-nnoremap <C-x>]  <Esc>:exe "ptjump " . expand("<cword>")<Esc>
+nnoremap <C-x>]  <Esc>:exe "ptjump " . expand("<cWORD>")<Esc>
 
 map ,' ciW''<Esc>P
 map ," ciW""<Esc>P
@@ -376,6 +375,12 @@ function! OpenURI(...)
         let l:uriExpanded = expand(l:uri)
     endtry
 
+    " Handle filenames with anchors
+    if l:uriExpanded !~? '^[a-z]\+:\/\/.*' && l:uriExpanded =~? '.*#.*'
+        silent! execute 'MDNavExec'
+        return
+    endif
+
     " If expanded pattern isn't a file, try glob
     if !filereadable(l:uriExpanded)
         let l:files = glob(l:uri)
@@ -398,7 +403,7 @@ function! OpenURI(...)
     echomsg 'Opening: ' . l:uriExpanded
     call job_start(['env', 'XDG_CURRENT_DESKTOP=X-Generic', 'xdg-open', l:uriExpanded])
 endfunction
-nnoremap go :call OpenURI(expand("<cWORD>"))<CR>
+nnoremap go :call OpenURI(expand("<cfile>"))<CR>
 " We use our own function to get visual lines, so remove range '<,'> to avoid using the same line more than once.
 " Reference: https://stackoverflow.com/questions/36406366/function-is-called-several-times-in-vimscript
 vnoremap go :<C-u>call map(VisualSelection(), 'OpenURI(v:val)')<CR>
