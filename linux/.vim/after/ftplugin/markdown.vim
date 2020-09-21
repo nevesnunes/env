@@ -3,4 +3,4 @@ setlocal foldmethod=indent iskeyword+=45
 silent! :%foldopen!
 
 " ~/.vim/bundle/mdnav/ftplugin/markdown
-silent! nunmap <buffer> <CR>
+" silent! nunmap <buffer> <CR>
