@@ -369,8 +369,9 @@ function! OpenURI(...)
     if l:uri !~? '^[a-z]\+:\/\/.*' && l:uri =~? '.*#.*'
         let l:filename = substitute(l:uri, '#[^#]*$', '', '')
         let l:anchor = substitute(l:uri, '^.*#\([^#]*\)$', '\1', '')
-        let l:anchor_search = '#[ \t]\+' . substitute(l:anchor, '-', '[ \\t-]\\+', 'g')
-        exe 'e' l:filename | silent! exe search(l:anchor_search)
+        let l:anchor_pattern = '#[ \t]\+' . substitute(l:anchor, '-', '[ \\t-]\\+', 'g')
+        execute 'edit' l:filename
+        silent! execute search(l:anchor_pattern)
         return
     endif
 
