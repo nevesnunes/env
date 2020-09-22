@@ -457,4 +457,5 @@ ebook-convert input.chm output.epub --dont-split-on-page-breaks --no-default-epu
 socat openssl-listen:9999 | bunzip2 | dd of=/dev/sdc1
 dd if=/dev/sdb1 | bzip2 | socat - openssl:target_host:9999
 
-
+# find plaintext files
+find . -type f | xargs -i file -i {} | grep ':[[:space:]]\+text/[^:]*$' | awk -F':' '{print $1}'
