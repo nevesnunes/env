@@ -402,7 +402,7 @@ function! OpenURI(...)
 
     " Use current editor instance for plaintext files
     if system('file -ib ' . shellescape(l:uriExpanded)) =~# '^text/'
-        silent! execute 'edit' l:uriExpanded
+        execute 'edit' l:uriExpanded
         return
     endif
 
