@@ -39,6 +39,7 @@ commands
 c
 end
 
+info files
 info f
 info args
 info stack
@@ -64,6 +65,8 @@ x/d $rbp - 0x0c
 0x7fffffffd124: 2078
 x/x $rbp - 0x0c
 0x7fffffffd124: 0x0000081e
+x/4wx $rsp
+0x7fffffffd120: 0xffffd220      0x0000081e      0x55554973      0x00005555
 x/10x $rsp
 0x7fffffffd120: 0xffffd220      0x0000081e      0x55554973      0x00005555
 0x7fffffffd130: 0x55554ee0      0x00005555      0xf7ddd042      0x00007fff
@@ -274,6 +277,14 @@ sudo make install
 ```
 
 https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
+
+# plugins
+
+./peda.md
+
+```gdb
+dashboard -output $(tty)
+```
 
 # case studies
 

