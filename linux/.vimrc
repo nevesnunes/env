@@ -88,7 +88,7 @@ let g:ale_hover_to_preview = 1
 
 let g:ale_cache_executable_check_failures = 1
 let g:ale_completion_enabled = 1
-let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_autoimport = 1
 let g:ale_history_log_output = 1
 let g:ale_keep_list_window_open = 1
 let g:ale_lint_on_text_changed = 'never'

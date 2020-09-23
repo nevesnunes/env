@@ -314,6 +314,8 @@ window.eval = function() {
 }
 ```
 
+[JS NICE: Statistical renaming, Type inference and Deobfuscation](http://jsnice.org/)
+
 # Running untrusted code
 
 https://cuckoosandbox.org/

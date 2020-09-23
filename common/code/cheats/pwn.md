@@ -2,6 +2,11 @@
 
 https://bitvijays.github.io/LFC-BinaryExploitation.html
 
+# methodology
+
+- buffer size - check allocated frame for locals, take largest offset
+- overwritten return address - jmp to infinite loop, if app hangs, it worked
+
 # debugging
 
 reading direction: on arrow end, goto next step; each pipe character (`|`) delimits byte
@@ -69,8 +74,17 @@ storing values in locals
 pwndbg> x/32x $rbp - 0x20
 0x7fffffffd058: 0x3a1a43be      0xee93c71a      0x3c777f5a      0x200c516e
 0x7fffffffd068: 0x00000000      0x00000000      0x38e02000      0x5c4c9d39
-
-
 ```
 
+# symbols
 
+```bash
+# Redress libc with debug symbols
+eu-unstrip "$stripped_libc" "$symbol_file"
+```
+
+# write-what-where
+
+`_hook` functions:
+    - FULL RELRO is enabled/GOT is read-only
+    - https://github.com/OpenToAllCTF/Tips#_hooks

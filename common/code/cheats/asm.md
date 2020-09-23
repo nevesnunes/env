@@ -1,3 +1,15 @@
+# +
+
+- https://github.com/michalmalik/linux-re-101
+    - https://syscalls.w3challs.com/
+    - https://man7.org/linux/man-pages/man2/syscall.2.html
+        - register conventions
+
+- https://gcc.godbolt.org/
+- https://onlinedisassembler.com/
+- https://www.felixcloutier.com/x86/index.html
+    - https://software.intel.com/en-us/articles/intel-sdm
+
 # executable and linkable format (ELF)
 
 - executable
@@ -31,8 +43,12 @@ https://web.archive.org/web/20171129031316/http://nairobi-embedded.org/040_elf_s
 - `.rel.plt`: function relocation table
 
 ```bash
+# sections + binary position
 objdump -h
 readelf --sections
+
+# dump a section
+objcopy --dump-section .text=output.bin input.o
 ```
 
 # call convention (e.g. registers for arguments, return values)
@@ -143,6 +159,22 @@ https://stackoverflow.com/questions/36861903/assembling-32-bit-binaries-on-a-64-
 
 https://stackoverflow.com/questions/46756320/change-a-call-address-in-memory
 
+# dissassembling
+
+```bash
+objdump -d _.so | grep func
+nm -A _so | grep func
+
+c++filt -n _ZdlPvm
+readelf -Ws _.so
+objdump -TC _.so
+nm -gC _.so
+
+# From raw data
+# Reference: https://www.synacktiv.com/posts/challenges/sharkyctf-ezdump-writeups-linux-forensics-introduction.html
+objdump -b binary -m i386:x64-32:intel -D shellcode.bin
+```
+
 # ARM
 
 ```bash
@@ -176,10 +208,3 @@ https://in4k.github.io/wiki/lsc-wiki-rtld
 
 https://stackoverflow.com/questions/2463150/what-is-the-fpie-option-for-position-independent-executables-in-gcc-and-ld
 https://access.redhat.com/blogs/766093/posts/1975793
-
-# references
-
-https://gcc.godbolt.org/
-https://onlinedisassembler.com/
-https://www.felixcloutier.com/x86/index.html
-    https://software.intel.com/en-us/articles/intel-sdm

