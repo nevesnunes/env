@@ -10,6 +10,13 @@ http://freshports.org/sysutils/sleuthkit
 
 https://github.com/williballenthin/EVTXtract
 
+# process information
+
+```
+/proc/self/cmdline
+/proc/self/cwd/
+```
+
 # memory analysis
 
 ./volatility.md
@@ -64,6 +71,8 @@ fls -o 129 foo.dd
 tsk_recover -o 129 foo.dd .
 # || recover files, by inode
 icat -o 129 -r foo.dd 54
+# recover all files from journal
+extundelete artefact --restore-all
 
 # list deleted files, with full paths, recursively
 fls -d -p -r /dev/sda
@@ -197,6 +206,7 @@ Requirements:
 
 - https://fotoforensics.com/
     - https://www.hackerfactor.com/blog/index.php?/archives/894-PNG-and-Hidden-Pixels.html
+- outguess
 
 # polyglots, mock files, file formats
 

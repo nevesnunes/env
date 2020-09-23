@@ -1,6 +1,9 @@
 # Parameters, Expansions
 # - http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06
 
+# Completion Bugs
+# - http://www.oilshell.org/blog/2020/01/history-and-completion.html
+
 # Debug
 
 set -vx
@@ -206,5 +209,12 @@ a=$(printf '%s\n' 1 2 3) && printf '%s' "$a" >&2 && read -r && printf '%s\n' "$a
 unalias ssh
 eval 'ssh() { :; }'
 
+# jail
+# - https://github.com/w181496/Web-CTF-Cheatsheet#%E7%A9%BA%E7%99%BD%E7%B9%9E%E9%81%8E
+cat$IFS$2flag
+cat</etc/passwd
+{cat,/etc/passwd}
+X=$'cat\x20/etc/passwd'&&$X
+IFS=,;`cat<<<uname,-a`
 
 
