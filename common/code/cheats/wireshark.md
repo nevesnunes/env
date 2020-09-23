@@ -1,3 +1,7 @@
+# +
+
+https://wiki.wireshark.org/Tools
+
 # Filters
 
 ```
@@ -10,12 +14,17 @@ tcp.flags.fin eq 1 or tcp.flags.reset eq 1
 ip.host matches "\.123$"
 
 tcp matches "(?i)soap.*action"
+
+((usb.transfer_type == 0x01) && (frame.len == 73)) && !(usb.capdata == 00:00:00:00:00:00:00:00)
 ```
 
 ```bash
 tshark -p -n -i eno1 -f "tcp port 40000" -a files:10 -b files:10 -b filesize:1024 -w /var/log/tshark/tcpds
 tshark -Y http.request.uri -r foo.pcap
 tshark -T json -r foo.pcap
+
+tshark -r usb.pcap -T fields -e usb.bus_id -e usb.device_address -e usb.idVendor -e usb.idProduct "usb.idVendor > 0" 2>/dev/null
+tshark -r usb.pcap -T fields -e usb.capdata "usb.urb_type==URB_SUBMIT" and "usb.endpoint_number.direction==OUT" and "frame.protocols==\"usb\"" > data
 ```
 
 ```ps1

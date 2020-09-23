@@ -93,6 +93,10 @@ https://sourceware.org/gdb/current/onlinedocs/gdb/Checkpoint_002fRestart.html
 ```python
 import gdb
 
+def get_arg():
+    v = int(re.findall("\t0x([0-9a-f]{8})", gdb.execute("x/1xw $rdi + 0x34", to_string=True))[0], 16)
+    return v & 0xffff, v >> 16
+
 gdb.execute("break *0x4009dc")
 gdb.execute("r <<< $(echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')")
 address = int(str(gdb.parse_and_eval("$eax")),16)
@@ -114,8 +118,9 @@ time.sleep(99999)
 # Then send `C-c`, expect gdb prompt
 ```
 
-[CTFtime\.org / EKOPARTY CTF 2017 / WarmUp / Writeup](https://ctftime.org/writeup/7519)
-https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-In-Python.html#Inferiors-In-Python
+- [CTFtime\.org / EKOPARTY CTF 2017 / WarmUp / Writeup](https://ctftime.org/writeup/7519)
+- https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-In-Python.html#Inferiors-In-Python
+- https://ptr-yudai.hatenablog.com/entry/2020/02/09/140839
 
 # dump memory
 
@@ -283,6 +288,7 @@ https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
 ./peda.md
 
 ```gdb
+# gdb-dashboard
 dashboard -output $(tty)
 ```
 

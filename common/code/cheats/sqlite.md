@@ -9,6 +9,11 @@ echo 'select * from sqlite_master;' | sqlite3 foo.db | vim -
 .output out.txt
 .read in.sql
 
+```sql
+-- list tables / schemas
+SELECT name, sql FROM sqlite_master WHERE type='table'
+```
+
 # csv
 
 .mode csv

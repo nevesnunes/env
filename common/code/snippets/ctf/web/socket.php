@@ -1,7 +1,7 @@
-Source:
-https://raw.githubusercontent.com/x64x6a/ctf-writeups/master/0CTF%202015%20Quals/forward/mitm.py
-
 <?php
+    # Source:
+    # - https://raw.githubusercontent.com/x64x6a/ctf-writeups/master/0CTF%202015%20Quals/forward/mitm.py
+
     $socket = socket_create(2, 1, 0);
     socket_bind($socket, 0, 3306);
     socket_listen($socket);
