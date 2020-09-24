@@ -220,6 +220,7 @@ No magic enforced at offset zero:
 
 Examples:
 
+- ~/opt/mitra/
 - jpeg + mp3
 - jpeg + php archive
     ```
@@ -228,6 +229,9 @@ Examples:
     ```
     - execute with: phar://
     - https://medium.com/swlh/polyglot-files-a-hackers-best-friend-850bf812dd8a
+- gif + javascript
+    - ~/code/snippets/polyglot/thinkfu-js.gif
+    - http://web.archive.org/web/20200301052900if_/http://www.thinkfu.com/blog/gifjavascript-polyglots
 - gif + jar
     - https://en.wikipedia.org/wiki/Gifar
 - msi + jar

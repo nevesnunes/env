@@ -138,6 +138,18 @@ printf '%s\n' '1 2' | xargs -n1 sh -c 'echo $1' _
 # 2                                                    
 printf '%s\n' '1 2' | xargs -i sh -c 'echo $1' _ {}
 # 1 2                                                  
+printf '%s\n' '1 2' | xargs -I{} sh -c 'echo $1' _ {}
+# 1 2                                                  
+
+# xargs behaviour with empty input
+printf '%s\n' '' | xargs -L1 sh -c 'echo =$1' _  
+# ={}
+printf '%s\n' '' | xargs -n1 sh -c 'echo =$1' _  
+# ={}
+printf '%s\n' '' | xargs -i sh -c 'echo =$1' _ {}
+#
+printf '%s\n' '' | xargs -I{} sh -c 'echo =$1' _ {}
+#
 
 # xargs behaviour without input
 true | xargs -L1 sh -c 'echo 0' _

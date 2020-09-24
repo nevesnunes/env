@@ -386,6 +386,9 @@ function! OpenURI(...)
         let l:uri = substitute(l:uri, '^\s*\([^\[]*\)\[\(\([^-]*\)\-\)\+\([^\]]*\)\]\(.*\)$', '\1\\[\2\4]\5', 'g')
         let l:uriExpanded = expand(l:uri)
     endtry
+    if empty(l:uriExpanded)
+        let l:uriExpanded = l:uri
+    endif
 
     " If expanded pattern isn't a file, try glob
     if !filereadable(l:uriExpanded)

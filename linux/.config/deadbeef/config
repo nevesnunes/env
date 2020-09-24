@@ -3,6 +3,8 @@ artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*f
 cli_add_playlist_name Default
 cli_add_to_specific_playlist 1
 deadbeef_version 1.8.1
+ffmpeg.enable_all_exts 1
+ffmpeg.extensions aa3;oma;ac3;vqf;amr;tak;dsf;dff;wma;3gp;mp4;m4a
 filechooser.lastdir file:///home/fn/.config
 gtkui.autoresize_columns 1
 gtkui.color.bar_background 0 0 0
@@ -10,12 +12,12 @@ gtkui.color.bar_foreground 19018 37008 55769
 gtkui.color.tabstrip_playing_text 0 0 0
 gtkui.color.tabstrip_selected_text 0 0 0
 gtkui.color.tabstrip_text 0 0 0
-gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"33","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"109","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"278","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"53","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"47","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"156","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"397","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"76","align":"0","color_override":"0","color":"#ff313739"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 1
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=478 {} } 
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=683 {} } 
 gtkui.mmb_delete_playlist 1
 gtkui.name_playlist_from_folder 1
 gtkui.override_bar_colors 1
@@ -65,8 +67,8 @@ logwindow.geometry.w 670
 logwindow.geometry.x 1248
 logwindow.geometry.y 523
 mainwin.geometry.h 342
-mainwin.geometry.w 478
-mainwin.geometry.x 888
+mainwin.geometry.w 683
+mainwin.geometry.x 683
 mainwin.geometry.y 368
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
@@ -87,9 +89,9 @@ playlist.scroll.1 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default
 prefwin.geometry.h 516
-prefwin.geometry.w 700
-prefwin.geometry.x 1090
-prefwin.geometry.y 503
+prefwin.geometry.w 702
+prefwin.geometry.x 664
+prefwin.geometry.y 194
 replaygain_mode 0
 replaygain_scale 1
 resume.paused 0
