@@ -1,0 +1,690 @@
+strace: Process 3318411 attached
+rt_sigsuspend([INT], 8)                 = ? ERESTARTNOHAND (To be restarted if no handler)
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=3326727, si_uid=1000, si_status=0, si_utime=0, si_stime=0} ---
+rt_sigprocmask(SIG_BLOCK, ~[RTMIN RT_1], [INT CHLD], 8) = 0
+rt_sigprocmask(SIG_SETMASK, [INT CHLD], ~[KILL STOP RTMIN RT_1], 8) = 0
+wait4(-1, [{WIFEXITED(s) && WEXITSTATUS(s) == 0}], WNOHANG|WSTOPPED|WCONTINUED, {ru_utime={tv_sec=0, tv_usec=0}, ru_stime={tv_sec=0, tv_usec=1311}, ...}) = 3326727
+kill(-3326727, 0)                       = -1 ESRCH (No such process)
+ioctl(10, TIOCSPGRP, [3318411])         = 0
+ioctl(10, TIOCGWINSZ, {ws_row=21, ws_col=66, ws_xpixel=0, ws_ypixel=0}) = 0
+ioctl(10, TCGETS, {B38400 opost isig icanon echo ...}) = 0
+ioctl(10, TIOCGPGRP, [3318411])         = 0
+wait4(-1, 0x7ffd02925514, WNOHANG|WSTOPPED|WCONTINUED, 0x7ffd02925530) = -1 ECHILD (No child processes)
+rt_sigreturn({mask=[CHLD WINCH]})       = -1 EINTR (Interrupted system call)
+rt_sigprocmask(SIG_BLOCK, [CHLD], [CHLD WINCH], 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [CHLD], [CHLD WINCH], 8) = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [WINCH], 8) = 0
+rt_sigprocmask(SIG_UNBLOCK, [CHLD], [CHLD WINCH], 8) = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [WINCH], 8) = 0
+pipe([3, 4])                            = 0
+fcntl(3, F_DUPFD, 10)                   = 11
+close(3)                                = 0
+fcntl(4, F_DUPFD, 10)                   = 12
+close(4)                                = 0
+rt_sigprocmask(SIG_BLOCK, [CHLD], [CHLD WINCH], 8) = 0
+pipe([3, 4])                            = 0
+clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLDstrace: Process 3326735 attached
+, child_tidptr=0x7fac774d9e50) = 3326735
+[pid 3318411] close(4)                  = 0
+[pid 3326735] close(3 <unfinished ...>
+[pid 3318411] read(3,  <unfinished ...>
+[pid 3326735] <... close resumed>)      = 0
+[pid 3326735] getpid()                  = 3326735
+[pid 3326735] setpgid(0, 3326735)       = 0
+[pid 3326735] ioctl(10, TIOCSPGRP, [3326735]) = 0
+[pid 3326735] rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[TTOU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=SIG_IGN, sa_mask=[TTOU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[TTIN], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=SIG_IGN, sa_mask=[TTIN], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=SIG_IGN, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] rt_sigaction(SIGTERM, {sa_handler=SIG_DFL, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=SIG_IGN, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=0x55f89d189130, sa_mask=[], sa_flags=SA_RESTORER|SA_INTERRUPT, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] rt_sigaction(SIGPIPE, {sa_handler=SIG_DFL, sa_mask=[PIPE], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=0x55f89d189130, sa_mask=[], sa_flags=SA_RESTORER|SA_INTERRUPT, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, {sa_handler=SIG_DFL, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326735] getrusage(RUSAGE_CHILDREN, {ru_utime={tv_sec=0, tv_usec=0}, ru_stime={tv_sec=0, tv_usec=0}, ...}) = 0
+[pid 3326735] write(4, "\17\3032\0"..., 8) = 8
+[pid 3318411] <... read resumed>"\17\3032\0"..., 8) = 8
+[pid 3326735] close(4 <unfinished ...>
+[pid 3318411] close(3 <unfinished ...>
+[pid 3326735] <... close resumed>)      = 0
+[pid 3318411] <... close resumed>)      = 0
+[pid 3326735] close(11)                 = 0
+[pid 3318411] close(12)                 = 0
+[pid 3326735] dup2(12, 1)               = 1
+[pid 3318411] fcntl(0, F_DUPFD, 10 <unfinished ...>
+[pid 3326735] close(12 <unfinished ...>
+[pid 3318411] <... fcntl resumed>)      = 12
+[pid 3326735] <... close resumed>)      = 0
+[pid 3318411] close(0)                  = 0
+[pid 3326735] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid 3318411] dup2(11, 0 <unfinished ...>
+[pid 3326735] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3318411] <... dup2 resumed>)       = 0
+[pid 3318411] close(11 <unfinished ...>
+[pid 3326735] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid 3318411] <... close resumed>)      = 0
+[pid 3326735] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3318411] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid 3326735] pipe( <unfinished ...>
+[pid 3318411] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3326735] <... pipe resumed>[3, 4]) = 0
+[pid 3318411] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid 3326735] clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLD <unfinished ...>
+[pid 3318411] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3318411] pipe([3, 4])              = 0
+[pid 3318411] clone(child_stack=NULL, flags=CLONE_CHILD_CLEARTID|CLONE_CHILD_SETTID|SIGCHLDstrace: Process 3326736 attached
+ <unfinished ...>
+[pid 3326735] <... clone resumed>, child_tidptr=0x7fac774d9e50) = 3326736
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326735] close(4strace: Process 3326737 attached
+ <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326735] <... close resumed>)      = 0
+[pid 3326735] read(3,  <unfinished ...>
+[pid 3326737] close(3 <unfinished ...>
+[pid 3318411] <... clone resumed>, child_tidptr=0x7fac774d9e50) = 3326737
+[pid 3326736] rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[TTOU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3318411] close(4 <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[TTOU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] setpgid(0, 3326735 <unfinished ...>
+[pid 3318411] <... close resumed>)      = 0
+[pid 3326737] <... setpgid resumed>)    = 0
+[pid 3326736] rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[TTIN], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] kill(-3326735, 0 <unfinished ...>
+[pid 3318411] read(3,  <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[TTIN], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] <... kill resumed>)       = 0
+[pid 3326736] rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] rt_sigaction(SIGTTOU, {sa_handler=SIG_DFL, sa_mask=[TTOU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_IGN, sa_mask=[TTOU], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326736] rt_sigaction(SIGTERM, {sa_handler=SIG_DFL, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] rt_sigaction(SIGTTIN, {sa_handler=SIG_DFL, sa_mask=[TTIN], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_IGN, sa_mask=[TTIN], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326736] rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] rt_sigaction(SIGTSTP, {sa_handler=SIG_DFL, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_IGN, sa_mask=[TSTP], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326736] rt_sigaction(SIGPIPE, {sa_handler=SIG_DFL, sa_mask=[PIPE], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] rt_sigaction(SIGTERM, {sa_handler=SIG_DFL, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[PIPE], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_IGN, sa_mask=[TERM], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326736] rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326737] rt_sigaction(SIGINT, {sa_handler=SIG_DFL, sa_mask=[INT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=0x55f89d189130, sa_mask=[], sa_flags=SA_RESTORER|SA_INTERRUPT, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326737] rt_sigaction(SIGPIPE, {sa_handler=SIG_DFL, sa_mask=[PIPE], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] getrusage(RUSAGE_CHILDREN,  <unfinished ...>
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=0x55f89d189130, sa_mask=[], sa_flags=SA_RESTORER|SA_INTERRUPT, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326736] <... getrusage resumed>{ru_utime={tv_sec=0, tv_usec=0}, ru_stime={tv_sec=0, tv_usec=0}, ...}) = 0
+[pid 3326737] rt_sigaction(SIGQUIT, {sa_handler=SIG_DFL, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70},  <unfinished ...>
+[pid 3326736] write(4, "\377\377\377\377"..., 8 <unfinished ...>
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[QUIT], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7fac77517a70}, 8) = 0
+[pid 3326736] <... write resumed>)      = 8
+[pid 3326735] <... read resumed>"\377\377\377\377"..., 8) = 8
+[pid 3326737] close(12 <unfinished ...>
+[pid 3326736] close(4 <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326735] close(3 <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326735] <... close resumed>)      = 0
+[pid 3326737] getrusage(RUSAGE_CHILDREN,  <unfinished ...>
+[pid 3326736] close(10 <unfinished ...>
+[pid 3326735] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid 3326737] <... getrusage resumed>{ru_utime={tv_sec=0, tv_usec=0}, ru_stime={tv_sec=0, tv_usec=0}, ...}) = 0
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326735] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3326737] write(4, "\17\3032\0"..., 8 <unfinished ...>
+[pid 3326735] rt_sigsuspend([INT], 8 <unfinished ...>
+[pid 3326737] <... write resumed>)      = 8
+[pid 3318411] <... read resumed>"\17\3032\0"..., 8) = 8
+[pid 3326737] close(4 <unfinished ...>
+[pid 3326736] rt_sigprocmask(SIG_UNBLOCK, [CHLD],  <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3318411] close(3 <unfinished ...>
+[pid 3326736] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3318411] <... close resumed>)      = 0
+[pid 3326737] close(10)                 = 0
+[pid 3318411] rt_sigprocmask(SIG_BLOCK, [CHLD],  <unfinished ...>
+[pid 3326736] rt_sigprocmask(SIG_UNBLOCK, [WINCH],  <unfinished ...>
+[pid 3318411] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3326736] <... rt_sigprocmask resumed>[WINCH], 8) = 0
+[pid 3326737] rt_sigprocmask(SIG_UNBLOCK, [CHLD],  <unfinished ...>
+[pid 3318411] rt_sigsuspend([INT], 8 <unfinished ...>
+[pid 3326737] <... rt_sigprocmask resumed>[CHLD WINCH], 8) = 0
+[pid 3326736] execve("/usr/bin/sed", ["sed", "s/1/"..., "1"], 0x55f89ea376e0 /* 118 vars */ <unfinished ...>
+[pid 3326737] rt_sigprocmask(SIG_UNBLOCK, [WINCH], [WINCH], 8) = 0
+[pid 3326737] execve("/usr/bin/nc", ["nc", "-l", "8080"], 0x55f89ea376e0 /* 118 vars */ <unfinished ...>
+[pid 3326736] <... execve resumed>)     = 0
+[pid 3326737] <... execve resumed>)     = 0
+[pid 3326736] brk(NULL)                 = 0x5573a7c82000
+[pid 3326737] brk(NULL <unfinished ...>
+[pid 3326736] arch_prctl(0x3001 /* ARCH_??? */, 0x7ffe3fb57ca0 <unfinished ...>
+[pid 3326737] <... brk resumed>)        = 0x5586f110a000
+[pid 3326736] <... arch_prctl resumed>) = -1 EINVAL (Invalid argument)
+[pid 3326737] arch_prctl(0x3001 /* ARCH_??? */, 0x7ffc54a1c450) = -1 EINVAL (Invalid argument)
+[pid 3326736] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid 3326737] access("/etc/ld.so.preload", R_OK <unfinished ...>
+[pid 3326736] <... access resumed>)     = -1 ENOENT (No such file or directory)
+[pid 3326737] <... access resumed>)     = -1 ENOENT (No such file or directory)
+[pid 3326736] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0644, st_size=294992, ...}) = 0
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0644, st_size=294992, ...}) = 0
+[pid 3326736] mmap(NULL, 294992, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid 3326737] mmap(NULL, 294992, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe4e000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6d65000
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326737] openat(AT_FDCWD, "/lib64/libssl.so.1.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] openat(AT_FDCWD, "/lib64/libacl.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=623608, ...}) = 0
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=41712, ...}) = 0
+[pid 3326737] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6d63000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe4c000
+[pid 3326737] mmap(NULL, 614448, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] mmap(NULL, 41088, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6ccc000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe41000
+[pid 3326737] mprotect(0x7f74e6ce9000, 442368, PROT_NONE <unfinished ...>
+[pid 3326736] mmap(0x7f160fe43000, 20480, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000 <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326737] mmap(0x7f74e6ce9000, 331776, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1d000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe43000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6ce9000
+[pid 3326736] mmap(0x7f160fe48000, 8192, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e6d3a000, 106496, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6e000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe48000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6d3a000
+[pid 3326736] mmap(0x7f160fe4a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x8000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e6d55000, 53248, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x88000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe4a000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6d55000
+[pid 3326737] mmap(0x7f74e6d62000, 48, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6d62000
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] openat(AT_FDCWD, "/lib64/libselinux.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] openat(AT_FDCWD, "/lib64/libcrypto.so.1.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=176656, ...}) = 0
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] mmap(NULL, 181736, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=3094744, ...}) = 0
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe14000
+[pid 3326737] mmap(NULL, 3067760, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] mmap(0x7f160fe1b000, 106496, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e69df000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe1b000
+[pid 3326737] mprotect(0x7f74e6a59000, 2359296, PROT_NONE <unfinished ...>
+[pid 3326736] mmap(0x7f160fe35000, 32768, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x21000 <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe35000
+[pid 3326737] mmap(0x7f74e6a59000, 1757184, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7a000 <unfinished ...>
+[pid 3326736] mmap(0x7f160fe3d000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6a59000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe3d000
+[pid 3326737] mmap(0x7f74e6c06000, 598016, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x227000 <unfinished ...>
+[pid 3326736] mmap(0x7f160fe3f000, 5608, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6c06000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe3f000
+[pid 3326737] mmap(0x7f74e6c99000, 192512, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2b9000 <unfinished ...>
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6c99000
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] mmap(0x7f74e6cc8000, 16240, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] openat(AT_FDCWD, "/lib64/libc.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6cc8000
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] openat(AT_FDCWD, "/lib64/libpcap.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] <... pread64 resumed>"\6\0\0\0"..., 784, 64) = 784
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] <... pread64 resumed>"\4\0\0\0"..., 32, 848) = 32
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=324184, ...}) = 0
+[pid 3326736] <... pread64 resumed>"\4\0\0\0"..., 68, 880) = 68
+[pid 3326737] mmap(NULL, 320544, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6990000
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=3182216, ...}) = 0
+[pid 3326737] mprotect(0x7f74e6996000, 286720, PROT_NONE <unfinished ...>
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] <... pread64 resumed>"\6\0\0\0"..., 784, 64) = 784
+[pid 3326737] mmap(0x7f74e6996000, 172032, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6000 <unfinished ...>
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6996000
+[pid 3326736] <... pread64 resumed>"\4\0\0\0"..., 32, 848) = 32
+[pid 3326737] mmap(0x7f74e69c0000, 110592, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x30000 <unfinished ...>
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e69c0000
+[pid 3326736] <... pread64 resumed>"\4\0\0\0"..., 68, 880) = 68
+[pid 3326737] mmap(0x7f74e69dc000, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4b000 <unfinished ...>
+[pid 3326736] mmap(NULL, 1872744, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e69dc000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc4a000
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] mmap(0x7f160fc6f000, 1376256, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x25000 <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc6f000
+[pid 3326737] openat(AT_FDCWD, "/lib64/libm.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] mmap(0x7f160fdbf000, 307200, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x175000 <unfinished ...>
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] <... mmap resumed>)       = 0x7f160fdbf000
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] mmap(0x7f160fe0a000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bf000 <unfinished ...>
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe0a000
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] mmap(0x7f160fe10000, 13160, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=1917776, ...}) = 0
+[pid 3326736] <... mmap resumed>)       = 0x7f160fe10000
+[pid 3326737] mmap(NULL, 1331216, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e684a000
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] mmap(0x7f74e6859000, 638976, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xf000 <unfinished ...>
+[pid 3326736] openat(AT_FDCWD, "/lib64/libattr.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6859000
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] mmap(0x7f74e68f5000, 626688, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0xab000 <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e68f5000
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] mmap(0x7f74e698e000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x143000 <unfinished ...>
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e698e000
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=28904, ...}) = 0
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] mmap(NULL, 28688, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc42000
+[pid 3326737] openat(AT_FDCWD, "/lib64/libdl.so.2", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] mmap(0x7f160fc44000, 12288, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000 <unfinished ...>
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc44000
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] mmap(0x7f160fc47000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x5000 <unfinished ...>
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc47000
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] mmap(0x7f160fc48000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x5000 <unfinished ...>
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=36800, ...}) = 0
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc48000
+[pid 3326737] mmap(NULL, 24688, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] mmap(0x7f160fc49000, 16, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6843000
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc49000
+[pid 3326737] mmap(0x7f74e6845000, 8192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000 <unfinished ...>
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6845000
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] mmap(0x7f74e6847000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000) = 0x7f74e6847000
+[pid 3326736] openat(AT_FDCWD, "/lib64/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] mmap(0x7f74e6848000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000 <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6848000
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] mmap(0x7f74e6849000, 112, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6849000
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=625352, ...}) = 0
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] mmap(NULL, 623176, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] openat(AT_FDCWD, "/lib64/libc.so.6", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba9000
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] mmap(0x7f160fbac000, 438272, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000 <unfinished ...>
+[pid 3326737] read(3, "\177ELF"..., 832) = 832
+[pid 3326736] <... mmap resumed>)       = 0x7f160fbac000
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] mmap(0x7f160fc17000, 167936, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x6e000 <unfinished ...>
+[pid 3326737] <... pread64 resumed>"\6\0\0\0"..., 784, 64) = 784
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc17000
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] mmap(0x7f160fc40000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x96000 <unfinished ...>
+[pid 3326737] <... pread64 resumed>"\4\0\0\0"..., 32, 848) = 32
+[pid 3326736] <... mmap resumed>)       = 0x7f160fc40000
+[pid 3326737] pread64(3, "\4\0\0\0"..., 68, 880) = 68
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=3182216, ...}) = 0
+[pid 3326736] openat(AT_FDCWD, "/lib64/libdl.so.2", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... pread64 resumed>"\6\0\0\0"..., 784, 64) = 784
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] <... pread64 resumed>"\4\0\0\0"..., 32, 848) = 32
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=36800, ...}) = 0
+[pid 3326737] <... pread64 resumed>"\4\0\0\0"..., 68, 880) = 68
+[pid 3326736] mmap(NULL, 24688, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] mmap(NULL, 1872744, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba2000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6679000
+[pid 3326736] mmap(0x7f160fba4000, 8192, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e669e000, 1376256, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x25000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba4000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e669e000
+[pid 3326736] mmap(0x7f160fba6000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e67ee000, 307200, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x175000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba6000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e67ee000
+[pid 3326736] mmap(0x7f160fba7000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x4000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e6839000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bf000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba7000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6839000
+[pid 3326736] mmap(0x7f160fba8000, 112, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] mmap(0x7f74e683f000, 13160, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba8000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e683f000
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] openat(AT_FDCWD, "/lib64/libpthread.so.0", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] openat(AT_FDCWD, "/lib64/libpthread.so.0", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] <... pread64 resumed>"\4\0\0\0"..., 68, 824) = 68
+[pid 3326737] <... pread64 resumed>"\4\0\0\0"..., 68, 824) = 68
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] fstat(3,  <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=317728, ...}) = 0
+[pid 3326737] <... fstat resumed>{st_mode=S_IFREG|0755, st_size=317728, ...}) = 0
+[pid 3326736] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fba0000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6677000
+[pid 3326736] pread64(3,  <unfinished ...>
+[pid 3326737] pread64(3,  <unfinished ...>
+[pid 3326736] <... pread64 resumed>"\4\0\0\0"..., 68, 824) = 68
+[pid 3326737] <... pread64 resumed>"\4\0\0\0"..., 68, 824) = 68
+[pid 3326736] mmap(NULL, 135600, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326737] mmap(NULL, 135600, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fb7e000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6655000
+[pid 3326736] mmap(0x7f160fb85000, 65536, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e665c000, 65536, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x7000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fb85000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e665c000
+[pid 3326736] mmap(0x7f160fb95000, 20480, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x17000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e666c000, 20480, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x17000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fb95000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e666c000
+[pid 3326736] mmap(0x7f160fb9a000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b000 <unfinished ...>
+[pid 3326737] mmap(0x7f74e6671000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b000 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fb9a000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6671000
+[pid 3326736] mmap(0x7f160fb9c000, 12720, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] mmap(0x7f74e6673000, 12720, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fb9c000
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6673000
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326737] openat(AT_FDCWD, "/lib64/libz.so.1", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326736] mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326737] <... openat resumed>)     = 3
+[pid 3326736] <... mmap resumed>)       = 0x7f160fb7b000
+[pid 3326737] read(3,  <unfinished ...>
+[pid 3326736] arch_prctl(ARCH_SET_FS, 0x7f160fb7b800 <unfinished ...>
+[pid 3326737] <... read resumed>"\177ELF"..., 832) = 832
+[pid 3326736] <... arch_prctl resumed>) = 0
+[pid 3326737] fstat(3, {st_mode=S_IFREG|0755, st_size=103600, ...}) = 0
+[pid 3326737] mmap(NULL, 102408, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f74e663b000
+[pid 3326736] mprotect(0x7f160fe0a000, 12288, PROT_READ <unfinished ...>
+[pid 3326737] mprotect(0x7f74e663e000, 86016, PROT_NONE <unfinished ...>
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326737] mmap(0x7f74e663e000, 57344, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x3000 <unfinished ...>
+[pid 3326736] mprotect(0x7f160fb9a000, 4096, PROT_READ <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e663e000
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] mmap(0x7f74e664c000, 24576, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x11000 <unfinished ...>
+[pid 3326736] mprotect(0x7f160fba7000, 4096, PROT_READ <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e664c000
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] mmap(0x7f74e6653000, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x17000) = 0x7f74e6653000
+[pid 3326736] mprotect(0x7f160fc40000, 4096, PROT_READ <unfinished ...>
+[pid 3326737] mmap(0x7f74e6654000, 8, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6654000
+[pid 3326737] close(3 <unfinished ...>
+[pid 3326736] mprotect(0x7f160fc48000, 4096, PROT_READ <unfinished ...>
+[pid 3326737] <... close resumed>)      = 0
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0 <unfinished ...>
+[pid 3326736] mprotect(0x7f160fe3d000, 4096, PROT_READ <unfinished ...>
+[pid 3326737] <... mmap resumed>)       = 0x7f74e6639000
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] arch_prctl(ARCH_SET_FS, 0x7f74e6639b80) = 0
+[pid 3326736] mprotect(0x7f160fe4a000, 4096, PROT_READ) = 0
+[pid 3326736] mprotect(0x5573a5f3e000, 4096, PROT_READ <unfinished ...>
+[pid 3326737] mprotect(0x7f74e6839000, 12288, PROT_READ <unfinished ...>
+[pid 3326736] <... mprotect resumed>)   = 0
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] mprotect(0x7f160fec3000, 4096, PROT_READ) = 0
+[pid 3326737] mprotect(0x7f74e6653000, 4096, PROT_READ <unfinished ...>
+[pid 3326736] munmap(0x7f160fe4e000, 294992 <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] <... munmap resumed>)     = 0
+[pid 3326736] set_tid_address(0x7f160fb7bad0 <unfinished ...>
+[pid 3326737] mprotect(0x7f74e6671000, 4096, PROT_READ <unfinished ...>
+[pid 3326736] <... set_tid_address resumed>) = 3326736
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] set_robust_list(0x7f160fb7bae0, 24 <unfinished ...>
+[pid 3326737] mprotect(0x7f74e6848000, 4096, PROT_READ <unfinished ...>
+[pid 3326736] <... set_robust_list resumed>) = 0
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] rt_sigaction(SIGRTMIN, {sa_handler=0x7f160fb85c00, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7f160fb92a90}, NULL, 8) = 0
+[pid 3326737] mprotect(0x7f74e698e000, 4096, PROT_READ <unfinished ...>
+[pid 3326736] rt_sigaction(SIGRT_1, {sa_handler=0x7f160fb85ca0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART|SA_SIGINFO, sa_restorer=0x7f160fb92a90},  <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] <... rt_sigaction resumed>NULL, 8) = 0
+[pid 3326736] rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1], NULL, 8) = 0
+[pid 3326736] prlimit64(0, RLIMIT_STACK, NULL,  <unfinished ...>
+[pid 3326737] mprotect(0x7f74e69dc000, 8192, PROT_READ <unfinished ...>
+[pid 3326736] <... prlimit64 resumed>{rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] statfs("/sys/fs/selinux", {f_type=SELINUX_MAGIC, f_bsize=4096, f_blocks=0, f_bfree=0, f_bavail=0, f_files=0, f_ffree=0, f_fsid={val=[0, 0]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_RELATIME}) = 0
+[pid 3326736] statfs("/sys/fs/selinux", {f_type=SELINUX_MAGIC, f_bsize=4096, f_blocks=0, f_bfree=0, f_bavail=0, f_files=0, f_ffree=0, f_fsid={val=[0, 0]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_RELATIME}) = 0
+[pid 3326736] brk(NULL)                 = 0x5573a7c82000
+[pid 3326736] brk(0x5573a7ca3000)       = 0x5573a7ca3000
+[pid 3326737] mprotect(0x7f74e6c99000, 176128, PROT_READ <unfinished ...>
+[pid 3326736] access("/etc/selinux/config", F_OK <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] <... access resumed>)     = 0
+[pid 3326736] openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+[pid 3326736] fstat(3, {st_mode=S_IFREG|0644, st_size=111950656, ...}) = 0
+[pid 3326736] mmap(NULL, 111950656, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f16090b7000
+[pid 3326736] close(3)                  = 0
+[pid 3326736] openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] mprotect(0x7f74e6d55000, 36864, PROT_READ <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] fstat(3, {st_mode=S_IFREG|0644, st_size=2998, ...}) = 0
+[pid 3326736] read(3, "# Lo"..., 4096)  = 2998
+[pid 3326736] read(3, "", 4096)         = 0
+[pid 3326737] mprotect(0x5586f0cd0000, 8192, PROT_READ <unfinished ...>
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] <... mprotect resumed>)   = 0
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] mprotect(0x7f74e6dda000, 4096, PROT_READ) = 0
+[pid 3326736] openat(AT_FDCWD, "/usr/lib/locale/en_GB.UTF-8/LC_TIME", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] munmap(0x7f74e6d65000, 294992 <unfinished ...>
+[pid 3326736] <... openat resumed>)     = -1 ENOENT (No such file or directory)
+[pid 3326737] <... munmap resumed>)     = 0
+[pid 3326736] openat(AT_FDCWD, "/usr/lib/locale/en_GB.utf8/LC_TIME", O_RDONLY|O_CLOEXEC <unfinished ...>
+[pid 3326737] set_tid_address(0x7f74e6639e50 <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... set_tid_address resumed>) = 3326737
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] set_robust_list(0x7f74e6639e60, 24 <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0644, st_size=3332, ...}) = 0
+[pid 3326737] <... set_robust_list resumed>) = 0
+[pid 3326736] mmap(NULL, 3332, PROT_READ, MAP_PRIVATE, 3, 0 <unfinished ...>
+[pid 3326737] rt_sigaction(SIGRTMIN, {sa_handler=0x7f74e665cc00, sa_mask=[], sa_flags=SA_RESTORER|SA_SIGINFO, sa_restorer=0x7f74e6669a90},  <unfinished ...>
+[pid 3326736] <... mmap resumed>)       = 0x7f160fec2000
+[pid 3326737] <... rt_sigaction resumed>NULL, 8) = 0
+[pid 3326736] close(3 <unfinished ...>
+[pid 3326737] rt_sigaction(SIGRT_1, {sa_handler=0x7f74e665cca0, sa_mask=[], sa_flags=SA_RESTORER|SA_RESTART|SA_SIGINFO, sa_restorer=0x7f74e6669a90},  <unfinished ...>
+[pid 3326736] <... close resumed>)      = 0
+[pid 3326737] <... rt_sigaction resumed>NULL, 8) = 0
+[pid 3326736] openat(AT_FDCWD, "/usr/lib64/gconv/gconv-modules.cache", O_RDONLY <unfinished ...>
+[pid 3326737] rt_sigprocmask(SIG_UNBLOCK, [RTMIN RT_1],  <unfinished ...>
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] <... rt_sigprocmask resumed>NULL, 8) = 0
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] prlimit64(0, RLIMIT_STACK, NULL,  <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0644, st_size=26998, ...}) = 0
+[pid 3326737] <... prlimit64 resumed>{rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+[pid 3326736] mmap(NULL, 26998, PROT_READ, MAP_SHARED, 3, 0) = 0x7f160fe90000
+[pid 3326736] close(3)                  = 0
+[pid 3326736] futex(0x7f160fe0f4dc, FUTEX_WAKE_PRIVATE, 2147483647 <unfinished ...>
+[pid 3326737] access("/etc/system-fips", F_OK <unfinished ...>
+[pid 3326736] <... futex resumed>)      = 0
+[pid 3326737] <... access resumed>)     = -1 ENOENT (No such file or directory)
+[pid 3326736] openat(AT_FDCWD, "/usr/lib64/charset.alias", O_RDONLY|O_NOFOLLOW) = -1 ENOENT (No such file or directory)
+[pid 3326737] brk(NULL <unfinished ...>
+[pid 3326736] openat(AT_FDCWD, "1", O_RDONLY <unfinished ...>
+[pid 3326737] <... brk resumed>)        = 0x5586f110a000
+[pid 3326736] <... openat resumed>)     = 3
+[pid 3326737] brk(0x5586f112b000 <unfinished ...>
+[pid 3326736] fstat(3,  <unfinished ...>
+[pid 3326737] <... brk resumed>)        = 0x5586f112b000
+[pid 3326736] <... fstat resumed>{st_mode=S_IFREG|0664, st_size=1416501, ...}) = 0
+[pid 3326737] brk(NULL <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... brk resumed>)        = 0x5586f112b000
+[pid 3326736] <... read resumed>"KT0r"..., 4096) = 4096
+[pid 3326736] fstat(1,  <unfinished ...>
+[pid 3326737] rt_sigaction(SIGCHLD, {sa_handler=0x5586f0c75990, sa_mask=[CHLD], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f74e66b5a70},  <unfinished ...>
+[pid 3326736] <... fstat resumed>{st_mode=S_IFIFO|0600, st_size=0, ...}) = 0
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+[pid 3326737] rt_sigaction(SIGPIPE, {sa_handler=SIG_IGN, sa_mask=[PIPE], sa_flags=SA_RESTORER|SA_RESTART, sa_restorer=0x7f74e66b5a70},  <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... rt_sigaction resumed>{sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+[pid 3326736] <... read resumed>"1iOL"..., 4096) = 4096
+[pid 3326737] fcntl(0, F_GETFD <unfinished ...>
+[pid 3326736] write(1, "KT0r"..., 4096 <unfinished ...>
+[pid 3326737] <... fcntl resumed>)      = 0
+[pid 3326736] <... write resumed>)      = 4096
+[pid 3326737] socket(AF_INET6, SOCK_STREAM, IPPROTO_TCP <unfinished ...>
+[pid 3326736] read(3, "/tYG"..., 4096)  = 4096
+[pid 3326736] write(1, "2iOL"..., 4096) = 4096
+[pid 3326737] <... socket resumed>)     = 3
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] setsockopt(3, SOL_SOCKET, SO_REUSEADDR, [1], 4 <unfinished ...>
+[pid 3326736] <... read resumed>"yvRw"..., 4096) = 4096
+[pid 3326737] <... setsockopt resumed>) = 0
+[pid 3326736] write(1, "/tYG"..., 4096 <unfinished ...>
+[pid 3326737] setsockopt(3, SOL_IPV6, IPV6_V6ONLY, [1], 4 <unfinished ...>
+[pid 3326736] <... write resumed>)      = 4096
+[pid 3326737] <... setsockopt resumed>) = 0
+[pid 3326737] bind(3, {sa_family=AF_INET6, sin6_port=htons(8080), sin6_flowinfo=htonl(0), inet_pton(AF_INET6, "::", &sin6_addr), sin6_scope_id=0}, 28 <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... bind resumed>)       = 0
+[pid 3326736] <... read resumed>"MthX"..., 4096) = 4096
+[pid 3326737] listen(3, 10 <unfinished ...>
+[pid 3326736] write(1, "yvRw"..., 4096 <unfinished ...>
+[pid 3326737] <... listen resumed>)     = 0
+[pid 3326736] <... write resumed>)      = 4096
+[pid 3326737] fcntl(3, F_GETFL)         = 0x2 (flags O_RDWR)
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] fcntl(3, F_SETFL, O_RDWR|O_NONBLOCK <unfinished ...>
+[pid 3326736] <... read resumed>"j\nCa"..., 4096) = 4096
+[pid 3326737] <... fcntl resumed>)      = 0
+[pid 3326736] write(1, "MthX"..., 4096 <unfinished ...>
+[pid 3326737] socket(AF_INET, SOCK_STREAM, IPPROTO_TCP <unfinished ...>
+[pid 3326736] <... write resumed>)      = 4096
+[pid 3326736] read(3, "Y0i7"..., 4096)  = 4096
+[pid 3326737] <... socket resumed>)     = 4
+[pid 3326736] write(1, "j\nCa"..., 4096 <unfinished ...>
+[pid 3326737] setsockopt(4, SOL_SOCKET, SO_REUSEADDR, [1], 4 <unfinished ...>
+[pid 3326736] <... write resumed>)      = 4096
+[pid 3326737] <... setsockopt resumed>) = 0
+[pid 3326737] bind(4, {sa_family=AF_INET, sin_port=htons(8080), sin_addr=inet_addr("0.0.0.0")}, 16 <unfinished ...>
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] <... bind resumed>)       = 0
+[pid 3326736] <... read resumed>"Gm/z"..., 4096) = 4096
+[pid 3326737] listen(4, 10 <unfinished ...>
+[pid 3326736] write(1, "Y0i7"..., 4096 <unfinished ...>
+[pid 3326737] <... listen resumed>)     = 0
+[pid 3326736] <... write resumed>)      = 4096
+[pid 3326737] fcntl(4, F_GETFL)         = 0x2 (flags O_RDWR)
+[pid 3326736] read(3,  <unfinished ...>
+[pid 3326737] fcntl(4, F_SETFL, O_RDWR|O_NONBLOCK <unfinished ...>
+[pid 3326736] <... read resumed>"i/y5"..., 4096) = 4096
+[pid 3326737] <... fcntl resumed>)      = 0
+[pid 3326736] write(1, "Gm/z"..., 4096) = 4096
+[pid 3326737] select(5, [3 4], [], NULL, NULL <unfinished ...>
+[pid 3326736] read(3, "GP5c"..., 4096)  = 4096
+[pid 3326736] write(1, "i/y5"..., 4096) = 4096
+[pid 3326736] read(3, "bEV\n"..., 4096) = 4096
+[pid 3326736] write(1, "GP5c"..., 4096) = 4096
+[pid 3326736] read(3, "fPsg"..., 4096)  = 4096
+[pid 3326736] write(1, "bEV\n"..., 4096) = 4096
+[pid 3326736] read(3, "RK1F"..., 4096)  = 4096
+[pid 3326736] write(1, "fPsg"..., 4096) = 4096
+[pid 3326736] read(3, "z4yt"..., 4096)  = 4096
+[pid 3326736] write(1, "RK1F"..., 4096) = 4096
+[pid 3326736] read(3, "yKBJ"..., 4096)  = 4096
+[pid 3326736] write(1, "z4yt"..., 4096) = 4096
+[pid 3326736] read(3, "wjDK"..., 4096)  = 4096
+[pid 3326736] write(1, "yKBJ"..., 4096) = 4096
+[pid 3326736] read(3, "Jy+z"..., 4096)  = 4096
+[pid 3326736] write(1, "wjDK"..., 4096) = 4096
+[pid 3326736] read(3, "5aph"..., 4096)  = 4096
+[pid 3326736] write(1, "Jy+z"..., 4096strace: Process 3318411 detached
+strace: Process 3326735 detached
+strace: Process 3326736 detached
+ <detached ...>
+strace: Process 3326737 detached

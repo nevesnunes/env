@@ -15,6 +15,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --exclude='node_modules' \
   --filter='dir-merge,- .gitignore' \
   /home/"$USER"/./code/cheats \
+  /home/"$USER"/./code/logbooks \
   /home/"$USER"/./code/snippets \
   ./common/
 
