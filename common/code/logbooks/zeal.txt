@@ -1,0 +1,21 @@
+https://go.zealdocs.org/d/com.kapeli/Bootstrap_4/latest
+libs/core/application.cpp:178
+libs/ui/docsetsdialog.cpp:155
+
+~/opt/zeal/src
+~/opt/mitmproxy
+
+---
+
+Downloading Special:Version with extensions and other related info
+Traceback (most recent call last):
+  File "/home/foo/opt/wikiteam/dumpgenerator.py", line 2323, in <module>
+    main()
+  File "/home/foo/opt/wikiteam/dumpgenerator.py", line 2318, in main
+    saveSpecialVersion(config=config, session=other['session'])
+  File "/home/foo/opt/wikiteam/dumpgenerator.py", line 2049, in saveSpecialVersion
+    with open('%s/Special:Version.html' % (config['path']), 'w') as outfile:
+IOError: [Errno 22] invalid mode ('w') or filename: u'./wikiarchlinuxorg-20190602-wikidump/Special:Version.html'
+    - [ ] check if due to NTFS filesystem
+
+python2 ~/opt/wikiteam/dumpgenerator.py https://wiki.installgentoo.com --xml --curonly --images --delay=1

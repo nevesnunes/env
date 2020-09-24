@@ -279,11 +279,6 @@ for i in xrange(1, 50):
 # jail, filter bypass, waf
 
 - jsfuck
-- php, non alphanumeric
-    - https://github.com/ExTi0p/ctf/tree/master/2020/FwordCTF_2020/Jailoo_Warmup
-    - https://securityonline.info/bypass-waf-php-webshell-without-numbers-letters/
-- DNS tunnel
-    - https://github.com/iagox86/dnscat2
 - `__defineGetter__`
     - https://hack.more.systems/writeup/2014/10/26/hacklu2014-objection/
 - https://mathiasbynens.be/notes/javascript-escapes
@@ -292,6 +287,19 @@ for i in xrange(1, 50):
     alert`1337`in``.sub﻿in''instanceof""
     ```
     - https://portswigger.net/research/javascript
+- php, non alphanumeric
+    - https://github.com/ExTi0p/ctf/tree/master/2020/FwordCTF_2020/Jailoo_Warmup
+    - https://securityonline.info/bypass-waf-php-webshell-without-numbers-letters/
+- Content-Type, multipart parsing
+    ```
+    Content-Type: application/x-www-form-urlencoded;/json
+    {"q":"' \u0075nion \u0073elect '1"}
+    ```
+    - https://github.com/BlackFan/content-type-research
+    - https://soroush.secproject.com/blog/2018/08/waf-bypass-techniques-using-http-standard-and-web-servers-behaviour/
+    - https://blog.doyensec.com/2020/08/20/playframework-csrf-bypass.html
+- DNS tunnel
+    - https://github.com/iagox86/dnscat2
 
 ```javascript
 // == "Hello World!"
