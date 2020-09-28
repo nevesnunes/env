@@ -9,6 +9,7 @@ ip.addr==1.2.3.4 and http.request.method==GET
 http.request.method==CONNECT
 
 ip.host matches "1.2.3." && ip.host matches "^2..\."
+not (ip.host matches "^192") and not arp
 
 tcp.flags.fin eq 1 or tcp.flags.reset eq 1
 ip.host matches "\.123$"

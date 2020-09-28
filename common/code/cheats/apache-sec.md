@@ -1,5 +1,11 @@
 # +
 
+https://www.digitalocean.com/community/tutorials/how-to-set-up-apache-virtual-hosts-on-ubuntu-16-04
+sudo a2enmod php7.2
+sudo systemctl restart apache
+
+---
+
 https://wiki.debian.org/Apache/Hardening
 https://www.cyberciti.biz/tips/php-security-best-practices-tutorial.html
 
