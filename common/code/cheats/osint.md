@@ -76,6 +76,7 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 
 ### social networks
 
+- [GitHub \- sherlock\-project/sherlock: 🔎 Hunt down social media accounts by username across social networks](https://github.com/sherlock-project/sherlock)
 - http://tweetbeaver.com
 
 # ssl

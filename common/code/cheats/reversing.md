@@ -3,10 +3,12 @@
 ./asm.md
 
 ```bash
-file -k
-binwalk
-ldd
+# Any format
 strings
+# ELF format
+ldd
+# PE format
+floss
 ```
 
 - Malware Evasion

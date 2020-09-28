@@ -388,6 +388,9 @@ MANPAGER='sh -c whoami' man ls
 diff /dev/null 1
 iconv 1
 
+# binary to hex byte sequence
+od -An -t x1 -v < _ | tr -d ' \n'
+
 # hex byte sequence to binary
 printf '%s' '324F8D8A20561205631920' | xxd -r -p
 

