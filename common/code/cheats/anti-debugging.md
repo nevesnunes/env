@@ -1,15 +1,15 @@
-# anti-debugging
+# +
 
 https://haxelion.eu/article/LD_NOT_PRELOADED_FOR_REAL/
 
-## ptrace(PTRACE_TRACEME, 0, 0)
+# ptrace(PTRACE_TRACEME, 0, 0)
 
 debugger bypass
 
 ```gdb
 catch syscall ptrace
 commands 1
-set ($eax) = 0
+set $rax = 0
 continue
 end
 ```

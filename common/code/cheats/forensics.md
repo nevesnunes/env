@@ -180,14 +180,16 @@ gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOu
 ```bash
 zip -F foo --out foo.out
 zip -FF foo --out foo.out
-binwalk --dd='.*' foo
-binwalk -e foo
 ```
 
-- binwalk expects p7zip, so install p7zip to fix this problem.
-    - The UnZip implementation is the cause of your problem. When binwalk extracts full, the first ZIP actually contains both ZIPs, but UnZip only extracts the last one (which is also stored independently in the second ZIP that binwalk extracted).
+- binwalk expects p7zip
+    > The UnZip implementation is the cause of your problem. When binwalk extracts full, the first ZIP actually contains both ZIPs, but UnZip only extracts the last one (which is also stored independently in the second ZIP that binwalk extracted).
     - https://reverseengineering.stackexchange.com/questions/13944/automatically-extract-known-file-types-eg-zip-using-binwalk
 - https://reverseengineering.stackexchange.com/questions/13616/simple-carving-of-zip-file-using-binwalk
+- https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
+    - ~/code/doc/zip/APPNOTE.TXT
+- AE-x (compression method = 99)
+    - [AES Encryption Information: Encryption Specification AE-1 and AE-2](https://www.winzip.com/win/en/aes_info.html)
 
 ### extraction path
 
@@ -195,12 +197,20 @@ binwalk -e foo
 
 ### password attacks
 
-Requirements:
-- uncompressed copy of one file
-- encryption algorithm = ZipCrypto
+Biham and Kocher's known plaintext attack:
 
-- https://www.hackthis.co.uk/articles/known-plaintext-attack-cracking-zip-files
-- https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
+- encryption algorithm = ZipCrypto
+- uncompressed copy of one encrypted file
+- compressed plaintext file using same algorigthm
+    ```bash
+    bkcrack -C encrypted.zip -c uncompressed.xml -P plain.zip -p plain.txt
+    # Take file entry from encrypted archive, pass to `-c`
+    # Take key values, pass to `-k`
+    bkcrack -C encrypted.zip -c encrypted.jpg -k c072e51c a36b7996 b6f8d312 -d decrypted.jpg
+    ```
+- [ZIP Attacks with Reduced Known Plaintext](~/code/doc/zip/zipattacks.pdf)
+    - [A known plaintext attack on the PKZIP stream cipher](~/code/doc/zip/CS0842.pdf)
+    - https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
 
 # steg
 
@@ -209,6 +219,15 @@ Requirements:
 - outguess
 
 # polyglots, mock files, file formats
+
+Detection:
+
+```bash
+file -k
+binwalk --dd='.*' foo
+binwalk -Me foo
+```
+[GitHub \- Polydet/polydet: Polyglot detector](https://github.com/Polydet/polydet)
 
 Mocks:
 

