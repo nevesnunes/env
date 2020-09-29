@@ -1,0 +1,90 @@
+On history and justification of C programming language: Best System Language Ever or Bad by Design?
+(numbered summary version)
+
+There's a recurring theme where people think the C language's design is good for systems programming, even today. These people think that someone sat down, thought of every tradeoff, and made the best ones for system programming. They assume it couldn't have been better because any modification would hurt its goals of performance or portability. This isn't true in the slightest and totally contradicts real reasons why C is designed the way it is. Even back then, there were better languages/OS's [1] that cheap hardware just hadn't caught up to. That cheap hardware's limitations, and them alone, drove the design decisions of BCPL, B, and then C.
+
+You wouldn't want my opinion, though: let's look a historical records and papers on the development of these. Hacker New's commenter pjmlp sent me a great video [2] detailing the history of C and C++ languages w/ pics and paper excerpts. The author takes it step-by-step showing what the goals were, what they were using, the problems they encountered, and what changes they made. Thompson and Ritchie actually had little to do with most of C's key decisions and philosophy: borrowed or stolen from BCPL at Cambridge with little to no credit early on. They kind of went with it from there.
+
+Numbered List of Key Points in C's History
+
+1. Starts with assembler code on EDSAC [3], the Most Godawful Computer on Earth (TM).
+
+2. University orders a watered-down Atlas called Titan/Atlas2. Must wait years to get it and still another year to make it run.
+
+3. Need new language for it plus it was trendy to make new languages for new computers.
+
+4. ALGOL60 [4] had many nice features of languages today but was too theoretical: only existed on paper.
+
+5. Fortran was locked into IBM mainframes and mapped 1-to-1 to their hardware, not Atlas or Titan.
+
+6. Designed CPL language as a real-world version of ALGOL *before* their Titan shipped. CPL had all kinds of features supporting many types of applications, even lambda calculus!
+
+7. Had to use Most Godawful Computer on Earth (EDSAC) to build the CPL compiler.
+
+8. Queued up behind others with snippets of EDSAC machine code testing pieces of it. Predictably, this didn't scale to CPL's size and complexity. Abandoned CPL compiler.
+
+9. New design goal: trim out anything hard to compile from CPL. Naturally eliminates most features for robust and maintainable programming.
+
+10. New design goal: give programmer total control to the point that he or she can do arbitrary stuff in memory. Maps better to Most Godawful Computer on Earth's style of execution and constraints.
+
+11. The result of these was BCPL [5]: a typeless, word-oriented language with few keywords and unrestricted use of memory. Created philosophy of "the programmer is in charge and gets no help." Compiler was easy to write on Most Godawful Computer on Earth. Ran fast on it, too.
+
+12. BCPL author took it with him to MULTICS project [6], where Ken Thompson and Dennis Ritchie were working. Got used on some portions of it. Thompson apparently liked it.
+
+13. MULTICS was built but failed in market because of delays, scope, and cost ($7+ mil per unit).
+
+14. Thompson was limited to a PDP-7 [7] in next job. It couldn't run MULTICS or advanced languages on it. Plus, PDP-7's OS and tools sucked. He and Ritchie decided to build a bare-bones version of MULTICS, called UNICS, in assembly focusing on simplicity and performance above everything. Stripped out or changed most features benefiting safety/security, maintenance, and consistency.
+
+15. Around same time, Thompson was trying to get BCPL to work on his similarly-awful PDP-7. Had to trim it further to make it fit. Changed syntax for personal style. That included long-time headaches like going from ALGOL := assignment and = equality to = assignment and == equality. Resulted in B language.
+
+16. The PDP-11 [8] was byte/character-oriented instead of word-oriented. B didn't work well. Ritchie added limited typing to it to support these plus a few other changes. Result was the C language.
+
+17. Rewrote parts of UNIX in C. Others were too hard.
+
+18. Those difficulties led to adding struct's which allowed rest to be re-written in C. Neither C nor UNIX were meant to be portable despite some people's claim it was a "cross-platform assembler."
+
+18. Simplicity of C and UNIX allowed easy porting anyway which started from a year later onward by other people.
+
+19. K&R adds some types and standard I/O. Remained for years the baseline for portable C.
+
+20. Bjourne loves programming in Simula [9]: an ALGOL60 superset with classes and concurrency. Creates C with Classes to bring it closer to Simula.
+
+21. Bjourn adds features from ALGOL68, Ada, CLU, and ML to C w/ Classes to produce C++: a C extension that reduces freedom where sensible but mostly adds features for productive or maintainable programming.
+
+22. ANSI C standard created a superset of C features, including some from C++. Becomes standard style for C programming. Tons more code written this way.
+
+Conclusion(s)
+
+So, there you have it. They started with a great language (ALGOL60) that inspired Go, etc. Needed something ground in reality, leading to similarly great CPL. Hardware and software were so hard to use they stripped it to bare minimum (BCPL). Thompson stripped that to B because his PDP-7 was too limited and added syntax problems purely due to preference. Ritchie added a little to that to get the PDP-11 to work, resulting in C. Added struct's to for more complex data structures. Writing the simple, UNIX in C language caused C to flourish as it did due to social and economic reasons [10]. Eventual standard borrowed a bit from C++. All the C code out there resulted.
+
+Hardware eventually got better than EDSAC, PDP-7, or PDP-11. Language and OS decisions created due to its limitations aren't removed. All of that is extended or worked around instead. UNIX and later C applications have those issues as a result. Result is a mess so huge [11] that it might be impossible to fix.
+
+Conclusion: the worst aspects of UNIX and C were intention design decisions that had nothing to do with what a good, systems language should look like and everything to do with limitations of an EDSAC, PDP-7, & PDP-11.
+
+Conclusion 2: we should've ditched or modified C to look more like ALGOL68 a long time ago. Like Bjourne and Wirth were doing.
+
+Conclusion 3: C and UNIX should be avoided where possible because they're Bad by Design for reasons that stopped applying sometime in the 80's or early 90's.
+
+However, if you're device's hardware is PDP-11 equivalent, then there is a language and OS that are stripped enough to run on it. Might want to consider C and UNIX 1.0 then. ;)
+
+[1] https://news.ycombinator.com/item?id=10273656
+
+[2] https://vimeo.com/132192250
+
+[3] https://en.wikipedia.org/wiki/EDSAC
+
+[4] https://en.wikipedia.org/wiki/ALGOL_60
+
+[5] https://en.wikipedia.org/wiki/BCPL
+
+[6] http://multicians.org/history.html#tag1
+
+[7] https://en.wikipedia.org/wiki/PDP-7
+
+[8] https://en.wikipedia.org/wiki/PDP-11
+
+[9] https://en.wikipedia.org/wiki/Simula
+
+[10] https://www.dreamsongs.com/RiseOfWorseIsBetter.html
+
+[11] https://queue.acm.org/detail.cfm?id=2349257

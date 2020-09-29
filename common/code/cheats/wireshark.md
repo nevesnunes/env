@@ -58,7 +58,7 @@ tail -c +1 -f localhost.pcap | wireshark -k -i -
 # Winpcap, npf
 
 ```
-sc qc npf 
+sc qc npf
 sc start npf
 sc config npf start= auto
 ```
@@ -101,7 +101,7 @@ tds
 split:
 
 ```bash
-# wireshark > Create new profile 
+# wireshark > Create new profile
 #     wireshark > Analyze > Enabled Protocols > Disable All
 tshark -C new_profile
 # https://github.com/wanduow/libtrace/wiki/tracesplit
@@ -116,6 +116,8 @@ editcap -A "2017-01-20 10:32:00" -B "2017-01-20 18:44:00" infile.pcap outfile.pc
 - conversation: `tcp.stream == 70098`
 
 # statistics
+
+- On menu bar: Statistics > Conversations > TCP (if highest count of packets)
 
 ```bash
 tshark -r foo.pcap -qz io,stat,0,ip.src==1.2.3.4,ip.dst==1.2.3.4,tcp.dstport==80
@@ -139,6 +141,53 @@ Column #2: tcp.dstport==80
 Time            |frames|  bytes  |frames|  bytes  |frames|  bytes
 000.000-            725     52048    663    340474     28      2494
 ===================================================================
+```
+
+### payloads
+
+```bash
+# 1. filter `tcp.payload`, write values to files
+~/code/snippets/pcap/time_delta.py <(tshark -r patience.pcap -Y 'tcp' -T json) | ~/code/my/aggregables/captures/matplotlib/bar.py
+
+# 2. simplify values
+ls -1 | xargs -i sed -i 's/22 Sep 2020 20:[0-9]*:[0-9]*/_/g' {}
+
+# 3. remove duplicates
+fdupes -r -f . | grep -v '^$' | xargs rm -v
+```
+
+### timestamps
+
+- On menu bar: Statistics > I/O Graph
+    - Display Filter: frame
+    - Y Axis: SUM(Y Field)
+    - Y Field: tcp.time_delta
+
+```bash
+# filter `tcp.payload`, write values to csv, render as bar chart
+~/code/snippets/pcap/time_delta.py <(tshark -r patience.pcap -Y 'tcp' -T json) | ~/code/my/aggregables/captures/matplotlib/bar.py
+```
+
+Examples:
+
+- [morse code encoded in time_delta](https://ajdin.io/posts/ctf-balccon-2020/#forensicspatience)
+
+### frequency analysis
+
+```bash
+gron <(tshark -r foo.pcap -Y 'tcp.payload' -T json) \
+    | awk '
+        match($0, /^json\[[0-9]*\]\./) {
+            s = substr($0, RLENGTH + 1, length($0))
+            a[s]++
+        }
+        END {
+            for (i in a) {
+                if (a[i] > 0) {
+                    print a[i] " " i
+                } } }' \
+    | sort -n \
+    | vim -
 ```
 
 # packet crafting / creation

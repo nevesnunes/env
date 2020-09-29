@@ -8,54 +8,22 @@ google: mdn foo
 https://www.webpagetest.org/
 
 https://github.com/clowwindy/Awesome-Networking
-http://www.kegel.com/c10k.html
-
-https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
-
-bypass URL access rules is to abuse redirections (responses with code 3xx)
-    Open URL Redirection
-        repeat parameter: 2nd url redirects to 3rd url
+[The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
 
 http://noahdavids.org/self_published/Tracing_packets_without_collecting_data.html
-=> at least "-s 94" for IPv4 or "-s 114" for IPv6
+    > at least "-s 94" for IPv4 or "-s 114" for IPv6
 
 https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
 
 https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
 https://hc.apache.org/httpclient-3.x/performance.html
 
-Ping-scan to discover reachable prefixes.
-Traceroute to discover topology.
-ZMap on reachable prefixes for common service ports.
-DNS AXFR to learn host names.
-wget crawling of seeded HTTP servers for content.
+- Ping-scan to discover reachable prefixes
+- Traceroute to discover topology
+- ZMap on reachable prefixes for common service ports
+- DNS AXFR to learn host names
 
 https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
-
-```ps1
-# Reset WINSOCK entries to installation defaults
-netsh winsock reset catalog
-
-# Reset TCP/IP stack to installation defaults
-netsh int ip reset reset.log
-
-# Reset Firewall to installation defaults
-netsh advfirewall reset
-
-# Flush DNS resolver cache
-ipconfig /flushdns
-
-# Renew DNS client registration and refresh DHCP leases
-ipconfig /registerdns
-
-# Flush routing table (reboot required)
-route /f
-```
-
-```
-pkgmgr /iu:"TelnetClient"
-telnet www.example.com 80
-```
 
 # relay
 
@@ -88,6 +56,33 @@ socat - UDP-DATAGRAM:239.255.1.1:4242,ip-add-membership=239.255.1.1:10.0.0.10,ip
 ```
 
 https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
+
+# connection testing
+
+```ps1
+# Reset WINSOCK entries to installation defaults
+netsh winsock reset catalog
+
+# Reset TCP/IP stack to installation defaults
+netsh int ip reset reset.log
+
+# Reset Firewall to installation defaults
+netsh advfirewall reset
+
+# Flush DNS resolver cache
+ipconfig /flushdns
+
+# Renew DNS client registration and refresh DHCP leases
+ipconfig /registerdns
+
+# Flush routing table (reboot required)
+route /f
+```
+
+```
+pkgmgr /iu:"TelnetClient"
+telnet www.example.com 80
+```
 
 # security
 
@@ -524,6 +519,13 @@ netstat -tulpn | \
 ```
 
 # url encoding
+
+```bash
+# GET
+curl http://foo -G --data-urlencode 'a=foo bar'
+# POST
+curl http://foo --data-urlencode 'a=foo bar'
+```
 
 ```python
 urllib.unquote(c)

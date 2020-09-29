@@ -1,3 +1,7 @@
+# +
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
+
 # media queries
 
 - https://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile

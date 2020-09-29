@@ -91,6 +91,8 @@ find / -perm -u=s -type f 2>/dev/null
     - https://github.com/leonjza/dnsfilexfer
 - URI scheme
     - file, ftp, zlib, data, glob, phar, ssh2, rar, ogg, ftps, compress.zlib, compress.bzip2, zip
+- bypass URL access rules with redirections (responses with code 3xx)
+    - repeat parameter containing url to visit: 2nd url redirects to 3rd url
     ```php
     <?php
     header('HTTP/1.1 301 Redirect');
