@@ -19,7 +19,10 @@ https://github.com/williballenthin/EVTXtract
 
 # memory analysis
 
-./volatility.md
+- ./volatility.md
+    - any format
+- AccessData FTK_Imager
+    - EnCase format
 
 compare running processes with known file hashes
     [Current RDS Hash Sets | NIST](https://www.nist.gov/itl/ssd/software-quality-group/national-software-reference-library-nsrl/nsrl-download/current-rds)
@@ -27,8 +30,8 @@ compare running processes with known file hashes
 ### memory dump
 
 dumpit, procdump, PMDump
-https://github.com/google/rekall/tree/master/tools/windows/winpmem
-    winpmem.exe -f test.raw
+winpmem.exe -f test.raw
+    https://github.com/google/rekall/tree/master/tools/windows/winpmem
 
 ### live system
 
