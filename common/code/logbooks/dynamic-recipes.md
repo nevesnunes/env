@@ -54,5 +54,6 @@ https://www.reddit.com/r/datasets/comments/an6n26/are_there_any_freetouse_or_ope
     https://github.com/dspray95/open-recipe
 
 [Turn recipe websites into plain text | Hacker News](https://news.ycombinator.com/item?id=23648864)
+[Ask HN: Best Recipe Search Engine? | Hacker News](https://news.ycombinator.com/item?id=24630023)
 
 
