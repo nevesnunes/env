@@ -75,9 +75,9 @@ git clean -fx
 # rewrite history by object ids
 p=foo/bar \
 && git log --all --pretty=format:%H -- "$p" \
-    | xargs -i git ls-tree {} "$p" \
+    | xargs -I{} git ls-tree {} "$p" \
     | awk '{print $3}' \
-    | xargs -i bash -c 'java \
+    | xargs -I{} bash -c 'java \
         -jar ~/opt/bfg.jar \
         --delete-files \
         --no-blob-protection \
@@ -335,7 +335,7 @@ git ls-files --stage | xargs -L1 sh -c '
 dirname=$(echo "$2" | cut -c-2)
 filename=$(echo "$2" | cut -c3-)
 echo ".git/objects/$dirname/$filename"
-' _ | xargs -i python3 -c '
+' _ | xargs -I{} python3 -c '
 import sys, zlib
 print(zlib.decompress(open(sys.argv[1], "rb").read()))
 ' {}
@@ -344,7 +344,7 @@ git ls-files --stage | xargs -L1 sh -c '
 dirname=$(echo "$2" | cut -c-2)
 filename=$(echo "$2" | cut -c3-)
 echo ".git/objects/$dirname/$filename"
-' _ | xargs -i python3 -c '
+' _ | xargs -I{} python3 -c '
 from hashlib import sha1
 import sys, zlib
 print(sha1(zlib.decompress(open(sys.argv[1], "rb").read())).hexdigest())
@@ -360,6 +360,23 @@ def git_blob_hash(data):
     h = hashlib.sha1()
     h.update(data)
     return h.hexdigest()
+```
+
+# decompress objects
+
+```bash
+# [Optional] On packed objects
+mkdir -p .pack
+find .git/objects/pack/ -type f -iname '*.pack' \
+    | while IFS= read -r i; do
+    mv "$i" .pack/
+    git unpack-objects < .pack/"$i"
+done
+
+find .git/objects/ -type f | xargs -I{} python3 -c '
+import sys, zlib
+print(zlib.decompress(open(sys.argv[1], "rb").read()))
+' {} | vim -
 ```
 
 # show changes in commit
@@ -383,13 +400,13 @@ git clone git@foo.com:foo-team/foo.git
 ```bash
 # across commits / history
 query=
-git rev-list --all | xargs -i git grep "$query" {}
+git rev-list --all | xargs -I{} git grep "$query" {}
 subtree=
-git rev-list --all -- "$subtree" | xargs -i git grep "$query" {} -- "$subtree"
+git rev-list --all -- "$subtree" | xargs -I{} git grep "$query" {} -- "$subtree"
 
 # across branches
 query=
-git show-ref --heads | awk '{print $2}' | xargs -i git grep "$query" {}
+git show-ref --heads | awk '{print $2}' | xargs -I{} git grep "$query" {}
 # ||
 git log -S foo -c
 git log -S foo --all -- '*.js'
