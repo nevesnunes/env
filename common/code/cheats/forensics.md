@@ -56,14 +56,6 @@ sudo mount -t ext4 -o loop foo mnt_dir
 
 https://countuponsecurity.com/2016/05/30/digital-forensics-ntfs-indx-and-journaling/
 
-# identify by chunks vs. magic bytes
-
-```bash
-file -k * | grep ':\s*data$' | cut -d':' -f1 | xargs -i awk '/PNG|IHDR|PLTE|IDAT|IEND/{print FILENAME; exit}' {}
-```
-
-http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html
-
 # recovering files
 
 ```bash
@@ -221,20 +213,23 @@ Biham and Kocher's known plaintext attack:
     - https://www.hackerfactor.com/blog/index.php?/archives/894-PNG-and-Hidden-Pixels.html
 - outguess
 
-# polyglots, mock files, file formats
+# file formats
+
+### polyglots
 
 Detection:
 
 ```bash
-file -k
+file -k foo
 binwalk --dd='.*' foo
 binwalk -Me foo
+
+# images
+identify -verbose foo
+python3 -c 'import cv2, sys; cv2.imread(sys.argv[1])' foo
+python3 -c 'import sys; from PIL import Image; print(Image.open(sys.argv[1]).verify())' foo
 ```
-[GitHub \- Polydet/polydet: Polyglot detector](https://github.com/Polydet/polydet)
-
-Mocks:
-
-- ./files/mis-identified-files.jpg
+- [GitHub \- Polydet/polydet: Polyglot detector](https://github.com/Polydet/polydet)
 
 No magic enforced at offset zero:
 
@@ -258,3 +253,26 @@ Examples:
     - https://en.wikipedia.org/wiki/Gifar
 - msi + jar
     - https://blog.virustotal.com/2019/01/distribution-of-malicious-jar-appended.html
+
+### mocks
+
+- ./files/mis-identified-files.jpg
+
+### invalid data
+
+```bash
+# identify by chunks vs. magic bytes
+file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i awk '/PNG|IHDR|PLTE|IDAT|IEND/{print FILENAME; exit}' {}
+file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i awk 'match($0, /\xff\xd8|\xff\xe0|JFIF|\xff\xdb|\xff\xc0|\xff\xc4|\xff\xda|\xff\xd9/{print FILENAME ":" RSTART; exit}' {}
+```
+
+- CRC correction
+    ```bash
+    pngcheck -cfv _
+    ```
+    - https://0x90r00t.com/2016/02/08/sharif-university-ctf-2016-forensic-400-blocks-write-up/
+- incorrect chunk length
+- incorrect headers
+    - https://github.com/apoirrier/CTFs-writeups/blob/master/DarkCTF2020/Misc/QuickFix.md
+- extract patterns from specifications
+    - http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html

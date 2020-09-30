@@ -115,4 +115,17 @@ print("".join([random.choice(alphabet) for _ in range(32)]))
 - [CTFtime\.org / BalCCon2k20 CTF / Two Sides of a Coin / Writeup](https://ctftime.org/writeup/23792)
     - ~/share/ctf/BalCCon2k20/two-sides-of-a-coin-solutions/
 
+# encodings
+
+Binary-to-text
+
+- https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
+
+Morse
+
+> The Morse code consists of several "dot", "dash" and "interval". The ratio of "dot" and "dash" is 1:3, The ratio of "intra-code interval", "inter-code interval" and "code group interval" is 1:3:5
+    - ~/Downloads/Morse Recognition Algorithm Based on K-means.pdf
+- "dot" = ".", "dash" = "-", "intra-code interval" = " ", "inter-code interval" = " ", "code group interval" = "/"
+- https://morsecode.world/international/timing.html
+
 
