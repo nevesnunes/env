@@ -6,6 +6,8 @@
 [ ] take unsorted sets of ingredientes to generate similar recipes
     https://github.com/ekzhu/SetSimilaritySearch
     https://stats.stackexchange.com/questions/285367/most-well-known-set-similarity-measures
+    https://stackoverflow.com/questions/53753614/cosine-similarity-between-keywords
+    https://janav.wordpress.com/2013/10/27/tf-idf-and-cosine-similarity/
 
 [ ] visual diff between stages
     e.g. when an ingredient is raw vs. cooked - color, texture, noise...
