@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -eu
+set -eux
 
 torbrowser_dir=/home/fn/.local/share/torbrowser/tbb/x86_64/tor-browser_en-US/Browser/TorBrowser
 defaults_torrc="$torbrowser_dir/Data/Tor/torrc-defaults"
