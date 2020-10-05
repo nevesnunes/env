@@ -3,6 +3,7 @@
 set -eu
 
 # `LC_ALL` is expected to be empty
+LC_ALL=${LC_ALL:-}
 LC_ALL=${SCRATCHPAD_TERMINAL_OLD_LC_ALL-${LC_ALL}}
 export LC_ALL
 LANG=${SCRATCHPAD_TERMINAL_OLD_LANG:-${LANG}}
@@ -50,14 +51,14 @@ if [ -n "$cmd_expanded" ]; then
     && requires_tty=1
   ldd "$cmd_expanded" 2>/dev/null \
     | awk '
-      /^[[:space:]]*lib(wayland|X11)/{t=0; exit !t}
+      /^[[:space:]]*lib(GLX|wayland|X11|xcb)/{t=0; exit !t}
       /^[[:space:]]*lib(n?curses|tinfo)/{t=1} 
       END{exit !t}
     ' \
     && requires_tty=1
   objdump -C -T "$cmd_expanded" 2>/dev/null \
     | awk '
-      /[[:space:]]+(SDL_CreateWindow|SdlWindow::SdlWindow\(\)|XCreateWindow|XCreateSimpleWindow|xcb_create_window)$/{t=0; exit !t}
+      /[[:space:]]+(NativeWindow::(.*)|QApplication::(.*)|SDL_CreateWindow|SdlWindow::(.*)|wl_display_connect|wxWindow::(.*)|XCreateWindow|XCreateSimpleWindow|xcb_create_window)$/{t=0; exit !t}
       /[[:space:]]+stdin$/{t=1}
       END{exit !t}
     ' \

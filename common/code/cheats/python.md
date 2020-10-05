@@ -268,7 +268,28 @@ pytest --cov=dir/
 python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 ```
 
-# Dissassembly
+# Dissassembly, decompilation
+
+```bash
+# Finding script filenames
+# 1. debug until script loaded
+# 2. make full memory dump
+# 3. floss and grep `\.py$`
+
+# From PyInstaller
+python python_exe_unpack.py -i foo.exe
+
+# From pyc
+python -c '
+import dis, marshal, sys, uncompyle6
+f = open(sys.argv[1], "rb")
+f.seek(16) # skip 16 byte header (in case of invalid magic bytes)
+co = marshal.load(f)
+print(dis.dis(co)) # bytecode
+f2 = open(sys.argv[2], "rw")
+uncompyle6.main.decompile(3.7, co, f2, showast=False) # source
+' foo
+```
 
 ```python
 import dis
@@ -341,8 +362,8 @@ python3 -m http.server 8123
 
 ```bash
 # Create
-mkdir -p ~/share/venv
-cd ~/share/venv/
+mkdir -p ~/code/venv
+cd ~/code/venv/
 python3 -m venv foo
 # Note: packages will be installed in user path if specified in `pip.conf`, therefore override it
 cd foo
@@ -351,15 +372,15 @@ user = false
 ' > ./pip.conf
 
 # Start
-. ~/share/venv/foo/bin/activate
+. ~/code/venv/foo/bin/activate
 
 # Install dependencies
 pip install angr
 # Validation
-find ~/share/venv/foo/lib/ -maxdepth 3 -mmin -5
+find ~/code/venv/foo/lib/ -maxdepth 3 -mmin -5
 
 # End
-. ~/share/venv/foo/bin/deactivate
+. ~/code/venv/foo/bin/deactivate
 ```
 
 https://github.com/mozilla/crawl-prep/blob/master/setup-python-venv.sh

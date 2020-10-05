@@ -29,6 +29,11 @@ strcasecmp($_GET['secret'], "0x1337") == 0
 // => ["1"]
 ```
 
+# deserialization
+
+- [GitHub \- galdeleon/35c3\_php: Solution for 35c3 php challenge](https://github.com/galdeleon/35c3_php)
+    - ~/code/snippets/ctf/web/35c3_php/
+
 # jail
 
 [GitHub \- splitline/PHPFuck: PHPFuck: \(\(\+\.^\)\) / Using only 7 different characters to write and execute php\.](https://github.com/splitline/PHPFuck)

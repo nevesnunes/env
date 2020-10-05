@@ -10,6 +10,13 @@ http://www.decompileandroid.com/
 
 # emulation
 
+https://github.com/aind-containers/aind
+    :) exposes VNC
+https://www.android-x86.org/
+    https://dotsrc.dl.osdn.net/osdn/android-x86/71931/android-x86_64-9.0-r1.iso
+    https://www.vimalin.com/blog/install-android-x86-in-vmware-fusion/
+https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android/docs/ANDROID-QEMU-PIPE.TXT
+
 ### anbox
 
 ```bash
