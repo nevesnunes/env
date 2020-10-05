@@ -74,10 +74,9 @@ docker run -it -v hello:/Downloads:z ubuntu bash
 ```bash
 # Given: $PWD/Dockerfile
 docker build . --tag whipper/whipper
-# Then:
 docker images | grep 'whipper/whipper'
 # Cleanup:
-docker images --filter "dangling=true" -q --no-trunc | xargs -i docker rmi {}
+docker images --filter "dangling=true" -q --no-trunc | xargs -I{} docker rmi {}
 # ||
 docker image prune -af
 ```
@@ -166,4 +165,7 @@ https://docs.docker.com/engine/reference/run/#pid-settings---pid
 
 ```bash
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' CONTAINER_ID_OR_NAME
+docker ps \
+    | awk '/[0-9a-f]{12}/{print $1}' \
+    | xargs -I{} docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' {}
 ```

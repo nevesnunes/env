@@ -31,6 +31,9 @@ https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
 # debug
 socat - EXEC:filan,pipes,stderr
 
+# proxy
+socat TCP-LISTEN:8080,fork,reuseaddr TCP:google.com:443
+
 # tls tunnel
 # alternatives:
 # - https://www.stunnel.org/
@@ -415,7 +418,7 @@ User Authentication against Active Directory, Dissecting EAP-TLS
 
 ```bash
 # Validate server push requests
-nghttp -ans https://foo/index.html
+nghttp -v -ans https://foo/index.html
 # ||
 # chrome://net-export
 ```

@@ -175,15 +175,25 @@ nm -gC _.so
 objdump -b binary -m i386:x64-32:intel -D shellcode.bin
 ```
 
-# ARM
+# cross-architecture
 
 ```bash
+# multiarch
+sudo apt install \
+    binutils-aarch64-linux-gnu \
+    binutils-mips-linux-gnu \
+    binutils-powerpc-linux-gnu \
+    binutils-arm-linux-gnueabi \
+    qemu-user \
+    qemu-user-static
+
+# arm
 sudo apt install \
     qemu-system-arm \
-    qemu-user
 qemu-arm -L /usr/arm-linux-gnueabihf/ crackme
 ```
 
+https://github.com/OAlienO/CTF/tree/master/2018/HITCON-CTF/Baldis-RE-Basics
 https://padraignix.github.io/reverse-engineering/2020/05/18/nsec2020-crackme/
 
 ### compiling
@@ -199,6 +209,26 @@ arm-linux-gnueabi-gcc ~/code/wip/hello.c -o hello_arm_static -static
 ```
 
 https://www.acmesystems.it/arm9_toolchain
+
+### attaching to debugger
+
+```bash
+qemu-arm -g 18080 _
+gdb-multiarch _
+# set arch mips
+# set endian big
+# target remote localhost:18080
+```
+
+https://padraignix.github.io/reverse-engineering/2020/05/18/nsec2020-crackme/
+
+# boot disk, MBR
+
+```bash
+qemu-system-x86_64 -s -S -m 512 -fda winxp.img
+```
+
+https://github.com/VoidHack/write-ups/tree/master/Square%20CTF%202017/reverse/floppy
 
 # dynamic linking
 

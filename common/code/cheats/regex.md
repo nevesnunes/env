@@ -37,12 +37,18 @@ https://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotati
 \b assert position at a word boundary: (^\w|\w$|\W\w|\w\W)
 ```
 
+- [!] Stops at combining characters, e.g.
+    ```
+    Expression: /(?:Math(?:(?:\.\w+)|\b))|(?:\d+\.?\d*(?:e\d+)?)/
+    Input: MathÐ1
+    Matches: Math1
+    ```
+    - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
+
 ```bash
 printf '%s' 'abc' | grep -o '\B\w\+'
+# bc
 ```
-
-> bc
-
 
 # lookaround
 

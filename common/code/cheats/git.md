@@ -420,6 +420,11 @@ git grep foo -- '/*.js' '/*.cs'
 
 https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in-the-git-history
 
+# dump public repository from site
+
+- [GitHub \- internetwache/GitTools: A repository with 3 tools for pwn&\#39;ing websites with \.git repositories available](https://github.com/internetwache/GitTools)
+- [GitHub \- arthaud/git\-dumper: A tool to dump a git repository from a website](https://github.com/arthaud/git-dumper)
+
 # case studies
 
 https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/

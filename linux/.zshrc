@@ -8,7 +8,7 @@ done
 
 # Completion
 autoload -Uz compinit && compinit
-compdef _gnu_generic fzf markdown-toc mountpoint openvpn youtube-dl
+compdef _gnu_generic binwalk fzf markdown-toc mountpoint openvpn xortool youtube-dl
 setopt complete_aliases
 setopt no_auto_remove_slash
 

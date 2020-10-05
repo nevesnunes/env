@@ -1,5 +1,9 @@
 # +
 
+https://github.com/lcatro/Angr-CTF-Learn-Note
+https://github.com/jakespringer/angr_ctf
+https://github.com/acdwas/ctf/blob/master/2020/Google_2020/rev/beginner/solver.py
+
 https://binaryresearch.github.io/2020/01/22/more-angr-defeating-5-ELF-crackmes.html
 https://jkrshnmenon.wordpress.com/2019/01/31/even-the-king-bows-before-angr/
     ~/code/snippets/angr/king.py

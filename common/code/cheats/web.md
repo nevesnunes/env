@@ -10,7 +10,7 @@ https://portswigger-labs.net/hackability/inspector/index.php?input=window
 
 https://snyk.io/vuln/
 
-# client information disclosure
+# information disclosure
 
 [Webhook\.site \- Test, process and transform emails and HTTP requests](https://webhook.site/)
 
@@ -27,8 +27,19 @@ if _name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
 ```
 
-- `user-agent curl/7.19.3` => vulnerable version
+- client headers - `user-agent curl/7.19.3` => vulnerable version
     - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
+- trailing headers - sent after the content with a zero length chunk
+    ```bash
+    curl -k -v --raw 'https://foo'
+    # ||
+    printf 'GET / HTTP/1.1\r\nHost: www.foo.com\r\n\r\n' \
+        | openssl s_client -ign_eof -connect foo.com:443 -servername www.foo.com
+    ```
+- page source based on login state
+    - anonymous user
+    - logged in user
+    - admin user
 
 # prototype pollution
 
@@ -102,7 +113,10 @@ fetch('http://localhost:5000/',{
 # server-side request forgery (SSRF)
 
 - Headers
-    - X-Forwarded-For: 127.0.0.1
+    - burp: Proxy > Options > Match and Replace
+        - Item = Request Header
+        - Match = `^X-Forwarded-For.*`
+        - Replace = `X-Forwarded-For: 127.0.0.1`
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
@@ -170,6 +184,14 @@ https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-
 
 - https://netsec.expert/2020/02/01/xss-in-2020.html
 - https://security.stackexchange.com/questions/162436/example-of-reflected-client-xss-which-is-not-dom-based-xss
+
+- Same-origin policy: iframes can access each other's data in same domain
+    ```javascript
+    var d = window.top.frames[0].window.document;
+    ```
+    - [GitHub \- galdeleon/yolovault: writeup for yolovault challenge \- 33c3 ctf](https://github.com/galdeleon/yolovault)
+        - uses timeouts to wait for loaded iframe content
+        - ~/code/snippets/ctf/web/yolovault/
 
 ```html
 <!-- DOM-Based -->
@@ -380,15 +402,33 @@ filename="'$(sleep 5)'a.gif"
 
 # jail, filter bypass, waf
 
+- testing
+    - https://regex101.com/
 - jsfuck
+- https://mathiasbynens.be/notes/javascript-escapes
 - `__defineGetter__`
     - https://hack.more.systems/writeup/2014/10/26/hacklu2014-objection/
-- https://mathiasbynens.be/notes/javascript-escapes
 - alternative for `()`
     ```javascript
     alert`1337`in``.sub﻿in''instanceof""
     ```
     - https://portswigger.net/research/javascript
+- alternative for function call
+    ```javascript
+    window["a"]()
+    window["a"].apply(null, [1, 2, 3])
+    // typeof o = "string"
+    // o.constructor = String
+    // String.constructor = Function
+    (o=>o.constructor.constructor(
+        o.constructor.fromCharCode(114,101,116,117,114,110,32,112,114,111,99,101,115,115,46,109,97,105,110,77,111,100,117,108,101))())(Math+1)
+    ```
+    - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
+- Object.freeze() is shallow
+    ```javascript
+    Object.freeze(Math);
+    (o=>o.trusted=1)(Math.__proto__)
+    ```
 - php, non alphanumeric
     - https://github.com/ExTi0p/ctf/tree/master/2020/FwordCTF_2020/Jailoo_Warmup
     - https://securityonline.info/bypass-waf-php-webshell-without-numbers-letters/

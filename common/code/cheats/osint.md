@@ -1,3 +1,7 @@
+# +
+
+https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md#osint-webpages
+
 # asn, whois
 
 ```bash
@@ -154,8 +158,10 @@ shodan host 216.58.210.206
 
 - https://web.archive.org
     - e.g.
+    - https://web.archive.org/web/*/https://github.com/HMBSbige/JetBrains-License-Server/*
+        - https://hub.docker.com/r/hmbsbige/jetbrains-license-server/dockerfile
     - https://web.archive.org/web/20200810173036if_/https://github.com/jaffarahmed/CREST-Exam-Prep
-    - https://web.archive.org/web/*/https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/master/*
+    - https://web.archive.org/web/*/https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/*
         - https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/master/Breakout%201%20%2B%20UNIX1.pdf
 - https://archive.is
 - hybrid analysis
