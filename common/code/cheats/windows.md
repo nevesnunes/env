@@ -636,6 +636,12 @@ https://en.wikipedia.org/wiki/Environment_variable#Windows
 
 wf.msc
 
+# Disable Windows Defender
+
+```ps1
+Set-MpPreference -DisableRealtimeMonitoring $true
+```
+
 # Test WMI access
 
 https://support.infrasightlabs.com/article/how-to-confirm-winrm-and-remote-scripting/

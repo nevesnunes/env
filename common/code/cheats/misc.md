@@ -100,7 +100,7 @@ find / -perm -u=s -type f 2>/dev/null
     ?>
     ```
 
-# random number generator (RNG)
+# pseudo random number generator (PRNG)
 
 known seed => bruteforce generated values
 

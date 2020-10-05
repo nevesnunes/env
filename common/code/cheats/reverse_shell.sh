@@ -19,6 +19,8 @@ printf '%s\n' \
 
 # ||
 ssh hostname tar cvjf - ./foo/ | tar xjf -
+# ||
+echo 'gzip -ck9 ./foo | base64 -w0' | nc foo.com 5000 | base64 -d | gzip -d
 
 # Workaround remote commands without a login shell
 # Reference: https://susam.in/blog/file-transfer-with-ssh-tee-and-base64/
@@ -30,7 +32,7 @@ base64 /tmp/payload
 exit
 
 # 2. target_host
-sed '1,/$ base64/d;/$ exit/,$d' ssh.txt | base64 --decode > payload
+sed '1,/$ base64/d;/$ exit/,$d' ssh.txt | base64 -d > payload
 grep -A 1 sha1sum ssh.txt
 sha1sum payload
 
