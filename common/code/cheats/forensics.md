@@ -162,6 +162,7 @@ For windows, contents may still be recovered via `vaddump`, if references not br
 - [GitHub \- RUB\-NDS/PDF101: Artifacts for the Black Hat talk\.](https://github.com/RUB-NDS/PDF101)
     - https://medium.com/bugbountywriteup/hacker101-ctf-android-challenge-writeups-f830a382c3ce
 - [Apprentice Alf’s Blog | Everything you ever wanted to know about DRM and ebooks, but were afraid to ask\.](https://apprenticealf.wordpress.com/)
+- ../logbooks/pdf_reformat.md
 
 ```bash
 # disable security / drm / no copy restriction bits
@@ -185,12 +186,13 @@ zip -FF foo --out foo.out
     - ~/code/doc/zip/APPNOTE.TXT
 - AE-x (compression method = 99)
     - [AES Encryption Information: Encryption Specification AE-1 and AE-2](https://www.winzip.com/win/en/aes_info.html)
+- ~/code/doc/zip/Ten Thousand Traps.pdf
 
 ### extraction path
 
-[GitHub \- snyk/zip\-slip\-vulnerability: Zip Slip Vulnerability \(Arbitrary file write through archive extraction\)](https://github.com/snyk/zip-slip-vulnerability)
+- [GitHub \- snyk/zip\-slip\-vulnerability: Zip Slip Vulnerability \(Arbitrary file write through archive extraction\)](https://github.com/snyk/zip-slip-vulnerability)
 
-### password attacks
+### encryption / password attacks
 
 Biham and Kocher's known plaintext attack:
 
@@ -207,6 +209,8 @@ Biham and Kocher's known plaintext attack:
     - [A known plaintext attack on the PKZIP stream cipher](~/code/doc/zip/CS0842.pdf)
     - https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
 
+- https://russtone.io/2018/06/24/google-2018-better-zip/
+
 # steg
 
 - https://fotoforensics.com/
@@ -220,14 +224,19 @@ Biham and Kocher's known plaintext attack:
 Detection:
 
 ```bash
-file -k foo
-binwalk --dd='.*' foo
-binwalk -Me foo
+file -k _
+binwalk --dd='.*' _
+binwalk -Me _
 
 # images
-identify -verbose foo
-python3 -c 'import cv2, sys; cv2.imread(sys.argv[1])' foo
-python3 -c 'import sys; from PIL import Image; print(Image.open(sys.argv[1]).verify())' foo
+identify -verbose _
+python3 -c 'import cv2, sys; cv2.imread(sys.argv[1])' _
+python3 -c 'import sys; from PIL import Image; print(Image.open(sys.argv[1]).verify())' _
+
+# pdfs
+pdfinfo _
+qpdf --check _
+caradoc stats _
 ```
 - [GitHub \- Polydet/polydet: Polyglot detector](https://github.com/Polydet/polydet)
 
@@ -238,6 +247,7 @@ No magic enforced at offset zero:
 Examples:
 
 - ~/opt/mitra/
+- ~/opt/truepolyglot/
 - jpeg + mp3
 - jpeg + php archive
     ```
@@ -253,6 +263,10 @@ Examples:
     - https://en.wikipedia.org/wiki/Gifar
 - msi + jar
     - https://blog.virustotal.com/2019/01/distribution-of-malicious-jar-appended.html
+
+### hash collisions
+
+- https://github.com/corkami/collisions
 
 ### mocks
 

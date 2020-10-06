@@ -372,7 +372,7 @@ function! OpenURI(...)
         let l:anchor_header_pattern = '#[ \t]\+' . substitute(l:anchor, '-', '[ \\t-]\\+', 'g')
         let l:anchor_tag_pattern = '<a.* name="' . l:anchor . '".*>'
         let l:anchor_pattern = '\(' . l:anchor_header_pattern . '\)\|\(' . l:anchor_tag_pattern . '\)'
-        execute 'edit' l:filename
+        silent! execute 'edit' l:filename
         silent! execute search(l:anchor_pattern)
         return
     endif
@@ -405,7 +405,7 @@ function! OpenURI(...)
 
     " Use current editor instance for plaintext files
     if system('file -ib ' . shellescape(l:uriExpanded)) =~# '^text/'
-        execute 'edit' l:uriExpanded
+        silent! execute 'edit' l:uriExpanded
         return
     endif
 

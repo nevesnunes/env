@@ -51,6 +51,10 @@ readelf --sections
 objcopy --dump-section .text=output.bin input.o
 ```
 
+### golf, strip
+
+https://www.sigflag.at/blog/2020/writeup-plaidctf2020-golfso/
+
 # call convention (e.g. registers for arguments, return values)
 
 https://man7.org/linux/man-pages/man2/syscall.2.html

@@ -24,6 +24,8 @@ http://factordb.com/
 
 # xor
 
+https://wiremask.eu/tools/xor-cracker/
+
 - On length(known_prefix) >= length(key), full decryption is direct
     ```bash
     ~/code/snippets/ctf/crypto/xor_decrypt.py 'darkCTF{' <(printf '%s' '5552415c2b3525105a4657071b3e0b5f494b034515' | xxd -r -p)
@@ -36,6 +38,7 @@ http://factordb.com/
 - Split message into aligned sequences, count frequencies of chars foreach column, take most frequent char and xor with expected most frequent char (e.g. `_`) to obtain key
     - Alterntive: xortool
     - [CTFtime\.org / BalCCon2k20 CTF / Xoared / Writeup](https://ctftime.org/writeup/23906)
-
+- n-periodic prng
+    - https://github.com/fab1ano/tasteless-ctf-20/tree/master/babychaos
 
 
