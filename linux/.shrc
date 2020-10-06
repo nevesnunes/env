@@ -1,6 +1,10 @@
 #!/bin/sh
 
-[ -f ~/bin/load-functions.sh ] && . ~/bin/load-functions.sh
+set -- ~/bin/functions/*.sh
+while [ $# -gt 0 ]; do
+  . "$1"
+  shift
+done
 [ -f ~/opt/z/z.sh ] && . ~/opt/z/z.sh
 
 # Use a termcap that exists in the server
@@ -31,6 +35,8 @@ alias zdoom='sdl_wrap.sh zdoom'
 # Convert 256 to 16 color
 # Validation (replace 256 color, pass 16 color):
 # printf '\x1b[38;5;200m foo \x1b[0m \x1b[38;5;1m bar \x1b[0m' | 16
+# TODO: Support true color
+# printf "\x1b[38;2;255;100;0m TRUECOLOR \x1b[0m\n" | 16
 alias 16="awk '{gsub(/\x1b\[[0-9]*;[0-9]*;([0-9]{3,}|([2-9][0-9])|(1[7-9]))m/, "'"'"\x1b[38;5;5m"'"'"); print;}'"
 
 alias ..='cd ..'
@@ -53,7 +59,7 @@ alias vim='gvim -v'
 env COLS=80 hexedit -h </dev/null 2>&1 | \
     grep -qa -- '\[-s | --sector\] \[-m | --maximize\] \[--color\]' && \
     alias hexedit="hexedit --color --maximize --sector"
-! diff --color 2>&1 | grep -qi 'unrecognized option' && \
+diff --color / / >/dev/null 2>&1 && \
     alias diff='diff --color'
 if command -v nproc >/dev/null 2>&1; then
     alias make='make -j $(nproc)'
@@ -65,6 +71,17 @@ command -v rlwrap >/dev/null 2>&1 && \
     alias winedbg="rlwrap -a -N -c -i -z ~/.rlwrap/filters/winedbg_fzf.pl winedbg"
 
 [ -f ~/.less_termcap ] && . ~/.less_termcap
+[ -f ~/.lscolors ] && . ~/.lscolors
+# shellcheck disable=SC1003
+if [ -f ~/.local/share/Xresources/osc4/light ]; then
+    while read -r i; do
+        if [ -n "$TMUX" ]; then
+            printf '\ePtmux;\e\e]4;%s\a\e\\' "$i"
+        else
+            printf '\e]4;%s\a' "$i"
+        fi
+    done < ~/.local/share/Xresources/osc4/light
+fi
 
 pwd | grep -q '^/$' && cd ~
 

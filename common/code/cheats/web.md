@@ -185,6 +185,8 @@ https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-
 - https://netsec.expert/2020/02/01/xss-in-2020.html
 - https://security.stackexchange.com/questions/162436/example-of-reflected-client-xss-which-is-not-dom-based-xss
 
+- `Range: bytes=x-y`: payload contained in interval
+    - [CTFtime\.org / Google Capture The Flag 2018 \(Quals\) / bbs / Writeup](https://ctftime.org/writeup/10369)
 - Same-origin policy: iframes can access each other's data in same domain
     ```javascript
     var d = window.top.frames[0].window.document;
