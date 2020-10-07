@@ -28,32 +28,6 @@ let g:fzf_colors = {
             \ }
 let g:fzf_launcher='urxvt -e bash -ic %s'
 
-command! -nargs=+ Z :call fzf#run({
-            \'source': 'locate -Ai ' . <f-args>,
-            \'sink': 'cd'})<CR>
-command! Kno call fzf#run({
-            \'source': 'kno.sh ' . expand('%:p') . ':' . line('.') . ':' . substitute(s:LineContext(), ':', ' ', '') . ':' . shellescape(getline('.')),
-            \'sink': function('<sid>kno')})
-function! s:kno(tags)
-    let l:line=getline('.')
-    if l:line=~#'^#'
-        call setline('.', l:line . ', ' . a:tags)
-        normal! $
-        return
-    endif
-    call append(line('.'), '# ' . a:tags)
-    normal! j$
-endfunction
-command! S call s:s_put()
-function! s:s_put()
-    let l:tmp = tempname()
-    silent !clear
-    silent !s.sh > l:tmp
-    r l:tmp
-    silent !rm l:tmp
-    redraw!
-endfunction
-
 set runtimepath+=~/opt/fzf
 
 " UltiSnips
@@ -523,10 +497,19 @@ set hidden
 " }}}
 " {{{ APPEARANCE
 
-" Referenced by: $VIMRUNTIME/syntax/markdown.vim
-let g:markdown_minlines=200
-
 syntax on
+
+" References:
+" - https://stackoverflow.com/questions/3828606/vim-markdown-folding
+"     - https://github.com/tpope/vim-markdown/blob/master/ftplugin/markdown.vim
+" TODO:
+" - Fork script, ignore header tokens after a line with `mkdCodeStart` or contained in `mkdCode`
+let g:markdown_folding=0
+let g:markdown_folding_override=1
+
+" Referenced by: 
+" - $VIMRUNTIME/syntax/markdown.vim
+let g:markdown_minlines=200
 
 set belloff=all
 set previewheight=6

@@ -709,4 +709,6 @@ https://4sysops.com/archives/windows-10-sandbox-running-applications-in-an-isola
 https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
     http://blogs.technet.com/b/askperf/archive/2009/10/05/windows-7-windows-server-2008-r2-console-host.aspx
 
+# MS Office macros
 
+[GitHub \- decalage2/oletools: oletools \- python tools to analyze MS OLE2 files \(Structured Storage, Compound File Binary Format\) and MS Office documents, for malware analysis, forensics and debugging\.](https://github.com/decalage2/oletools)

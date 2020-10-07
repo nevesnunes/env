@@ -1,11 +1,11 @@
 # Reference: https://akikoskinen.info/image-diffs-with-git/
-diff-img() {
+diff_img() {
   compare "$2" "$1" png:- \
     | montage -geometry +4+4 "$2" - "$1" png:- \
     | display -title "$1" -
 }
 
-diff-dirs() {
+diff_dirs() {
   tree1=$(mktemp)
   tree2=$(mktemp)
   tree -d -L 3 "$1" > "$tree1"
@@ -14,7 +14,7 @@ diff-dirs() {
   rm -f "$tree1" "$tree2"
 }
 
-dup-dirs() {
+dup_dirs() {
   find "$1" -type f -exec basename {} \; \
     | sed 's/\(.*\)\..*/\1/' \
     | sort \
@@ -51,14 +51,14 @@ ssh() {
 # rcfile in a hosted folder:
 # python2 -m SimpleHTTPServer 12345
 sshrc() {
-  ssh -R 12345:127.0.0.1:12345 -t "${*:1}" 'bash -c "bash --rcfile <(curl -s http://127.0.0.1:12345/sshrc)"'
+  ssh -R 12345:127.0.0.1:12345 -t "$@" 'bash -c "bash --rcfile <(curl -s http://127.0.0.1:12345/sshrc)"'
 }
 
-verify-certificate() {
+verify_certificate() {
   curl --insecure -v "$1" 2>&1 | awk 'BEGIN { cert=0 } /^\* Server certificate:/ { cert=1 } /^\*/ { if (cert) print }'
 }
 
-man-cat() {
+man_cat() {
   #groff -te -mandoc -rHY=0 -Tascii <(zcat "$1") | sed -e "s/\x1b\[[^m]\{1,5\}m//g" | col -bx
   #find . -iname '*fc*' -print0 | xargs -0 -i sh -c 'zcat "$1" | grep -in charset && echo "$1"' _ {} | vim -
   find /usr/share/man -iname '*'"$1"'*gz' -print0 \
@@ -67,7 +67,7 @@ man-cat() {
     | grep -i "$2"
 }
 
-jar-decompile() {
+jar_decompile() {
   while [ $# -gt 0 ]; do
     jar -xf "$1" && find . -iname "*.class" -print0 \
       | xargs -0 -i jad -r {}
@@ -75,27 +75,23 @@ jar-decompile() {
   done
 }
 
-gf() {
-  git log \
-    --color=always \
-    --date=short \
-    --format="%C(green)%C(bold)%cd %C(auto)%h%d %s" \
-    --graph \
-    | fzf \
-      --ansi --multi --no-sort --reverse \
-      --bind 'ctrl-s:toggle-sort' \
-      --header 'ctrl-s:toggle-sort,ctrl-u:preview-page-down,ctrl-i:preview-page-up' \
-      --preview-window 'right:65%' \
-      --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES \
-    | grep -o "[a-f0-9]\{7,\}"
-}
-
 e() {
-  entry=$(git-grep-detached.sh "$*")
-  [ -z "$entry" ] && return
-  filename=${entry//:*}
-  lineno=${entry#$filename:}
-  gvim -v "$filename" +"$lineno"
+  lines=
+  while IFS= read -r i; do
+    if [ -n "$lines" ]; then
+      lines="$lines\n$i"
+    else
+      lines="$i"
+    fi
+  done
+  while true; do
+    filename=$(printf "%b" "$lines" | fzf -0)
+    if [ -n "$filename" ]; then
+      gvim -v "$filename" </dev/tty
+    else
+      break
+    fi
+  done
 }
 
 f() {
@@ -123,6 +119,29 @@ g() {
     -- "$*" .
 }
 
+ge() {
+  entry=$(git-grep-detached.sh "$*")
+  [ -z "$entry" ] && return
+  filename=${entry//:*}
+  lineno=${entry#$filename:}
+  gvim -v "$filename" +"$lineno"
+}
+
+gf() {
+  git log \
+    --color=always \
+    --date=short \
+    --format="%C(green)%C(bold)%cd %C(auto)%h%d %s" \
+    --graph \
+    | fzf \
+      --ansi --multi --no-sort --reverse \
+      --bind 'ctrl-s:toggle-sort' \
+      --header 'ctrl-s:toggle-sort,ctrl-u:preview-page-down,ctrl-i:preview-page-up' \
+      --preview-window 'right:65%' \
+      --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES \
+    | grep -o "[a-f0-9]\{7,\}"
+}
+
 o() {
   local open_cmd
   case "$OSTYPE" in
@@ -139,4 +158,12 @@ o() {
     "$open_cmd" "$1"
     shift
   done
+}
+
+t() {
+  if [ $# -gt 0 ]; then
+    task "$@" || return
+  fi
+  clear
+  script -qefc "task list; exit" /dev/null | head -n+$LINES
 }

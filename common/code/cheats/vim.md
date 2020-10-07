@@ -123,3 +123,11 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <C-r><C-o>+
 ```
+
+# Folding
+
+|Action|Keys|
+|---|---|
+|**R**educe all|`zR`|
+|**M**ore all|`zM`|
+|Toggle all|`zA`|

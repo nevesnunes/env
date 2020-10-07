@@ -38,7 +38,12 @@ https://wiremask.eu/tools/xor-cracker/
 - Split message into aligned sequences, count frequencies of chars foreach column, take most frequent char and xor with expected most frequent char (e.g. `_`) to obtain key
     - Alterntive: xortool
     - [CTFtime\.org / BalCCon2k20 CTF / Xoared / Writeup](https://ctftime.org/writeup/23906)
-- n-periodic prng
+
+# PRNG
+
+- n-periodic
     - https://github.com/fab1ano/tasteless-ctf-20/tree/master/babychaos
+- https://ctftime.org/writeups?tags=prng&hidden-tags=prng
+- https://www.cryptomathic.com/news-events/blog/generating-cryptographic-keys-with-random-number-generators-prng
 
 
