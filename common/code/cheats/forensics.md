@@ -93,10 +93,6 @@ find . -type d -empty -delete
 dd if=/proc/7/mem bs=$((0x1000)) skip=$((Ox7fb84ee44 + 0x207)) count=1 of=out
 ```
 
-# repair png
-
-http://libpng.org/pub/png/apps/pngcheck.html
-
 # data sets
 
 https://www.forensicfocus.com/challenges-and-images/
@@ -211,11 +207,19 @@ Biham and Kocher's known plaintext attack:
 
 - https://russtone.io/2018/06/24/google-2018-better-zip/
 
-# steg
+# 7-Zip
 
+- identify trailing data after compressed data: boolean-based error checking with `7z t`, foreach nulled byte
+    - [CTFtime\.org / TastelessCTF 2020 / 7/12 / Writeup](https://ctftime.org/writeup/24083)
+- CRC fix: null out start header + signature header
+    - [7-Zip / Discussion / Help: Headers Error](https://sourceforge.net/p/sevenzip/discussion/45798/thread/84c5df85/)
+- [How to recover corrupted 7z archive](https://www.7-zip.org/recover.html)
+
+# steganography
+
+- outguess
 - https://fotoforensics.com/
     - https://www.hackerfactor.com/blog/index.php?/archives/894-PNG-and-Hidden-Pixels.html
-- outguess
 
 # file formats
 
@@ -232,11 +236,15 @@ binwalk -Me _
 identify -verbose _
 python3 -c 'import cv2, sys; cv2.imread(sys.argv[1])' _
 python3 -c 'import sys; from PIL import Image; print(Image.open(sys.argv[1]).verify())' _
+pngcheck -f -vv _
 
 # pdfs
 pdfinfo _
 qpdf --check _
 caradoc stats _
+
+# containers
+7z t _
 ```
 - [GitHub \- Polydet/polydet: Polyglot detector](https://github.com/Polydet/polydet)
 
@@ -284,6 +292,7 @@ file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i awk 'match($0, /\xff\xd8|\
     ```bash
     pngcheck -cfv _
     ```
+        - http://libpng.org/pub/png/apps/pngcheck.html
     - https://0x90r00t.com/2016/02/08/sharif-university-ctf-2016-forensic-400-blocks-write-up/
 - incorrect chunk length
 - incorrect headers
