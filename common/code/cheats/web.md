@@ -31,11 +31,14 @@ if _name__ == "__main__":
     - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
 - trailing headers - sent after the content with a zero length chunk
     ```bash
+    curl -k -v -H 'TE: trailers' 'https://foo'
+    # ||
     curl -k -v --raw 'https://foo'
     # ||
     printf 'GET / HTTP/1.1\r\nHost: www.foo.com\r\n\r\n' \
         | openssl s_client -ign_eof -connect foo.com:443 -servername www.foo.com
     ```
+    - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer
 - page source based on login state
     - anonymous user
     - logged in user
@@ -448,6 +451,10 @@ filename="'$(sleep 5)'a.gif"
 ```javascript
 // == "Hello World!"
 /Hello W/.source+/ordl!/.source 
+```
+
+```
+# lskjdf
 ```
 
 ```bash
