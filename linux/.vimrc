@@ -165,15 +165,6 @@ function! g:Undotree_CustomMap()
     nmap <buffer> <CR> <plug>UndotreeEnter <plug>UndotreeClose
 endfunction
 
-function! CursorChars()
-    let l:wordcount = wordcount()
-    if has_key(l:wordcount, 'cursor_chars')
-        return l:wordcount.cursor_chars
-    else
-        return '_'
-    endif
-endfunction
-
 function! VimEnterPluginBehaviour()
     if exists(':GundoToggle')
         " Dependencies: python2
@@ -192,8 +183,6 @@ function! VimEnterPluginBehaviour()
         set statusline+=%{SyntasticStatuslineFlag()}
     endif
     set statusline+=%*
-    "set statusline+=%=0x%B\ \ %{CursorChars()}\ \ %l,%c\ %P
-    "set statusline+=%=%b(0x%B)\ @%o(0x%O)\ \ %l,%c\ %P
     set statusline+=%=%b(0x%B)\ \ %l,%c\ %P
 endfunction
 augroup vim_enter
