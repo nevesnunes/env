@@ -238,3 +238,7 @@ IFS=,;`cat<<<uname,-a`
 # - Given name=id, overrides command `id`
 #     - [CTFtime\.org / FwordCTF 2020 / Bash is fun](https://ctftime.org/task/12928)
 eval "function $name { :; }"; export -f "$name"
+# - Empty separator
+#     - [CTFtime\.org / SECCON 2019 Online CTF / fileserver](https://ctftime.org/task/9538)
+ls .\.
+ls .{,}.

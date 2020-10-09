@@ -79,3 +79,7 @@ Details > Sharpening
 # aligning rotations
 
 [By FFT, what rotation?](http://im.snibgo.com/whatrotfft.htm)
+
+# untwist
+
+Filters > Distorts > Whirl and Pinch...
