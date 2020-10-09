@@ -462,3 +462,10 @@ dd if=/dev/sdb1 | bzip2 | socat - openssl:target_host:9999
 
 # find plaintext files
 find . -type f | xargs -i file -i {} | grep ':[[:space:]]\+text/[^:]*$' | awk -F':' '{print $1}'
+
+# replace newlines
+awk '{printf "%s\r\n", $0}' _
+# ||
+python -c 'import re, sys; sys.stdout.buffer.write(re.sub(b"\n", b"\r\n", open(sys.argv[1], "rb").read()))' _
+
+

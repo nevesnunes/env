@@ -100,21 +100,6 @@ find / -perm -u=s -type f 2>/dev/null
     ?>
     ```
 
-# pseudo random number generator (PRNG)
-
-known seed => bruteforce generated values
-
-```python
-import random, string
-random.seed(1601405147.6444)
-alphabet = list(string.ascii_lowercase + string.digits)
-print("".join([random.choice(alphabet) for _ in range(32)]))
-# mq4fyjs6rlo5jjotg3xiwr76z8hm4chi
-```
-
-- [CTFtime\.org / BalCCon2k20 CTF / Two Sides of a Coin / Writeup](https://ctftime.org/writeup/23792)
-    - ~/share/ctf/BalCCon2k20/two-sides-of-a-coin-solutions/
-
 # encodings
 
 Binary-to-text
@@ -127,5 +112,12 @@ Morse
     - ~/Downloads/Morse Recognition Algorithm Based on K-means.pdf
 - "dot" = ".", "dash" = "-", "intra-code interval" = " ", "inter-code interval" = " ", "code group interval" = "/"
 - https://morsecode.world/international/timing.html
+
+# signal decoding
+
+- sound of keystrokes to keys
+    - https://www.xil.se/post/sharifctf-2016-misc-sound-rspkt/
+- digital radio transmission decoder
+    - https://github.com/EliasOenal/multimon-ng
 
 

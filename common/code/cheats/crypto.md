@@ -16,6 +16,8 @@ gmpy2.isqrt(B * N // A)
 
 # hashing
 
+[CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
+
 hs256 = hmac sha256
 
 # rsa
@@ -39,11 +41,43 @@ https://wiremask.eu/tools/xor-cracker/
     - Alterntive: xortool
     - [CTFtime\.org / BalCCon2k20 CTF / Xoared / Writeup](https://ctftime.org/writeup/23906)
 
-# PRNG
+# pseudo random number generator (PRNG)
 
-- n-periodic
+- known seed => bruteforce generated values
+    ```python
+    import random, string
+    random.seed(1601405147.6444)
+    alphabet = list(string.ascii_lowercase + string.digits)
+    print("".join([random.choice(alphabet) for _ in range(32)]))
+    # mq4fyjs6rlo5jjotg3xiwr76z8hm4chi
+    ```
+    - [CTFtime\.org / BalCCon2k20 CTF / Two Sides of a Coin / Writeup](https://ctftime.org/writeup/23792)
+        - ~/share/ctf/BalCCon2k20/two-sides-of-a-coin-solutions/
+- small n-periodic
     - https://github.com/fab1ano/tasteless-ctf-20/tree/master/babychaos
+- given known implementation, optionally seed range, and multiple generated values, then bruteforce seed
+    - [GitHub \- altf4/untwister: Seed recovery tool for PRNGs](https://github.com/altf4/untwister)
+    - https://dragonsector.pl/docs/0ctf2016_writeups.pdf
+    - https://sasdf.github.io/ctf/tasks/2019/BalsnCTF/crypto/unpredictable/
 - https://ctftime.org/writeups?tags=prng&hidden-tags=prng
 - https://www.cryptomathic.com/news-events/blog/generating-cryptographic-keys-with-random-number-generators-prng
+- ~/Downloads/Not_So_Random_-_Exploiting_Unsafe_Random_Number_Generator_Use.pdf
 
+# mitigations
 
+|Language|CSPRNG|
+|---|---|
+|.NET|`RNGCryptoServerProvider()`|
+|Java|`java.security.SecureRandom()`|
+|JavaScript (Node.js)|`crypto.RandomBytes()`|
+|PHP|`random_bytes()`|
+|Python|`random.SystemRandom()`|
+
+# case studies
+
+- https://nakedsecurity.sophos.com/2013/07/09/anatomy-of-a-pseudorandom-number-generator-visualising-cryptocats-buggy-prng/
+    - https://tobtu.com/decryptocat.php
+- https://www.pcg-random.org/posts/visualizing-the-heart-of-some-prngs.html
+    - [ ] reproduce vizs
+- https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d
+    - https://v8.dev/blog/math-random
