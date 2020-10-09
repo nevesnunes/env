@@ -95,6 +95,18 @@ re.sub("(abc)bcd","\g<1>222","abcbcd");
 
 https://learnbyexample.github.io/substitution-with-ripgrep/
 
+# Blind Regex Injection, REDoS
+
+```
+# Backtracking
+^(?=(some regexp here))((.*)*)*salt$
+
+# DFA
+^some regexp here(.?){1000}(.?){1000}...(.?){1000}salt$
+```
+
+- [CTFtime\.org / TSG CTF 2020 / Slick Logger](https://ctftime.org/task/12273)
+
 # case studies
 
 - match "foo" without "bar" (invert matching)
