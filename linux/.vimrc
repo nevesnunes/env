@@ -193,7 +193,8 @@ function! VimEnterPluginBehaviour()
     endif
     set statusline+=%*
     "set statusline+=%=0x%B\ \ %{CursorChars()}\ \ %l,%c\ %P
-    set statusline+=%=0x%B\ \ %l,%c\ %P
+    "set statusline+=%=%b(0x%B)\ @%o(0x%O)\ \ %l,%c\ %P
+    set statusline+=%=%b(0x%B)\ \ %l,%c\ %P
 endfunction
 augroup vim_enter
     autocmd!

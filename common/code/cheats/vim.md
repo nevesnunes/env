@@ -131,3 +131,9 @@ imap <C-v> <C-r><C-o>+
 |**R**educe all|`zR`|
 |**M**ore all|`zM`|
 |Toggle all|`zA`|
+
+# Typing
+
+|Action|Keys|Help|
+|---|---|---|
+|char by value|`iC-Vx41`|i_CTRL-V_digit|

@@ -38,6 +38,12 @@ qemu-x86_64 -d in_asm ~/a.out 2>&1 \
 gcc -O0 a.c && echo 'a' \
     | perf stat -e instructions:u ./a.out 2>&1 \
     | awk '/instructions.u/{print $1}'
+# bruteforcing chars
+for n in {32..127}; do
+    c=$(awk '{ printf("%c", $0); }' <<< $n)
+    printf '%s ' $c
+    ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinscount.so -- ./a.out <(printf '%s' $c) | awk '/Instrumentation results:/{print $3}'
+done 2>/dev/null | vim -
 # [Counting instructions using Stalker · Issue \#94 · frida/frida\-python · GitHub](https://github.com/frida/frida-python/issues/94)
 # https://stackoverflow.com/questions/22507169/how-to-run-record-instruction-history-and-function-call-history-in-gdb
 # https://stackoverflow.com/questions/8841373/displaying-each-assembly-instruction-executed-in-gdb/46661931#46661931
