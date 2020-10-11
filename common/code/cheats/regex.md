@@ -99,13 +99,18 @@ https://learnbyexample.github.io/substitution-with-ripgrep/
 
 ```
 # Backtracking
-^(?=(some regexp here))((.*)*)*salt$
+^(?=(some_regexp_here))((.*)*)*salt$
+^some_regexp_here(([^some_char_here])*)*!
 
 # DFA
-^some regexp here(.?){1000}(.?){1000}...(.?){1000}salt$
+^some_regexp_here(.?){1000}(.?){1000}...(.?){1000}salt$
 ```
 
+- ~/code/snippets/ctf/web/regex/
 - [CTFtime\.org / TSG CTF 2020 / Slick Logger](https://ctftime.org/task/12273)
+- https://blog.p6.is/time-based-regex-injection/
+    - https://speakerdeck.com/lmt_swallow/revisiting-redos-a-rough-idea-of-data-exfiltration-by-redos-and-side-channel-techniques
+    - https://blog.hackeriet.no/regex-dos-in-java-layer/
 
 # case studies
 

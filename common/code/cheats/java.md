@@ -1145,7 +1145,7 @@ return buf;
 
 ### repl
 
-```
+```bash
 cmd='
 Stream.of(
     "os.arch","os.name","os.version"
@@ -1187,19 +1187,23 @@ printf '/exit' | jshell --feedback concise foo.java
 
 ### profile
 
+```xml
 <activation>
     <jdk>[9,)</jdk>
 </activation>
 <properties>
     <maven.compiler.release>[9,)</maven.compiler.release>
 </properties>
+```
 
 ### report internal dependencies
 
-```
+```bash
 jdeps -summary foo.jar
 jdeps --jdk-internals -recursive --class-path 'lib/*'
+```
 
+```xml
 <build>
     <plugin>
         <artifactId>maven-surefire-plugin
@@ -1259,3 +1263,7 @@ mkdir -p ./out && \
 find . -maxdepth 1 -iname '*.jar' | \
 xargs -d'\n' -n1 -I{} java -jar ~/opt/fernflower/build/libs/fernflower.jar {} ./out/
 ```
+
+# remote method invocation (RMI)
+
+https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-attack-against-non-jmx-registries-187a6561314d
