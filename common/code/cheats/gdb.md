@@ -30,6 +30,9 @@ ulimit -c unlimited / ulimit -c 0
 ```
 
 ```gdb
+# handle signals
+handle SIGSEGV nostop nopass
+
 # trace syscalls, do nothing on break
 # references:
 # - https://stackoverflow.com/questions/6517423/how-to-do-an-specific-action-when-a-certain-breakpoint-is-hit-in-gdb

@@ -100,6 +100,7 @@ with ipdb.launch_ipdb_on_exception():
     main()
 
 print(dir(foo))
+print(getattr(foo, x))
 print(type(foo))
 print(foo.__dict__)
 
@@ -268,7 +269,7 @@ pytest --cov=dir/
 python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 ```
 
-# Dissassembly, decompilation
+# Disassembly, decompilation
 
 ```bash
 # Finding script filenames
@@ -286,7 +287,7 @@ f = open(sys.argv[1], "rb")
 f.seek(16) # skip 16 byte header (in case of invalid magic bytes)
 co = marshal.load(f)
 print(dis.dis(co)) # bytecode
-f2 = open(sys.argv[2], "rw")
+f2 = open(sys.argv[2], "w")
 uncompyle6.main.decompile(3.7, co, f2, showast=False) # source
 ' foo
 ```

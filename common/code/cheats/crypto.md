@@ -63,6 +63,10 @@ https://wiremask.eu/tools/xor-cracker/
 - https://www.cryptomathic.com/news-events/blog/generating-cryptographic-keys-with-random-number-generators-prng
 - ~/Downloads/Not_So_Random_-_Exploiting_Unsafe_Random_Number_Generator_Use.pdf
 
+# one-time pad
+
+https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto-4e2685452fec
+
 # mitigations
 
 |Language|CSPRNG|

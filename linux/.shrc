@@ -41,7 +41,7 @@ alias 16="awk '{gsub(/\x1b\[[0-9]*;[0-9]*;([0-9]{3,}|([2-9][0-9])|(1[7-9]))m/, "
 
 alias ..='cd ..'
 alias ctags='ctags --sort=yes'
-alias docker='(systemctl status docker | grep -q "Active: inactive" && sudo systemctl start docker); sudo /usr/bin/docker'
+alias docker='(systemctl status docker | grep -q "Active: inactive" && sudo systemctl start docker); /usr/bin/docker'
 alias gdb='gdb -q'
 alias info='info --vi-keys'
 alias j='mkdir -p ~/Documents/my/journal; eval "$EDITOR" ~/Documents/my/journal/$(date +"%Y-%m-%d_%H-%M-%S").md'
