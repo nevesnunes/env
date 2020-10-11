@@ -401,7 +401,7 @@ xxd -p foo | tr -d '\n' | grep -aboP '2056(?=(?:[\da-fA-F]{2})*$)' | awk '{p=ind
 cat foo.xml | openssl dgst -binary -sha1 | openssl base64
 sha1sum foo.xml | cut -f1 -d\  | xxd -r -p | base64
 
-# replace current shell
+# replace current shell instead of relogin
 exec sudo -u $(id -u -n) -i
 
 # match window class and name
