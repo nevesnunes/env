@@ -1,3 +1,7 @@
+# +
+
+./typescript.md
+
 # Vanilla
 
 - https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/#document-ready
@@ -262,6 +266,17 @@ npm install some-package
 ./node_modules/.bin/some-package
 ```
 
+# symbols
+
+- Hidden but readable immutable properties, all values are unique
+
+```javascript
+Object.getOwnPropertySymbols()
+```
+
+https://medium.com/intrinsic/javascript-symbols-but-why-6b02768f4a5c
+https://developer.mozilla.org/en-US/docs/Glossary/Symbol
+
 # Promises
 
 ```javascript
@@ -338,10 +353,6 @@ DevTools > Settings > Preferences > Sources > Check: Enable JavaScript source ma
 DevTools > Sources > Page > webpack://
 
 https://www.mikeglopez.com/source-mapping-webpack-for-chrome/
-
-# typescript
-
-https://www.typescriptlang.org/play/index.html
 
 # observers
 
