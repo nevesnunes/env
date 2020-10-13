@@ -71,6 +71,10 @@ done
 find / -perm -u=s -type f 2>/dev/null
 ```
 
+# remote code exection (rce)
+
+- [Hacking with Environment Variables](https://www.elttam.com/blog/env/)
+
 # data exfiltration
 
 - DNS
