@@ -5,8 +5,8 @@
 ```bash
 # Any format
 strings
-# ELF format
-ldd
+# ELF format, validates shared libraries initialization
+ldd -iv
 # PE format
 floss
 ```
@@ -54,6 +54,9 @@ done 2>/dev/null | vim -
 diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log | vim -
 # https://stackoverflow.com/questions/53218160/how-can-i-do-code-path-analysis-in-a-debugger
 # https://dynamorio.org/dynamorio_docs/page_drcov.html
+
+# execution trace
+# https://github.com/teemu-l/execution-trace-viewer
 ```
 
 # case studies

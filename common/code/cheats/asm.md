@@ -23,17 +23,46 @@
 
 https://web.archive.org/web/20171129031316/http://nairobi-embedded.org/040_elf_sec_seg_vma_mappings.html
 
+# symbols
+
+```bash
+# Externally visible / exported
+# Given: Symbol table '.dynsym'
+nm --demangle --dynamic --defined-only --extern-only _
+readelf -Ws _ | awk '{ if (!match("0000000000000000", $2)) print }'
+```
+
 # section headers
+
+```bash
+# sections + binary position
+objdump -h
+readelf --sections
+~/opt/pax-utils/dumpelf
+
+# dump a section
+objcopy --dump-section .text=output.bin input.o
+```
+
+|Sections|Lifecycle|
+|--:|:--|
+|`argc,argv,envp`||
+|stack|grows to bottom|
+|heap|grows to top|
+|uninitialized data aka. `.bss`|zeroed by `exec`|
+|initialized data aka. `.data, .rodata`|read by `exec`|
+|executable code aka. `.text`|read by `exec`|
 
 - `.text`: executable code; RX (=AX) segment; only loaded once, as contents will not change
     - CONTENTS, ALLOC, LOAD, READONLY, CODE
     - [finding address range](https://stackoverflow.com/questions/7370407/get-the-start-and-end-address-of-text-section-in-an-executable/7373301#7373301)
+- `.rela.text`: list of relocations against `.text`
 - `.data`: initialised data; RW (=WA) segment
 - `.rodata`: initialised read-only data; R (=A) segment
 - `.bss`: uninitialized data; RW segment
 - `.plt`: PLT (Procedure Linkage Table) (IAT equivalent)
-- `.got`: GOT entries dedicated to dynamically linked global variables
-- `.got.plt`: GOT entries dedicated to dynamically linked functions
+- `.got`: GOT (Global Offset Table), used to access dynamically linked global variables, created during link time, may be populated during runtime
+- `.got.plt`: used to access dynamically linked functions
 - `.symtab`: global symbol table
 - `.dynamic`: Holds all needed information for dynamic linking
 - `.dynsym`: symbol tables dedicated to dynamically linked symbols
@@ -43,14 +72,8 @@ https://web.archive.org/web/20171129031316/http://nairobi-embedded.org/040_elf_s
 - `.rel.dyn`: global variable relocation table
 - `.rel.plt`: function relocation table
 
-```bash
-# sections + binary position
-objdump -h
-readelf --sections
-
-# dump a section
-objcopy --dump-section .text=output.bin input.o
-```
+- [c \- Why this piece of code can get environment variable address? \- Stack Overflow](https://stackoverflow.com/questions/40489161/why-this-piece-of-code-can-get-environment-variable-address)
+- [ELF Binaries and Relocation Entries \- shorne in japan](http://stffrdhrn.github.io/hardware/embedded/openrisc/2019/11/29/relocs.html)
 
 ### golf, strip
 
@@ -97,6 +120,8 @@ https://red0xff.github.io/writeups/volgactf_fhash/#6acb76aa304fcff925cebfc5ac253
 
 # patterns
 
+### stack
+
 ```asm
 ; function init ~= `enter` instruction
 push rbp
@@ -105,6 +130,9 @@ push rbx
 
 ; stack space for locals
 sub rsp,0x18
+
+; store argv[1]
+mov rsi,qword [rsi + 0x8]
 
 ; [...]
 
@@ -134,7 +162,27 @@ pop rsp
 ret
 ```
 
-https://stackoverflow.com/questions/5959890/enter-vs-push-ebp-mov-ebp-esp-sub-esp-imm-and-leave-vs-mov-esp-ebp
+- https://stackoverflow.com/questions/5959890/enter-vs-push-ebp-mov-ebp-esp-sub-esp-imm-and-leave-vs-mov-esp-ebp
+
+|Frame|$rbp Offset|Value|Address|
+|--:|--:|--:|:--|
+| |+|`argc,argv,envp`|[...]|
+|1|+|parameters      |[bgn]0x7fffffffffb0|
+|1|+|`$rip`          |[bgn]0x7fffffffffa8|
+|1|+|`$rbp`          |[end]0x7fffffffffa0|
+|1|+|[alignment]     |[end]0x7fffffffff94|
+|1|+|locals          |[end]0x7fffffffff30|
+|2|+|parameters      |[...]|
+|2|+|`$rip`          |[...]|
+|2|0|`$rbp`          |[...]|
+|2|-|[alignment]     |[...]|
+|2|-|locals          |[...]|
+|2|-|`$rsp`          |[...]|
+
+- `$rbp` aka. frame pointer
+- `$rip` aka. return address
+
+### registers
 
 - `ah`, - PRESERVES 0xffff00ff bits of `eax`, equivalent for `rax`
 - `al`, `ax` - PRESERVES {8,16} high bits of `eax`, equivalent for `rax`

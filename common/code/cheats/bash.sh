@@ -225,6 +225,7 @@ eval 'ssh() { :; }'
 #     - [CTFtime\.org / ALLES! CTF 2020 / shebang / Writeup](https://ctftime.org/writeup/23281)
 # - [CTFtime\.org / ALLES! CTF 2020 / Bashell](https://ctftime.org/task/12955)
 #     - ~/share/ctf/alles2020/solutions/bashell.py
+# - env: /proc/self/environ
 # - https://hack.more.systems/writeup/2017/12/30/34c3ctf-minbashmaxfun/
 # - https://github.com/w181496/Web-CTF-Cheatsheet#%E7%A9%BA%E7%99%BD%E7%B9%9E%E9%81%8E
 # - https://github.com/trichimtrich/bashfuck
@@ -242,3 +243,9 @@ eval "function $name { :; }"; export -f "$name"
 #     - [CTFtime\.org / SECCON 2019 Online CTF / fileserver](https://ctftime.org/task/9538)
 ls .\.
 ls .{,}.
+false||id
+# - Finding cross-path symlinks
+find -L /dev -xtype l -exec ls -l1 {} \; 2>/dev/null | awk '!/-> ([^\/]|\/dev)/{ print $(NF-2) " -> " $NF }'
+# /dev/fd -> /proc/self/fd
+# /dev/stdin -> /proc/self/fd/0
+# /dev/initctl -> /run/initctl

@@ -12,6 +12,8 @@ https://github.com/apsdehal/awesome-ctf#crypto
 
 ```python
 gmpy2.isqrt(B * N // A)
+
+hashlib.md5().update(b'foo').hexdigest()
 ```
 
 # hashing
@@ -22,7 +24,8 @@ hs256 = hmac sha256
 
 # rsa
 
-http://factordb.com/
+- [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)
+- http://factordb.com/
 
 # xor
 
@@ -55,17 +58,37 @@ https://wiremask.eu/tools/xor-cracker/
         - ~/share/ctf/BalCCon2k20/two-sides-of-a-coin-solutions/
 - small n-periodic
     - https://github.com/fab1ano/tasteless-ctf-20/tree/master/babychaos
-- given known implementation, optionally seed range, and multiple generated values, then bruteforce seed
-    - [GitHub \- altf4/untwister: Seed recovery tool for PRNGs](https://github.com/altf4/untwister)
-    - https://dragonsector.pl/docs/0ctf2016_writeups.pdf
-    - https://sasdf.github.io/ctf/tasks/2019/BalsnCTF/crypto/unpredictable/
 - https://ctftime.org/writeups?tags=prng&hidden-tags=prng
 - https://www.cryptomathic.com/news-events/blog/generating-cryptographic-keys-with-random-number-generators-prng
 - ~/Downloads/Not_So_Random_-_Exploiting_Unsafe_Random_Number_Generator_Use.pdf
 
+### mersenne twister
+
+- given known implementation, optionally seed range, and multiple generated values, then bruteforce seed
+    - [GitHub \- altf4/untwister: Seed recovery tool for PRNGs](https://github.com/altf4/untwister)
+    - [GitHub \- kmyk/mersenne\-twister\-predictor: Predict MT19937 PRNG, from preceding 624 generated numbers\. There is a specialization for the &quot;random&quot; of Python standard library\.](https://github.com/kmyk/mersenne-twister-predictor)
+    - https://dragonsector.pl/docs/0ctf2016_writeups.pdf
+    - https://sasdf.github.io/ctf/tasks/2019/BalsnCTF/crypto/unpredictable/
+
+### LSFR
+
+[GitHub \- bozhu/BMA: Berlekamp\-Massey algorithm](https://github.com/bozhu/BMA)
+
 # one-time pad
 
 https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto-4e2685452fec
+
+# electronic color book (AES-ECB)
+
+https://crypto.stackexchange.com/questions/31019/if-you-encrypt-an-image-aes-is-it-still-an-image-and-can-you-view-it
+    https://blog.filippo.io/the-ecb-penguin/
+    https://crypto.stackexchange.com/questions/63145/variation-on-the-ecb-penguin-problem
+    ```bash
+    head -n 4 Tux.ppm > header.txt
+    tail -n +5 Tux.ppm > body.bin
+    openssl enc -aes-128-ecb -nosalt -pass pass:"ANNA" -in body.bin -out body.ecb.bin
+    cat header.txt body.ecb.bin > Tux.ecb.ppm
+    ```
 
 # mitigations
 
@@ -83,5 +106,14 @@ https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto
     - https://tobtu.com/decryptocat.php
 - https://www.pcg-random.org/posts/visualizing-the-heart-of-some-prngs.html
     - [ ] reproduce vizs
+
 - https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d
     - https://v8.dev/blog/math-random
+- https://blog.malwarebytes.com/threat-analysis/2018/01/scarab-ransomware-new-variant-changes-tactics/
+
+- https://blog.quarkslab.com/differential-fault-analysis-on-white-box-aes-implementations.html
+- https://www.limited-entropy.com/crypto-series-dfa/
+- https://www.ledger.com/ctf-complete-hw-bounty-still-ongoing-2-337-btc/
+    > induce faults using GDB during the computation, retrieve the faulty result and then execute AES DFA (Differential Fault Analysis)
+
+

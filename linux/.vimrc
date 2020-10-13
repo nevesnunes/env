@@ -183,7 +183,7 @@ function! VimEnterPluginBehaviour()
         set statusline+=%{SyntasticStatuslineFlag()}
     endif
     set statusline+=%*
-    set statusline+=%=%b(0x%B)\ \ %l,%c\ %P
+    set statusline+=%=\ \ %b(0x%B)\ \ %l,%c\ %P
 endfunction
 augroup vim_enter
     autocmd!

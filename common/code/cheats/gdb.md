@@ -42,6 +42,10 @@ commands
 c
 end
 
+# break on library function not yet loaded
+set breakpoint pending on
+b foo
+
 info files
 info f
 info args
