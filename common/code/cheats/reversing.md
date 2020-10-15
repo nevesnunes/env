@@ -59,6 +59,10 @@ diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log |
 # https://github.com/teemu-l/execution-trace-viewer
 ```
 
+# main function
+
+On libc `entry`, take 1st argument to `__libc_start_main()`
+
 # case studies
 
 - https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md

