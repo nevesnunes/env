@@ -1,5 +1,8 @@
 # +
 
+./compression.md
+./filesystem.md
+
 https://bitvijays.github.io/LFC-Forensics.html
 
 http://freshports.org/sysutils/sleuthkit
@@ -65,6 +68,7 @@ fls -o 129 foo.dd
 # recover all files
 tsk_recover -o 129 foo.dd .
 # || recover files, by inode
+# Reference: [How To Search for Strings on a Disk Image Using The Sleuth Kit \- LMG Security](https://www.lmgsecurity.com/sleuth-kit/)
 icat -o 129 -r foo.dd 54
 # recover all files from journal
 extundelete artefact --restore-all
@@ -225,14 +229,15 @@ Biham and Kocher's known plaintext attack:
 
 ### polyglots
 
-Detection:
+Detection / Parsing:
 
 ```bash
 file -k _
 binwalk --dd='.*' _
 binwalk -Me _
 
-# images
+# graphics images
+exiftool _
 identify -verbose _
 python3 -c 'import cv2, sys; cv2.imread(sys.argv[1])' _
 python3 -c 'import sys; from PIL import Image; print(Image.open(sys.argv[1]).verify())' _
@@ -243,7 +248,16 @@ pdfinfo _
 qpdf --check _
 caradoc stats _
 
-# containers
+# disk images
+### files
+fls _
+### metadata
+iat --debug -i _
+ksv ~/opt/isolyzer/testFiles/iso9660.iso ~/opt/kaitai_struct/formats/filesystem/iso9660.ksy
+### verify expected file size extracted from headers consistent with actual size
+isolyzer _
+
+# archives
 7z t _
 ```
 - [GitHub \- Polydet/polydet: Polyglot detector](https://github.com/Polydet/polydet)

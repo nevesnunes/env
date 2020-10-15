@@ -1,4 +1,4 @@
-from pwn import *
+from pwn import unpack_many
 
 data = open('re2', 'rb').read()
 
@@ -12,4 +12,4 @@ flag = ''
 for x in offsets:
     flag += str_data[x]
 
-print flag
+print(flag)

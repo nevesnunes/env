@@ -154,9 +154,10 @@ shodan host 216.58.210.206
 - http://www.gharchive.org/
 - http://10degres.net/github-tools-collection/
 
-- https://github.com/search?q=user%3Afoo+fork%3Atrue&type=Repositories
 - https://docs.github.com/en/github/searching-for-information-on-github/searching-for-repositories#search-by-repository-name-description-or-contents-of-the-readme-file
-- https://api.github.com/repos/AdoptOpenJDK/openjdk11-binaries/tags?per_page=100&page=2
+    - https://github.com/search?q=user%3Afoo+fork%3Atrue&type=Repositories
+    - https://github.com/search?q=filename%3Aconf.py+markdown&type=code
+    - https://api.github.com/repos/AdoptOpenJDK/openjdk11-binaries/tags?per_page=100&page=2
 
 # web history
 
