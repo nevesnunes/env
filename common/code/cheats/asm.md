@@ -47,11 +47,14 @@ objcopy --dump-section .text=output.bin input.o
 |Sections|Lifecycle|
 |--:|:--|
 |`argc,argv,envp`||
-|stack|grows to bottom|
-|heap|grows to top|
+|stack|grows to bottom (lower addresses)|
+|heap|grows to top (higher addresses)|
 |uninitialized data aka. `.bss`|zeroed by `exec`|
-|initialized data aka. `.data, .rodata`|read by `exec`|
+|initialized data aka. `.data`|read by `exec`|
+|initialized read-only data aka. `.rodata`|read by `exec`|
+|global offset table aka. `.got`|updated by `_dl_runtime_resolve`, replacing pointer to stub in `.plt`|
 |executable code aka. `.text`|read by `exec`|
+|procedure linkage table aka. `.plt`||
 
 - `.text`: executable code; RX (=AX) segment; only loaded once, as contents will not change
     - CONTENTS, ALLOC, LOAD, READONLY, CODE
@@ -72,8 +75,9 @@ objcopy --dump-section .text=output.bin input.o
 - `.rel.dyn`: global variable relocation table
 - `.rel.plt`: function relocation table
 
-- [c \- Why this piece of code can get environment variable address? \- Stack Overflow](https://stackoverflow.com/questions/40489161/why-this-piece-of-code-can-get-environment-variable-address)
+- [Technovelty \- PLT and GOT \- the key to code sharing and dynamic libraries ](https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html)
 - [ELF Binaries and Relocation Entries \- shorne in japan](http://stffrdhrn.github.io/hardware/embedded/openrisc/2019/11/29/relocs.html)
+- [c \- Why this piece of code can get environment variable address? \- Stack Overflow](https://stackoverflow.com/questions/40489161/why-this-piece-of-code-can-get-environment-variable-address)
 
 ### golf, strip
 

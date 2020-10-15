@@ -42,6 +42,9 @@ commands
 c
 end
 
+# break on current instruction of running inferior
+# <Ctrl-C>
+
 # break on library function not yet loaded
 set breakpoint pending on
 b foo
@@ -222,6 +225,7 @@ https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Funs.html
 # Follow child processes
 
 ```gdb
+# [!] may want to skip system()
 set follow-fork-mode child
 set detach-on-fork off
 catch exec

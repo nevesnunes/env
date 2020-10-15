@@ -16,6 +16,8 @@ gmpy2.isqrt(B * N // A)
 hashlib.md5().update(b'foo').hexdigest()
 ```
 
+https://en.wikipedia.org/wiki/Feistel_cipher
+
 # hashing
 
 [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)

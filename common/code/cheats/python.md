@@ -271,6 +271,8 @@ python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 
 # Disassembly, decompilation
 
+- [GitHub \- zrax/pycdc: C\+\+ python bytecode disassembler and decompiler](https://github.com/zrax/pycdc)
+
 ```bash
 # Finding script filenames
 # 1. debug until script loaded

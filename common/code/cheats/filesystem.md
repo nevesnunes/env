@@ -55,4 +55,101 @@ cat /etc/fstab
 
 https://www.tldp.org/HOWTO/Partition/fdisk_partitioning.html
 
+# BIN/CUE
+
+```bash
+# Conversion
+bin2iso input.cue
+vcdgear -cue2raw input.cue output.iso
+```
+
+- `.bin` and `.wav` filenames must match case-sensitive entries in `.cue`
+    - https://forums.gentoo.org/viewtopic-t-53672-start-0.html
+    - http://syndicate.lubiki.pl/swars/html/swars_sounds_adding_cdaudio.php
+
+# CD-ROM
+
+```bash
+# Conversion
+iat -i input.img --iso -o output.iso
+```
+
+- Structure: physical sectors
+- Take from: block device node (aka. block special file) (e.g. /dev/disk*)
+- Yellow Book
+    - Mode 1 - Chunks of data area (2352 bytes, defined in Red Book), with fields:
+        - Sync: `00 ff ff ff ff ff ff ff ff ff ff 00`
+        - Header: Sector Address (3 bytes) + Sector Mode (1 byte)
+        - User Data: e.g. ISO9660 (2048 bytes)
+        - Error Detection and Correction Codes (aka. Parity) (EDC + ECC) (4 + 284 bytes)
+    - http://willcodeforfood.co.uk/Content/Notes/ISO9660.htm
+    - http://www.cdfs.com/cdfs-color-books.html
+    - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-130.pdf
+
+# ISO
+
+- Structure: logical sectors
+- Take from: character device node (aka. character special file) (e.g. /dev/rdisk*)
+    - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
+    - https://stackoverflow.com/questions/39613825/how-to-read-plain-data-sectors-mode1-from-a-cd-on-os-x
+        - https://superuser.com/questions/631592/why-is-dev-rdisk-about-20-times-faster-than-dev-disk-in-mac-os-x/892768
+- Non hybrid
+    - Zeroed up to 0x8000 = System Area
+        - 16 logical sectors, size = 0x800 (2048 bytes) or 2^n, whichever is larger, where n is the largest integer such that 2^n is less than, or equal to, the number of bytes in the Data Field of any sector recorded on the volume.
+    - At 0x8000 = Primary Volume Descriptor
+        - Version Number (1 byte)
+        - Magic Bytes `43 44 30 30 31`
+    - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-119.pdf
+- ISO9660/HFS hybrid
+    - Take first 0x600 bytes, zero the rest
+        - At 0x200 chunks (512 bytes)
+            - Magic Bytes `BD` = HFS Master Directory Block (MDB) (aka. super block)
+    - ~/opt/isolyzer/testFiles/iso9660_hfs.iso
+    - https://github.com/torvalds/linux/blob/master/fs/hfs/hfs.h
+    - https://github.com/libyal/libfshfs/blob/master/documentation/Hierarchical%20File%20System%20(HFS).asciidoc
+- Toast / Apple_HFS
+    - At 0x0
+        - Magic Bytes `45 52 02`
+    - At 0x200 chunks (512 bytes)
+        - Magic Bytes `PM` = Apple Partition Map (aka. new-type partition map)
+    - https://en.wikipedia.org/wiki/Apple_Partition_Map#Layout
+    - https://opensource.apple.com/source/IOStorageFamily/IOStorageFamily-116/IOApplePartitionScheme.h
+    - https://developer.apple.com/library/archive/documentation/mac/Files/Files-99.html
+    - http://fileformats.archiveteam.org/wiki/TOAST
+
+```bash
+mount -o loop -t iso9660 foo.iso
+udisksctl loop-setup -r -f foo.iso
+
+# ISO9660/HFS hybrid
+mount -o loop -t hfs foo.iso
+
+# Read files deleted in multi-session CD-ROM
+# Identification: ksv ~/opt/isolyzer/testFiles/multisession.iso ~/opt/kaitai_struct/formats/filesystem/iso9660.ksy
+mount /dev/cdrom /mnt/cdrom -t iso9660 -o session=0
+
+# Extract files
+bsdtar -C DESTINATION -xf foo.iso ISO_DIR
+xorriso -osirrox on -indev foo.iso -extract ISO_DIR DESTINATION
+isoinfo -J -x /ISO_DIR/FILE -i foo.iso > DESTINATION/FILE
+7z x -oDESTINATION -i\!ISO_DIR foo.iso
+```
+
+- https://wiki.debian.org/ManipulatingISOs
+- https://www.cgsecurity.org/wiki/CDRW
+
+- ~/opt/isolyzer/README.md
+- http://fileformats.archiveteam.org/wiki/ISO_9660
+- https://wiki.osdev.org/ISO_9660
+- http://bazaar.launchpad.net/~libburnia-team/libisofs/scdbackup/view/head:/doc/boot_sectors.txt
+
+# ECM
+
+```bash
+ecm d input.img.ecm output.img
+```
+
+- [Romhacking\.net \- Utilities \- Command\-Line Pack v1\.03](https://www.romhacking.net/utilities/1440/)
+    - [Romhacking\.net \- Community \- Neill Corlett](https://www.romhacking.net/community/99/)
+
 
