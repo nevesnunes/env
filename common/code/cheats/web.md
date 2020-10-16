@@ -1,6 +1,7 @@
 # +
 
 ./javascript.md
+./fuzzing.md
 
 https://github.com/swisskyrepo/PayloadsAllTheThings
 

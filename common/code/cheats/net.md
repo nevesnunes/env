@@ -21,7 +21,6 @@ https://hc.apache.org/httpclient-3.x/performance.html
 - Ping-scan to discover reachable prefixes
 - Traceroute to discover topology
 - ZMap on reachable prefixes for common service ports
-- DNS AXFR to learn host names
 
 https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
 
@@ -427,15 +426,23 @@ nghttp -v -ans https://foo/index.html
 
 Portmirroring / SPAN, arp poisoning
 
-# zone transfer
+# DNS Zone Transfer
 
 nmap gateway_ip_or_host
 port 53 domain
 
 ### linux
 
+```bash
+# 1. Take name server
+dig NS domain.name
+
+# 2. Discover hostnames
+dig -t AXFR @dns-server domain.name
 host -t axfr domain.name dns-server
-dig axfr @dns-server domain.name
+# ||
+host -a domain.name
+```
 
 ### windows
 

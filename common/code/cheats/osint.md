@@ -34,10 +34,7 @@ curl 'https://stat.ripe.net/data/ris-asns/data.json?list_asns=true'
 
 # dns
 
-```bash
-dig -t AXFR foo.com
-host -a foo.com
-```
+./net.md#dns-zone-transfer
 
 - https://host.io/
 - https://securitytrails.com/domain/0x00sec.org/dns

@@ -13,6 +13,8 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
 - `strcpy()`: len(1st param) -lt len(2nd param) => buffer overflow
 - `scanf()`: len(2nd param) -lt len(read bytes) => buffer overflow
 - `gets(), memcpy(), strcat()`
+> "scanf will quite happily read null bytes. it only stops at white space - strcpy/strcat are the functions you should worry about null bytes" -brx (This means we don't have to worry about the canary having null bytes)
+    - [CTFtime\.org / Pragyan CTF 2019 / Armoury / Writeup](https://ctftime.org/writeup/13986)
 
 - buffer size - check allocated frame for locals, take largest offset
 - overwritten return address - jmp to infinite loop, if app hangs, it worked
