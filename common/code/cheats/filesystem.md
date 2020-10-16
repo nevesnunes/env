@@ -73,6 +73,7 @@ vcdgear -cue2raw input.cue output.iso
 iat -i input.img --iso -o output.iso
 ```
 
+- Detection: ./reports/cdrom-detection.md
 - Structure: physical sectors
 - Take from: block device node (aka. block special file) (e.g. /dev/disk*)
 - Yellow Book
@@ -116,6 +117,14 @@ iat -i input.img --iso -o output.iso
     - https://opensource.apple.com/source/IOStorageFamily/IOStorageFamily-116/IOApplePartitionScheme.h
     - https://developer.apple.com/library/archive/documentation/mac/Files/Files-99.html
     - http://fileformats.archiveteam.org/wiki/TOAST
+- Sega Mega-CD
+    - At 0x0
+        - Header + Security Code (0x748 bytes)
+    - buildscd.exe
+        - FUN_00402180
+    - https://www.retrodev.com/segacd.html
+    - [How is data addressed in Sega CD programming? \(Archive\) \- Sega\-16 Forums](https://www.sega-16.com/forum/archive/index.php/t-29628.html)
+    - [MagicEngine :: View topic \- ISO\-9660 PC Engine CD format](http://forums.magicengine.com/en/viewtopic.php?t=1619)
 
 ```bash
 mount -o loop -t iso9660 foo.iso
