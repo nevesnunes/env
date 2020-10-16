@@ -53,7 +53,7 @@ cat /etc/fstab
 # /dev/hdz2 swap swap defaults 0 0
 ```
 
-https://www.tldp.org/HOWTO/Partition/fdisk_partitioning.html
+- https://www.tldp.org/HOWTO/Partition/fdisk_partitioning.html
 
 # BIN/CUE
 
@@ -64,7 +64,6 @@ vcdgear -cue2raw input.cue output.iso
 ```
 
 - `.bin` and `.wav` filenames must match case-sensitive entries in `.cue`
-    - https://forums.gentoo.org/viewtopic-t-53672-start-0.html
     - http://syndicate.lubiki.pl/swars/html/swars_sounds_adding_cdaudio.php
 
 # CD-ROM
@@ -100,6 +99,7 @@ iat -i input.img --iso -o output.iso
         - Version Number (1 byte)
         - Magic Bytes `43 44 30 30 31`
     - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-119.pdf
+    - https://www.loc.gov/preservation/digital/formats/fdd/fdd000348.shtml
 - ISO9660/HFS hybrid
     - Take first 0x600 bytes, zero the rest
         - At 0x200 chunks (512 bytes)
