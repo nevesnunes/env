@@ -5,4 +5,8 @@ gobuster dir --url http://vulnerable --wordlist /tmp/wordlist
 
 # https://github.com/zaproxy/zap-extensions/tree/master/addOns/directorylistv2_3/src/main/zapHomeFiles/fuzzers/dirbuster
 gobuster dir --url http://vulnerable --wordlist ~/opt/zap-extensions/tree/master/addOns/directorylistv2_3/src/main/zapHomeFiles/fuzzers/dirbuster/directory-list-2.3-medium.txt
+
+# Boolean-based filter by response length
+ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt -u 'https://foo?FUZZ' -fs 123
+ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt -u 'https://foo?bar=FUZZ' -fs 234
 ```
