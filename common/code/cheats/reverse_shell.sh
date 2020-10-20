@@ -21,6 +21,9 @@ printf '%s\n' \
 ssh hostname tar cvjf - ./foo/ | tar xjf -
 # ||
 echo 'gzip -ck9 ./foo | base64 -w0' | nc foo.com 5000 | base64 -d | gzip -d
+# ||
+# https://medium.com/@PenTest_duck/almost-all-the-ways-to-file-transfer-1bd6bf710d65
+# https://nullsweep.com/pivot-cheatsheet-for-pentesters/
 
 # Workaround remote commands without a login shell
 # Reference: https://susam.in/blog/file-transfer-with-ssh-tee-and-base64/

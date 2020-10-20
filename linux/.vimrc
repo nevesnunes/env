@@ -397,8 +397,8 @@ vnoremap ,x :call VisualGX(getline(getpos('v')[1]))<CR>
 vnoremap iL :normal 0f(lvt)<CR>
 
 " Sane pasting
-nnoremap "+p :set paste<CR>"+p:set nopaste<CR>
-nnoremap "*p :set paste<CR>"*p:set nopaste<CR>
+nnoremap "+p :set paste<CR>"+p:set nopaste<CR>:silent! TrimWhite<CR>
+nnoremap "*p :set paste<CR>"*p:set nopaste<CR>:silent! TrimWhite<CR>
 
 " Sane completion menu
 "inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
@@ -407,8 +407,8 @@ nnoremap "*p :set paste<CR>"*p:set nopaste<CR>
 " Conserve split on buffer delete
 nnoremap <C-c> :bp\|bd #<CR>
 
-" Remove trailing white space
-command! RemoveWhite %s/\s\+$//
+" Remove trailing whitespace, jump to previous cursor position
+command! RemoveWhite %s/\s\+$//|normal!``
 command! TrimWhite RemoveWhite
 
 " Buffers
@@ -497,7 +497,7 @@ syntax on
 let g:markdown_folding=0
 let g:markdown_folding_override=1
 
-" Referenced by: 
+" Referenced by:
 " - $VIMRUNTIME/syntax/markdown.vim
 let g:markdown_minlines=200
 

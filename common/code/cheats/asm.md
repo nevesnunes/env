@@ -5,6 +5,8 @@
     - https://man7.org/linux/man-pages/man2/syscall.2.html
         - register conventions
             - x64: rdi rsi rdx r10 r8 r9
+- https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
+    - `__libc_start_main()`
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/
