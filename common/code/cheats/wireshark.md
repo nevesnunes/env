@@ -1,6 +1,7 @@
 # +
 
-https://wiki.wireshark.org/Tools
+- https://wiki.wireshark.org/Tools
+- https://paulcimino.com/customizing-wireshark-for-malware-analysis/
 
 # Filters
 

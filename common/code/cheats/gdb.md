@@ -1,17 +1,17 @@
 # +
 
-hardware breakpoint - evades checks for int3
-    https://sourceware.org/gdb/onlinedocs/gdb/Set-Breaks.html
+./anti-debugging.md
 
-http://bl0rg.krunch.be/segfault-gdb-strace.html
+- hardware breakpoint - evades checks for int3
+    - https://sourceware.org/gdb/onlinedocs/gdb/Set-Breaks.html
+- https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb
+- http://bl0rg.krunch.be/segfault-gdb-strace.html
+- [How Does a C Debugger Work? \(2014\) | Hacker News](https://news.ycombinator.com/item?id=24814854)
 
-https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb
+- https://github.com/taskcluster/react-gdb
 
-https://github.com/taskcluster/react-gdb
-
-step through stack frame
-
-compile a dummy file with -g that has the types you need and then symbol-file it into gdb to get access to the types. This of course has caveats, you have to use the correct compiler and library versions, correct compiler target and ABI-changing flags, etc.
+- PTRACE_PEEKUSER: access tracee process state
+    - https://code.woboq.org/qt5/include/sys/user.h.html
 
 ```bash
 # address space layout
@@ -99,9 +99,14 @@ p ($rbp - 0x30)
 set *0x7ffff5815d00 = 0x8
 ```
 
-# saving / restoring state
+# methodology
 
-https://sourceware.org/gdb/current/onlinedocs/gdb/Checkpoint_002fRestart.html
+compile a dummy file with -g that has the types you need and then symbol-file it into gdb to get access to the types. This of course has caveats, you have to use the correct compiler and library versions, correct compiler target and ABI-changing flags, etc.
+
+# saving / restoring register state
+
+- https://sourceware.org/gdb/current/onlinedocs/gdb/Checkpoint_002fRestart.html
+    - :( previous side-effects still applied
 
 # scripting
 

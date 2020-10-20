@@ -1,3 +1,15 @@
+# +
+
+```awk
+# lowercase conversion
+$0 = tolower($0);
+# remove non-alphanumeric
+gsub("[^a-z]", "", $0);
+```
+
+- https://www.grymoire.com/Unix/Awk.html
+- https://www.gnu.org/software/gawk/manual/gawk.html
+
 # delimiters
 
 ```bash
@@ -43,3 +55,7 @@ printf '%s\n' \
     }
 }
 ```
+
+# case studies
+
+- [GitHub \- step\-/JSON\.awk: Practical JSON parser written in awk](https://github.com/step-/JSON.awk)

