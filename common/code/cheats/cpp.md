@@ -242,6 +242,12 @@ map::at()
 std::atomics, mutex
 ```
 
+# unbuffered stream
+
+```cpp
+setbuf(stdout, NULL);
+```
+
 # thread safety
 
 ```cpp
