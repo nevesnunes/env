@@ -17,10 +17,6 @@ end
 library hook
 
 ```c
-int ptrace(int i, int j, int k, int l) {
-    return 0;
-}
-// ||
 long ptrace(int request, int pid, void *addr, void *data) {
     return 0;
 }
@@ -29,4 +25,5 @@ long ptrace(int request, int pid, void *addr, void *data) {
 ```bash
 env LD_PRELOAD=ptrace.so ./foo
 ```
+
 

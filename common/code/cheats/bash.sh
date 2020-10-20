@@ -1,3 +1,7 @@
+# Alternatives to external processes
+# - https://github.com/dylanaraps/pure-sh-bible
+# - https://github.com/dylanaraps/pure-bash-bible
+
 # Parameters, Expansions
 # - http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06
 

@@ -28,8 +28,11 @@ if _name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
 ```
 
-- client headers - `user-agent curl/7.19.3` => vulnerable version
-    - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
+- robots.txt
+- client headers 
+    - https://securityheaders.com/
+    - e.g. `user-agent curl/7.19.3` => vulnerable version
+        - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
 - trailing headers - sent after the content with a zero length chunk
     ```bash
     curl -k -v -H 'TE: trailers' 'https://foo'
@@ -44,6 +47,27 @@ if _name__ == "__main__":
     - anonymous user
     - logged in user
     - admin user
+- http methods
+    - `nmap -p 443 --script http-methods www.example.com`
+    ```
+    FOO / HTTP/9.8
+    HEAD / HTTP/1.0
+        - e.g. page returns 302 for GET, but 200 for HEAD
+    OPTIONS / HTTP/1.0
+    PROPFIND / HTTP/1.0
+    ```
+- response status codes 
+    - e.g. 403 for registered users and 404 for invalid users
+- parameter pollution
+    1. search?q=foo
+    2. search?q=bar
+    3. search?q=foo&q=bar (distinct result from previous cases)
+- cookies
+    - mitigations: http-only, secure
+- ssl strip
+    - mitigations: Strict-Transport-Security (HSTS)
+
+- https://medium.com/@muratkaraoz/web-app-pentest-cheat-sheet-c17394af773
 
 # prototype pollution
 
@@ -247,8 +271,12 @@ https://www.imperva.com/blog/http-desync-attacks-and-defence-methods/
         - uses timeouts to wait for loaded iframe content
         - ~/code/snippets/ctf/web/yolovault/
 
+DOM-Based:
+
+- Sources: `document.url, document.referrer, location.href`
+- Sinks: `element.innerHTML(), eval(), setTimeout(), document.write()`
+
 ```html
-<!-- DOM-Based -->
 '"><img src=https://foo>
 
 '"><script>
