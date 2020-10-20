@@ -107,7 +107,7 @@ eu-unstrip "$stripped_libc" "$symbol_file"
 
 - ! std::string uses in-object buffer for small strings, allocates memory for larger strings
     - => control whether allocations are triggered
-- ! memory manager allocates to most recently freed address
+- ! memory manager keeps linked-list of most recently freed address to allocate next objects
 
 ```cpp
 std::string x{"AAAA"}
