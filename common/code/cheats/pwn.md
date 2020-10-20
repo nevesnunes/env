@@ -101,7 +101,7 @@ eu-unstrip "$stripped_libc" "$symbol_file"
 1. allocate `object foo1` with reference to address `bar1`, `array foo` points to object
 2. deallocate `object foo1`, `array foo` preserves pointer to object's address
 3. allocate `object foo2` with reference `bar2` to same address as deallocated `object foo1` (aka. heap massaging)
-4. array foo (with dangling pointer) dereferences controlled address `bar2` written by `object foo2`, not an object
+4. `array foo` (with dangling pointer) dereferences controlled address `bar2` written by `object foo2`, not an object
     - if program reads from address, access value in arbitrary address previously unreadable (aka. memory leak)
     - if program writes to address, write-what-where in stack for rop
 
