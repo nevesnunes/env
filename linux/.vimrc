@@ -408,7 +408,7 @@ nnoremap "*p :set paste<CR>"*p:set nopaste<CR>:silent! TrimWhite<CR>
 nnoremap <C-c> :bp\|bd #<CR>
 
 " Remove trailing whitespace, jump to previous cursor position
-command! RemoveWhite %s/\s\+$//|normal!``
+command! RemoveWhite execute "normal! mw"|%s/\s\+$//|execute "normal! 'w"
 command! TrimWhite RemoveWhite
 
 " Buffers

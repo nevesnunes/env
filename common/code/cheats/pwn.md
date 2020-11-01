@@ -20,6 +20,21 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
 - overwritten return address - jmp to infinite loop, if app hangs, it worked
 - check if payload is malformed - set breakpoint (INT 3 == \xCC), if process doesn't stop, instructions up to breakpoint are malformed
 
+- if no ASLR, stack address not known, then use `jmp esp` trampoline
+- heap spraying - multiple instances of NOP slide + shellcode concatenated => high chance of jumping to shellcode
+
+### cyclic pattern
+
+```bash
+python3 -c 'from pwn import *; print(cyclic_gen(string.ascii_uppercase).get(32))'
+```
+
+### detection
+
+- valgrind
+- [libFuzzer – a library for coverage\-guided fuzz testing\. &\#8212; LLVM 12 documentation](http://llvm.org/docs/LibFuzzer.html)
+- [GitHub \- strongcourage/uafuzz: UAFuzz: Binary\-level Directed Fuzzing for Use\-After\-Free Vulnerabilities](https://github.com/strongcourage/uafuzz)
+
 # debugging
 
 reading direction: on arrow end, goto next step; each pipe character (`|`) delimits byte
@@ -162,6 +177,8 @@ References:
 
 # format string
 
+- Read at address index 123: `%123$s`
+
 - Find 1st pattern in leaked addresses
     ```python
     # 32bit
@@ -216,6 +233,8 @@ r.sendline(f"{cmd} {quote(payload)} HTTP/1.1\r\n")
 r.close()
 ```
 
+https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
+
 # return-oriented programming (rop)
 
 1. leak stack canary: Given multiple requests for same process, bruteforce bytes from boolean-based response
@@ -250,5 +269,12 @@ r.close()
 TODO
 
 # windows
+
+- mitigations
+    - canary == /GS stack cookies
+    - NX == data execution prevention (DEP)
+        - attacks: change some GOT address to WinExec() (xref. return2libc), call ntdll.dll function that disables DEP, call VirtualProtect() to allow execution in heap
+        - alternative to VirtualProtect() in kernel mode: ZwProtectVirtualMemory()
+            - [ZwAllocateVirtualMemory routine \(Windows Drivers\) \| Microsoft Docs](https://msdn.microsoft.com/en-us/library/windows/hardware/ff566416%28v=vs.85%29.aspx)
 
 - [FuzzySecurity | Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)

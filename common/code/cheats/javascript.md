@@ -8,6 +8,8 @@
     - ~/Downloads/moving-from-jquery-to-vanilla-js.md
 - https://gist.github.com/thegitfather/9c9f1a927cd57df14a59c268f118ce86#add-elements-to-the-dom-cont
     - ~/Downloads/vanilla-js-cheatsheet.md
+- [Vanilla\-todo: A case study on viable techniques for vanilla web development | Hacker News](https://news.ycombinator.com/item?id=24893247)
+    - https://github.com/morris/vanilla-todo
 
 # Debugging
 
@@ -342,7 +344,7 @@ https://medium.com/@devnullnor/a-secure-node-sandbox-f23b9fc9f2b0
     https://github.com/asvd/jailed
     https://gvisor.dev/
         https://github.com/google/gvisor/issues/115
-https://gist.github.com/pfrazee/8949363
+[In\-Application Sandboxing with Web Workers · GitHub](https://gist.github.com/pfrazee/8949363)
     https://www.owasp.org/index.php/HTML5_Security_Cheat_Sheet#Web_Workers
     http://www.w3.org/TR/CSP11/#processing-model
     https://github.com/martindrapeau/csvjson-app/blob/master/js/src/sandbox.js

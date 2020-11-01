@@ -137,3 +137,5 @@ imap <C-v> <C-r><C-o>+
 |Action|Keys|Help|
 |---|---|---|
 |char by value|`iC-Vx41`|i_CTRL-V_digit|
+
+Alternative: `CTRL-SHIFT-u, 0041, ENTER`

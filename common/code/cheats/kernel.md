@@ -233,3 +233,14 @@ unshare --fork --pid --kill-child
 # memory
 
 https://stackoverflow.com/questions/5463800/linux-memory-reporting-discrepancy?stw=2
+
+# monitor filesystem events
+
+```bash
+auditctl -w /etc/foo -k id_foo -p rwxa
+ausearch -f /etc/foo -i
+```
+- https://github.com/iovisor/bcc/blob/master/tools/statsnoop.py
+- https://sourceware.org/systemtap/SystemTap_Beginners_Guide/inodewatchsect.html
+
+

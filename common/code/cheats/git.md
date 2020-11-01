@@ -438,4 +438,12 @@ https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-t
         > Create two files in a #git repository with equal names, but differing a letter: á = U+00E1; á = U+0061 U+0301. Clone on a mac. #UnicodeHell
     ~/code/guides/sysadmin/badrepo
 
+### pull request triggers a merge push
 
+[😳 by stephen304 · Pull Request \#8142 · github/dmca · GitHub](https://github.com/github/dmca/pull/8142)
+https://mathieularose.com/github-commit-injection
+https://news.ycombinator.com/item?id=24883944
+    > I think it's because GitHub wants to allow repo maintainers to merge in PRs without them having to add separate remotes themselves, ie `git remote add` isn't required to `git merge`.
+    > This basically means that any content can be injected into anyone's GH repo (since PRs can't be turned off), but really only in terms of being able to view it on the GitHub website. To give an example, pull 437 on torvalds/linux[0] hasn't been merged in, but if you go to the commit hash in the browser, suddenly main/init.c has the relevant changes and commit that condense the file into one line[1].
+    > [0]: https://github.com/torvalds/linux/pull/437
+    > [1]: https://github.com/torvalds/linux/blob/2793ae1df012c7c3f13ea5c0f0adb99017999c3b/init/main.c

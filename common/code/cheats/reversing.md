@@ -1,6 +1,7 @@
 # +
 
 ./asm.md
+./evasion.md
 
 ```bash
 # Any format
@@ -11,8 +12,18 @@ ldd -iv
 floss
 ```
 
-- Malware Evasion
-    - [Map \- Unprotect Project](https://search.unprotect.it/map)
+https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
+
+# methodology
+
+- enumerate exports, imports, function use, syscalls, winapi, mutex, dll dependencies, strings
+- monitoring FileRead and FileWrite calls
+    - ~/share/forensics/APIMiner-v1.0.0/
+    - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
+- binary patching, code injection, fault inducing
+- alternative to reverse debugging: vm snapshots
+
+- [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 
 # vm
 
@@ -52,11 +63,17 @@ done 2>/dev/null | vim -
 # coverage
 ~/opt/dynamorio/build/bin64/drrun -t drcov -dump_text -- ./a.out
 diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log | vim -
-# https://stackoverflow.com/questions/53218160/how-can-i-do-code-path-analysis-in-a-debugger
-# https://dynamorio.org/dynamorio_docs/page_drcov.html
+# - diff alternative: `lighthouse` plugin
+# - https://stackoverflow.com/questions/53218160/how-can-i-do-code-path-analysis-in-a-debugger
+# - https://dynamorio.org/dynamorio_docs/page_drcov.html
+
+# ||
+# 1. grep xrefs from asm dump, take addresses
+# 2. make gdb script with temporary breakpoint (`tbreak`) foreach address
+# - [On why my tbreak tracing trick did not work \- gynvael\.coldwind//vx\.log](https://gynvael.coldwind.pl/?id=638)
 
 # execution trace
-# https://github.com/teemu-l/execution-trace-viewer
+# - https://github.com/teemu-l/execution-trace-viewer
 ```
 
 # main function

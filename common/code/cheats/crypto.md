@@ -18,6 +18,8 @@ hashlib.md5().update(b'foo').hexdigest()
 
 https://en.wikipedia.org/wiki/Feistel_cipher
 
+indistinguishability under chosen-plaintext attack (IND-CPA)
+
 # hashing
 
 [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
@@ -45,6 +47,14 @@ https://wiremask.eu/tools/xor-cracker/
 - Split message into aligned sequences, count frequencies of chars foreach column, take most frequent char and xor with expected most frequent char (e.g. `_`) to obtain key
     - Alterntive: xortool
     - [CTFtime\.org / BalCCon2k20 CTF / Xoared / Writeup](https://ctftime.org/writeup/23906)
+
+# frequency analysis
+
+- key length: ~/code/snippets/ctf/crypto/kasiski.py
+- letter frequency: ~/code/snippets/ctf/crypto/frequency_analysis.py
+- decrypt letters: ~/code/snippets/ctf/crypto/chi_squared.py
+
+http://blog.dornea.nu/2016/10/29/ringzer0-ctf-javascript-challenges/#207f46edd62ccf43b49d59d48df5c867
 
 # pseudo random number generator (PRNG)
 
@@ -102,6 +112,16 @@ https://crypto.stackexchange.com/questions/31019/if-you-encrypt-an-image-aes-is-
 |PHP|`random_bytes()`|
 |Python|`random.SystemRandom()`|
 
+# Correlation Power Analysis (CPA) / Differential Fault Analysis (DFA) / White-Box Cryptography
+
+- [GitHub \- SideChannelMarvels/Daredevil: A tool to perform \(higher\-order\) correlation power analysis attacks \(CPA\)\.](https://github.com/SideChannelMarvels/Daredevil)
+
+- https://atorralba.github.io/RHme3-Quals-Whitebox/
+- https://blog.quarkslab.com/differential-fault-analysis-on-white-box-aes-implementations.html
+- https://www.limited-entropy.com/crypto-series-dfa/
+- https://www.ledger.com/ctf-complete-hw-bounty-still-ongoing-2-337-btc/
+    > induce faults using GDB during the computation, retrieve the faulty result and then execute AES DFA (Differential Fault Analysis)
+
 # case studies
 
 - https://nakedsecurity.sophos.com/2013/07/09/anatomy-of-a-pseudorandom-number-generator-visualising-cryptocats-buggy-prng/
@@ -112,10 +132,5 @@ https://crypto.stackexchange.com/questions/31019/if-you-encrypt-an-image-aes-is-
 - https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d
     - https://v8.dev/blog/math-random
 - https://blog.malwarebytes.com/threat-analysis/2018/01/scarab-ransomware-new-variant-changes-tactics/
-
-- https://blog.quarkslab.com/differential-fault-analysis-on-white-box-aes-implementations.html
-- https://www.limited-entropy.com/crypto-series-dfa/
-- https://www.ledger.com/ctf-complete-hw-bounty-still-ongoing-2-337-btc/
-    > induce faults using GDB during the computation, retrieve the faulty result and then execute AES DFA (Differential Fault Analysis)
 
 

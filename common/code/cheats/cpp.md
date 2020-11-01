@@ -80,6 +80,9 @@ gcc foo.c -o foo -shared -fPIC
 ./configure \
     CXXFLAGS="-I/foo" \
     CPLUS_INCLUDE_PATH="/foo"
+
+# include library `libfoo.so.*`
+LIBS=-lfoo ./configure
 ```
 
 https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
