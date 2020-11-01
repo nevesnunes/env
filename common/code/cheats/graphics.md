@@ -1,3 +1,7 @@
+# +
+
+[RAW Pixels Viewer](https://rawpixels.net/)
+
 # seams
 
 layer > transform > offset
@@ -22,7 +26,10 @@ https://orbitingweb.com/blog/optimizing-png-images/
 # xor
 
 ```bash
+# highlight differences
 compare i1.png i2.png -metric RMSE o.png
+# render differences
+composite i1.png i2.png -compose difference o.png
 ```
 
 # combine

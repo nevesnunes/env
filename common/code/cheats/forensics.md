@@ -4,7 +4,6 @@
 ./filesystem.md
 
 https://bitvijays.github.io/LFC-Forensics.html
-
 http://freshports.org/sysutils/sleuthkit
 
 # event log
@@ -97,6 +96,22 @@ find . -type d -empty -delete
 dd if=/proc/7/mem bs=$((0x1000)) skip=$((Ox7fb84ee44 + 0x207)) count=1 of=out
 ```
 
+### windows
+
+1. create disk image
+    ```powershell
+    # List disks
+    wmic diskdrive list
+    # ||
+    Get-WmiObject Win32_DiskDrive
+    # Dump disk
+    dd.exe if=\\.\PhysicalDrive0 of=d:\images\PhysicalDrive0.img --md5sum --verifymd5 --md5out=d:\images\PhysicalDrive0.img.md5
+    ```
+    - https://forensicswiki.xyz/wiki/index.php?title=Dd
+    - https://hddguru.com/software/HDD-Raw-Copy-Tool/
+2. carving
+    - https://www.cgsecurity.org/wiki/PhotoRec_Step_By_Step
+
 # data sets
 
 https://www.forensicfocus.com/challenges-and-images/
@@ -110,6 +125,8 @@ http://journeyintoir.blogspot.com/2013/12/revealing-recentfilecachebcf-file.html
 
 https://trailofbits.github.io/ctf/forensics/
 
+[GitHub \- stuxnet999/MemLabs: Educational, CTF\-styled labs for individuals interested in Memory Forensics](https://github.com/stuxnet999/MemLabs)
+    https://bananamafia.dev/post/mem/
 https://www.hecfblog.com/search/label/ctf
 https://www.hecfblog.com/2018/08/daily-blog-451-defcon-dfir-ctf-2018.html
     https://infosecuritygeek.com/defcon-dfir-ctf-2018/
@@ -174,8 +191,14 @@ gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOu
 # zip
 
 ```bash
+# fix
 zip -F foo --out foo.out
 zip -FF foo --out foo.out
+
+# bruteforce password
+while read -r i; do 7z x -p"$i" flag.zip >/dev/null; e=$?; if [ ! -s flag.txt ] || [ $e -gt 0 ]; then rm flag.txt; else break; fi; done < ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt
+# preserve attempts where CRC Failed
+while read -r i; do 7z x -p"$i" flag.zip >/dev/null; if [ ! -s flag.txt ]; then rm flag.txt; else mv flag.txt flags/"$(date +%s)".flag.txt; fi; done < ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt
 ```
 
 - binwalk expects p7zip
@@ -187,12 +210,20 @@ zip -FF foo --out foo.out
 - AE-x (compression method = 99)
     - [AES Encryption Information: Encryption Specification AE-1 and AE-2](https://www.winzip.com/win/en/aes_info.html)
 - ~/code/doc/zip/Ten Thousand Traps.pdf
+- https://ctf-wiki.github.io/ctf-wiki/misc/archive/zip/
 
 ### extraction path
 
 - [GitHub \- snyk/zip\-slip\-vulnerability: Zip Slip Vulnerability \(Arbitrary file write through archive extraction\)](https://github.com/snyk/zip-slip-vulnerability)
 
 ### encryption / password attacks
+
+Bruteforce:
+
+```bash
+~/opt/john/run/zip2john flag.zip > flag.zip.john
+~/opt/john/run/john --wordlist="$(realpath ~/share/opt/rockyou.txt)" flag.zip.john
+```
 
 Biham and Kocher's known plaintext attack:
 
@@ -221,6 +252,8 @@ Biham and Kocher's known plaintext attack:
 
 # steganography
 
+- steghide
+    - `()*56789:CDEFGHI`
 - outguess
 - https://fotoforensics.com/
     - https://www.hackerfactor.com/blog/index.php?/archives/894-PNG-and-Hidden-Pixels.html
@@ -237,7 +270,7 @@ binwalk --dd='.*' _
 binwalk -Me _
 
 # graphics images
-exiftool _
+exiftool -v _
 identify -verbose _
 python3 -c 'import cv2, sys; cv2.imread(sys.argv[1])' _
 python3 -c 'import sys; from PIL import Image; print(Image.open(sys.argv[1]).verify())' _
@@ -269,7 +302,8 @@ No magic enforced at offset zero:
 Examples:
 
 - ~/opt/mitra/
-- ~/opt/truepolyglot/
+    - https://github.com/corkami/mitra/tree/master/utils/gcm
+- ~/opt/truepolyglot.git/
 - jpeg + mp3
 - jpeg + php archive
     ```
@@ -293,13 +327,28 @@ Examples:
 ### mocks
 
 - ./files/mis-identified-files.jpg
+- https://github.com/corkami/pocs/tree/master/mocks
 
 ### invalid data
 
 ```bash
 # identify by chunks vs. magic bytes
-file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i awk '/PNG|IHDR|PLTE|IDAT|IEND/{print FILENAME; exit}' {}
-file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i awk 'match($0, /\xff\xd8|\xff\xe0|JFIF|\xff\xdb|\xff\xc0|\xff\xc4|\xff\xda|\xff\xd9/{print FILENAME ":" RSTART; exit}' {}
+### png
+hexgrep.py _ "$(printf '%s' 'PNG|IHDR|PLTE|IDAT|IEND' | xxd -p)"
+grep -Habo $'PNG\\|IHDR\\|PLTE\\|IDAT\\|IEND' _
+file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i env LC_ALL=C awk 'match($0, /PNG|IHDR|PLTE|IDAT|IEND/) {
+    offset = count + RSTART - 1;
+    group = substr($0, RSTART, RLENGTH);
+    printf("%s:%s(0x%x):%s\n", FILENAME, offset, offset, group);
+} { count += length + 1; }' {}
+### jpeg
+hexgrep.py _ '\xff\xd8|\xff\xe0|JFIF|\xff\xdb|\xff\xc0|\xff\xc4|\xff\xda|\xff\xd9'
+grep -Habo $'\xff\xd8\\|\xff\xe0\\|JFIF\\|\xff\xdb\\|\xff\xc0\\|\xff\xc4\\|\xff\xda\\|\xff\xd9' _
+file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i env LC_ALL=C awk 'match($0, /\xff\xd8|\xff\xe0|JFIF|\xff\xdb|\xff\xc0|\xff\xc4|\xff\xda|\xff\xd9/) {
+    offset = count + RSTART - 1;
+    group = substr($0, RSTART, RLENGTH);
+    printf("%s:%s(0x%x):%s\n", FILENAME, offset, offset, group);
+} { count += length + 1; }' {}
 ```
 
 - CRC correction

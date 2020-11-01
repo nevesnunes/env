@@ -260,6 +260,7 @@ audio/x-opus+ogg=deadbeef.desktop
 image/vnd.djvu+multipage=org.pwmt.zathura-djvu.desktop
 video/3gpp=mpv.desktop
 inode/directory=pcmanfm.desktop
+x-scheme-handler/irc=pidgin.desktop
 
 [Removed Associations]
 image/png=kde4-krita.desktop;kde4-krita_png.desktop;

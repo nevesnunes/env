@@ -1,7 +1,5 @@
 # +
 
-./anti-debugging.md
-
 - hardware breakpoint - evades checks for int3
     - https://sourceware.org/gdb/onlinedocs/gdb/Set-Breaks.html
 - https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb

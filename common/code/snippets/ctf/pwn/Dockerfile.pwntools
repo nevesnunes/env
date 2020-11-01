@@ -1,0 +1,20 @@
+# Build: docker build -t foo .
+# Run: docker run --rm -it --cap-add=SYS_PTRACE --security-opt seccomp=unconfined foo
+# Reference: [CTFtime\.org / Hack The Vote 2020 / Electrostar 1 / Writeup](https://ctftime.org/writeup/24356)
+
+FROM ubuntu:18.04
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y socat libncurses5 libncurses5-dev gdb-multiarch wget python3-pip python3.8 python3.8-dev
+
+COPY ./foo \
+    /chall/
+
+WORKDIR /chall
+RUN chmod 777 /chall/* && \
+    sh -c "$(wget http://gef.blah.cat/sh -O -)" && \
+    echo 'set step-mode on' >> ~/.gdbinit && \
+    python3.8 -m pip install pwntools
+
+CMD /chall/foo

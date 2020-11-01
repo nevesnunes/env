@@ -1,7 +1,10 @@
-# reload in bash:
+# Reload in bash:
+# ```
 # bind -f ~/.inputrc
+# ```
 #
-# reload in zsh:
+# Reload in zsh:
+# ```
 # eval "$(sed -e '/^\"/! d;
 #     s/^/bindkey -- /;
 #     s/\\e/\x1B/g;
@@ -9,14 +12,15 @@
 #     s/bindkey\ --\ \([^"]*"[^"]*".*\)/bindkey -s \1/;
 #     s/history-search/history-beginning-search/' \
 #     /etc/inputrc $(test -f ~/.inputrc && echo ~/.inputrc))"
+# ```
 #
-# see:
-# http://ascii-table.com/documents/vt100/chapter3.php#S3.3.3
-# https://invisible-island.net/xterm/xterm-function-keys.html
-# https://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing
-# http://www.xfree86.org/4.5.0/ctlseqs.html
-# http://bjh21.me.uk/all-escapes/all-escapes.txt
-# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
+# References:
+# - http://ascii-table.com/documents/vt100/chapter3.php#S3.3.3
+# - https://invisible-island.net/xterm/xterm-function-keys.html
+# - https://www.gnu.org/software/bash/manual/bashref.html#Command-Line-Editing
+# - http://www.xfree86.org/4.5.0/ctlseqs.html
+# - http://bjh21.me.uk/all-escapes/all-escapes.txt
+# - http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 
 $include /etc/inputrc
 
@@ -31,6 +35,9 @@ set completion-ignore-case on
 set completion-map-case on
 
 set completion-prefix-display-length 4
+
+# http://tiswww.case.edu/php/chet/readline/rluserman.html#SEC9
+set enable-bracketed-paste on
 
 # Completed names which are symbolic links to
 # directories have a slash appended.

@@ -11,6 +11,9 @@
     - methodology
         - https://www.google.com/search?q=base32+%2256+bytes%22
         - https://www.google.com/search?q=base32+%2256+characters%22
+- git
+    - torsocks
+    - https://tor.stackexchange.com/questions/4855/is-it-possible-to-have-a-hidden-git-service
 
 # relays
 

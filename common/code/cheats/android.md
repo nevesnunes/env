@@ -1,12 +1,17 @@
 # decompiler
 
-https://ibotpeaches.github.io/Apktool
+[GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
+[GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
 http://www.javadecompilers.com/apk
 http://www.decompileandroid.com/
 
 [GitHub \- androguard/androguard: Reverse engineering, Malware and goodware analysis of Android applications \.\.\. and more \(ninja !\)](https://github.com/androguard/androguard)
     https://code.google.com/archive/p/elsim/wikis/Similarity.wiki#Android
     https://www.phrack.org/issues.html?issue=68&id=15#article
+
+# dissassembler
+
+https://ibotpeaches.github.io/Apktool/install/
 
 # emulation
 
@@ -41,6 +46,15 @@ https://github.com/Deadolus/android-studio-docker
 
 https://github.com/aind-containers/aind
 
+# dynamic instrumentation
+
+```bash
+# https://github.com/frida/frida/releases
+adb push frida-server /data/local/tmp
+```
+- ~/code/snippets/frida/android.py
+    - https://bananamafia.dev/post/r2frida-1/
+
 # development
 
 ### android studio
@@ -59,12 +73,42 @@ https://www.fosslinux.com/13176/how-to-install-and-run-android-apps-on-ubuntu-us
 # running apps
 
 ```bash
-adb start-server
-adb install foo.apk
-
 /snap/bin/anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity
+adb start-server
+adb devices
+adb install foo.apk
+# || Specific device
+adb -s emulator-5555 install foo.apk
 
 ~/opt/android-studio/bin/studio.sh
+```
+
+# debug
+
+```bash
+# Find package name, take $pid
+ps | grep -i flag
+# u0_a49    711   30    1043872 80604          0 0000000000 S lu.hack.Flagdroid
+
+# Use main class
+# e.g. `public class MainActivity extends AppCompatActivity`
+am start -D -e debug true -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -n "lu.hack.Flagdroid/.MainActivity"
+
+adb forward --remove-all
+adb forward tcp:8012 jdwp:$pid
+jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port=8012
+```
+
+https://stackoverflow.com/questions/25477424/adb-shell-su-works-but-adb-root-does-not
+[Can i root anbox device? · Issue \#209 · anbox/anbox · GitHub](https://github.com/anbox/anbox/issues/209)
+
+https://asantoso.wordpress.com/2009/09/26/using-jdb-with-adb-to-debugging-of-android-app-on-a-real-device/
+https://source.android.com/devices/tech/debug/gdb
+
+# root
+
+```bash
+sudo /snap/bin/anbox.shell
 ```
 
 # virtual device
