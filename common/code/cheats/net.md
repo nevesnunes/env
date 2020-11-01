@@ -22,7 +22,8 @@ https://hc.apache.org/httpclient-3.x/performance.html
 - Traceroute to discover topology
 - ZMap on reachable prefixes for common service ports
 
-https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
+- [The Illustrated TLS Connection: Every Byte Explained](https://tls.ulfheim.net/)
+- https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
 
 # relay
 

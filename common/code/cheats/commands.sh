@@ -388,6 +388,9 @@ MANPAGER='sh -c whoami' man ls
 diff /dev/null 1
 iconv 1
 
+# hex byte sequence chunk at offset
+xxd -s $((0x1234)) -l 8 -g 8 -e _
+
 # binary to hex byte sequence
 od -An -t x1 -v < _ | tr -d ' \n'
 

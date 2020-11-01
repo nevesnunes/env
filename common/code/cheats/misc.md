@@ -1,5 +1,6 @@
 # +
 
+- https://fortyseven.github.io/ctfpanel/
 - https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/
 - https://snovvcrash.rocks/cheatsheets/
 - https://hausec.com/pentesting-cheatsheet/
@@ -7,7 +8,14 @@
 - http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines
 - https://github.com/Orange-Cyberdefense/arsenal
 - https://github.com/enaqx/awesome-pentest
+- https://github.com/kyawthiha7/pentest-methodology
 - https://prune2000.github.io/tools/pentest/
+
+# malware classification
+
+- https://whatis.techtarget.com/glossary/Security
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/intelligence/malware-naming
+- https://encyclopedia.kaspersky.com/knowledge/rules-for-classifying/
 
 # racing, race-condition
 
@@ -92,6 +100,9 @@ done
 ```bash
 sudo -l
 
+# specific uid
+find / -uid 1001 -type f 2>/dev/null
+
 # suid
 find / -perm -u=s -type f 2>/dev/null
 ```
@@ -126,6 +137,7 @@ find / -perm -u=s -type f 2>/dev/null
             | xxd -r -p > loremipsum.txt
         ```
     - https://github.com/leonjza/dnsfilexfer
+    - https://github.com/vp777/DNS-data-exfiltration
 - TCP
     ```bash
     # ICMP (using file contents)

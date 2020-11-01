@@ -1,19 +1,48 @@
-# frequency analysis
-
-https://www.discogs.com/group/thread/725367#7201568
-
 # Ripping
 
 ```bash
 sg cdrom -c 'whipper cd rip --offset=6 --unknown --cdr'
 ```
 
-# Edit mp3 without re-compression
+# id3
+
+- Tags
+    - `TXXX`: User Defined Text
+
+# mp3
+
+```bash
+# Encoder version
+strings _ | grep -o 'LAME[0-9\.]\+' | sort | uniq -c
+```
+
+# Remove images without re-compression
+
+```bash
+eyeD3 --remove-all-images *.mp3
+for i in *; do ffmpeg -i "$i" -map_metadata 0 -c:a copy -map 0:a "0.$i" && mv "0.$i" "$i"; done
+```
+
+# Edit duration without re-compression
 
 ```bash
 ffmpeg -i foo.mp3 -ss 00:00:01.0 -t 00:05:00 -c copy bar.mp3
+```
+
+# Edit replay gain without re-compression
+
+```bash
+# Add
 for i in *.mp3; do mp3gain -g 4.5 "$i"; done
+
+# Use glob to calculate album gain
+mp3gain -a *.mp3
+metaflac --add-replay-gain *.flac
+
+# Remove
 for i in *.mp3; do mp3gain -u "$i"; done
+metaflac --remove-replay-gain *.flac
+eyeD3 --user-text-frame="REPLAYGAIN_TRACK_GAIN:" *.mp3
 ```
 
 # Copy stream without re-compression
@@ -32,9 +61,9 @@ ffmpeg -f lavfi -i color=size=8x8:rate=25:color=black -f lavfi -i anullsrc=chann
 
 https://manual.audacityteam.org/man/spectral_selection.html
 
-Audacity > Audio > Analyze menu > Plot spectrum
-Audacity > Audio > Effect menu > Notch filter
-Q=16.0
+- Audacity > Audio > Analyze menu > Plot spectrum
+- Audacity > Audio > Effect menu > Notch filter
+- Q=16.0
 
 http://www.learningaboutelectronics.com/Articles/Quality-factor-calculator.php
 
@@ -58,6 +87,6 @@ In Adobe Audition you can just select the affected samples and use the auto-heal
 
 It helps a bit to have the data preferences set to crossfade all edits by 1 or 2 ms. You can also draw a box in the spectrogram to confine your edits to just a certain frequency range, which is useful if the usual methods can't quite nail a low-frequency pop without killing the higher frequencies too.
 
-On rare occasion where there's a massive pop, I might do some trickery with inverting the pop in one channel, or copying and mix-pasting the other channel's audio in, just to get the waveform closer to correct, and then auto-heal that. I've also experimented with converting a particularly crackly area to mid-side stereo, then auto-declicking the side more aggressively than the mid before converting back...this also helps reduce some sibilant distortion as found in "inner groove" areas of well-worn records, although it's never perfect. 
+On rare occasion where there's a massive pop, I might do some trickery with inverting the pop in one channel, or copying and mix-pasting the other channel's audio in, just to get the waveform closer to correct, and then auto-heal that. I've also experimented with converting a particularly crackly area to mid-side stereo, then auto-declicking the side more aggressively than the mid before converting back...this also helps reduce some sibilant distortion as found in "inner groove" areas of well-worn records, although it's never perfect.
 
-Source: https://www.discogs.com/group/thread/725367#7201568
+[Discogs Groups - Manual Click Removal Method, for those whose use the pencil](https://www.discogs.com/group/thread/725367#7201568)

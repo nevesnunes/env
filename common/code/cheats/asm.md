@@ -1,10 +1,11 @@
 # +
 
-- https://github.com/michalmalik/linux-re-101
-    - https://syscalls.w3challs.com/
-    - https://man7.org/linux/man-pages/man2/syscall.2.html
-        - register conventions
-            - x64: rdi rsi rdx r10 r8 r9
+- https://syscalls.w3challs.com/
+    - http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+    - https://filippo.io/linux-syscall-table/
+- https://man7.org/linux/man-pages/man2/syscall.2.html
+    - register conventions
+        - x64: rdi rsi rdx r10 r8 r9
 - https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
     - `__libc_start_main()`
 
@@ -12,6 +13,8 @@
 - https://onlinedisassembler.com/
 - https://www.felixcloutier.com/x86/index.html
     - https://software.intel.com/en-us/articles/intel-sdm
+
+- https://github.com/michalmalik/linux-re-101
 
 # executable and linkable format (ELF)
 
@@ -23,7 +26,11 @@
 - section
     - describes: linking view (instructions, data, symbols...)
 
-https://web.archive.org/web/20171129031316/http://nairobi-embedded.org/040_elf_sec_seg_vma_mappings.html
+- ./files/ELF101.png
+    - https://raw.githubusercontent.com/corkami/pics/master/binary/ELF101.png
+- https://wiki.osdev.org/ELF#Tables
+- https://fasterthanli.me/series/making-our-own-executable-packer/part-1
+- https://web.archive.org/web/20171129031316/http://nairobi-embedded.org/040_elf_sec_seg_vma_mappings.html
 
 # symbols
 
@@ -74,8 +81,8 @@ objcopy --dump-section .text=output.bin input.o
 - `.strtab`: string table of `.symtab` section
 - `.dynstr`: string table of `.dynsym` section
 - `.interp`: RTLD embedded string
-- `.rel.dyn`: global variable relocation table
-- `.rel.plt`: function relocation table
+- `.rel.dyn`: global variable relocation table, used for ASLR
+- `.rel.plt`: function relocation table, used for ASLR
 
 - [Technovelty \- PLT and GOT \- the key to code sharing and dynamic libraries ](https://www.technovelty.org/linux/plt-and-got-the-key-to-code-sharing-and-dynamic-libraries.html)
 - [ELF Binaries and Relocation Entries \- shorne in japan](http://stffrdhrn.github.io/hardware/embedded/openrisc/2019/11/29/relocs.html)
@@ -224,6 +231,9 @@ https://stackoverflow.com/questions/46756320/change-a-call-address-in-memory
 objdump -d _.so | grep func
 nm -A _so | grep func
 
+dumpbin /exports _.dll | find "func"
+# || CFF Explorer
+
 c++filt -n _ZdlPvm
 readelf -Ws _.so
 objdump -TC _.so
@@ -297,3 +307,16 @@ https://in4k.github.io/wiki/lsc-wiki-rtld
 
 https://stackoverflow.com/questions/2463150/what-is-the-fpie-option-for-position-independent-executables-in-gcc-and-ld
 https://access.redhat.com/blogs/766093/posts/1975793
+
+# switching between 32-bit and 64-bit modes
+
+- far return (`retf`)
+    - next address pushed before call
+    - `cs=0x23`: x86 mode
+    - `cs=0x33`: x86-64 mode
+
+- https://blukat29.github.io/2016/10/hitcon-quals-2016-mixerbox/
+- [CTFtime\.org / Hack The Vote 2020 / x96](https://ctftime.org/task/13567)
+- http://wiki.osdev.org/X86-64#Long_Mode
+
+
