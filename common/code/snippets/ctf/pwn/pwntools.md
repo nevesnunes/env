@@ -210,3 +210,7 @@ True
 ```
 
 `pwnlib.util.packing.pack/unpack(number, word_size = None, endianness = None, sign = None, **kwargs)`
+
+---
+
+Reference: https://blog.eadom.net/uncategorized/pwntools-quick-reference-guide/
