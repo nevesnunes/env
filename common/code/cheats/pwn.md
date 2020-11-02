@@ -9,6 +9,12 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
 
 # methodology
 
+- if: free reference not nulled
+    - then: uaf
+    - else: tcache poisoning
+- if: no ASLR, stack address not known
+    - then: use `jmp esp` trampoline
+
 - `printf()`: 1st param => format string
 - `strcpy()`: len(1st param) -lt len(2nd param) => buffer overflow
 - `scanf()`: len(2nd param) -lt len(read bytes) => buffer overflow
@@ -19,9 +25,8 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
 - buffer size - check allocated frame for locals, take largest offset
 - overwritten return address - jmp to infinite loop, if app hangs, it worked
 - check if payload is malformed - set breakpoint (INT 3 == \xCC), if process doesn't stop, instructions up to breakpoint are malformed
-
-- if no ASLR, stack address not known, then use `jmp esp` trampoline
 - heap spraying - multiple instances of NOP slide + shellcode concatenated => high chance of jumping to shellcode
+- process io - use `mkfifo` + pwntools `gdb.attach()` to send payloads at specific points
 
 ### cyclic pattern
 
@@ -111,7 +116,7 @@ pwndbg> x/32x $rbp - 0x20
 eu-unstrip "$stripped_libc" "$symbol_file"
 ```
 
-# use-after-free
+# use-after-free (UAF)
 
 1. allocate `object foo1` with reference to address `bar1`, `array foo` points to object
 2. deallocate `object foo1`, `array foo` preserves pointer to object's address
@@ -169,6 +174,10 @@ References:
 - [Hacking Livestream \#48: Use\-after\-free \- YouTube](https://www.youtube.com/watch?v=zJw7CuSc8Sg)
     - https://github.com/gynvael/stream-en
 
+# tcache poisoning
+
+https://pwn-maher.blogspot.com/2020/11/pwn10-heap-exploitation-for-glibc-232.html
+
 # write-what-where
 
 - `_hook` functions:
@@ -177,9 +186,9 @@ References:
 
 # format string
 
-- Read at address index 123: `%123$s`
+Reading:
 
-- Find 1st pattern in leaked addresses
+1. Find 1st pattern in leaked addresses
     ```python
     # 32bit
     fmt_str = "AAAA" + ".%x" * 128
@@ -187,6 +196,9 @@ References:
     x = x.split('.')
     x.index('41414141')
     ```
+2. Read at address index 123: `%123$s`
+
+Writing:
 
 ```python
 from pwn import *
@@ -237,8 +249,10 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
 
 # return-oriented programming (rop)
 
-1. leak stack canary: Given multiple requests for same process, bruteforce bytes from boolean-based response
+1. leak stack canary: Given multiple requests for same process, blast (i.e. bruteforce) bytes from boolean-based response
     - repeat for $rbp, then $rip
+    - https://ctf-wiki.github.io/ctf-wiki/pwn/linux/mitigation/canary/#one-by-one-crack-canary
+    - if: read and print beyond variable, then overwrite null byte of canary
 2. leak base address, map: $rip == rebasing ELF (allows leaking GOT addresses)
 - ~/code/snippets/ctf/pwn/rop.py
     - Alternative: manual chain

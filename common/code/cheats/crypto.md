@@ -1,14 +1,15 @@
 # +
 
-https://github.com/apsdehal/awesome-ctf#crypto
-
 - [Quipquip](https://quipqiup.com/): subsituition cipher
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
 - [CyberChef](https://gchq.github.io/CyberChef/): magic mode
 - [kt.gy tools](https://kt.gy/tools.html): decode string 
     - https://github.com/OpenToAllCTF/Tips#crypto
-
+- [GitHub \- bwall/HashPump: A tool to exploit the hash length extension attack in various hashing algorithms](https://github.com/bwall/HashPump)
+- [GitHub \- mwielgoszewski/python\-paddingoracle: A portable, padding oracle exploit API](https://github.com/mwielgoszewski/python-paddingoracle)
+- [AES Encryption \- Easily encrypt or decrypt strings or files](http://aes.online-domain-tools.com/)
 - [The On\-Line Encyclopedia of Integer Sequences \(OEIS\)](https://oeis.org)
+- https://github.com/apsdehal/awesome-ctf#crypto
 
 ```python
 gmpy2.isqrt(B * N // A)
@@ -17,7 +18,6 @@ hashlib.md5().update(b'foo').hexdigest()
 ```
 
 https://en.wikipedia.org/wiki/Feistel_cipher
-
 indistinguishability under chosen-plaintext attack (IND-CPA)
 
 # hashing

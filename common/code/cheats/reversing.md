@@ -20,6 +20,7 @@ https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
 - monitoring FileRead and FileWrite calls
     - ~/share/forensics/APIMiner-v1.0.0/
     - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
+- monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
 - binary patching, code injection, fault inducing
 - alternative to reverse debugging: vm snapshots
 
@@ -39,6 +40,7 @@ https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
 - timing attacks - On password validation routine, when a char is correct, more instructions are executed
     - ~/code/snippets/pin/count_me_if_you_can.py
     - [write\-up for dont\_panic \- Eternal Stories](http://eternal.red/2017/dont_panic-writeup/)
+- syscall counting - `strace | sort | uniq -c`
 
 ```bash
 # instruction counting
