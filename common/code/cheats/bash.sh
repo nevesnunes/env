@@ -216,6 +216,11 @@ echo '
 # preview input to pipe
 a=$(printf '%s\n' 1 2 3) && printf '%s' "$a" >&2 && read -r && printf '%s\n' "$a" | xargs -i ls {};
 
+# shebang with multiple args
+# - [Sbang lets you run scripts with long shebang lines | Hacker News](https://news.ycombinator.com/item?id=24963669)
+#!/usr/bin/env -S -P/usr/local/bin:/usr/bin perl arg1 arg2 arg3
+#!/usr/bin/env PATH=/home/my/loc:${PATH} perl arg1 arg2 arg3
+
 # cannot declare a function with same name as alias
 # e.g.
 # bash: foo.sh: line 18: syntax error near unexpected token `('

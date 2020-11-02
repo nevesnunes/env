@@ -103,6 +103,10 @@ site:www.MyOrg.com inurl:administrator_login.asp
 https://www.google.com/search?q=intitle:%22index%20of%22
 ```
 
+# blog
+
+- https://www.hatena.ne.jp/o/search
+
 # email
 
 - [Trumail | Free Email Verification API](https://trumail.io/)

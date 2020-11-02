@@ -257,6 +257,9 @@ Biham and Kocher's known plaintext attack:
 - outguess
 - https://fotoforensics.com/
     - https://www.hackerfactor.com/blog/index.php?/archives/894-PNG-and-Hidden-Pixels.html
+- [How to defeat naive image steganography | Hacker News](https://news.ycombinator.com/item?id=11579309)
+- [ALASKA2: Image Steganalysis \- All you need to know | Kaggle](https://www.kaggle.com/prashant111/alaska2-image-steganalysis-all-you-need-to-know)
+- [DDE Download Section](http://dde.binghamton.edu/download/)
 
 # file formats
 
