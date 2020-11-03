@@ -3,16 +3,18 @@
 ./asm.md
 ./evasion.md
 
-```bash
-# Any format
-strings
-# ELF format, validates shared libraries initialization
-ldd -iv
-# PE format
-floss
-```
-
-https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
+- text
+    - any format: `strings` (`-el` for 16-bit le)
+    - PE format: `floss`
+- libraries
+    - ELF format: `ldd -iv` (validates shared libraries initialization)
+- syscalls
+    - ELF format: `ltrace`, `strace`
+    - PE format: `procmon`
+- visual structure
+    - https://binvis.io/
+    - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
+    - [Hex viewers and editors](https://twitter.com/i/events/841916822014332930)
 
 # methodology
 
@@ -23,6 +25,8 @@ https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
 - monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
 - binary patching, code injection, fault inducing
 - alternative to reverse debugging: vm snapshots
+- images
+    - produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 
