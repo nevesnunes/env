@@ -1,6 +1,6 @@
 # debug
 
-https://www.vogons.org/viewtopic.php?t=3944
+[Guide to the DOSBox debugger \- VOGONS](https://www.vogons.org/viewtopic.php?t=3944)
 
 ~/opt/dosbox-0_74_3/src/dosbox -conf dosbox.conf
 
@@ -19,4 +19,6 @@ log 20000
 bpint 16 10
 ```
 
+# case studies
 
+https://cloakedthargoid.wordpress.com/hacking-with-dosbox-debugger/

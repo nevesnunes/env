@@ -108,15 +108,30 @@ f() {
 g() {
   # TODO: Manual recursion to handle specific file formats
   # e.g. pdftotext -enc UTF-8 "$target_file" -
-  grep -Rin \
-    --binary-files=without-match \
-    --exclude-dir='.bzr' \
-    --exclude-dir='.git' \
-    --exclude-dir='.hg' \
-    --exclude-dir='.svn' \
-    --exclude-dir='__pycache__' \
-    --exclude-dir='node_modules' \
-    -- "$*" .
+  if command -v rg >/dev/null 2>&1; then
+    rg --follow \
+      --no-heading \
+      --with-filename \
+      --line-number \
+      --glob '!.bzr/' \
+      --glob '!.git/' \
+      --glob '!.hg/' \
+      --glob '!.svn/' \
+      --glob '!__pycache__/' \
+      --glob '!node_modules/' \
+      "$@" .
+  else
+    grep -Rin \
+      --binary-files=without-match \
+      --extended-regexp \
+      --exclude-dir='.bzr' \
+      --exclude-dir='.git' \
+      --exclude-dir='.hg' \
+      --exclude-dir='.svn' \
+      --exclude-dir='__pycache__' \
+      --exclude-dir='node_modules' \
+      "$@" .
+  fi
 }
 
 ge() {

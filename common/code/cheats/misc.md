@@ -11,12 +11,6 @@
 - https://github.com/kyawthiha7/pentest-methodology
 - https://prune2000.github.io/tools/pentest/
 
-# malware classification
-
-- https://whatis.techtarget.com/glossary/Security
-- https://docs.microsoft.com/en-us/windows/security/threat-protection/intelligence/malware-naming
-- https://encyclopedia.kaspersky.com/knowledge/rules-for-classifying/
-
 # racing, race-condition
 
 ```bash

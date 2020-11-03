@@ -6,6 +6,21 @@
 https://bitvijays.github.io/LFC-Forensics.html
 http://freshports.org/sysutils/sleuthkit
 
+# malware family / classification
+
+- https://whatis.techtarget.com/glossary/Security
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/intelligence/malware-naming
+- https://encyclopedia.kaspersky.com/knowledge/rules-for-classifying/
+
+# malware analysis / sandbox
+
+- https://hybrid-analysis.com/
+- https://app.any.run/
+- https://www.virustotal.com/gui/home
+
+- https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
+
+
 # event log
 
 - 592/4688 - A new process has been created
@@ -118,62 +133,6 @@ https://www.forensicfocus.com/challenges-and-images/
 https://www.cfreds.nist.gov/
 http://downloads.digitalcorpora.org/corpora/
 
-# case studies
-
-https://forensixchange.com/posts/19_04_22_win10_ntfs_time_rules/
-http://journeyintoir.blogspot.com/2013/12/revealing-recentfilecachebcf-file.html
-
-https://trailofbits.github.io/ctf/forensics/
-
-[GitHub \- stuxnet999/MemLabs: Educational, CTF\-styled labs for individuals interested in Memory Forensics](https://github.com/stuxnet999/MemLabs)
-    https://bananamafia.dev/post/mem/
-https://www.hecfblog.com/search/label/ctf
-https://www.hecfblog.com/2018/08/daily-blog-451-defcon-dfir-ctf-2018.html
-    https://infosecuritygeek.com/defcon-dfir-ctf-2018/
-    https://medium.com/hackstreetboys/defcon-dfir-ctf-2018-lessons-learned-890ef781b96c
-    https://caffeinated4n6.blogspot.com/2018/12/defcon-dfir-ctf-2018.html
-https://klanec.github.io/inctf/2020/08/02/inctf-lookout-foxy.html
-    firefed (firefox), undbx (mails), mpack (MIME attachments)
-
-### zeroing section headers to thwart dissassemblers
-
-windows
-    GetModuleHandle
-    VirtualProtect + RtlZeroMemory
-linux
-    fopen("/proc/self/maps", "r")
-    fscanf addresses
-    mprotect + memset
-
-```ps1
-winpmem-2.1.post4.exe -o lol.aff4
-"C:\Program Files\Rekall\rekal.exe" -f lol.aff4
-# procdump proc_regex="thekeys", dump_dir="C:/Users/int0x80/Desktop/"
-```
-
-```bash
-git clone https://github.com/504ensicsLabs/LiME
-sudo insmod ./lime-$(uname -r).ko "path=/tmp/1"
-
-git clone https://github.com/volatilityfoundation/volatility
-# Build profile for current machine
-cd ~/tools/volatility/tools/linux/
-make
-# Validation
-grep '.debug_info' module.dwarf
-
-python vol.py -f /tmp/1 --profile=Linux...
-# linux_pslist
-# linux_procdump
-```
-
-[DEF CON 24 \- int0x80 \- Anti Forensics AF \- YouTube](https://www.youtube.com/watch?v=_fZfDGWpP4U)
-
-For windows, contents may still be recovered via `vaddump`, if references not broken
-    [MNIN Security Blog: Recovering CoreFlood Binaries with Volatility](https://mnin.blogspot.com/2008/11/recovering-coreflood-binaries-with.html)
-    [Hidding Module from the Virtual Address Descriptor Tree | Lilxam](http://lilxam.tuxfamily.org/blog/?p=326&lang=en)
-    https://reverseengineering.stackexchange.com/questions/16176/volatility-manually-inspect-heap-of-a-process
-
 # pdf
 
 - [GitHub \- RUB\-NDS/PDF101: Artifacts for the Black Hat talk\.](https://github.com/RUB-NDS/PDF101)
@@ -187,6 +146,13 @@ qpdf --decrypt input.pdf out.pdf
 pdftk input.pdf output out.pdf allow AllFeatures
 gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOutputFile=%stdout% -c .setpdfwrite -f input.pdf > output.pdf
 ```
+
+# zlib
+
+- compression level magic bytes
+    - `78 01`: None / Low
+    - `78 9C`: Default (Common)
+    - `78 DA`: Best
 
 # zip
 
@@ -260,6 +226,7 @@ Biham and Kocher's known plaintext attack:
 - [How to defeat naive image steganography | Hacker News](https://news.ycombinator.com/item?id=11579309)
 - [ALASKA2: Image Steganalysis \- All you need to know | Kaggle](https://www.kaggle.com/prashant111/alaska2-image-steganalysis-all-you-need-to-know)
 - [DDE Download Section](http://dde.binghamton.edu/download/)
+- https://cs.cmu.edu/~biglou/PSS.pdf
 
 # file formats
 
@@ -365,3 +332,59 @@ file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i env LC_ALL=C awk 'match($0
     - https://github.com/apoirrier/CTFs-writeups/blob/master/DarkCTF2020/Misc/QuickFix.md
 - extract patterns from specifications
     - http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html
+
+# case studies
+
+https://forensixchange.com/posts/19_04_22_win10_ntfs_time_rules/
+http://journeyintoir.blogspot.com/2013/12/revealing-recentfilecachebcf-file.html
+
+https://trailofbits.github.io/ctf/forensics/
+
+[GitHub \- stuxnet999/MemLabs: Educational, CTF\-styled labs for individuals interested in Memory Forensics](https://github.com/stuxnet999/MemLabs)
+    https://bananamafia.dev/post/mem/
+https://www.hecfblog.com/search/label/ctf
+https://www.hecfblog.com/2018/08/daily-blog-451-defcon-dfir-ctf-2018.html
+    https://infosecuritygeek.com/defcon-dfir-ctf-2018/
+    https://medium.com/hackstreetboys/defcon-dfir-ctf-2018-lessons-learned-890ef781b96c
+    https://caffeinated4n6.blogspot.com/2018/12/defcon-dfir-ctf-2018.html
+https://klanec.github.io/inctf/2020/08/02/inctf-lookout-foxy.html
+    firefed (firefox), undbx (mails), mpack (MIME attachments)
+
+### zeroing section headers to thwart dissassemblers
+
+windows
+    GetModuleHandle
+    VirtualProtect + RtlZeroMemory
+linux
+    fopen("/proc/self/maps", "r")
+    fscanf addresses
+    mprotect + memset
+
+```ps1
+winpmem-2.1.post4.exe -o lol.aff4
+"C:\Program Files\Rekall\rekal.exe" -f lol.aff4
+# procdump proc_regex="thekeys", dump_dir="C:/Users/int0x80/Desktop/"
+```
+
+```bash
+git clone https://github.com/504ensicsLabs/LiME
+sudo insmod ./lime-$(uname -r).ko "path=/tmp/1"
+
+git clone https://github.com/volatilityfoundation/volatility
+# Build profile for current machine
+cd ~/tools/volatility/tools/linux/
+make
+# Validation
+grep '.debug_info' module.dwarf
+
+python vol.py -f /tmp/1 --profile=Linux...
+# linux_pslist
+# linux_procdump
+```
+
+[DEF CON 24 \- int0x80 \- Anti Forensics AF \- YouTube](https://www.youtube.com/watch?v=_fZfDGWpP4U)
+
+For windows, contents may still be recovered via `vaddump`, if references not broken
+    [MNIN Security Blog: Recovering CoreFlood Binaries with Volatility](https://mnin.blogspot.com/2008/11/recovering-coreflood-binaries-with.html)
+    [Hidding Module from the Virtual Address Descriptor Tree | Lilxam](http://lilxam.tuxfamily.org/blog/?p=326&lang=en)
+    https://reverseengineering.stackexchange.com/questions/16176/volatility-manually-inspect-heap-of-a-process

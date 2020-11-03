@@ -30,6 +30,10 @@ printf '%s' 'a"a`s\"d\"f" sdf `asdf`' \
 
 https://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
 
+# named capture groups
+
+[Verbose regular expressions, now you have one and a bit problems \- Misspelled Nemesis Club](https://moreati.org.uk/blog/2020/06/30/verbose-regular-expressions.html)
+
 # word boundaries
 
 ```
@@ -90,6 +94,10 @@ re.sub("(abc)bcd","\1efg","abcbcd");
 # when there are digits following \1
 re.sub("(abc)bcd","\g<1>222","abcbcd");
 ```
+
+# parser combinators
+
+[introduction\-to\-parser\-combinators\.md · GitHub](https://gist.github.com/yelouafi/556e5159e869952335e01f6b473c4ec1)
 
 # performance
 

@@ -1,11 +1,13 @@
 # +
 
+[shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
 [libc database search](https://libc.blukat.me/)
 [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
 [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
 
 https://bitvijays.github.io/LFC-BinaryExploitation.html
 https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
+[GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
 
 # methodology
 
@@ -115,6 +117,13 @@ pwndbg> x/32x $rbp - 0x20
 # Redress libc with debug symbols
 eu-unstrip "$stripped_libc" "$symbol_file"
 ```
+
+# stack overflow
+
+- NOP slide + shellcode + return to stack
+    - https://github.com/datajerk/ctf-write-ups/tree/master/cybersecurityrumblectf2020/babypwn
+        - ~/code/snippets/ctf/pwn/csrctf2020-babypwn.py
+    - [Smashing The Stack For Fun And Profit](http://www.phrack.org/issues/49/14.html#article)
 
 # use-after-free (UAF)
 
