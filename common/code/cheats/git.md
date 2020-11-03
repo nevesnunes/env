@@ -427,6 +427,7 @@ https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in
 
 # case studies
 
+https://bugs.chromium.org/p/project-zero/issues/detail?id=2070
 https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/
 https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-to-rce-32c217727baa
 

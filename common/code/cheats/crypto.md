@@ -22,9 +22,11 @@ indistinguishability under chosen-plaintext attack (IND-CPA)
 
 # hashing
 
-[CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
-
-hs256 = hmac sha256
+- [Hash Analyzer \- TunnelsUP](https://www.tunnelsup.com/hash-analyzer/)
+- [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
+- md5 with salt
+    - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
+- hs256 = hmac sha256
 
 # rsa
 
