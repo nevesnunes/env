@@ -17,8 +17,8 @@ gmpy2.isqrt(B * N // A)
 hashlib.md5().update(b'foo').hexdigest()
 ```
 
-https://en.wikipedia.org/wiki/Feistel_cipher
-indistinguishability under chosen-plaintext attack (IND-CPA)
+- https://en.wikipedia.org/wiki/Feistel_cipher
+- indistinguishability under chosen-plaintext attack (IND-CPA)
 
 # hashing
 
@@ -94,9 +94,9 @@ https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto
 
 # electronic color book (AES-ECB)
 
-https://crypto.stackexchange.com/questions/31019/if-you-encrypt-an-image-aes-is-it-still-an-image-and-can-you-view-it
-    https://blog.filippo.io/the-ecb-penguin/
-    https://crypto.stackexchange.com/questions/63145/variation-on-the-ecb-penguin-problem
+- https://crypto.stackexchange.com/questions/31019/if-you-encrypt-an-image-aes-is-it-still-an-image-and-can-you-view-it
+    - https://blog.filippo.io/the-ecb-penguin/
+    - https://crypto.stackexchange.com/questions/63145/variation-on-the-ecb-penguin-problem
     ```bash
     head -n 4 Tux.ppm > header.txt
     tail -n +5 Tux.ppm > body.bin

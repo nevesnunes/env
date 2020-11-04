@@ -1,14 +1,14 @@
 # +
 
-[shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
-[libc database search](https://libc.blukat.me/)
-[GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
-[GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
+- [shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
+- [libc database search](https://libc.blukat.me/)
+- [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
+- [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
 
-https://bitvijays.github.io/LFC-BinaryExploitation.html
-https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
-[GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
-[GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
+- https://bitvijays.github.io/LFC-BinaryExploitation.html
+- https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
+- [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
+- [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
 
 # methodology
 
@@ -220,6 +220,7 @@ Reading:
     x = x.split('.')
     x.index('41414141')
     ```
+
 2. Read at address index 123: `%123$s`
 
 Writing:
@@ -278,8 +279,9 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
     - https://ctf-wiki.github.io/ctf-wiki/pwn/linux/mitigation/canary/#one-by-one-crack-canary
     - if: read and print beyond variable
         - overwrite null byte of canary
+
 2. leak base address, map: $rip == rebasing ELF (allows leaking GOT addresses)
-- ~/code/snippets/ctf/pwn/rop.py
+    - ~/code/snippets/ctf/pwn/rop.py
     - Alternative: manual chain
     ```bash
     ropper --search "pop r??"
@@ -301,6 +303,7 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
     rop += pop_rdx + p64(0x8)
     rop += plt_write
     ```
+
 - [HackTheBox \- Rope](https://www.youtube.com/watch?v=GTQxZlr5yvE)
 
 # sigreturn-oriented programming (srop)

