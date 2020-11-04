@@ -10,6 +10,8 @@ cheatsheets:
     - [Reversing](./common/code/cheats/reversing.md)
     - [Web](./common/code/cheats/web.md)
 - Software Development
+    - [Logbooks](./common/code/logbooks/) - Ideas and roadmaps for side projects / blog posts
+    - [Reports](./common/code/cheats/reports/) - Discovery / Exploration sessions
     - [Everything else](./common/code/cheats/)
 
 dotfiles: 
