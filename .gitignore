@@ -1,3 +1,9 @@
-.metadata
 *.env
+*.lock
+**/.asset-cache
+**/.bundle
+**/.jekyll-assets-cache
+**/.metadata
+**/.sass-cache
+**/_site
 **/code/snippets/**/*.pdf

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{{ content }}
+<script>
+    document.querySelectorAll('.navigation-list-link').forEach(e => {
+        var name = e.href.substring(e.href.lastIndexOf('/') + 1);
+        var extensionIndex = name.lastIndexOf('.');
+        if (extensionIndex > -1) {
+            name = name.substring(0, extensionIndex);
+        }
+        e.textContent = name;
+    });
+</script>
