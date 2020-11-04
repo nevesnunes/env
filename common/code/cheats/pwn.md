@@ -7,6 +7,7 @@
 
 https://bitvijays.github.io/LFC-BinaryExploitation.html
 https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
+[GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
 [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
 
 # methodology
@@ -18,6 +19,7 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
     - then: use `jmp esp` trampoline
 
 - `printf()`: 1st param => format string
+    - if: len(arg) >= 65537, calls: `malloc()`, `free()`
 - `strcpy()`: len(1st param) -lt len(2nd param) => buffer overflow
 - `scanf()`: len(2nd param) -lt len(read bytes) => buffer overflow
 - `gets(), memcpy(), strcat()`
@@ -27,7 +29,6 @@ https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_pre
 - buffer size - check allocated frame for locals, take largest offset
 - overwritten return address - jmp to infinite loop, if app hangs, it worked
 - check if payload is malformed - set breakpoint (INT 3 == \xCC), if process doesn't stop, instructions up to breakpoint are malformed
-- heap spraying - multiple instances of NOP slide + shellcode concatenated => high chance of jumping to shellcode
 - process io - use `mkfifo` + pwntools `gdb.attach()` to send payloads at specific points
 
 ### cyclic pattern
@@ -120,10 +121,24 @@ eu-unstrip "$stripped_libc" "$symbol_file"
 
 # stack overflow
 
-- NOP slide + shellcode + return to stack
+- heap spraying - multiple instances of NOP slide + shellcode concatenated => high chance of jumping to shellcode when returning to stack address
     - https://github.com/datajerk/ctf-write-ups/tree/master/cybersecurityrumblectf2020/babypwn
         - ~/code/snippets/ctf/pwn/csrctf2020-babypwn.py
     - [Smashing The Stack For Fun And Profit](http://www.phrack.org/issues/49/14.html#article)
+- syscall alternatives: `execveat()`
+
+### leak stack address
+
+- if: leaked libc base address + can leak arbitrary address
+    - dereference libc base + offset of symbol `environ`
+    - https://github.com/Naetw/CTF-pwn-tips#leak-stack-address
+
+# One-Gadget RCE
+
+- if: leaked libc base address + control $rip
+    - overwrite `.got.plt` with address of `execve(["/bin/sh/"])` gadget from libc's `system()`
+    - https://github.com/david942j/one_gadget
+    - http://j00ru.vexillium.org/blog/24_03_15/dragons_ctf.pdf
 
 # use-after-free (UAF)
 
@@ -261,7 +276,8 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
 1. leak stack canary: Given multiple requests for same process, blast (i.e. bruteforce) bytes from boolean-based response
     - repeat for $rbp, then $rip
     - https://ctf-wiki.github.io/ctf-wiki/pwn/linux/mitigation/canary/#one-by-one-crack-canary
-    - if: read and print beyond variable, then overwrite null byte of canary
+    - if: read and print beyond variable
+        - overwrite null byte of canary
 2. leak base address, map: $rip == rebasing ELF (allows leaking GOT addresses)
 - ~/code/snippets/ctf/pwn/rop.py
     - Alternative: manual chain
@@ -300,4 +316,4 @@ TODO
         - alternative to VirtualProtect() in kernel mode: ZwProtectVirtualMemory()
             - [ZwAllocateVirtualMemory routine \(Windows Drivers\) \| Microsoft Docs](https://msdn.microsoft.com/en-us/library/windows/hardware/ff566416%28v=vs.85%29.aspx)
 
-- [FuzzySecurity | Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)
+- [FuzzySecurity \| Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)
