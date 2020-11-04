@@ -127,6 +127,19 @@ npm install typescript
 
 https://eslint.org/docs/user-guide/configuring
 
+# AST traversal, transformation
+
+Testing:
+
+- [AST explorer](https://astexplorer.net/)
+
+Parsers:
+
+- [GitHub \- posthtml/posthtml: PostHTML is a tool to transform HTML/XML with JS plugins](https://github.com/posthtml/posthtml)
+- https://eslint.org/docs/developer-guide/working-with-rules
+- https://eslint.org/docs/developer-guide/selectors
+    - [GitHub \- estools/esquery: ECMAScript AST query library\.](https://github.com/estools/esquery)
+
 # Linking
 
 ### Enable

@@ -69,6 +69,8 @@ snippets.html:
 
 post.md:
 
+<!-- {% raw %} -->
 ```
 {% include snippets.html content=foo %}
 ```
+<!-- {% endraw %} -->

@@ -1,0 +1,9 @@
+docs_dir: ../cheats
+site_name: Cheats
+plugins:
+  - search
+theme:
+  name: mkdocs
+  nav_style: light
+extra_css:
+  - mkdocs.css

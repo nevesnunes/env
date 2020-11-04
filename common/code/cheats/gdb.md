@@ -230,8 +230,11 @@ https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Funs.html
 ```gdb
 # [!] may want to skip system()
 set follow-fork-mode child
-set detach-on-fork off
 catch exec
+# switch sides of fork
+set detach-on-fork off
+info inferiors
+inferior 1
 ```
 
 # Address in binary
