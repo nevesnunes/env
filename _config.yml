@@ -65,7 +65,7 @@ kramdown:
 #   # Supports true or false (default)
 #   button: false
 
-source: ../../cheats/
+source: common/code/cheats/
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
