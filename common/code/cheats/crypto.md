@@ -24,6 +24,8 @@ hashlib.md5().update(b'foo').hexdigest()
 
 - [Hash Analyzer \- TunnelsUP](https://www.tunnelsup.com/hash-analyzer/)
 - [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
+- POSIX user account passwords (`/etc/passwd, /etc/shadow`)
+    - https://en.wikipedia.org/wiki/Crypt_(C)#Key_derivation_functions_supported_by_crypt
 - md5 with salt
     - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
 - hs256 = hmac sha256
