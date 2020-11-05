@@ -2,6 +2,26 @@
 
 [RAW Pixels Viewer](https://rawpixels.net/)
 
+# write / export from plaintext
+
+```bash
+{
+  # magic, width, height, max component value
+  echo "P3 250 250 255"
+  for ((y=0; y<250; y++)) {
+    for ((x=0; x<250; x++)) {
+      # r, g, b
+      echo "$((x^y)) $((x^y)) $((x|y))"
+    }
+  }
+} | convert ppm:- png:- >foo.png
+```
+
+Alternatives:
+
+- NetPBM: `pnmtopng < foo.ppm > foo.png`
+    - [Use echo/printf to write images in 5 LoC with zero libraries or headers &\#8211; Vidar&\#039;s Blog](https://www.vidarholen.net/contents/blog/?p=904)
+
 # seams
 
 layer > transform > offset
