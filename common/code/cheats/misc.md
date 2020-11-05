@@ -1,5 +1,6 @@
 # +
 
+- http://bitvijays.github.io/LFC-VulnerableMachines.html
 - https://fortyseven.github.io/ctfpanel/
 - https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/
 - https://snovvcrash.rocks/cheatsheets/
