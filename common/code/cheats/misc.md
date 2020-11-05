@@ -102,8 +102,16 @@ find / -uid 1001 -type f 2>/dev/null
 find / -perm -u=s -type f 2>/dev/null
 ```
 
-# remote code exection (rce)
+# remote code execution (RCE)
 
+- ODBC
+    - https://medium.com/@kyprizel/why-keep-you-zoo-doors-closed-7c1760d5b2b0
+    ```sql
+    -- Given: .odbc.ini
+    -- [lalala]
+    -- Driver=/var/lib/clickhouse/user_files/test.so
+    SELECT * FROM odbc('DSN=lalala', 'test', 'test');
+    ```
 - [Hacking with Environment Variables](https://www.elttam.com/blog/env/)
 
 # process pseudo-filesystem
