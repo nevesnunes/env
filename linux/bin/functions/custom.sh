@@ -109,7 +109,8 @@ g() {
   # TODO: Manual recursion to handle specific file formats
   # e.g. pdftotext -enc UTF-8 "$target_file" -
   if command -v rg >/dev/null 2>&1; then
-    rg --follow \
+    rg --smart-case \
+      --follow \
       --no-heading \
       --with-filename \
       --line-number \

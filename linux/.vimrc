@@ -75,6 +75,7 @@ let g:ale_fixers = {
             \ 'javascript': ['eslint'],
             \ }
 let g:ale_linters = {
+            \ 'go': ['gopls'],
             \ 'java': ['javac'],
             \ 'javascript': ['javascript-typescript-stdio', 'tsserver', 'eslint'],
             \ 'python': ['pyls'],
@@ -184,6 +185,9 @@ function! VimEnterPluginBehaviour()
     endif
     set statusline+=%*
     set statusline+=%=\ \ %b(0x%B)\ \ %l,%c\ %P
+
+    " Display keystrokes in statusline
+    set showcmd
 endfunction
 augroup vim_enter
     autocmd!

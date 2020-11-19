@@ -48,12 +48,22 @@ https://github.com/aind-containers/aind
 
 # dynamic instrumentation
 
+- ~/code/snippets/frida/android.py
+    - https://bananamafia.dev/post/r2frida-1/
 ```bash
 # https://github.com/frida/frida/releases
 adb push frida-server /data/local/tmp
 ```
-- ~/code/snippets/frida/android.py
-    - https://bananamafia.dev/post/r2frida-1/
+
+# class loading
+
+```java
+DexClassLoader dexClassLoader = new DexClassLoader(path_to_dex, null, null, parent_class);
+Class dynamic_class = dexClassLoader.loadClass("DynamicClass");
+Method method = dynamic_class.getMethod("method1");
+```
+
+https://developer.android.com/reference/dalvik/system/DexClassLoader
 
 # development
 
@@ -118,6 +128,13 @@ sudo /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager 'system-images;android
 /opt/android-sdk/cmdline-tools/latest/bin/avdmanager create avd -n osint -d 10 -k 'system-images;android-30;google_apis_playstore;x86_64'
 ANDROID_SDK_ROOT=/opt/android-sdk /opt/android-sdk/emulator/emulator @osint
 ```
+
+# filesystem hierarchy
+
+- https://android.googlesource.com/platform/system/core/+/master
+    - rootdir/init.rc
+    - sdcard/
+    - system/
 
 # issues
 

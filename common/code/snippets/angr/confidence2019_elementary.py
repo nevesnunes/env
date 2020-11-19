@@ -39,13 +39,13 @@ def main():
 
     ex.run()
 
-    print(ex)
     for errored in ex.errored:
         error = errored.error
         print(error.bbl_addr)
         print(error.stmt_idx)
         print(error)
-    return ex.found[0].posix.dumps(0).decode("utf-8")
+    for found in ex.found:
+        return found.posix.dumps(0).decode("latin-1")
 
 
 if __name__ == '__main__':

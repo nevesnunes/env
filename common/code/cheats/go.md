@@ -21,3 +21,8 @@ GOOS=darwin GOARCH=386 go build
 
 https://blog.golang.org/using-go-modules
 
+# Language Server
+
+```bash
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+```

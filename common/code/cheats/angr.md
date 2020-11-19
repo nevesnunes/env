@@ -13,6 +13,12 @@ https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md
 
 https://github.com/AlyaGomaa/CTFs/tree/master/redpwn/r1sc
 
+# init state
+
+- if: requires shared library constructors or preinitializers (e.g. `scanf()`)
+    - then: `full_init_state()`
+    - https://docs.angr.io/core-concepts/states#state-presets
+
 # constraints
 
 ```python

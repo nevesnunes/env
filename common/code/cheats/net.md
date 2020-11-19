@@ -24,6 +24,7 @@ https://hc.apache.org/httpclient-3.x/performance.html
 
 - [The Illustrated TLS Connection: Every Byte Explained](https://tls.ulfheim.net/)
 - https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
+- http://www.networksorcery.com/enp/Protocol.htm
 
 # relay
 
@@ -94,15 +95,23 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Secur
 
 # crawling
 
-http://dendritic-trees.tumblr.com/post/157047017934
-logging
-    web response
-python selenium webdriver
-proxy server
+- logging
+    - web response
+- proxy server
+    ```bash
     ssh -f -N -D 0.0.0.0:<port> localhost
     curl -v -x socks5://<ip>:<port>
-headers
-user-agent
+    ```
+- headers
+- user-agent
+
+http://dendritic-trees.tumblr.com/post/157047017934
+
+# browser automation
+
+- selenium webdriver
+- pyppeteer
+    - ~/code/guides/ctf/TFNS---writeups/2020-04-12-ByteBanditsCTF/notes-app/sources/mynotes/visit_link.py
 
 # frameworks
 

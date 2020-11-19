@@ -71,6 +71,19 @@ basename -azs .mp4 ./*.mp4 | \
     -vcodec copy \
     {}.mkv
 
+# command substitution
+# - https://unix.stackexchange.com/a/39484/318118
+unset args
+while IFS= read -r line; do
+    args+=("$line")
+done < file
+# ||
+(set -f; IFS=$'\n'; cmd $(<file))
+# ||
+find / -name '*.config' -print0 | xargs -0 md5
+# ||
+tr "\n" "\000" <file | xargs -0 cmd
+
 # Bracketed paste
 # - https://superuser.com/questions/1532688/pasting-required-text-into-terminal-emulator-results-in-200required-text
 

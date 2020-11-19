@@ -105,7 +105,8 @@ https://www.google.com/search?q=intitle:%22index%20of%22
 
 # blog
 
-- https://www.hatena.ne.jp/o/search
+- https://www.hatena.ne.jp/o/search/top?q=
+- https://search.daum.net/search?w=blog&f=section&SA=tistory&lpp=10&nil_profile=vsearch&nil_src=tistory&q=
 
 # email
 
