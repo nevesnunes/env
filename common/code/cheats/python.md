@@ -265,6 +265,11 @@ pytest --cov=dir/
 # Profiling, Benchmarking
 
 ```bash
+# https://stackoverflow.com/questions/449560/how-do-i-determine-the-size-of-an-object-in-python
+# ~/code/snippets/py/getsize.py
+pprint.pprint({k: getsize(v) for k, v in locals().items() if not isinstance(v, type(__builtins__)) and not isinstance(v, types.Fun
+ctionType) and not isinstance(v, type)})
+
 # e.g. 100000 loops, best of 3: 4.86 usec per loop
 python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 ```
@@ -431,6 +436,18 @@ https://github.com/python/mypy
 import ctypes
 libc = ctypes.CDLL('libc.so.6')
 libc.usleep(300000)
+
+k = ctypes.windll.kernel32
+k.SetFileAttributesW(filename, 2)
+
+foo = CDLL('./foo.so')
+foo.bar.argtypes = [c_uint64, c_uint64]
+foo.bar.restype = c_uint32
+foo.bar(1, 2)
+
+# https://docs.python.org/3.9/library/ctypes.html#fundamental-data-types
+foo = ctypes.c_uint32(bar)
+print(foo.value)
 ```
 
 # process execution

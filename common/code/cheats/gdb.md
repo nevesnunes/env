@@ -95,6 +95,13 @@ set *(char**)($rbp - 0x18) = 0x41424344
 p ($rbp - 0x30)
 # $2 = (void *) 0x7ffff5815d00
 set *0x7ffff5815d00 = 0x8
+
+# Write value from address
+set {int}0x123 = 0x456
+# Write value from file
+restore data.txt binary 0x123
+# Write value with libc
+call memcpy(0x123, "\x01\x02\x03\x04", 4)
 ```
 
 # methodology
@@ -176,15 +183,19 @@ Dump of assembler code for function shellcode:
 
 https://hack3rlab.wordpress.com/gdb-disassemble-instructions-in-hex-format/
 
-# Watchpoints, break on memory access
+# Watchpoints
 
 ```gdb
+# Break on register write
+watch $rax
+
+# Break on memory access
 rwatch *0xfeedface
 
-# Specific type
+# == with specific type
 rwatch *(int*)0xfeedface
 
-# Member of method
+# == for member of method
 rwatch -location mTextFormatted
 
 # Validation
@@ -200,8 +211,8 @@ while (debug_wait);
 
 After all processes reached `while` loop:
 
-```
-(gdb) set debug_wait = 0
+```gdb
+set {int}debug_wait = 0
 ```
 
 http://heather.cs.ucdavis.edu/~matloff/pardebug.html

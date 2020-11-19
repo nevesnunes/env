@@ -1,20 +1,26 @@
 # This is Git's per-user configuration file.
+[alias]
+    l = log --graph --decorate --pretty=oneline --abbrev-commit
+    la = log --graph --date-order --date=iso --full-history --all --pretty=format:'%x08%x09%C(red)%h %C(cyan)%ad%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08 %C(bold blue)%aN%C(reset)%C(bold yellow)%d %C(reset)%s'
 [user]
 	name = nevesnunes
 	email = ""
+[color]
+    ui = true
 [core]
     askpass = ""
 	editor = vim
 	excludesfile = ~/.gitignore_global
-[color]
-    ui = true
-[alias]
-    l = log --graph --decorate --pretty=oneline --abbrev-commit
-    la = log --graph --date-order --date=iso --full-history --all --pretty=format:'%x08%x09%C(red)%h %C(cyan)%ad%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08%x08 %C(bold blue)%aN%C(reset)%C(bold yellow)%d %C(reset)%s'
+[credential]
+	helper = libsecret
 [diff]
     tool = vimdiff
 [difftool]
 	prompt = false
+# https://blog.beardhatcode.be/2020/03/markdown-git-hunk-header.html
+# https://stackoverflow.com/questions/28111035/where-does-the-excerpt-in-the-git-diff-hunk-header-come-from
+[diff "md"]
+    xfuncname="^##*[^#].*"
 # https://stackoverflow.com/questions/27901717/whats-the-difference-between-vimdiff-and-vimdiff2-in-git
 # https://vim.fandom.com/wiki/A_better_Vimdiff_Git_mergetool#An_alternate_Vimdiff_mergetool
 # https://github.com/samoshkin/vim-mergetool
@@ -23,11 +29,7 @@
 [mergetool]
 	prompt = false
 	keepBackup = false
+[init]
+    defaultBranch = master
 [push]
 	default = simple
-[credential]
-	helper = libsecret
-# https://blog.beardhatcode.be/2020/03/markdown-git-hunk-header.html
-# https://stackoverflow.com/questions/28111035/where-does-the-excerpt-in-the-git-diff-hunk-header-come-from
-[diff "md"]
-    xfuncname="^##*[^#].*"

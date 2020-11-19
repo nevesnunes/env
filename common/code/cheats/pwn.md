@@ -9,6 +9,7 @@
 - https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
 - [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
 - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
+- [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
 
 # methodology
 
@@ -313,10 +314,15 @@ TODO
 # windows
 
 - mitigations
-    - canary == /GS stack cookies
-    - NX == data execution prevention (DEP)
+    - canary == /GS - stack cookies
+    - NX == /NX_COMPAT - data execution prevention (DEP)
         - attacks: change some GOT address to WinExec() (xref. return2libc), call ntdll.dll function that disables DEP, call VirtualProtect() to allow execution in heap
         - alternative to VirtualProtect() in kernel mode: ZwProtectVirtualMemory()
             - [ZwAllocateVirtualMemory routine \(Windows Drivers\) \| Microsoft Docs](https://msdn.microsoft.com/en-us/library/windows/hardware/ff566416%28v=vs.85%29.aspx)
+    - ASLR == /DYNAMIC_BASE
+        - https://docs.microsoft.com/en-us/cpp/build/reference/dynamicbase-use-address-space-layout-randomization?view=msvc-160
+        - disable with `setdllcharacteristics -d foo.exe`
+            - https://blog.didierstevens.com/2010/10/17/setdllcharacteristics/amp/
+            - https://github.com/guywhataguy/DisableDynamicLoadAddress
 
 - [FuzzySecurity \| Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)

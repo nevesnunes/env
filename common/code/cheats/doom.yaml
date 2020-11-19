@@ -81,6 +81,11 @@ metrics:
     sectors:
         size: ~= 2500 units
         url: https://www.doomworld.com/forum/topic/59019-sector-height-and-size-limits/
+    speed:
+        doomguy: 16.666 mu/tic ~= call `A_Chase` every tic
+        url: |-
+            https://www.doomworld.com/forum/topic/56505-trying-to-calclate-doomguys-real-speed-a-whole-lot-of-wrongness-itt/
+            https://www.doomworld.com/forum/topic/117500-whats-the-dehacked-equivalent-speed-of-a-running-player/
 tactics:
     url: https://www.doomworld.com/vb/doom-general/52340-your-abusive-slaughter-frugal-map-tactics/
 crushers: For non-buggy raising crushers, use the "stairs raise" action on a dummy sector connected to the sector you want to use as a raising crusher.

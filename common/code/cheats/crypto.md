@@ -1,8 +1,10 @@
 # +
 
+
 - [Quipquip](https://quipqiup.com/): subsituition cipher
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
 - [CyberChef](https://gchq.github.io/CyberChef/): magic mode
+    - [Enigma Simulation in Javascript/HTML](http://people.physik.hu-berlin.de/~palloks/js/enigma/index_en.html)
 - [kt.gy tools](https://kt.gy/tools.html): decode string 
     - https://github.com/OpenToAllCTF/Tips#crypto
 - [GitHub \- bwall/HashPump: A tool to exploit the hash length extension attack in various hashing algorithms](https://github.com/bwall/HashPump)
@@ -15,6 +17,16 @@
 gmpy2.isqrt(B * N // A)
 
 hashlib.md5().update(b'foo').hexdigest()
+
+# ~/code/guides/ctf/TFNS---writeups/2020-09-25-BalCCon/cryptosh/cryptsh.py
+from Crypto.Cipher import AES
+from Crypto.Util.strxor import strxor
+from Crypto.Util.Padding import pad, unpad
+
+# ~/code/guides/ctf/TFNS---writeups/2020-09-25-BalCCon/do_u_have_knowledge/server.py
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = default_backend())
 ```
 
 - https://en.wikipedia.org/wiki/Feistel_cipher
@@ -29,6 +41,34 @@ hashlib.md5().update(b'foo').hexdigest()
 - md5 with salt
     - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
 - hs256 = hmac sha256
+
+### search space estimation
+
+```javascript
+// [GRC's \| Password Haystacks: How Well Hidden is Your Needle?](https://www.grc.com/haystack.htm)
+function grc(len) {
+  if(len < 1) {
+    return 0;
+  } else if (len == 1) {
+    return window.charsetsize;
+  }
+  return Math.pow(window.charsetsize, len - 1) + grc(len - 1);
+}
+console.log(grc(64));
+// 110
+```
+
+```python
+>>> len(list(permutations([i for i in range(0,10)], 2)))
+90
+>>> int(factorial(10)/factorial(10-2))
+90
+>>> int(factorial(36)/factorial(36-8))
+1220096908800
+# MAC address
+>>> int(factorial(16)/factorial(16-12))
+871782912000
+```
 
 # rsa
 
@@ -51,6 +91,8 @@ https://wiremask.eu/tools/xor-cracker/
 - Split message into aligned sequences, count frequencies of chars foreach column, take most frequent char and xor with expected most frequent char (e.g. `_`) to obtain key
     - Alterntive: xortool
     - [CTFtime\.org / BalCCon2k20 CTF / Xoared / Writeup](https://ctftime.org/writeup/23906)
+- Guessing key length + values by decrypted output byte range
+    - ~/code/guides/ctf/grayrepo/2017_flareon/flare10_shellphp/README.md
 
 # frequency analysis
 

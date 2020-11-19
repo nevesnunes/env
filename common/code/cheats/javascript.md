@@ -311,10 +311,8 @@ Promise.resolve()
 
 # Deobfuscation
 
-http://blog.kotowicz.net/2010/04/beating-javascript-obfuscators-with.html
-
-examples
-    https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651
+- http://blog.kotowicz.net/2010/04/beating-javascript-obfuscators-with.html
+- [bumperworksonline\.js · GitHub](https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651)
 
 ```javascript
 // Running:
