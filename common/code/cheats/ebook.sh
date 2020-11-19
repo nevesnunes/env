@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# dump objects, streams
+# Dump objects, streams
 f=a.pdf && { \
   peepdf "$f" | \
   grep 'Objects ([0-9]*):' | \
@@ -17,3 +17,6 @@ f=a.pdf && { \
 # Add bookmarks / outline / table of contents
 djvused ./foo.djvu -e 'set-outline ./outline.txt' -s
 k2pdfopt -mode copy -n -toclist ./toclist.txt ./foo.pdf -o ./output.pdf
+
+# Merge
+pdftk preface.pdf toc.pdf ch*.pdf index.pdf cat output book.pdf

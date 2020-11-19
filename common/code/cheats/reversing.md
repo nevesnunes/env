@@ -45,6 +45,7 @@
     - produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
+- https://blog.whtaguy.com/2020/04/guys-30-reverse-engineering-tips-tricks.html
 
 # vm
 

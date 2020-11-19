@@ -1,3 +1,9 @@
+# Initialize array
+
+```
+{% assign fruits = "orange,apple,peach" | split: ',' %}
+```
+
 # Including dynamic or indirectly related content
 
 ```html
