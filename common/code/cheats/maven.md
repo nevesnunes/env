@@ -13,9 +13,13 @@ mvn validate
 # Linting: check used undeclared and unused declared dependencies
 mvn dependency:analyze -Dverbose -DignoreNonCompile
 # List if dependencies were omitted due to other references
-mvn compile dependency:tree -Dverbose -Dincludes=org.springframework.\* -am --offline
+mvn compile dependency:tree -Dincludes=org.springframework.\* -DoutputFile=/tmp/1 -am --offline
+# https://maven.apache.org/plugins/maven-dependency-plugin/examples/resolving-conflicts-using-the-dependency-tree.html
+mvn org.apache.maven.plugins:maven-dependency-plugin:2.10:tree -Dverbose=true
 # List parent POMs of project
 mvn org.apache.maven.plugins:maven-dependency-plugin:3.1.1:display-ancestors
+# ||
+mvn com.github.exampledriven:hierarchy-maven-plugin:1.7-SNAPSHOT:tree -Dlevel=full
 # https://stackoverflow.com/questions/40599913/how-does-plugin-validation-work-in-maven-and-why-does-it-build-my-project-with
 
 mvn dependency:sources dependency:resolve -Dclassifier=javadoc --fail-at-end
@@ -70,8 +74,10 @@ mvn clean initialize
 # Local install
 
 ```bash
+mvn org.apache.maven.plugins:maven-source-plugin:3.0.1:jar
 mvn install:install-file \
    -Dfile=/c/foo-2.7.2.jar \
+   -Dsources=/c/foo-2.7.2-sources.jar \
    -DpomFile=/c/foo-2.7.2.pom \
    -DgroupId=com.abc.def \
    -DartifactId=foo \

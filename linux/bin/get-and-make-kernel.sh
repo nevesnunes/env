@@ -3,7 +3,7 @@
 set -eux
 
 version=${1:-4.4}.
-config_dir=${2:-/home/$USER/kernel}
+config_dir=${2:-/home/$USER/code/config/kernel}
 download_dir=${3:-/home/$USER/Downloads}
 
 mkdir -p "$download_dir"

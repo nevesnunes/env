@@ -11,6 +11,9 @@
 - syscalls
     - ELF format: `ltrace`, `strace`
     - PE format: `procmon`
+- constants
+    - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)
+    - https://hiddencodes.wordpress.com/2011/12/23/string-manipulation-functions-in-glibc-ms-visual-studio-and-0x7efefeff-0x81010100-0x81010101/
 - visual structure
     - https://binvis.io/
     - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
@@ -18,10 +21,23 @@
 
 # methodology
 
+- taxonomies
+    - str array: strs are accessed w/ an offset from the 1st str (array base), which _will_ have an xref
+    - algorithm: google constants
+    - hashing: branchless xors/rols
+    - debug symbols: from old versions
 - enumerate exports, imports, function use, syscalls, winapi, mutex, dll dependencies, strings
-- monitoring FileRead and FileWrite calls
-    - ~/share/forensics/APIMiner-v1.0.0/
-    - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
+    - finding `main()` function
+        - on libc `entry`, take 1st argument to `__libc_start_main()`
+        - || find which function's return value (saved in eax) is passed to exit(), then follow xrefs in reverse
+    - finding specific functions
+        - take old version introducing specific logic in changelog, then bindiff with current version
+    - calling functions
+        - debugger
+        - https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html?m=1
+    - monitoring FileRead and FileWrite calls
+        - ~/share/forensics/APIMiner-v1.0.0/
+        - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
 - monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
 - binary patching, code injection, fault inducing
 - alternative to reverse debugging: vm snapshots
@@ -81,10 +97,6 @@ diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log |
 # execution trace
 # - https://github.com/teemu-l/execution-trace-viewer
 ```
-
-# main function
-
-On libc `entry`, take 1st argument to `__libc_start_main()`
 
 # case studies
 

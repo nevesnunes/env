@@ -63,6 +63,24 @@ lsmod
 awk '/live/{split(FILENAME, a, "/"); print a[4]}' /sys/module/*/initstate
 ```
 
+# list loaded modules options
+
+```bash
+grep -H '' /sys/module/iwl*/parameters/*
+```
+
+# install module
+
+```bash
+modprobe -r foo; modprobe foo
+# ||
+depmod -a # take dependencies of `foo`
+insmod foo_dependency
+insmod foo
+```
+
+[How Do Modules Get Into The Kernel? \- The Linux Kernel Module Programming Guide](https://tldp.org/LDP/lkmpg/2.6/html/x44.html)
+
 ### graphical modules (modeset)
 
 ```bash
@@ -162,6 +180,16 @@ https://lwn.net/Articles/630727/
 vim /etc/default/grub
 grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 ```
+
+### view boot log
+
+- On GRUB, edit (`e`) boot entry
+   - Remove `quiet splash`, press `Alt-x`
+
+### access boot menu
+
+- Press `Esc`
+    - If shell is open: type `normal`, press `Enter` + `Esc`
 
 ### parameters
 

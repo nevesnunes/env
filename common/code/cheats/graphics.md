@@ -1,6 +1,16 @@
 # +
 
-[RAW Pixels Viewer](https://rawpixels.net/)
+- [RAW Pixels Viewer](https://rawpixels.net/)
+
+# image from bytes
+
+- ~/code/guides/ctf/write-ups-2015/pragyan-ctf-2015/misc/255_255_255_is_the_best_color/go.py
+
+# animation
+
+```bash
+ffmpeg -framerate 75 -i 'input%04d0000.png' output.gif
+```
 
 # write / export from plaintext
 
@@ -110,3 +120,7 @@ Details > Sharpening
 # untwist
 
 Filters > Distorts > Whirl and Pinch...
+
+# frequency domain
+
+[Frequency Domain Image Compression and Filtering | Hacker News](https://news.ycombinator.com/item?id=24997191)

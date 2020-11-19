@@ -94,8 +94,8 @@ git add --patch ./foo
 git commit -m '.'
 ```
 
-https://stackoverflow.com/questions/1085162/commit-only-part-of-a-file-in-git
-https://stackoverflow.com/questions/6276752/can-i-split-an-already-split-hunk-with-git
+- https://stackoverflow.com/questions/1085162/commit-only-part-of-a-file-in-git
+- https://stackoverflow.com/questions/6276752/can-i-split-an-already-split-hunk-with-git
 
 # cherry-pick
 
@@ -133,6 +133,13 @@ git rebase --onto a b
 
 https://stackoverflow.com/questions/1670970/how-to-cherry-pick-multiple-commits/12646996#12646996
 
+# list files by commit info
+
+```bash
+# last commit date
+ls -1 foo* | while read -r i; do printf '%s ' "$i" && git log -1 --format=%cd "$i" | cat -v -; done
+```
+
 # gitlab ci local
 
 ```bash
@@ -148,16 +155,6 @@ gitlab-runner exec shell foo
 ```
 
 [gitlab\-runner exec: easily test builds locally \(\#312\) · Issues · GitLab\.org / gitlab\-runner · GitLab](https://gitlab.com/gitlab-org/gitlab-runner/-/issues/312)
-
-# explaining - case studies
-
-https://lobste.rs/s/bxvx44/explain_git_with_d3
-https://lobste.rs/s/nv7p4k/dancing_git_how_explain_git_depth
-[How to teach Git | Hacker News](https://news.ycombinator.com/item?id=18919599)
-[Learn Git Branching | Hacker News](https://news.ycombinator.com/item?id=5937994)
-[A successful Git branching model \(2010\) | Hacker News](https://news.ycombinator.com/item?id=15376841)
-[Oh shit, git: Getting myself out of bad situations | Hacker News](https://news.ycombinator.com/item?id=15951825)
-[Some bad Git situations and how I got myself out of them | Hacker News](https://news.ycombinator.com/item?id=12459755)
 
 # bisect
 
@@ -252,9 +249,12 @@ git checkout master
 git branch -D wat
 ```
 
-=>
-~/Downloads/git-antivirus-silent_rm_file.CSV
-ekrn.exe | SetDispositionInformationFile | C:\Users\foo\code\src\PowerShell-lazywinadmin\foo | SUCCESS | Delete: True
+- [cause] silent quarantine by antivirus
+    - ~/Downloads/git-antivirus-silent_rm_file.CSV
+    - procmon
+        ```
+        ekrn.exe | SetDispositionInformationFile | C:\Users\foo\code\src\PowerShell-lazywinadmin\foo | SUCCESS | Delete: True
+        ```
 
 # index
 
@@ -427,24 +427,34 @@ https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in
 
 # case studies
 
-https://bugs.chromium.org/p/project-zero/issues/detail?id=2070
-https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/
-https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-to-rce-32c217727baa
+- https://bugs.chromium.org/p/project-zero/issues/detail?id=2070
+- https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/
+- https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-to-rce-32c217727baa
 
-[GitHub \- newren/git\-filter\-repo: Quickly rewrite git repository history \(filter\-branch replacement\)](https://github.com/newren/git-filter-repo)
-[GitHub \- Kayvlim/badrepo: Don&\#39;t clone this on a Mac\. Test repository to play around with glitches](https://github.com/Kayvlim/badrepo)
+- [GitHub \- newren/git\-filter\-repo: Quickly rewrite git repository history \(filter\-branch replacement\)](https://github.com/newren/git-filter-repo)
+- [GitHub \- Kayvlim/badrepo: Don&\#39;t clone this on a Mac\. Test repository to play around with glitches](https://github.com/Kayvlim/badrepo)
     - issues on `git status` under macos: different results when run twice: either no changes, or one of the files has been modified, or one of the files has been deleted...
         - Feb 10, 2015
-    https://twitter.com/kayvlim/status/565234659081338881
+    - https://twitter.com/kayvlim/status/565234659081338881
         > Create two files in a #git repository with equal names, but differing a letter: á = U+00E1; á = U+0061 U+0301. Clone on a mac. #UnicodeHell
-    ~/code/guides/sysadmin/badrepo
+    - ~/code/guides/sysadmin/badrepo
 
 ### pull request triggers a merge push
 
-[😳 by stephen304 · Pull Request \#8142 · github/dmca · GitHub](https://github.com/github/dmca/pull/8142)
-https://mathieularose.com/github-commit-injection
-https://news.ycombinator.com/item?id=24883944
+- [😳 by stephen304 · Pull Request \#8142 · github/dmca · GitHub](https://github.com/github/dmca/pull/8142)
+- https://mathieularose.com/github-commit-injection
+- https://news.ycombinator.com/item?id=24883944
     > I think it's because GitHub wants to allow repo maintainers to merge in PRs without them having to add separate remotes themselves, ie `git remote add` isn't required to `git merge`.
     > This basically means that any content can be injected into anyone's GH repo (since PRs can't be turned off), but really only in terms of being able to view it on the GitHub website. To give an example, pull 437 on torvalds/linux[0] hasn't been merged in, but if you go to the commit hash in the browser, suddenly main/init.c has the relevant changes and commit that condense the file into one line[1].
     > [0]: https://github.com/torvalds/linux/pull/437
     > [1]: https://github.com/torvalds/linux/blob/2793ae1df012c7c3f13ea5c0f0adb99017999c3b/init/main.c
+
+### explaining internals
+
+- https://lobste.rs/s/bxvx44/explain_git_with_d3
+- https://lobste.rs/s/nv7p4k/dancing_git_how_explain_git_depth
+- [How to teach Git | Hacker News](https://news.ycombinator.com/item?id=18919599)
+- [Learn Git Branching | Hacker News](https://news.ycombinator.com/item?id=5937994)
+- [A successful Git branching model \(2010\) | Hacker News](https://news.ycombinator.com/item?id=15376841)
+- [Oh shit, git: Getting myself out of bad situations | Hacker News](https://news.ycombinator.com/item?id=15951825)
+- [Some bad Git situations and how I got myself out of them | Hacker News](https://news.ycombinator.com/item?id=12459755)

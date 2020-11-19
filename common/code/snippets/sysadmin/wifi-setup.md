@@ -1,4 +1,4 @@
- How to connect to a WPA/WPA2 WiFi network using Linux command line
+# How to connect to a WPA/WPA2 WiFi network using Linux command line
 
 This is a step-to-step guide for connecting to a WPA/WPA2 WiFi network via the Linux command line interface. The tools are:
 
@@ -19,7 +19,7 @@ The steps for connecting to a WPA/WPA2 network are:
     		ifindex 3
     		type managed
 
-    The above output showed that the system has 1 physical WiFi card, designated as phy#0. The device name is wlan0. The type specifies the operation mode of the wireless device. managed means the device is a WiFi station or client that connects to an access point.
+The above output showed that the system has 1 physical WiFi card, designated as phy#0. The device name is wlan0. The type specifies the operation mode of the wireless device. managed means the device is a WiFi station or client that connects to an access point.
 
 ## 2. Check that the wireless device is up.
 
@@ -27,16 +27,16 @@ The steps for connecting to a WPA/WPA2 network are:
     3: wlan0: (BROADCAST,MULTICAST) mtu 1500 qdisc noop state DOWN mode DEFAULT qlen 1000
         link/ether 74:e5:43:a1:ce:65 brd ff:ff:ff:ff:ff:ff
 
-    Look for the word "UP" inside the brackets in the first line of the output.
+Look for the word "UP" inside the brackets in the first line of the output.
 
-    In the above example, wlan0 is not UP. Execute the following command to bring it up:
+In the above example, wlan0 is not UP. Execute the following command to bring it up:
 
     $ sudo ip link set wlan0 up  
     [sudo] password for peter: 
 
-    Note: you need root privilege for the above operation.
+Note: you need root privilege for the above operation.
 
-    If you run the show link command again, you can tell that wlan0 is now UP.
+If you run the show link command again, you can tell that wlan0 is now UP.
 
     $ ip link show wlan0
     3: wlan0: (NO-CARRIER,BROADCAST,MULTICAST,UP) mtu 1500 qdisc mq state DOWN mode DEFAULT qlen 1000
@@ -47,7 +47,7 @@ The steps for connecting to a WPA/WPA2 network are:
     $ /sbin/iw wlan0 link
     Not connected.
 
-    The above output shows that you are not connected to any network.
+The above output shows that you are not connected to any network.
 
 ## 4. Scan to find out what WiFi network(s) are detected
 
@@ -63,20 +63,20 @@ The steps for connecting to a WPA/WPA2 network are:
     		 * Capabilities: (0x0000)
             ... sniped ...
 
-    The 2 important pieces of information from the above are the SSID and the security protocol (WPA/WPA2 vs WEP). The SSID from the above example is gorilla. The security protocol is RSN, also commonly referred to as WPA2. The security protocol is important because it determines what tool you use to connect to the network.
+The 2 important pieces of information from the above are the SSID and the security protocol (WPA/WPA2 vs WEP). The SSID from the above example is gorilla. The security protocol is RSN, also commonly referred to as WPA2. The security protocol is important because it determines what tool you use to connect to the network.
 
 ## 5. Connect to WPA/WPA2 WiFi network.
 
-    This is a 2 step process. First, you generate a configuration file for wpa_supplicant that contains the pre-shared key ("passphrase") for the WiFi network.
+This is a 2 step process. First, you generate a configuration file for wpa_supplicant that contains the pre-shared key ("passphrase") for the WiFi network.
 
     $ sudo -s
     [sudo] password for peter: 
     $ wpa_passphrase gorilla >> /etc/wpa_supplicant.conf 
     ...type in the passphrase and hit enter...
 
-    wpa_passphrase takes the SSID as the single argument. You must type in the passphrase for the WiFi network gorilla after you run the command. Using that information, wpa_passphrase will output the necessary configuration statements to the standard output. Those statements are appended to the wpa_supplicant configuration file located at /etc/wpa_supplicant.conf.
+wpa_passphrase takes the SSID as the single argument. You must type in the passphrase for the WiFi network gorilla after you run the command. Using that information, wpa_passphrase will output the necessary configuration statements to the standard output. Those statements are appended to the wpa_supplicant configuration file located at /etc/wpa_supplicant.conf.
 
-    Note: you need root privilege to write to /etc/wpa_supplicant.conf.
+Note: you need root privilege to write to /etc/wpa_supplicant.conf.
 
     $ cat /etc/wpa_supplicant.conf 
     # reading passphrase from stdin
@@ -86,7 +86,7 @@ The steps for connecting to a WPA/WPA2 network are:
     	psk=4dfe1c985520d26a13e932bf0acb1d4580461dd854ed79ad1a88ec221a802061
     }
 
-    The second step is to run wpa_supplicant with the new configuration file.
+The second step is to run wpa_supplicant with the new configuration file.
 
     $ sudo wpa_supplicant -B -D wext -i wlan0 -c /etc/wpa_supplicant.conf
 
@@ -96,7 +96,7 @@ The steps for connecting to a WPA/WPA2 network are:
 
     -c specifies the path for the configuration file.
 
-    Use the iw command to verify that you are indeed connected to the SSID.
+Use the iw command to verify that you are indeed connected to the SSID.
 
     $ /sbin/iw wlan0 link
     Connected to 00:14:d1:9c:1f:c8 (on wlan0)
@@ -115,7 +115,7 @@ The steps for connecting to a WPA/WPA2 network are:
 
     $ sudo dhclient wlan0
 
-    Use the ip command to verify the IP address assigned by DHCP. The IP address is 192.168.1.113 from below.
+Use the ip command to verify the IP address assigned by DHCP. The IP address is 192.168.1.113 from below.
 
     $ ip addr show wlan0
     3: wlan0:  mtu 1500 qdisc mq state UP qlen 1000
@@ -126,12 +126,12 @@ The steps for connecting to a WPA/WPA2 network are:
 
 ## 7. Add default routing rule.
 
-    The last configuration step is to make sure that you have the proper routing rules.
+The last configuration step is to make sure that you have the proper routing rules.
 
     $ ip route show
     192.168.1.0/24 dev wlan0  proto kernel  scope link  src 192.168.1.113 
 
-    The above routing table contains only 1 rule which redirects all traffic destined for the local subnet (192.168.1.x) to the wlan0 interface. You may want to add a default routing rule to pass all other traffic through wlan0 as well.
+The above routing table contains only 1 rule which redirects all traffic destined for the local subnet (192.168.1.x) to the wlan0 interface. You may want to add a default routing rule to pass all other traffic through wlan0 as well.
 
     $ sudo ip route add default via 192.168.1.254 dev wlan0
     $ ip route show

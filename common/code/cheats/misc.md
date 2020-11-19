@@ -188,11 +188,29 @@ find / -perm -u=s -type f 2>/dev/null
 
 # encodings
 
-Binary-to-text
+### binary-to-text
 
+- base64
+    - 4 char block = 3 char message
+    ```bash
+    echo 00 | xxd -r -p | base64
+    # AA==
+    echo 0000 | xxd -r -p | base64
+    # AAA=
+    echo 000000 | xxd -r -p | base64
+    # AAAA
+    echo 4141 | xxd -r -p | base64
+    # QUE=
+    echo 41 | xxd -r -p | base64
+    # QQ==
+    echo 4141 | xxd -r -p | base64
+    # QUE=
+    echo 414141 | xxd -r -p | base64
+    # QUFB
+    ```
 - https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
 
-Morse
+### morse
 
 > The Morse code consists of several "dot", "dash" and "interval". The ratio of "dot" and "dash" is 1:3, The ratio of "intra-code interval", "inter-code interval" and "code group interval" is 1:3:5
     - ~/Downloads/Morse Recognition Algorithm Based on K-means.pdf

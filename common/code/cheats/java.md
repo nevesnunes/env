@@ -410,11 +410,10 @@ list
 
 # dump thread stack
 where
-
-# References:
-# https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr011.html
-# https://www.infoq.com/articles/Troubleshooting-Java-Memory-Issues/
 ````
+
+- https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr011.html
+- https://www.infoq.com/articles/Troubleshooting-Java-Memory-Issues/
 
 # Oracle (HotSpot) JVM - Flight Recording
 
@@ -1069,6 +1068,8 @@ java javawip.FormLargestNum
 # ├── settings.gradle
 # [...]
 ./gradlew -PmainClassNameProperty=javawip.FormLargestNum run
+# ||
+gradle build -x test
 ```
 
 # Debugging
@@ -1250,20 +1251,66 @@ module foo {
 }
 ```
 
-# decompilation
+# runnable jar
 
 ```bash
-find . -maxdepth 1 -iname '*.jar' | \
-xargs -d'\n' -n1 sh -c '
+# Create
+echo 'Main-Class: com.mypackage.MyClass' > MANIFEST.MF \
+	&& jar cmvf MANIFEST.MF babyrev.jar -C com .
+
+# Enumerate
+find . -type f -iname '*.jar' -exec sh -c '
+manifest=$(jar tf "{}" | grep -m 1 -i manifest.mf)
+test -n "$manifest" \
+	&& unzip -p "{}" "$manifest" \
+	| grep -i main-class \
+	&& echo "{}"
+' \; 2>/dev/null
+```
+
+# decompilation
+
+- fernflower
+	- https://github.com/JetBrains/intellij-community/blob/master/plugins/java-decompiler/engine/README.md
+	- mirror
+		- https://github.com/fesh0r/fernflower
+- procyon
+	- https://github.com/mstrobel/procyon
+		- `./gradlew :Procyon.Decompiler:fatJar -x test`
+	- GUI
+		- https://github.com/Konloch/bytecode-viewer
+			- if: given class directory, create [jar](#runnable-jar)
+		- https://github.com/deathmarine/Luyten
+
+```bash
+find . -type f -iname '*.jar' | \
+xargs -I{} sh -c '
     echo "Jar: $1"
     jar -tf "$1"
-' _
+' _ {}
 
+# Given jar
 mkdir -p ./out && \
-find . -maxdepth 1 -iname '*.jar' | \
-xargs -d'\n' -n1 -I{} java -jar ~/opt/fernflower/build/libs/fernflower.jar {} ./out/
+	find . -type f -iname '*.jar' | \
+	xargs -I{} java -jar ~/share/opt/fernflower/build/libs/fernflower.jar {} ./out/
+
+# Given class directory `classes`
+mkdir -p ./out && \
+	java -jar ~/share/opt/fernflower/build/libs/fernflower.jar ./classes/ ./out/
+# ||
+find ./classes/ -iname '*.class' | \
+	sort | \
+	while read -r i; do 
+		d=$(dirname "$i")
+		mkdir -p ./out/"$d"
+		java -jar ~/share/opt/fernflower/build/libs/fernflower.jar "$i" ./out/"$d"/
+	done
 ```
 
 # remote method invocation (RMI)
 
 https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-attack-against-non-jmx-registries-187a6561314d
+
+# GUI
+
+- [Java Swing Tutorial \- javatpoint](https://www.javatpoint.com/java-swing)
