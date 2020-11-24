@@ -44,14 +44,14 @@ breakadd func [lineNumber] functionName
 
 # Jumping
 
-- C-] = follow tag
-- gx = pass link to file handler
-- ge = follow named anchors in links
+- `C-]` = follow tag
+- `gx` = pass link to file handler
+- `ge` = follow named anchors in links
     - https://github.com/plasticboy/vim-markdown
     - https://github.com/chmp/mdnav
     - https://vi.stackexchange.com/questions/9344/open-markdown-filename-under-cursor-like-gf-and-jump-to-the-section
-- gf = jump to file
-- gF = gf + jumps to line number
+- `gf` = jump to file
+- `gF` = `gf` + jumps to line number
     - https://stackoverflow.com/questions/36500099/vim-gf-should-open-file-and-jump-to-line/36500454
 
 ```vim
@@ -78,9 +78,9 @@ search('bar', 'n') > 0
 
 # Remote editing
 
-```
-vim ftp://[user@]host[[:#]port]/path
-vim scp://user@host//absolute/path
+```bash
+vim 'ftp://[user@]host[[:#]port]/path'
+vim 'scp://user@host//absolute/path'
 ```
 
 # Search
@@ -139,6 +139,12 @@ imap <C-v> <C-r><C-o>+
 |char by value|`iC-Vx41`|i_CTRL-V_digit|
 
 Alternative: `CTRL-SHIFT-u, 0041, ENTER`
+
+# Move beyond end of line
+
+```vim
+:set virtualedit=all
+```
 
 # Jail, rvim
 

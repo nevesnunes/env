@@ -3,19 +3,21 @@
 # Transfer binaries
 
 # 1. source_host
-bin=
+# - if /tmp in ro filesystem, then write to /dev
+bin=socat.gz
 (
 printf '%s\n' \
   ': > /tmp/1';
 base64 "$bin" | xargs -i printf '%s\n' "printf '%s' '"{}"' >> /tmp/1";
 printf '%s\n' \
-  'base64 -d /tmp/1 > /tmp/2' \
+  'base64 -d /tmp/1 | gzip -d > /tmp/2' \
   'chmod +x /tmp/2' \
   '/tmp/2'
 ) | xclip -in
 
 # 2. target_host
 # [ Paste clipboard content... ]
+# - ETA: 20000 lines ~= 10 minutes
 
 # ||
 ssh hostname tar cvjf - ./foo/ | tar xjf -

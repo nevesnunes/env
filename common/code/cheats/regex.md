@@ -23,10 +23,16 @@ https://stackoverflow.com/questions/12870489/regex-to-match-a-word-with-unique-n
 ```bash
 printf '%s' 'a"a`s\"d\"f" sdf `asdf`' \
     | grep -Eo '(["`])((?:\\\1|.)*?)\1'
-```
+# matches: "a`s\"d\"f" `asdf`
 
-> "a`s\"d\"f"  
-> `asdf`  
+printf '%s' 'foo=[123] and bar=[ABC]' \
+    | python -c 'import re, sys; print("".join([x for x in re.findall(r"(?=[^\[]+\]).", str(sys.stdin.buffer.read()))]))'
+# matches: 123ABC
+
+printf '%s' 'foo=[123] and bar=[ABC]' \
+    | node -e 'console.log(fs.readFileSync(0).toString().replace(/(?=[^\[]+\])./g, "*"))'
+# replaces with: foo=[***] and bar=[***]
+```
 
 https://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
 
