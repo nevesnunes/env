@@ -83,6 +83,9 @@ gcc foo.c -o foo -shared -fPIC
 
 # include library `libfoo.so.*`
 LIBS=-lfoo ./configure
+
+# include specific library version
+LIBS=-l:libfoo.so.123 ./configure
 ```
 
 https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html

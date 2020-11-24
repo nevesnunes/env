@@ -271,4 +271,8 @@ ausearch -f /etc/foo -i
 - https://github.com/iovisor/bcc/blob/master/tools/statsnoop.py
 - https://sourceware.org/systemtap/SystemTap_Beginners_Guide/inodewatchsect.html
 
+# extract initramfs
 
+```bash
+cpio -idmv < initramfs.release.img
+```
