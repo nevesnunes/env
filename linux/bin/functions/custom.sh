@@ -106,8 +106,6 @@ f() {
 }
 
 g() {
-  # TODO: Manual recursion to handle specific file formats
-  # e.g. pdftotext -enc UTF-8 "$target_file" -
   if command -v rg >/dev/null 2>&1; then
     rg --smart-case \
       --follow \
@@ -133,6 +131,24 @@ g() {
       --exclude-dir='node_modules' \
       "$@" .
   fi
+
+  # Handle convertable binary files
+  find . -maxdepth 2 -type f -print0 2>/dev/null \
+    | xargs -0 -I{} plaintext-detached.sh {} 2>/dev/null \
+    | while IFS= read -r i; do
+      if command -v rg >/dev/null 2>&1; then
+        rg --smart-case \
+          --follow \
+          --no-heading \
+          --with-filename \
+          --line-number \
+          "$@" "$i"
+      else
+        grep -Hin \
+          --extended-regexp \
+          "$@" "$i"
+      fi
+    done
 }
 
 ge() {
