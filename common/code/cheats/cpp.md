@@ -111,14 +111,28 @@ https://stackoverflow.com/questions/10613126/what-are-the-differences-between-st
 
 ### static build
 
-```
+```bash
+# With configure
 ./configure "LDFLAGS=--static"
 env CXXFLAGS=-static --enable-static --disable-shared -fPIC --prefix="$(pwd)" make
+
+# With Makefile
+make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
+./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc -O -Wall -std=c90 -c hello.c
+./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc -static -o hello hello.o
 ```
 
-libtool makes static linking impossible
-    https://debbugs.gnu.org/cgi/bugreport.cgi?bug=11064
-    https://github.com/esnet/iperf/issues/632
+- musl
+    - stdenv, REALGCC
+        - [Musl dynamic linked binary use glibc dynamic linker \(not musl\) · Issue \#25178 · NixOS/nixpkgs · GitHub](https://github.com/NixOS/nixpkgs/issues/25178)
+    ```bash
+    docker pull alpine
+    docker run -it -v "$HOME/share:/share:z" alpine
+    apk add --no-cache gcc musl-dev
+    ```
+- Unsupported in `libtool`
+    - [\#11064 \- CRITICAL: libtool makes static linking impossible \- GNU bug report logs](https://debbugs.gnu.org/cgi/bugreport.cgi?bug=11064)
+    - [Configuration does not generate statically linked executable · Issue \#632 · esnet/iperf · GitHub](https://github.com/esnet/iperf/issues/632)
 
 # tooling
 

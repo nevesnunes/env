@@ -66,10 +66,10 @@ logwindow.geometry.h 492
 logwindow.geometry.w 670
 logwindow.geometry.x 1248
 logwindow.geometry.y 523
-mainwin.geometry.h 358
+mainwin.geometry.h 342
 mainwin.geometry.w 478
 mainwin.geometry.x 888
-mainwin.geometry.y 352
+mainwin.geometry.y 368
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1
@@ -84,7 +84,7 @@ playback.volume -4.918032
 playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0
-playlist.scroll.0 -3
+playlist.scroll.0 -5
 playlist.scroll.1 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default

