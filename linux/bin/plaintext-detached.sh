@@ -20,6 +20,7 @@ if ! [ -f "$plaintext_file" ]; then
   pdf)
     plaintext_file_basename=$(basename "$binary_file")
     plaintext_file_basename=${plaintext_file_basename%.*}.txt
+    trap 'rm -f "$binary_file_dir/$plaintext_file_basename"' EXIT QUIT INT TERM
     pdftotext -enc UTF-8 "$binary_file" \
       && mv "$binary_file_dir/$plaintext_file_basename" "$plaintext_file" >/dev/null 2>&1
     ;;

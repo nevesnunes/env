@@ -133,7 +133,11 @@ g() {
   fi
 
   # Handle convertable binary files
-  find . -maxdepth 2 -type f -print0 2>/dev/null \
+  find . -maxdepth 2 -type f \( \
+    -name "*.epub" \
+    -o -name "*.mobi" \
+    -o -name "*.pdf" \) \
+    -print0 2>/dev/null \
     | xargs -0 -I{} plaintext-detached.sh {} 2>/dev/null \
     | while IFS= read -r i; do
       if command -v rg >/dev/null 2>&1; then

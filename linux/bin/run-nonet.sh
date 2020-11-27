@@ -61,7 +61,7 @@ if [ -z "$no_sound" ]; then
   #pactl load-module module-native-protocol-unix auth-anonymous=1 socket=$pulse_socket
   pactl load-module module-native-protocol-unix auth-group=nonets auth-group-enable=yes socket=$pulse_socket
   pactl -s "$pulse_socket" info
-  trap 'rm $pulse_socket' EXIT QUIT INT TERM
+  trap 'rm "$pulse_socket"' EXIT QUIT INT TERM
 fi
 
 # Block client's outgoing network packets

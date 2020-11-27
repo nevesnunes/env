@@ -6,7 +6,7 @@ input="$*"
 
 # Temporary xinitrc
 temp_xinit=$(mktemp)
-trap 'rm -f -- $temp_xinit' EXIT
+trap 'rm -f -- "$temp_xinit"' EXIT
 
 # Changing mode only works after doing a query...
 cat > "$temp_xinit" << EOF
