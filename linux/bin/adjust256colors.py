@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+# Corrects contrast of 256 colors for light themes.
+
+# Features:
+# - Contrast values are calculated by modifying color
+#   luminosity in CIELAB color space;
+# - Output luminosity range is adjustable with command-line options.
+
 # Usage:
 #     ./$0 | while read -r i; do printf '\e]4;'"$i"'\a'; done
 #     ./$0 | while read -r i; do printf '\ePtmux;\e\e]4;'"$i"'\a\e\\'; done
