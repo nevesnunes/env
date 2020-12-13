@@ -242,6 +242,9 @@ unalias ssh
 eval 'ssh() { :; }'
 
 # jail
+# - Enumeration: use comment
+#     - id # ;
+#     - https://github.com/FrenchRoomba/ctf-writeup-HITCON-CTF-2020/blob/master/baby-shock/README.md
 # - Process opens shell: reuse file descriptor 
 #     - #!/dev/fd/3\ncat <&9
 #     - [CTFtime\.org / ALLES! CTF 2020 / shebang / Writeup](https://ctftime.org/writeup/23281)

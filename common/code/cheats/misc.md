@@ -12,6 +12,13 @@
 - https://github.com/kyawthiha7/pentest-methodology
 - https://prune2000.github.io/tools/pentest/
 
+# vulnerability databases
+
+- [Snyk \- Open Source Security](https://snyk.io/vuln/)
+- [SG TCP/IP Ports Database](https://www.speedguide.net/ports.php)
+- [Exploit Database \- Exploits for Penetration Testers, Researchers, and Ethical Hackers](https://www.exploit-db.com/)
+- [💀 Sploitus \| Exploit & Hacktool Search Engine](https://sploitus.com/)
+
 # racing, race-condition
 
 - [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)
@@ -67,6 +74,8 @@ done
 # priviledge escalation
 
 - https://gtfobins.github.io
+- https://book.hacktricks.xyz/linux-unix/privilege-escalation
+
 - busybox - act as arbitrary file
     ```bash
     # if owner of file, can use chmod to fix permissions
@@ -120,6 +129,7 @@ find / -perm -u=s -type f 2>/dev/null
 - /proc/self/cmdline
 - /proc/self/cwd
 - /proc/self/environ
+- /proc/self/exe
 - /proc/self/maps
    - [!] zero size, but sequentially readable (e.g. `cat`, http request with header `Range: bytes 0-4096`)
 
@@ -209,6 +219,14 @@ find / -perm -u=s -type f 2>/dev/null
     # QUFB
     ```
 - https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
+
+### unicode
+
+- hostnames
+    - https://en.wikipedia.org/wiki/Punycode
+- replacement character - replace an unknown, unrecognized or unrepresentable character
+    - `\xEF\xBF\xBD = U+FFFD = �`
+    - https://en.wikipedia.org/wiki/Specials_%28Unicode_block%29
 
 ### morse
 

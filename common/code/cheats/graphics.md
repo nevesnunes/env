@@ -87,6 +87,15 @@ montage -mode concatenate -tile 1x in-*.jpg out.jpg
 
 https://superuser.com/questions/290656/combine-multiple-images-using-imagemagick
 
+# cut
+
+```bash
+# 1366x768
+convert in.png -crop "$((1366-$((1366-752+2))))x$((768-$((768-464+26))))+1+26" out.png
+# 1/3 of 1366x768
+convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
+```
+
 # visual regression testing
 
 - python - selenium webdriver `save_screenshot()` + Pillow `ImageChops.difference()`

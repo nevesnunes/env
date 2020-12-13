@@ -109,6 +109,7 @@ g() {
   if command -v rg >/dev/null 2>&1; then
     rg --smart-case \
       --follow \
+      --max-columns 500 \
       --no-heading \
       --with-filename \
       --line-number \
@@ -143,6 +144,7 @@ g() {
       if command -v rg >/dev/null 2>&1; then
         rg --smart-case \
           --follow \
+          --max-columns 500 \
           --no-heading \
           --with-filename \
           --line-number \
