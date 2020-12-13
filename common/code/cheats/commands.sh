@@ -120,12 +120,6 @@ arp -a
 # Debug suspend, logged in /var/log/pm-suspend.log
 PM_DEBUG=true pm-suspend
 
-# Wine prefix older then Windows XP
-env WINEARCH=win32 WINEPREFIX=$HOME/wine-win32 winecfg
-
-# Wine debug
-env WINEDEBUG=+all winedbg
-
 # Qt debug
 export QT_DEBUG_PLUGINS=1
 

@@ -66,8 +66,11 @@ autorun:
 limits:
     url: https://www.doomworld.com/forum/topic/52921-thread-of-vanilla-mapping-tricks/
 metrics:
-    source: mobjinfo in info.c
+    source: |-
+        info.c:mobjinfo
+        p_map.c:P_TryMove
     max step height: 24
+    min step width: half of monster width
     object height / width:
         - Player         56  34
         - Trooper/Sarg   56  44

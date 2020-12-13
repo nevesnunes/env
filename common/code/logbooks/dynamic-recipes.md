@@ -57,5 +57,7 @@ https://www.reddit.com/r/datasets/comments/an6n26/are_there_any_freetouse_or_ope
 
 [Turn recipe websites into plain text | Hacker News](https://news.ycombinator.com/item?id=23648864)
 [Ask HN: Best Recipe Search Engine? | Hacker News](https://news.ycombinator.com/item?id=24630023)
+[Show HN: Over 2M cooking recipes ready for text generation \| Hacker News](https://news.ycombinator.com/item?id=25356156)
+    [Show HN: Instantly search 2M recipes \| Hacker News](https://news.ycombinator.com/item?id=25365397)
 
 

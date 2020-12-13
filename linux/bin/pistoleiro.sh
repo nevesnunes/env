@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 
 # Usage:
-# pistoleiro.sh PORT -iwad doom.wad  -file FILE [...] -warp '4 1'
+# pistoleiro.sh PORT -iwad doom.wad -file FILE [...] -warp '4 1'
 # pistoleiro.sh PORT -iwad doom2.wad -file FILE [...] -warp 16
+# pistoleiro.sh PORT -g duke3d.grp -map FILE [...] -v1 -l1
 
-set -e
+set -eu
 
 function cleanup() {
   killall -9 "$port_name" &> /dev/null || true
-  clear
+  #clear
 }
 trap cleanup EXIT
-trap '>&2 echo Error at line "$LINENO": $(sed -n "${LINENO}"p "$0")' ERR
+trap '
+  >&2 echo Error at line "$LINENO": $(sed -n "${LINENO}"p "$0")
+  trap "" EXIT
+' ERR
 
 next_warp() {
   warp=$1
@@ -34,23 +38,28 @@ port_name=${port//.sh/}
 command -v "$port" &> /dev/null
 shift
 
+is_duke=1
+if echo "$port_name" | grep -qiw "eduke\(32\)\?"; then
+  is_duke=0
+fi
+
 args=()
-if echo "$*" | grep -qi "doom.wad"; then
+if [ "$is_duke" -eq 0 ] || echo "$*" | grep -qiw "doom.wad"; then
   warp="1 1"
 else
   warp=1
 fi
-no_warp=true
-while [ "$1" != "" ]; do
+has_warp=1
+while [ "$#" -gt 0 ]; do
   case $1 in
-  -file)
+  -file|-m)
     args+=("$1")
     shift
     file=$1
     [ -f "$file" ]
     args+=("$1")
     ;;
-  -iwad)
+  -iwad|-g)
     args+=("$1")
     shift
     iwad=$1
@@ -60,8 +69,22 @@ while [ "$1" != "" ]; do
   -warp)
     args+=("$1")
     shift
+    args+=("$1")
     warp=$1
-    no_warp=false
+    has_warp=0
+    ;;
+  -v*)
+    args+=("$1")
+    warp="$(echo "$1" | grep -o "[0-9]\+")"
+    shift
+    args+=("$1")
+    warp="$warp $(echo "$1" | grep -o "[0-9]\+")"
+    has_warp=0
+    ;;
+  -l*)
+    args+=("$1")
+    warp="1 $(echo "$1" | grep -o "[0-9]\+")"
+    has_warp=0
     ;;
   *)
     args+=("$1")
@@ -69,11 +92,8 @@ while [ "$1" != "" ]; do
   esac
   shift
 done
-if [[ $no_warp == true ]]; then
-  args+=('-warp')
-fi
 
-if [ -z "$file" ]; then
+if [ -z "${file:-}" ]; then
   file="$iwad"
 fi
 path="$(realpath "$(dirname "$file")")"
@@ -96,19 +116,22 @@ fi
 # Alternatives:
 # - https://superuser.com/questions/196532/how-do-i-find-out-my-screen-resolution-from-a-shell-script
 # - https://askubuntu.com/questions/584688/how-can-i-get-the-monitor-resolution-using-the-command-line
-# h=$(wmctrl -d \
-#   | grep '\*' \
-#   | sed 's/.*[0-9]\+x[0-9]\+.*[0-9]\+x\([0-9]\+\).*/\1/')
-h=$(xgeo.py 2>/dev/null \
-  | sed 's/.*[0-9]\+x\([0-9]\+\).*/\1/')
-if [ "$h" -lt 800 ]; then
-  target_w=896
-  target_h=672
-else
-  target_w=1152
-  target_h=864
-fi
 if command -v wmctrl &> /dev/null; then
+  if command -v xgeo.sh &> /dev/null; then
+    h=$(xgeo.py 2>/dev/null \
+      | sed 's/.*[0-9]\+x\([0-9]\+\).*/\1/')
+  else
+    h=$(wmctrl -d \
+      | grep '\*' \
+      | sed 's/.*[0-9]\+x[0-9]\+.*[0-9]\+x\([0-9]\+\).*/\1/')
+  fi
+  if [ "$h" -lt 800 ]; then
+    target_w=896
+    target_h=672
+  else
+    target_w=1152
+    target_h=864
+  fi
   if echo "$port" | grep -qi gzdoom; then
     sed -i '
       s/^\(win_w=\)[0-9]*/\1'${target_w}'/;
@@ -140,11 +163,21 @@ while true; do
     && xdotool getactivewindow windowminimize
 
   # shellcheck disable=SC2086
+  if [ "$has_warp" -eq 1 ]; then
+    if [ "$is_duke" -eq 0 ]; then
+      # shellcheck disable=SC2001
+      warp_args=$(echo "$warp" | sed 's/\([0-9]\+\) \([0-9]\+\)/-v\1 -l\2/')
+      # shellcheck disable=SC2206
+      args+=($warp_args)
+    else
+      args+=('-warp' "$warp")
+    fi
+  fi
   env SDL_AUDIODRIVER=alsa PULSE_LATENCY_MSEC=150 \
-    "$port" "${args[@]}" $warp &> /dev/null &
+    "$port" "${args[@]}" &> /dev/null &
 
   warp=$(next_warp "$warp")
-  if echo "$warp" | grep -q '^7\|12\|21$'; then
+  if [ "$is_duke" -eq 1 ] && echo "$warp" | grep -q '^7\|12\|21$'; then
     echo '/!\ This map has a text screen.'
   fi
   read -r -n1 -p "Press any key to pistol-start map $warp." _

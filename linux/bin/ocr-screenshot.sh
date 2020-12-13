@@ -13,3 +13,6 @@ cat "$SCR_IMG.txt"
 
 xclip -selection clipboard -i < "$SCR_IMG.txt"
 xclip -selection primary -i < "$SCR_IMG.txt"
+
+icon=/usr/share/icons/Adwaita/scalable/mimetypes/x-office-document-symbolic.svg
+notify-send -i "$icon" 'OCR done!' 'OCR results copied to clipboard'

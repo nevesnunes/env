@@ -196,8 +196,13 @@ Biham and Kocher's known plaintext attack:
 - encryption algorithm = ZipCrypto
 - uncompressed copy of one encrypted file
 - compressed plaintext file using same algorigthm
+    - https://ctf-wiki.github.io/ctf-wiki/misc/archive/zip/
+    - https://www.programmersought.com/article/13436370754/
     ```bash
+    # General case
     bkcrack -C encrypted.zip -c uncompressed.xml -P plain.zip -p plain.txt
+    # Or: Contains png
+    bkcrack -C encrypted.zip -c foo.png -p png_header.bin -o 0
     # Take file entry from encrypted archive, pass to `-c`
     # Take key values, pass to `-k`
     bkcrack -C encrypted.zip -c encrypted.jpg -k c072e51c a36b7996 b6f8d312 -d decrypted.jpg
@@ -218,9 +223,21 @@ Biham and Kocher's known plaintext attack:
 
 # steganography
 
-- steghide
-    - `()*56789:CDEFGHI`
-- outguess
+- detection
+    - https://stegonline.georgeom.net/upload
+    - stegoveritas
+    - zsteg
+    ```bash
+    # If differences in most pixels, maybe LSB applied
+    compare foo.png original.jpg foo.diff.png
+    ```
+- application
+    - steghide
+        - `()*56789:CDEFGHI`
+    - outguess
+    - RGB vs RGBA
+        - https://medium.com/swlh/lsb-image-steganography-using-python-2bbbee2c69a2
+- [GitHub \- RobinDavid/LSB\-Steganography: Python program to steganography files into images using the Least Significant Bit\.](https://github.com/RobinDavid/LSB-Steganography)
 - [GitHub \- DominicBreuker/stego\-toolkit: Collection of steganography tools \- helps with CTF challenges](https://github.com/DominicBreuker/stego-toolkit)
 
 - https://fotoforensics.com/

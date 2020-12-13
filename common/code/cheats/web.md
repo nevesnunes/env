@@ -9,8 +9,6 @@
 - [HTML Codes \- Table of ascii characters and symbols](https://ascii.cl/htmlcodes.htm)
 - [Unicode/UTF\-8\-character table](https://utf8-chartable.de/unicode-utf8-table.pl)
 
-- https://snyk.io/vuln/
-
 # information disclosure
 
 [Webhook\.site \- Test, process and transform emails and HTTP requests](https://webhook.site/)
@@ -215,6 +213,13 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
+- localhost encoding
+    ```
+    0177.0.0.1
+    0000.0000.0000.0000
+    ```
+    - https://ctf-wiki.github.io/ctf-wiki/web/ssrf/#bypass-posture
+    - Mitigation: netmask
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
 - https://github.com/jmdx/TLS-poison/
@@ -572,6 +577,7 @@ j:[{"id":1,"body":["foo'"]}]
 # Path Traversal / Local File Inclusion (LFI)
 
 - ~/code/guides/ctf/Web-CTF-Cheatsheet/README.md#LFI
+- https://book.hacktricks.xyz/pentesting-web/file-inclusion
 
 nginx:
 
