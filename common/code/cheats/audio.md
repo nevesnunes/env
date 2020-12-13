@@ -33,14 +33,15 @@ ffmpeg -i foo.mp3 -ss 00:00:01.0 -t 00:05:00 -c copy bar.mp3
 
 ```bash
 # Add
-for i in *.mp3; do mp3gain -g 4.5 "$i"; done
+mp3gain -g 4.5 *.mp3
+mp3gain -r **/*.mp3
 
 # Use glob to calculate album gain
 mp3gain -a *.mp3
 metaflac --add-replay-gain *.flac
 
 # Remove
-for i in *.mp3; do mp3gain -u "$i"; done
+mp3gain -u **/*.mp3
 metaflac --remove-replay-gain *.flac
 eyeD3 --user-text-frame="REPLAYGAIN_TRACK_GAIN:" *.mp3
 ```

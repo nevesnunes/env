@@ -653,7 +653,7 @@ function! HighlightedSynGroup()
 endfunction
 command! HighlightedSynGroup call HighlightedSynGroup()
 
-" Highlight multiple search regex patterns
+" Highlight regex pattern matches with distinct colors
 " Usage (native):
 "     match My0 /foo\|bar/
 "     match none

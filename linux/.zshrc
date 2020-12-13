@@ -1,5 +1,6 @@
 #zmodload zsh/zprof
 
+export FPATH="$FPATH:$HOME/.local/share/completions/zsh"
 import_dir="$HOME/bin/zsh"
 [ -d "$import_dir/lib/" ] && for i in "$import_dir/lib/"*; do
     . "$i"

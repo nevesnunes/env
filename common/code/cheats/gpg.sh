@@ -1,8 +1,5 @@
-# Export public key
-gpg --list-key
-gpg --armor --export pub > ~/pub.key
-
 # Encryption
+gpg --armor --output file.gpg --recipient-file public.key --encrypt file
 gpg --output file.gpg --encrypt --recipient _@gmail.com file
 gpg --output file --decrypt file.gpg
 
@@ -10,6 +7,13 @@ gpg --output file --decrypt file.gpg
 gpg --sign --output file.sha512sum.sig file.sha512sum
 gpg --verify secret.sha512sum.sig
 gpg --decrypt secret.sha512sum.sig
+
+# Describe private key
+gpg --with-colons --import-options show-only --import --fingerprint < private.pgp
+
+# Export public key
+gpg --list-key
+gpg --armor --export pub > ~/pub.key
 
 # Backup
 gpg --output pgp-public-keys.asc --armor --export _@gmail.com

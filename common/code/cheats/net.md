@@ -26,6 +26,10 @@ https://hc.apache.org/httpclient-3.x/performance.html
 - https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
 - http://www.networksorcery.com/enp/Protocol.htm
 
+# replay
+
+https://tcpreplay.appneta.com/
+
 # relay
 
 ```bash
@@ -307,6 +311,17 @@ iperf -i 1 -c $server_ip
 https://iperf.fr/
     https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/iperf/
 
+# network topology
+
+- LAN = shared physical network
+    - OSI Model layers - 1 + 2
+- Wifi - IEEE 802.11
+    - [!] if not connected on LAN, attacker cannot get ip of router, since ip protocol is at OSI Model Layer 3
+- e.g.
+    - Network A - 192.168.9.0/24 - hub network
+    - Network B - 192.168.2.0/24 - adjacent network 1
+    - Network C - 192.168.3.0/24 - adjacent network 2
+
 # network segmentation, private VLANs, intra/inter VLAN ACLs
 
 https://medium.com/@cryps1s/endpoint-isolation-with-the-windows-firewall-462a795f4cfb
@@ -503,11 +518,10 @@ https://docs.microsoft.com/en-us/message-analyzer/applying-and-managing-filters
 
 ---
 
+```bash
+# https://www.wireshark.org/docs/dfref/t/tds.html
 tshark -i lo -d tcp.port==1433,tds -T fields -e tds.query
-    https://www.wireshark.org/docs/dfref/t/tds.html
-
-tcpdump -i any -s 0 -l -vvv -w - dst port 3306 | strings
-tcpdump -i any -s 0 -l -vvv -w /tmp/1.pcap
+```
 
 The "Microsoft-Windows-NDIS-PacketCapture" provider is used by Message Analyzer, the "netsh trace" command and the "NetEventPacketCapture" PowerShell cmdlets (in particular, the "Add-NetEventPacketCaptureProvider" cmdlet).
 -- http://gary-nebbett.blogspot.com/2018/06/gary-gary-2-2132-2018-06-06t153500z.html
@@ -557,4 +571,9 @@ urllib.unquote(c)
 echo -n "POST / HTTP/1.1\r\nHost: ac281f2f1e11201c8009578100490024.web-security-academy.net\r\nCookie: session=Q5yRgVdBGWyLtH2VIG1pvMTHgvWo82FM\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nA" | openssl s_client -debug -ign_eof -connect ac281f2f1e11201c8009578100490024.web-security-academy.net:443
 # With SSL decrypted: Add `-cypher NULL`
 # - :( server may reject request
+
+tcpdump -i any -s 0 -l -vvv -w - dst port 3306 | strings
+tcpdump -i any -s 0 -l -vvv -w /tmp/1.pcap
+
+tcpflow -a -r foo.pcap -o ./out/
 ```

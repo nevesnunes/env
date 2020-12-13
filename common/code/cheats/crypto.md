@@ -3,6 +3,8 @@
 
 - [Quipquip](https://quipqiup.com/): subsituition cipher
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
+- [CSCBE2019 - Rosetta](https://renaud11232.github.io/ctf/CSCBE2019/Finals/rosetta/): multiple ciphers / alphabets / languages / fonts
+
 - [CyberChef](https://gchq.github.io/CyberChef/): magic mode
     - [Enigma Simulation in Javascript/HTML](http://people.physik.hu-berlin.de/~palloks/js/enigma/index_en.html)
 - [kt.gy tools](https://kt.gy/tools.html): decode string 
