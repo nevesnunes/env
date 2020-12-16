@@ -140,6 +140,8 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 
 # cross-site request forgery (CSRF)
 
+- https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery
+
 - Server validates that form request was sent with same CSRF token in user session
     - Extracting token: hardcoded in input / included by js
     ```html
@@ -476,6 +478,8 @@ Polyglots:
     ```
 
 # SQL Injection (SQLI)
+
+~/code/src/security/PayloadsAllTheThings/SQL Injection/Intruder
 
 ```
 ' or 1=1 UNION SELECT database(),1 #
