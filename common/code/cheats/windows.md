@@ -1,6 +1,8 @@
 # +
 
-https://community.osr.com/
+- [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
+
+- [OSR Developer Community](https://community.osr.com/)
 
 ```
 get-command notepad.exe | select Source
@@ -712,3 +714,12 @@ https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
 # MS Office macros
 
 [GitHub \- decalage2/oletools: oletools \- python tools to analyze MS OLE2 files \(Structured Storage, Compound File Binary Format\) and MS Office documents, for malware analysis, forensics and debugging\.](https://github.com/decalage2/oletools)
+
+# jail
+
+```
+# 0xFB switch
+# where û is ALT+150 and jut a mapping of Endash in 437 code page
+# - https://twitter.com/Hexacorn/status/1300563682854875142
+certutil û<command>
+```

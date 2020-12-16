@@ -4,6 +4,10 @@
 - https://github.com/CheckPointSW/Evasions
 - https://github.com/seifreed/awesome-sandbox-evasion
 
+# detection
+
+- [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
+
 # anti-debugging
 
 ### LD_PRELOAD
