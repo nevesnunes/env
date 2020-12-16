@@ -508,7 +508,11 @@ print(df.to_markdown())
     ```python
     ''.__dir__()
 
+    classes = ().__class__.__base__.__subclasses__()
+    # ||
     classes = {}.__class__.__base__.__subclasses__()
+    # ||
+    classes = {}.__class__.__bases[0]__.__subclasses__()
     # ||
     classes = ''.__class__.__mro__[1].__subclasses__()
     # e.g. 49 = warnings.catch_warnings
