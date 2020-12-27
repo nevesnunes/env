@@ -7,7 +7,7 @@
 
 - [CyberChef](https://gchq.github.io/CyberChef/): magic mode
     - [Enigma Simulation in Javascript/HTML](http://people.physik.hu-berlin.de/~palloks/js/enigma/index_en.html)
-- [kt.gy tools](https://kt.gy/tools.html): decode string 
+- [kt.gy tools](https://kt.gy/tools.html): decode string
     - https://github.com/OpenToAllCTF/Tips#crypto
 - [GitHub \- bwall/HashPump: A tool to exploit the hash length extension attack in various hashing algorithms](https://github.com/bwall/HashPump)
 - [GitHub \- mwielgoszewski/python\-paddingoracle: A portable, padding oracle exploit API](https://github.com/mwielgoszewski/python-paddingoracle)
@@ -188,5 +188,13 @@ https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto
 - https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d
     - https://v8.dev/blog/math-random
 - https://blog.malwarebytes.com/threat-analysis/2018/01/scarab-ransomware-new-variant-changes-tactics/
+
+### hashing
+
+- identifying files in raw dumps - 1. hash the first k bytes of all known files; 2. take offsets matching a given sequence, hash the first k bytes at those offsets, then compare with known set
+    - https://behind.pretix.eu/2020/11/28/undelete-flv-file/
+- discovering bugs due to unexpected magic byte sequences
+    > Mostly just IDA, I managed to get a trace of lsass while CryptUnprotectData() was working and failing, then got a lucky break - I saw it derive a key from a byte sequence I knew (da 39 a3 ee...), that's the SHA-1 of the empty string! That led me to credentials being clobbered
+    - https://twitter.com/taviso/status/1310619801606184960
 
 
