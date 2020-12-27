@@ -1,0 +1,19 @@
+# Generated with: `pod init`
+
+# Include Pod source
+source 'https://github.com/CocoaPods/Specs.git'
+
+# Platform and target OS version
+platform :ios, '9.0'
+
+# Relative path of app
+xcodeproj 'Foo.xcodeproj'
+
+# Relative location of workspace
+# Created with: Xcode > File > Save as workspace
+workspace 'default-workspace.xcworkspace'
+
+# Required for iOS 8+ or Swift
+use_frameworks!
+
+pod 'Bar'

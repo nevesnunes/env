@@ -1,10 +1,15 @@
 #!/usr/bin/env sh
 
+# Given: `.config`
+# Updated with:
+# - `make localmodconfig`
+# - `make menuconfig`
+
 set -eux
 
 version=${1:-4.4}.
 config_dir=${2:-/home/$USER/code/config/kernel}
-download_dir=${3:-/home/$USER/Downloads}
+download_dir=${3:-/home/$USER/code/dependencies}
 
 mkdir -p "$download_dir"
 cd "$download_dir"
@@ -37,10 +42,16 @@ if [ ! -d "$kernel_name" ]; then
     tar xf "$tar_name" -C "$kernel_name" --strip-components=1
 fi
 
+mkdir -p "$config_dir"
 cp "$config_dir"/.config "$kernel_name"
 cd "$kernel_name"
-make oldconfig && \
-  make bzImage && \
-  make modules && \
+
+jobs_arg="-j"
+if command -v nproc >/dev/null 2>&1; then
+  jobs_arg="-j$(nproc --ignore=2)"
+fi
+make "$jobs_arg" oldconfig && \
+  make "$jobs_arg" bzImage && \
+  make "$jobs_arg" modules && \
   sudo make modules_install && \
-  sudo make install
+  sudo make install 

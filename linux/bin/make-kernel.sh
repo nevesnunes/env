@@ -3,8 +3,13 @@
 set -eux
 
 [ -f .config ]
-make oldconfig && \
-  make bzImage && \
-  make modules && \
+
+jobs_arg="-j"
+if command -v nproc >/dev/null 2>&1; then
+  jobs_arg="-j$(nproc --ignore=2)"
+fi
+make "$jobs_arg" oldconfig && \
+  make "$jobs_arg" bzImage && \
+  make "$jobs_arg" modules && \
   sudo make modules_install && \
   sudo make install 

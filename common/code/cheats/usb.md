@@ -1,3 +1,9 @@
+# Debugging
+
+- `usbmon` - collect traces of I/O on the USB bus, analogous to a packet socket used by network monitoring tools such as `tcpdump`
+
+~/Downloads/USB_Debugging_and_Profiling_Techniques.pdf
+
 # Hub ports, 2.0 vs. 3.0
 
 ```bash

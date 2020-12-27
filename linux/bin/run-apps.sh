@@ -12,7 +12,7 @@ BASH_XTRACEFD=9
 
 set -x
 
-function contains() {
+contains() {
   local n=$#
   local value=${!n}
   for ((i=1;i < $#;i++)); do
@@ -23,12 +23,16 @@ function contains() {
   return 1
 }
 
-function switch_to_main_workspace {
+switch_to_main_workspace() {
   main_workspace=2
 
-  # HACK: gnome-shell will segfault when switching workspaces while
+  # HACK:
+  # gnome-shell will segfault when switching workspaces while
   # the compositor isn't created, so we need to wait for it.
-  # See: https://gitlab.gnome.org/GNOME/mutter/issues/339
+  #
+  # References: 
+  # - ~/code/cheats/reports/gnome_shell-compositor-gdb-session.txt
+  # - [Gnome Shell coredumps when being restarted from  non zero workspace \(\#339\) · Issues · GNOME / mutter · GitLab](https://gitlab.gnome.org/GNOME/mutter/issues/339)
   if wmctrl -m | grep -qi gnome; then
     TRIES=10
     while [ $TRIES -gt 0 ]; do
@@ -46,7 +50,7 @@ function switch_to_main_workspace {
   wmctrl -s $main_workspace
 }
 
-function run-app-with-net {
+run_app_with_net() {
   TRIES=10
   while ! ping google.com -c 1 &>/dev/null && \
       [ $TRIES -gt 0 ]; do
@@ -55,11 +59,11 @@ function run-app-with-net {
     TRIES=$(($TRIES - 1))
   done
 
-  run-app "$@"
+  run_app "$@"
 }
 
 processed_ids=()
-function run-app {
+run_app() {
   app=$1
   workspace=$2
   tile=$3
@@ -77,6 +81,7 @@ function run-app {
     fi
   elif echo "$app" | grep -qi "terminal"; then
     app=$(readlink "$(command -v user-terminal)")
+    app=${app##*/}
   fi
 
   app_command+=("&>/dev/null &disown")
@@ -131,12 +136,14 @@ else
   tile=$3
   if [ -n "$app" ] && [ -n "$workspace" ]; then
     wmctrl -s "$workspace"
-    run-app "$app" "$workspace" "$tile" &
+    run_app "$app" "$workspace" "$tile" &
     exit 0
   fi
 fi
 
-# Run pre-defined apps
+# Run pre-defined apps.
+# For `vim`, do a safe remove of swap files,
+# to avoid the "swap file already exists" dialog.
 for i in /home/fn/Dropbox/doc/goals/*.md; do
   name=$(basename "$i" | sed 's/\.md/usr/g')
   swapfile=$(find ~/tmp/ -iname "$name*" | head -n1)
@@ -145,18 +152,21 @@ for i in /home/fn/Dropbox/doc/goals/*.md; do
     rm -f ~/tmp/"$name".sw* &>/dev/null
   fi
 done
-task_keys=("\"t\"" C-m)
-vim_keys=("\"cd /home/fn/Dropbox/doc/goals && vim "'*'".md -c 'e roadmap.md'\"" C-m)
 
 switch_to_main_workspace &
 
-run-app-with-net thunderbird 1 -h &
-run-app-with-net browser 2 -h &
+run_app_with_net thunderbird 1 -h &
+run_app_with_net browser 2 -h &
 
 # Sequential launches of same app
-run-app "user-terminal.sh tmux new-session \\; send-keys ${task_keys[*]}" 1 -l
-run-app "user-terminal.sh tmux new-session \\; send-keys ${vim_keys[*]} \\; new-window" 2 -l
+task_keys=("\"t\"" C-m)
+run_app "user-terminal.sh tmux new-session \\; send-keys ${task_keys[*]} \\; new-window \\; select-window -t :-" 1 -l
+vim_keys=("\"cd /home/fn/Dropbox/doc/goals && find . -type f  -iname '*.md' -exec vim -c 'e roadmap.md' {} \+\"" C-m)
+run_app "user-terminal.sh tmux new-session \\; send-keys ${vim_keys[*]} \\; new-window \\; select-window -t :-" 2 -l
+vim_keys=("\"cd /home/fn/Dropbox/doc/goals && vim ctf2.md\"" C-m)
+vim_cheats_keys=("\"cd /home/fn/code/cheats && find . -type f  -iname '*.md' -exec vim -c 'e reversing.md' {} \+\"" C-m)
+run_app "user-terminal.sh tmux new-session \\; send-keys ${vim_keys[*]} \\; new-window \\; send-keys ${vim_cheats_keys[*]} \\; new-window \\; select-window -t :1" 2 -l
 
 # Give time for panel to start
 # sleep 2
-# run-app-with-net skype 0 &
+# run_app_with_net skype 0 &

@@ -10,6 +10,20 @@
 
 ```bash
 ffmpeg -framerate 75 -i 'input%04d0000.png' output.gif
+
+# `-delay n`: 100/n FPS
+# `-loop 0`: repeat forever
+convert -delay 2 -loop 0 input*.png output.gif
+```
+
+# convert
+
+```bash
+# SVG to PNG
+for i in *.svg ; do inkscape -z -f "${i}" -w48 -h48 -e "${i%.svg}.png" ; done
+
+# PCD to PNG
+find . -name "*.pcd" -type f -exec convert '{}[5]' ../../pngs/'{}'.png \;
 ```
 
 # write / export from plaintext

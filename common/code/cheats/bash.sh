@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Alternatives to external processes
 # - https://github.com/dylanaraps/pure-sh-bible
 # - https://github.com/dylanaraps/pure-bash-bible
@@ -258,7 +260,7 @@ cat</etc/passwd
 {cat,/etc/passwd}
 X=$'cat\x20/etc/passwd'&&$X
 IFS=,;`cat<<<uname,-a`
-# - Source foo
+# - Source 3-letter file
 . ???
 # - Given name=id, overrides command `id`
 #     - [CTFtime\.org / FwordCTF 2020 / Bash is fun](https://ctftime.org/task/12928)

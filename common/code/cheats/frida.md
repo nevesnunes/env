@@ -2,12 +2,18 @@
 
 Run with windows powershell admin
 
-Validation
-```
+```ps1
+# Validation
 whoami -privs | sls 'SeDebugPrivilege.*Enabled'
+
+frida foo.exe -l "C:\Users\foo\code\snippets\frida\interceptor-backtrace.js"
 ```
 
-frida foo.exe -l C:\Users\foo\code\snippets\frida\interceptor-backtrace.js
+# Debugger
+
+```javascript
+session.enable_debugger()
+```
 
 # ES6
 
@@ -28,7 +34,7 @@ https://awakened1712.github.io/hacking/hacking-frida/
 https://www.fuzzysecurity.com/tutorials/29.html
 https://sensepost.com/blog/2019/recreating-known-universal-windows-password-backdoors-with-frida/
 
-```js
+```javascript
 Interceptor.attach(Module.findExportByName(null, "open"), {
   onEnter: function(args) {
     this.file_name = Memory.readCString(ptr(args[0]));

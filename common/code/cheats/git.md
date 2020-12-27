@@ -430,6 +430,8 @@ https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in
 - https://bugs.chromium.org/p/project-zero/issues/detail?id=2070
 - https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/
 - https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-to-rce-32c217727baa
+- https://devcraft.io/2020/10/20/github-pages-multiple-rces-via-kramdown-config.html
+- https://devcraft.io/2020/10/19/github-gist-account-takeover.html
 
 - [GitHub \- newren/git\-filter\-repo: Quickly rewrite git repository history \(filter\-branch replacement\)](https://github.com/newren/git-filter-repo)
 - [GitHub \- Kayvlim/badrepo: Don&\#39;t clone this on a Mac\. Test repository to play around with glitches](https://github.com/Kayvlim/badrepo)

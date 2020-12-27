@@ -215,12 +215,14 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
-- localhost encoding
+- localhost ip octal / hexadecimal / 32bit integer / classful network encoding
     ```
+    127.1
     0177.0.0.1
     0000.0000.0000.0000
     ```
     - https://ctf-wiki.github.io/ctf-wiki/web/ssrf/#bypass-posture
+    - https://blog.dave.tf/post/ip-addr-parsing/
     - Mitigation: netmask
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
@@ -315,6 +317,7 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 - ~/code/snippets/ctf/web/injections.js
 - ~/code/snippets/ctf/web/xmlrequest.js
 
+- https://localdomain.pw/Tiny-XSS-Payloads/
 - https://netsec.expert/2020/02/01/xss-in-2020.html
 - https://security.stackexchange.com/questions/162436/example-of-reflected-client-xss-which-is-not-dom-based-xss
 
@@ -582,6 +585,8 @@ j:[{"id":1,"body":["foo'"]}]
 
 - ~/code/guides/ctf/Web-CTF-Cheatsheet/README.md#LFI
 - https://book.hacktricks.xyz/pentesting-web/file-inclusion
+- via unrelated params
+    - https://github.com/cygenta/CVE-2020-3452/blob/main/CVE-2020-3452.py
 
 nginx:
 
@@ -614,6 +619,7 @@ nginx:
 
 - detection, testing
     - https://regex101.com/
+    - https://github.com/cujanovic/Open-Redirect-Payloads
     ```
     /?q='oorr''=''%23
     /?q='oorr/**/1=1/**/%23
@@ -747,6 +753,10 @@ nginx:
     - https://owasp.org/www-community/attacks/Cache_Poisoning
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
+- On payload parsing truncation, use newline padding
+    - [How to bypass the Cloudflare WAF using a padding technique \- Swascan](https://www.swascan.com/cloudflare/)
+    - https://support.cloudflare.com/hc/en-us/articles/200172016-Understanding-the-Cloudflare-Web-Application-Firewall-WAF-
+        > The Cloudflare WAF parses JSON responses to identify vulnerabilities targeted at APIs. The WAF limits JSON payload parsing to 128 KB
 
 ```javascript
 // == "Hello World!"

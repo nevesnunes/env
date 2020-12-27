@@ -5,7 +5,7 @@
 dotnet --info
 ```
 
-```
+```csharp
 [DllImport("wldap32.d11", CallingConvention = CallingConvention.Cdecl, EntryPoint = "ldap_ connect")]
 internal static extern int ldap_connect(IntPtr ldapHandle, IntPtr timeout);
 ```
@@ -24,10 +24,16 @@ internal static extern int ldap_connect(IntPtr ldapHandle, IntPtr timeout);
     - .NET assembly editor
 - https://github.com/0xd4d/de4dot
     - deobfuscator
+- https://github.com/HoLLy-HaCKeR/EazFixer
+    - deobfuscator for Eazfuscator
 
 # Building
 
 ```ps1
+# Source
+& "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" foo.cs
+
+# Project
 & "C:\Program Files (x86)\Microsoft Visual Studio\2017\TeamExplorer\Common7\IDE\devenv.exe" C:\Users\foo\opt\WMIWatcher\WMIWatcher.sln /Build Release
 # ||
 $env:MSBuildSDKsPath = 'C:\Program Files\dotnet\sdk\3.1.101\Sdks'
@@ -35,6 +41,8 @@ $env:MSBuildSDKsPath = 'C:\Program Files\dotnet\sdk\3.1.101\Sdks'
 # ||
 & "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe" C:\Users\foo\opt\WMIWatcher\WMIWatcher.sln /p:Configuration=Release /t:Restore
 ```
+
+- https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-options/command-line-building-with-csc-exe
 
 # Debug
 
