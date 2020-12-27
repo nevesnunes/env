@@ -1,3 +1,13 @@
+# metadata
+
+```bash
+# modify creation time
+inode_number=
+debugfs -w -R "set_inode_field $inode_number crtime 200001010101.11" /dev/sdb1
+```
+
+- https://www.anmolsarma.in/post/linux-file-creation-time/
+
 # memory-mapped temporary files
 
 ```bash
@@ -55,12 +65,20 @@ cat /etc/fstab
 
 - https://www.tldp.org/HOWTO/Partition/fdisk_partitioning.html
 
+# Format/Flash USB disk
+
+```bash
+cfdisk -z /dev/sdX
+```
+
 # BIN/CUE
 
 ```bash
 # Conversion
 bin2iso input.cue
 vcdgear -cue2raw input.cue output.iso
+# From bin to iso+wav
+bchunk -w x.bin x.cue y
 ```
 
 - `.bin` and `.wav` filenames must match case-sensitive entries in `.cue`
@@ -127,10 +145,16 @@ iat -i input.img --iso -o output.iso
     - [MagicEngine :: View topic \- ISO\-9660 PC Engine CD format](http://forums.magicengine.com/en/viewtopic.php?t=1619)
 
 ```bash
-mount -o loop -t iso9660 foo.iso
+# Make
+mkisofs -r -N -allow-leading-dots -d -J -T -o target.iso target
+
+# Read
+# For wine: Configure "$target-dir" in: winecfg > Drives > d: (Advanced > Type > CD-ROM)
+mount -o loop -t iso9660 foo.iso "$target_dir"
+# || Setup loop device
 udisksctl loop-setup -r -f foo.iso
 
-# ISO9660/HFS hybrid
+# Read ISO9660/HFS hybrid
 mount -o loop -t hfs foo.iso
 
 # Read files deleted in multi-session CD-ROM

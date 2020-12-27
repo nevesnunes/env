@@ -10,6 +10,13 @@ gsub("[^a-z]", "", $0);
 - https://www.grymoire.com/Unix/Awk.html
 - https://www.gnu.org/software/gawk/manual/gawk.html
 
+# POSIX compatibility
+
+```bash
+gawk -Wposix
+mawk -Wposix
+```
+
 # delimiters
 
 ```bash

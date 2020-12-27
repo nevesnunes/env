@@ -1,5 +1,7 @@
 # +
 
+./windbg.md
+
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
 
 - [OSR Developer Community](https://community.osr.com/)
@@ -83,6 +85,8 @@ https://github.com/d1pakda5/PowerShell-for-Pentesters/blob/master/20-Remoting-Pa
 – Cmdlets. These are .NET classes, usually written in C#. Unless the source code is open-source, you can't get its original form, but you can decompile back to a somewhat-readable C# file using free tools such as ILSpy or DotPeek. If it's a cmdlet, you can find the file that needs to be decompiled like this: (Get-Command Get-CMSoftwareUpdate).ImplementingType.Assembly.Location
 – CIM commands. These are auto-generated PowerShell wrappers around WMI classes; they're generated from cdxml files in the module directory. I'm not sure if there's an easy way to open an individual command's file, but once you know that's what you're dealing with, you can browse to the module's folder and open up the cdxml files to see what it's doing.
 
+https://stackoverflow.com/questions/54787115/how-to-debug-a-windows-kernel-driver-properly
+
 # vms
 
 https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
@@ -145,6 +149,9 @@ c:\$MFT\123
 sudo ntfsfix /dev/sdb1
 # ||
 chkdsk /R
+# ||
+chkdsk /scan
+chkdsk /spotfix
 ```
 
 # NTFS alternative data streams (ADS)
@@ -198,7 +205,11 @@ net stop bits
 rename $env:windir\SoftwareDistribution $env:windir\SoftwareDistribution.bak
 net start bits
 net start wuauserv
+
+# remove installed package
+wusa /uninstall /KB:1234
 ```
+
 # demand-paging model
 
 page directory composed of hierarchy of page tables
@@ -339,7 +350,12 @@ using exported symbols
 logging calls
     proxy dll, dll redirection
     https://stackoverflow.com/a/32959212
-preventing dll hijacking
+
+# injection, hooks
+
+https://www.jitsumibooster.com/blogs/jitsumi/cyber-security/injection-methods/62/
+
+mitigations
     https://www.fortinet.com/blog/industry-trends/a-crash-course-in-dll-hijacking.html
         registry - SafeDLLSearchMode
     https://github.com/notepad-plus-plus/notepad-plus-plus/commit/b869163609473f05c4f5d1d72a579b9f6af66ccd

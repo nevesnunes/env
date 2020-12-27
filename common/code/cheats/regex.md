@@ -15,6 +15,7 @@ https://github.com/google/re2/wiki/Syntax
 
 - `(?:([A-Za-z])(?!.*\1))*`
 - `(?!.*(.).*\1)[A-Za-z]+`
+    - lazy expansion: `(?!.*?(.).*?\1)[A-Za-z]+`
 
 https://stackoverflow.com/questions/12870489/regex-to-match-a-word-with-unique-non-repeating-characters
 
