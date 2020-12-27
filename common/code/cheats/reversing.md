@@ -149,14 +149,17 @@ perf trace record
 - fixing infinite loop
     - [Win32 Disk Imager / Bugs / \#85 If Google File Stream is loaded,  win32DiskImager Crashes on Startup](https://sourceforge.net/p/win32diskimager/tickets/85/)
     - dissassembly
-        - 0x3bfd = 0x47fd
-        - 0x74 to 0xeb = je to jmp
+        - offset 0x3bfd = 0x47fd
+        - byte 0x74 to 0xeb = je to jmp
     - decompilation
         ```cpp
         BVar3 = DeviceIoControl(param_1,0x2d0800,(LPVOID)0x0,0,(LPVOID)0x0,0,&local_44,(LPOVERLAPPED)0x0);
+        // Before patching
         if (BVar3 == 0) {
           return 0;
         }
+        // After patching
+        return 0;
         ```
     - DeviceIoControl
         - https://docs.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol
