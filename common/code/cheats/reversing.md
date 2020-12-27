@@ -125,4 +125,54 @@ perf trace record
 - https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md
     - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
 
+### binary patching
+
+- Skype version check
+    > The issue is that skype stopped supporting old version, and I am forced to use web skype, or new skype for linux which doesn't meet my expectations.
+    > When I launch old skype login screen pops, I enter my credentials and after clicking 'login' skype just exits.
+    > Fortunately, Microsoft has implemented the program version verification in a particularly simple way.
+    - https://stackoverflow.com/questions/47261038/old-skype-issues
+    ```bash
+    sed -i 's/4\.3\.0\.37/8.3.0.37/g' skype
+    ```
+- Mattermost phone-home
+    > [...] versions of Mattermost have phone-home to segment.io embedded in the server, which can be disabled with the undocumented and exceedingly misleadingly-named 'MM_LOGSETTINGS_ENABLEDIAGNOSTICS=false' var in the env.
+    > I made a Dockerfile that actually patches out the spying in the binary using sed, rather than figure out how to rebuild it without it or trust that the env vars work.
+    - https://news.ycombinator.com/item?id=25147844
+    - https://github.com/caprover/one-click-apps/blob/master/public/v4/apps/mattermost.yml#L34
+    ```yaml
+    dockerfileLines:
+        - FROM mattermost/mattermost-team-edition@$$cap_mattermost_version
+        - RUN sed -i 's#api.segment.io#xx.example.com#gI' /mattermost/bin/mattermost
+        - RUN sed -i 's#securityupdatecheck.mattermost.com#xxxxxxxxxxxxxxxxxxxxxx.example.com#gI' /mattermost/bin/mattermost
+    ```
+- fixing infinite loop
+    - [Win32 Disk Imager / Bugs / \#85 If Google File Stream is loaded,  win32DiskImager Crashes on Startup](https://sourceforge.net/p/win32diskimager/tickets/85/)
+    - dissassembly
+        - 0x3bfd = 0x47fd
+        - 0x74 to 0xeb = je to jmp
+    - decompilation
+        ```cpp
+        BVar3 = DeviceIoControl(param_1,0x2d0800,(LPVOID)0x0,0,(LPVOID)0x0,0,&local_44,(LPOVERLAPPED)0x0);
+        if (BVar3 == 0) {
+          return 0;
+        }
+        ```
+    - DeviceIoControl
+        - https://docs.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol
+        > If the operation completes successfully, the return value is nonzero.
+        > If the operation fails or is pending, the return value is zero. To get extended error information, call GetLastError.
+        https://docs.microsoft.com/en-us/windows/win32/devio/calling-deviceiocontrol
+    - translating control code `0x2d0800`
+        - https://github.com/tpn/winsdk-7/blob/master/v7.1A/Include/WinIoCtl.h#L252
+            ```c
+            #define CTL_CODE( DeviceType, Function, Method, Access ) (                 \
+                ((DeviceType) << 16) | ((Access) << 14) | ((Function) << 2) | (Method) \
+            )
+            #define IOCTL_STORAGE_CHECK_VERIFY2 CTL_CODE(IOCTL_STORAGE_BASE, 0x0200, METHOD_BUFFERED, FILE_ANY_ACCESS)
+            // hex(0x200 << 2) = 0x800
+            ```
+        - https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-ioctl_storage_check_verify
+            > Determines whether media are accessible for a device.
+
 
