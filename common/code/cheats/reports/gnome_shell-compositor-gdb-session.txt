@@ -1,0 +1,60 @@
+# Actual compositor object
+
+ ┌──compositor/compositor.c────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+ │819     }                                                                                                                                                            │
+ │820                                                                                                                                                                  │
+ │821     void                                                                                                                                                         │
+ │822     meta_compositor_switch_workspace (MetaCompositor     *compositor,                                                                                            │
+ │823                                       MetaWorkspace      *from,                                                                                                  │
+ │824                                       MetaWorkspace      *to,                                                                                                    │
+ │825                                       MetaMotionDirection direction)                                                                                             │
+ │826     {                                                                                                                                                            │
+ │827       gint to_indx, from_indx;                                                                                                                                   │
+ │828                                                                                                                                                                  │
+ │829       to_indx   = meta_workspace_index (to);                                                                                                                     │
+ │830       from_indx = meta_workspace_index (from);                                                                                                                   │
+ │831                                                                                                                                                                  │
+>│832       compositor->switch_workspace_in_progress++;                                                                                                                │
+ │833                                                                                                                                                                  │
+ │834       if (!meta_plugin_manager_switch_workspace (compositor->plugin_mgr,                                                                                         │
+ │835                                                  from_indx,                                                                                                      │
+ │836                                                  to_indx,                                                                                                        │
+ │837                                                  direction))                                                                                                     │
+ │838         {                                                                                                                                                        │
+ │839           compositor->switch_workspace_in_progress--;                                                                                                            │
+ │840                                                                                                                                                                  │
+ │841           /* We have to explicitely call this to fix up stacking order of the                                                                                    │
+ │842            * actors; this is because the abs stacking position of actors does not                                                                                │
+ │843            * necessarily change during the window hiding/unhiding, only their                                                                                    │
+ │844            * relative position toward the destkop window.                                                                                                        │
+ │845            */                                                                                                                                                    │
+ │846           meta_finish_workspace_switch (compositor);                                                                                                             │
+ │847         }                                                                                                                                                        │
+ └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+multi-thre Thread 0x7f6724f97d In: meta_compositor_switch_workspace                                                                              L832  PC: 0x7f6728c7f379
+86_64 libblkid-2.32.1-1.fc29.x86_64 libcanberra-0.30-17.fc29.x86_64 libcanberra-gtk3-0.30-17.fc29.x86_64 libcap-2.25-12.fc29.x86_64 libcroco-0.6.12-5.fc29.x86_64 libdatri
+e-0.2.9-8.fc29.x86_64 libdrm-2.4.96-2.fc29.x86_64 libepoxy-1.5.3-1.fc29.x86_64 libevdev-1.5.9-5.fc29.x86_64 libffi-3.1-18.fc29.x86_64 libgcc-8.2.1-6.fc29.x86_64 libgcrypt
+-1.8.4-1.fc29.x86_64 libglvnd-1.1.0-2.fc29.x86_64 libglvnd-glx-1.1.0-2.fc29.x86_64 libgudev-232-4.fc29.x86_64 libinput-1.12.6-1.fc29.x86_64 libmount-2.32.1-1.fc29.x86_64
+libogg-1.3.3-1.fc29.x86_64 libpng-1.6.34-6.fc29.x86_64 libsecret-0.18.7-1.fc29.x86_64 libselinux-2.8-6.fc29.x86_64 libsndfile-1.0.28-9.fc29.x86_64 libstdc++-8.2.1-6.fc29.
+x86_64 libwacom-0.32-2.fc29.x86_64 libwayland-client-1.16.0-1.fc29.x86_64 libwayland-cursor-1.16.0-1.fc29.x86_64 libwayland-egl-1.16.0-1.fc29.x86_64 libwayland-server-1.1
+6.0-1.fc29.x86_64 libxcb-1.13.1-1.fc29.x86_64 libxkbcommon-0.8.2-1.fc29.x86_64 libxkbcommon-x11-0.8.2-1.fc29.x86_64 libxkbfile-1.0.9-11.fc29.x86_64 libxml2-2.9.8-5.fc29.x
+86_64 lz4-libs-1.8.3-1.fc29.x86_64 mozjs60-60.4.0-1.fc29.x86_64 mtdev-1.1.5-13.fc29.x86_64 ncurses-libs-6.1-8.20180923.fc29.x86_64 pango-1.42.4-2.fc29.x86_64 pcre-8.42-6.
+fc29.x86_64 pcre2-10.32-5.fc29.x86_64 pixman-0.34.0-10.fc29.x86_64 polkit-libs-0.115-4.2.fc29.x86_64 startup-notification-0.12-16.fc29.x86_64 systemd-libs-239-9.gite339ea
+e.fc29.x86_64 xcb-util-0.4.0-11.fc29.x86_64 zlib-1.2.11-14.fc29.x86_64
+(gdb) info locals
+to_indx = 2
+from_indx = 0
+(gdb) p compositor
+$1 = (MetaCompositor *) 0x0
+
+# Expected compositor object
+
+(gdb) frame 1
+#1  0x00007f6728cb8fa3 in meta_workspace_activate_with_focus (workspace=0x555d02baa220, focus_this=focus_this@entry=0x0, timestamp=timestamp@entry=165240)
+    at core/workspace.c:636
+(gdb) p workspace
+$2 = 0x555d02baa220
+(gdb) p workspace->display
+$3 = 0x555d02e18060
+(gdb) p meta_display_get_compositor
+$4 = {MetaCompositor *(MetaDisplay *)} 0x7f6728c97a30 <meta_display_get_compositor>

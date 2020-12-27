@@ -165,4 +165,65 @@ bcdedit /copy {current} /d "No Hyper-V"
 bcdedit /set {ff-23-113-824e-5c5144ea} hypervisorlaunchtype off 
 ```
 
+# vmware manual uninstall
 
+```bash
+# modules
+rmmod vmnet.o
+rmmod vmmon.o
+rmmod vmci.o
+rmmod vmblock.o
+rmmod vmppuser.o
+# startup scripts
+rm -f /etc/rc2.d/*vmware*
+rm -f /etc/rc3.d/*vmware*
+rm -f /etc/rc5.d/*vmware*
+rm -f /etc/rc6.d/*vmware*
+# everything else
+rm -rf /etc/vmware*
+rm -f /usr/bin/vmware*
+rm -f /usr/bin/vmnet*
+rm -rf /usr/lib/vmware*
+rm -rf /usr/share/doc/vmware*
+```
+
+# vmware manual module install
+
+- [!] Note: Custom kernels must include `vmci` and `vsock` modules
+    - Validation: `modprobe vmw_vmci && stat /dev/vmci`
+    - On `.config`:
+        ```
+        CONFIG_VSOCKETS=y
+        CONFIG_VMWARE_VMCI=y
+        CONFIG_VMWARE_VMCI_VSOCKETS=y
+        ```
+
+```bash
+# Take $version
+vmplayer --version
+
+# References:
+# - https://ubuntu-mate.community/t/20-04-vmware-workstation-player-fails-to-build-kernel-modules-vmmon-vmnet/21176
+wget https://github.com/mkubecek/vmware-host-modules/archive/workstation-$version.tar.gz
+cd vmware-host-modules-workstation-$version
+tar -cf vmmon.tar vmmon-only
+tar -cf vmnet.tar vmnet-only
+sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source/
+sudo vmware-modconfig --console --install-all
+
+# If `getcwd` or commands with `*.ko` generate no such file errors during install, e.g.:
+# ---
+# /usr/bin/make -C $PWD SRCROOT=$PWD/. \
+#   MODULEBUILDDIR= postbuild
+# make[1]: Entering directory '/tmp/modconfig-89IfqQ/vmci-only'
+# make[1]: 'postbuild' is up to date.
+# make[1]: Leaving directory '/tmp/modconfig-89IfqQ/vmci-only'
+# cp -f vmci.ko ./../vmci.o
+# cp: cannot stat 'vmci.ko': No such file or directory
+# ---
+# Then compile manually.
+~/bin/make-vmware-modules.sh
+# ||
+tar -xvf vmmon.tar && cd vmmon-only && make && cp ../vmmon.o "/lib/modules/$(uname -r)/kernel/drivers/misc/vmmon.ko.gz"
+tar -xvf vmnet.tar && cd vmnet-only && make && cp ../vmnet.o "/lib/modules/$(uname -r)/kernel/drivers/misc/vmnet.ko.gz"
+```

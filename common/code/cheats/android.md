@@ -8,6 +8,7 @@ http://www.decompileandroid.com/
 [GitHub \- androguard/androguard: Reverse engineering, Malware and goodware analysis of Android applications \.\.\. and more \(ninja !\)](https://github.com/androguard/androguard)
     https://code.google.com/archive/p/elsim/wikis/Similarity.wiki#Android
     https://www.phrack.org/issues.html?issue=68&id=15#article
+[GitHub \- enovella/fridroid\-unpacker: Defeat Java packers via Frida instrumentation](https://github.com/enovella/fridroid-unpacker)
 
 # dissassembler
 

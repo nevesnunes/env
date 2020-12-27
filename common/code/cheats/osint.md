@@ -95,12 +95,36 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 - https://pentest-tools.com/information-gathering/find-subdomains-of-domain
 - https://github.com/tomnomnom/waybackurls
 
-# google search
+# google search dorks
 
 ```
 inurl:MyOrg.com 'login: *' 'password= *' filetype:xls
 site:www.MyOrg.com inurl:administrator_login.asp
 https://www.google.com/search?q=intitle:%22index%20of%22
+
+site:http://codepad.co "company"
+site:http://scribd.com "company"
+site:http://npmjs.com "company"
+site:http://npm.runkit.com "company"
+site:http://libraries.io "company"
+site:http://ycombinator.com "company"
+site:http://coggle.it "company"
+site:http://papaly.com "company"
+site:http://google.com "company"
+site:http://trello.com "company"
+site:http://prezi.com "company"
+site:http://jsdelivr.net "company"
+site:http://codepen.io "company"
+site:http://codeshare.io "company"
+site:http://sharecode.io "company"
+site:http://pastebin.com "company"
+site:http://repl.it "company"
+site:http://productforums.google.com "company"
+site:http://gitter.im "company"
+site:http://bitbucket.org "company"
+site:*.atlassian.net "company"
+http://atlassian.net "company"
+inurl:gitlab "company"
 ```
 
 # blog
@@ -210,5 +234,3 @@ ip id scanning [sequence analysis] - if large delta between id increments, large
     https://tools.ietf.org/html/rfc6864
 null-byte in hostname discloses index
 authentication relays between protocols (e.g. ntlm to smtp, img src with unc path to trigger smb connection and mitm smb negotiation)
-
-

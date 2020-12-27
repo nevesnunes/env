@@ -157,9 +157,17 @@ gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOu
 # zip
 
 ```bash
-# fix
-zip -F foo --out foo.out
-zip -FF foo --out foo.out
+# Fix
+zip -F foo.zip --out foo.fixed.zip
+zip -FF foo.zip --out foo.fixed.zip
+
+# Extract broken zip
+bsdtar xf zipfile
+
+# Extract multipart archive
+# Given: archives ordered by name
+cat foo.*.zip > foo.zip
+zip -FF foo.zip --out foo.fixed.zip
 
 # bruteforce password
 while read -r i; do 7z x -p"$i" flag.zip >/dev/null; e=$?; if [ ! -s flag.txt ] || [ $e -gt 0 ]; then rm flag.txt; else break; fi; done < ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt
@@ -220,6 +228,17 @@ Biham and Kocher's known plaintext attack:
 - CRC fix: null out start header + signature header
     - [7-Zip / Discussion / Help: Headers Error](https://sourceforge.net/p/sevenzip/discussion/45798/thread/84c5df85/)
 - [How to recover corrupted 7z archive](https://www.7-zip.org/recover.html)
+
+# rar
+
+```bash
+# Extract broken rar
+unrar e -kb
+
+# Extract multipart archive
+# Given: archives ordered by name
+unrar x foo.part1.rar
+```
 
 # steganography
 
@@ -368,6 +387,7 @@ file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i env LC_ALL=C awk 'match($0
     - https://caffeinated4n6.blogspot.com/2018/12/defcon-dfir-ctf-2018.html
 - https://klanec.github.io/inctf/2020/08/02/inctf-lookout-foxy.html
     - firefed (firefox), undbx (mails), mpack (MIME attachments)
+- https://cyberdefenders.org/labs/37
 
 ### zeroing section headers to thwart dissassemblers
 

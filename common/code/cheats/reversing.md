@@ -1,7 +1,7 @@
 # +
 
-- ./asm.md
-- ./evasion.md
+- [asm](./asm.md)
+- [evasion](./evasion.md)
 
 - text
     - any format: `strings` (`-el` for 16-bit le)
@@ -45,6 +45,7 @@
     - produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
+- https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research
 - https://blog.whtaguy.com/2020/04/guys-30-reverse-engineering-tips-tricks.html
 
 # vm
@@ -72,16 +73,17 @@ qemu-x86_64 -d in_asm ~/a.out 2>&1 \
 gcc -O0 a.c && echo 'a' \
     | perf stat -e instructions:u ./a.out 2>&1 \
     | awk '/instructions.u/{print $1}'
+
 # bruteforcing chars
 for n in {32..127}; do
     c=$(awk '{ printf("%c", $0); }' <<< $n)
     printf '%s ' $c
     ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinscount.so -- ./a.out <(printf '%s' $c) | awk '/Instrumentation results:/{print $3}'
 done 2>/dev/null | vim -
-# [Counting instructions using Stalker · Issue \#94 · frida/frida\-python · GitHub](https://github.com/frida/frida-python/issues/94)
-# https://stackoverflow.com/questions/22507169/how-to-run-record-instruction-history-and-function-call-history-in-gdb
-# https://stackoverflow.com/questions/8841373/displaying-each-assembly-instruction-executed-in-gdb/46661931#46661931
-# https://en.wikibooks.org/wiki/QEMU/Invocation
+# - [Counting instructions using Stalker · Issue \#94 · frida/frida\-python · GitHub](https://github.com/frida/frida-python/issues/94)
+# - https://stackoverflow.com/questions/22507169/how-to-run-record-instruction-history-and-function-call-history-in-gdb
+# - https://stackoverflow.com/questions/8841373/displaying-each-assembly-instruction-executed-in-gdb/46661931#46661931
+# - https://en.wikibooks.org/wiki/QEMU/Invocation
 
 # coverage
 ~/opt/dynamorio/build/bin64/drrun -t drcov -dump_text -- ./a.out
@@ -96,6 +98,25 @@ diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log |
 # - [On why my tbreak tracing trick did not work \- gynvael\.coldwind//vx\.log](https://gynvael.coldwind.pl/?id=638)
 
 # execution trace
+~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinstrace_x86_text.so -- ./a.out
+# ||
+pin.sh -t obj-intel64/instat.so ./a.out
+# ||
+qemu-x86_64 -d in_asm a.out
+# ||
+# - https://man7.org/linux/man-pages/man1/perf-intel-pt.1.html
+# - https://perf.wiki.kernel.org/index.php/Tutorial#Source_level_analysis_with_perf_annotate
+perf script --call-trace
+perf script --insn-trace --xed -F+srcline,+srccode
+perf trace record
+# ||
+# - ~/code/snippets/instrace.gdb
+# - x64dbg - https://help.x64dbg.com/en/latest/gui/views/Trace.html#start-run-trace
+#     - Trace view > Start Run Trace
+# - IDA Pro - https://reverseengineering.stackexchange.com/questions/2486/is-there-an-equivalent-of-run-trace-as-in-ollydbg-for-ida-pro
+#     - Debugger > Tracing > Function Tracing
+#     - Debugger > Tracing > Instruction Tracing
+#     - Debugger > Switch Debugger... > Trace replayer
 # - https://github.com/teemu-l/execution-trace-viewer
 ```
 

@@ -565,6 +565,19 @@ curl http://foo --data-urlencode 'a=foo bar'
 urllib.unquote(c)
 ```
 
+# raw requests
+
+```bash
+# workaround EOF
+printf "GET /api/authorize?cmd=ls HTTP/1.1\r\nHost: 157.90.22.14:8832\r\n\r\n" | tee /dev/stderr | (nc --no-shutdown 157.90.22.14 8832 &; p=$!; sleep 1 && kill "$p")
+
+# debug - compare sent bytes
+printf "GET [...]" | xxd
+curl foo --trace /dev/stderr >/dev/stdout
+```
+
+[ncat closes connection before server response · Issue \#1229 · nmap/nmap · GitHub](https://github.com/nmap/nmap/issues/1229)
+
 # dump
 
 ```bash

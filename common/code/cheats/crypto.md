@@ -44,6 +44,14 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
     - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
 - hs256 = hmac sha256
 
+### patterns
+
+```bash
+md5sum <() # d41d8cd98f00b204e9800998ecf8427e
+sha1sum <() # da39a3ee5e6b4b0d3255bfef95601890afd80709
+sha256sum <() # e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+```
+
 ### search space estimation
 
 ```javascript

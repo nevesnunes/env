@@ -465,4 +465,74 @@ awk '{printf "%s\r\n", $0}' _
 # ||
 python -c 'import re, sys; sys.stdout.buffer.write(re.sub(b"\n", b"\r\n", open(sys.argv[1], "rb").read()))' _
 
+# Good compression
+# Note: -z is very slow
+lrzip -vv -S '.zpaq.lrz' -z -L9 -p "$(nproc)" -U file
+
+# Find dupes by md5
+find dir -type f -exec md5sum {} \+ | sort > md5-index; \
+  awk '{print $1}' md5-index | uniq -c | awk '$1>1 {print $2}' > md5-dupes
+
+# Tail in separate terminal
+mkfifo fifo
+tail -Rf fifo
+echo "text" 1>fifo
+
+# My backup
+rsync -uva
+
+# Split & Join
+split --bytes=2G file splitted
+cat splitted* > joined
+
+# Lowerify filenames
+prename 'y/A-Z/a-z/' ./*
+
+# Always copy files of given type
+rsync --ignore-times -rv --include '*/' --include '*.js' --exclude '*' src/ target/
+
+# Extract tar
+tar -zxvf data.tar.gz
+
+# Find and remove broken symlinks
+find . -type l -a ! \( \
+  -xtype b -o \
+  -xtype c -o \
+  -xtype d -o \
+  -xtype p -o \
+  -xtype f -o \
+  -xtype s -o \
+  -xtype l \) 2>/dev/null -exec rm '{}' \;
+
+# Low resource usage on filesystem copies,
+# avoiding io buffer contention.
+# References:
+# - https://github.com/Feh/nocache
+nice -n19 ionice -c3 nocache rsync -uva
+
+# Multiple files
+find . -iname "*jpg" -printf 'cp "%p" <target>\n' >> do.sh
+
+# Replace string in files
+sed -i 's/old-word/new-word/g' ./*.txt
+find . -name "*.txt" -print0 | xargs -0 sed -i '' -e 's/foo/bar/g'
+
+# Strip leading zeros
+awk '{gsub ("^0*", "", $0); gsub ("/0*", "/", $0); print}'
+
+# Grep multiple pdfs
+find . -name '*.pdf' -exec sh -c 'pdftotext "{}" - | grep --with-filename --label="{}" --color "your pattern"' \;
+
+# Converting OpenFonts to TrueTypeFonts
+cat <<'EOF' > otf2ttf.sh
+#!/usr/local/bin/fontforge
+# Quick and dirty hack: converts a font to truetype (.ttf)
+Print("Opening "+$1);
+Open($1);
+Print("Saving "+$1:r+".ttf");
+Generate($1:r+".ttf");
+Quit(0);
+EOF
+fontforge -script otf2ttf.sh FONTNAME.otf
+
 

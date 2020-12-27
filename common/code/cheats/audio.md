@@ -46,6 +46,12 @@ metaflac --remove-replay-gain *.flac
 eyeD3 --user-text-frame="REPLAYGAIN_TRACK_GAIN:" *.mp3
 ```
 
+# Convert flac to mp3
+
+```bash
+ffmpeg -i in.flac -ab 320k -map_metadata 0 -id3v2_version 3 out.mp3
+```
+
 # Copy stream without re-compression
 
 ```bash
