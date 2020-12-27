@@ -172,8 +172,8 @@ for ((i=1; i<99; i++)); do ~/opt/accuraterip-checksum/accuraterip-checksum $(pri
 find /etc/systemd/system/ -iname 'abrt*' | sed 's/.*\///g' | xargs -d'\n' -I{} systemctl stop {}
 
 # Suspend process
-kill -s SIGSTOP <PID>
-kill -s SIGCONT <PID>
+kill -s SIGSTOP $pid
+kill -s SIGCONT $pid
 
 # cvs
 cvsroot=$(realpath foo/) && \
@@ -368,9 +368,12 @@ grep -Po '(?<=<family>)(.*Emoji.*)(?=</family>)' /usr/share/fontconfig/conf.avai
   awk -F'"' '$0=$2' | \
   xargs -i fc-match --format='%{family}\n%{charset}\n' {}
 
-# List fonts containing codepoint
-# https://unix.stackexchange.com/questions/162305/find-the-best-font-for-rendering-a-codepoint/268286
-fc-list ":charset=$(printf '%x' \'<0001f921>)"
+# List fonts containing codepoint.
+# Insert codepoint with: Left-Ctrl-Shift + u + 1f921 + Return (Rendered as `<0001f921>`).
+# References:
+# - https://unix.stackexchange.com/questions/162305/find-the-best-font-for-rendering-a-codepoint/268286
+codepoint=
+fc-list ":charset=$(printf '%x' \'$codepoint)"
 
 # Test history on non-interactive bash shells
 echo 1 | xargs -i bash -ci 'set -o history; echo $HISTFILE; history' _ {}
