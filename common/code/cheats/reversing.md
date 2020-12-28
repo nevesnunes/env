@@ -177,7 +177,7 @@ perf trace record
             ```
         - https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-ioctl_storage_check_verify
             > Determines whether media are accessible for a device.
-    - actual issue: DeviceIoControl() error handling logic gets a singleton instance while it's constructor is still executing, causing another constructor call, and another DeviceIoControl() call, which will enter the same conditional branch again in a loop, until a stack overflow occurs.
+    - actual issue: `DeviceIoControl()` error handling logic gets a singleton instance while it's constructor is still executing, causing another constructor call, and another `DeviceIoControl()` call, which will enter the same conditional branch again in a loop, until a stack overflow occurs.
         - stack trace (read from bottom to top)
             ```
             ntdll!NtDeviceIoControlFile+c
