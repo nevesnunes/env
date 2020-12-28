@@ -149,7 +149,7 @@ perf trace record
 - Qt window initialization infinite loop
     - [Win32 Disk Imager / Bugs / \#85 If Google File Stream is loaded,  win32DiskImager Crashes on Startup](https://sourceforge.net/p/win32diskimager/tickets/85/)
     - dissassembly
-        - offset 0x3bfd = 0x47fd
+        - offset 0x3bfd = virtual 0x47fd
         - byte 0x74 to 0xeb = je to jmp
     - decompilation
         ```cpp
