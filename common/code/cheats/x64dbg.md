@@ -1,3 +1,11 @@
+# Keybinds
+
+- Find pattern - `Ctrl-b`
+
+# Modules
+
+- Debug > Run to user code
+
 # Breakpoints
 
 ```
