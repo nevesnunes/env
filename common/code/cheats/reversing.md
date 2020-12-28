@@ -146,7 +146,7 @@ perf trace record
         - RUN sed -i 's#api.segment.io#xx.example.com#gI' /mattermost/bin/mattermost
         - RUN sed -i 's#securityupdatecheck.mattermost.com#xxxxxxxxxxxxxxxxxxxxxx.example.com#gI' /mattermost/bin/mattermost
     ```
-- fixing infinite loop
+- Qt window initialization infinite loop
     - [Win32 Disk Imager / Bugs / \#85 If Google File Stream is loaded,  win32DiskImager Crashes on Startup](https://sourceforge.net/p/win32diskimager/tickets/85/)
     - dissassembly
         - offset 0x3bfd = 0x47fd
@@ -177,5 +177,39 @@ perf trace record
             ```
         - https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-ioctl_storage_check_verify
             > Determines whether media are accessible for a device.
+    - actual issue: DeviceIoControl() error handling logic gets a singleton instance while it's constructor is still executing, causing another constructor call, and another DeviceIoControl() call, which will enter the same conditional branch again in a loop, until a stack overflow occurs.
+        - stack trace (read from bottom to top)
+            ```
+            ntdll!NtDeviceIoControlFile+c
+            KERNELBASE!DeviceIoControl+40
+            kernel32!DeviceIoControlImplementation+4b
+            Win32DiskImager+4f38
+            Win32DiskImager+672a
+            Win32DiskImager+cd65
+            --- [Loop end]
+            Win32DiskImager+4d2d
+            Win32DiskImager+5083
+            Win32DiskImager+672a
+            Win32DiskImager+cd65
+            [...]
+            Win32DiskImager+4d2d = GetDisksProperty() -> QMessageBox::critical(
+                    MainWindow::getInstance(),
+                    QObject::tr("File Error"),
+                    QObject::tr("An error occurred while getting the device number.\n"
+                            "This usually means something is currently accessing the device;"
+                            "please close all applications and try again.\n\nError %1: %2").arg(GetLastError()).arg(errText));
+            Win32DiskImager+5083 = checkDriveType() -> GetDisksProperty(hDevice, pDevDesc, &deviceInfo)
+            Win32DiskImager+672a = MainWindow::getLogicalDrives() -> checkDriveType(drivename, &pID)
+            Win32DiskImager+cd65 = MainWindow::MainWindow() -> getLogicalDrives();
+            --- [Loop begin]
+            Win32DiskImager+58dc = main() -> MainWindow* mainwindow = MainWindow::getInstance();
+            Win32DiskImager+10212
+            Win32DiskImager+1825d
+            Win32DiskImager+13e2
+            kernel32!BaseThreadInitThunk+19
+            ntdll!__RtlUserThreadStart+2f
+            ntdll!_RtlUserThreadStart+1b
+            ```
+        - tools used: `procexp` to take a memory dump, `Debug Diagnostic Tool` to inspect stack trace and memory allocations, `x32dbg` to break on previously identified loop addresses
 
 
