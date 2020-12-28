@@ -554,7 +554,7 @@ https://github.com/VAR-solutions/Algorithms
 ~/code/doc/algorithms/big-o-cheatsheet.pdf
 ~/code/doc/algorithms/CLRS-3rd.pdf
 ~/code/doc/algorithms/CLRS-3rd-Solutions.pdf
-~/code/doc/algorithms/[Steven_S._Skiena_(auth.)]_The_algorithm_design_ma(z-lib.org).pdf
+~/code/doc/algorithms/TheAlgorithmDesignManual.pdf
 http://ssp.impulsetrain.com/big-o.html
 https://en.wikipedia.org/wiki/List_of_logarithmic_identities
 
