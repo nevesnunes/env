@@ -49,12 +49,14 @@ https://github.com/aind-containers/aind
 
 # dynamic instrumentation
 
-- ~/code/snippets/frida/android.py
-    - https://bananamafia.dev/post/r2frida-1/
 ```bash
 # https://github.com/frida/frida/releases
 adb push frida-server /data/local/tmp
 ```
+
+- ~/code/snippets/frida/android.py
+    - https://bananamafia.dev/post/r2frida-1/
+- https://github.com/Areizen/JNI-Frida-Hook
 
 # class loading
 

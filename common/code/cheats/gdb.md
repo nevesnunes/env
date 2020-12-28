@@ -31,15 +31,6 @@ ulimit -c unlimited / ulimit -c 0
 # handle signals
 handle SIGSEGV nostop nopass
 
-# trace syscalls, do nothing on break
-# references:
-# - https://stackoverflow.com/questions/6517423/how-to-do-an-specific-action-when-a-certain-breakpoint-is-hit-in-gdb
-# - https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html
-catch syscall
-commands
-c
-end
-
 # break on current instruction of running inferior
 # <Ctrl-C>
 
@@ -102,6 +93,31 @@ set {int}0x123 = 0x456
 restore data.txt binary 0x123
 # Write value with libc
 call memcpy(0x123, "\x01\x02\x03\x04", 4)
+
+# Allocate memory for value
+set $malloc = (void*(*)(long long)) malloc 
+set $mem = $malloc(sizeof(long)) 
+p $mem 
+# $1 = (void *) 0x5591420469b0 
+p *(long*)$mem = (int*)func_that_returns_addr()
+# ||
+p *(long*)0x5591420469b0 = (int*)func_that_returns_addr()
+watch **(long*)$mem
+
+# errno
+# - [Interface Definitions for libc - __errno_location](http://refspecs.linux-foundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/baselib---errno-location.html)
+# - [What is errno really defined as](https://sourceware.org/legacy-ml/libc-help/2014-10/msg00022.html)
+# - [!] thread-local, and address is only set after glibc init
+watch *(int*)__errno_location()
+# Take watchpoint number, e.g. 2
+info watchpoints
+condition 2 *(int*)__errno_location() == 3
+# Alternatives:
+# - https://github.com/iddoeldor/frida-snippets#one-time-watchpoint
+
+# Setting errno in asm
+# mov    dword ptr [rax], 2
+# call   __errno_location@plt <__errno_location@plt>
 ```
 
 # methodology
@@ -219,6 +235,14 @@ http://heather.cs.ucdavis.edu/~matloff/pardebug.html
 
 # Catch syscall
 
+```gdb
+# do nothing on break
+catch syscall
+commands
+c
+end
+```
+
 ```
 (gdb) catch syscall access
 Catchpoint 1 (syscall 'access' [21])
@@ -233,8 +257,9 @@ Catchpoint 1 (call to syscall access), 0x00007ffff7df3537 in access ()
 $1 = 0x7ffff7df9420 <preload_file> "/etc/ld.so.preload"
 ```
 
-https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html
-https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Funs.html
+- https://stackoverflow.com/questions/6517423/how-to-do-an-specific-action-when-a-certain-breakpoint-is-hit-in-gdb
+- https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html
+- https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Funs.html
 
 # Follow child processes
 

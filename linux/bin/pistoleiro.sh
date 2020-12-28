@@ -4,6 +4,9 @@
 # pistoleiro.sh PORT -iwad doom.wad -file FILE [...] -warp '4 1'
 # pistoleiro.sh PORT -iwad doom2.wad -file FILE [...] -warp 16
 # pistoleiro.sh PORT -g duke3d.grp -map FILE [...] -v1 -l1
+#
+# Alternatives:
+# - Crispy Doom 5.9.2: Option -pistolstart
 
 set -eu
 

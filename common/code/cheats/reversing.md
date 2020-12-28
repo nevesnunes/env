@@ -146,7 +146,7 @@ perf trace record
         - RUN sed -i 's#api.segment.io#xx.example.com#gI' /mattermost/bin/mattermost
         - RUN sed -i 's#securityupdatecheck.mattermost.com#xxxxxxxxxxxxxxxxxxxxxx.example.com#gI' /mattermost/bin/mattermost
     ```
-- Qt window initialization infinite loop
+- Singleton initialization causes infinite loop
     - [Win32 Disk Imager / Bugs / \#85 If Google File Stream is loaded,  win32DiskImager Crashes on Startup](https://sourceforge.net/p/win32diskimager/tickets/85/)
     - dissassembly
         - offset 0x3bfd = virtual 0x47fd
