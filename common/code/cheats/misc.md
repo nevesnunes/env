@@ -1,11 +1,14 @@
 # +
 
+- https://book.hacktricks.xyz/pentesting-methodology
 - http://bitvijays.github.io/LFC-VulnerableMachines.html
 - https://fortyseven.github.io/ctfpanel/
 - https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/
 - https://snovvcrash.rocks/cheatsheets/
 - https://hausec.com/pentesting-cheatsheet/
 
+- https://github.com/adon90/pentest_compilation
+- https://github.com/bitvijays/Pentest-Scripts
 - https://github.com/Orange-Cyberdefense/arsenal
 - https://github.com/enaqx/awesome-pentest
 - https://github.com/kyawthiha7/pentest-methodology
@@ -18,12 +21,14 @@
 
 # vulnerability databases
 
-- [Snyk \- Open Source Security](https://snyk.io/vuln/)
-- [SG TCP/IP Ports Database](https://www.speedguide.net/ports.php)
 - [Exploit Database \- Exploits for Penetration Testers, Researchers, and Ethical Hackers](https://www.exploit-db.com/)
-- [💀 Sploitus \| Exploit & Hacktool Search Engine](https://sploitus.com/)
+- [Shodan Exploits](https://exploits.shodan.io/)
 - [CVE security vulnerability database\. Security vulnerabilities, exploits, references and more](https://www.cvedetails.com/)
 - [Exploit Files \- Packet Storm](https://packetstormsecurity.com/files/tags/exploit)
+- [Vulners \- Vulnerability Data Base](https://vulners.com/search)
+- [💀 Sploitus \| Exploit & Hacktool Search Engine](https://sploitus.com/)
+- [Snyk \- Open Source Security](https://snyk.io/vuln/)
+- [SG TCP/IP Ports Database](https://www.speedguide.net/ports.php)
 
 # racing, race-condition
 
@@ -81,6 +86,9 @@ done
 
 - https://gtfobins.github.io
 - https://book.hacktricks.xyz/linux-unix/privilege-escalation
+- http://www.fuzzysecurity.com/tutorials/16.html
+- https://guif.re/windowseop
+- https://guif.re/linuxeop
 
 - busybox - act as arbitrary file
     ```bash

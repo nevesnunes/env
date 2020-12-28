@@ -6,7 +6,19 @@
 
 # detection
 
-- [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
+- dynamic analysis
+    - [Cuckoo Sandbox \- Automated Malware Analysis](https://cuckoosandbox.org/)
+- process injection
+    - [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
+- registry keys
+    - {HKCU,HKLM}\Software\Microsoft\Windows\CurrentVersion\{Run,RunOnce,RunOnceEx,RunServices,RunServicesOnce}
+    - {HKCU,HKLM}\Software\Microsoft\Windows\CurrentVersion\Explorer\{User Shell Folders,Shell Folders}
+    - {HKCU,HKLM}\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run
+    - {HKCU,HKLM}\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\{Userinit,Shell}
+    - {HKCU,HKLM}\Software\Microsoft\Windows NT\CurrentVersion\Windows /v load
+    - {HKCU,HKLM}\System\CurrentControlSet\Control\Session Manager /v BootExecute
+    - [registry-keys-startup-folder](https://dmcxblue.gitbook.io/red-team-notes/persistence/registry-keys-startup-folder)
+    - [Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder, Sub\-technique T1547\.001 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1547/001/)
 
 # anti-debugging
 

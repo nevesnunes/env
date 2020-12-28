@@ -140,6 +140,17 @@ https://stackoverflow.com/questions/1670970/how-to-cherry-pick-multiple-commits/
 ls -1 foo* | while read -r i; do printf '%s ' "$i" && git log -1 --format=%cd "$i" | cat -v -; done
 ```
 
+# list submodule commits
+
+```bash
+git log -p --submodule=log | awk '
+/^commit/ { add=1 } # Start of commit message
+/^diff --git/ { add=0 } # Start of diff snippet
+{ if (add) { buf = buf "\n" $0 } } # Add lines if part of commit message
+END { print buf }
+'
+```
+
 # gitlab ci local
 
 ```bash

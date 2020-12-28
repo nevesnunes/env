@@ -160,7 +160,7 @@ https://github.com/lob/pg_insights
 # hierarchies, trees, graphs
 
 standard sql
-~/code/doc/databases/Joe Celkos Trees and Hierarchies in SQL for Smarties, Second Edition by Joe Celko (z-lib.org).pdf
+~/code/doc/databases/Joe Celkos Trees and Hierarchies in SQL for Smarties, Second Edition.pdf
     2.4.2. Self-Joins - fixed depth, leafs end in NULL
     2.4.3. Recursive CTE
     2.4.4. Iterations - use temporary table in procedure
