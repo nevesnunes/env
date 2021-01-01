@@ -237,8 +237,8 @@ import socket, struct;
 print(hex(struct.unpack('<L', socket.inet_aton('$addr'))[0])[2:10].upper().zfill(8))"
 # 010A00C8
 
-# References
-# https://docs.python.org/3/library/struct.html
+# References:
+# - https://docs.python.org/3/library/struct.html
 ```
 
 ```python
@@ -498,7 +498,8 @@ print(df.to_markdown())
 # jail
 
 - `eval() / exec() / compile()`: execute any python code
-- `globals() / locals() / vars()`: finding useful variables
+- `globals() / locals() / vars()`: finding useful variables, using built-ins
+    - [CTFtime\.org / Really Awesome CTF 2020 / Puffer Overflow](https://ctftime.org/task/11928)
 - `getattr() / setattr()`: call object.banned(), e.g. `getattr(object, "ban"+"ned")`
 - `"A""B" == "AB"`: alternative for `+`
 - blind

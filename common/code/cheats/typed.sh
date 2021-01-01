@@ -125,21 +125,6 @@ yumdownloader --source %%%
 # Extract source rpm
 rpm2cpio %%% | cpio -idmv
 
-# List IP range of addresses
-nmap -sP 192.168.%%%.0/24
-
-# List IP range of addresses by PTR records of DNS
-nmap -vvv -sn -sL 192.168.%%%.0/24
-
-# List IP range of addresses by ARP scan
-nmap -vvv -sn -PR 192.168.%%%.0/24
-
-# List IP range of addresses by SYN scan
-nmap -vvv -sn -PS 192.168.%%%.0/24
-
-# List IP range of addresses by ACK scan
-nmap -vvv -sn -PA 192.168.%%%.0/24
-
 # Reload driver
 modprobe -r %%% && echo mem > /sys/power/state & modprobe %%%
 

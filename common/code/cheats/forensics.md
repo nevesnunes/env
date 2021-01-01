@@ -2,6 +2,7 @@
 
 - ./compression.md
 - ./filesystem.md
+- ./volatility.md
 
 - https://bitvijays.github.io/LFC-Forensics.html
 - http://freshports.org/sysutils/sleuthkit
