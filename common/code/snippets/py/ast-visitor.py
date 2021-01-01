@@ -1,4 +1,7 @@
+#!/usr/bin/env python2
+
 import ast
+
 
 class MyVisitor(ast.NodeVisitor):
     def visit_Str(self, node):
@@ -7,16 +10,18 @@ class MyVisitor(ast.NodeVisitor):
 
 class MyTransformer(ast.NodeTransformer):
     def visit_Str(self, node):
-        return ast.Str('str: ' + node.s)
+        return ast.Str("str: " + node.s)
 
 
-node = ast.parse('''
+node = ast.parse(
+    """
 favs = ['berry', 'apple']
 name = 'peter'
 
 for item in favs:
     print '%s likes %s' % (name, item)
-''')
+"""
+)
 
 MyTransformer().visit(node)
 MyVisitor().visit(node)

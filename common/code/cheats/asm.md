@@ -8,6 +8,7 @@
         - x64: rdi rsi rdx r10 r8 r9
 - https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
     - `__libc_start_main()`
+    - https://www.gnu.org/software/hurd/glibc/startup.html
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/

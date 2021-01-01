@@ -36,6 +36,28 @@ systemsetup
         - maps to: UIDeviceFamily - https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW11
     - buildSettings > IPHONEOS_DEPLOYMENT_TARGET
 
+# network
+
+https://blogs.aaddevsup.xyz/2018/04/tracing-all-network-machine-traffic-using-mitmproxy-for-mac-osx/
+
+# archives
+
+- .pkg
+    - aka: .xar || .pbzx
+    - magic bytes: offset 0x0 = xar || pbzx
+    - [!] app store payloads are encrypted
+        - https://appleid.apple.com/auth/keys
+- .yaa
+    - https://wwws.nightwatchcybersecurity.com/2020/06/14/yaa-an-obscure-macos-compressed-file-format/
+
+```bash
+pkgutil --expand-full foo output/
+xar -x -f foo -C output/
+pbzx foo | cpio -idmu
+# stream .pbzx files that are not wrapped in a .xar
+pbzx -n foo | cpio -i
+```
+
 # automation
 
 https://github.com/facebook/idb
@@ -108,7 +130,7 @@ pod install
         - `project.pbxproj` > TargetAttributes > DevelopmentTeam
     - product > destination > [build only device]
     - product > archive
-        - /Users/fn/Library/Developer/Xcode/Archives/yyyy-mm-dd/foo.xcarchive
+        - /Users/$USER/Library/Developer/Xcode/Archives/yyyy-mm-dd/foo.xcarchive
     - [enroll in apple developer program] > window > organizer > [select app] > distribute app
         - iOS App Store, Export
 - errors
@@ -245,7 +267,9 @@ vmware.log
 
 ### macos
 
+```bash
 /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Support/altool --upload-app -f "CLI.ipa" -u $USERNAME -p $PASSWORD
+```
 
 ### linux
 
@@ -300,6 +324,12 @@ https://developer.apple.com/documentation/foundation/nsstring
     - vmware - best compatibility
     - || virtualbox - usb 3 passthrough compatibility => macos version
 - carthage => Xcode.app 10.0
+
+# hardware info
+
+```bash
+ioreg -lw0
+```
 
 # syscall / signal tracing
 

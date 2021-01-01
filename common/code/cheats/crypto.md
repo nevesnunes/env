@@ -10,6 +10,7 @@
 - [kt.gy tools](https://kt.gy/tools.html): decode string
     - https://github.com/OpenToAllCTF/Tips#crypto
 - [GitHub \- bwall/HashPump: A tool to exploit the hash length extension attack in various hashing algorithms](https://github.com/bwall/HashPump)
+    - [GitHub \- stephenbradshaw/hlextend: Pure Python hash length extension module](https://github.com/stephenbradshaw/hlextend)
 - [GitHub \- mwielgoszewski/python\-paddingoracle: A portable, padding oracle exploit API](https://github.com/mwielgoszewski/python-paddingoracle)
 - [AES Encryption \- Easily encrypt or decrypt strings or files](http://aes.online-domain-tools.com/)
 - [The On\-Line Encyclopedia of Integer Sequences \(OEIS\)](https://oeis.org)
@@ -31,6 +32,7 @@ from cryptography.hazmat.backends import default_backend
 cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = default_backend())
 ```
 
+- Hill cipher - https://github.com/t3rmin0x/CTF-Writeups/tree/master/DarkCTF/Crypto/Embrace%20the%20Climb#embrace-the-climb-
 - https://en.wikipedia.org/wiki/Feistel_cipher
 - indistinguishability under chosen-plaintext attack (IND-CPA)
 
@@ -83,7 +85,7 @@ console.log(grc(64));
 # rsa
 
 - [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)
-- http://factordb.com/
+- Factorizing big integers - http://factordb.com/
 
 # xor
 
