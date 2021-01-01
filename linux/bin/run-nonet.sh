@@ -3,8 +3,8 @@
 # References:
 # - https://wiki.gentoo.org/wiki/Simple_sandbox
 # - https://apuntesderootblog.wordpress.com/2016/07/14/sandbox-steam-running-it-under-a-different-account/
-# - https://github.com/netblue30/firejail/issues/1197
 # - https://unix.stackexchange.com/questions/421184/restrict-clipboard-for-untrusted-x11-clients
+# - [\-\-x11=xorg couldn&\#39;t query Security extension · Issue \#1197 · netblue30/firejail · GitHub](https://github.com/netblue30/firejail/issues/1197)
 
 set -eux
 

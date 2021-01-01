@@ -96,6 +96,32 @@ adb -s emulator-5555 install foo.apk
 ~/opt/android-studio/bin/studio.sh
 ```
 
+### network access
+
+```bash
+wget https://raw.githubusercontent.com/anbox/anbox/master/scripts/anbox-bridge.sh
+mkdir -p /usr/lib/anbox/
+mv anbox-bridge.sh /usr/lib/anbox/
+chmod +x /usr/lib/anbox/anbox-bridge.sh
+chown root /usr/lib/anbox/anbox-bridge.sh
+printf '
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <errno.h>
+
+int main(void) {
+	setuid(0);
+    char buf[512];
+	sprintf(buf, "/usr/lib/anbox/anbox-bridge.sh %s", "start");
+	system((char *)buf);
+}
+' | gcc -o anbox-bridge -x c -
+mv anbox-bridge /usr/local/bin
+chmod u+s /usr/local/bin/anbox-bridge
+chown root /usr/local/bin/anbox-bridge
+```
+
 # debug
 
 ```bash

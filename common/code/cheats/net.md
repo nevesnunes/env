@@ -1,34 +1,28 @@
 # +
 
-./reverse_shell.sh
-./wireshark.md
+- [osint](./osint.md)
+- [firewall](./firewall.sh)
+- [nmap](./nmap.sh)
+- [wireshark](./wireshark.md)
+- [reverse_shell](./reverse_shell.sh)
 
-google: mdn foo
-
-https://www.webpagetest.org/
-
-https://github.com/clowwindy/Awesome-Networking
-[The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
-
-http://noahdavids.org/self_published/Tracing_packets_without_collecting_data.html
-    > at least "-s 94" for IPv4 or "-s 114" for IPv6
-
-https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
-
-https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
-https://hc.apache.org/httpclient-3.x/performance.html
-
-- Ping-scan to discover reachable prefixes
-- Traceroute to discover topology
-- ZMap on reachable prefixes for common service ports
+- Port mirroring / Switched Port Analyzer (SPAN)
+- https://rootsh3ll.com/evil-twin-attack/
 
 - [The Illustrated TLS Connection: Every Byte Explained](https://tls.ulfheim.net/)
 - https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
 - http://www.networksorcery.com/enp/Protocol.htm
+- https://github.com/clowwindy/Awesome-Networking
+
+# performance
+
+- https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
+- https://hc.apache.org/httpclient-3.x/performance.html
+- [The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
 
 # replay
 
-https://tcpreplay.appneta.com/
+- https://tcpreplay.appneta.com/
 
 # relay
 
@@ -92,11 +86,6 @@ pkgmgr /iu:"TelnetClient"
 telnet www.example.com 80
 ```
 
-# security
-
-https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
-https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
-
 # crawling
 
 - logging
@@ -109,28 +98,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Secur
 - headers
 - user-agent
 
-http://dendritic-trees.tumblr.com/post/157047017934
-
-# browser automation
-
-- selenium webdriver
-- pyppeteer
-    - ~/code/guides/ctf/TFNS---writeups/2020-04-12-ByteBanditsCTF/notes-app/sources/mynotes/visit_link.py
-
-# frameworks
-
-https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-vue-here-are-the-differences-e9a1ae8077fd
-https://hnpwa.com/
-https://github.com/gothinkster/realworld
-
-# Mimicking domain
-
-/etc/hosts
-
-```
-127.0.0.1 domain.com
-php -S 127.0.0.1:80
-```
+- http://dendritic-trees.tumblr.com/post/157047017934
 
 # Remote debug
 
@@ -151,11 +119,11 @@ Get-Process chrome | Stop-Process
 
 # RESTful API
 
-Client-server model — a client requests data from a separated server, often over a network
-Uniform interface — all clients and servers interact with the API in the same way (e.g., multiple resource endpoints)
-Layered system — a client doesn't have to be connected to the end server
-Statelessness — a client holds the state between requests and responses
-Cacheability — a client can cache a server's reponse
+- Client-server model — a client requests data from a separated server, often over a network
+- Uniform interface — all clients and servers interact with the API in the same way (e.g., multiple resource endpoints)
+- Layered system — a client doesn't have to be connected to the end server
+- Statelessness — a client holds the state between requests and responses
+- Cacheability — a client can cache a server's reponse
 
 # CRUD
 
@@ -198,14 +166,14 @@ Now I understand why only the local websites could not be loaded, because the se
 
 # private addresses
 
-Private IP addresses are not recognized by Internet routers. 
+Private IP addresses are not recognized by Internet routers.
 Packets with either source or destination private addresses are not forwarded across Internet links.
 
-The private IP adresses are the following blocks: 
+The private IP adresses are the following blocks:
 
-    Class A 10.0.0.0 - 10.255.255.255 
-    Class B 172.16.0.0 - 172.31.255.255 
-    Class C 192.168.0.0 - 192.168.255.255 
+    Class A 10.0.0.0 - 10.255.255.255
+    Class B 172.16.0.0 - 172.31.255.255
+    Class C 192.168.0.0 - 192.168.255.255
 
 [RFC 1918 \- Address Allocation for Private Internets](https://tools.ietf.org/html/rfc1918)
 
@@ -220,6 +188,7 @@ HTTP headers using q-values in their syntax: Accept, Accept-Charset, Accept-Lang
 - [HTTP/1\.1: Content Negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html#sec12)
 - [RFC 7230 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230#section-4.3)
 - [RFC 7231 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Semantics and Content](https://tools.ietf.org/html/rfc7231#section-5.3.1)
+
 # tcp server
 
 ```bash
@@ -308,10 +277,26 @@ iperf -s
 iperf -i 1 -c $server_ip
 ```
 
-https://iperf.fr/
-    https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/iperf/
+- https://iperf.fr/
+    - https://fasterdata.es.net/performance-testing/network-troubleshooting-tools/iperf/
 
 # network topology
+
+- ZMap on reachable prefixes for common service ports
+- http://noahdavids.org/self_published/Tracing_packets_without_collecting_data.html
+    > at least "-s 94" for IPv4 or "-s 114" for IPv6
+
+```bash
+# packet trace
+traceroute
+
+# given netmask 255.255.255.0
+# => ignore broadcast addresses: 10.0.2.0, 10.0.2.255
+iproute
+# => ignore gateway address: default via 10.0.2.1 dev enp0s1
+ifconfig
+# => take ip of active network device, e.g. enp0s1
+```
 
 - LAN = shared physical network
     - OSI Model layers - 1 + 2
@@ -327,25 +312,17 @@ https://iperf.fr/
 https://medium.com/@cryps1s/endpoint-isolation-with-the-windows-firewall-462a795f4cfb
 IPSEC gives you kerberos authentication out of the gate. Use it. Build AD groups for your tier 0/tier 1 administrators and machines.
 Enforce bastion hosts with MFA.
-Use ASR for neutering WMI calls. 
+Use ASR for neutering WMI calls.
 Available in GPO and MEM, auditing exists.
-
-# DNS
-
-caching - based on zone reported TTLs
-    https://superuser.com/questions/1533833/how-are-dns-records-updated-to-all-dns-servers-in-the-internet
-
-DynDNS
-    https://dyn.com/
 
 # sequence diagram
 
-Wireshark > Statistics > Flow Graph
-https://github.com/fran-ovia/pcap2puml-py
-https://github.com/dgudtsov/pcap2uml
-https://sourceforge.net/projects/callflow/
+- Wireshark > Statistics > Flow Graph
+- https://github.com/fran-ovia/pcap2puml-py
+- https://github.com/dgudtsov/pcap2uml
+- https://sourceforge.net/projects/callflow/
 
-# ARP spoofing
+# ARP Spoofing, ARP Poisoning
 
 ~/code/snippets/arp_spoof.py
 
@@ -447,14 +424,35 @@ nghttp -v -ans https://foo/index.html
 # || chrome://net-export
 ```
 
-# methods
+# DNS
 
-Portmirroring / SPAN, arp poisoning
+- Caching - based on zone reported TTLs
+    - https://superuser.com/questions/1533833/how-are-dns-records-updated-to-all-dns-servers-in-the-internet
 
-# DNS Zone Transfer
+## Resolving domain to localhost
 
-nmap gateway_ip_or_host
-port 53 domain
+/etc/hosts
+
+```
+127.0.0.1 domain.com
+php -S 127.0.0.1:80
+```
+
+## Enumerating subdomains
+
+```bash
+# From SSL certificate
+echo | \
+    openssl s_client -connect foo.com:443  | \
+    openssl x509 -noout -text | \
+    grep DNS
+curl 'Host: enumerated.foo.com' 10.0.0.123
+```
+
+## DNS Zone Transfer
+
+- TCP port 53
+- nmap gateway_ip_or_host
 
 ### linux
 
@@ -499,7 +497,7 @@ mma
     - `TDS`
     - `*SQLText contains "a"`
     ```
-    Fail to start live consumer 
+    Fail to start live consumer
     Please reinstall Message Analyzer to correct the problem. If the PEF-WFP-MessageProvider continues to fail, you may have a conflict with a third party filter driver or your computer might have reached the maximum number of drivers allowed, for example, on a Windows 7 machine. To resolve this issue, you can try increasing the filter driver limit in the registry.
     ```
 
@@ -509,10 +507,11 @@ test
 validate TDS packets are sent
     Transact-SQL session > Query menu > Include Client Statistics
 
-https://dragos.com/blog/industry-news/threat-hunting-with-python-part-4-examining-microsoft-sql-based-historian-traffic/
-https://www.anitian.com/hacking-microsoft-sql-server-without-a-password/
-https://cqureacademy.com/blog/secure-server/tabular-data-stream
-https://docs.microsoft.com/en-us/message-analyzer/applying-and-managing-filters
+- https://dragos.com/blog/industry-news/threat-hunting-with-python-part-4-examining-microsoft-sql-based-historian-traffic/
+- https://www.anitian.com/hacking-microsoft-sql-server-without-a-password/
+- https://cqureacademy.com/blog/secure-server/tabular-data-stream
+- https://docs.microsoft.com/en-us/message-analyzer/applying-and-managing-filters
+- https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
 
 || dump tables and diff before and after action on app
 
@@ -540,18 +539,6 @@ netsh trace stop
 
 https://blogs.technet.microsoft.com/yongrhee/2018/05/25/network-tracing-packet-sniffing-built-in-to-windows-server-2008-r2-and-windows-server-2012-2/
 
-# enumerate app servers
-
-```bash
-netstat -tulpn | \
-    gawk 'match($0, /.*:([0-9]+).*LISTEN/, r){print r[1]}' | \
-    xargs -i sh -c '
-        printf "HEAD / HTTP/1.0\r\n\r\n" | \
-        nc -n -i 2 localhost "$1" | \
-        grep "HTTP/[0-9\.]\+\ " && echo "Found server listening at port = $1"\
-    ' _ {}
-```
-
 # url encoding
 
 ```bash
@@ -576,7 +563,25 @@ printf "GET [...]" | xxd
 curl foo --trace /dev/stderr >/dev/stdout
 ```
 
-[ncat closes connection before server response · Issue \#1229 · nmap/nmap · GitHub](https://github.com/nmap/nmap/issues/1229)
+- [ncat closes connection before server response · Issue \#1229 · nmap/nmap · GitHub](https://github.com/nmap/nmap/issues/1229)
+
+# send null byte in URL
+
+```bash
+# Given server: ~/code/snippets/py/flask-get-echo.py
+echo $'GET /ls\x00\x41 HTTP/1.1\r\nHost: localhost:5000\r\n\r\n' | nc localhost 5000
+# "GET /lsA HTTP/1.1" 200 -
+# You said (len = 4): b'ls\x00A'
+
+# [!] Silent truncation
+curl http://localhost:5000/ls$'\x00\x41'
+# "GET /ls HTTP/1.1" 200 -
+# You said (len = 2): b'ls'
+
+curl 'http://localhost:5000/ls%00%41'
+# "GET /ls%00A HTTP/1.1" 200 -
+# You said (len = 4): b'ls\x00A'
+```
 
 # dump
 
@@ -590,3 +595,47 @@ tcpdump -i any -s 0 -l -vvv -w /tmp/1.pcap
 
 tcpflow -a -r foo.pcap -o ./out/
 ```
+
+# smb
+
+```bash
+host=
+share=
+smbclient "//$host/$share"
+
+domain=
+user=
+pass=
+curl -u "$domain\\$user:$pass" "smb://$host/$share"
+mount -t cifs -o $user,$pass "//$host/$share" /mnt/foo/
+smbget -u "$domain/$user" "smb://$host/d\$/foo"
+
+smbtree
+smbclient -L "$host" -U $user -N
+smbclient -L "$host" -U "$domain/$user"
+
+# Validation
+smbclient '//$host/f$' -U '$domain/$user'
+# => tree connect failed: NT_STATUS_ACCESS_DENIED
+smbclient '\\$host\f$' -U '$domain/$user'
+# => smb: \>
+
+# Enumeration
+nmap -p445 -sV --script smb-enum-services 10.0.2.123
+
+# Server configuration
+vim /etc/samba/smb.conf
+systemctl restart smb.service
+
+firewall-cmd --permanent --add-service=samba
+firewall-cmd --reload
+# Given: `yum install policycoreutils-python`
+setsebool -P samba_export_all_ro=1 samba_export_all_rw=1
+getsebool -a | grep samba_exportgetsebool
+semanage fcontext -at samba_share_t "/foo/bar(/.*)?"
+restorecon /foo/bar
+```
+
+- https://www.tldp.org/HOWTO/SMB-HOWTO-8.html
+
+

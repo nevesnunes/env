@@ -31,6 +31,11 @@ https://techcommunity.microsoft.com/t5/IIS-Support-Blog/Getting-better-stack-tra
     path - `srv*c:\symcache*http://msdl.microsoft.com/download/symbols`
     [xref] procmon, procexp
 
+```
+symchk /v dwmcore.dll
+_NT_SYMBOL_PATH = C:\Windows\SYMBOLS*https://msdl.microsoft.com/download/symbols
+```
+
 # case studies
 
 ```

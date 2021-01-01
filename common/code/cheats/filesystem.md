@@ -185,4 +185,8 @@ ecm d input.img.ecm output.img
 - [Romhacking\.net \- Utilities \- Command\-Line Pack v1\.03](https://www.romhacking.net/utilities/1440/)
     - [Romhacking\.net \- Community \- Neill Corlett](https://www.romhacking.net/community/99/)
 
+# VHD
 
+- `7z`
+- `qemu-nbd`
+    - https://stackoverflow.com/a/45280201/8020917

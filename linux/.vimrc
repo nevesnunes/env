@@ -297,7 +297,7 @@ map ,( ciW()<Esc>P
 
 vmap <Space> "xy:@x<CR>
 
-function! VisualSelection()
+function! VisualPositions()
     if mode() ==# 'v'
         let [line_start, column_start] = getpos('v')[1:2]
         let [line_end, column_end] = getpos('.')[1:2]
@@ -309,6 +309,12 @@ function! VisualSelection()
         let [line_start, column_start, line_end, column_end] =
                     \   [line_end, column_end, line_start, column_start]
     end
+    return [line_start, column_start, line_end, column_end]
+endfunction
+
+function! VisualSelection()
+    let [line_start, column_start, line_end, column_end] =
+                \ VisualPositions()
     let lines = getline(line_start, line_end)
     if len(lines) == 0
         return ''
@@ -665,6 +671,8 @@ command! HighlightedSynGroup call HighlightedSynGroup()
 " References:
 " - https://superuser.com/questions/211916/setting-up-multiple-highlight-rules-in-vim
 " - https://vim.fandom.com/wiki/Highlight_long_lines
+" Alternatives:
+" - https://github.com/MattesGroeger/vim-bookmarks
 hi My0 cterm=bold ctermbg=magenta guibg=magenta ctermfg=black guifg=black
 hi My1 cterm=bold ctermbg=blue    guibg=blue    ctermfg=black guifg=black
 hi My2 cterm=bold ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
@@ -686,6 +694,40 @@ function! Match(...)
     endif
 endfunction
 command! -nargs=* Match :call Match(<f-args>)
+
+" References:
+" - http://vimdoc.sourceforge.net/htmldoc/pattern.html#/\%%3El
+" - https://vim.fandom.com/wiki/Highlight_current_line
+function! VisualMatch(positions, lines, key)
+    if !exists('w:matches')
+        let w:matches = {}
+    endif
+    if empty(a:lines)
+        call clearmatches()
+        let w:matches = {}
+    else
+        let l:size = len(keys(w:matches))
+        if empty(a:key)
+            let l:key = 'My' . ((l:size + 0) % 4)
+        else
+            let l:key = a:key
+        endif
+
+        let l:i = 0
+        while l:i < len(a:lines)
+            let a:lines[l:i] = escape(a:lines[l:i], '^$.*?/\[]')
+            let l:i += 1
+        endwhile
+
+        let l:text = join(a:lines, "\\n")
+        let l:pattern = '\%>' . (a:positions[0]-1) . 'l' . '\%<' . (a:positions[2]+1) . 'l' . l:text
+        let l:id = matchadd(l:key, l:pattern, -1)
+        let w:matches[l:key] = l:id
+    endif
+endfunction
+nmap <silent> ,v :call VisualMatch(VisualPositions(), [], "")<CR>
+vmap <silent> ,v :call VisualMatch(VisualPositions(), VisualSelection(), "")<CR>
+vmap <silent> ,1 :call VisualMatch(VisualPositions(), VisualSelection(), "My5")<CR>
 
 " }}}
 

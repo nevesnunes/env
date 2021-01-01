@@ -6,6 +6,7 @@
 - https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/
 - https://snovvcrash.rocks/cheatsheets/
 - https://hausec.com/pentesting-cheatsheet/
+- https://www.malwarearchaeology.com/cheat-sheets
 
 - https://github.com/adon90/pentest_compilation
 - https://github.com/bitvijays/Pentest-Scripts
@@ -18,6 +19,7 @@
     - http://www.vulnerabilityassessment.co.uk/Framework.png
 - https://www.isecom.org/OSSTMM.3.pdf
 - http://www.pentest-standard.org/index.php/PTES_Technical_Guidelines
+- https://github.com/rmusser01/Infosec_Reference/blob/master/Draft/Building_A_Lab.md
 
 # vulnerability databases
 
@@ -29,6 +31,20 @@
 - [💀 Sploitus \| Exploit & Hacktool Search Engine](https://sploitus.com/)
 - [Snyk \- Open Source Security](https://snyk.io/vuln/)
 - [SG TCP/IP Ports Database](https://www.speedguide.net/ports.php)
+
+```bash
+# https://github.com/offensive-security/exploitdb.git
+searchsploit afd windows local
+searchsploit -t oracle windows
+searchsploit -p 39446
+searchsploit linux kernel 3.2 --exclude="(PoC)|/dos/"
+searchsploit -s Apache Struts 2.0.0
+searchsploit linux reverse password
+searchsploit -j 55555 | json_pp
+
+# Given exploit with available metasploit module
+msf > search $regex
+```
 
 # racing, race-condition
 
@@ -236,6 +252,11 @@ find / -perm -u=s -type f 2>/dev/null
     echo 414141 | xxd -r -p | base64
     # QUFB
     ```
+    - URL payloads: base64url
+        - `s/+/-/g; s/\//_/g`
+        - [RFC 4648 \- The Base16, Base32, and Base64 Data Encodings \- Base 64 Encoding with URL and Filename Safe Alphabet](https://tools.ietf.org/html/rfc4648#page-7)
+- public keys - JWK
+    - [RFC 7518 \- JSON Web Algorithms \(JWA\)](https://tools.ietf.org/html/rfc7518#page-30)
 - https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
 
 ### unicode

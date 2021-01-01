@@ -129,4 +129,35 @@ hivelist
     - https://github.com/EricZimmerman/RegistryPlugins/blob/master/RegistryPlugin.OpenSavePidlMRU/OpenSavePidlMRU.cs
 - https://www.nirsoft.net/utils/open_save_files_view.html
 
+# search, grep
 
+```bash
+~/opt/volatility \
+    yarascan -Y "FwordCTF{" -p 3700,3752,2560,3304,3304,3528,616,540,3816,2516,3992 \
+    --profile=Win7SP1x64 \
+    --kdbg=0xf80002c48120 \
+    -f ~/share/ctf/FWordCTF2020/foren.raw
+# ||
+~/opt/volatility \
+    memmap -p 2560 \
+    --profile=Win7SP1x64 \
+    --kdbg=0xf80002c48120 \
+    -f ~/share/ctf/FWordCTF2020/foren.raw \
+    | awk '/0x/ {print $2 " " $3}' \
+    | while read -r i j; do dd skip=$i count=$j iflag=skip_bytes,count_bytes \
+        | rg -a "FwordCTF\{" 2560.dmp; done
+# ||
+~/opt/volatility \
+    memdump -p 2560 --dump-dir . \
+    --profile=Win7SP1x64 \
+    --kdbg=0xf80002c48120 \
+    -f ~/share/ctf/FWordCTF2020/foren.raw
+rg -a "FwordCTF\{" 2560.dmp
+
+# utf-16
+rg -a "foo" ./bar; rg -a -e utf-16 "foo" ./bar
+# ||
+grep -a "foo" ./bar; grep -Pa "$(echo "foo" | sed 's/\(.\)/\1\x00/g')" ./bar
+```
+
+https://www.andreafortuna.org/2017/07/10/volatility-my-own-cheatsheet-part-3-process-memory/

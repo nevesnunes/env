@@ -2,5 +2,5 @@
 # - https://pep8.readthedocs.io/en/stable/intro.html
 
 [pycodestyle]
-ignore = E501
+ignore = E203,E501
 max-line-length = 120

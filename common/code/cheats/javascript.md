@@ -1,6 +1,9 @@
 # +
 
-./typescript.md
+- [typescript](./typescript.md)
+
+- https://www.google.com/search?q=site:https://developer.mozilla.org/en-US/docs%20foo
+- [WebPageTest \- Website Performance and Optimization Test](https://www.webpagetest.org/)
 
 # Vanilla
 
@@ -216,8 +219,17 @@ https://programming.vip/docs/realization-and-analysis-of-virtual-dom-diff-algori
 ~/code/src/web/todomvc/examples/vanilla-es6/
 ~/code/src/web/todomvc/examples/vanillajs
     http://todomvc.com/examples/vanillajs/#/
+- https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-vue-here-are-the-differences-e9a1ae8077fd
+- https://hnpwa.com/
+- https://github.com/gothinkster/realworld
 
-https://stackoverflow.com/questions/34700438/global-events-in-angular
+- https://stackoverflow.com/questions/34700438/global-events-in-angular
+
+# Browser Automation
+
+- selenium webdriver
+- pyppeteer
+    - ~/code/guides/ctf/TFNS---writeups/2020-04-12-ByteBanditsCTF/notes-app/sources/mynotes/visit_link.py
 
 # Selectors
 

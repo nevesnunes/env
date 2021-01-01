@@ -49,8 +49,8 @@ alsamixer
 # Process Monitor (htop) [memory, input/output, resources, kill]
 htop
 
-# Find all logs changed within 5 minutes
-find /var/log -mmin -5
+# Find all logs changed within 5 minutes larger than given size
+find /var/log -mmin -5 -size +2M
 
 # Weather (curl) [wttr.in, wego]
 curl wttr.in 2>/dev/null | head -n7; read -n 1

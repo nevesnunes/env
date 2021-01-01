@@ -1,10 +1,18 @@
 # +
 
-https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md#osint-webpages
+- https://www.shodan.io/
+    - Find GWS (Google Web Server) servers: `"Server: gws" hostname:"google"`
+    - Find Cisco devices on a particular subnet: `cisco net:"216.219.143.0/24"`
+- https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md#osint-webpages
 
 # reverse image search
 
-https://tineye.com/
+- https://tineye.com/
+
+# facial recognition
+
+- https://pimeyes.com/en
+    - Example: https://news.ycombinator.com/item?id=25580701
 
 # asn, whois
 
@@ -66,9 +74,12 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 
 # company
 
-- http://opencorporates.com
+- [List of Company Registers Around the World \| AML&\#x2d;CFT](https://aml-cft.net/library/company-registers/)
+- [OpenCorporates \- The Open Database Of The Corporate World](http://opencorporates.com)
+
 - state databases
-    - https://businesssearch.sos.ca.gov/
+    - [US Corporate Registry Directory](https://www.corpsearch.net/domestic.html)
+    - [Business Search \- Business Entities \- Business Programs \| California Secretary of State](https://businesssearch.sos.ca.gov/)
 
 # person
 
@@ -156,7 +167,7 @@ curl emailrep.io/john.smith@gmail.com
 
 - https://extreme-ip-lookup.com/
 - https://censys.io/ipv4?q=
-- https://beta.shodan.io/search?query=google.com
+- https://shodan.io/search?query=foo.com
 
 ```bash
 # Ours

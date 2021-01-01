@@ -9,7 +9,7 @@ tracepath -n 192.168.1.2
 mturoute
 
 # Firewall bypassing, rule testing
-# https://dzone.com/articles/firewall-bypassing-techniques-with-nmap-and-hping3
+# - https://dzone.com/articles/firewall-bypassing-techniques-with-nmap-and-hping3
 
 # Fragment offset size
 nmap --mtu 16 192.168.1.12
@@ -17,8 +17,8 @@ nmap --mtu 16 192.168.1.12
 # Invalid TCP/UDP/SCTP checksum for packets transmitted to our target. As practically every host IP stack would correctly drop the packets, each response accepted is possibly originating from a firewall or Intrusion Detection System
 nmap --badsum 192.168.1.12
 
-# http://0daysecurity.com/articles/hping3_examples.html
-# http://0daysecurity.com/penetration-testing/discovery-and-probing.html
+# - http://0daysecurity.com/articles/hping3_examples.html
+# - http://0daysecurity.com/penetration-testing/discovery-and-probing.html
 
 # 1. Testing ICMP: In this example hping3 will behave like a normal ping utility, sending ICMP-echo und receiving ICMP-reply
 hping3 -1 0daysecurity.com
