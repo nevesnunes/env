@@ -9,10 +9,9 @@
 - https://www.malwarearchaeology.com/cheat-sheets
 
 - https://github.com/adon90/pentest_compilation
-- https://github.com/bitvijays/Pentest-Scripts
 - https://github.com/Orange-Cyberdefense/arsenal
-- https://github.com/enaqx/awesome-pentest
 - https://github.com/kyawthiha7/pentest-methodology
+- https://github.com/enaqx/awesome-pentest
 - https://prune2000.github.io/tools/pentest/
 
 - http://www.vulnerabilityassessment.co.uk/Penetration%20Test.html
