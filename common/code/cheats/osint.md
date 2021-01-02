@@ -2,14 +2,14 @@
 
 - https://www.shodan.io/
     - Find GWS (Google Web Server) servers: `"Server: gws" hostname:"google"`
-    - Find Cisco devices on a particular subnet: `cisco net:"216.219.143.0/24"`
+    - Find Cisco devices on a particular subnet: `cisco net:"123.123.123.0/24"`
 - https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md#osint-webpages
 
 # reverse image search
 
 - https://tineye.com/
 
-# facial recognition
+### facial recognition
 
 - https://pimeyes.com/en
     - Example: https://news.ycombinator.com/item?id=25580701
@@ -19,6 +19,8 @@
 ```bash
 # RIPE - RIR API database
 whois -h whois.arin.net -v 1.2.3.4
+# ASN, location, organization...
+curl -s "https://ipinfo.io/$ip"
 # :( Outdated
 curl 'https://api.hackertarget.com/aslookup/?q=1.2.3.4'
 # Query by number
@@ -48,9 +50,21 @@ curl 'https://stat.ripe.net/data/ris-asns/data.json?list_asns=true'
 - https://securitytrails.com/domain/0x00sec.org/dns
 
 ```bash
-subfinder -silent -d 0x00sec.org | dnsprobe -silent | awk  '{ print $2 }'  | sort -u | tee -a ips.txt
-org=$(curl -s <https://ipinfo.io/$ip> | jq -r '.org')
-title=$(timeout 2 curl -s -k -H "Host: 0x00sec.org" <https://$ip/> | pup 'title text{}')
+# DNS Dumpster
+curl -s "http://api.hackertarget.com/hostsearch/?q=$domain" | tee -a recon.out
+
+# DNS Queries
+curl -s "http://api.hackertarget.com/dnslookup/?q=$domain" | tee -a recon.out
+
+# DNS records
+dnsenum "$domain" | tee -a recon.out
+
+# Domain name permutation
+python ~/opt/dnstwist/dnstwist.py -c -r "$domain" | tee -a recon.out
+
+# Uses search engines, key servers, IOT databases...
+theharvester -d "$domain" -b all | tee -a recon.out
+subfinder -silent -d "$domain" | dnsprobe -silent | tee -a recon.out
 ```
 
 - https://delta.navisec.io/a-pentesters-guide-part-5-unmasking-wafs-and-finding-the-source/
@@ -173,9 +187,20 @@ curl emailrep.io/john.smith@gmail.com
 # Ours
 curl -4 https://ipinfo.io | jq -r '.ip'
 # Theirs
-curl ipinfo.io/54.90.107.240
-greynoise 54.90.107.240
-shodan host 216.58.210.206
+curl ipinfo.io/1.2.3.4
+greynoise 1.2.3.4
+shodan host 1.2.3.4
+```
+
+# software and technology stack lookup
+
+- https://builtwith.com/
+- https://www.wappalyzer.com/
+- https://stackshare.io/
+
+```bash
+# https://github.com/urbanadventurer/WhatWeb
+./whatweb "$domain"
 ```
 
 # source code

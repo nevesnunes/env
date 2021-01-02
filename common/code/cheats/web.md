@@ -23,6 +23,7 @@
 - https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/
     - https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html
     - https://hub.docker.com/r/bkimminich/juice-shop
+- [IppSec \- HackTheBox Writeups](https://ippsec.rocks/)
 
 # information disclosure
 
