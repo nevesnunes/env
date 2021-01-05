@@ -241,6 +241,11 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
     - https://ctf-wiki.github.io/ctf-wiki/web/ssrf/#bypass-posture
     - https://blog.dave.tf/post/ip-addr-parsing/
     - Mitigation: netmask
+- ip overflow
+    ```
+    127.0.513 == 127.0.2.1
+    ```
+    - https://ma.ttias.be/theres-more-than-one-way-to-write-an-ip-address/
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
 - https://github.com/jmdx/TLS-poison/

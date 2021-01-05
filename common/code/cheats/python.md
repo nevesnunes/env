@@ -278,6 +278,20 @@ python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 
 - [GitHub \- zrax/pycdc: C\+\+ python bytecode disassembler and decompiler](https://github.com/zrax/pycdc)
 
+- header format
+    - **[..3.3]**
+        - version + `0d 0a` (4 bytes)
+        - modification timestamp (4 bytes)
+    - **[3.3..3.7]**
+        - version + `0d 0a` (4 bytes)
+        - modification timestamp (4 bytes)
+        - file size (4 bytes)
+    - **[3.7..]**
+        - version + `0d 0a` (4 bytes)
+        - bit field (4 bytes)
+            - if 0, then 3rd word is timestamp, 4th word is file size
+            - if lowest bit 1, then 3rd to 4th word are 64-bit file hash
+
 ```bash
 # Finding script filenames
 # 1. debug until script loaded
@@ -319,7 +333,11 @@ foo.__code__.co_consts
 foo.func_code.co_consts
 ```
 
-https://late.am/post/2012/03/26/exploring-python-code-objects.html
+- https://nedbatchelder.com/blog/200804/the_structure_of_pyc_files.html
+- https://late.am/post/2012/03/26/exploring-python-code-objects.html
+- http://www.mingzhehu.cn/static/posts/20200211-PythonBytecodeDisassembler.html
+    - https://docs.python.org/3/library/importlib.html#importlib.util.MAGIC_NUMBER
+    - [PEP 552 \-\- Deterministic pycs \| Python\.org](https://www.python.org/dev/peps/pep-0552)
 
 # Memory Allocation / Storage
 

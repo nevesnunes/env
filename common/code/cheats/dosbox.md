@@ -1,4 +1,4 @@
-# shortcuts
+# keybinds
 
 - `Alt+Enter`: Switch fullscreen
 - `Alt+Pause`: Pause emulation

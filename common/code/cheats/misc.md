@@ -228,6 +228,8 @@ find / -perm -u=s -type f 2>/dev/null
     # On $vps_host:
     cat flag.txt > /dev/ttyS0
     ```
+- TLS SNI field
+    - https://www.mnemonic.no/blog/introducing-snicat/
 
 # encodings
 
