@@ -677,8 +677,8 @@ hi My0 cterm=bold ctermbg=magenta guibg=magenta ctermfg=black guifg=black
 hi My1 cterm=bold ctermbg=blue    guibg=blue    ctermfg=black guifg=black
 hi My2 cterm=bold ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
 hi My3 cterm=bold ctermbg=green   guibg=green   ctermfg=black guifg=black
-hi My4 cterm=bold ctermbg=yellow   guibg=yellow   ctermfg=black guifg=black
-hi My5 cterm=bold ctermbg=red   guibg=red   ctermfg=black guifg=black
+hi My4 cterm=bold ctermbg=yellow  guibg=yellow  ctermfg=black guifg=black
+hi My5 cterm=bold ctermbg=red     guibg=red     ctermfg=black guifg=black
 function! Match(...)
     if !exists('w:matches')
         let w:matches = {}
@@ -719,8 +719,13 @@ function! VisualMatch(positions, lines, key)
             let l:i += 1
         endwhile
 
+        " Match across multiple lines in provided range,
+        " skipping chars up to first target column.
         let l:text = join(a:lines, "\\n")
-        let l:pattern = '\%>' . (a:positions[0]-1) . 'l' . '\%<' . (a:positions[2]+1) . 'l' . l:text
+        let l:pattern = 
+            \ '\%>' . (a:positions[0]-1) . 'l' . 
+            \ '\%<' . (a:positions[2]+1) . 'l' . 
+            \ '\(^.\{' . (a:positions[1]-1) . '\}\)\@<=' . l:text
         let l:id = matchadd(l:key, l:pattern, -1)
         let w:matches[l:key] = l:id
     endif

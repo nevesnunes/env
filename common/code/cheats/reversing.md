@@ -18,6 +18,11 @@
     - https://binvis.io/
     - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
     - [Hex viewers and editors](https://twitter.com/i/events/841916822014332930)
+- entropy
+    ```bash
+    # Given $PYTHONPATH with matplotlib:
+    env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
+    ```
 
 # methodology
 

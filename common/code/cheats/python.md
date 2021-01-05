@@ -171,6 +171,12 @@ pip install -r requirements.txt
 pip install git+git://github.com/$user/$repository
 ```
 
+# Force install in path
+
+```bash
+env PYTHONPATH=/usr/lib/python3.8/site-packages python3.8 -m pip install --ignore-installed foo
+```
+
 # Override system site-packages
 
 ```bash
@@ -388,17 +394,18 @@ python3 -m http.server 8123
 
 ```bash
 # Create
+target=
 mkdir -p ~/code/venv
 cd ~/code/venv/
-python3 -m venv foo
+python3 -m venv "$target"
 # Note: packages will be installed in user path if specified in `pip.conf`, therefore override it
-cd foo
+cd "$target"
 printf '%s' '[install]
 user = false
 ' > ./pip.conf
 
 # Start
-. ~/code/venv/foo/bin/activate
+. ~/code/venv/"$target"/bin/activate
 
 # Install dependencies
 pip install angr
