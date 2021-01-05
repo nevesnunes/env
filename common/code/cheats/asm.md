@@ -323,4 +323,13 @@ https://access.redhat.com/blogs/766093/posts/1975793
 - [CTFtime\.org / Hack The Vote 2020 / x96](https://ctftime.org/task/13567)
 - http://wiki.osdev.org/X86-64#Long_Mode
 
+# endianess
 
+```c
+uint32_t read_le_int32(unsigned char *b) {
+    return uint32_t(b[0]) |
+            (uint32_t(b[1]) << 8) |
+            (uint32_t(b[2]) << 16) |
+            (uint32_t(b[3]) << 24);
+}
+```
