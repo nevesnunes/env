@@ -70,7 +70,7 @@ URxvt.clipboard.pastecmd: xclip -selection clipboard -o
 xterm*termName: xterm-16color
 
 UXTerm*faceNameDoublesize: Source Han Sans CN
-UXTerm*faceName: Monospace
+UXTerm*faceName: Iosevka Custom
 UXTerm*faceSize: 10
 UXTerm*geometry: 84x38
 UXTerm*jumpScroll: true
