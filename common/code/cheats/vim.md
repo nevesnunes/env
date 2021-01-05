@@ -72,6 +72,9 @@ search('bar', 'n') > 0
 " From cursor position until end of line
 :s/\(\%#.*\)\@<=find/replace/g
 
+" From specific position until end of line
+:s/\(^.\{123\}\)\@<=find/replace/g
+
 " Whole words
 :%s/\<find\>/replace/g
 ```
