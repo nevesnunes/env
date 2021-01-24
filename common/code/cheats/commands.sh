@@ -314,6 +314,9 @@ dd conv=noerror
 # dd safer output filename
 dd if=file.iso of=/dev/disk/by-id/ata-Samsung_SSD_840_EVO_120GB
 
+# dd copied data not sent to buffercache (used when data won't be read by any process)
+dd iflag=direct oflag=direct
+
 # hardware info
 dmidecode
 # || motherboard
