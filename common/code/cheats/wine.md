@@ -31,7 +31,7 @@ Wine-dbg>quit
 # prefix
 
 ```bash
-env WINEARCH=win32 WINEPREFIX=$HOME/wine32 winecfg
+env WINEARCH=win32 WINEPREFIX="$HOME/share/wine32" winecfg
 ```
 
 # run batch

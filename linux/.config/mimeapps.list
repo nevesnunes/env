@@ -137,6 +137,7 @@ image/vnd.djvu+multipage=org.pwmt.zathura-djvu.desktop;
 video/3gpp=mpv.desktop;
 text/calendar=gvim.desktop;
 application/pgp-keys=gvim.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop;
 
 [Default Applications]
 image/vnd.djvu=evince.desktop
@@ -261,6 +262,7 @@ image/vnd.djvu+multipage=org.pwmt.zathura-djvu.desktop
 video/3gpp=mpv.desktop
 inode/directory=pcmanfm.desktop
 x-scheme-handler/irc=pidgin.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop
 
 [Removed Associations]
 image/png=kde4-krita.desktop;kde4-krita_png.desktop;

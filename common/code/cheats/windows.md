@@ -335,6 +335,7 @@ exports
         c++ decorated names (aka. name mangling)
             parsed by - dumpbin, linker /MAP, undname ?func1@a@@AAEXH@Z
             https://docs.microsoft.com/en-us/cpp/build/reference/decorated-names?view=vs-2019
+            https://stackoverflow.com/questions/27824102/how-do-import-libraries-work-and-why-doesnt-mingw-need-them
         https://docs.microsoft.com/en-us/cpp/build/exporting-from-a-dll-using-def-files?view=vs-2019
         ```
         # match ordinal with symbol name

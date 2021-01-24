@@ -27,8 +27,7 @@ readline.parse_and_bind("tab: complete")
 # cleanup
 del os, atexit, readline, rlcompleter, save_history, historyPath
 
-
-# uint32_t to signed int32_t
+# uint32_t to int32_t
 #
 # References:
 # - https://graphics.stanford.edu/~seander/bithacks.html#VariableSignExtend

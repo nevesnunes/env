@@ -46,6 +46,18 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
     - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
 - hs256 = hmac sha256
 
+### similarity
+
+```bash
+ssdeep -s foo > fuzzy.db
+ssdeep -s -a -m fuzzy.db foo bar
+# foo matches fuzzy.db:foo (100)
+# bar matches fuzzy.db:foo (0)
+```
+
+- [GitHub \- sdhash/sdhash: similarity digest hashing tool](https://github.com/sdhash/sdhash)
+- [GitHub \- ssdeep\-project/ssdeep: Fuzzy hashing API and fuzzy hashing tool](https://github.com/ssdeep-project/ssdeep)
+
 ### patterns
 
 ```bash

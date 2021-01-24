@@ -23,6 +23,53 @@
     - [registry-keys-startup-folder](https://dmcxblue.gitbook.io/red-team-notes/persistence/registry-keys-startup-folder)
     - [Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder, Sub\-technique T1547\.001 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1547/001/)
 
+# self-modifying code, packers
+
+Detecting changes in process maps:
+
+```gdb
+# https://stackoverflow.com/questions/1780765/setting-a-gdb-exit-breakpoint-not-working
+catch syscall exit exit_group
+starti
+vmmap
+c
+vmmap
+dump memory foo.mem 0x401000 0x402000
+
+# Take pid (e.g. 123)
+info proc
+```
+
+```bash
+sha1sum foo
+# ||
+sha1sum /proc/123/map_files/401000-402000
+
+sha1sum foo.mem
+# || https://unix.stackexchange.com/questions/6301/how-do-i-read-from-proc-pid-mem-under-linux
+sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=int(sys.argv[3]);f.seek(s);sys.stdout.buffer.write(f.read(e-s))' /proc/123/mem $((0x401000)) $((0x402000)))
+```
+
+- https://shanetully.com/2013/12/writing-a-self-mutating-x86_64-c-program/
+
+### upx
+
+- Dumping executable from memory
+    ```gdb
+    # break after unpacking, but before executing unpacked code
+    catch syscall munmap
+    # ~/code/snippets/lief/dump_elf.py
+    ```
+- Fixing upx tags
+    - https://r3v3rs3r.wordpress.com/2015/09/18/solving-fusion-level-9/
+- TODO: understand trailing instructions added to unpacked executable map
+    - ~/code/wip/upx/
+    ```
+    0f 05           SYSCALL
+    5a              POP        RDX
+    c5              RET
+    ```
+
 # anti-debugging
 
 ### Windows

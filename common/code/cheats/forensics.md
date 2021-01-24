@@ -253,7 +253,7 @@ unrar x foo.part1.rar
     ```
 - application
     - steghide
-        - `()*56789:CDEFGHI`
+        - adds huffman table: `()*56789:CDEFGHI`
     - outguess
     - RGB vs RGBA
         - https://medium.com/swlh/lsb-image-steganography-using-python-2bbbee2c69a2

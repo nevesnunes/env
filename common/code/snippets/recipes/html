@@ -8,6 +8,10 @@
     <title>Title</title>
     <meta name="description" content="Description">
 
+    <!-- For mobile devices: Scaling and portrait orientation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJkaXNwbGF5IjoiYnJvd3NlciIsIm9yaWVudGF0aW9uIjoicG9ydHJhaXQifQ==">
+
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <!--[if lt IE 9]>

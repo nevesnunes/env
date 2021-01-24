@@ -308,6 +308,12 @@ pgrep '^dd$' | xargs -i kill -USR1 {}
 # || https://blog.sleeplessbeastie.eu/2015/01/23/how-to-check-the-progress-of-dd-using-proc-filesystem/
 sudo su -c "pgrep '^dd$' | xargs -i cat /proc/{}/io | awk '/wchar/ {print \$2}'"
 
+# dd handle errors
+dd conv=noerror
+
+# dd safer output filename
+dd if=file.iso of=/dev/disk/by-id/ata-Samsung_SSD_840_EVO_120GB
+
 # hardware info
 dmidecode
 # || motherboard
