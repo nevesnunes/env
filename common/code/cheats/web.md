@@ -347,6 +347,7 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
     - [CTFtime\.org / Google Capture The Flag 2018 \(Quals\) / bbs / Writeup](https://ctftime.org/writeup/10369)
 - Same-origin policy: iframes can access each other's data in same domain
     - Loosened via CORS
+    - Vulnerable to DNS Rebinding
     ```javascript
     var d = window.top.frames[0].window.document;
     ```

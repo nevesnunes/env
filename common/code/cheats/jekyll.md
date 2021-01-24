@@ -1,3 +1,9 @@
+# Supported fenced block languages for highlighting
+
+```bash
+rougify list
+```
+
 # Initialize array
 
 ```

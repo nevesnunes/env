@@ -1,3 +1,9 @@
+# repl
+
+```bash
+printf 'int main(){}' | gcc -o /tmp/1 -x c - && gdb /tmp/1 -ex 'b main' -ex 'r'
+```
+
 # building
 
 ```bash
@@ -89,6 +95,17 @@ LIBS=-l:libfoo.so.123 ./configure
 ```
 
 https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
+
+#### MinGW GCC support
+
+```bash
+reimp.exe -d foo.lib
+dlltool.exe -k -d foo.def -l foo.a
+```
+
+- https://trinitycore.atlassian.net/wiki/spaces/tc/pages/2130053/MinGW+GCC+toolchain+Win
+- https://wiki.tcl-lang.org/page/How+to+create+mingw32+libraries+from+DLLs
+- https://stackoverflow.com/questions/2472924/linking-to-msvc-dll-from-mingw
 
 ### override include
 

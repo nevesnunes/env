@@ -8,6 +8,8 @@
     - PE format: `floss`
 - libraries
     - ELF format: `ldd -iv` (validates shared libraries initialization)
+- packers
+    - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
 - syscalls
     - ELF format: `ltrace`, `strace`
     - PE format: `procmon`
@@ -125,9 +127,13 @@ perf trace record
 # - https://github.com/teemu-l/execution-trace-viewer
 ```
 
+# clean room design
+
+- [French Cafe technique - How Samba was written](https://www.samba.org/ftp/tridge/misc/french_cafe.txt)
+
 # case studies
 
-- https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md
+- [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
     - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
 
 ### binary patching
