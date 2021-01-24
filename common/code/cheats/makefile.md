@@ -1,8 +1,11 @@
 # debug
 
 ```bash
-# e.g. trace command line invocations
+# trace command line invocations
 make SHELL='sh -x'
+
+# print expanded value of variable
+echo 'print: ; @echo "$(VAR)"' | make -f Makefile -f - print
 ```
 
 ```make

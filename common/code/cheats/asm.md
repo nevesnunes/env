@@ -40,9 +40,13 @@
 objdump --dynamic-syms
 
 # Externally visible / Exports
+# ELF format
 # Given: Symbol table '.dynsym'
 nm --demangle --dynamic --defined-only --extern-only _
 readelf -Ws _ | awk '{ if (!match("0000000000000000", $2)) print }'
+# PE Format
+winedump -j export foo.dll
+mingw-objdump -p foo.dll
 ```
 
 # section headers

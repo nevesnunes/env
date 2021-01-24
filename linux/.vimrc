@@ -673,12 +673,11 @@ command! HighlightedSynGroup call HighlightedSynGroup()
 " - https://vim.fandom.com/wiki/Highlight_long_lines
 " Alternatives:
 " - https://github.com/MattesGroeger/vim-bookmarks
-hi My0 cterm=bold ctermbg=magenta guibg=magenta ctermfg=black guifg=black
-hi My1 cterm=bold ctermbg=blue    guibg=blue    ctermfg=black guifg=black
-hi My2 cterm=bold ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
-hi My3 cterm=bold ctermbg=green   guibg=green   ctermfg=black guifg=black
-hi My4 cterm=bold ctermbg=yellow  guibg=yellow  ctermfg=black guifg=black
-hi My5 cterm=bold ctermbg=red     guibg=red     ctermfg=black guifg=black
+hi My0 ctermbg=magenta guibg=magenta ctermfg=black guifg=black
+hi My1 ctermbg=blue    guibg=blue    ctermfg=black guifg=black
+hi My2 ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
+hi My3 ctermbg=green   guibg=green   ctermfg=black guifg=black
+hi My4 ctermbg=yellow  guibg=yellow  ctermfg=black guifg=black
 function! Match(...)
     if !exists('w:matches')
         let w:matches = {}
@@ -688,7 +687,7 @@ function! Match(...)
         let w:matches = {}
     else
         let l:size = len(keys(w:matches))
-        let l:key = 'My' . ((l:size + 0) % 4)
+        let l:key = 'My' . ((l:size + 0) % 5)
         let l:id = matchadd(l:key, a:1, -1)
         let w:matches[l:key] = l:id
     endif
@@ -732,7 +731,11 @@ function! VisualMatch(positions, lines, key)
 endfunction
 nmap <silent> ,v :call VisualMatch(VisualPositions(), [], "")<CR>
 vmap <silent> ,v :call VisualMatch(VisualPositions(), VisualSelection(), "")<CR>
-vmap <silent> ,1 :call VisualMatch(VisualPositions(), VisualSelection(), "My5")<CR>
+vmap <silent> ,1 :call VisualMatch(VisualPositions(), VisualSelection(), "My4")<CR>
+vmap <silent> ,2 :call VisualMatch(VisualPositions(), VisualSelection(), "My3")<CR>
+vmap <silent> ,3 :call VisualMatch(VisualPositions(), VisualSelection(), "My2")<CR>
+vmap <silent> ,4 :call VisualMatch(VisualPositions(), VisualSelection(), "My1")<CR>
+vmap <silent> ,5 :call VisualMatch(VisualPositions(), VisualSelection(), "My0")<CR>
 
 " }}}
 
