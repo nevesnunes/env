@@ -172,6 +172,9 @@ fdupes -r -f . | grep -v '^$' | xargs rm -v
 Examples:
 
 - [morse code encoded in time_delta](https://ajdin.io/posts/ctf-balccon-2020/#forensicspatience)
+- [ssh keystroke timing attack](https://jasonmurray.org/posts/2020/zeekweeksudosu/)
+    - https://corelight.blog/2019/05/07/how-zeek-can-provide-insights-despite-encrypted-communications/
+    - https://security.stackexchange.com/questions/47192/how-does-ssh-defend-against-keystroke-timing-attacks
 
 ### frequency analysis
 
