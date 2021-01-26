@@ -51,6 +51,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 ```
 
 - https://shanetully.com/2013/12/writing-a-self-mutating-x86_64-c-program/
+- https://redcanary.com/blog/process-memory-integrity-linux/
 
 ### upx
 

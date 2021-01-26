@@ -14,6 +14,7 @@
 - https://onlinedisassembler.com/
 - https://www.felixcloutier.com/x86/index.html
     - https://software.intel.com/en-us/articles/intel-sdm
+- http://unixwiz.net/techtips/x86-jumps.html
 
 - https://github.com/michalmalik/linux-re-101
 
