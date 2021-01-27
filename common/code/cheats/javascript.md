@@ -383,6 +383,27 @@ https://www.mikeglopez.com/source-mapping-webpack-for-chrome/
 [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) - monitored object has DOM tree changes
 [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) - monitored object enters or exits another element or viewport
 
+# shadow root
+
+```javascript
+// Reference: https://github.com/uBlock-user/uBO-Scriptlets/blob/master/scriptlets.js
+const queryShadowRootElement = (shadowRootElement, rootElement) => {
+    if (!rootElement) {
+        return queryShadowRootElement(shadowRootElement, document.documentElement);
+    }
+    const els = rootElement.querySelectorAll(shadowRootElement);
+    for (const el of els) { if (el) {return el;} }
+    const probes = rootElement.querySelectorAll('*');
+    for (const probe of probes) {
+         if (probe.shadowRoot) {
+             const shadowElement = queryShadowRootElement(shadowRootElement, probe.shadowRoot);
+         if (shadowElement) { return shadowElement; }
+         }
+    }
+    return null;
+};
+```
+
 # csp w/ 3rd party scripts
 
 <% response.setHeader("Content-Security-Policy", "style-src 'unsafe-inline' 'self' https://cdn.cookielaw.org; frame-ancestors 'self'; default-src 'unsafe-inline' 'self' data: https://cdn.cookielaw.org https://code.jquery.com https://geolocation.onetrust.com;"); %>
