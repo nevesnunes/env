@@ -78,7 +78,7 @@ script.textContent = "(" + main.toString() + ")();";
 
 - Alternative for prototype
 
-Adapted from uBlock Origin scriptlet for BlockAdBlock:
+Adapted from [uBlock Origin scriptlet for BlockAdBlock](https://github.com/gorhill/uBlock/blob/b179dc026816f72cccef60791d0a5f43320d8816/src/web_accessible_resources/nobab.js):
 
 ```javascript
 const check = function(s) {
