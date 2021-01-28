@@ -3,6 +3,7 @@
 import argparse
 import csv
 import json
+import re
 from typing import Any, Dict, Generator, List, Set
 
 
@@ -63,6 +64,12 @@ if __name__ == "__main__":
         choices=["float", "str"],
         help="Target type used when transforming values",
     )
+    parser.add_argument(
+        "-f",
+        "--filter",
+        type=str,
+        help="Regex pattern to match against packet field names to be included in output",
+    )
     parsed_args = parser.parse_args()
 
     filename = parsed_args.filename
@@ -79,7 +86,8 @@ if __name__ == "__main__":
             key = flat_pair[0]
             val = flat_pair[1]
 
-            keys.add(key)
+            if not parsed_args.filter or re.match(f".*{parsed_args.filter}.*", key):
+                keys.add(key)
             if key not in kv:
                 kv[key] = set()
             kv[key].add(val)
@@ -108,4 +116,7 @@ if __name__ == "__main__":
         writer = csv.DictWriter(f2, keys)
         writer.writeheader()
         for el in row_kv.values():
-            writer.writerow(el)
+            filtered_el = {}
+            for key in keys:
+                filtered_el[key] = el[key]
+            writer.writerow(filtered_el)
