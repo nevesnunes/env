@@ -547,4 +547,5 @@ Quit(0);
 EOF
 fontforge -script otf2ttf.sh FONTNAME.otf
 
-
+# System hardware info
+inxi -Fmxxxz

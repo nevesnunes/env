@@ -2,8 +2,8 @@
 
 ### Setup 1
 
-- Toshiba Hard Disk (`sdb`) connected to USB3.0 hub
-- SanDisk SSD (`sdc`) connected to USB2.0 hub
+- `sdb`: Toshiba Hard Disk (DT01ABA300, 5940 rpm) connected to USB3.0 hub
+- `sdc`: SanDisk SSD (SD9SN8W512G) connected to USB2.0 hub
 
 Benchmarks:
 
