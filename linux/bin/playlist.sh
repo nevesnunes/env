@@ -5,7 +5,9 @@ set -eu
 add_files() {
   playlist=$1
   while read -r i; do {
-    if ! file --mime-type "$i" | grep -qi '\(audio\|octet-stream\)'; then
+    if ! file --mime-type "$i" | \
+        awk -F':' '{print $NF}' | \
+        grep -qi '\(audio\|octet-stream\)'; then
       continue
     fi
 

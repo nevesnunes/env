@@ -68,8 +68,8 @@ c++ vs g++
 
 ### Flags
 
-```
--DCMAKE_CXX_FLAGS="-std=c++14"
+```bash
+cmake -DCMAKE_CXX_FLAGS="-std=c++14"
 ```
 
 # Debug
@@ -80,6 +80,23 @@ cmake --help-module FindPkgConfig
 cmake --trace --debug-output --debug-trycompile
 cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON ..
 make VERBOSE=1
+```
+
+### Symbols
+
+```cmake
+set(CMAKE_BUILD_TYPE Debug)
+```
+
+```bash
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake -DCMAKE_BUILD_TYPE=Debug
+```
+
+# Stack Size
+
+```cmake
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-z,stack-size=1000000")
 ```
 
 # Include Conflicts

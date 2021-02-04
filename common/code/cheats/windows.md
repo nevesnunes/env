@@ -740,3 +740,14 @@ https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
 # - https://twitter.com/Hexacorn/status/1300563682854875142
 certutil û<command>
 ```
+
+# install xp on hard disk
+
+1. Partition, format and set the partition as active;
+2. Install XP with: `D:\I386>winnt32 /syspart:F /tempdrive:F /makelocalsource /noreboot`;
+3. Delete `migrate.inf` file from `$WIN_NT$.~BT` directory;
+4. Put drive on the destination computer and continue installation normally.
+
+- https://bigcat.cl/2020/12/26/how-i-install-windows-xp-on-weird-old-devices/#more-23
+
+

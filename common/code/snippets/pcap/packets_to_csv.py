@@ -108,10 +108,13 @@ if __name__ == "__main__":
             elif not is_all_numbers and parsed_args.type == "float":
                 row_kv[i][key] = float(vals_list.index(row_kv[i][key]))
 
-    output_suffix = ""
+    suffixes = ""
     if parsed_args.type == "float":
-        output_suffix = ".float"
-    output_filename = f"{filename}{output_suffix}.csv"
+        suffixes += f".{parsed_args.type}"
+    if parsed_args.filter:
+        clean_filter = re.sub(r'[^\d\w]', '_', parsed_args.filter)
+        suffixes += f".{clean_filter}"
+    output_filename = f"{filename}{suffixes}.csv"
     with open(output_filename, "w", newline="") as f2:
         writer = csv.DictWriter(f2, keys)
         writer.writeheader()
