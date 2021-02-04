@@ -148,6 +148,14 @@ pdftk input.pdf output out.pdf allow AllFeatures
 gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOutputFile=%stdout% -c .setpdfwrite -f input.pdf > output.pdf
 ```
 
+- references to objects, tree
+    - https://eternal-todo.com/tools/peepdf-pdf-analysis-tool#usage
+- streams
+    - https://blog.didierstevens.com/2008/05/19/pdf-stream-objects/
+- xrefs
+    - https://labs.appligent.com/pdfblog/pdf_cross_reference_table/
+    - https://resources.infosecinstitute.com/topic/pdf-file-format-basic-structure/
+
 # zlib
 
 - compression level magic bytes

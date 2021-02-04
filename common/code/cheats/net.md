@@ -428,6 +428,18 @@ nghttp -v -ans https://foo/index.html
 
 - Caching - based on zone reported TTLs
     - https://superuser.com/questions/1533833/how-are-dns-records-updated-to-all-dns-servers-in-the-internet
+- [RFC 1035 \- Domain names \- implementation and specification](https://tools.ietf.org/html/rfc1035)
+    - 3.2.2. TYPE values
+
+## Reverse DNS lookup
+
+```bash
+for i in {0..255}; do dig +short -x 104.21.76.$i; done
+# ||
+python3 dnsrecon.py -d google.com -r 74.125.142.147/30 -n 8.8.8.8
+```
+
+- https://github.com/Shiva108/CTF-notes/blob/master/Notes%20VA/IP%2C%20DNS%20Domain%20Enumeration%20Cheatsheet.txt
 
 ## Resolving domain to localhost
 
@@ -440,8 +452,11 @@ php -S 127.0.0.1:80
 
 ## Enumerating subdomains
 
+### From SSL certificate
+
+- https://censys.io/certificates
+
 ```bash
-# From SSL certificate
 echo | \
     openssl s_client -connect foo.com:443  | \
     openssl x509 -noout -text | \
@@ -449,10 +464,19 @@ echo | \
 curl 'Host: enumerated.foo.com' 10.0.0.123
 ```
 
+### From certificate transparency report
+
+- https://www.google.com/transparencyreport/https/ct/
+
 ## DNS Zone Transfer
 
 - TCP port 53
 - nmap gateway_ip_or_host
+
+Examples:
+
+- [CTFtime\.org / EKOPARTY CTF 2017 / Spies / Writeup](https://ctftime.org/writeup/7505)
+    - Take all subdomains, sort response hashes from `curl -H "Host: $subdomain`
 
 ### linux
 
