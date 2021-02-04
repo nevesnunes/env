@@ -297,6 +297,26 @@ python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
         - bit field (4 bytes)
             - if 0, then 3rd word is timestamp, 4th word is file size
             - if lowest bit 1, then 3rd to 4th word are 64-bit file hash
+- bytecode versions
+    - https://github.com/google/pytype/blob/master/pytype/pyc/magic.py
+    - https://github.com/python/cpython/blob/master/Lib/importlib/_bootstrap_external.py
+    - validation:
+        ```bash
+        python3.6 -m compileall foo.py
+        python3.6 -c 'import imp;print(int.from_bytes(imp.get_magic()[:2], "little"))'
+        # 0xd33 => 3379
+        ```
+    - `/!\` 3.6 bytecode header is 12 bytes
+        - e.g. `diff <(xxd -l32 __pycache__/checker1.cpython-36.pyc) <(xxd -l32 __pycache__/checker1.cpython-38.pyc)`
+            ```diff
+            1,2c1,2
+            < 00000000: 330d 0d0a 0885 1660 ac01 0000 e300 0000  3......`........
+            < 00000010: 0000 0000 0000 0000 0002 0000 0040 0000  .............@..
+            ---
+            > 00000000: 550d 0d0a 0000 0000 0885 1660 ac01 0000  U..........`....
+            > 00000010: e300 0000 0000 0000 0000 0000 0000 0000  ................
+            ```
+    - https://reverseengineering.stackexchange.com/questions/23522/decompiling-python-files-valueerror
 
 ```bash
 # Finding script filenames

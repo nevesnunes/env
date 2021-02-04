@@ -14,6 +14,9 @@ f=a.pdf && { \
   peepdf "$f" -i
 } 2>/dev/null
 
+# Fault-tolerant render
+mutool draw -r 300 -o output.png
+
 # Add bookmarks / outline / table of contents
 djvused ./foo.djvu -e 'set-outline ./outline.txt' -s
 k2pdfopt -mode copy -n -toclist ./toclist.txt ./foo.pdf -o ./output.pdf
