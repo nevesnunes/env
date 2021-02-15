@@ -1,7 +1,7 @@
 # .bashrc
 
-# Source global definitions
-[ -f /etc/bashrc ] && source /etc/bashrc
+# . global definitions
+[ -f /etc/bashrc ] && . /etc/bashrc
 
 # Don't put duplicate lines or lines starting with space in the history
 HISTCONTROL=ignoreboth:erasedups
@@ -41,17 +41,17 @@ complete -W "$([ -f Makefile ] && grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' Makefile |
 
 completions_dir="$HOME/.local/share/completions/bash"
 [ -d "$completions_dir" ] && for i in "$completions_dir/"*; do
-    source "$i"
+    . "$i"
 done
 
+[ -f ~/.shrc ] && . ~/.shrc
 if [ -f ~/.bash_prompt ]; then
-    source ~/.bash_prompt
+    . ~/.bash_prompt
     PROMPT_COMMAND=prompt_main
 fi
-[ -f ~/.shrc ] && source ~/.shrc
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 [ -f ~/opt/bash-complete-partial-path/bash_completion ] && \
-    source ~/opt/bash-complete-partial-path/bash_completion && \
+    . ~/opt/bash-complete-partial-path/bash_completion && \
     _bcpp --defaults
 
 # Reset exit status for first prompt

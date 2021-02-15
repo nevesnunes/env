@@ -8,7 +8,7 @@
         - x64: rdi rsi rdx r10 r8 r9
 - https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
     - `__libc_start_main()`
-    - https://www.gnu.org/software/hurd/glibc/startup.html
+    - [GNU Hurd / glibc / How libc startup in a process works](https://www.gnu.org/software/hurd/glibc/startup.html)
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/
@@ -308,6 +308,13 @@ qemu-system-x86_64 -s -S -m 512 -fda winxp.img
 
 https://github.com/VoidHack/write-ups/tree/master/Square%20CTF%202017/reverse/floppy
 
+# toolchains
+
+- [Toolchains\.net \- Toolchain resources](https://www.toolchains.net/)
+- [ggx \- How To Retarget the GNU Toolchain in 21 Patches](http://atgreen.github.io/ggx/)
+- [crosstool\-NG \- versatile \(cross\) toolchain generator](https://crosstool-ng.github.io/)
+- [GitHub \- tpoechtrager/osxcross: Mac OS X cross toolchain for Linux, FreeBSD, OpenBSD and Android \(Termux\)](https://github.com/tpoechtrager/osxcross)
+
 # dynamic linking
 
 https://in4k.github.io/wiki/lsc-wiki-rtld
@@ -338,3 +345,25 @@ uint32_t read_le_int32(unsigned char *b) {
             (uint32_t(b[3]) << 24);
 }
 ```
+
+# address translation
+
+- https://github.com/hasherezade/bearparser/wiki/bearcommander
+
+### windows
+
+- virtual address (VA) = original virtual address of object loaded into memory
+- relative virtual address (RVA) = VA - ImageBase
+    - e.g. 0x1000 = 0x401000 - 0x400000
+- file offset of entry point = (.OptionalHeaders[EntryPointAddress] – .SectionHeaders[VirtualAddress[.text]]) + .SectionHeaders[PointerToRawData[.text]]
+
+### linux
+
+- ImageBase = ld script variable `__executable_start` = 0x400000
+    - e.g. `ld -M /bin/ls`
+    - https://reverseengineering.stackexchange.com/questions/16841/address-to-file-offset
+- SectionHeaders == ProgramHeaders
+- ! segment starts at next page-aligned virtual address due to mmap behaviour
+    - https://stackoverflow.com/questions/42599558/elf-program-header-virtual-address-and-file-offset
+
+

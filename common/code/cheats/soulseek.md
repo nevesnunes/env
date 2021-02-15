@@ -1,0 +1,7 @@
+# Queueing
+
+> As long as there are no files actively downloading from a user, the client will request place in line information for files queued with that user about every ten minutes. You should see "Requesting place in line for download of...." messages under Diagnostics->Logs->Transfer Queue appearing every once in a while. If these message are appearing but you're still not getting place in line information, it may signify a connectivity issue with that particular user. Certain older versions of Soulseek NS do appear to exhibit a problem of reforming peer connections to other users. Unfortunately nothing can be done about that. Not being able to accept connections may contribute to this problem.
+> SoulseekQt definitely should re-queue downloads from a user as soon as they go back online. I really can't say what might be going on there.
+> There are two perks that come with donating, while your privileges time lasts. The first is that your files will be queued ahead of other non-privileged users who aren't on the uploader's user list. The other is that your manual searches (not wishlist searches) will be delivered by the Soulseek server directly to every user instead of sending it through the distributed network, which gives you full coverage and a faster return of search results.
+
+- [Get Place In Line / Open Ports benefits \| Soulseek](http://www.soulseekqt.net/news/comment/1685#comment-1685)

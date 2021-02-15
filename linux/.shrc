@@ -71,17 +71,25 @@ command -v rlwrap >/dev/null 2>&1 && \
     alias sqlite="rlwrap -a -N -c -i -f ~/.rlwrap/sqlite3_completions sqlite3" && \
     alias winedbg="rlwrap -a -N -c -i -z ~/.rlwrap/filters/winedbg_fzf.pl winedbg"
 
-[ -f ~/.less_termcap ] && . ~/.less_termcap
-[ -f ~/.lscolors ] && . ~/.lscolors
-# shellcheck disable=SC1003
-if [ -f ~/.local/share/Xresources/osc4/light ]; then
-    while read -r i; do
-        if [ -n "$TMUX" ]; then
-            printf '\ePtmux;\e\e]4;%s\a\e\\' "$i"
-        else
-            printf '\e]4;%s\a' "$i"
+if [ -n "$TERM" ]; then
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+        # Avoid error `tput: No value for $TERM and no -T specified`
+        # Validation: `ssh foo@bar /bin/true`
+        export TERM="$TERM"
+    else
+        [ -f ~/.less_termcap ] && . ~/.less_termcap
+        [ -f ~/.lscolors ] && . ~/.lscolors
+        # shellcheck disable=SC1003
+        if [ -f ~/.local/share/Xresources/osc4/light ]; then
+            while read -r i; do
+                if [ -n "$TMUX" ]; then
+                    printf '\ePtmux;\e\e]4;%s\a\e\\' "$i"
+                else
+                    printf '\e]4;%s\a' "$i"
+                fi
+            done < ~/.local/share/Xresources/osc4/light
         fi
-    done < ~/.local/share/Xresources/osc4/light
+    fi
 fi
 
 pwd | grep -q '^/$' && cd ~

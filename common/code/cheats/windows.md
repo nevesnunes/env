@@ -42,7 +42,7 @@ $env:Path.split(';')
 Get-Command _ | Select-Object -ExpandProperty Definition
 
 [System.Net.ServicePointManager]::CertificatePolicy | Get-Member -Type All
-[System.Reflection.Assembly]::GetAssembly([System.Net.ServicePointManager]::CertificatePolicy.GetType()) | Format-Table -Wrap 
+[System.Reflection.Assembly]::GetAssembly([System.Net.ServicePointManager]::CertificatePolicy.GetType()) | Format-Table -Wrap
 
 # == ls -ltr
 dir | Sort-Object LastAccessTime
@@ -186,7 +186,7 @@ file:///C:/foo.txt:FILE0:$DATA
 # - HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control
 
 # oom - run separate svchost processes
-# https://www.reddit.com/r/sysadmin/comments/3w1kfp/windows_update_is_broken_for_w7_x64_ent_wsp1_and/cxso3r4/ 
+# https://www.reddit.com/r/sysadmin/comments/3w1kfp/windows_update_is_broken_for_w7_x64_ent_wsp1_and/cxso3r4/
 sc.exe config wuauserv type= own
 winmgmt /standalonehost
 
@@ -373,7 +373,7 @@ http://stevenhollidge.blogspot.com/2012/05/troubleshooting-kerberos-with-tools.h
 # rsync alternative
 
 robocopy
-! limit bandwidth 
+! limit bandwidth
     delay = filesize / 64KB * IPG (Inter Packet Gap)
     http://www.zeda.nl/index.php/en/copy-files-on-slow-links
     http://blog.nold.ca/2015/07/limiting-bandwidth-using-robocopy.html
@@ -743,11 +743,54 @@ certutil û<command>
 
 # install xp on hard disk
 
-1. Partition, format and set the partition as active;
-2. Install XP with: `D:\I386>winnt32 /syspart:F /tempdrive:F /makelocalsource /noreboot`;
+On Windows host:
+
+- If host is VM: connect disk via hub and passthrough usb hub device
+
+1. MBR partition, NTFS file system, quick format, and set the partition as active (= primary + boot flag set);
+2. Mount XP install cd, run `D:\I386\winnt32.exe /syspart:E /tempdrive:E /makelocalsource /noreboot`;
 3. Delete `migrate.inf` file from `$WIN_NT$.~BT` directory;
 4. Put drive on the destination computer and continue installation normally.
+    - If bootloader is GRUB:
+        ```
+        set root='(hdX,msdosY)'
+        chainloader +1
+        boot
+        ```
 
 - https://bigcat.cl/2020/12/26/how-i-install-windows-xp-on-weird-old-devices/#more-23
+- https://www.poweriso.com/tutorials/how-to-make-winxp-bootable-usb-drive.htm
+
+### slipstream drivers
+
+- https://www.nliteos.com
+
+### restore grub
+
+1. Make linux root partition bootable again
+    ```
+    (parted) print
+    # Given partition number = 3
+    (parted) set 3 boot on
+    ```
+2. Install GRUB to MBR
+    ```bash
+    grub2-install /dev/sda
+    ```
+3. Add Windows menuentry
+    - Automatic: os-detect script
+        ```bash
+        grub2-mkconfig -o /etc/default/grub.cfg
+        ```
+    - Alternative: Manual edit
+        ```
+        menuentry 'Windows Boot Manager' {
+            insmod part_msdos
+            set root='(hdX,msdosY)'
+            chainloader +1
+        }
+        ```
+
+- https://fedoraproject.org/wiki/GRUB_2
 
 
