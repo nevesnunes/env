@@ -78,7 +78,7 @@ cfdisk -z /dev/sdX
 bin2iso input.cue
 vcdgear -cue2raw input.cue output.iso
 # From bin to iso+wav
-bchunk -w x.bin x.cue y
+bchunk -w input.bin input.cue output
 ```
 
 - `.bin` and `.wav` filenames must match case-sensitive entries in `.cue`
