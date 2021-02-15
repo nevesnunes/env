@@ -30,6 +30,7 @@ Detecting changes in process maps:
 ```gdb
 # https://stackoverflow.com/questions/1780765/setting-a-gdb-exit-breakpoint-not-working
 catch syscall exit exit_group
+# || catch syscall 60 231
 starti
 vmmap
 c

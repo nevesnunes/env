@@ -1,6 +1,5 @@
 # +
 
-
 - [Quipquip](https://quipqiup.com/): subsituition cipher
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
 - [CSCBE2019 - Rosetta](https://renaud11232.github.io/ctf/CSCBE2019/Finals/rosetta/): multiple ciphers / alphabets / languages / fonts
@@ -66,7 +65,7 @@ sha1sum <() # da39a3ee5e6b4b0d3255bfef95601890afd80709
 sha256sum <() # e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
 ```
 
-### search space estimation
+### bruteforcing search space estimation
 
 ```javascript
 // [GRC's \| Password Haystacks: How Well Hidden is Your Needle?](https://www.grc.com/haystack.htm)
@@ -193,6 +192,11 @@ https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto
     > induce faults using GDB during the computation, retrieve the faulty result and then execute AES DFA (Differential Fault Analysis)
 
 # case studies
+
+- https://github.com/TFNS/writeups/tree/master/2020-04-25-IJCTF
+- https://github.com/TFNS/writeups/tree/master/2020-04-12-ByteBanditsCTF
+- https://github.com/TFNS/writeups/tree/master/2020-03-07-zer0ptsCTF/ror
+- https://github.com/TFNS/writeups/tree/master/2020-03-01-AeroCTF/magic
 
 - https://nakedsecurity.sophos.com/2013/07/09/anatomy-of-a-pseudorandom-number-generator-visualising-cryptocats-buggy-prng/
     - https://tobtu.com/decryptocat.php

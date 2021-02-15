@@ -40,7 +40,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.ctags \
   /home/"$USER"/./.dircolors \
   /home/"$USER"/./.dosbox* \
-  /home/"$USER"/./.eslintrc \
+  /home/"$USER"/./.eslintrc.js \
   /home/"$USER"/./.fluxbox \
   /home/"$USER"/./.gdbinit* \
   /home/"$USER"/./.gemrc \
@@ -54,10 +54,10 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.infokey \
   /home/"$USER"/./.inputrc \
   /home/"$USER"/./.jshintrc \
+  /home/"$USER"/./.lscolors \
   /home/"$USER"/./.milkytracker_config \
   /home/"$USER"/./.mostrc \
   /home/"$USER"/./.npmrc \
-  /home/"$USER"/./.oh-my-zsh \
   /home/"$USER"/./.pdbrc \
   /home/"$USER"/./.pentadactylrc \
   /home/"$USER"/./.profile \
