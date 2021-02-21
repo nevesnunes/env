@@ -17,6 +17,22 @@
 - http://unixwiz.net/techtips/x86-jumps.html
 
 - https://github.com/michalmalik/linux-re-101
+    
+# portable executable (PE)
+
+### main
+
+```asm
+CALL  _get_initial_narrow_environment
+MOV   EDI,EAX
+CALL  __p___argv                     
+MOV   ESI,dword ptr [EAX]
+CALL  __p___argc                     
+PUSH  EDI
+PUSH  ESI
+PUSH  dword ptr [EAX]
+CALL  FUN_00402100                   
+```
 
 # executable and linkable format (ELF)
 

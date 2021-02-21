@@ -22,4 +22,6 @@ djvused ./foo.djvu -e 'set-outline ./outline.txt' -s
 k2pdfopt -mode copy -n -toclist ./toclist.txt ./foo.pdf -o ./output.pdf
 
 # Merge
+pdf-stapler sel ./*.pdf output.pdf
+# ||
 pdftk preface.pdf toc.pdf ch*.pdf index.pdf cat output book.pdf
