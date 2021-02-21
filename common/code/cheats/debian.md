@@ -23,6 +23,14 @@ dpkg --configure -a
 
 https://www.debian.org/releases/buster/amd64/release-notes/ch-upgrading.en.html
 
+# use non-free repositories
+
+On /etc/apt/sources.list:
+
+```
+deb http://http.us.debian.org/debian stable main contrib non-free
+```
+
 # updates over http
 
 ```bash

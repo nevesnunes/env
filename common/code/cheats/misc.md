@@ -181,6 +181,8 @@ find / -perm -u=s -type f 2>/dev/null
         ```
     - https://github.com/leonjza/dnsfilexfer
     - https://github.com/vp777/DNS-data-exfiltration
+    - https://github.com/coryschwartz/dns_exfiltration
+    - https://hinty.io/devforth/dns-exfiltration-of-data-step-by-step-simple-guide/
 - TCP
     ```bash
     # ICMP (using file contents)
