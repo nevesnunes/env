@@ -81,6 +81,7 @@ iostat -xz 1
 
 ulimit -a
 
+# resource utilization
 # vmstat + iostat
 sar -A
 # network interface throughtput

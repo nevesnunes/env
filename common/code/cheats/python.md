@@ -165,6 +165,19 @@ pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
 
+# Install offline dependencies
+
+```bash
+pip wheel -r requirements.txt -w ./dependencies
+# ||
+pip download -r requirements.txt -d ./dependencies
+
+pip install --no-index --find-links ./dependencies "$package_name"
+
+# Using [python-pypi-mirror](https://pypi.org/project/python-pypi-mirror/)
+pip install --trusted-host "$http_server" -i "http://$http_server:$http_server_default_port/simple" "$package_name"
+```
+
 # Install remote dependency not in PyPI
 
 ```bash
@@ -456,6 +469,10 @@ jupytext --update --to notebook notebook.py     # update the input cells in the 
 jupytext --set-formats ipynb,py notebook.ipynb  # Turn notebook.ipynb into a paired ipynb/py notebook
 jupytext --sync notebook.ipynb                  # Update all paired representations of notebook.ipynb
 ```
+
+# docstrings
+
+- https://sphinx-rtd-tutorial.readthedocs.io/en/latest/docstrings.html
 
 # type checking
 

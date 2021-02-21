@@ -4,6 +4,24 @@
 sg cdrom -c 'whipper cd rip --offset=6 --unknown --cdr'
 ```
 
+### IDs
+
+```bash
+wine ~/opt/CUETools_2.1.6/ArCueDotNet.exe _ | grep ID
+# - [CTDB TOCID: wAKna2rolwFEvESF8jrHmRdm1ZQ-] found.
+#     - http://db.cuetools.net/?tocid=wAKna2rolwFEvESF8jrHmRdm1ZQ-
+# - [AccurateRip ID: 001eb21b-015c3e09-ca0f7b0f] found.
+#     - .cue DISCID = ca0f7b0f
+```
+
+Alternatives: 
+
+- [Look up musicbrainz disc id and freedb id from EAC/XLD log](http://eac-log-lookup.blogspot.com/)
+    - [Lookup musicbrainz and freedb by EAC log · GitHub](https://gist.github.com/kolen/766668)
+    - e.g. http://musicbrainz.org/cdtoc/attach?toc=1%2015%20...
+- dotnet tool install -g MetaBrainz.MusicBrainz.dotnet-mbdiscid
+    - dotnet mbdiscid
+
 # id3
 
 - Tags
@@ -52,6 +70,12 @@ eyeD3 --user-text-frame="REPLAYGAIN_TRACK_GAIN:" *.mp3
 ffmpeg -i in.flac -ab 320k -map_metadata 0 -id3v2_version 3 out.mp3
 ```
 
+# Re-compress flac
+
+```bash
+for i in ./*.flac; do ffmpeg -i "$i" -c:a flac -compression_level 12 "0.$i" && mv "0.$i" "$i"; done
+```
+
 # Copy stream without re-compression
 
 ```bash
@@ -66,17 +90,15 @@ ffmpeg -f lavfi -i color=size=8x8:rate=25:color=black -f lavfi -i anullsrc=chann
 
 # Remove tone, spectogram edit, notch filter
 
-https://manual.audacityteam.org/man/spectral_selection.html
+- https://manual.audacityteam.org/man/spectral_selection.html
+    - Audacity > Audio > Analyze menu > Plot spectrum
+    - Audacity > Audio > Effect menu > Notch filter
+    - Q=16.0
 
-- Audacity > Audio > Analyze menu > Plot spectrum
-- Audacity > Audio > Effect menu > Notch filter
-- Q=16.0
+- http://www.learningaboutelectronics.com/Articles/Quality-factor-calculator.php
 
-http://www.learningaboutelectronics.com/Articles/Quality-factor-calculator.php
-
-Use higher resolution for FFT and check if this is 15625Hz or 15750Hz - if this is one of those two then it means that you have TV Horizontal deflection frequency (probably crosstalk from cabling or poor PCB layout) - small differences from nominal frequency usually mean sampling clock shift/drift.
-
-There is one argument to remove such signal - this interferer stealing bits from useful signal so you can improve lossy coding by removing unwanted signal thus more bits will be allocated to useful signal (doubt about serious quality improvement but depend on codec and overall bitrate).
+> Use higher resolution for FFT and check if this is 15625Hz or 15750Hz - if this is one of those two then it means that you have TV Horizontal deflection frequency (probably crosstalk from cabling or poor PCB layout) - small differences from nominal frequency usually mean sampling clock shift/drift.
+> There is one argument to remove such signal - this interferer stealing bits from useful signal so you can improve lossy coding by removing unwanted signal thus more bits will be allocated to useful signal (doubt about serious quality improvement but depend on codec and overall bitrate).
 
 # peak db, max gain allowed without clipping
 
@@ -84,16 +106,18 @@ There is one argument to remove such signal - this interferer stealing bits from
 for i in *.flac; do ffmpeg -i "$i" -af "volumedetect" -vn -sn -dn -f null /dev/null; done 2>&1 | grep -o 'max_volume.*'
 ```
 
-https://superuser.com/questions/323119/how-can-i-normalize-audio-using-ffmpeg
+- https://superuser.com/questions/323119/how-can-i-normalize-audio-using-ffmpeg
 
 # click removal
 
-Spectrogram view instead of looking at the waveform often makes this much easier. The clicks and pops show up as vertical lines.
+> Spectrogram view instead of looking at the waveform often makes this much easier. The clicks and pops show up as vertical lines.
+> In Adobe Audition you can just select the affected samples and use the auto-heal function and it will usually draw the waveform exactly as it should be. Alternatively you can select the general area of the click and use the declick filter with moderate settings and it will only zap the click, as long as it's not crossing over a transient (beginning of a percussion hit) or is in the middle of horns or dense sawtooth harmonics.
+> It helps a bit to have the data preferences set to crossfade all edits by 1 or 2 ms. You can also draw a box in the spectrogram to confine your edits to just a certain frequency range, which is useful if the usual methods can't quite nail a low-frequency pop without killing the higher frequencies too.
+> On rare occasion where there's a massive pop, I might do some trickery with inverting the pop in one channel, or copying and mix-pasting the other channel's audio in, just to get the waveform closer to correct, and then auto-heal that. I've also experimented with converting a particularly crackly area to mid-side stereo, then auto-declicking the side more aggressively than the mid before converting back...this also helps reduce some sibilant distortion as found in "inner groove" areas of well-worn records, although it's never perfect.
+    - [Discogs Groups - Manual Click Removal Method, for those whose use the pencil](https://www.discogs.com/group/thread/725367#7201568)
 
-In Adobe Audition you can just select the affected samples and use the auto-heal function and it will usually draw the waveform exactly as it should be. Alternatively you can select the general area of the click and use the declick filter with moderate settings and it will only zap the click, as long as it's not crossing over a transient (beginning of a percussion hit) or is in the middle of horns or dense sawtooth harmonics.
+# dynamic range
 
-It helps a bit to have the data preferences set to crossfade all edits by 1 or 2 ms. You can also draw a box in the spectrogram to confine your edits to just a certain frequency range, which is useful if the usual methods can't quite nail a low-frequency pop without killing the higher frequencies too.
-
-On rare occasion where there's a massive pop, I might do some trickery with inverting the pop in one channel, or copying and mix-pasting the other channel's audio in, just to get the waveform closer to correct, and then auto-heal that. I've also experimented with converting a particularly crackly area to mid-side stereo, then auto-declicking the side more aggressively than the mid before converting back...this also helps reduce some sibilant distortion as found in "inner groove" areas of well-worn records, although it's never perfect.
-
-[Discogs Groups - Manual Click Removal Method, for those whose use the pencil](https://www.discogs.com/group/thread/725367#7201568)
+> The 16-bit compact disc has a theoretical undithered dynamic range of about 96 dB; however, the perceived dynamic range of 16-bit audio can be 120 dB or more with noise-shaped dither, taking advantage of the frequency response of the human ear.
+    - https://en.wikipedia.org/wiki/Dynamic_range
+    - => Dithering noise should be above noise floor (-96 dB)
