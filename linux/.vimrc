@@ -184,7 +184,7 @@ function! VimEnterPluginBehaviour()
         set statusline+=%{SyntasticStatuslineFlag()}
     endif
     set statusline+=%*
-    set statusline+=%=\ \ %o(0x%O)\ \ %b(0x%B)\ \ %l,%c\ %P
+    set statusline+=%=\ \ %b(0x%B)\ \ %o(0x%O),%l,%c\ %P
 
     " Display keystrokes in statusline
     set showcmd

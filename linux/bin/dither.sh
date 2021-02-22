@@ -60,7 +60,7 @@ while read -r i; do
   # References:
   # - [FLAC compression levels 8 versus 12](https://hydrogenaud.io/index.php?topic=108100.0)
   # - https://xiph.org/flac/format.html#subset
-  ffmpeg -i "$i" -c:a flac -compression_level 12 -format "$format" -vn "$tmp_dir/${i%.*}.flac" < /dev/null
+  ffmpeg -i "$i" -c:a flac -compression_level 12 -filter:a "$format" -vn "$tmp_dir/${i%.*}.flac" < /dev/null
 
   rm "$i"
 done <<< "$(find . -maxdepth 1 -type f | sed 's/^\.\///')"
@@ -68,7 +68,7 @@ mv "$tmp_dir"/*.flac ./
 
 cat > "info.dither.txt" << EOF
 Dither command:
-ffmpeg -i "\$input_file" -c:a flac -compression_level 12 -format "$format" -vn "\$output_file"
+ffmpeg -i "\$input_file" -c:a flac -compression_level 12 -filter:a "$format" -vn "\$output_file"
 
 Versions:
 $(ffmpeg -version | head -n1)
