@@ -8,15 +8,28 @@
 
 # Scripting
 
+1. On `Command` input field: 
+
 ```
 scriptload "C:\foo"
 ```
 
+2. Select tab `Script` > [Context Menu] Run
+
+- [GitHub \- x64dbg/Scripts: A collection of x64dbg scripts\. Feel free to submit a pull request to add your script\.](https://github.com/x64dbg/Scripts/)
+
 # Breakpoints
 
 ```
-SetBPX NtCreateSection
 SetBPX kernel32.WriteFile
+SetBPX kernelbase.WriteFile
+
+SetBPX ntdll.ZwQueryDirectoryFileW
+SetBPX kernelbase.FindNextFileExW
+SetBPX kernelbase.FindFirstFileExW
+
+SetBPX NtCreateSection
+
 SetBPX ucrtbase.dll._stricmp
 
 >= w7
