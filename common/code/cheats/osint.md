@@ -106,8 +106,11 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 
 ### social networks
 
+- [WhatsMyName Web](https://whatsmyname.app/)
+- [maltego-teeth](https://tools.kali.org/information-gathering/maltego-teeth)
+- [GitHub \- qeeqbox/social\-analyzer: API, CLI &amp; Web App for analyzing &amp; finding a person&\#39;s profile across 350\+ social media websites \(Detections are updated regularly\)](https://github.com/qeeqbox/social-analyzer)
 - [GitHub \- sherlock\-project/sherlock: 🔎 Hunt down social media accounts by username across social networks](https://github.com/sherlock-project/sherlock)
-- http://tweetbeaver.com
+- [TweetBeaver \- Home of Really Useful Twitter Tools](http://tweetbeaver.com)
 
 # ssl
 
