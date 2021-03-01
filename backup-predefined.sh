@@ -83,7 +83,6 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.zshrc \
   /home/"$USER"/./.chocolate-doom/*.cfg \
   /home/"$USER"/./.config/awesome \
-  /home/"$USER"/./.config/beets \
   /home/"$USER"/./.config/compton.conf \
   /home/"$USER"/./.config/darktable \
   /home/"$USER"/./.config/dconf \

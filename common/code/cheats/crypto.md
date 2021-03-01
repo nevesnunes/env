@@ -15,6 +15,11 @@
 - [The On\-Line Encyclopedia of Integer Sequences \(OEIS\)](https://oeis.org)
 - https://github.com/apsdehal/awesome-ctf#crypto
 
+- https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html
+- https://sockpuppet.org/blog/2013/07/22/applied-practical-cryptography/
+- https://cryptohack.org/
+- https://cryptopals.com/
+
 ```python
 gmpy2.isqrt(B * N // A)
 
@@ -40,10 +45,17 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
 - [Hash Analyzer \- TunnelsUP](https://www.tunnelsup.com/hash-analyzer/)
 - [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
 - POSIX user account passwords (`/etc/passwd, /etc/shadow`)
-    - https://en.wikipedia.org/wiki/Crypt_(C)#Key_derivation_functions_supported_by_crypt
+    - ./misc.md#crypt
 - md5 with salt
     - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
+
+### HMAC
+
 - hs256 = hmac sha256
+
+- Given `AES_CTR(SHA1(msg), KEY)` (AES keystream unchanged):
+    - length extension
+    - hmac value calculation: `mac_evil = mac_good ^ sha1(msg_good) ^ sha1(msg_evil)`
 
 ### similarity
 
