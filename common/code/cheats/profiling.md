@@ -1,21 +1,19 @@
 # +
 
-http://man7.org/linux/man-pages/man7/inode.7.html
-https://linux.die.net/man/8/lsof
-https://serverfault.com/a/964752
-lsof | \
-    awk '{print $1 " " $2}' | \
-    sort | \
-    uniq -c | \
-    sort -n
-lsof -d '^cwd,^err,^ltx,^mem,^mmap,^pd,^rtd,^txt' -a | \
-    awk '/\d+/{print $2}' | \
-    uniq | \
-    xargs -I{} -d'\n' sh -c "lsof -p "{}" -d '^cwd,^err,^ltx,^mem,^mmap,^pd,^rtd,^txt' -a | wc -l" | \
-    sort -n && \
-https://unix.stackexchange.com/questions/379187/how-to-run-ulimit-in-a-script-with-other-application
-ulimit -Hn
-sudo su dctmadm -c "ulimit -Hn"
+```bash
+# - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
+# - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
+uptime
+dmesg | tail
+vmstat 1
+mpstat -P ALL 1
+pidstat 1
+iostat -xz 1
+free -m
+sar -n DEV 1
+sar -n TCP,ETCP 1
+top
+```
 
 ```bash
 # host statistics
@@ -113,20 +111,24 @@ fdisk -l
 ```
 
 ```bash
-uptime
-dmesg | tail
-vmstat 1
-mpstat -P ALL 1
-pidstat 1
-iostat -xz 1
-free -m
-sar -n DEV 1
-sar -n TCP,ETCP 1
-top
-```
+# - http://man7.org/linux/man-pages/man7/inode.7.html
+# - https://linux.die.net/man/8/lsof
+# - [How can lsof report a higher number of open files than what ulimit says should be allowed? \- Server Fault](https://serverfault.com/a/964752)
+lsof | \
+    awk '{print $1 " " $2}' | \
+    sort | \
+    uniq -c | \
+    sort -n
+lsof -d '^cwd,^err,^ltx,^mem,^mmap,^pd,^rtd,^txt' -a | \
+    awk '/\d+/{print $2}' | \
+    uniq | \
+    xargs -I{} -d'\n' sh -c "lsof -p "{}" -d '^cwd,^err,^ltx,^mem,^mmap,^pd,^rtd,^txt' -a | wc -l" | \
+    sort -n && \
 
-https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
-https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
+# - [gnome terminal \- How to run ulimit in a script with other application \- Unix &amp; Linux Stack Exchange](https://unix.stackexchange.com/questions/379187/how-to-run-ulimit-in-a-script-with-other-application)
+ulimit -Hn
+sudo su user1 -c "ulimit -Hn"
+```
 
 # resources
 

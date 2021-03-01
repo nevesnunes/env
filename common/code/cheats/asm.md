@@ -269,6 +269,12 @@ nm -gC _.so
 objdump -b binary -m i386:x64-32:intel -D shellcode.bin
 ```
 
+# 16-bit
+
+```bash
+ida -m 0x100 -b 16 foo.com
+```
+
 # cross-architecture
 
 ```bash

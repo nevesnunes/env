@@ -226,17 +226,8 @@ grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
 
 ### parameters
 
-https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
-https://www.kernel.org/doc/Documentation/x86/x86_64/boot-options.txt
-
-# pocs
-
-- ~/code/src/pocs/dirtycow/dirty.c
-- [Linux Kernel 2\.4\.x/2\.6\.x \(CentOS 4\.8/5\.3 / RHEL 4\.8/5\.3 / SuSE 10 SP2/11 / Ubuntu 8\.10\) \(PPC\) \- &\#039;sock\_sendpage\(\)&\#039; Local Privilege Escalation \- Linux local Exploit](https://www.exploit-db.com/exploits/9545)
-- [Linux Kernel 2\.6 &lt; 2\.6\.19 \(White Box 4 / CentOS 4\.4/4\.5 / Fedora Core 4/5/6 x86\) \- &\#039;ip\_append\_data\(\)&\#039; Ring0 Privilege Escalation \(1\) \- Linux\_x86 local Exploit](https://www.exploit-db.com/exploits/9542)
-
-- https://appdome.github.io/2017/11/23/towelroot.html
-- https://github.com/SecWiki/linux-kernel-exploits/tree/master/2014/CVE-2014-3153
+- https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+- https://www.kernel.org/doc/Documentation/x86/x86_64/boot-options.txt
 
 # hooking
 
