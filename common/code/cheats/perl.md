@@ -115,6 +115,10 @@ gci -Recurse -File -Exclude *.pm,*.pod,*.pl
 
 # docs
 
+```bash
+perldoc -f function_foo
+```
+
 - https://github.com/OpusVL/perldoc.perl.org-engine
 - https://perldoc.perl.org/perlop.html#Quote-and-Quote-like-Operators
 

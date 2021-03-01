@@ -389,8 +389,10 @@ assert state has not changed between function calls
 # windows
 
 ```bash
-# crosscompiling from linux to exe for 32-bit
-i686-w64-mingw32-gcc 646.c -lws2_32 -o 646.exe
+# crosscompiling from linux to 32-bit exe
+i686-w64-mingw32-gcc foo.c -lws2_32 -o foo.exe
+# crosscompiling from linux to 64-bit exe
+x86_64-w64-mingw32-gcc foo.c -lws2_32 -o foo.exe
 ```
 
 https://virtuallyfun.com/wordpress/2020/02/01/cross-compiling-sdl-1-2-15-for-arm-win32/

@@ -16,16 +16,39 @@ wine ~/opt/CUETools_2.1.6/ArCueDotNet.exe _ | grep ID
 
 Alternatives: 
 
+- Chromaprint 
+    - `beet import -C`
+    - [Chromaprint/Acoustid Plugin &mdash; beets 1\.4\.9 documentation](https://beets.readthedocs.io/en/stable/plugins/chroma.html)
 - [Look up musicbrainz disc id and freedb id from EAC/XLD log](http://eac-log-lookup.blogspot.com/)
     - [Lookup musicbrainz and freedb by EAC log · GitHub](https://gist.github.com/kolen/766668)
     - e.g. http://musicbrainz.org/cdtoc/attach?toc=1%2015%20...
-- dotnet tool install -g MetaBrainz.MusicBrainz.dotnet-mbdiscid
-    - dotnet mbdiscid
+- `dotnet tool install -g MetaBrainz.MusicBrainz.dotnet-mbdiscid`
+    - `dotnet mbdiscid`
 
 # id3
 
 - Tags
     - `TXXX`: User Defined Text
+
+# wavpack (wv)
+
+```bash
+# List tags
+wvunpack -ss foo.wv
+wvtag -l foo.wv
+
+# Extract wav + cue
+wvunpack -cc foo.wv
+# Given zip with `.wv` extension: Extract files not listed in APEv2 tags
+atool -x foo.wv
+
+xxd -l80 foo.wv
+# 00000000: 7776 706b a08c 0000 0604 0000 c868 ab08  wvpk.........h..
+# 00000010: 0000 0000 44ac 0000 3118 bc04 68ba ac98  ....D...1...h...
+# 00000020: 2116 5249 4646 44a3 ad22 5741 5645 666d  !.RIFFD.."WAVEfm
+# 00000030: 7420 1000 0000 0100 0200 44ac 0000 10b1  t ........D.....
+# 00000040: 0200 0400 1000 6461 7461 20a3 ad22 0205  ......data .."..
+```
 
 # mp3
 

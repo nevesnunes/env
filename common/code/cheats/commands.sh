@@ -549,3 +549,6 @@ fontforge -script otf2ttf.sh FONTNAME.otf
 
 # System hardware info
 inxi -Fmxxxz
+
+# Generate random ascii bytes
+openssl rand -base64 48

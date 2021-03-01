@@ -1,8 +1,12 @@
-# Keep your current directory structure; importing should never move or copy files but instead just correct the tags on music
 import:
-    copy: no
+  # Keep your current directory structure;
+  # Importing should never move or copy files
+  # but instead just correct the tags on music.
+  copy: no
+library: ~/.local/share/beets/beets.db
 
+plugins: chroma discogs lastgenre
+chroma:
+  auto: yes
 lastgenre:
   count: 2
-library: ~/data/beets.db
-plugins: discogs lastgenre
