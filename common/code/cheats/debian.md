@@ -1,3 +1,13 @@
+# +
+
+```bash
+# latest installed packages
+grep " install " /var/log/dpkg.log
+
+# updates over http
+wget --recursive --no-parent --no-host-directories 192.168.1.4:8123
+```
+
 # upgrade distro version
 
 On /etc/apt/sources.list:
@@ -31,10 +41,24 @@ On /etc/apt/sources.list:
 deb http://http.us.debian.org/debian stable main contrib non-free
 ```
 
-# updates over http
+# use testing
+
+On /etc/apt/sources.list:
+
+```
+deb http://http.us.debian.org/debian testing main contrib
+```
+
+On /etc/apt/apt.conf.d/00default-release:
+
+```
+APT::Default-Release "stable";
+```
+
+Installing packages:
 
 ```bash
-wget --recursive --no-parent --no-host-directories 192.168.1.4:8123
+apt -t testing install foo
 ```
 
 # repair mode
