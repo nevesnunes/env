@@ -5,6 +5,11 @@
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
 - [GitHub \- google/cadvisor: Analyzes resource usage and performance characteristics of running containers\.](https://github.com/google/cadvisor)
 
+- https://gtfobins.github.io/gtfobins/docker/
+    ```bash
+    sudo docker run -v /:/mnt --rm -it alpine chroot /mnt sh
+    ```
+
 ```bash
 # Given: yi moby-engine
 sudo dockerd
@@ -67,6 +72,12 @@ docker volume create \
 docker run -it -v hello:/Downloads ubuntu bash
 # || Given: selinux enabled
 docker run -it -v hello:/Downloads:z ubuntu bash
+```
+
+### avoiding root
+
+```
+DOCKER_OPTS="--userns-remap=1000:1000"
 ```
 
 # build

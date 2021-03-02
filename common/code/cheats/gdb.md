@@ -57,6 +57,10 @@ bt full
 printf "%p\n", __libc_start_main
 printf "%x\n", (0x7ffff7e2afb0 + 0x043980)
 disass 0x7ffff7e2afb0
+x/i $pc
+# 0x7fffff6681db <_pselect+91>: cmp rax,0xfffffffffffff000
+x/-1i $pc
+# 0x7fffff6681d9 <_pselect+89>: syscall
 
 p/x $rbp - 0xc
 $5 = 0x7fffffffd124
@@ -277,19 +281,25 @@ inferior 1
 
 # Address in binary
 
-```
-(gdb) bt
+```gdb
+bt
 #0 0x00005555555546a8 in fillBuffer ()
 #1 0x00005555555546e1 in main ()
-(gdb) info proc mappings
-Mapped address spaces:
-Start Addr End Addr Size Offset objfile
-0x555555554000 0x555555555000 0x1000 0x0 /vagrant/shouldve_gone_for_the_head
-[output truncated]
-=>
-0x00005555555546a8 - 0x555555554000 + 0x0 = 0x6a8
+
+info proc mappings
+# Mapped address spaces:
+# Start Addr End Addr Size Offset objfile
+# 0x555555554000 0x555555555000 0x1000 0x0 /vagrant/shouldve_gone_for_the_head
+# [output truncated]
+# =>
+# 0x00005555555546a8 - 0x555555554000 + 0x0 = 0x6a8
 ```
--- https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/
+
+- empty pathname
+    > If the pathname field is blank, this is an anonymous mapping as obtained via mmap(2).  There is no easy way to coordinate this back to a process's source, short of running it through gdb(1), strace(1), or similar.
+    - https://man7.org/linux/man-pages/man5/proc.5.html
+
+- https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/
 
 # Functions
 
