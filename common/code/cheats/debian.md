@@ -1,14 +1,23 @@
 # +
 
 ```bash
-# latest installed packages
-grep " install " /var/log/dpkg.log
-
 # updates over http
 wget --recursive --no-parent --no-host-directories 192.168.1.4:8123
 ```
 
-# upgrade distro version
+# package manager
+
+```bash
+# latest installed packages
+grep " install " /var/log/dpkg.log{,.1}
+
+# downgrade
+apt-cache showpkg foo
+apt-get install foo=123
+apt-mark hold foo
+```
+
+### upgrade distro version
 
 On /etc/apt/sources.list:
 
@@ -33,7 +42,7 @@ dpkg --configure -a
 
 https://www.debian.org/releases/buster/amd64/release-notes/ch-upgrading.en.html
 
-# use non-free repositories
+### non-free repositories
 
 On /etc/apt/sources.list:
 
@@ -41,7 +50,7 @@ On /etc/apt/sources.list:
 deb http://http.us.debian.org/debian stable main contrib non-free
 ```
 
-# use testing
+### testing
 
 On /etc/apt/sources.list:
 
