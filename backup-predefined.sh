@@ -9,10 +9,11 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
-  --copy-links \
+  --no-links \
   --exclude='code/snippets/+' \
   --exclude='.git' \
   --exclude='node_modules' \
+  --exclude='__pycache__' \
   --filter='dir-merge,- .gitignore' \
   /home/"$USER"/./code/cheats \
   /home/"$USER"/./code/logbooks \
@@ -32,6 +33,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --exclude='gimpswap.*' \
   --exclude='.git' \
   --exclude='node_modules' \
+  --exclude='__pycache__' \
   --filter='dir-merge,- .gitignore' \
   /home/"$USER"/./.bashrc* \
   /home/"$USER"/./.bash_profile \

@@ -41,3 +41,12 @@ wineconsole
 # ||
 wine cmd.exe
 ```
+
+# dotnet
+
+```bash
+wine msiexec /i ./wine-mono-4.7.5.msi
+winetricks dotnet20
+```
+
+- https://wiki.winehq.org/Mono#Versions
