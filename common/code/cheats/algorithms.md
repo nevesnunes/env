@@ -547,6 +547,14 @@ permutations
 
 combinations
 
+# bit manipulation, twiddling
+
+```python
+hex(0xabcdef >> 8 && 0xff)  # 0xcd
+hex(0xabcd >> 8)  # 0xab
+hex(0xff << 8)  # 0xff00
+```
+
 # +
 
 https://github.com/VAR-solutions/Algorithms

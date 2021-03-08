@@ -1,9 +1,12 @@
 # +
 
 - [shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
+- [Linux/x64 \- execve\(/bin/sh\) Shellcode \(21 bytes\) \- Linux\_x86\-64 shellcode Exploit](https://www.exploit-db.com/exploits/41750)
+
 - [libc database search](https://libc.blukat.me/)
 - [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
 - [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
+
 - memfd_create dropper to download/execute files in memory
     - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
     > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64

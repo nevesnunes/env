@@ -123,6 +123,14 @@ convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
     - ~/Downloads/ReDeCheck - An Automatic Layout Failure Checking Tool for Responsively Designed Web Pages.pdf
     - user-defined layout constraints checked against different viewports
 
+# preserve indexed palette on resize
+
+```bash
+convert _ -sample 50% o50.png
+# ||
+convert _ -filter point -resize 50% o50.png
+```
+
 # levels
 
 http://www.imagemagick.org/discourse-server/viewtopic.php?t=27719

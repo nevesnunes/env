@@ -1,27 +1,31 @@
 # decompiler
 
-[GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
-[GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
-http://www.javadecompilers.com/apk
-http://www.decompileandroid.com/
+- [GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
+- [GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
+- http://www.javadecompilers.com/apk
+- http://www.decompileandroid.com/
 
-[GitHub \- androguard/androguard: Reverse engineering, Malware and goodware analysis of Android applications \.\.\. and more \(ninja !\)](https://github.com/androguard/androguard)
-    https://code.google.com/archive/p/elsim/wikis/Similarity.wiki#Android
-    https://www.phrack.org/issues.html?issue=68&id=15#article
-[GitHub \- enovella/fridroid\-unpacker: Defeat Java packers via Frida instrumentation](https://github.com/enovella/fridroid-unpacker)
+- [GitHub \- MobSF/Mobile\-Security\-Framework\-MobSF: Mobile Security Framework \(MobSF\) is an automated, all\-in\-one mobile application \(Android/iOS/Windows\) pen\-testing, malware analysis and security assessment framework capable of performing static and dynamic analysis\.](https://github.com/MobSF/Mobile-Security-Framework-MobSF)
+- [GitHub \- androguard/androguard: Reverse engineering, Malware and goodware analysis of Android applications \.\.\. and more \(ninja !\)](https://github.com/androguard/androguard)
+    - https://code.google.com/archive/p/elsim/wikis/Similarity.wiki#Android
+    - https://www.phrack.org/issues.html?issue=68&id=15#article
+-[GitHub \- enovella/fridroid\-unpacker: Defeat Java packers via Frida instrumentation](https://github.com/enovella/fridroid-unpacker)
+
+- [0x05j-testing-resiliency-against-reverse-engineering](https://mobile-security.gitbook.io/mobile-security-testing-guide/android-testing-guide/0x05j-testing-resiliency-against-reverse-engineering)
+- [Decompiling Google Safety Net \- Jared Rummler](https://jaredrummler.com/2017/03/07/decompiling-google-safety-net/)
 
 # dissassembler
 
-https://ibotpeaches.github.io/Apktool/install/
+- https://ibotpeaches.github.io/Apktool/install/
 
 # emulation
 
-https://github.com/aind-containers/aind
-    :) exposes VNC
-https://www.android-x86.org/
-    https://dotsrc.dl.osdn.net/osdn/android-x86/71931/android-x86_64-9.0-r1.iso
-    https://www.vimalin.com/blog/install-android-x86-in-vmware-fusion/
-https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android/docs/ANDROID-QEMU-PIPE.TXT
+- https://github.com/aind-containers/aind
+    - :) exposes VNC
+- https://www.android-x86.org/
+    - https://dotsrc.dl.osdn.net/osdn/android-x86/71931/android-x86_64-9.0-r1.iso
+    - https://www.vimalin.com/blog/install-android-x86-in-vmware-fusion/
+- https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android/docs/ANDROID-QEMU-PIPE.TXT
 
 ### anbox
 
@@ -39,13 +43,13 @@ apt -y install snapd \
     && snap install --devmode --beta anbox
 ```
 
-https://docs.anbox.io/userguide/install.html
-    https://docs.anbox.io/userguide/install_kernel_modules.html
-https://github.com/Deadolus/android-studio-docker
+- https://docs.anbox.io/userguide/install.html
+    - https://docs.anbox.io/userguide/install_kernel_modules.html
+- https://github.com/Deadolus/android-studio-docker
 
 ### container
 
-https://github.com/aind-containers/aind
+- https://github.com/aind-containers/aind
 
 # dynamic instrumentation
 
@@ -66,7 +70,7 @@ Class dynamic_class = dexClassLoader.loadClass("DynamicClass");
 Method method = dynamic_class.getMethod("method1");
 ```
 
-https://developer.android.com/reference/dalvik/system/DexClassLoader
+- https://developer.android.com/reference/dalvik/system/DexClassLoader
 
 # development
 
@@ -81,7 +85,7 @@ mkdir -p ~/opt \
     && rm android-studio.tar.gz
 ```
 
-https://www.fosslinux.com/13176/how-to-install-and-run-android-apps-on-ubuntu-using-anbox.htm
+- https://www.fosslinux.com/13176/how-to-install-and-run-android-apps-on-ubuntu-using-anbox.htm
 
 # running apps
 
@@ -138,11 +142,11 @@ adb forward tcp:8012 jdwp:$pid
 jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port=8012
 ```
 
-https://stackoverflow.com/questions/25477424/adb-shell-su-works-but-adb-root-does-not
-[Can i root anbox device? · Issue \#209 · anbox/anbox · GitHub](https://github.com/anbox/anbox/issues/209)
+- https://stackoverflow.com/questions/25477424/adb-shell-su-works-but-adb-root-does-not
+- [Can i root anbox device? · Issue \#209 · anbox/anbox · GitHub](https://github.com/anbox/anbox/issues/209)
 
-https://asantoso.wordpress.com/2009/09/26/using-jdb-with-adb-to-debugging-of-android-app-on-a-real-device/
-https://source.android.com/devices/tech/debug/gdb
+- https://asantoso.wordpress.com/2009/09/26/using-jdb-with-adb-to-debugging-of-android-app-on-a-real-device/
+- https://source.android.com/devices/tech/debug/gdb
 
 # root
 
