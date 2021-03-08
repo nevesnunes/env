@@ -441,7 +441,9 @@ user = false
 . ~/code/venv/"$target"/bin/activate
 
 # Install dependencies
-pip install angr
+pip install wheel
+pip install angr ipdb pwntools
+pip install -U six==1.13.0
 # Validation
 find ~/code/venv/foo/lib/ -maxdepth 3 -mmin -5
 

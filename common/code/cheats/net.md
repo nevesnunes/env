@@ -57,7 +57,7 @@ socat TCP-LISTEN:8080,fork,crnl SYSTEM:'printf \"HTTP/1.1 200 OK\\n\\n\"\; cat t
 socat - UDP-DATAGRAM:239.255.1.1:4242,ip-add-membership=239.255.1.1:10.0.0.10,ip-multicast-loop=0,bind=:4242
 ```
 
-https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
+- https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
 
 # connection testing
 
@@ -135,55 +135,47 @@ HTTP methods:
 
 # GraphQL
 
-./files/graphql.png
+![graphql.png](./files/graphql.png)
 
-data in a graph structure (versus by resources)
-one interface (versus multiple endpoints)
-type system
-    for each node an object type
-entrypoints
-    query
-    mutation
+- data in a graph structure (versus by resources)
+- one interface (versus multiple endpoints)
+- type system
+    - for each node an object type
+- entrypoints
+    - query
+    - mutation
 
-Data exposed to the API is represented by a graph where objects are represented by nodes and relationships between these objects are described by edges
-GraphQL is a RESTful API and more: a type system defines all queryable data on one endpoint
-There is no mapping between functions implemented on the server and HTTP methods
-Each object is backed by a resolver. The resolver is responsible for accessing the server’s data
+> Data exposed to the API is represented by a graph where objects are represented by nodes and relationships between these objects are described by edges.  GraphQL is a RESTful API and more: a type system defines all queryable data on one endpoint.  There is no mapping between functions implemented on the server and HTTP methods. Each object is backed by a resolver. The resolver is responsible for accessing the server’s data.
 
 # MTU
 
-The DHCP client daemon was not applying the MTU setting received from my DHCP server (On my private network I have set the MTU to 9000).
-
-There was a disabled option in /etc/dhcpcd.conf:
-
-```
-option interface_mtu
-```
-
-I enabled it and it worked.
-
-Now I understand why only the local websites could not be loaded, because the server responded with frames that were too big whereas those from the router never exceeded 1500B because they came from my ISP network.
+> The DHCP client daemon was not applying the MTU setting received from my DHCP server (On my private network I have set the MTU to 9000).
+> There was a disabled option in /etc/dhcpcd.conf:
+    ```
+    option interface_mtu
+    ```
+> I enabled it and it worked.
+> Now I understand why only the local websites could not be loaded, because the server responded with frames that were too big whereas those from the router never exceeded 1500B because they came from my ISP network.
 
 # private addresses
 
-Private IP addresses are not recognized by Internet routers.
-Packets with either source or destination private addresses are not forwarded across Internet links.
+- not recognized by Internet routers.
+- packets with either source or destination private addresses are not forwarded across Internet links.
 
-The private IP adresses are the following blocks:
+Address blocks:
 
     Class A 10.0.0.0 - 10.255.255.255
     Class B 172.16.0.0 - 172.31.255.255
     Class C 192.168.0.0 - 192.168.255.255
 
-[RFC 1918 \- Address Allocation for Private Internets](https://tools.ietf.org/html/rfc1918)
+- [RFC 1918 \- Address Allocation for Private Internets](https://tools.ietf.org/html/rfc1918)
 
 # qvalue
 
-Suffix ';q=' immediately followed by a value between 0 and 1 included, with up to three decimal digits, the highest value denoting the highest priority. When not present, the default value is 1.
+- Suffix ';q=' immediately followed by a value between 0 and 1 included, with up to three decimal digits, the highest value denoting the highest priority. When not present, the default value is 1.
+- HTTP headers using q-values in their syntax: Accept, Accept-Charset, Accept-Language, Accept-Encoding, TE.
 
-HTTP headers using q-values in their syntax: Accept, Accept-Charset, Accept-Language, Accept-Encoding, TE.
-
-- https://developer.mozilla.org/en-US/docs/Glossary/Quality_values
+- [Quality values \- MDN Web Docs Glossary: Definitions of Web\-related terms \| MDN](https://developer.mozilla.org/en-US/docs/Glossary/Quality_values)
 - [HTTP/1\.1: Protocol Parameters](https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.9)
 - [HTTP/1\.1: Content Negotiation](https://www.w3.org/Protocols/rfc2616/rfc2616-sec12.html#sec12)
 - [RFC 7230 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230#section-4.3)
@@ -226,8 +218,8 @@ auditctl -d ...
 ausearch -i
 ```
 
-https://serverfault.com/questions/352259/finding-short-lived-tcp-connections-owner-process
-    https://www.daemon.be/maarten/auditd.html
+- https://serverfault.com/questions/352259/finding-short-lived-tcp-connections-owner-process
+    - https://www.daemon.be/maarten/auditd.html
 
 ### ip_conntrack
 
@@ -258,7 +250,7 @@ cat /proc/net/tcp
 readlink /proc/$pid/fd/$fd
 ```
 
-https://superuser.com/questions/34782/with-linux-iptables-is-it-possible-to-log-the-process-command-name-that-initiat
+- https://superuser.com/questions/34782/with-linux-iptables-is-it-possible-to-log-the-process-command-name-that-initiat
 
 # network bandwidth / throughput
 
@@ -309,11 +301,11 @@ ifconfig
 
 # network segmentation, private VLANs, intra/inter VLAN ACLs
 
-https://medium.com/@cryps1s/endpoint-isolation-with-the-windows-firewall-462a795f4cfb
-IPSEC gives you kerberos authentication out of the gate. Use it. Build AD groups for your tier 0/tier 1 administrators and machines.
-Enforce bastion hosts with MFA.
-Use ASR for neutering WMI calls.
-Available in GPO and MEM, auditing exists.
+- IPSEC gives you kerberos authentication out of the gate. Use it. Build AD groups for your tier 0/tier 1 administrators and machines.
+- Enforce bastion hosts with MFA.
+- Use ASR for neutering WMI calls.
+- Available in GPO and MEM, auditing exists.
+- https://medium.com/@cryps1s/endpoint-isolation-with-the-windows-firewall-462a795f4cfb
 
 # sequence diagram
 
@@ -324,7 +316,7 @@ Available in GPO and MEM, auditing exists.
 
 # ARP Spoofing, ARP Poisoning
 
-~/code/snippets/arp_spoof.py
+- ~/code/snippets/arp_spoof.py
 
 ```bash
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080
@@ -346,58 +338,58 @@ tls
     wireshark - filter = ssl, follow = ssl stream
     https://community.cisco.com/t5/security-documents/troubleshoot-tls-using-wireshark/ta-p/3396123
     https://crypto.stackexchange.com/questions/19203/diffie-hellman-and-man-in-the-middle-attacks
-on non-standard port
-    Packet List > Decode As...
+- on non-standard port
+    - Packet List > Decode As...
 
-capture setup
-    Npcap || Win10Pcap
-        https://nmap.org/npcap/vs-winpcap.html
-    Wireshark Legacy - skips interface verification
-    https://wiki.wireshark.org/CaptureSetup/InterferingSoftware
-        Cisco VPN client: may hide all packets, even if not connected - disable the firewall in the Cisco VPN client or stop the "Cisco Systems, Inc. VPN Service"
+- capture setup
+    - Npcap || Win10Pcap
+        - https://nmap.org/npcap/vs-winpcap.html
+    - Wireshark Legacy - skips interface verification
+    - https://wiki.wireshark.org/CaptureSetup/InterferingSoftware
+        - Cisco VPN client: may hide all packets, even if not connected - disable the firewall in the Cisco VPN client or stop the "Cisco Systems, Inc. VPN Service"
 
-https://blogs.technet.microsoft.com/nettracer/2010/10/01/how-to-decrypt-an-ssl-or-tls-session-by-using-wireshark
-https://blogs.technet.microsoft.com/nettracer/2013/10/12/decrypting-ssltls-sessions-with-wireshark-reloaded/
-    Decrypt with private key
-        Edit > Preferences > Protocols > SSL > RSA keys list
-            IP, Port - from host that holds the private key used to decrypt the data and serves the certificate (i.e. the decrypting host, the server)
-            Protocol - upper-layer protocol encrypted by SSL/TLS, e.g. the protocol encrypted over a HTTPS connection is HTTP
-            SSL debug file = C:\Temp\ssl_debug.txt
-        :( If a Diffie-Hellman Ephemeral (DHE) or RSA ephemeral cipher suite is used, the RSA keys are only used to secure the DH or RSA exchange, not encrypt the data.
-            Cipher Suite = TLS_DHE, SSL_DHE
-            ServerKeyMessage
-        :( Capture must include SSL/TLS session establishment
-            Server sends certificate
-            SSL debug file = `ssl_restore_session can’t find stored session`
-        :( Duplicate packets
-            editcap -d
-        https://packetpushers.net/using-wireshark-to-decode-ssltls-packets/
-        https://www.ibm.com/developerworks/web/tutorials/wa-tomcat/index.html
-    Decrypt without private key
-        File > Export SSL Session Keys...
-    Packet list
-        Before = tcp
-        After = tcp, http, ssl, tls
-    Packet details > Expand: "Hypertext Transfer Protocol", "Line-based text data: text/html"
-    Print > Packet Format > Packet details = As displayed
+- https://blogs.technet.microsoft.com/nettracer/2010/10/01/how-to-decrypt-an-ssl-or-tls-session-by-using-wireshark
+- https://blogs.technet.microsoft.com/nettracer/2013/10/12/decrypting-ssltls-sessions-with-wireshark-reloaded/
+    - Decrypt with private key
+        - Edit > Preferences > Protocols > SSL > RSA keys list
+            - IP, Port - from host that holds the private key used to decrypt the data and serves the certificate (i.e. the decrypting host, the server)
+            - Protocol - upper-layer protocol encrypted by SSL/TLS, e.g. the protocol encrypted over a HTTPS connection is HTTP
+            - SSL debug file = C:\Temp\ssl_debug.txt
+        - :( If a Diffie-Hellman Ephemeral (DHE) or RSA ephemeral cipher suite is used, the RSA keys are only used to secure the DH or RSA exchange, not encrypt the data.
+            - Cipher Suite = TLS_DHE, SSL_DHE
+            - ServerKeyMessage
+        - :( Capture must include SSL/TLS session establishment
+            - Server sends certificate
+            - SSL debug file = `ssl_restore_session can’t find stored session`
+        - :( Duplicate packets
+            - `editcap -d`
+        - https://packetpushers.net/using-wireshark-to-decode-ssltls-packets/
+        - https://www.ibm.com/developerworks/web/tutorials/wa-tomcat/index.html
+    - Decrypt without private key
+        - File > Export SSL Session Keys...
+    - Packet list
+        - Before = tcp
+        - After = tcp, http, ssl, tls
+    - Packet details > Expand: "Hypertext Transfer Protocol", "Line-based text data: text/html"
+    - Print > Packet Format > Packet details = As displayed
 
-Termination of TCP connection = encrypted alert, SSL_shutdown
-    https://osqa-ask.wireshark.org/questions/38050/tlsv1-record-layer-encrypted-alert
-    https://www.openssl.org/docs/ssl/SSL_shutdown.html
-    https://tools.ietf.org/html/rfc5246#page-29
+- Termination of TCP connection = encrypted alert, SSL_shutdown
+    - https://osqa-ask.wireshark.org/questions/38050/tlsv1-record-layer-encrypted-alert
+    - https://www.openssl.org/docs/ssl/SSL_shutdown.html
+    - https://tools.ietf.org/html/rfc5246#page-29
 
-Certificate Requirements for TLS
-    Version = V3
-    Enhanced Key Usage = Server Authentication OID
-    Subject = Server FQDN
-    Subject Alternative Name = Server DNS FQDN
-    Public Key = RSA
-    Key Usage = "Digital Signature", "Key Encipherment"
-    https://documentation.meraki.com/zGeneral_Administration/Other_Topics/Certificate_Requirements_for_TLS
-    https://support.microsoft.com/en-my/help/814394/certificate-requirements-when-you-use-eap-tls-or-peap-with-eap-tls
+- Certificate Requirements for TLS
+    - Version = V3
+    - Enhanced Key Usage = Server Authentication OID
+    - Subject = Server FQDN
+    - Subject Alternative Name = Server DNS FQDN
+    - Public Key = RSA
+    - Key Usage = "Digital Signature", "Key Encipherment"
+    - https://documentation.meraki.com/zGeneral_Administration/Other_Topics/Certificate_Requirements_for_TLS
+    - https://support.microsoft.com/en-my/help/814394/certificate-requirements-when-you-use-eap-tls-or-peap-with-eap-tls
 
-Local network is untrustworthy, cannot confirm it is connected to secure gateway, unknown CA
-    http://blog.bstpierre.org/fixing-certificate-errors-with-cisco-anyconnect
+- Local network is untrustworthy, cannot confirm it is connected to secure gateway, unknown CA
+    - http://blog.bstpierre.org/fixing-certificate-errors-with-cisco-anyconnect
     ```bash
     vpn_server=
     openssl s_client -connect www."$vpn_server".com:443 2>&1 | sed -n '/^issuer=/s/.*CN=//p'
@@ -411,9 +403,9 @@ Local network is untrustworthy, cannot confirm it is connected to secure gateway
     cp output.pem ~/.cisco/certificates/ca
     ```
 
-User Authentication against Active Directory, Dissecting EAP-TLS
-    SAM Account Name (short name) vs User Principle Name (UPN, includes domain)
-    ~/Downloads/BRKSEC-3229.pdf
+- User Authentication against Active Directory, Dissecting EAP-TLS
+    - SAM Account Name (short name) vs User Principle Name (UPN, includes domain)
+    - ~/Downloads/BRKSEC-3229.pdf
 
 ### HTTP/2
 
@@ -502,34 +494,31 @@ nslookup
 
 # sqlserver trace
 
-Microsoft Message Analyzer
-    https://www.microsoft.com/en-us/download/details.aspx?id=44226
+- Microsoft Message Analyzer
+    - https://www.microsoft.com/en-us/download/details.aspx?id=44226
 
 1. New Session
 2. New Data Source > Live Trace
 3. Scenario > Select:
-    If AppFoo and SQL on same system: Loopback and Unencrypted IPsec
-    If AppFoo and SQL on separate systems: Local Network Interfaces
+    - If AppFoo and SQL on same system: Loopback and Unencrypted IPsec
+    - If AppFoo and SQL on separate systems: Local Network Interfaces
 4. Start
 5. Message Table > Column Header > Add Columns > TDS > SQLBatch > SqlBatchPacketData > Right Click: SQLText > Add as column
-    -- https://stackoverflow.com/questions/2023589/how-can-i-decode-sql-server-traffic-with-wireshark
+    - https://stackoverflow.com/questions/2023589/how-can-i-decode-sql-server-traffic-with-wireshark
 
-clear log
-    restart session
-
-mma
+- clear log
+    - restart session
+- mma
     - `TDS`
     - `*SQLText contains "a"`
     ```
     Fail to start live consumer
     Please reinstall Message Analyzer to correct the problem. If the PEF-WFP-MessageProvider continues to fail, you may have a conflict with a third party filter driver or your computer might have reached the maximum number of drivers allowed, for example, on a Windows 7 machine. To resolve this issue, you can try increasing the filter driver limit in the registry.
     ```
-
-test
-    sqlcmd without `-N` (encrypt connection)
-
-validate TDS packets are sent
-    Transact-SQL session > Query menu > Include Client Statistics
+- test
+    - sqlcmd without `-N` (encrypt connection)
+- validate TDS packets are sent
+    - Transact-SQL session > Query menu > Include Client Statistics
 
 - https://dragos.com/blog/industry-news/threat-hunting-with-python-part-4-examining-microsoft-sql-based-historian-traffic/
 - https://www.anitian.com/hacking-microsoft-sql-server-without-a-password/
@@ -537,7 +526,7 @@ validate TDS packets are sent
 - https://docs.microsoft.com/en-us/message-analyzer/applying-and-managing-filters
 - https://docs.microsoft.com/en-us/message-analyzer/filtering-live-trace-session-results
 
-|| dump tables and diff before and after action on app
+- || dump tables and diff before and after action on app
 
 ---
 
@@ -546,13 +535,13 @@ validate TDS packets are sent
 tshark -i lo -d tcp.port==1433,tds -T fields -e tds.query
 ```
 
-The "Microsoft-Windows-NDIS-PacketCapture" provider is used by Message Analyzer, the "netsh trace" command and the "NetEventPacketCapture" PowerShell cmdlets (in particular, the "Add-NetEventPacketCaptureProvider" cmdlet).
--- http://gary-nebbett.blogspot.com/2018/06/gary-gary-2-2132-2018-06-06t153500z.html
+> The "Microsoft-Windows-NDIS-PacketCapture" provider is used by Message Analyzer, the "netsh trace" command and the "NetEventPacketCapture" PowerShell cmdlets (in particular, the "Add-NetEventPacketCaptureProvider" cmdlet).
+    - http://gary-nebbett.blogspot.com/2018/06/gary-gary-2-2132-2018-06-06t153500z.html
 
-Loopback
-    On: WMA > Add System Providers
+- Loopback
+    - On: WMA > Add System Providers
     - Microsoft-Windows-WFP
-        = Windows Filtering Provider
+        - (= Windows Filtering Provider)
     - MSSQLSERVER Trace
     - sqlserver
 
@@ -561,7 +550,7 @@ netsh trace start scenario=NetConnection capture=yes report=yes persistent=no ma
 netsh trace stop
 ```
 
-https://blogs.technet.microsoft.com/yongrhee/2018/05/25/network-tracing-packet-sniffing-built-in-to-windows-server-2008-r2-and-windows-server-2012-2/
+- https://blogs.technet.microsoft.com/yongrhee/2018/05/25/network-tracing-packet-sniffing-built-in-to-windows-server-2008-r2-and-windows-server-2012-2/
 
 # url encoding
 

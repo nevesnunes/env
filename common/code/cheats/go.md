@@ -14,7 +14,7 @@ https://github.com/mitchellh/gox
 https://github.com/jpillora/cloud-gox
 
 ```bash
-GOOS=darwin GOARCH=386 go build
+GOOS=darwin GOARCH=386 go build -v
 ```
 
 # Modules

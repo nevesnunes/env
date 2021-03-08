@@ -44,6 +44,15 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
 
 - [Hash Analyzer \- TunnelsUP](https://www.tunnelsup.com/hash-analyzer/)
 - [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
+- https://github.com/HashPals/Search-That-Hash/blob/main/search_that_hash/cracker/online_mod/online.py
+    - MD5, SHA
+        - https://hashtoolkit.com/decrypt-hash/?hash=
+        - https://md5decrypt.net/Api/api.php?hash=
+    - LM, NTLM
+        - http://rainbowtables.it64.com
+        - https://cracker.okx.ch:443
+    - MySQL
+        - https://www.cmd5.org:443
 - POSIX user account passwords (`/etc/passwd, /etc/shadow`)
     - ./misc.md#crypt
 - md5 with salt
@@ -109,10 +118,17 @@ console.log(grc(64));
 
 - [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)
 - Factorizing big integers - http://factordb.com/
+- Coppersmith's short pad + Franklin-Reiter related-message
+    - univariate polynomial
+        - sage: `small_roots()`
+        - [CTFtime\.org / PlaidCTF 2020 / dyrpto / Writeup](https://ctftime.org/writeup/21175)
+        - [PapaRSA \(250\) &\#xB7; Hackademia Writeups](https://hgarrereyn.gitbooks.io/th3g3ntl3man-ctf-writeups/content/2017/UIUCTF/problems/Cryptography/papaRSA/)
+    - bivariate polynomial
+        - [GitHub \- ubuntor/coppersmith\-algorithm: Implements Coron&\#39;s simplification of Coppersmith&\#39;s algorithm](https://github.com/ubuntor/coppersmith-algorithm)
 
 # xor
 
-https://wiremask.eu/tools/xor-cracker/
+- https://wiremask.eu/tools/xor-cracker/
 
 - On length(known_prefix) >= length(key), full decryption is direct
     ```bash
@@ -135,7 +151,7 @@ https://wiremask.eu/tools/xor-cracker/
 - letter frequency: ~/code/snippets/ctf/crypto/frequency_analysis.py
 - decrypt letters: ~/code/snippets/ctf/crypto/chi_squared.py
 
-http://blog.dornea.nu/2016/10/29/ringzer0-ctf-javascript-challenges/#207f46edd62ccf43b49d59d48df5c867
+- http://blog.dornea.nu/2016/10/29/ringzer0-ctf-javascript-challenges/#207f46edd62ccf43b49d59d48df5c867
 
 # pseudo random number generator (PRNG)
 
@@ -165,11 +181,11 @@ http://blog.dornea.nu/2016/10/29/ringzer0-ctf-javascript-challenges/#207f46edd62
 
 ### LSFR
 
-[GitHub \- bozhu/BMA: Berlekamp\-Massey algorithm](https://github.com/bozhu/BMA)
+- [GitHub \- bozhu/BMA: Berlekamp\-Massey algorithm](https://github.com/bozhu/BMA)
 
 # one-time pad
 
-https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto-4e2685452fec
+- https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto-4e2685452fec
 
 # electronic color book (AES-ECB)
 

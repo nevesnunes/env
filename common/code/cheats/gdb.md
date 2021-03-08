@@ -239,9 +239,13 @@ set {int}debug_wait = 0
 
 http://heather.cs.ucdavis.edu/~matloff/pardebug.html
 
-# Catch syscall
+# syscalls
 
 ```gdb
+# e.g. dup2
+call (int)syscall(33, 1, 111)
+# $1 = 111
+
 # do nothing on break
 catch syscall
 commands
