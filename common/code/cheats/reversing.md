@@ -55,6 +55,23 @@
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research
 - https://blog.whtaguy.com/2020/04/guys-30-reverse-engineering-tips-tricks.html
 
+# seccomp
+
+- [GitHub \- david942j/seccomp\-tools: Provide powerful tools for seccomp analysis](https://github.com/david942j/seccomp-tools)
+
+- register
+    - https://man7.org/linux/man-pages/man2/prctl.2.html
+    ```strace
+    prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, {len=205, filter=0x7fffffffca50})
+    ```
+- format
+    ```
+    0x00000020  0x00000000  0xc8000015  0x00000309
+    0x00000020  0x00000010  0x00000054  0x000000ff
+    0x00c70035  0x00000080  0x00000020  0x00000010
+    0x00000074  0x00000008  0x00000054  0x000000ff
+    ```
+
 # vm
 
 - https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/

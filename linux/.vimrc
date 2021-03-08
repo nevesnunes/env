@@ -585,6 +585,7 @@ augroup filetype_group
     autocmd FileType xml,html,xhtml,json setlocal foldmethod=manual | normal! zR
 
     " Open folds
+    autocmd FileType markdown normal! zR
     autocmd FileType vim setlocal keywordprg=:help foldmethod=marker | normal! zR
     autocmd FileType xml,html,xhtml,json setlocal foldmethod=manual | normal! zR
 
