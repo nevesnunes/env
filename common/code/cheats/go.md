@@ -10,8 +10,8 @@ GO111MODULE=on go get -u $hostname/$module_path
 
 # Cross-platform builds
 
-https://github.com/mitchellh/gox
-https://github.com/jpillora/cloud-gox
+- [GitHub \- mitchellh/gox: A dead simple, no frills Go cross compile tool](https://github.com/mitchellh/gox)
+- [GitHub \- jpillora/cloud\-gox: A Go \(golang\) Cross\-Compiler in the cloud](https://github.com/jpillora/cloud-gox)
 
 ```bash
 GOOS=darwin GOARCH=386 go build -v
@@ -19,7 +19,7 @@ GOOS=darwin GOARCH=386 go build -v
 
 # Modules
 
-https://blog.golang.org/using-go-modules
+- https://blog.golang.org/using-go-modules
 
 # Language Server
 

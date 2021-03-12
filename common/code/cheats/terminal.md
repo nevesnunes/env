@@ -68,6 +68,11 @@ stty "$old_stty"
 echo $v | sed 's/.*\(rgb:[0-9a-f/]*\).*/\1/'
 ```
 
+### case studies
+
+- [NVD \- CVE\-2003\-0063](https://nvd.nist.gov/vuln/detail/CVE-2003-0063)
+- ['\(Konsole\-devel\) Fwd: Terminal Emulator Security Issues' \- MARC](https://marc.info/?l=konsole-devel&m=104617524910254&w=2)
+
 # capabilities
 
 ```bash

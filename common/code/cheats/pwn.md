@@ -202,7 +202,7 @@ exp = add_book(s, "A" * 39, 600)
 s.recvuntil("Choice?")
 ```
 
-Check controlled registers: 
+Check controlled registers:
 
 - e.g. look for `0x41414141`
 
@@ -210,6 +210,16 @@ References:
 
 - [Hacking Livestream \#48: Use\-after\-free \- YouTube](https://www.youtube.com/watch?v=zJw7CuSc8Sg)
     - https://github.com/gynvael/stream-en
+
+Examples:
+
+- [f\_rockusb: Avoid use\-after\-free in the global pointer variable · u\-boot/u\-boot@ff52577 · GitHub](https://github.com/u-boot/u-boot/commit/ff52577c1b5188a5f25bd7d7d41730bb5de4b688)
+```diff
++ free(f_rkusb->buf_head);
+  free(f_rkusb);
+- rockusb_func = f_rkusb;
++ rockusb_func = NULL;
+```
 
 # tcache poisoning
 
