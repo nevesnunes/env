@@ -14,6 +14,9 @@
 - http://www.networksorcery.com/enp/Protocol.htm
 - https://github.com/clowwindy/Awesome-Networking
 
+- [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
+- [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
+
 # performance
 
 - https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
@@ -290,14 +293,21 @@ ifconfig
 # => take ip of active network device, e.g. enp0s1
 ```
 
+- Type
+    - Network A - 192.168.9.0/24 - hub network
+    - Network B - 192.168.2.0/24 - adjacent network 1
+    - Network C - 192.168.3.0/24 - adjacent network 2
 - LAN = shared physical network
     - OSI Model layers - 1 + 2
 - Wifi - IEEE 802.11
     - [!] if not connected on LAN, attacker cannot get ip of router, since ip protocol is at OSI Model Layer 3
-- e.g.
-    - Network A - 192.168.9.0/24 - hub network
-    - Network B - 192.168.2.0/24 - adjacent network 1
-    - Network C - 192.168.3.0/24 - adjacent network 2
+    - packages - kernel (builtin modules), firmware (intel-microcode), udev...
+
+|            --- |      802.11ac |  802.11n | 802.11g | 802.11b | 802.11a |
+|---------------:|--------------:|---------:|--------:|--------:|--------:|
+| Frequency Band |          5GHz | 2.4;5GHz |  2.4GHz |  2.4GHz |    5GHz |
+|      Data Rate | 1300-1733Mbps |  450Mbps |  54Mbps |  11Mbps |  54Mbps |
+|  Channel Width |   20;40;80MHz | 20;40MHz |   20MHz |   20MHz |   20MHz |
 
 # network segmentation, private VLANs, intra/inter VLAN ACLs
 

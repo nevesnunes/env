@@ -84,6 +84,10 @@ p=foo/bar \
         --strip-blobs-with-ids <(printf "%s\n" "$1") .' _ {}
 ```
 
+- [GitHub \- newren/git\-filter\-repo: Quickly rewrite git repository history \(filter\-branch replacement\)](https://github.com/newren/git-filter-repo)
+- [GitHub \- rtyley/bfg\-repo\-cleaner: Removes large or troublesome blobs like git\-filter\-branch does, but faster\. And written in Scala](https://github.com/rtyley/bfg-repo-cleaner)
+- [Removing and purging files from git history \- Stephen Ostermiller](https://blog.ostermiller.org/removing-and-purging-files-from-git-history/)
+
 # interactive mode
 
 - patch: pick hunks (i.e. blocks of lines) to add to commit
