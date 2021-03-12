@@ -126,6 +126,8 @@ https://learnbyexample.github.io/substitution-with-ripgrep/
 - https://blog.p6.is/time-based-regex-injection/
     - https://speakerdeck.com/lmt_swallow/revisiting-redos-a-rough-idea-of-data-exfiltration-by-redos-and-side-channel-techniques
     - https://blog.hackeriet.no/regex-dos-in-java-layer/
+- [Regexploit: DoS-able Regular Expressions](https://blog.doyensec.com/2021/03/11/regexploit.html)
+- [Stack Exchange Network Status — Outage Postmortem \- July 20, 2016](https://stackstatus.net/post/147710624694/outage-postmortem-july-20-2016)
 
 # case studies
 
@@ -148,5 +150,3 @@ https://stackoverflow.com/questions/53497/regular-expression-that-matches-valid-
     [Automatic Regex Golf Player!](http://regex.inginf.units.it/golf/)
 [GitHub \- MaLeLabTs/RegexGenerator: This project contains the source code of a tool for generating regular expressions for text extraction:  1\. automatically, 2\. based only on examples of the desired behavior, 3\. without any external hint about how the target regex should look like](https://github.com/MaLeLabTs/RegexGenerator)
 [xkcd 1313: Regex Golf (Part 2: Infinite Problems) \- Jupyter Notebook Viewer](https://nbviewer.jupyter.org/url/norvig.com/ipython/xkcd1313-part2.ipynb)
-
-

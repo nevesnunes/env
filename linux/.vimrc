@@ -687,13 +687,26 @@ function! Match(...)
         call clearmatches()
         let w:matches = {}
     else
+        let l:words = join(a:000)
         let l:size = len(keys(w:matches))
         let l:key = 'My' . ((l:size + 0) % 5)
-        let l:id = matchadd(l:key, a:1, -1)
+        let l:id = matchadd(l:key, l:words, -1)
         let w:matches[l:key] = l:id
     endif
 endfunction
 command! -nargs=* Match :call Match(<f-args>)
+
+" Alternatives:
+" - https://github.com/mortie/lograt
+" - https://glogg.bonnefon.org/
+function! G(...)
+    let l:words = join(a:000)
+    call Match(l:words)
+    let @/=''.l:words
+    exec 'vimgrep /' . l:words . '/ %'
+    botright copen
+endfunction
+command! -nargs=* G :call G(<f-args>)
 
 " References:
 " - http://vimdoc.sourceforge.net/htmldoc/pattern.html#/\%%3El

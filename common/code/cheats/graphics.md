@@ -126,10 +126,23 @@ convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
 # preserve indexed palette on resize
 
 ```bash
-convert _ -sample 50% o50.png
-# ||
 convert _ -filter point -resize 50% o50.png
+# ||
+convert _ -sample 50% o50.png
+# With custom sampling point
+# Reference: https://imagemagick.org/script/command-line-options.php#sample
+convert _ -define sample:offset=75x25 -sample 50% o50.png
 ```
+
+# apply transformation from color lookup table
+
+```bash
+convert -hald:16 hald_16.png
+# [Apply transform with e.g. GIMP, take hald_16_processed.png]
+convert foo.png hald_16_processed.png -hald-clut foo_processed.jpg
+```
+
+- [IM equivalent of GIMP \- Levels \- Output \- ImageMagick](https://legacy.imagemagick.org/discourse-server/viewtopic.php?f=1&t=25913)
 
 # levels
 

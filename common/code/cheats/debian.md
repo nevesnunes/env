@@ -1,8 +1,12 @@
 # +
 
 ```bash
-# updates over http
-wget --recursive --no-parent --no-host-directories 192.168.1.4:8123
+# Updates over http
+# - ! Switch ports must be in same VLAN
+# - ! Wireless protocols must match
+#     - Used by host: iw dev wlan0 station dump
+#     - Supported by AP: iw dev wlan0 scan dump
+wget --recursive --no-parent --no-host-directories 192.168.1.5:8123
 ```
 
 # package manager

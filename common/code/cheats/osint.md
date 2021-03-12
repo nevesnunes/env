@@ -195,6 +195,10 @@ greynoise 1.2.3.4
 shodan host 1.2.3.4
 ```
 
+# webcam
+
+- https://www.shodan.io/explore/tag/webcam
+
 # software and technology stack lookup
 
 - https://builtwith.com/
@@ -212,6 +216,15 @@ shodan host 1.2.3.4
 - https://nerdydata.com/
 - https://searchcode.com/?q=
 - https://grep.app/
+
+### git
+
+- regex, signatures
+    - [GitHub \- eth0izzle/shhgit: Ah shhgit! Find secrets in your code\. Secrets detection for your GitHub, GitLab and Bitbucket repositories: www\.shhgit\.com](https://github.com/eth0izzle/shhgit/)
+- entropy
+    - [GitHub \- dxa4481/truffleHog: Searches through git repositories for high entropy strings and secrets, digging deep into commit history](https://github.com/dxa4481/truffleHog)
+- json, yaml
+    - [GitHub \- auth0/repo\-supervisor: Scan your code for security misconfiguration, search for passwords and secrets\.](https://github.com/auth0/repo-supervisor)
 
 ### github
 
