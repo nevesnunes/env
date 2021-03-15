@@ -105,6 +105,37 @@ f() {
     -iname '*'"$*"'*'
 }
 
+# `grep` with synonym expansion.
+s() {
+  database=$HOME/code/data/synonyms.txt
+  query="$*"
+  for word in "$@"; do
+    # Iterate through regex alternatives by substituting on `|`.
+    # To handle cases where no `|` character is present, force a first pass.
+    remainder="$word"
+    first="${remainder%%|*}"
+    remainder="${remainder#*|}"
+    if [ "$first" = "$remainder" ]; then
+      remainder=
+    fi
+    while [ -n "$first" ] || [ "$first" != "$remainder" ]; do
+      synonyms=$(grep -iw -- "$first" "$database" 2>/dev/null | paste -sd'|')
+      if [ -n "$synonyms" ]; then
+        query=$(echo "$query" | sed 's/\b'"$first"'\b/('"$synonyms"')/g')
+      fi
+
+      first="${remainder%%|*}"
+      remainder="${remainder#*|}"
+      if [ "$first" = "$remainder" ]; then
+        remainder=
+      fi
+    done
+  done
+
+  g "$query"
+}
+
+# `grep` with intermediate binary files conversion to plaintext.
 g() {
   if command -v rg >/dev/null 2>&1; then
     rg --smart-case \
@@ -157,6 +188,7 @@ g() {
     done
 }
 
+# `grep` with matches open in text editor.
 ge() {
   entry=$(git-grep-detached.sh "$*")
   [ -z "$entry" ] && return
@@ -198,6 +230,7 @@ o() {
   done
 }
 
+# `task` with output fitted to terminal height.
 t() {
   if [ $# -gt 0 ]; then
     task "$@" || return
