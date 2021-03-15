@@ -244,11 +244,11 @@ as -o foo.o foo.asm
 ld -o foo foo.o
 ```
 
-http://asm.sourceforge.net/intro/hello.html
-https://cs.lmu.edu/~ray/notes/gasexamples/
-https://stackoverflow.com/questions/36861903/assembling-32-bit-binaries-on-a-64-bit-system-gnu-toolchain
+- http://asm.sourceforge.net/intro/hello.html
+- https://cs.lmu.edu/~ray/notes/gasexamples/
+- https://stackoverflow.com/questions/36861903/assembling-32-bit-binaries-on-a-64-bit-system-gnu-toolchain
 
-https://stackoverflow.com/questions/46756320/change-a-call-address-in-memory
+- https://stackoverflow.com/questions/46756320/change-a-call-address-in-memory
 
 # dissassembling
 
@@ -293,8 +293,8 @@ sudo apt install \
 qemu-arm -L /usr/arm-linux-gnueabihf/ crackme
 ```
 
-https://github.com/OAlienO/CTF/tree/master/2018/HITCON-CTF/Baldis-RE-Basics
-https://padraignix.github.io/reverse-engineering/2020/05/18/nsec2020-crackme/
+- https://github.com/OAlienO/CTF/tree/master/2018/HITCON-CTF/Baldis-RE-Basics
+- https://padraignix.github.io/reverse-engineering/2020/05/18/nsec2020-crackme/
 
 ### compiling
 

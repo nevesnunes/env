@@ -92,7 +92,7 @@
 # instruction counting
 ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinscount.so -- ./a.out \
     | awk '/Instrumentation results:/{print $3}'
-qemu-x86_64 -d in_asm ~/a.out 2>&1 \
+qemu-x86_64 -d in_asm ./a.out 2>&1 \
     | awk '/IN:/{i+=1} END{print i}'
 gcc -O0 a.c && echo 'a' \
     | perf stat -e instructions:u ./a.out 2>&1 \

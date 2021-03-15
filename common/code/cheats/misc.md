@@ -41,8 +41,20 @@ searchsploit -s Apache Struts 2.0.0
 searchsploit linux reverse password
 searchsploit -j 55555 | json_pp
 
+msfconsole
+
 # Given exploit with available metasploit module
 msf > search $regex
+
+# || manual
+cp /usr/share/exploitdb/exploits/linux/remote/42084.rb /root/.msf4/modules/exploits/linux/remote/
+msf > use exploit/linux/remote/42084
+
+# configure
+# - https://www.offensive-security.com/metasploit-unleashed/msfconsole-commands/
+# - https://github.com/rapid7/metasploit-framework/wiki/How-to-use-a-Metasploit-module-appropriately
+msf > show options
+msf > set FOO 123
 ```
 
 # racing, race-condition

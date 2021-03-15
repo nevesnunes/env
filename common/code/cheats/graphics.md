@@ -161,6 +161,10 @@ Details > Sharpening
 
 [By FFT, what rotation?](http://im.snibgo.com/whatrotfft.htm)
 
+# unskew
+
+Perspective Tool
+
 # untwist
 
 Filters > Distorts > Whirl and Pinch...

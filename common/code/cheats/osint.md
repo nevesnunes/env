@@ -238,6 +238,8 @@ shodan host 1.2.3.4
     - https://github.com/search?q=user%3Afoo+fork%3Atrue&type=Repositories
     - https://github.com/search?q=filename%3Aconf.py+markdown&type=code
     - https://api.github.com/repos/AdoptOpenJDK/openjdk11-binaries/tags?per_page=100&page=2
+    - https://github.com/github/linguist/commits/master?since=2018-05-31&until=2018-07-01
+    - https://github.com/github/linguist/commits?branch=master&since=2018-05-31&until=2018-07-01
 
 # web history
 
