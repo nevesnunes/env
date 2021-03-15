@@ -1,3 +1,19 @@
+# +
+
+- bruteforce crc
+    - https://codisec.com/backdoorctf16-crc/
+
+- dictionary - improves run-length encoding
+    - https://news.ycombinator.com/item?id=9288710
+    - https://stackoverflow.com/questions/2011653/how-to-find-a-good-optimal-dictionary-for-zlib-setdictionary-when-processing-a
+
+- [Deflate \- Wikipedia](https://en.wikipedia.org/wiki/DEFLATE)
+    - `zlib.decompress(decoded_data , -15)`
+        - https://github.com/ResultsMayVary/ctf/tree/master/PlaidCTF-2017/misc50_zipper
+- [RFC 1950 ZLIB Compressed Data Format Specification version 3\.3](http://www.zlib.org/rfc-zlib.html)
+    - [zlib 1.2.11 Manual \- Advanced Functions](https://zlib.net/manual.html#Advanced)
+- [Shrink, Reduce, and Implode: The Legacy Zip Compression Methods](https://www.hanshq.net/zip2.html)
+
 # Apple Disk Image / Apple Driver Map (dmg)
 
 ```bash
@@ -25,8 +41,8 @@ find /lib/modules/"$(uname --kernel-release)" -name "hfs*.ko*"
 modinfo hfs hfsplus
 ```
 
-[p7zip / Bugs / \#113 zip extraction loss execute bit in applications](https://sourceforge.net/p/p7zip/bugs/113/)
-https://eastmanreference.com/how-to-work-with-dmg-files-on-linux
+- [p7zip / Bugs / \#113 zip extraction loss execute bit in applications](https://sourceforge.net/p/p7zip/bugs/113/)
+- [How to work with DMG files on Linux](https://eastmanreference.com/how-to-work-with-dmg-files-on-linux)
 
 # zip
 
@@ -96,9 +112,8 @@ bar.img
 
 ### password
 
-https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm
-
-flag = 0x1
+- flag = 0x1
+- https://sevenzip.osdn.jp/chm/cmdline/switches/password.htm
 
 ```bash
 patch.py 1_2.zip 4 0x14 # version
@@ -119,22 +134,3 @@ patch.py 1_2.zip 0x364 0x14
 patch.py 1_2.zip 0x365 0x03
 patch.py 1_2.zip 0x366 1
 ```
-
-# +
-
-https://zlib.net/manual.html#Advanced
-
-bruteforce crc
-    https://codisec.com/backdoorctf16-crc/
-
-direct deflate
-    https://github.com/ResultsMayVary/ctf/tree/master/PlaidCTF-2017/misc50_zipper
-
-dictionary - improves run-length encoding
-    https://news.ycombinator.com/item?id=9288710
-    https://stackoverflow.com/questions/2011653/how-to-find-a-good-optimal-dictionary-for-zlib-setdictionary-when-processing-a
-
-https://en.wikipedia.org/wiki/DEFLATE
-http://www.zlib.org/rfc-zlib.html
-
-

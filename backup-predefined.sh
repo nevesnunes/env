@@ -16,6 +16,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --exclude='__pycache__' \
   --filter='dir-merge,- .gitignore' \
   /home/"$USER"/./code/cheats \
+  /home/"$USER"/./code/data/synonyms.txt \
   /home/"$USER"/./code/logbooks \
   /home/"$USER"/./code/snippets \
   ./common/

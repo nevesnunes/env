@@ -2,7 +2,13 @@
 
 ```
 ftp x.x.x.x
+||
+ftp -nv x.x.x.x
+> user
 Name: anonymous
+||
+ftp -p x.x.x.x 8888
+
 cd incoming
 dir
 get foo
@@ -103,24 +109,24 @@ sudo su -s /bin/bash -c 'strace nc -z 192.168.1.3 25075 2>&1 | grep connect' ftp
 # Reference: man connect
 ```
 
-https://fedoramagazine.org/how-to-setup-an-anonymous-ftp-download-server/
-https://www.getpagespeed.com/server-setup/firewalld-ftp-rule-allow-access-ftp-service-centos-7
-https://serverfault.com/questions/38398/allowing-ftp-with-iptables
-https://stackoverflow.com/questions/19516263/200-port-command-successful-consider-using-pasv-425-failed-to-establish-connec
+- https://fedoramagazine.org/how-to-setup-an-anonymous-ftp-download-server/
+- https://www.getpagespeed.com/server-setup/firewalld-ftp-rule-allow-access-ftp-service-centos-7
+- https://serverfault.com/questions/38398/allowing-ftp-with-iptables
+- https://stackoverflow.com/questions/19516263/200-port-command-successful-consider-using-pasv-425-failed-to-establish-connec
 
 # specification
 
-http://slacksite.com/other/ftp.html
+- http://slacksite.com/other/ftp.html
 
 # maximum connections
 
-max in total vs. max per ip / user
-https://help.directadmin.com/item.php?id=491
-http://www.proftpd.org/docs/directives/linked/config_ref_MaxClientsPerUser.html
+- max in total vs. max per ip / user
+    - https://help.directadmin.com/item.php?id=491
+    - http://www.proftpd.org/docs/directives/linked/config_ref_MaxClientsPerUser.html
 
 # ambiguous error codes
 
-550
-https://kb.globalscape.com/KnowledgebaseArticle10305.aspx?Keywords=mix+error
+- 550
+    - https://kb.globalscape.com/KnowledgebaseArticle10305.aspx?Keywords=mix+error
 
 

@@ -15,6 +15,7 @@
 - [The On\-Line Encyclopedia of Integer Sequences \(OEIS\)](https://oeis.org)
 - https://github.com/apsdehal/awesome-ctf#crypto
 
+- [GitHub \- ashutosh1206/Crypton: Library consisting of explanation and implementation of all the existing attacks on various Encryption Systems, Digital Signatures, Key Exchange, Authentication methods along with example challenges from CTFs](https://github.com/ashutosh1206/Crypton)
 - https://latacora.micro.blog/2018/04/03/cryptographic-right-answers.html
 - https://sockpuppet.org/blog/2013/07/22/applied-practical-cryptography/
 - https://cryptohack.org/
@@ -225,6 +226,7 @@ console.log(grc(64));
 - https://github.com/TFNS/writeups/tree/master/2020-04-12-ByteBanditsCTF
 - https://github.com/TFNS/writeups/tree/master/2020-03-07-zer0ptsCTF/ror
 - https://github.com/TFNS/writeups/tree/master/2020-03-01-AeroCTF/magic
+- https://github.com/pcw109550/write-up
 
 - https://nakedsecurity.sophos.com/2013/07/09/anatomy-of-a-pseudorandom-number-generator-visualising-cryptocats-buggy-prng/
     - https://tobtu.com/decryptocat.php

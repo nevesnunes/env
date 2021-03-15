@@ -1,0 +1,9 @@
+foo|bar|baz
+add|create|generate|make|put
+remove|delete|drop|erase|purge
+include|contain|match
+string|text|word|token
+documentation|specification
+resource|guide|checklist|cheatsheet|mindmap|wiki
+codepage|locale|encoding
+anatomy|nomenclature|terminology
