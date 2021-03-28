@@ -57,6 +57,8 @@ bt full
 printf "%p\n", __libc_start_main
 printf "%x\n", (0x7ffff7e2afb0 + 0x043980)
 disass 0x7ffff7e2afb0
+# with instruction bytes in range
+disass /r 0x401050,0x401075
 x/i $pc
 # 0x7fffff6681db <_pselect+91>: cmp rax,0xfffffffffffff000
 x/-1i $pc

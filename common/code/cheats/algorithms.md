@@ -249,14 +249,18 @@ public int getHeight(TreeNode root) {
 ```
 https://www.programcreek.com/2013/02/leetcode-balanced-binary-tree-java/
 
+B-tree
+    structure fully in memory
+    :) performant caching - consider cache line sizes (or VM pages)
+
 AVL
     diff height between children -lt 2
 
-B-tree
-    structure fully in memory
-    :) performant caching
-
 Red-Black
+    :( keeping the colour in every tree node bloats the data – quite probably by 8 bytes for the struct size on a modern machine, and many malloc libraries round up to the next multiple or 16 or 32 bytes
+
+scapegoat tree
+    :) vs. red-black - requires only a few bytes of extra global storage (for powers of your acceptable unbalance factor) 
 
 # Graphs
 

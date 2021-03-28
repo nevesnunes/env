@@ -9,6 +9,9 @@
 - https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
     - `__libc_start_main()`
     - [GNU Hurd / glibc / How libc startup in a process works](https://www.gnu.org/software/hurd/glibc/startup.html)
+- [Linker and Libraries Guide](https://docs.oracle.com/cd/E19120-01/open.solaris/819-0690/index.html)
+- https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=msvc-160
+    - `_mainCRTStartup`
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/
@@ -17,6 +20,11 @@
 - http://unixwiz.net/techtips/x86-jumps.html
 
 - https://github.com/michalmalik/linux-re-101
+
+```bash
+# assembler source listing, includes symbols
+gcc -S -masm=intel
+```
     
 # portable executable (PE)
 
@@ -64,6 +72,10 @@ readelf -Ws _ | awk '{ if (!match("0000000000000000", $2)) print }'
 # PE Format
 winedump -j export foo.dll
 mingw-objdump -p foo.dll
+python3 -m pefile foo.exe
+r2 -c 'iae' -qq foo.exe
+env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/readpe foo.exe
+# https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py
 ```
 
 # section headers
@@ -284,6 +296,7 @@ sudo apt install \
     binutils-mips-linux-gnu \
     binutils-powerpc-linux-gnu \
     binutils-arm-linux-gnueabi \
+    libc6-arm64-cross \
     qemu-user \
     qemu-user-static
 
@@ -291,6 +304,10 @@ sudo apt install \
 sudo apt install \
     qemu-system-arm \
 qemu-arm -L /usr/arm-linux-gnueabihf/ crackme
+
+# debug
+qemu-aarch64 -singlestep -g 1234 -L /usr/aarch64-linux-gnu/ foo
+gdb-multiarch -ex 'target remote localhost:1234'
 ```
 
 - https://github.com/OAlienO/CTF/tree/master/2018/HITCON-CTF/Baldis-RE-Basics

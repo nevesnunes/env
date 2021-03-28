@@ -38,6 +38,16 @@ References:
 
 - https://unix.stackexchange.com/questions/125295/32-bit-vs-64-bit-vs-arm-in-regards-to-programs-and-oses
 
+# name mangling, name decoration
+
+```bash
+c++filt
+# ||
+undname ?func1@a@@AAEXH@Z
+```
+
+- https://docs.microsoft.com/en-us/cpp/build/reference/decorated-names?view=msvc-160
+
 # debug info
 
 `strip` - removes symbol names

@@ -1,10 +1,10 @@
 # memory usage
 
-about:performance
-    memory usage by tabs and extensions
-about:memory?file=/home/fn/Downloads/memory-report.json.gz
-about:memory?verbose
-    https://developer.mozilla.org/en-US/docs/Mozilla/Performance/about:memory
+- about:performance
+    - memory usage by tabs and extensions
+- about:memory?file=/home/fn/Downloads/memory-report.json.gz
+- about:memory?verbose
+    - https://developer.mozilla.org/en-US/docs/Mozilla/Performance/about:memory
 
 ```javascript
 // Multi-process usage (Electrolysis, e10s)
@@ -20,11 +20,11 @@ user_pref("browser.sessionhistory.max_total_viewers", 2);
 
 # navigation
 
-C-l % = filter by open tabs
-C-l * = filter by favorites
+- C-l % = filter by open tabs
+- C-l * = filter by favorites
 
-https://support.mozilla.org/en-US/kb/address-bar-autocomplete-firefox#w_changing-results-on-the-fly
-chrome://flags/#omnibox-tab-switch-suggestions
+- https://support.mozilla.org/en-US/kb/address-bar-autocomplete-firefox#w_changing-results-on-the-fly
+- chrome://flags/#omnibox-tab-switch-suggestions
 
 # session data
 
@@ -38,8 +38,10 @@ cp previous.js sessionstore.js
 
 https://superuser.com/questions/1270927/how-to-set-default-web-page-size-in-firefox
 
+```javascript
 FullZoom._cps2.setGlobal(FullZoom.name,1.2,gBrowser.selectedBrowser.loadContext);
 FullZoom._cps2.removeGlobal(FullZoom.name,gBrowser.selectedBrowser.loadContext);
+```
 
 browser/base/content/browser-fullZoom.js
 
@@ -52,14 +54,13 @@ FullZoom._cps2.getGlobal(FullZoom.name, gBrowser.selectedBrowser.loadContext, {
     }});
 ```
 
-|| about:config > zoom.minPercent
-
-|| https://bugzilla.mozilla.org/show_bug.cgi?id=1590485
+- || about:config > zoom.minPercent
+- || https://bugzilla.mozilla.org/show_bug.cgi?id=1590485
 
 # user agent
 
-about:config
-    general.useragent.override
+- about:config
+    - general.useragent.override
 
 # profiles
 
@@ -84,8 +85,8 @@ From `about:memory`:
     - [1538195 \- AV1 playback uses significantly more CPU when RDD is enabled](https://bugzilla.mozilla.org/show_bug.cgi?id=1538195)
     - [1539043 \- Reduce / remove copy and memory allocation when using RemoteDataDecoder \(decoder side\)](https://bugzilla.mozilla.org/show_bug.cgi?id=1539043)
 
-On multiple windows, one child's cmdline includes: parentBuildID
+- On multiple windows, one child's cmdline includes: parentBuildID
 
-[1500150 \- Setting dom\.ipc\.processCount=1 still creates multiple content processes](https://bugzilla.mozilla.org/show_bug.cgi?id=1500150)
+- [1500150 \- Setting dom\.ipc\.processCount=1 still creates multiple content processes](https://bugzilla.mozilla.org/show_bug.cgi?id=1500150)
 
 

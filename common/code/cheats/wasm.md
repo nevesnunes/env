@@ -5,6 +5,7 @@
 # documentation, specification
 
 - [Text Format &\#8212; WebAssembly 1\.1](https://webassembly.github.io/spec/core/text/index.html)
+- [GitHub \- WebAssembly/tool\-conventions: Conventions supporting interoperatibility between tools working with WebAssembly\.](https://github.com/WebAssembly/tool-conventions)
 
 # decompiling
 

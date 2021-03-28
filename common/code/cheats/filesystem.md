@@ -103,6 +103,20 @@ iat -i input.img --iso -o output.iso
     - http://willcodeforfood.co.uk/Content/Notes/ISO9660.htm
     - http://www.cdfs.com/cdfs-color-books.html
     - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-130.pdf
+- Virtual emulation compatibility with Red Book
+    - Running: Virtual drive in position 0 (== `D:`)
+    - Detection: Load CD in audio player
+    - http://www.oldversion.com/windows/daemon-tools-3-47
+    - http://www.magiciso.com/tutorials/miso-magicdisc-history.htm
+    - Nero 5.5.10.20 Burning Rom + Image Drive
+    - [\_inmm\.dll Tutorial &\#8211; Play Old PC Games](https://www.play-old-pc-games.com/compatibility-tools/_inmm-dll-tutorial/)
+        - https://community.pcgamingwiki.com/files/file/107-patched-inmmdll/
+        - http://forums.novelnews.net/showthread.php?t=6951
+        - http://www.cd-2-dvd.com/modules.php?name=Forums&file=viewtopic&t=1244
+    - [Age of Empires CD/A music without Daemon Tools? \\ VOGONS](https://www.vogons.org/viewtopic.php?t=55527)
+    - [Emulation for Red Book Audio on Windows 7? \\ VOGONS](https://www.vogons.org/viewtopic.php?t=33095)
+    - [Windows 98SE + Virtual CD Software + CD Audio \\ VOGONS](https://www.vogons.org/viewtopic.php?t=37592)
+    - [Support for mixed mode CD images \(data \+ audio\) · Issue \#26 · sysprogs/WinCDEmu · GitHub](https://github.com/sysprogs/WinCDEmu/issues/26)
 
 # ISO
 
@@ -143,6 +157,8 @@ iat -i input.img --iso -o output.iso
     - https://www.retrodev.com/segacd.html
     - [How is data addressed in Sega CD programming? \(Archive\) \- Sega\-16 Forums](https://www.sega-16.com/forum/archive/index.php/t-29628.html)
     - [MagicEngine :: View topic \- ISO\-9660 PC Engine CD format](http://forums.magicengine.com/en/viewtopic.php?t=1619)
+- [!] Does not store Red Book audio
+    - Alternatives: `.bin/.cue`, `.ccd/.img`, `.mds/.mdf`, `.nrg`
 
 ```bash
 # Make
@@ -176,6 +192,18 @@ isoinfo -J -x /ISO_DIR/FILE -i foo.iso > DESTINATION/FILE
 - https://wiki.osdev.org/ISO_9660
 - http://bazaar.launchpad.net/~libburnia-team/libisofs/scdbackup/view/head:/doc/boot_sectors.txt
 
+# CCD
+
+```bash
+# Alternative: Take [SBITools](https://github.com/Kippykip/SBITools) `-cue2ccd` code and adapt to produce `.cue`
+ccd2cue input.ccd > input.cue
+# || Only data tracks, converted
+ccd2iso input.img input.iso
+# || Only data tracks, mounted
+mount -o loop input.img /foo
+mkisofs -o output.iso /foo
+```
+
 # ECM
 
 ```bash
@@ -189,4 +217,4 @@ ecm d input.img.ecm output.img
 
 - `7z`
 - `qemu-nbd`
-    - https://stackoverflow.com/a/45280201/8020917
+    - [virtualbox \- How can i Extract Files From VDI \- Stack Overflow](https://stackoverflow.com/a/45280201/8020917)

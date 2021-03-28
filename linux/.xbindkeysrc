@@ -258,6 +258,10 @@ Mod4 + period
 Mod1 + Mod4 + p
 
 # "Copy from unicode picker"
+#
+# Alternatives:
+# - [GitHub \- arp242/uni: Query the Unicode database from the commandline, with good support for emojis](https://github.com/arp242/uni)
+#
 # "unipicker --command 'rofi -dmenu' --copy"
 "env FZF_DEFAULT_OPTS='--no-border --color=16,pointer:2' SCRATCHPAD_LANG=en_US.UTF-8 scratchpad-terminal.sh unipicker --copy-command 'xsel --clipboard'"
 Mod4 + comma

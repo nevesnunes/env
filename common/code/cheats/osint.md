@@ -1,13 +1,22 @@
 # +
 
+- https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md#osint-webpages
+
+# internet devices, iot
+
 - https://www.shodan.io/
     - Find GWS (Google Web Server) servers: `"Server: gws" hostname:"google"`
     - Find Cisco devices on a particular subnet: `cisco net:"123.123.123.0/24"`
-- https://github.com/nahamsec/Resources-for-Beginner-Bug-Bounty-Hunters/blob/master/assets/tools.md#osint-webpages
+- https://censys.io/
+    - Find Certificate Authorities which issue valid TLS\SSL certificates to IP addresses: `443.https.tls.validation.browser_trusted: true and 443.https.tls.certificate.parsed.extensions.subject_alt_name.ip_addresses: [0.0.0.0 TO 255.255.255.255]`
+        - https://nbk.sh/tools#censys
+- https://spyse.com/
+    - Find domains with same A records
 
 # reverse image search
 
 - https://tineye.com/
+- https://yandex.ru/images/
 
 ### facial recognition
 
@@ -48,6 +57,7 @@ curl 'https://stat.ripe.net/data/ris-asns/data.json?list_asns=true'
 
 - https://host.io/
 - https://securitytrails.com/domain/0x00sec.org/dns
+- https://www.eurodns.com/domain-name-search
 
 ```bash
 # DNS Dumpster
@@ -160,6 +170,10 @@ inurl:gitlab "company"
 - https://www.hatena.ne.jp/o/search/top?q=
 - https://search.daum.net/search?w=blog&f=section&SA=tistory&lpp=10&nil_profile=vsearch&nil_src=tistory&q=
 
+# cloud storage
+
+- https://clients6.google.com/drive/v2beta/files/%7Bdoc_id%7D?fields=alternateLink%2CcopyRequiresWriterPermission%2CcreatedDate%2Cdescription%2CdriveId%2CfileSize%2CiconLink%2Cid%2Clabels(starred%2C%20trashed)%2ClastViewedByMeDate%2CmodifiedDate%2Cshared%2CteamDriveId%2CuserPermission(id%2Cname%2CemailAddress%2Cdomain%2Crole%2CadditionalRoles%2CphotoLink%2Ctype%2CwithLink)%2Cpermissions(id%2Cname%2CemailAddress%2Cdomain%2Crole%2CadditionalRoles%2CphotoLink%2Ctype%2CwithLink)%2Cparents(id)%2Ccapabilities(canMoveItemWithinDrive%2CcanMoveItemOutOfDrive%2CcanMoveItemOutOfTeamDrive%2CcanAddChildren%2CcanEdit%2CcanDownload%2CcanComment%2CcanMoveChildrenWithinDrive%2CcanRename%2CcanRemoveChildren%2CcanMoveItemIntoTeamDrive)%2Ckind&supportsTeamDrives=true&enforceSingleParent=true&key=AIzaSyC1eQ1xj69IdTMeii5r7brs3R90eck-m7k
+
 # email
 
 - [Trumail | Free Email Verification API](https://trumail.io/)
@@ -212,10 +226,15 @@ shodan host 1.2.3.4
 
 # source code
 
-- https://publicwww.com/
-- https://nerdydata.com/
-- https://searchcode.com/?q=
-- https://grep.app/
+- repositories
+    - https://grep.app/
+        - :) literal match (e.g. `<path:filename>`)
+    - https://searchcode.com/?q=
+        - :) literal match, but not visible in results
+- general sites
+    - https://nerdydata.com/
+    - https://publicwww.com/
+        - :( processed match
 
 ### git
 

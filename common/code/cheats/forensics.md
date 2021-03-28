@@ -1,11 +1,18 @@
 # +
 
-- ./compression.md
-- ./filesystem.md
-- ./volatility.md
+- [compression](./compression.md)
+- [filesystem](./filesystem.md)
+- [volatility](./volatility.md)
 
 - https://bitvijays.github.io/LFC-Forensics.html
 - http://freshports.org/sysutils/sleuthkit
+
+# documentation, specification
+
+- [ZLIB Compressed Data Format Specification version 3.3](https://ietf.org/rfc/rfc1950.txt)
+- [DEFLATE Compressed Data Format Specification version 1.3](https://ietf.org/rfc/rfc1951.txt)
+- [GZIP file format specification version 4.3](https://ietf.org/rfc/rfc1952.txt)
+- [Portable Network Graphics (PNG) Specification and Extensions](http://libpng.org/pub/png/spec/)
 
 # malware family / classification
 
@@ -21,12 +28,11 @@
 
 - https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
 
-
 # event log
 
-- 592/4688 - A new process has been created
+- `592/4688` - A new process has been created
 
-https://github.com/williballenthin/EVTXtract
+- [GitHub \- williballenthin/EVTXtract: EVTXtract recovers and reconstructs fragments of EVTX log files from raw binary data, including unallocated space and memory images\.](https://github.com/williballenthin/EVTXtract)
 
 # process information
 
@@ -339,6 +345,13 @@ Examples:
     - https://en.wikipedia.org/wiki/Gifar
 - msi + jar
     - https://blog.virustotal.com/2019/01/distribution-of-malicious-jar-appended.html
+
+Parasites:
+
+- [ICC profile in JPG](https://twitter.com/David3141593/status/1057042085029822464)
+    - multipart RAR used to work around JPG block size
+- [IDAT chunk in PNG](https://twitter.com/David3141593/status/1371974874856587268)
+    - [GitHub \- DavidBuchanan314/tweetable\-polyglot\-png: Pack up to 3MB of data into a tweetable PNG polyglot file\.](https://github.com/DavidBuchanan314/tweetable-polyglot-png)
 
 ### hash collisions
 

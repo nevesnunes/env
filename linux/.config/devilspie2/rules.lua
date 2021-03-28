@@ -12,6 +12,9 @@
 function size_window (xid, operation)
     os.execute(os.getenv("HOME").."/bin/xsize.sh --id "..xid.." "..operation)
 end
+function move_window (xid, workspace)
+    os.execute("wmctrl -i -r "..xid.." -t "..workspace)
+end
 
 -- Reference: https://specifications.freedesktop.org/wm-spec/1.3/ar01s05.html
 transient = get_window_property('WM_TRANSIENT_FOR')
@@ -51,18 +54,28 @@ w_minor_factor = (xs > 1400) and 0.35 or 0.50
 name = string.gsub(string.lower(get_application_name()), "%s+", "")
 role = string.gsub(string.lower(get_window_role()), "%s+", "")
 debug_print("name: "..name.."\n")
-if ((string.match(name, "firefox") and not
+if (string.find(class, "skype")) then
+    size_window(xid, "-h")
+    move_window(xid, "0")
+elseif (string.find(class, "pidgin") or
+        string.find(class, "telegram")) then
+    size_window(xid, "-l")
+    move_window(xid, "0")
+elseif ((string.match(name, "firefox") and not
         string.match(role, "about")) or
         string.find(class, "calibre") or
         string.find(name, "e%-bookviewer") or
         string.find(name, "fbreader") or
-        string.match(name, "thunderbird") or
         string.match(name, "zathura")) then
     -- set_window_geometry(0,0,xs*w_major_factor,ys)
     size_window(xid, "-h")
-elseif (string.match(name, "keepassx") or
-        string.find(class, "telegram") or
-        string.match(name, "terminal") or
+elseif (string.match(name, "thunderbird")) then
+    size_window(xid, "-h")
+    move_window(xid, "1")
+elseif (string.match(name, "keepassx")) then
+    size_window(xid, "-l")
+    move_window(xid, "1")
+elseif (string.match(name, "terminal") or
         string.match(name, "vim")) then
     -- set_window_geometry(xs*w_major_factor+1,0,xs*w_minor_factor-1,ys)
     size_window(xid, "-l")
@@ -74,13 +87,16 @@ elseif ((string.match(class, "VirtualBox Manager") or
         string.find(n, "execute%s*file"))) then
     -- set_window_geometry(0,0,xs*0.50,ys)
     size_window(xid, "--half-left")
+    move_window(xid, "3")
 elseif (string.match(name, "spek")) then
     -- set_window_geometry(xs*0.50,ys*0.50,xs*0.50,ys)
     size_window(xid, "--half-right")
+    move_window(xid, "3")
 elseif (string.match(name, "calculator") or
         string.match(name, "deadbeef")) then
     -- set_window_geometry(xs*w_major_factor+1,ys*0.50,xs*w_minor_factor-1,ys*0.50)
     size_window(xid, "-m")
+    move_window(xid, "3")
 elseif (string.match(name, "transmission")) then
     -- set_window_geometry(xs*w_major_factor+1,0,xs*w_minor_factor-1,ys*0.50)
     size_window(xid, "--half-right-top")

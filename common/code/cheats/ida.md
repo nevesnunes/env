@@ -1,3 +1,8 @@
+# Function signatures
+
+- [Investigating IDA Lumina feature ](https://www.synacktiv.com/en/publications/investigating-ida-lumina-feature.html)
+- [IDA F\.L\.I\.R\.T\. Technology: In\-Depth &\#8211; Hex Rays](https://www.hex-rays.com/products/ida/tech/flirt/in_depth/)
+
 # Binary search
 
 - [!] hex string with spaces

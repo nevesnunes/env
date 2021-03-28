@@ -1,3 +1,12 @@
+# Compare audio fingerprints
+
+```bash
+paste -d$'\t' \
+    <(ls -1 ./foo/*.flac) \
+    <(ls -1 ./bar/*.flac) \
+    | while IFS=$'\t' read -r i j; do diff <(fpcalc "$i") <(fpcalc "$j"); done
+```
+
 # Ripping
 
 ```bash

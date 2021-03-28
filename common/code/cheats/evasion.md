@@ -23,6 +23,10 @@
     - [registry-keys-startup-folder](https://dmcxblue.gitbook.io/red-team-notes/persistence/registry-keys-startup-folder)
     - [Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder, Sub\-technique T1547\.001 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1547/001/)
 
+# anti-vm
+
+- ~/code/snippets/evasion/SMBiosData.ps1
+
 # self-modifying code, packers
 
 Detecting changes in process maps:

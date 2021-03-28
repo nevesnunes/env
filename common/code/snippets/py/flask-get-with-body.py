@@ -1,13 +1,29 @@
 #!/usr/bin/env python3
 
-from flask import Flask, jsonify
-from flask.ext.cors import CORS
+from flask import Flask, jsonify, send_from_directory
+
+try:
+    from flask.ext.cors import CORS
+except:
+    from flask_cors import CORS
 import json
+import sys
 
 application = Flask(__name__)
 
 # Utilize CORS to allow cross-origin API requests
 cors = CORS(application)
+
+
+@application.route("/<path:filename>")
+def static_send(filename):
+    print(filename, file=sys.stderr)
+    return send_from_directory(application.root_path, filename)
+
+
+@application.route("/base/<path:filename>")
+def base_static_send(filename):
+    return send_from_directory(application.root_path + "/../static/", filename)
 
 
 @application.route("/api/json/<request>", methods=["GET"])

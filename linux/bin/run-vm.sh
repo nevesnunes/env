@@ -7,7 +7,11 @@ if [ -z "$vm" ]; then
   echo "No VM provided."
   exit 1
 fi
-mode=$(printf "640x480\n1024x768\n1920x1080" | fzf)
+shift
+mode=$1
+if [ -z "$mode" ]; then
+  mode=$(printf "640x480\n1024x768\n1366x768\n1920x1080" | fzf)
+fi
 if [ -z "$mode" ]; then
   echo "No mode provided."
   exit 1
@@ -26,10 +30,8 @@ do
     dev=$(echo "$dev" | tr -d '-')
   fi
 
-  status=$(cat "$l")
-  if echo "$status" | grep -q '^connected'; then
+  if grep -q '^connected' "$l"; then
     declare "$dev=yes";
-    break
   fi
 done <<< "$devices"
 if [ -n "$HDMI1" ]; then
@@ -47,19 +49,28 @@ else
   exit 1
 fi
 
-original_resolution=$(xrandr -q | sed -n 's/.*current[ ]\([0-9]*\) x \([0-9]*\),.*/\1x\2/p')
-cleanup() {
-  switchlayout.sh on
-  xrandr --output "$monitor" --mode "$original_resolution"
-}
-trap 'cleanup' EXIT HUP INT QUIT TERM
+original_resolution=$(xrandr | sed -n 's/'"$monitor"' connected \?[a-z]* \([0-9]*\)x\([0-9]*\).*/\1x\2/p')
+if [ -z "$original_resolution" ]; then
+  # FIXME: Sums widths in multi-monitor layouts
+  original_resolution=$(xrandr -q | sed -n 's/.* current \([0-9]*\) x \([0-9]*\),.*/\1x\2/p')
+fi
+if [ -z "$original_resolution" ]; then
+  echo "No resolution detected."
+  exit 1
+fi
 
-switchlayout.sh off
+cleanup() {
+  err=$?
+  xrandr --output "$monitor" --mode "$original_resolution"
+  trap '' EXIT
+  exit $err
+}
+trap cleanup EXIT INT QUIT TERM
+
 xrandr --output "$monitor" --mode "$mode"
 
-runner=/usr/lib64/virtualbox/VirtualBoxVM
-if [ -x "$runner" ]; then
-  "$runner" --startvm "$vm" --fullscreen
-else
-  virtualbox --startvm "$vm" --fullscreen
+runner=virtualbox
+if command -v virtualboxvm >/dev/null 2>&1; then
+  runner=virtualboxvm
 fi
+env QT_STYLE_OVERRIDE=adwaita-dark "$runner" --startvm "$vm" --fullscreen
