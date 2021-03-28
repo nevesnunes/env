@@ -47,6 +47,30 @@ docker attach CONTAINER_ID_OR_NAME
 
 https://github.com/LiveOverflow/pwn_docker_example/blob/master/challenge/Dockerfile
 
+### reconstructing from image
+
+- [GitHub \- P3GLEG/Whaler: Program to reverse Docker images into Dockerfiles](https://github.com/P3GLEG/Whaler)
+    - Search and extract files from `ADD`/`COPY` instructions
+- [GitHub \- wagoodman/dive: A tool for exploring each layer in a docker image](https://github.com/wagoodman/dive)
+    - [kaniko tar image is not compatible with dive · Issue \#318 · wagoodman/dive · GitHub](https://github.com/wagoodman/dive/issues/318)
+- [GitHub \- jesseduffield/lazydocker: The lazier way to manage everything docker](https://github.com/jesseduffield/lazydocker)
+- [GitHub \- google/docker\-explorer: A tool to help forensicate offline docker acquisitions](https://github.com/google/Docker-Explorer)
+    - same view as container of filesystem
+
+```bash
+docker history --no-trunc johndoe/foobar --format '{{ .CreatedBy }}'
+# ||
+docker pull johndoe/foobar:1.2.3
+docker save johndoe/foobar:1.2.3 > foobar.tar
+tar xvf foobar.tar
+jq . manifest.json  # Take config hash as $config
+jq .history "$config.json"  # Take entry where empty_layer=true as $layer
+cd "$layer/"
+tar tf layer.tf
+```
+
+https://theartofmachinery.com/2021/03/18/reverse_engineering_a_docker_image.html
+
 # create vm for containers
 
 [GitHub \- docker/machine: Machine management for a container\-centric world](https://github.com/docker/machine)

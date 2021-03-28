@@ -1,3 +1,8 @@
+# Non-Standard Extensions
+
+- python: allows `inf` and `nan`
+    - https://docs.python.org/3/library/json.html#infinite-and-nan-number-values
+
 # Flatten
 
 https://sqlite.org/json1.html#jtree

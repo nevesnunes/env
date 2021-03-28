@@ -694,19 +694,19 @@ function! Match(...)
         let w:matches[l:key] = l:id
     endif
 endfunction
-command! -nargs=* Match :call Match(<f-args>)
+command! -nargs=* M :call Match(<f-args>)
 
 " Alternatives:
 " - https://github.com/mortie/lograt
 " - https://glogg.bonnefon.org/
-function! G(...)
+function! GrepMatch(...)
     let l:words = join(a:000)
     call Match(l:words)
     let @/=''.l:words
     exec 'vimgrep /' . l:words . '/ %'
     botright copen
 endfunction
-command! -nargs=* G :call G(<f-args>)
+command! -nargs=* G :call GrepMatch(<f-args>)
 
 " References:
 " - http://vimdoc.sourceforge.net/htmldoc/pattern.html#/\%%3El
@@ -735,10 +735,10 @@ function! VisualMatch(positions, lines, key)
         " Match across multiple lines in provided range,
         " skipping chars up to first target column.
         let l:text = join(a:lines, "\\n")
-        let l:pattern = 
-            \ '\%>' . (a:positions[0]-1) . 'l' . 
-            \ '\%<' . (a:positions[2]+1) . 'l' . 
-            \ '\(^.\{' . (a:positions[1]-1) . '\}\)\@<=' . l:text
+        let l:pattern =
+                    \ '\%>' . (a:positions[0]-1) . 'l' .
+                    \ '\%<' . (a:positions[2]+1) . 'l' .
+                    \ '\(^.\{' . (a:positions[1]-1) . '\}\)\@<=' . l:text
         let l:id = matchadd(l:key, l:pattern, -1)
         let w:matches[l:key] = l:id
     endif
@@ -750,6 +750,31 @@ vmap <silent> ,2 :call VisualMatch(VisualPositions(), VisualSelection(), "My3")<
 vmap <silent> ,3 :call VisualMatch(VisualPositions(), VisualSelection(), "My2")<CR>
 vmap <silent> ,4 :call VisualMatch(VisualPositions(), VisualSelection(), "My1")<CR>
 vmap <silent> ,5 :call VisualMatch(VisualPositions(), VisualSelection(), "My0")<CR>
+
+" Reference: https://vi.stackexchange.com/questions/2165/folding-by-regex-search-pattern
+function! ZOverride() abort
+    let prevline = getline(v:lnum - 1)
+    let line = getline(v:lnum)
+    if get(split(prevline, w:z_delimiter), w:z_index, '') != get(split(line, w:z_delimiter), w:z_index, '')
+        return '>1'
+    endif
+    return '='
+endfunction
+
+" Fold clusters by column index and delimiter regex
+function! Z(...)
+    let w:z_index = 0
+    if len(a:000) > 0 && !empty(a:1)
+        let w:z_index = a:1
+    endif
+    let w:z_delimiter = '\s\+'
+    if len(a:000) > 1 && !empty(a:2)
+        let w:z_delimiter = a:2
+    endif
+    setlocal foldexpr=ZOverride()
+    setlocal foldmethod=expr
+endfunction
+command! -nargs=* Z :call Z(<f-args>)
 
 " }}}
 

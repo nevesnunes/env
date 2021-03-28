@@ -25,11 +25,15 @@
 - [Exploit Database \- Exploits for Penetration Testers, Researchers, and Ethical Hackers](https://www.exploit-db.com/)
 - [Shodan Exploits](https://exploits.shodan.io/)
 - [CVE security vulnerability database\. Security vulnerabilities, exploits, references and more](https://www.cvedetails.com/)
+- [Vulncode\-DB](https://www.vulncode-db.com/)
 - [Exploit Files \- Packet Storm](https://packetstormsecurity.com/files/tags/exploit)
 - [Vulners \- Vulnerability Data Base](https://vulners.com/search)
 - [💀 Sploitus \| Exploit & Hacktool Search Engine](https://sploitus.com/)
 - [Snyk \- Open Source Security](https://snyk.io/vuln/)
+- [huntr: Fix Security Vulnerabilities in Open Source Code](https://www.huntr.dev/bounties/)
 - [SG TCP/IP Ports Database](https://www.speedguide.net/ports.php)
+
+- [GitHub \- rudrapwn/source\-code\-review: Blogs, Tools and other available resources for source code review\.](https://github.com/rudrapwn/source-code-review)
 
 ```bash
 # https://github.com/offensive-security/exploitdb.git
@@ -117,6 +121,7 @@ done
 - http://www.fuzzysecurity.com/tutorials/16.html
 - https://guif.re/windowseop
 - https://guif.re/linuxeop
+- https://s3cur3th1ssh1t.github.io/The-most-common-on-premise-vulnerabilities-and-misconfigurations/
 
 - busybox - act as arbitrary file
     ```bash

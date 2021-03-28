@@ -1,11 +1,18 @@
 # +
 
 - [asm](./asm.md)
+- [wasm](./wasm.md)
 - [evasion](./evasion.md)
+
+- [angr](./angr.md)
+- [frida](./frida.md)
+- [z3](./z3.md)
 
 - text
     - any format: `strings` (`-el` for 16-bit le)
+    - ELF format: [match x86 that appears to be stack string creation · GitHub](https://gist.github.com/williballenthin/ed7b3de224d5b986bc04dc882c5ee7c5)
     - PE format: `floss`
+        - :) extracts stack strings
 - libraries
     - ELF format: `ldd -iv` (validates shared libraries initialization)
 - packers
@@ -25,6 +32,10 @@
     # Given $PYTHONPATH with matplotlib:
     env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
     ```
+- diff
+    - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
+    - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
+    - [GitHub \- ubfx/BinDiffHelper: Ghidra Extension to integrate BinDiff for function matching](https://github.com/ubfx/BinDiffHelper)
 
 # methodology
 

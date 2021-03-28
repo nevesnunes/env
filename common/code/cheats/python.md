@@ -26,6 +26,10 @@ print(inspect.cleandoc(c))
 flask-unsign --sign --cookie "{'end': '2020-07-13 10:59:59+0000'}" --secret 'Time' --legacy
 ```
 
+# Performance
+
+- Use JIT compiler: [PyPy](https://www.pypy.org/)
+
 # REPL
 
 https://ipython.org/ipython-doc/stable/interactive/qtconsole.html

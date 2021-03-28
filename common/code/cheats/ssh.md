@@ -110,6 +110,10 @@ https://docs.pritunl.com/docs/bastion-ssh-host
 
 https://ma.ttias.be/socks-proxy-linux-ssh-bypass-content-filters/
 
+# signing
+
+https://blog.rebased.pl/2021/03/23/ssh-keygen-2021.html
+
 # powershell integration
 
 https://blog.netnerds.net/2017/12/updated-ssh-tunneling-for-windows-people-protecting-remote-desktop/

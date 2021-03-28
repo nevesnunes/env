@@ -12,6 +12,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --no-links \
   --exclude='code/snippets/+' \
   --exclude='.git' \
+  --exclude='.metadata' \
   --exclude='node_modules' \
   --exclude='__pycache__' \
   --filter='dir-merge,- .gitignore' \

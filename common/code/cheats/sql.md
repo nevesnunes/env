@@ -1,6 +1,7 @@
 # +
 
 - [Screenshots of our DB Software \- DbVisualizer](https://www.dbvis.com/features/software-screenshots/)
+- [How to create a 1M record table with a single query \| Anton Zhiyanov](https://antonz.org/random-table/)
 
 # exploratory
 

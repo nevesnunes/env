@@ -306,7 +306,7 @@ dd if=foo | pv -s 2.8G | dd of=/dev/sdb bs=4M
 # ||
 pgrep '^dd$' | xargs -i kill -USR1 {}
 # || https://blog.sleeplessbeastie.eu/2015/01/23/how-to-check-the-progress-of-dd-using-proc-filesystem/
-sudo su -c "pgrep '^dd$' | xargs -i cat /proc/{}/io | awk '/wchar/ {print \$2}'"
+sudo su -c "pgrep '^dd$' | xargs -i awk '/^wchar/ {print \$2}' /proc/{}/io"
 
 # dd handle errors
 dd conv=noerror

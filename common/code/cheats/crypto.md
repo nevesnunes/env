@@ -58,6 +58,7 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
     - ./misc.md#crypt
 - md5 with salt
     - `hashcat -m 20 -a 0 -o cracked.txt crackme.txt /usr/share/wordlists/rockyou.txt --force" # $hash:$salt`
+- [The MD5 Message\-Digest Algorithm](https://tools.ietf.org/html/rfc1321)
 
 ### HMAC
 
@@ -228,11 +229,11 @@ console.log(grc(64));
 - https://github.com/TFNS/writeups/tree/master/2020-03-01-AeroCTF/magic
 - https://github.com/pcw109550/write-up
 
+- https://blog.quarkslab.com/differential-fault-analysis-on-white-box-aes-implementations.html
 - https://nakedsecurity.sophos.com/2013/07/09/anatomy-of-a-pseudorandom-number-generator-visualising-cryptocats-buggy-prng/
     - https://tobtu.com/decryptocat.php
 - https://www.pcg-random.org/posts/visualizing-the-heart-of-some-prngs.html
     - [ ] reproduce vizs
-
 - https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d
     - https://v8.dev/blog/math-random
 - https://blog.malwarebytes.com/threat-analysis/2018/01/scarab-ransomware-new-variant-changes-tactics/

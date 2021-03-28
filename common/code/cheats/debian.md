@@ -12,6 +12,9 @@ wget --recursive --no-parent --no-host-directories 192.168.1.5:8123
 # package manager
 
 ```bash
+# find packages that provides file
+apt-file find /foo
+
 # latest installed packages
 grep " install " /var/log/dpkg.log{,.1}
 

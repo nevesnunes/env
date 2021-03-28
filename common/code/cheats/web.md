@@ -44,6 +44,10 @@ if _name__ == "__main__":
 ```
 
 - robots.txt
+- web server
+    - e.g. nginx => `gixy /etc/nginx/nginx.conf`
+        - https://github.com/8ayac/blog.8ay.ac/blob/ebc933c73dba0a5c98264cecee8c2e728dd7dad7/docs/articles/2020-03-21_LINE%20CTF%202021%20Writeup%20(%5BWeb%5D%20diveinternal%2C%20Your%20Note)%20-%20%5BEnglish%5D/index.md
+    - https://github.com/w181496/Web-CTF-Cheatsheet#linux--unix
 - client headers
     - https://securityheaders.com/
     - e.g. `user-agent curl/7.19.3` => vulnerable version
@@ -167,7 +171,7 @@ Clone:
     - http://retanoj.github.io/2020/04/18/%E9%A2%98%E7%9B%AE-XSS-2020-04-18-XSS-game-of-pwnfunction-Challenges-WW3/
     - text = `<a><style><style/><script>alert(1337);//</style><form name=notify>`
 
-# cross-site request forgery (CSRF)
+# Cross-Site Request Forgery (CSRF)
 
 - https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery
 
@@ -192,6 +196,18 @@ Clone:
     - Mitigation: X-Frame-Options = DENY
         > The loading of "http://foo.com" in a frame is denied by "X-Frame-Options" directive set to "DENY".
 - [Multiple vulnerabilities that can result in RCE · Issue \#1122 · Codiad/Codiad · GitHub](https://github.com/Codiad/Codiad/issues/1122)
+
+### Cross-Origin Resource Sharing (CORS)
+
+- https://book.hacktricks.xyz/pentesting-web/cors-bypass
+
+- Origin parsing
+    - https://portswigger.net/research/exploiting-cors-misconfigurations-for-bitcoins-and-bounties
+    - https://www.corben.io/advanced-cors-techniques/
+    ```
+    http://example.com%60.hackxor.net/static/cors.html
+    Origin: http://example.com`.hackxor.net/
+    ```
 
 # Man-In-The-Middle (MITM)
 
@@ -273,11 +289,20 @@ Clone:
 - Request URL protocol
     - `view-source:file:///foo`
 - localhost ip octal / hexadecimal / 32bit integer / classful network encoding
-    ```
-    127.1
-    0177.0.0.1
-    0000.0000.0000.0000
-    ```
+    - e.g.
+        ```
+        127.1
+        0177.0.0.1
+        0000.0000.0000.0000
+        ```
+    - relative protocol
+        - On SSL/TLS: Issue certificate to IP address
+            - ./ssl.sh
+            - https://nbk.sh/articles/dotless-payloads
+        ```html
+        <script/src=//16843009></script>
+        ```
+    - https://www.ultratools.com/tools/decimalCalc
     - https://ctf-wiki.github.io/ctf-wiki/web/ssrf/#bypass-posture
     - https://blog.dave.tf/post/ip-addr-parsing/
     - [AppSec EU15 \- Nicolas Gregoire \- Server\-Side Browsing Considered Harmful \- YouTube](https://www.youtube.com/watch?v=8t5-A4ASTIU)
@@ -367,8 +392,10 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 
 ### Upgrade protocol
 
-- [GitHub \- BishopFox/h2csmuggler: HTTP Request Smuggling over HTTP/2 Cleartext \(h2c\)](https://github.com/BishopFox/h2csmuggler)
+- bypass authorization controls on reverse proxies
+    - [GitHub \- BishopFox/h2csmuggler: HTTP Request Smuggling over HTTP/2 Cleartext \(h2c\)](https://github.com/BishopFox/h2csmuggler)
     - [h2c Smuggling: Request Smuggling Via HTTP/2 Cleartext \(h2c\)](https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-cleartext-h2c)
+    - [H2C Smuggling in the Wild \- Assetnote](https://blog.assetnote.io/2021/03/18/h2c-smuggling/)
 
 # directory traversal
 
@@ -400,6 +427,7 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
         - uses timeouts to wait for loaded iframe content
         - ~/code/snippets/ctf/web/yolovault/
     - cross-domain, both domains controlled: use `postMessage()`
+        - https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage#using_window.postmessage_in_extensions_non-standard_inline
         - https://stackoverflow.com/questions/9393532/cross-domain-iframe-issue
         ```javascript
         // framed.html
@@ -726,6 +754,7 @@ nginx:
 - https://mathiasbynens.be/notes/javascript-escapes
 - `__defineGetter__`
     - https://hack.more.systems/writeup/2014/10/26/hacklu2014-objection/
+    - [CTFtime\.org / TSG CTF 2020 / Beginner&\#39;s web](https://ctftime.org/task/12280)
 - alternative for `()`
     - https://portswigger.net/research/javascript
     ```javascript

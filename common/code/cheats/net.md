@@ -17,6 +17,17 @@
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 
+# documentation, specification
+
+- [RFC 768 \- User Datagram Protocol](https://tools.ietf.org/html/rfc768)
+- [RFC 793 \- Transmission Control Protocol](https://tools.ietf.org/html/rfc793)
+- [RFC 791 \- Internet Protocol](https://tools.ietf.org/html/rfc791)
+- [RFC 8200 \- Internet Protocol, Version 6 \(IPv6\) Specification](https://tools.ietf.org/html/rfc8200)
+- [RFC 7230 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230)
+- [RFC 2246 \- The TLS Protocol Version 1\.0](https://tools.ietf.org/html/rfc2246)
+- [RFC 792 \- Internet Control Message Protocol](https://tools.ietf.org/html/rfc792)
+- [RFC 826 \- An Ethernet Address Resolution Protocol: Or Converting Network Protocol Addresses to 48\.bit Ethernet Address for Transmission on Ethernet Hardware](https://tools.ietf.org/html/rfc826)
+
 # performance
 
 - https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
@@ -58,6 +69,11 @@ socat TCP-LISTEN:8080,fork,crnl SYSTEM:'printf \"HTTP/1.1 200 OK\\n\\n\"\; cat t
 
 # chat service - bind to multicast group 239.255.1.1 on interface that has unicast IP 10.0.0.10, sending and receiving on port 4242 over UDP, reading from stdin and writing to stdout.
 socat - UDP-DATAGRAM:239.255.1.1:4242,ip-add-membership=239.255.1.1:10.0.0.10,ip-multicast-loop=0,bind=:4242
+
+# remote file
+# > Note that streaming eg. via TCP or SSL does not guarantee to retain packet boundaries and may thus cause packet loss.
+socat -u FILE:"${HOME}/foo" TCP-LISTEN:8123,reuseaddr
+socat -u TCP:1.2.3.4:8123 STDOUT > /foo
 ```
 
 - https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES

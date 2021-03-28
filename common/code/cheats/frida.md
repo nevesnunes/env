@@ -21,18 +21,18 @@ session.enable_debugger()
 
 # Trace
 
-https://github.com/nowsecure/frida-trace
+- https://github.com/nowsecure/frida-trace
 
 # Docs
 
-https://www.frida.re/docs/javascript-api/
+- https://www.frida.re/docs/javascript-api/
 
 # +
 
-https://github.com/iddoeldor/frida-snippets
-https://awakened1712.github.io/hacking/hacking-frida/
-https://www.fuzzysecurity.com/tutorials/29.html
-https://sensepost.com/blog/2019/recreating-known-universal-windows-password-backdoors-with-frida/
+- https://github.com/iddoeldor/frida-snippets
+- https://awakened1712.github.io/hacking/hacking-frida/
+- https://www.fuzzysecurity.com/tutorials/29.html
+- https://sensepost.com/blog/2019/recreating-known-universal-windows-password-backdoors-with-frida/
 
 ```javascript
 Interceptor.attach(Module.findExportByName(null, "open"), {

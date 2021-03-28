@@ -761,4 +761,7 @@ msg.exe 5 /server:server1 This is a message to the user in Session 5 on server 1
 # remove registry item
 Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' | Remove-ItemProperty -Name 'Foo Service' Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run'
 
-
+# wait for network
+do { sleep 5 } until(Test-NetConnection | ? { $_.PingSucceeded })
+# ||
+do { sleep 5 } until(Test-NetConnection $HOST -Port $PORT | ? { $_.TcpTestSucceeded })
