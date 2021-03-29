@@ -77,6 +77,20 @@ free -m
 # avgqu-sz > 1 => saturation on non-parallel/non-virtual devices
 iostat -xz 1
 
+# Disk r/w kb/s
+#
+# Parameters:
+# - $3: # sectors read
+# - $7: # sectors written
+# - Given sector size = 512, then $x * 512 / 1024 = $x / 2
+#
+# References:
+# - [LKML: Theodore Ts'o: Re: Why is SECTOR\_SIZE = 512 inside kernel ?](https://lkml.org/lkml/2015/8/17/269)
+# - https://stackoverflow.com/questions/37248948/how-to-get-disk-read-write-bytes-per-second-from-proc-in-programming-on-linux
+# - https://www.kernel.org/doc/Documentation/iostats.txt
+# - https://www.kernel.org/doc/Documentation/block/stat.txt
+awk '{print "r:"($3 / 2 / 1024 / 1024)" w:"($7 / 2 / 1024 / 1024)}' /sys/block/sda/stat
+
 ulimit -a
 
 # resource utilization

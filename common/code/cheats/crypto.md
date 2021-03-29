@@ -118,6 +118,13 @@ console.log(grc(64));
 
 # rsa
 
+```
+d = modinv(e,phi(modulus))
+If N = p, then phi(N) = p - 1 => d = modinv(e,p-1)
+```
+
+- https://en.wikipedia.org/wiki/Euler%27s_totient_function
+
 - [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)
 - Factorizing big integers - http://factordb.com/
 - Coppersmith's short pad + Franklin-Reiter related-message

@@ -1,0 +1,5 @@
+try this:
+
+git clone https://gist.github.com/ryancdotorg/a256c3cdbb45caaf7e203baf4f9d7e56 /tmp/a256c3c
+cd /tmp/a256c3c
+git --no-pager log -s --format="%ae"
