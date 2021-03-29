@@ -552,3 +552,12 @@ inxi -Fmxxxz
 
 # Generate random ascii bytes
 openssl rand -base64 48
+
+# Interactive tree navigation with histogram
+# Reference: `ncdu -o-`
+printf '[1,1,{"progname":"ncdu","progver":"1.15.1","timestamp":1},
+[{"name":"/","asize":4096,"dsize":4096,"dev":1,"ino":1},
+{"name":"foo","asize":2,"dsize":2,"ino":1},
+[{"name":"bar","asize":8,"dsize":8,"ino":1},{"name":"bar2","asize":8,"dsize":8,"ino":1}],
+{"name":"baz","asize":4,"dsize":4,"ino":1}
+]]' | ncdu -f-

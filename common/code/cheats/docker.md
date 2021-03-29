@@ -35,6 +35,9 @@ docker run -d IMAGE
 docker logs -f CONTAINER_ID_OR_NAME
 docker exec -it CONTAINER_ID_OR_NAME /bin/bash
 docker attach CONTAINER_ID_OR_NAME
+
+# Detached, keep running
+docker run -dit IMAGE sh
 ```
 
 # References

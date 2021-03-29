@@ -136,7 +136,13 @@ https://man7.org/linux/man-pages/man2/syscall.2.html
 # stack
 
 - frame
-    - contains: ebp; local vars; args; return address = eip saved by `call`
+    - contains: $ebp; local vars; args; return address = $eip saved by `call`
+- segment flags: given section `.note.GNU-stack`, linker parses it and adds segment `PT_GNU_STACK`
+    - if no section found, linker assumes executable bit is required
+        - [Airs &\#8211; Ian Lance Taylor &raquo; Executable stack](https://www.airs.com/blog/archives/518)
+    - if no segment added, behaviour is kernel dependent
+        - Validation: `execstack` outputs `?`
+        - [x86/elf: Split READ_IMPLIES_EXEC from executable PT_GNU_STACK \- kernel/git/torvalds/linux\.git \- Linux kernel source tree](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=122306117afe4ba202b5e57c61dfbeffc5c41387)
 
 # self-modifying code
 
