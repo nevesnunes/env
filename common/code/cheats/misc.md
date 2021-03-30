@@ -25,6 +25,7 @@
 - [Exploit Database \- Exploits for Penetration Testers, Researchers, and Ethical Hackers](https://www.exploit-db.com/)
 - [Shodan Exploits](https://exploits.shodan.io/)
 - [CVE security vulnerability database\. Security vulnerabilities, exploits, references and more](https://www.cvedetails.com/)
+- [国家信息安全漏洞库](http://www.cnnvd.org.cn/web/vulnerability/queryLds.tag)
 - [Vulncode\-DB](https://www.vulncode-db.com/)
 - [Exploit Files \- Packet Storm](https://packetstormsecurity.com/files/tags/exploit)
 - [Vulners \- Vulnerability Data Base](https://vulners.com/search)

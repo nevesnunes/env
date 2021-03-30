@@ -12,7 +12,6 @@
     > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
 
 - https://bitvijays.github.io/LFC-BinaryExploitation.html
-- https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
 - [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
 - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
 - [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
@@ -131,6 +130,15 @@ pwndbg> x/32x $rbp - 0x20
 # Redress libc with debug symbols
 eu-unstrip "$stripped_libc" "$symbol_file"
 ```
+
+# dynamic loading
+
+- Including current directory in `LD_LIBRARY_PATH`
+    - Mitigation: `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}`
+        - [shell \- What does $\{PATH:\+:$\{PATH\}\} mean? \- Unix &amp; Linux Stack Exchange](https://unix.stackexchange.com/questions/267506/what-does-pathpath-mean/267548)
+        - [project\_loader, formatting\_utils: take empty env values into account by sergiusens · Pull Request \#3345 · snapcore/snapcraft · GitHub](https://github.com/snapcore/snapcraft/pull/3345)
+    - https://ubuntu.com/security/CVE-2020-27348
+- https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
 
 # stack overflow
 
