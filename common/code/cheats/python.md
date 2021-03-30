@@ -633,3 +633,7 @@ not not 1
 +True
 # 1
 ```
+
+# memoization
+
+- https://docs.python.org/3/library/functools.html#functools.lru_cache

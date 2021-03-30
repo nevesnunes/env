@@ -74,10 +74,11 @@ dmesg | tail
 # Expect: buffers > 0, cached > 0
 free -m
 
+# Monitor disk r/w kb/s
 # avgqu-sz > 1 => saturation on non-parallel/non-virtual devices
 iostat -xz 1
 
-# Disk r/w kb/s
+# Average disk r/w Mb/s
 #
 # Parameters:
 # - $3: # sectors read
@@ -89,7 +90,7 @@ iostat -xz 1
 # - https://stackoverflow.com/questions/37248948/how-to-get-disk-read-write-bytes-per-second-from-proc-in-programming-on-linux
 # - https://www.kernel.org/doc/Documentation/iostats.txt
 # - https://www.kernel.org/doc/Documentation/block/stat.txt
-awk '{print "r:"($3 / 2 / 1024 / 1024)" w:"($7 / 2 / 1024 / 1024)}' /sys/block/sda/stat
+awk '{print "r:"($3 / 2 / 1024)" w:"($7 / 2 / 1024)}' /sys/block/sda/stat
 
 ulimit -a
 

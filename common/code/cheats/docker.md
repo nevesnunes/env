@@ -3,7 +3,6 @@
 - https://docs.docker.com/toolbox/toolbox_install_windows/
 - docker swarm - automatic rollback
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
-- [GitHub \- google/cadvisor: Analyzes resource usage and performance characteristics of running containers\.](https://github.com/google/cadvisor)
 
 - https://gtfobins.github.io/gtfobins/docker/
     ```bash
@@ -106,6 +105,18 @@ docker run -it -v hello:/Downloads:z ubuntu bash
 ```
 DOCKER_OPTS="--userns-remap=1000:1000"
 ```
+
+# monitoring
+
+```bash
+docker stats
+curl -v --unix-socket /var/run/docker.sock \
+  http://localhost/containers/$CONTAINER_ID/stats | jq
+cat /sys/fs/cgroup/blkio/docker/$CONTAINER_ID/blkio.throttle.io_service_bytes
+cat /proc/$CONTAINER_PID/net/dev
+```
+
+- [GitHub \- google/cadvisor: Analyzes resource usage and performance characteristics of running containers\.](https://github.com/google/cadvisor)
 
 # build
 

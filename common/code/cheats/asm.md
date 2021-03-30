@@ -25,7 +25,12 @@
 # assembler source listing, includes symbols
 gcc -S -masm=intel
 ```
-    
+
+# intrinsics
+
+- [Intel&reg; Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#)
+- [cheat sheet containing most x86 intrinsics, like SSE and AVX intrinsics](https://db.in.tum.de/~finis/x86-intrin-cheatsheet-v2.2.pdf?lang=en)
+
 # portable executable (PE)
 
 ### main

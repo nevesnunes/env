@@ -38,6 +38,12 @@ paste <(
 # Pipe buffer
 # - http://www.gibney.de/the_output_of_linux_pipes_can_be_indeter
 
+# Avoid secret (e.g. password) in `execv()` or `/proc/$pid/cmdline`
+# References:
+# - https://unix.stackexchange.com/questions/439497/is-there-a-way-to-pass-sensitive-data-in-bash-using-a-prompt-for-any-command
+IFS= read -rs SECRET < /dev/tty
+foo < <(printf '%s\n' "$SECRET")
+
 # Sum times skipping builtins
 seq 2 | \
   xargs -i env TIME="%e" time sh -c 'sleep 2' 2>&1 | \
