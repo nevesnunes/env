@@ -133,6 +133,9 @@ https://github.com/feo-cz/win-sshfs
 
 # References
 
+http://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT
+http://man.openbsd.org/sshd.8#SSH_KNOWN_HOSTS_FILE_FORMAT
+
 https://developer.android.com/training/articles/security-ssl.html#CommonHostnameProbs
 [RFC 5280 \- Internet X\.509 Public Key Infrastructure Certificate and Certificate Revocation List \(CRL\) Profile](https://tools.ietf.org/html/rfc5280)
 

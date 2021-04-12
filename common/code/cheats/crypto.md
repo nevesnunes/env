@@ -1,6 +1,9 @@
 # +
 
-- [Quipquip](https://quipqiup.com/): subsituition cipher
+- [Sage Cell Server](https://sagecell.sagemath.org/)
+
+- [Quipquip](https://quipqiup.com/): substitution cipher
+- [Substitution Solver \- www\.guballa\.de](https://guballa.de/substitution-solver): substitution cipher
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
 - [CSCBE2019 - Rosetta](https://renaud11232.github.io/ctf/CSCBE2019/Finals/rosetta/): multiple ciphers / alphabets / languages / fonts
 
@@ -192,6 +195,30 @@ If N = p, then phi(N) = p - 1 => d = modinv(e,p-1)
 
 - [GitHub \- bozhu/BMA: Berlekamp\-Massey algorithm](https://github.com/bozhu/BMA)
 
+# find polynomials
+
+- Lagrange Interpolation in finite field (i.e. Galois field)
+    - [CTFtime\.org / ångstromCTF 2021 / Substitution / Writeup](https://ctftime.org/writeup/27032)
+    ```python
+    F = GF(691)
+    points = [(0, 125), (1, 492), (2, 670), (3, 39), ... , (688, 130), (689, 487), (690, 18)]
+    R = F['x']
+    print(R.lagrange_polynomial(points))
+    ```
+- Transformation Matrix
+    ```python
+    from sage.all import *
+
+    vals = vector(mod(enc(i), MOD) for i in range(FLAG_LEN))
+    coeffs = Matrix(
+        [
+            [mod(i ** (FLAG_LEN - j - 1), MOD) for j in range(FLAG_LEN)]
+            for i in range(FLAG_LEN)
+        ]
+    )
+    flag = coeffs.solve_right(points)
+    ```
+
 # one-time pad
 
 - https://medium.com/hackstreetboys/securinets-ctf-quals-2019-useless-admin-crypto-4e2685452fec
@@ -230,6 +257,7 @@ If N = p, then phi(N) = p - 1 => d = modinv(e,p-1)
 
 # case studies
 
+- https://n00bcak.github.io/writeups/2021/04/08/AngstromCTF-2021.html
 - https://github.com/TFNS/writeups/tree/master/2020-04-25-IJCTF
 - https://github.com/TFNS/writeups/tree/master/2020-04-12-ByteBanditsCTF
 - https://github.com/TFNS/writeups/tree/master/2020-03-07-zer0ptsCTF/ror

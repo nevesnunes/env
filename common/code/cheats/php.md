@@ -31,10 +31,9 @@ strcasecmp($_GET['secret'], "0x1337") == 0
 
 # deserialization
 
-```
-```
-
-
+- https://dpalbd.wordpress.com/ctf-writeup-serial-1/
+- https://www.netsparker.com/blog/web-security/untrusted-data-unserialize-php/
+- https://www.exploit-db.com/docs/english/44756-deserialization-vulnerability.pdf
 - [GitHub \- galdeleon/35c3\_php: Solution for 35c3 php challenge](https://github.com/galdeleon/35c3_php)
     - ~/code/snippets/ctf/web/35c3_php/
 

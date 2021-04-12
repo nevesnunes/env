@@ -120,7 +120,11 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 - [maltego-teeth](https://tools.kali.org/information-gathering/maltego-teeth)
 - [GitHub \- qeeqbox/social\-analyzer: API, CLI &amp; Web App for analyzing &amp; finding a person&\#39;s profile across 350\+ social media websites \(Detections are updated regularly\)](https://github.com/qeeqbox/social-analyzer)
 - [GitHub \- sherlock\-project/sherlock: 🔎 Hunt down social media accounts by username across social networks](https://github.com/sherlock-project/sherlock)
+
+### twitter
+
 - [TweetBeaver \- Home of Really Useful Twitter Tools](http://tweetbeaver.com)
+- [GitHub \- twintproject/twint: An advanced Twitter scraping &amp; OSINT tool written in Python that doesn&\#39;t use Twitter&\#39;s API, allowing you to scrape a user&\#39;s followers, following, Tweets and more while evading most API limitations\.](https://github.com/twintproject/twint)
 
 # ssl
 
@@ -259,6 +263,10 @@ shodan host 1.2.3.4
     - https://api.github.com/repos/AdoptOpenJDK/openjdk11-binaries/tags?per_page=100&page=2
     - https://github.com/github/linguist/commits/master?since=2018-05-31&until=2018-07-01
     - https://github.com/github/linguist/commits?branch=master&since=2018-05-31&until=2018-07-01
+
+### gitlab
+
+- https://gitlab.com/search?utf8=%E2%9C%93&search=&group_id=&project_id=&snippets=false&repository_ref=&nav_source=navbar
 
 # web history
 

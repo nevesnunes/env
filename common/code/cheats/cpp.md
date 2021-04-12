@@ -156,6 +156,21 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     docker pull alpine
     docker run -it -v "$HOME/share:/share:z" alpine
     apk add --no-cache gcc musl-dev
+
+    # From package sources
+    # References:
+    # - https://unix.stackexchange.com/questions/496755/how-to-get-the-source-code-used-to-build-the-packages-of-the-base-alpine-linux-d
+    # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
+    app=
+    apk add --no-cache alpine-sdk
+    cd /opt
+    git clone --depth 1 --branch v3.13.1 git://git.alpinelinux.org/aports
+    cd ./aports/main/"$app"
+    # Edit APKBUILD to include `-static` in CFLAGS
+    abuild-keygen -a -i
+    abuild -F fetch verify
+    abuild -F -r
+    tar -xzvf /root/packages/main/x86_64/"$app".apk
     ```
 - Unsupported in `libtool`
     - [\#11064 \- CRITICAL: libtool makes static linking impossible \- GNU bug report logs](https://debbugs.gnu.org/cgi/bugreport.cgi?bug=11064)

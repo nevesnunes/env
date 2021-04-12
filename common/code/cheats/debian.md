@@ -77,6 +77,12 @@ Installing packages:
 apt -t testing install foo
 ```
 
+### extract deb
+
+```bash
+ar x _
+```
+
 # repair mode
 
 > To access rescue mode, select rescue from the boot menu, type rescue at the boot: prompt, or boot with the rescue/enable=true boot parameter

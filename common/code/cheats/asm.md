@@ -245,11 +245,15 @@ ret
 
 ### registers
 
-- `ah`, - PRESERVES 0xffff00ff bits of `eax`, equivalent for `rax`
-- `al`, `ax` - PRESERVES {8,16} high bits of `eax`, equivalent for `rax`
-- `eax` - ZEROES 32 high bits of `rax`
+- x86, x64
+    - `ah`: PRESERVES 0xffff00ff bits of `eax`, equivalent for `rax`
+    - `al`, `ax`: PRESERVES {8,16} high bits of `eax`, equivalent for `rax`
+    - `eax`: ZEROES 32 high bits of `rax`
+- arm, aarch64
+    - `r0`: general, `x0`: 64 bits, `w0`: 32 bits
 
-https://stackoverflow.com/questions/25455447/x86-64-registers-rax-eax-ax-al-overwriting-full-register-contents/25456097
+- https://stackoverflow.com/questions/25455447/x86-64-registers-rax-eax-ax-al-overwriting-full-register-contents/25456097
+- https://wiki.cdot.senecacollege.ca/wiki/AArch64_Register_and_Instruction_Quick_Start
 
 # assembling
 
@@ -266,6 +270,8 @@ ld -m elf_i386 -o foo foo.o
 as -o foo.o foo.asm
 ld -o foo foo.o
 ```
+
+- [The Yasm Modular Assembler Project](http://yasm.tortall.net/)
 
 - http://asm.sourceforge.net/intro/hello.html
 - https://cs.lmu.edu/~ray/notes/gasexamples/
@@ -297,6 +303,13 @@ objdump -b binary -m i386:x64-32:intel -D shellcode.bin
 ```bash
 ida -m 0x100 -b 16 foo.com
 ```
+
+# 32-bit vs. 64-bit
+
+- pe format: 
+    - header: `50450000????`
+        - 32: `014c`, 64: `8664`
+    - `dumpbin /headers foo`
 
 # cross-architecture
 
@@ -396,6 +409,16 @@ uint32_t read_le_int32(unsigned char *b) {
 }
 ```
 
+# floating point precision
+
+```gdb
+# Given `addsd  xmm0, xmm0`, check result
+info register xmm0
+```
+
+- [The Floating\-Point Guide \- What Every Programmer Should Know About Floating\-Point Arithmetic](https://floating-point-gui.de/)
+- [What Every Computer Scientist Should Know About Floating\-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
+
 # address translation
 
 - https://github.com/hasherezade/bearparser/wiki/bearcommander
@@ -406,6 +429,9 @@ uint32_t read_le_int32(unsigned char *b) {
 - relative virtual address (RVA) = VA - ImageBase
     - e.g. 0x1000 = 0x401000 - 0x400000
 - file offset of entry point = (.OptionalHeaders[EntryPointAddress] – .SectionHeaders[VirtualAddress[.text]]) + .SectionHeaders[PointerToRawData[.text]]
+
+- [/BASE \(Base Address\) \| Microsoft Docs](https://docs.microsoft.com/en-us/cpp/build/reference/base-base-address?view=msvc-160)
+- [Why is 0x00400000 the default base address for an executable? \| The Old New Thing](https://devblogs.microsoft.com/oldnewthing/20141003-00/?p=43923)
 
 ### linux
 

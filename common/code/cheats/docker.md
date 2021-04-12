@@ -152,6 +152,14 @@ docker inspect
 ```
     - https://docs.docker.com/engine/reference/commandline/inspect/
 
+# Editing running container
+
+```bash
+# Edit /var/lib/docker/containers/CONTAINER_ID/hostconfig.json
+systemctl restart docker
+docker start CONTAINER_ID_OR_NAME
+```
+
 # persistence, updates
 
 - https://stackoverflow.com/questions/18496940/how-to-deal-with-persistent-storage-e-g-databases-in-docker

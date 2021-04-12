@@ -117,6 +117,7 @@ iat -i input.img --iso -o output.iso
     - [Emulation for Red Book Audio on Windows 7? \\ VOGONS](https://www.vogons.org/viewtopic.php?t=33095)
     - [Windows 98SE + Virtual CD Software + CD Audio \\ VOGONS](https://www.vogons.org/viewtopic.php?t=37592)
     - [Support for mixed mode CD images \(data \+ audio\) · Issue \#26 · sysprogs/WinCDEmu · GitHub](https://github.com/sysprogs/WinCDEmu/issues/26)
+    - [Mixed Mode CD \- Wikipedia](https://en.wikipedia.org/wiki/Mixed_Mode_CD)
 
 # ISO
 

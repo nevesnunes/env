@@ -14,7 +14,11 @@
 - https://bitvijays.github.io/LFC-BinaryExploitation.html
 - [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
 - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
+- [GitHub \- hacksysteam/HackSysExtremeVulnerableDriver: HackSys Extreme Vulnerable Windows Driver](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver)
 - [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
+
+- [GitHub \- Gallopsled/pwntools: CTF framework and exploit development library](https://github.com/Gallopsled/pwntools)
+- [GitHub \- libpwntools/libpwntools: pwntools library implementation in c\+\+](https://github.com/libpwntools/libpwntools)
 
 # methodology
 
@@ -139,6 +143,7 @@ eu-unstrip "$stripped_libc" "$symbol_file"
         - [project\_loader, formatting\_utils: take empty env values into account by sergiusens · Pull Request \#3345 · snapcore/snapcraft · GitHub](https://github.com/snapcore/snapcraft/pull/3345)
     - https://ubuntu.com/security/CVE-2020-27348
 - https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
+- [Hijack Execution Flow: LD\_PRELOAD, Sub\-technique T1574\.006 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1574/006/)
 
 # stack overflow
 

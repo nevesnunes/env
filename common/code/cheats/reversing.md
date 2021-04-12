@@ -87,6 +87,12 @@
 
 - https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/
 
+# functional programming
+
+- [GitHub \- sjsyrek/malc: Make a lambda calculus\.](https://github.com/sjsyrek/malc)
+- [Beta reduction \- HaskellWiki](https://wiki.haskell.org/Beta_reduction)
+- [David Beazley \- Lambda Calculus from the Ground Up \- PyCon 2019 \- YouTube](https://www.youtube.com/watch?v=pkCLMl0e_0k)
+
 # scripting dissassembly
 
 - [Programming with Python language – Capstone – The Ultimate Disassembler](https://www.capstone-engine.org/lang_python.html)

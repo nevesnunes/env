@@ -281,6 +281,13 @@ unrar x foo.part1.rar
 - [DDE Download Section](http://dde.binghamton.edu/download/)
 - https://cs.cmu.edu/~biglou/PSS.pdf
 
+# copy protection
+
+- Detection
+    - https://protectionid.net/
+- Crafting data pattern that interferes with scrambler pattern, causing read errors
+    - [Magic of Figures, or Detective Story about Unreadable CDs](http://ixbtlabs.com/articles2/magia-chisel/index.html)
+
 # file formats
 
 - [GitHub \- Sembiance/dexvert: Decompress EXtract and CONVert old file formats into modern ones](https://github.com/Sembiance/dexvert)

@@ -1,3 +1,7 @@
+# emulators
+
+- [GitHub \- microsoft/node\-pty: Fork pseudoterminals in Node\.JS](https://github.com/microsoft/node-pty)
+
 # exit status codes
 
 - `64-78`

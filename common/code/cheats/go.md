@@ -26,3 +26,12 @@ GOOS=darwin GOARCH=386 go build -v
 ```bash
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
 ```
+
+# Dissassembly
+
+- [GitHub \- felberj/gotools: Plugin for Ghidra to assist reversing Golang binaries](https://github.com/felberj/gotools)
+- [Reverse Engineering Go, Part II &\#8211; OSIRIS Lab at NYU Tandon](https://blog.osiris.cyber.nyu.edu/2019/12/19/ugo-ghidra-plugin/)
+- [Reverse Engineering Go Binaries with Ghidra \- CUJO AI](https://cujo.com/reverse-engineering-go-binaries-with-ghidra/)
+    - https://github.com/getCUJO/ThreatIntel/tree/master/Research_materials/Golang_reversing
+    - https://github.com/getCUJO/ThreatIntel/tree/master/Scripts/Ghidra
+- [Reversing GO binaries like a pro \| RedNaga Security](https://rednaga.io/2016/09/21/reversing_go_binaries_like_a_pro/)
