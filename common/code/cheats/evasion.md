@@ -76,6 +76,12 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
     c5              RET
     ```
 
+### generic
+
+1. At entrypoint, set hardware watch on `$rsp`
+    - On break, take `jmp` address, subtract image base (`0x400000`) to get original entrypoint (oep)
+2. Dump using Scylla
+
 # anti-debugging
 
 ### Windows

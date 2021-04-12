@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel='icon' href="data:,">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /**
+         * References:
+         * - https://gist.github.com/donpark/1796361
+         * - http://www.ozoneasylum.com/30982
+         */
+        function randomNoise(canvas, x, y, width, height, alpha) {
+            x = x || 0;
+            y = y || 0;
+            width = width || canvas.width;
+            height = height || canvas.height;
+            alpha = alpha || 255;
+            var g = canvas.getContext("2d"),
+                imageData = g.getImageData(x, y, width, height),
+                pixels = imageData.data,
+                n = pixels.length,
+                i = 0,
+                j = 4;
+            while (i < n) {
+                if (((i % width) | 12) && ((i % height) | 12)) {
+                    j = Math.random() * 256 & 7;
+                }
+                pixels[i + j] = pixels[i + 4] = pixels[i++] = (Math.random() * 256) | 0;
+                pixels[i + j] = pixels[i + 4] = pixels[i++] = (Math.random() * 256) | 0;
+                pixels[i + j] = pixels[i + 4] = pixels[i++] = (Math.random() * 256) | 0;
+                pixels[i + j] = pixels[i + 4] = pixels[i++] = alpha;
+                i += 4
+            }
+            g.putImageData(imageData, x, y);
+            return canvas;
+        }
+
+        function perlinNoise(canvas, noise) {
+            noise = noise || randomNoise(canvas);
+            var g = canvas.getContext("2d");
+            g.save();
+
+            /* Scale random iterations onto the canvas to generate Perlin noise. */
+            /*
+            for (var size = 8; size <= noise.width; size *= 2) {
+                var x = (Math.random() * (noise.width - size)) | 0,
+                    y = (Math.random() * (noise.height - size)) | 0;
+                g.globalAlpha = 4 / size;
+                g.drawImage(noise, x, y, size, size, 0, 0, canvas.width, canvas.height);
+                g.drawImage(noise, x, y+1, size, size, 0, 0, canvas.width, canvas.height);
+            }
+            */
+
+            g.restore();
+            return canvas;
+        }
+
+        var c = document.createElement("canvas");
+        c.width = 16;
+        c.height = 16;
+
+        c = perlinNoise(c);
+        /*
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "rgba(255, 0, 0, 0.2)";
+        ctx.fillRect(0, 0, 16, 16);
+        */
+
+        document.querySelector("link").href = c.toDataURL();
+    </script>
+</body>
+
+</html>

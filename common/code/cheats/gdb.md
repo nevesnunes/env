@@ -54,6 +54,9 @@ thread n
 
 bt full
 
+# Given debug symbols and source code, next instruction must be given explicitly, since `n` advances the next line in source code listing.
+ni
+
 printf "%p\n", __libc_start_main
 printf "%x\n", (0x7ffff7e2afb0 + 0x043980)
 disass 0x7ffff7e2afb0

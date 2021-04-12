@@ -4,6 +4,7 @@
 openssl x509 -in _ -noout -text
 openssl x509 -inform pem -in _ -noout -text
 openssl x509 -inform der -in _ -noout -text
+while read -r l; do [ -n "$l" ] && [ "${l###}" = "$l" ] && printf '%s\n' "$l" | ssh-keygen -v -l -f /dev/stdin; done < authorized_keys
 
 # Certificate mismatch
 # => diff public keys

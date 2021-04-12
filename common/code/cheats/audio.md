@@ -33,6 +33,7 @@ Alternatives:
     - e.g. http://musicbrainz.org/cdtoc/attach?toc=1%2015%20...
 - `dotnet tool install -g MetaBrainz.MusicBrainz.dotnet-mbdiscid`
     - `dotnet mbdiscid`
+- [ISRC \- MusicBrainz](https://musicbrainz.org/doc/ISRC)
 
 # id3
 

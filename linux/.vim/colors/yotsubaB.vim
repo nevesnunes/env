@@ -167,15 +167,17 @@ hi texSuperscript guifg=#000000 guibg=#d6daf0 gui=NONE ctermbg=NONE ctermfg=whit
 " Diff
 "
 
-hi DiffAdd    guifg=white guibg=DarkCyan    gui=nocombine ctermbg=14    ctermfg=black cterm=nocombine
-hi DiffChange guifg=white guibg=DarkMagenta gui=nocombine ctermbg=13    ctermfg=white cterm=nocombine
-hi DiffDelete guifg=black guibg=LightRed    gui=nocombine ctermbg=9     ctermfg=black cterm=nocombine
-hi DiffText   guifg=black guibg=white       gui=nocombine ctermbg=white ctermfg=black cterm=nocombine
+hi DiffAdd    guifg=white guibg=DarkCyan    gui=bold,nocombine ctermbg=14    ctermfg=black cterm=bold,nocombine
+hi DiffChange guifg=white guibg=DarkMagenta gui=bold,nocombine ctermbg=13    ctermfg=white cterm=bold,nocombine
+hi DiffDelete guifg=black guibg=LightRed    gui=bold,nocombine ctermbg=9     ctermfg=black cterm=bold,nocombine
+hi DiffText   guifg=black guibg=white       gui=bold,nocombine ctermbg=white ctermfg=black cterm=bold,nocombine
 
 
 "
 " Plugins
 "
 
-hi ALEWarning ctermbg=blue ctermfg=white
-hi ALEError   ctermbg=red  ctermfg=white
+hi ALEWarning     ctermbg=black ctermfg=blue cterm=bold,underline,nocombine
+hi ALEError       ctermbg=black ctermfg=red  cterm=bold,underline,nocombine
+hi ALEWarningSign ctermbg=black ctermfg=blue cterm=bold,nocombine
+hi ALEErrorSign   ctermbg=black ctermfg=red  cterm=bold,nocombine

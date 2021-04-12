@@ -1,3 +1,7 @@
+# + 
+
+- http://reverseengineeringtips.blogspot.com/2015/01/an-introduction-to-x64dbg.html
+
 # Keybinds
 
 - Find pattern - `Ctrl-b`

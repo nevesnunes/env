@@ -27,6 +27,7 @@ let g:fzf_colors = {
             \ 'header':  ['fg', 'Comment'],
             \ }
 let g:fzf_launcher='urxvt -e bash -ic %s'
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'border': 'horizontal' } }
 
 set runtimepath+=~/opt/fzf
 
@@ -79,7 +80,7 @@ let g:ale_linters = {
             \ 'java': ['javac'],
             \ 'javascript': ['javascript-typescript-stdio', 'tsserver', 'eslint'],
             \ 'python': ['pyls'],
-            \ 'sh': ['shellcheck'],
+            \ 'sh': ['shellcheck', 'language_server'],
             \ }
 let g:ale_linter_alias = {
             \ 'jsx': ['css', 'javascript'],

@@ -1,4 +1,3 @@
-# +
 
 - [osint](./osint.md)
 - [firewall](./firewall.sh)
@@ -14,6 +13,8 @@
 - http://www.networksorcery.com/enp/Protocol.htm
 - https://github.com/clowwindy/Awesome-Networking
 
+- [p0f v3](https://lcamtuf.coredump.cx/p0f3/)
+    - `nmap` alternative for fingerprinting
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 
@@ -602,6 +603,7 @@ printf "GET [...]" | xxd
 curl foo --trace /dev/stderr >/dev/stdout
 ```
 
+- Check trailing `\n`
 - [ncat closes connection before server response · Issue \#1229 · nmap/nmap · GitHub](https://github.com/nmap/nmap/issues/1229)
 
 # send null byte in URL
