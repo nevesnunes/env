@@ -25,3 +25,8 @@ k2pdfopt -mode copy -n -toclist ./toclist.txt ./foo.pdf -o ./output.pdf
 pdf-stapler sel ./*.pdf output.pdf
 # ||
 pdftk preface.pdf toc.pdf ch*.pdf index.pdf cat output book.pdf
+
+# Convert .chm
+ebook-convert foo.chm foo.epub
+# ||
+chm2pdf --continuous foo.chm foo.pdf
