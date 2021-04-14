@@ -100,6 +100,8 @@ iat -i input.img --iso -o output.iso
         - Header: Sector Address (3 bytes) + Sector Mode (1 byte)
         - User Data: e.g. ISO9660 (2048 bytes)
         - Error Detection and Correction Codes (aka. Parity) (EDC + ECC) (4 + 284 bytes)
+            - https://github.com/SonofUgly/PCSX-Reloaded/blob/master/libpcsxcore/ecm.h
+            - https://github.com/john32b/cdcrush.net/blob/master/tools/docs/ecmtools/format.txt
     - http://willcodeforfood.co.uk/Content/Notes/ISO9660.htm
     - http://www.cdfs.com/cdfs-color-books.html
     - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-130.pdf

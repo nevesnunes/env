@@ -286,6 +286,8 @@ unrar x foo.part1.rar
 - Detection
     - https://protectionid.net/
 - Crafting data pattern that interferes with scrambler pattern, causing read errors
+    - ~/code/snippets/cdrom/scramble_ecma130.py
+    - ~/code/snippets/cdrom/scramble_clonecd.py
     - [Magic of Figures, or Detective Story about Unreadable CDs](http://ixbtlabs.com/articles2/magia-chisel/index.html)
 
 # file formats

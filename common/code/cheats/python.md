@@ -236,6 +236,7 @@ https://github.com/sdispater/poetry
 https://github.com/pyinstaller/pyinstaller
 https://github.com/Nuitka/Nuitka
 
+https://stackoverflow.com/questions/714063/importing-modules-from-parent-folder
 https://medium.com/knerd/the-nine-circles-of-python-dependency-hell-481d53e3e025
 
 # hex
