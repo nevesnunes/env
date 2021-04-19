@@ -25,9 +25,13 @@ chcon -Rt svirt_sandbox_file_t /var/db
 
 - https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux/
 
+# sandbox
+
+- [Walsh: Cool things with SELinux\.\.\. Introducing sandbox \-X \(LWN\.net\)](https://lwn.net/Articles/353203/)
+
 # roles
 
-- https://danwalsh.livejournal.com/75683.html
+- [Understanding SELinux Roles \- Dan Walsh&\#39;s Blog — LiveJournal](https://danwalsh.livejournal.com/75683.html)
 
 # policies
 

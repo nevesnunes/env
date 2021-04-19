@@ -18,6 +18,7 @@
 - https://www.felixcloutier.com/x86/index.html
     - https://software.intel.com/en-us/articles/intel-sdm
 - http://unixwiz.net/techtips/x86-jumps.html
+- https://www.sandpile.org/
 
 - https://github.com/michalmalik/linux-re-101
 

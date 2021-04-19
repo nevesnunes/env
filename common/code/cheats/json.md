@@ -1,3 +1,13 @@
+# Inconsistent parser behaviour
+
+- [GitHub \- BishopFox/json\-interop\-vuln\-labs: Companion labs to &quot;An Exploration of JSON Interoperability Vulnerabilities&quot;](https://github.com/BishopFox/json-interop-vuln-labs/)
+  - [An Exploration of JSON Interoperability Vulnerabilities](https://labs.bishopfox.com/tech-blog/an-exploration-of-json-interoperability-vulnerabilities)
+  ```json
+  {"test": 1, "test": 2}
+  {"test": 1, "test\ud800": 2}
+  {"test": 2, "extra": /*, "test": 1, "extra2": */}
+  ```
+
 # Non-Standard Extensions
 
 - python: allows `inf` and `nan`

@@ -1,6 +1,7 @@
 # +
 
 - [Sage Cell Server](https://sagecell.sagemath.org/)
+- [SageMath Documentation ](https://doc.sagemath.org/)
 
 - [Quipquip](https://quipqiup.com/): substitution cipher
 - [Substitution Solver \- www\.guballa\.de](https://guballa.de/substitution-solver): substitution cipher
@@ -16,6 +17,7 @@
 - [GitHub \- mwielgoszewski/python\-paddingoracle: A portable, padding oracle exploit API](https://github.com/mwielgoszewski/python-paddingoracle)
 - [AES Encryption \- Easily encrypt or decrypt strings or files](http://aes.online-domain-tools.com/)
 - [The On\-Line Encyclopedia of Integer Sequences \(OEIS\)](https://oeis.org)
+    - [GitHub \- ckrause/loda: LODA is an assembly language, a computational model and a tool for mining integer sequence programs\.](https://github.com/ckrause/loda)
 - https://github.com/apsdehal/awesome-ctf#crypto
 
 - [GitHub \- ashutosh1206/Crypton: Library consisting of explanation and implementation of all the existing attacks on various Encryption Systems, Digital Signatures, Key Exchange, Authentication methods along with example challenges from CTFs](https://github.com/ashutosh1206/Crypton)
@@ -25,6 +27,10 @@
 - https://cryptopals.com/
 
 ```python
+import gmpy2
+gmpy2.get_context().precision = 200000
+m = gmpy2.root(c, 3)
+
 gmpy2.isqrt(B * N // A)
 
 hashlib.md5().update(b'foo').hexdigest()
@@ -121,15 +127,38 @@ console.log(grc(64));
 
 # rsa
 
-```
-d = modinv(e,phi(modulus))
-If N = p, then phi(N) = p - 1 => d = modinv(e,p-1)
-```
-
-- https://en.wikipedia.org/wiki/Euler%27s_totient_function
-
 - [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)
 - Factorizing big integers - http://factordb.com/
+
+```python
+from Crypto.Util.number import getStrongPrime
+
+f = b"[REDACTED]"
+m = int.from_bytes(f, "big")
+p = getStrongPrime(512)
+q = getStrongPrime(512)
+n = p * q
+e = 65537
+
+# https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Encryption
+c = pow(m, e, n)
+
+# https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Decryption
+d = pow(e, -1, (p - 1) * (q - 1))  # modinv(e, phi(modulus))
+m = pow(c, d, n)
+```
+
+- From public key: take modulus = `n`
+    - `openssl rsa -inform PEM -pubin -in public.key -text -noout`
+    - https://github.com/VulnHub/ctf-writeups/blob/master/2015/eko-party-pre-ctf/rsa-2070.md
+- Small `e`: take cube root of `c`
+    - https://github.com/shiltemann/CTF-writeups-public/blob/master/PicoCTF_2018/writeup.md#cryptography-250-safe-rsa
+- `n = p`
+    - https://en.wikipedia.org/wiki/Euler%27s_totient_function
+    ```python
+    phi(N) = p - 1
+    d = modinv(e, p-1)
+    ```
 - Coppersmith's short pad + Franklin-Reiter related-message
     - univariate polynomial
         - sage: `small_roots()`
@@ -257,6 +286,7 @@ If N = p, then phi(N) = p - 1 => d = modinv(e,p-1)
 
 # case studies
 
+- https://blog.cryptohack.org/cryptoctf2020
 - https://n00bcak.github.io/writeups/2021/04/08/AngstromCTF-2021.html
 - https://github.com/TFNS/writeups/tree/master/2020-04-25-IJCTF
 - https://github.com/TFNS/writeups/tree/master/2020-04-12-ByteBanditsCTF
