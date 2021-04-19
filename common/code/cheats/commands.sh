@@ -561,3 +561,11 @@ printf '[1,1,{"progname":"ncdu","progver":"1.15.1","timestamp":1},
 [{"name":"bar","asize":8,"dsize":8,"ino":1},{"name":"bar2","asize":8,"dsize":8,"ino":1}],
 {"name":"baz","asize":4,"dsize":4,"ino":1}
 ]]' | ncdu -f-
+
+# Random plaintext
+head -c16 /dev/urandom | od -tx1 -An -v | tr -d '[:space:]'
+
+# Reproducing EOF in stdin
+(echo "set pagination 0";
+ echo "thread apply all bt";
+ echo "quit"; cat /dev/zero ) | gdb -p "$(pidof mysqld)"

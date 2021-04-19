@@ -25,6 +25,8 @@ execstack -s foo
 
 # toggle core dumps
 ulimit -c unlimited / ulimit -c 0
+
+info gdb
 ```
 
 ```gdb
@@ -53,6 +55,11 @@ info threads
 thread n
 
 bt full
+
+# Step out of function
+until
+# Return from function
+finish
 
 # Given debug symbols and source code, next instruction must be given explicitly, since `n` advances the next line in source code listing.
 ni
@@ -142,6 +149,11 @@ compile a dummy file with -g that has the types you need and then symbol-file it
 
 # scripting
 
+```bash
+# Validation
+gdb --config | grep -- --with-python
+```
+
 ```python
 import gdb
 
@@ -173,6 +185,24 @@ time.sleep(99999)
 - [CTFtime\.org / EKOPARTY CTF 2017 / WarmUp / Writeup](https://ctftime.org/writeup/7519)
 - https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-In-Python.html#Inferiors-In-Python
 - https://ptr-yudai.hatenablog.com/entry/2020/02/09/140839
+
+# commands
+
+- ~/code/snippets/gdb/cmd.py
+
+- https://interrupt.memfault.com/blog/automate-debugging-with-gdb-python-api
+
+# hooks
+
+- stop, memory_change, register_change...
+
+```python
+def stop(ev):
+    print("stopped, ev={}.format(ev.__dict__))
+gdb.events.stop.connect(stop)
+```
+
+- https://undo.io/resources/gdb-watchpoint/how-use-gdb-command-hook/
 
 # dump memory
 
@@ -310,9 +340,30 @@ info proc mappings
 
 - https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/
 
+# Reverse execution
+
+```gdb
+b main
+command 1
+    record
+    continue
+    end
+b _exit
+command 2
+    run
+    end
+watch *addr
+
+# [Run until stop...]
+
+rsi
+# Maybe breaks at watch
+rc
+```
+
 # Functions
 
-```
+```gdb
 define callstack
      set $Cnt = $arg0
 
@@ -345,6 +396,15 @@ gdb -ex run --args prog arg
 checkpoint
 i checkpoint
 restart checkpoint-id
+```
+
+# replicate core dump env
+
+```bash
+# Take used libs, copy to `/tmp/lib/`
+ldd a.out
+
+GDB_SHLIB_PATH=/tmp/lib/ gdb a.out core
 ```
 
 # compiling

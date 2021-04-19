@@ -1,6 +1,42 @@
 # +
 
 - [RAW Pixels Viewer](https://rawpixels.net/)
+- [GitHub \- lovell/sharp: High performance Node\.js image processing, the fastest module to resize JPEG, PNG, WebP, AVIF and TIFF images\. Uses the libvips library\.](https://github.com/lovell/sharp)
+
+# graphics api
+
+- [GitHub \- apitrace/apitrace: Tools for tracing OpenGL, Direct3D, and other graphics APIs](https://github.com/apitrace/apitrace)
+
+### GLSL
+
+- [GLSL Sandbox Gallery](http://glslsandbox.com/)
+- [Shadertoy BETA](https://www.shadertoy.com/)
+- [The Book of Shaders](https://thebookofshaders.com/glossary/)
+- [WebGLRenderingContext \- Web APIs \| MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext)
+
+- [GLSL\-Debugger : A GLSL source level debugger](http://glsl-debugger.github.io/)
+- [opengl \- How to debug a GLSL shader? \- Stack Overflow](https://stackoverflow.com/questions/2508818/how-to-debug-a-glsl-shader)
+
+```javascript
+if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    alert(gl.getShaderInfoLog(shader));
+}
+```
+
+```glsl
+void main() {
+  float bug = 0.0;
+  vec3 tile = texture2D(colMap, coords.st).xyz;
+  vec4 col = vec4(tile, 1.0);
+
+  if (crash) {
+    bug = 1.0;
+  }
+  col.x += bug;
+
+  gl_FragColor = col;
+}
+```
 
 # image from bytes
 
@@ -189,3 +225,15 @@ Filters > Distorts > Whirl and Pinch...
 # frequency domain
 
 [Frequency Domain Image Compression and Filtering | Hacker News](https://news.ycombinator.com/item?id=24997191)
+
+# seam carving, content aware resizing
+
+- [GitHub \- esimov/caire: Content aware image resize library](https://github.com/esimov/caire)
+
+- [Content\-aware image resizing in JavaScript \| Trekhleb](https://trekhleb.dev/blog/2021/content-aware-image-resizing-in-javascript/)
+- [Improved seam carving with forward energy](https://avikdas.com/2019/07/29/improved-seam-carving-with-forward-energy.html)
+
+# ocr
+
+- ~/code/snippets/graphics/redpwnCTF2019-dedication.py
+    - [CTFtime\.org / redpwnCTF 2019 / Dedication / Writeup](https://ctftime.org/writeup/16173)

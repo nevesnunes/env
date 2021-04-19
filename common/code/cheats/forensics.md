@@ -289,6 +289,13 @@ unrar x foo.part1.rar
     - ~/code/snippets/cdrom/scramble_ecma130.py
     - ~/code/snippets/cdrom/scramble_clonecd.py
     - [Magic of Figures, or Detective Story about Unreadable CDs](http://ixbtlabs.com/articles2/magia-chisel/index.html)
+    - [Чтение данных с CD\-ROM \| WASM](https://wasm.in/threads/chtenie-dannyx-s-cd-rom.501/)
+    - https://en.wikipedia.org/wiki/Linear-feedback_shift_register
+    ```
+    0x00: 00 D7 FF E1 7F F7 9F F9 57 FD 01 81
+    0x08: A8 FD 01 7E 7F 9F 9F D7 D7 E1 61 88
+    0x14: 68 99 51 55 03 80 FE 1F FF B7 FF 36
+    ```
 
 # file formats
 

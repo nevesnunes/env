@@ -7,6 +7,11 @@
 
 - [!] hex string with spaces
 
+# Decompilation
+
+- Views > Open subviews > Pseudocode (`F5`)
+- [!] "positive sp value has been found" => change offset (`Alt-k`)
+
 # Config
 
 - Options > General > Disassembly > Number of opcode bytes (Graph) = 8
