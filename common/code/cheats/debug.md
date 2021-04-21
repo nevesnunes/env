@@ -1,7 +1,13 @@
 # +
 
 - [gdb](./gdb.md)
+- http://qira.me/
+- https://github.com/rr-debugger/rr
+- https://github.com/panda-re/panda
+- https://blog.ret2.io/2021/04/20/tenet-trace-explorer/
+
 - https://github.com/HyperDbg/HyperDbg
+- https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
 
 - http://man7.org/linux/man-pages/man1/nsenter.1.html
 

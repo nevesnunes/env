@@ -19,3 +19,6 @@
 [submodule "common/code/snippets/templates/plaintext"]
 	path = common/code/snippets/templates/plaintext
 	url = https://github.com/joedavis/plaintext
+[submodule "common/code/snippets/gdb/gdb_python_api"]
+	path = common/code/snippets/gdb/gdb_python_api
+	url = https://github.com/jefftrull/gdb_python_api

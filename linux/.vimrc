@@ -435,7 +435,7 @@ map <C-k> :bp<CR>
 silent! unmap! <C-i>
 imap <C-i> <C-x><C-o>
 silent! unmap! <C-l>
-map <C-l> <Esc>:pc<CR>:noh<CR>:redraw!<CR>
+map <C-l> <Esc>:silent! pc<CR>:noh<CR>:redraw!<CR>
 
 " Prevent omnicomplete on tab
 function! InsertTabWrapper()

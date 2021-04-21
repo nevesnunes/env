@@ -183,8 +183,8 @@ time.sleep(99999)
 ```
 
 - [CTFtime\.org / EKOPARTY CTF 2017 / WarmUp / Writeup](https://ctftime.org/writeup/7519)
+- [Codegate CTF 2020 Preliminary Writeup \- CTFするぞ](https://ptr-yudai.hatenablog.com/entry/2020/02/09/140839)
 - https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-In-Python.html#Inferiors-In-Python
-- https://ptr-yudai.hatenablog.com/entry/2020/02/09/140839
 
 # commands
 
@@ -203,6 +203,7 @@ gdb.events.stop.connect(stop)
 ```
 
 - https://undo.io/resources/gdb-watchpoint/how-use-gdb-command-hook/
+- https://embeddedartistry.com/blog/2020/11/09/metal-gdb-controlling-gdb-through-python-scripts-with-the-gdb-python-api/
 
 # dump memory
 
@@ -424,7 +425,11 @@ https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
 
 # plugins
 
-./peda.md
+- [peda](./peda.md)
+- gef
+    > A convenient option is `-o /path/to/file.py` that will generate a pure Python script embedding your current execution context
+    - https://gef.readthedocs.io/en/master/commands/unicorn-emulate/
+    - https://github.com/Battelle/afl-unicorn/blob/master/unicorn_mode/helper_scripts/unicorn_dumper_gdb.py
 
 ```gdb
 # gdb-dashboard

@@ -299,6 +299,7 @@ unrar x foo.part1.rar
 
 # file formats
 
+- [QuickBMS generic files extractor and reimporter \- Luigi Auriemma](http://quickbms.aluigi.org/)
 - [GitHub \- Sembiance/dexvert: Decompress EXtract and CONVert old file formats into modern ones](https://github.com/Sembiance/dexvert)
 - [Index of /fileFormatSamples/](https://telparia.com/fileFormatSamples/)
 
