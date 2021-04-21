@@ -143,6 +143,12 @@ Parsers:
 - https://eslint.org/docs/developer-guide/selectors
     - [GitHub \- estools/esquery: ECMAScript AST query library\.](https://github.com/estools/esquery)
 
+Case Studies:
+
+- ./wasm.md#optimizing-temporary-variables
+- https://nullpt.rs/tackling-javascript-client-side-security-pt-1/
+    - ~/code/snippets/js/decode_jscrambler.js
+
 # Linking
 
 ### Enable
@@ -325,6 +331,7 @@ Promise.resolve()
 
 - http://blog.kotowicz.net/2010/04/beating-javascript-obfuscators-with.html
 - [bumperworksonline\.js · GitHub](https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651)
+- [JS NICE: Statistical renaming, Type inference and Deobfuscation](http://jsnice.org/)
 
 ```javascript
 // Running:
@@ -354,7 +361,61 @@ window.eval = function() {
 }
 ```
 
-[JS NICE: Statistical renaming, Type inference and Deobfuscation](http://jsnice.org/)
+### bypass dummy debugger calls
+
+- ~/code/snippets/js/anti-anti-debugger.js
+- Log firefox's `EvalKernel()`
+    - https://searchfox.org/mozilla-central/source/js/src/builtin/Eval.cpp#224
+    - https://nullpt.rs/tackling-javascript-client-side-security-pt-2/
+    ```cpp
+    #include "mozilla/Logging.h"
+    // ...
+    static bool EvalKernel(JSContext* cx, HandleValue v, EvalType evalType,
+            AbstractFramePtr caller, HandleObject env,
+            jsbytecode* pc, MutableHandleValue vp) {
+        // ...
+        using mozilla::LogLevel;
+        static mozilla::LazyLogModule sLogger("example_logger");
+        MOZ_LOG(sLogger, LogLevel::Info, ("Eval: %s", JS_EncodeStringToASCII(cx, v.toString()).get()));
+        // ...
+    }
+    ```
+- Given integrity checks and debugger calls evaluated in a separate context, then replace firefox's debugger keyword
+    - usage
+        ```html
+        <script>
+        window.oldSlice = Array.prototype.slice;
+        Array.prototype.slice = function() {
+            overriden_debugger;
+            window.oldSlice(arguments);
+        }
+        </script>
+        <script src="./foo.js"></script>
+        ```
+    - e.g. JScrambler
+    - https://nullpt.rs/evading-anti-debugging-techniques/
+        ```diff
+        --- a/js/src/frontend/ReservedWords.h
+        +++ b/js/src/frontend/ReservedWords.h
+        @@ -20,7 +20,7 @@
+           MACRO(catch, catch_, TokenKind::Catch)                \
+           MACRO(const, const_, TokenKind::Const)                \
+           MACRO(continue, continue_, TokenKind::Continue)       \
+        -  MACRO(debugger, debugger, TokenKind::Debugger)        \
+        +  MACRO(ticket_debugger, debugger, TokenKind::Debugger) \
+           MACRO(default, default_, TokenKind::Default)          \
+           MACRO(delete, delete_, TokenKind::Delete)             \
+           MACRO(do, do_, TokenKind::Do)                         \
+        --- a/js/src/vm/CommonPropertyNames.h
+        +++ b/js/src/vm/CommonPropertyNames.h
+        @@ -107,7 +107,7 @@
+           MACRO_(currencySign, currencySign, "currencySign")  \
+           MACRO_(day, day, "day")                             \
+           MACRO_(dayPeriod, dayPeriod, "dayPeriod")           \
+        -  MACRO_(debugger, debugger, "debugger")              \
+        +  MACRO_(ticket_debugger, debugger, "ticket_debugger")\
+           MACRO_(decimal, decimal, "decimal")
+        ```
 
 # Running untrusted code
 

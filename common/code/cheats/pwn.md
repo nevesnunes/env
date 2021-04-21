@@ -340,11 +340,18 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
     rop += plt_write
     ```
 
+- Mitigation: https://clang.llvm.org/docs/ControlFlowIntegrity.html
+
 - [HackTheBox \- Rope](https://www.youtube.com/watch?v=GTQxZlr5yvE)
 
 # sigreturn-oriented programming (srop)
 
 TODO
+
+Debug:
+
+- http://jefftrull.github.io/c++/gdb/python/2018/03/02/print-frame.html
+    - https://github.com/jefftrull/gdb_python_api/blob/master/gdb_util/stackframe.py
 
 # windows
 

@@ -36,7 +36,9 @@ gcc -m32 -fno-PIC -Os -c -fno-reorder-functions -fno-inline-functions-called-onc
 
 - [Closure Compiler Service](https://closure-compiler.appspot.com)
     - [GitHub \- google/closure\-compiler: A JavaScript checker and optimizer\.](https://github.com/google/closure-compiler)
-- [GitHub \- facebook/prepack: A JavaScript bundle optimizer\.](https://github.com/facebook/prepack)
+- [Prepack &middot; Partial evaluator for JavaScript](https://prepack.io/)
+    - ~/code/snippets/js/prepack-repl-worker.js
+    - [GitHub \- facebook/prepack: A JavaScript bundle optimizer\.](https://github.com/facebook/prepack)
 
 # optimizing size
 

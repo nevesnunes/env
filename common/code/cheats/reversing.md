@@ -17,8 +17,8 @@
     - ELF format: `ldd -iv` (validates shared libraries initialization)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
-- syscalls
-    - ELF format: `ltrace`, `strace`
+- syscalls, dynamic library calls
+    - ELF format: `strace`, `ltrace`
     - PE format: `procmon`
 - constants
     - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)
@@ -127,10 +127,14 @@ done 2>/dev/null | vim -
 # - https://en.wikibooks.org/wiki/QEMU/Invocation
 
 # coverage
+# - differential analysis: do unrelated actions, compare traced functions against relevant action
+#     - e.g. [On why my tbreak tracing trick did not work \- gynvael\.coldwind//vx\.log](https://gynvael.coldwind.pl/?id=638)
+~/code/snippets/gdb/cov.py
 ~/opt/dynamorio/build/bin64/drrun -t drcov -dump_text -- ./a.out
 diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log | vim -
 # - diff alternative: `lighthouse` plugin
 # - https://stackoverflow.com/questions/53218160/how-can-i-do-code-path-analysis-in-a-debugger
+# - https://stackoverflow.com/questions/22507169/how-to-run-record-instruction-history-and-function-call-history-in-gdb
 # - https://dynamorio.org/dynamorio_docs/page_drcov.html
 
 # ||
@@ -160,6 +164,12 @@ perf trace record
 #     - Debugger > Switch Debugger... > Trace replayer
 # - https://github.com/teemu-l/execution-trace-viewer
 ```
+
+# recompilation
+
+- [Education/2021/CicoParser at master · gabonator/Education · GitHub](https://github.com/gabonator/Education/tree/master/2021/CicoParser)
+- [GitHub \- notaz/ia32rtools](https://github.com/notaz/ia32rtools)
+    - [Starcraft on Open Pandora: How the Port Came to Be &\#8211; Giant Pockets](https://www.giantpockets.com/starcraft-pandora-port-came/)
 
 # clean room design
 

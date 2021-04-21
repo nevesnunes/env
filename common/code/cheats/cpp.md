@@ -24,6 +24,9 @@ gcc -fPIE -pie
 gcc -no-pie -fno-pic
 ```
 
+- https://unix.stackexchange.com/questions/89211/how-to-test-whether-a-linux-binary-was-compiled-as-position-independent-code
+- https://codywu2010.wordpress.com/2014/11/29/about-elf-pie-pic-and-else/
+
 # 32bit vs 64bit binary
 
 - IA-32, a variant of x86, commonly known as i386 (the name used by Debian) or i686 (which, like IA-32, are generations of the x86 architecture series)
