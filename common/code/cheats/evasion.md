@@ -1,6 +1,7 @@
 # +
 
 - [GitHub \- zardus/preeny: Some helpful preload libraries for pwning stuff\.](https://github.com/zardus/preeny)
+- [GitHub \- jonatan1024/CpuidSpoofer: x64dbg plugin for simple spoofing of CPUID instruction behavior](https://github.com/jonatan1024/CpuidSpoofer)
 
 - [Map \- Unprotect Project](https://search.unprotect.it/map)
 - [Anti\-Debug Tricks](https://anti-debug.checkpoint.com/)

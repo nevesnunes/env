@@ -1,3 +1,7 @@
+# +
+
+- [floppy](./floppy.md)
+
 # metadata
 
 ```bash
@@ -96,12 +100,15 @@ iat -i input.img --iso -o output.iso
 - Take from: block device node (aka. block special file) (e.g. /dev/disk*)
 - Yellow Book
     - Mode 1 - Chunks of data area (2352 bytes, defined in Red Book), with fields:
+        - Capacity: 650 MB = 74 minutes (4440 seconds) contained in 333000 blocks / sectors
         - Sync: `00 ff ff ff ff ff ff ff ff ff ff 00`
         - Header: Sector Address (3 bytes) + Sector Mode (1 byte)
-        - User Data: e.g. ISO9660 (2048 bytes)
+        - User Data: 2048 bytes
+            - e.g. ISO9660
         - Error Detection and Correction Codes (aka. Parity) (EDC + ECC) (4 + 284 bytes)
             - https://github.com/SonofUgly/PCSX-Reloaded/blob/master/libpcsxcore/ecm.h
             - https://github.com/john32b/cdcrush.net/blob/master/tools/docs/ecmtools/format.txt
+    - https://cdrfaq.org/
     - http://willcodeforfood.co.uk/Content/Notes/ISO9660.htm
     - http://www.cdfs.com/cdfs-color-books.html
     - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-130.pdf
@@ -120,6 +127,27 @@ iat -i input.img --iso -o output.iso
     - [Windows 98SE + Virtual CD Software + CD Audio \\ VOGONS](https://www.vogons.org/viewtopic.php?t=37592)
     - [Support for mixed mode CD images \(data \+ audio\) · Issue \#26 · sysprogs/WinCDEmu · GitHub](https://github.com/sysprogs/WinCDEmu/issues/26)
     - [Mixed Mode CD \- Wikipedia](https://en.wikipedia.org/wiki/Mixed_Mode_CD)
+
+### Reading all sectors / Skipping TOC
+
+- Given swappable drive: Place CD with fake TOC, read TOC, stop drive motor, replace with target CD, start drive motor, resume rip
+    - http://wiki.redump.org/index.php?title=GD-Rom_Dumping_Guide_(Old)#Method_B
+    - http://wiki.redump.org/index.php?title=GD-Rom_Dumping_Guide
+- TODO: patch cdrdao
+    - ? overburn data
+    > Copying data track 1 (MODE1_RAW): start 00:00:00, length 03:21:53 to "out.bin"...
+
+### Empty files
+
+> The reason PSX games have empty audio or data at the end is because the PSX lens assembly is a chunk of shit and has a very hard time reading where the disk ends if the game is under 30MB. This is why people started adding files like CDROM:/ZZZZZZZZ.ZZZ/Z.NULL that contains nothing but 30-300MB of 0x00's in it.
+    - https://segaxtreme.net/threads/a-tad-bit-confused.5471
+
+### Swapped bit-order
+
+```bash
+# Reference: [Rip my Tekken 2 Disc with Linux? \(CD Audio Noise\) \- Cybdyn Systems](https://www.cybdyn-systems.com.au/forum/viewtopic.php?t=2042)
+cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.toc
+```
 
 # ISO
 
@@ -207,6 +235,16 @@ mount -o loop input.img /foo
 mkisofs -o output.iso /foo
 ```
 
+# NRG
+
+```bash
+# 1. Using Nero Linux, burn NRG image to CD
+# 2. Load and mount CD, then create BIN/CUE image
+cdrdao read-cd --read-raw --datafile out.bin --driver generic-mmc:0x20000 --device /dev/cdrom out.toc
+toc2cue out.toc out.cue
+# Alternative: nrg2iso, ultraiso
+```
+
 # ECM
 
 ```bash
@@ -215,6 +253,19 @@ ecm d input.img.ecm output.img
 
 - [Romhacking\.net \- Utilities \- Command\-Line Pack v1\.03](https://www.romhacking.net/utilities/1440/)
     - [Romhacking\.net \- Community \- Neill Corlett](https://www.romhacking.net/community/99/)
+
+# CD-ROM XA extenstion
+
+- Mode 2 Form 2
+    - User Data: 2324 bytes
+        - e.g. Video CD (White Book)
+    - Capacity: 
+        - 738 MB = 74 minutes contained in 333000 blocks / sectors
+        - 796 MB = 80 minutes contained in 360000 blocks / sectors
+        > VCDs can hold that much more data becasue the .mpg stream has its own built in safeguards against corruption. They use MODE 2 FORM 2 cd sectors that sacrifice data integrity for space.
+        > Iso 9660 formatting requires that DATA including .avis be written with MODE 1 / MODE 2 FORM 1 sectors that have full error checking and correction.
+            - https://forum.videohelp.com/threads/63493-800-mb-on-a-700-mb-cd
+    - https://retrocomputing.stackexchange.com/questions/13733/what-was-the-purpose-of-exotic-modes-and-sectors-for-cd-rom
 
 # VHD
 

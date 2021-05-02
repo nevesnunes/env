@@ -80,7 +80,7 @@ let g:ale_linters = {
             \ 'java': ['javac'],
             \ 'javascript': ['javascript-typescript-stdio', 'tsserver', 'eslint'],
             \ 'python': ['pyls'],
-            \ 'sh': ['shellcheck', 'language_server'],
+            \ 'sh': ['shellcheck'],
             \ }
 let g:ale_linter_alias = {
             \ 'jsx': ['css', 'javascript'],

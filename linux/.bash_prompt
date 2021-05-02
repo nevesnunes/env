@@ -68,8 +68,11 @@ prompt_main() {
         user_at_host='\u@\h '
     fi
 
-    # Note: if reset is not followed by a printable character, terminals with column length matching prompt length have invalid line wrapping
-    PS1="$prompt_fg$user_at_host\W$prompt_vcs_status$prompt_jobs$prompt_exit_status ▬▬▬▬$prompt_reset "
+    # Note: if reset is not followed by a printable character, 
+    # terminals with column length matching prompt length 
+    # have invalid line wrapping.
+    # TODO: show user@host on cwd parsed from `mount -t fuse.sshfs`
+    PS1="$prompt_fg$user_at_host\W$prompt_vcs_status$prompt_jobs$prompt_exit_status ####$prompt_reset "
 }
 
 # References:

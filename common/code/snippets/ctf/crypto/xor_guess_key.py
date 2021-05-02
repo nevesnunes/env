@@ -32,13 +32,13 @@ def xor(message, key):
             o.append(c)
             if c in printable_ascii:
                 matched_length += 1
-        print(f"Decrypted {matched_length} printable chars with key at index {k}")
+        print(f"Decrypted {matched_length} printable chars with key at index {k}", file=sys.stderr)
         if matched_length > max_matched_length:
-            print("Best so far!")
+            print("Best so far!", file=sys.stderr)
             max_matched_length = matched_length
             picked_candidate = o
             picked_i = i
-    print(f"Picked candidate with key at index = {picked_i}")
+    print(f"Picked candidate with key at index = {picked_i}", file=sys.stderr)
     sys.stdout.buffer.write(bytes(picked_candidate))
     sys.stdout.buffer.write(b'\n')
 

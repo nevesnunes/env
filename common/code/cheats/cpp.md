@@ -1,3 +1,7 @@
+# explain
+
+- [cdecl: C gibberish &harr; English](https://cdecl.org/)
+
 # repl
 
 ```bash
@@ -289,6 +293,8 @@ Lackey / None: demo/unit test of valgrind itself.
 # out-of-bounds
 
 -fsanitize=address
+
+https://devblogs.microsoft.com/cppblog/finding-bugs-with-addresssanitizer-msvc-compiler/
 
 # typo key initialization
 

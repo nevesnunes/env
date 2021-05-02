@@ -1,0 +1,3 @@
+# IDA
+
+> Load the ROM in as a binary file (or just drag it into IDA's icon), change the processor to Motorola MC68000, then just OK through everything until you see the disassemblyh window. Mark the data at ROM:00000000 as a longword with Q (this is the intiaial value of sp), then the data at ROM:00000004 as a label with O (this is the starting address). Hit Enter on this new label and hit C to start disassembling code. The rest of everything up to ROM:00000100 is a label; the ones at address $70 and $78 are HInt and VInt, respectively (the rest are errors, the external hardware interrupt, or trap instruction vectors). For Puggsy I think these are in RAM or disassemle to code that jumps to RAM so you will have to follow the RAM addresses with X.

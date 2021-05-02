@@ -111,10 +111,10 @@ restore data.txt binary 0x123
 call memcpy(0x123, "\x01\x02\x03\x04", 4)
 
 # Allocate memory for value
-set $malloc = (void*(*)(long long)) malloc 
-set $mem = $malloc(sizeof(long)) 
-p $mem 
-# $1 = (void *) 0x5591420469b0 
+set $malloc = (void*(*)(long long)) malloc
+set $mem = $malloc(sizeof(long))
+p $mem
+# $1 = (void *) 0x5591420469b0
 p *(long*)$mem = (int*)func_that_returns_addr()
 # ||
 p *(long*)0x5591420469b0 = (int*)func_that_returns_addr()
@@ -138,9 +138,18 @@ condition 2 *(int*)__errno_location() == 3
 # call   __errno_location@plt <__errno_location@plt>
 ```
 
+# pitfalls
+
+- `gdb.execute(f'set $fd = call (int){address("open")}("/tmp/123", {O_RDONLY})')`
+   - Error: No symbol table is loaded.
+   - Cause: Extraneous token "call"
+- `gdb.execute(f'set $child_pid = (int)*{fork}()')`
+   - Error: Cannot access memory at address 0x320f4
+   - Cause: Extraneous token "*"
+
 # methodology
 
-compile a dummy file with -g that has the types you need and then symbol-file it into gdb to get access to the types. This of course has caveats, you have to use the correct compiler and library versions, correct compiler target and ABI-changing flags, etc.
+> compile a dummy file with -g that has the types you need and then symbol-file it into gdb to get access to the types. This of course has caveats, you have to use the correct compiler and library versions, correct compiler target and ABI-changing flags, etc.
 
 # saving / restoring register state
 
@@ -294,7 +303,7 @@ end
 Catchpoint 1 (syscall 'access' [21])
 (gdb) condition 1 $_streq((char *)$rdi, "/etc/ld.so.preload")
 (gdb) ru
-Starting program: /bin/ls 
+Starting program: /bin/ls
 
 Catchpoint 1 (call to syscall access), 0x00007ffff7df3537 in access ()
     at ../sysdeps/unix/syscall-template.S:81
@@ -438,9 +447,12 @@ dashboard -output $(tty)
 
 # case studies
 
+- https://github.com/apache/impala/blob/master/lib/python/impala_py_lib/gdb/impala-gdb.py
+    - https://github.com/apache/impala/blob/master/bin/diagnostics/collect_diagnostics.py
+
 ### Stack frame manipulation
 
-[GitHub \- c3r34lk1ll3r/gdb\_2\_root: This python script adds some usefull command to stripped vmlinux image](https://github.com/c3r34lk1ll3r/gdb_2_root)
+- [GitHub \- c3r34lk1ll3r/gdb\_2\_root: This python script adds some usefull command to stripped vmlinux image](https://github.com/c3r34lk1ll3r/gdb_2_root)
 
 ### Dump bash command history of an active shell user
 

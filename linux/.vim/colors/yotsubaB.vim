@@ -99,9 +99,9 @@ hi Typedef      guifg=#af0a0f guibg=NONE gui=NONE ctermbg=NONE ctermfg=6
 hi Comment        guifg=#789923 guibg=NONE gui=italic ctermbg=NONE ctermfg=2 cterm=NONE
 hi Debug          guifg=#789923 guibg=NONE gui=NONE   ctermbg=NONE ctermfg=6
 hi Delimiter      guifg=#789923 guibg=NONE gui=NONE   ctermbg=NONE ctermfg=6
-hi Special        guifg=#e03f00 guibg=NONE gui=bold   ctermbg=NONE ctermfg=1 cterm=bold
-hi SpecialChar    guifg=#e03f00 guibg=NONE gui=bold   ctermbg=NONE ctermfg=1 cterm=bold
-hi SpecialComment guifg=#e03f00 guibg=NONE gui=NONE   ctermbg=NONE ctermfg=3
+hi Special        guifg=#e03f00 guibg=NONE gui=bold   ctermbg=NONE ctermfg=6 cterm=bold
+hi SpecialChar    guifg=#e03f00 guibg=NONE gui=bold   ctermbg=NONE ctermfg=6 cterm=bold
+hi SpecialComment guifg=#e03f00 guibg=NONE gui=NONE   ctermbg=NONE ctermfg=6
 hi Tag            guifg=#789923 guibg=NONE gui=NONE   ctermbg=NONE ctermfg=6
 hi Todo           guifg=#789923 guibg=NONE gui=italic ctermbg=NONE ctermfg=6 cterm=NONE
 
@@ -115,7 +115,7 @@ hi Underlined guifg=#117742 guibg=NONE gui=bold,underline ctermbg=NONE ctermfg=6
 "
 
 hi NonText    guifg=#8993cd guibg=NONE gui=NONE ctermbg=NONE ctermfg=4
-hi SpecialKey guifg=#e03f00 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
+hi SpecialKey guifg=#e03f00 guibg=NONE gui=NONE ctermbg=NONE ctermfg=6
 
 hi Visual    guifg=#ffffff guibg=#e03f00 gui=NONE ctermbg=1 ctermfg=white cterm=bold
 hi VisualNOS guifg=#ffffff guibg=#8993cd gui=NONE ctermbg=4 ctermfg=white
@@ -149,8 +149,8 @@ hi PMenuSel   guifg=#ffffff guibg=#e03f00 gui=bold   ctermbg=1    ctermfg=white
 hi PMenu      guifg=#000000 guibg=#8993cd gui=NONE   ctermbg=0    ctermfg=3
 hi PMenuThumb guifg=#ffffff guibg=#55567a gui=NONE   ctermbg=NONE ctermfg=white
 
-hi cformat           guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=1
-hi cspecialcharacter guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=1
+hi cformat           guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=6
+hi cspecialcharacter guifg=#e03f00 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=6
 hi MatchParen        guifg=#ffffff guibg=#e03f00 gui=bold ctermbg=white ctermfg=blue cterm=bold,reverse term=bold,reverse
 hi preproc           guifg=#64648f guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=5
 
