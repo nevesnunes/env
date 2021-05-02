@@ -638,3 +638,21 @@ not not 1
 # memoization
 
 - https://docs.python.org/3/library/functools.html#functools.lru_cache
+
+# signed int, 2s-complement
+
+```python
+import ctypes
+>>> ctypes.c_uint(-1)
+c_uint(4294967295)
+>>> ctypes.c_uint(0xffffffff)
+c_uint(4294967295)
+>>> ctypes.c_uint(0xffffffff + 1)
+c_uint(0)
+>>> ctypes.c_uint64(0xffffffff + 1)
+c_ulong(4294967296)
+>>> ctypes.c_uint32(0xffffffff + 1)
+c_uint(0)
+>>> ctypes.c_uint16(0xffffffff + 1)
+c_ushort(0)
+```

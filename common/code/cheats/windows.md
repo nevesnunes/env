@@ -741,6 +741,18 @@ https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
 certutil û<command>
 ```
 
+### bypass disabled cmd prompt
+
+> Open the Wireless Network Connection screen by clicking on the WiFi icon in the bottom right hand corner of the screen. This should be next to the system clock.
+> Select "Change advanced settings" – this will bring up a screen called Windows Network Connection Properties. Choose the Wireless Networks tab.
+> Under the Preferred networks section, click the Add button and then select the Authentication tab. Make sure "Enable IEEE 802.1x authentication for this network" is enabled.
+> Under EAP Type, select "Smart Card or other Certificate" and then click the Properties button.
+> Under Trusted Root Certificate Authorities click the View Certificate button. This will bring up a screen called Certificate; choose the Details tab and click the "Copy to File" button. This will bring up a screen called Certificate Export Wizard.
+> Click Next and select any of the available export format options. For example, choose the "DER encoded binary X.509" option and click next.
+> Instead of typing out a export path click the Browser button to open a file dialog. In the "File Name" box type: \WINDOWS\System32\ and under "Save as type" select the "All Files (*.*)" option. Hit the enter key.
+> Locate the cmd.exe file then drag and drop any Dynamic-Link Library (DLL) over it. For example, choose the clusapi.dll file located near the cmd.exe executable. This will open a Command Prompt screen as an unprivileged user.
+    - https://blog.korelogic.com/blog/2020/06/29/cellebrite_good_times_come_on
+
 # install xp on hard disk
 
 On Windows host:

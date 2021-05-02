@@ -50,7 +50,7 @@ URxvt*geometry: 84x38
 URxvt*internalBorder: 5
 URxvt*jumpScroll: true
 URxvt*loginShell: true
-URxvt*scrollBar: false 
+URxvt*scrollBar: false
 URxvt*underlineURLs: True
 URxvt*urlLauncher: xdg-open
 URxvt*urlButton: 1
@@ -71,8 +71,33 @@ URxvt.clipboard.pastecmd: xclip -selection clipboard -o
 
 xterm*termName: xterm-16color
 
+! Bitmap font
+! Validation:
+! $ fc-list
+! $ xfontsel
+! $ xlsfonts -fn "*-fixed-medium-r-n*--13-120-75-*-iso1*-1"
+! $ xlsfonts -ll -fn fixed
+! Errors: 
+! - xterm: Selected font has no non-zero height for ISO-8859-1 encoding
+!     - Solution: For `bdf`, add the following properties:
+!         PIXEL_SIZE 13
+!         POINT_SIZE 100
+!         RESOLUTION_X 96
+!         RESOLUTION_Y 96
+! References:
+! - https://wiki.archlinux.org/index.php/X_Logical_Font_Description
+! UXTerm*boldMode: false
+! UXTerm.VT100.renderFont: false
+! UXTerm.VT100.font: -*-fixed-bold-r-normal-*-14-*-*-*-*-*-iso10646-1
+! UXTerm.VT100.font: -*-terminus-bold-r-normal-*-14-*-*-*-*-*-iso10646-1
+
 UXTerm*faceNameDoublesize: Source Han Sans CN
 UXTerm*faceName: Iosevka Custom
+! UXTerm*faceName: Nixedsys
+! UXTerm*faceName: Dina:style=Bold
+! UXTerm*faceName: Xnu Iso
+! UXTerm*faceName: Bm437 IBM VGA 8x14 OTB
+! UXTerm*faceName: Bm437 ToshibaSat 8x14 OTB
 UXTerm*faceSize: 10
 UXTerm*geometry: 84x38
 UXTerm*jumpScroll: true

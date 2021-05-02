@@ -20,7 +20,10 @@
 - http://unixwiz.net/techtips/x86-jumps.html
 - https://www.sandpile.org/
 
-- https://github.com/michalmalik/linux-re-101
+- [Notes on x86\-64 Assembly and Machine Code · GitHub](https://gist.github.com/mikesmullin/6259449)
+- [Single Byte or Small x86 Opcodes \| Dru Nelson](http://xxeo.com/single-byte-or-small-x86-opcodes)
+- [GitHub \- michalmalik/linux\-re\-101: A collection of resources for linux reverse engineering](https://github.com/michalmalik/linux-re-101)
+- [NASM Tutorial](https://cs.lmu.edu/~ray/notes/nasmtutorial/)
 
 ```bash
 # assembler source listing, includes symbols
@@ -335,6 +338,7 @@ qemu-aarch64 -singlestep -g 1234 -L /usr/aarch64-linux-gnu/ foo
 gdb-multiarch -ex 'target remote localhost:1234'
 ```
 
+- build objdump from binutils for target architecture
 - https://github.com/OAlienO/CTF/tree/master/2018/HITCON-CTF/Baldis-RE-Basics
 - https://padraignix.github.io/reverse-engineering/2020/05/18/nsec2020-crackme/
 

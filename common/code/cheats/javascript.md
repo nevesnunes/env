@@ -253,6 +253,9 @@ Function.prototype.toString
 
 ```javascript
 o=window; do Object.getOwnPropertyNames(o).forEach(name => {console.log(name, o[name]);}); while(o = Object.getPrototypeOf(o));
+
+// Globals
+Object.entries(window)
 ```
 
 # Overriding
@@ -329,9 +332,10 @@ Promise.resolve()
 
 # Deobfuscation
 
-- http://blog.kotowicz.net/2010/04/beating-javascript-obfuscators-with.html
-- [bumperworksonline\.js · GitHub](https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651)
+- [de4js \| JavaScript Deobfuscator and Unpacker](https://lelinhtinh.github.io/de4js/)
 - [JS NICE: Statistical renaming, Type inference and Deobfuscation](http://jsnice.org/)
+- [bumperworksonline\.js · GitHub](https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651)
+- [Beating JavaScript obfuscators with Firebug](http://blog.kotowicz.net/2010/04/beating-javascript-obfuscators-with.html)
 
 ```javascript
 // Running:

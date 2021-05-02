@@ -1,6 +1,6 @@
 # reports
 
-[disk-benchmarks](./reports/disk-benchmarks.md)
+- [disk-benchmarks](./reports/disk-benchmarks.md)
 
 # monitor health/reliability
 
@@ -37,6 +37,10 @@ btrace /dev/sdX
 # activity/load
 dd if=/dev/zero of=/tmp/testfile count=1 bs=900M
 sudo dd if=/dev/sda3 of=/dev/null count=3 bs=100M
+
+# Time Limited Error Recovery (TLER) / Command Completion Time Limit (CCTL)
+# - e.g. read retry timeout of 5s:
+smartctl -l scterc,50,50 /dev/sda
 ```
 
 

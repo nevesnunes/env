@@ -212,6 +212,7 @@ gf() {
     | grep -o "[a-f0-9]\{7,\}"
 }
 
+# Cross-platform open with default app
 o() {
   local open_cmd
   case "$OSTYPE" in
@@ -237,4 +238,9 @@ t() {
   fi
   clear
   script -qefc "task list; exit" /dev/null | head -n+$LINES
+}
+
+# `strings` with multiple encodings
+x() {
+  strings "$@"; strings -eb "$@"; strings -el "$@"
 }

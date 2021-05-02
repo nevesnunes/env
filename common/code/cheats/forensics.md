@@ -27,6 +27,8 @@
 - https://www.virustotal.com/gui/home
 
 - https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf
+- https://pokhym.com/2017/06/25/part-1-1-basic-static-techniques/
+- https://github.com/hxFrost/Malware-Analysis-Tools
 
 # event log
 
@@ -53,7 +55,7 @@
 
 ### memory dump
 
-- dumpit, procdump, PMDump
+- dumpit, procdump -ma, PMDump
 - winpmem.exe -f test.raw
     - https://github.com/google/rekall/tree/master/tools/windows/winpmem
 
@@ -203,7 +205,14 @@ while read -r i; do 7z x -p"$i" flag.zip >/dev/null; if [ ! -s flag.txt ]; then 
 
 ### extraction path
 
-- [GitHub \- snyk/zip\-slip\-vulnerability: Zip Slip Vulnerability \(Arbitrary file write through archive extraction\)](https://github.com/snyk/zip-slip-vulnerability)
+- symbolic links
+    - [APPNOTE.TXT - .ZIP File Format Specification](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT)
+        - 4.5.7 UNIX Extra Field (0x000d)
+- write outside extraction path using path traversal via relative path, e.g. `../../foo`
+    - [APPNOTE.TXT - .ZIP File Format Specification](https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT)
+        - 4.4.17 file name: (Variable)
+    - [The Complete Guide to Hacking WWIV \- Volume Three, Issue Thirty-four \- Phrack Magazine](http://phrack.org/issues/34/5.html)
+    - [GitHub \- snyk/zip\-slip\-vulnerability: Zip Slip Vulnerability \(Arbitrary file write through archive extraction\)](https://github.com/snyk/zip-slip-vulnerability)
 
 ### encryption / password attacks
 

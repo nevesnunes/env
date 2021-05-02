@@ -353,6 +353,20 @@ Debug:
 - http://jefftrull.github.io/c++/gdb/python/2018/03/02/print-frame.html
     - https://github.com/jefftrull/gdb_python_api/blob/master/gdb_util/stackframe.py
 
+# ssl sni support
+
+```python
+# remote():
+ssl_args = ssl_args or {}
+if isinstance(sni, str):
+    ssl_args["server_hostname"] = sni
+elif sni:
+    ssl_args["server_hostname"] = host
+if ssl:
+    # self.sock = _ssl.wrap_socket(self.sock,**ssl_args)
+    self.sock = _ssl.SSLContext().wrap_socket(self.sock,**ssl_args)
+```
+
 # windows
 
 - mitigations

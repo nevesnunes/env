@@ -1,3 +1,7 @@
+# +
+
+- [The Go Playground](https://play.golang.org/)
+
 # Install / Update module
 
 ```bash

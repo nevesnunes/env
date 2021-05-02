@@ -1,0 +1,6 @@
+Convert PCF and BDF files to bitmap only OpenType (.otb) using fontforge
+
+If you have a new enough fontforge, the python version of this script can
+optionally read filenames from standard input, generating multiple .otb
+font files as it finds new families.  It also handles gzipped PCF and BDF
+files.
