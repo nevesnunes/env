@@ -22,12 +22,6 @@ alias | cut -f1 -d= ; hash -f; hash -v | cut -f 1 -d= | sort
 # List shell frequent commands (history)
 history | awk '{print $2}' | sort | uniq -c | sort -nr | head
 
-# Monitor Disk Input/Output (iotop) [read, write]
-sudo iotop
-
-# Monitor Cummulative Disk Input/Output (pidstat) [read, write]
-pidstat -dl 20
-
 # System recent journal (journalctl)
 journalctl --since="30 minutes ago"
 
@@ -41,7 +35,7 @@ sudo sealert -a /var/log/audit/audit.log
 xset dpms force off
 
 # Print key names (xkbprint)
-xkbprint -label name $DISPLAY
+xkbprint -label name "$DISPLAY"
 
 # Audio Mixer (alsamixer) [music, sound, volume, level]
 alsamixer
@@ -53,7 +47,7 @@ htop
 find /var/log -mmin -5 -size +2M
 
 # Weather (curl) [wttr.in, wego]
-curl wttr.in 2>/dev/null | head -n7; read -n 1
+curl wttr.in 2>/dev/null | head -n7; read -r -n 1
 
 # Retrieve page with cookies
 curl -O -J -L -b cookies.txt _
@@ -569,3 +563,22 @@ head -c16 /dev/urandom | od -tx1 -An -v | tr -d '[:space:]'
 (echo "set pagination 0";
  echo "thread apply all bt";
  echo "quit"; cat /dev/zero ) | gdb -p "$(pidof mysqld)"
+
+# Alternative to quoted redirection
+# i.e. `sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'`
+echo 1 | sudo tee /proc/sys/kernel/perf_event_paranoid
+
+# Stream via pipe
+# On writer end:
+mkfifo foo; script -f foo
+# On reader end:
+cat foo
+
+# kill port
+fuser -k $port/tcp
+
+# throttle download
+aria2c --max-download-limit=100K --max-tries=0 --retry-wait="$(sleep $((RANDOM % 5 + 10)))" foo
+
+# recently modified files since boot
+find / -mount -newer /proc -print

@@ -30,6 +30,9 @@
 gcc -S -masm=intel
 ```
 
+> load effective address just takes the second operand was provided and gives the address of, similar to the & operator in c/cpp.
+    > `lea r8d, [eax]` is the same as `mov r8d, eax` - usually `lea` is chosen since it can be dispatched on two ports (1/5 supporting fast LEA) and some things favor `lea` over alternatives for things like address incrementing (string ops).
+
 # intrinsics
 
 - [Intel&reg; Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#)

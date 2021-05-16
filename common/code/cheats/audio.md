@@ -154,3 +154,8 @@ for i in *.flac; do ffmpeg -i "$i" -af "volumedetect" -vn -sn -dn -f null /dev/n
 > The 16-bit compact disc has a theoretical undithered dynamic range of about 96 dB; however, the perceived dynamic range of 16-bit audio can be 120 dB or more with noise-shaped dither, taking advantage of the frequency response of the human ear.
     - https://en.wikipedia.org/wiki/Dynamic_range
     - => Dithering noise should be above noise floor (-96 dB)
+
+# modulation
+
+- https://medium.com/poka-techblog/back-to-basics-decoding-audio-modems-with-audacity-c94faa8362a0
+    - ~/Downloads/Back to basics_ Decoding Audio Modems with Audacity _ by Maxime Leblanc _ poka-techblog _ Medium (09_05_2021 15_32_46).html

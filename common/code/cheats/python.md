@@ -74,6 +74,14 @@ def clean(data):
 pp [ "{}: {}".format(x, clean(getattr(o, x))) for o in [foo] for x in dir(o) ]
 ```
 
+gdb
+- https://www.podoliaka.org/2016/04/10/debugging-cpython-gdb/
+```
+gdb /usr/bin/python3 -p 1234
+
+(gdb) py-bt
+```
+
 pdb
 ```
 h
@@ -111,11 +119,11 @@ print(foo.__dict__)
 traceback.print_stack()
 ```
 
-~/.pdbrc
-~/bin/post_mortem.py
+- ~/.pdbrc
+- ~/bin/post_mortem.py
 
-https://ikhlestov.github.io/pages/languages/python/packages/ipdb/
-https://stackoverflow.com/questions/3702675/how-to-print-the-full-traceback-without-halting-the-program
+- https://ikhlestov.github.io/pages/languages/python/packages/ipdb/
+- https://stackoverflow.com/questions/3702675/how-to-print-the-full-traceback-without-halting-the-program
 
 # Trace
 

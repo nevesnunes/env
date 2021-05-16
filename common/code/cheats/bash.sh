@@ -237,6 +237,13 @@ echo '
 # preview input to pipe
 a=$(printf '%s\n' 1 2 3) && printf '%s' "$a" >&2 && read -r && printf '%s\n' "$a" | xargs -i ls {};
 
+# regex
+regex1='(.*)/(.*)'
+if [[ $GITHUB_REPOSITORY =~ $regex1 ]]; then
+  owner=${BASH_REMATCH[1]}
+  repository=${BASH_REMATCH[2]}
+fi
+
 # shebang with multiple args
 # - [Sbang lets you run scripts with long shebang lines | Hacker News](https://news.ycombinator.com/item?id=24963669)
 #!/usr/bin/env -S -P/usr/local/bin:/usr/bin perl arg1 arg2 arg3

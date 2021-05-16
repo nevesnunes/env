@@ -8,8 +8,8 @@ xkb_symbols "altmagic" {
 
     include "us(altgr-intl)"
     include "ctrl(nocaps)"
-    //include "ctrl(swapcaps)"
     include "level3(ralt_switch)"
+    include "keypadmagic_symbols"
 
     key <AC04> { [ f, F, Escape, Escape  ] };
 };

@@ -127,6 +127,10 @@ iat -i input.img --iso -o output.iso
     - [Windows 98SE + Virtual CD Software + CD Audio \\ VOGONS](https://www.vogons.org/viewtopic.php?t=37592)
     - [Support for mixed mode CD images \(data \+ audio\) · Issue \#26 · sysprogs/WinCDEmu · GitHub](https://github.com/sysprogs/WinCDEmu/issues/26)
     - [Mixed Mode CD \- Wikipedia](https://en.wikipedia.org/wiki/Mixed_Mode_CD)
+- Driver specifications
+    - [SCSI Common Codes & Values](https://www.t10.org/lists/1spc-lst.htm)
+    - [T10 Working Drafts](https://www.t10.org/drafts.htm#SPC_Family)
+        - Sent via `IOCTL_SCSI_PASS_THROUGH`
 
 ### Reading all sectors / Skipping TOC
 
@@ -136,6 +140,7 @@ iat -i input.img --iso -o output.iso
 - TODO: patch cdrdao
     - ? overburn data
     > Copying data track 1 (MODE1_RAW): start 00:00:00, length 03:21:53 to "out.bin"...
+- https://community.osr.com/discussion/95919/reading-raw-data-from-cd-dvd
 
 ### Empty files
 
@@ -188,6 +193,8 @@ cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.
     - https://www.retrodev.com/segacd.html
     - [How is data addressed in Sega CD programming? \(Archive\) \- Sega\-16 Forums](https://www.sega-16.com/forum/archive/index.php/t-29628.html)
     - [MagicEngine :: View topic \- ISO\-9660 PC Engine CD format](http://forums.magicengine.com/en/viewtopic.php?t=1619)
+- Bootable ISO
+    - https://wiki.osdev.org/El-Torito
 - [!] Does not store Red Book audio
     - Alternatives: `.bin/.cue`, `.ccd/.img`, `.mds/.mdf`, `.nrg`
 
@@ -235,13 +242,34 @@ mount -o loop input.img /foo
 mkisofs -o output.iso /foo
 ```
 
-# NRG
+# NRG / Other disk image formats
 
 ```bash
+# Using virtual drive
+# - git clone https://git.code.sf.net/p/cdemu/code cdemu-code
+# Ubuntu
+add-apt-repository ppa:cdemu/ppa
+apt-get update
+apt-get install cdemu-daemon cdemu-client gcdemu
+# Fedora
+dnf copr enable rok/cdemu
+dnf install cdemu-daemon cdemu-client gcdemu
+
+akmods
+systemctl restart systemd-modules-load.service
+cdemu status
+cdemu load 0 foo.cue
+
+# - svn checkout https://svn.code.sf.net/p/fuseiso/code/trunk fuseiso-code
+fuseiso -p foo.bin ./mnt
+fusermount -u ./mnt
+
+# Alternative: Using physical drive
 # 1. Using Nero Linux, burn NRG image to CD
 # 2. Load and mount CD, then create BIN/CUE image
 cdrdao read-cd --read-raw --datafile out.bin --driver generic-mmc:0x20000 --device /dev/cdrom out.toc
 toc2cue out.toc out.cue
+
 # Alternative: nrg2iso, ultraiso
 ```
 
