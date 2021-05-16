@@ -1,7 +1,8 @@
 # testing
 
-[Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript](https://regex101.com)
-[Show HN: Regex Cheatsheet | Hacker News](https://news.ycombinator.com/item?id=22200584)
+- [Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript](https://regex101.com)
+- [Debuggex: Online visual regex tester. JavaScript, Python, and PCRE.](https://www.debuggex.com/r/h3WCCQv-ek1K5VTJ)
+- [Show HN: Regex Cheatsheet | Hacker News](https://news.ycombinator.com/item?id=22200584)
 
 # lowest common denominator
 
@@ -43,18 +44,19 @@ https://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotati
 
 # word boundaries
 
-```
-\B assert position where \b does not match
-\b assert position at a word boundary: (^\w|\w$|\W\w|\w\W)
-```
-
+- General Expression
+    - `\B`: assert position where `\b` does not match
+    - `\b`: assert position at a word boundary: `(^\w|\w$|\W\w|\w\W)`
+- Vim Dialect
+    - `\<`: assert position at word start
+    - `\>`: assert position at word end
 - [!] Stops at combining characters, e.g.
+    - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
     ```
     Expression: /(?:Math(?:(?:\.\w+)|\b))|(?:\d+\.?\d*(?:e\d+)?)/
     Input: MathÐ1
     Matches: Math1
     ```
-    - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
 
 ```bash
 printf '%s' 'abc' | grep -o '\B\w\+'

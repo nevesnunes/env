@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 list1=$(tmux list-panes -a -F \
     "#{pane_pid} #{session_id} #{window_index} #{pane_index} #T:#{pane_current_path}")
 panes=()

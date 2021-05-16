@@ -181,6 +181,7 @@ inurl:gitlab "company"
 # email
 
 - [Trumail | Free Email Verification API](https://trumail.io/)
+- [GitHub \- megadose/holehe: holehe allows you to check if the mail is used on different sites like twitter, instagram and will retrieve information on sites with the forgotten password function\.](https://github.com/megadose/holehe)
 
 ```
 telnet mail.abccorp.com 25
@@ -216,6 +217,11 @@ shodan host 1.2.3.4
 # webcam
 
 - https://www.shodan.io/explore/tag/webcam
+
+# hardware
+
+- [3633808 program source codes/documents \- pudn\.com](http://en.pudn.com/)
+- https://www.mikrocontroller.net/
 
 # software and technology stack lookup
 

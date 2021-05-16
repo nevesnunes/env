@@ -6,15 +6,18 @@
 title=$1
 countdown=${2:-0}
 if [ "$countdown" -gt 0 ]; then
-  (sleep "$countdown"; killall ffmpeg >/dev/null 2>&1) &
+  (
+    sleep "$countdown"
+    killall ffmpeg > /dev/null 2>&1
+  ) &
 fi
 screen=$DISPLAY
 if ! echo "$screen" | grep -qE '\.'; then
   screen="${screen}.0"
 fi
-geo=$(xsize.sh --title "$title" --output-geometry | \
-  grep 'window:' | \
-  sed 's/window: \([0-9]\+\) \([0-9]\+\) \([0-9]\+\) \([0-9]\+\).*/\3x\4 +\1,\2/')
+geo=$(xsize.sh --title "$title" --output-geometry \
+  | grep 'window:' \
+  | sed 's/window: \([0-9]\+\) \([0-9]\+\) \([0-9]\+\) \([0-9]\+\).*/\3x\4 +\1,\2/')
 ffmpeg \
   -f x11grab \
   -r 25 \

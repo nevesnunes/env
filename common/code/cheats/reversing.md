@@ -25,13 +25,18 @@
     - https://hiddencodes.wordpress.com/2011/12/23/string-manipulation-functions-in-glibc-ms-visual-studio-and-0x7efefeff-0x81010100-0x81010101/
 - visual structure
     - https://binvis.io/
+        - https://github.com/binvis/binvis.io
+        - https://github.com/cortesi/scurve
+    - https://justine.storage.googleapis.com/memzoom/index.html
     - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
     - [Hex viewers and editors](https://twitter.com/i/events/841916822014332930)
 - entropy
-    ```bash
-    # Given $PYTHONPATH with matplotlib:
-    env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
-    ```
+    - binwalk
+        ```bash
+        # Given $PYTHONPATH with matplotlib:
+        env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
+        ```
+    - Alternatives: Audacity
 - diff
     - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
     - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
@@ -180,6 +185,12 @@ perf trace record
 - [Changing EXE file into DLL library](https://lubiki.keeperklan.com/other_docs/change_exe_to_dll.htm)
 - [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
     - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
+- easter egg in wrong password handler
+    - https://twitter.com/suddendesu/status/1386994549302562818
+        > [...] these all lead to gameplay stages by looking at the code. If it finds a match in the password table, it stores that offset in one of the "current stage" variables. directly.
+        > The code then jumps to the init gameplay after a match. This means that each entry in the list above corresponds to a gameplay stage. First one (1111) is map 1, the next (0142) is map 2, and so on. There are no special cases that lead to anything besides a game map.
+    - https://twitter.com/new_cheats_news/status/1387832686484525057
+        > You looked in the different place ;) special password is checked in a special place when wrong passwords goes to, then you need a button code to be held additionally, and voila. ;)
 
 ### binary patching
 

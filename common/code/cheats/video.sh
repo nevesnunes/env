@@ -2,9 +2,25 @@
 # See: https://www.reddit.com/r/linuxquestions/comments/5r0159/how_can_i_backup_copy_protected_dvds_on_linux/
 
 sudo mount /dev/cdrom ~/tmp/cdrom
-vobcopy -m
+cd ~/tmp/cdrom
+vobcopy --mirror -v -v -o ~/tmp/out
+# ||
 vlc dvd:/dev/dvd@1 --sout "#standard{access=file,mux=ps,dst=/home/user/file.ps}"
+# ||
 mplayer dvd://1 -dumpstream -dumpfile dump.vob
+
+### debian
+
+# On /etc/apt/sources.list:
+# ```
+# deb http://download.videolan.org/pub/debian/stable/ /
+# ```
+wget -O - https://download.videolan.org/pub/debian/videolan-apt.asc | apt-key add -
+apt-get update
+apt-get install libdvdcss2
+
+# References:
+# - https://www.rigacci.org/wiki/doku.php/doc/appunti/linux/video/vobcopy
 
 # stream
 

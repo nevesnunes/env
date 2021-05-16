@@ -1,6 +1,7 @@
 # decompiler
 
 - [GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
+    - https://github.com/DexPatcher/dex2jar/releases/
 - [GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
 - http://www.javadecompilers.com/apk
 - http://www.decompileandroid.com/
@@ -20,11 +21,13 @@
 
 # emulation
 
+- https://www.android-x86.org/
+    - :) Bluetooth, G-sensor support
+    - https://osdn.net/projects/android-x86/releases
+    - https://www.android-x86.org/documentation/virtualbox.html
+    - https://www.vimalin.com/blog/install-android-x86-in-vmware-fusion/
 - https://github.com/aind-containers/aind
     - :) exposes VNC
-- https://www.android-x86.org/
-    - https://dotsrc.dl.osdn.net/osdn/android-x86/71931/android-x86_64-9.0-r1.iso
-    - https://www.vimalin.com/blog/install-android-x86-in-vmware-fusion/
 - https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android/docs/ANDROID-QEMU-PIPE.TXT
 
 ### anbox
@@ -87,15 +90,49 @@ mkdir -p ~/opt \
 
 - https://www.fosslinux.com/13176/how-to-install-and-run-android-apps-on-ubuntu-using-anbox.htm
 
+# download apps
+
+- https://f-droid.org/en/packages/com.aurora.store/
+- https://f-droid.org/en/packages/com.aurora.adroid/
+- https://apkpure.com/
+- https://acmarket.net/download.html
+
+### Validation
+
+```bash
+# Verify certificate
+# Preconditions: Extracted `foo.apk`
+keytool -printcert -file META-INF\CERT.RSA
+# ||
+keytool -printcert -jarfile "foo.apk"
+# ||
+./android-sdk/build-tools/29.0.2/apksigner verify --verbose --print-certs "foo.apk"
+```
+
+- https://f-droid.org/en/docs/Release_Channels_and_Signing_Keys/
+
 # running apps
 
 ```bash
+# anbox
 /snap/bin/anbox launch --package=org.anbox.appmgr --component=org.anbox.appmgr.AppViewActivity
 adb start-server
 adb devices
 adb install foo.apk
 # || Specific device
 adb -s emulator-5555 install foo.apk
+
+# android-x86
+# Preconditions:
+# - On VirtualBox: Use bridged network adapter
+# - On guest: Use virtwifi connection with static ip
+adb kill-server
+adb connect 192.168.1.4:5555
+# * daemon not running; starting now at tcp:5037
+# * daemon started successfully
+# connected to 192.168.1.4:5555
+ADBHOST=192.168.1.4 adb push ./foo /sdcard
+ADBHOST=192.168.1.4 adb install ./foo.apk
 
 ~/opt/android-studio/bin/studio.sh
 ```

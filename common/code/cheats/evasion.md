@@ -63,12 +63,15 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 
 ### upx
 
+- Identification: sequence of null bytes after jmp to oep
 - Dumping executable from memory
     ```gdb
     # break after unpacking, but before executing unpacked code
     catch syscall munmap
     # ~/code/snippets/lief/dump_elf.py
     ```
+    - Windows
+        - http://secmem.blogspot.com/2013/07/dealing-with-upx-packed-executables.html
 - Fixing upx tags
     - https://r3v3rs3r.wordpress.com/2015/09/18/solving-fusion-level-9/
 - TODO: understand trailing instructions added to unpacked executable map

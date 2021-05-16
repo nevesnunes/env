@@ -1,6 +1,8 @@
 # lifecycle
 
 ```
+wget ftp://user:password@ftp.mydomain.com/foo/bar
+
 ftp x.x.x.x
 ||
 ftp -nv x.x.x.x

@@ -58,8 +58,12 @@ convert -delay 2 -loop 0 input*.png output.gif
 # SVG to PNG
 for i in *.svg ; do inkscape -z -f "${i}" -w48 -h48 -e "${i%.svg}.png" ; done
 
-# PCD to PNG
+# PhotoCD (PCD) to PNG
+# FIXME: Low brightness using `-colorspace RGB`
 find . -name "*.pcd" -type f -exec convert '{}[5]' ../../pngs/'{}'.png \;
+# Alternatives:
+g++ main.cpp pcdDecode.cpp -ljpeg -lpthread -o pcdtojpeg
+find . -name "*.pcd" -type f -exec pcdtojpeg -r 5 '{}' \;
 ```
 
 # write / export from plaintext

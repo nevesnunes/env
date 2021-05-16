@@ -16,4 +16,10 @@
 1. Select instructions > Clear Code Block
 2. Select bytes (starting at expected offset) > Disassemble
 
+# scripting
+
+- https://ghidra.re/ghidra_docs/api/ghidra/program/flatapi/FlatProgramAPI.html
+- https://ghidra.re/ghidra_docs/api/ghidra/program/model/address/Address.html
+    - https://github.com/NationalSecurityAgency/ghidra/blob/master/Ghidra/Framework/SoftwareModeling/src/main/java/ghidra/program/model/address/Address.java
+
 

@@ -1,10 +1,11 @@
-# + 
+# +
 
 - http://reverseengineeringtips.blogspot.com/2015/01/an-introduction-to-x64dbg.html
 
 # Keybinds
 
-- Find pattern - `Ctrl-b`
+- Options > Shortcuts
+    - Find pattern - `Ctrl-b`
 
 # Modules
 
@@ -12,7 +13,7 @@
 
 # Scripting
 
-1. On `Command` input field: 
+1. On `Command` input field:
 
 ```
 scriptload "C:\foo"
@@ -36,12 +37,41 @@ SetBPX NtCreateSection
 
 SetBPX ucrtbase.dll._stricmp
 
->= w7
+// >= w7
 SetBPX ntdll.ZwDeviceIoControlFile
-~=
+// ~=
 SetBPX ntdll.NtDeviceIoControlFile
 
-# after unpacking
-# - https://criticaldefence.com/malware-analysis-part-2/
+// after unpacking
+// - https://criticaldefence.com/malware-analysis-part-2/
 SetBPX VirtualFree
+
+// clear previous breakpoints
+bc
+bphwc
+bpmc
+
+// ~= gdb tbreak
+SetBPX 004015f4
+SetBreakpointCondition 004015f4,0
+SetBreakpointLog 004015f4,hit:{eip}
+SetBreakpointLogCondition 004015f4,$breakpointcounter==1
+
+// write-only
+bphws 006fd712,w,1
+SetHardwareBreakpointCondition 006fd712,0
+SetHardwareBreakpointLog 006fd712,hit_0:{eip}_v:{byte(006fd712)}
+SetHardwareBreakpointLogCondition 006fd712,$breakpointcounter==1
+
+// bpgoto
+SetBreakpointCondition arg1, 0
+SetBreakpointCommand arg1, "CIP=arg2"
+SetBreakpointCommandCondition arg1, 1
+SetBreakpointFastResume arg1, 0
+
+// Skip EXCEPTION_PRIV_INSTRUCTION
+SetExceptionBPX c0000096,3
+SetExceptionBreakpointCondition c0000096,0
+SetExceptionBreakpointCommand c0000096,skip
+SetExceptionBreakpointCommandCondition c0000096,1
 ```

@@ -70,6 +70,16 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_list_window_size = 6
 let b:ale_warn_about_trailing_whitespace = 0
 
+" TODO: add linters
+" - typescript-language-server
+call ale#linter#Define('python', {
+            \   'name': 'pyls',
+            \   'lsp': 'socket',
+            \   'address': '127.0.0.1:10777',
+            \   'language': 'python',
+            \   'project_root': 'ale#python#FindProjectRoot',
+            \   'completion_filter': 'ale#completion#python#CompletionItemFilter',
+            \ })
 let g:ale_fixers = {
             \ 'c': ['clangtidy'],
             \ 'cpp': ['clangtidy'],
@@ -78,7 +88,7 @@ let g:ale_fixers = {
 let g:ale_linters = {
             \ 'go': ['gopls'],
             \ 'java': ['javac'],
-            \ 'javascript': ['javascript-typescript-stdio', 'tsserver', 'eslint'],
+            \ 'javascript': ['tsserver', 'eslint'],
             \ 'python': ['pyls'],
             \ 'sh': ['shellcheck'],
             \ }

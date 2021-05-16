@@ -340,9 +340,12 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
     rop += plt_write
     ```
 
-- Mitigation: https://clang.llvm.org/docs/ControlFlowIntegrity.html
+- Mitigations: 
+    - https://clang.llvm.org/docs/ControlFlowIntegrity.html
+    - https://github.com/preames/public-notes/blob/master/unintended-instructions.rst
 
 - [HackTheBox \- Rope](https://www.youtube.com/watch?v=GTQxZlr5yvE)
+- [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](https://hovav.net/ucsd/dist/geometry.pdf)
 
 # sigreturn-oriented programming (srop)
 

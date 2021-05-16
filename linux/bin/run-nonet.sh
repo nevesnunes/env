@@ -13,12 +13,12 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-no_sound=
+sound=
 cmd=
 while [ "$#" -gt 0 ]; do
   arg=$1
-  if echo "$arg" | grep -q -- "--no-sound"; then
-    no_sound=1
+  if echo "$arg" | grep -q -- "--sound"; then
+    sound=1
   else
     cmd="$cmd $arg"
   fi
@@ -57,7 +57,7 @@ if ! id -u nonet; then
 fi
 
 # Configure host's PulseAudio daemon
-if [ -z "$no_sound" ]; then
+if [ -n "$sound" ]; then
   #pactl load-module module-native-protocol-unix auth-anonymous=1 socket=$pulse_socket
   pactl load-module module-native-protocol-unix auth-group=nonets auth-group-enable=yes socket=$pulse_socket
   pactl -s "$pulse_socket" info
