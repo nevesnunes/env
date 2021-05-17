@@ -36,6 +36,10 @@ https://ipython.org/ipython-doc/stable/interactive/qtconsole.html
 
 # Debugging
 
+```bash
+python3 -m pdb -c continue foo.py
+```
+
 ipython
 ```
 %xmode Verbose
