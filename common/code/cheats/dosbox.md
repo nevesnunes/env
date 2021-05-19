@@ -52,6 +52,11 @@ log 20000
 bpint 16 10
 ```
 
+Alternatives:
+
+- Protected mode: Watcom Debugger
+- Real mode: SoftICE
+
 # case studies
 
 - https://cloakedthargoid.wordpress.com/hacking-with-dosbox-debugger/

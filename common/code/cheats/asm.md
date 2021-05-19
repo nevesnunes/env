@@ -30,6 +30,24 @@
 gcc -S -masm=intel
 ```
 
+- https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
+- [ARM Assembly, Emulation, Disassembly using Keystone, Unicorn, and Capstone · GitHub](https://gist.github.com/cspensky/3a5153b29143e6be785a5e1a702bbd9e)
+
+# mnemonics
+
+```nasm
+mov bx, 0
+cmp bx, FF  ; 0 < -1 or 0 < 255 (sets CF AF SF)
+jl foo      ; not taken, 0 > -1 (checks SF != OF)
+jb foo      ; taken, 0 < 255 (checks CF = 1)
+mov bx, FF
+cmp bx, FF
+je foo      ; taken, -1 + -(-1) = 0 (checks ZF = 1)
+```
+
+- [EFLAGS Individual Bit Flags](http://www.c-jump.com/CIS77/ASM/Instructions/I77_0070_eflags_bits.htm)
+- [Jumps, flags, and the CMP instruction Article \|  Hellbound Hackers](https://www.hellboundhackers.org/articles/read-article.php?article_id=729)
+
 > load effective address just takes the second operand was provided and gives the address of, similar to the & operator in c/cpp.
     > `lea r8d, [eax]` is the same as `mov r8d, eax` - usually `lea` is chosen since it can be dispatched on two ports (1/5 supporting fast LEA) and some things favor `lea` over alternatives for things like address incrementing (string ops).
 
@@ -45,13 +63,13 @@ gcc -S -masm=intel
 ```asm
 CALL  _get_initial_narrow_environment
 MOV   EDI,EAX
-CALL  __p___argv                     
+CALL  __p___argv
 MOV   ESI,dword ptr [EAX]
-CALL  __p___argc                     
+CALL  __p___argc
 PUSH  EDI
 PUSH  ESI
 PUSH  dword ptr [EAX]
-CALL  FUN_00402100                   
+CALL  FUN_00402100
 ```
 
 # executable and linkable format (ELF)
@@ -207,7 +225,7 @@ mov rsi,qword [rsi + 0x8]
 ; return value of next call
 mov eax,0x0
 ; arguments of next call
-mov rdi,0x1 
+mov rdi,0x1
 call fun_0123
 
 ; mem ptr can be stored as extra local var
@@ -313,7 +331,7 @@ ida -m 0x100 -b 16 foo.com
 
 # 32-bit vs. 64-bit
 
-- pe format: 
+- pe format:
     - header: `50450000????`
         - 32: `014c`, 64: `8664`
     - `dumpbin /headers foo`
@@ -426,6 +444,32 @@ info register xmm0
 
 - [The Floating\-Point Guide \- What Every Programmer Should Know About Floating\-Point Arithmetic](https://floating-point-gui.de/)
 - [What Every Computer Scientist Should Know About Floating\-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
+
+# absolute indirect call
+
+```nasm
+mov rax, 0x7fffdeadbeef
+call rax
+
+; 3-byte max per ins, method 1
+mov al, func_b3            ; EAX = ######b3
+mov ah, func_b2            ; EAX = ####b2b3
+bswap eax                  ; EAX = b3b2####
+mov ah, func_b1            ; EAX = b3b2b1##
+mov al, func_b0            ; EAX = b3b2b1b0
+call eax
+
+; 3-byte max per ins, method 2
+mov ah, func_b3            ; EAX = ####b3##
+mov al, func_b2            ; EAX = ####b3b2
+shl eax, 16                ; EAX = b3b20000
+mov ah, func_b1            ; EAX = b3b2b100
+mov al, func_b0            ; EAX = b3b2b1b0
+call eax
+```
+
+- https://stackoverflow.com/questions/19552158/call-an-absolute-pointer-in-x86-machine-code
+- https://stackoverflow.com/questions/57261594/is-it-possible-to-call-a-relative-address-with-each-instruction-at-most-3-bytes
 
 # address translation
 
