@@ -582,3 +582,6 @@ aria2c --max-download-limit=100K --max-tries=0 --retry-wait="$(sleep $((RANDOM %
 
 # recently modified files since boot
 find / -mount -newer /proc -print
+
+# find byte patterns
+yara --print-strings <(echo 'rule _ { strings: $hex_string = { 42 4? } condition: $hex_string }') foo

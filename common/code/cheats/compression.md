@@ -12,7 +12,41 @@
         - https://github.com/ResultsMayVary/ctf/tree/master/PlaidCTF-2017/misc50_zipper
 - [RFC 1950 ZLIB Compressed Data Format Specification version 3\.3](http://www.zlib.org/rfc-zlib.html)
     - [zlib 1.2.11 Manual \- Advanced Functions](https://zlib.net/manual.html#Advanced)
+- [Does Microsoft OneDrive export large ZIP files that are corrupt?](https://www.bitsgalore.org/2020/03/11/does-microsoft-onedrive-export-large-ZIP-files-that-are-corrupt)
+    - ZIP64 end of central dir locator, total number of disks: expected 1, got 0
 - [Shrink, Reduce, and Implode: The Legacy Zip Compression Methods](https://www.hanshq.net/zip2.html)
+
+```bash
+# brute deflate
+python3 -c '
+import sys, zlib
+b = open(sys.argv[1], "rb").read()
+for j in range(0, len(b)):
+    for i in range(-15,47):
+        try:
+            sys.stdout.buffer.write(zlib.decompress(b[j:], i))
+            print(i,j)#exit(123)
+        except SystemExit as e:
+            raise e
+        except:
+            pass
+' foo
+
+python3 -c '
+import sys, zlib
+CHUNKSIZE=2
+d = zlib.decompressobj(-15)
+with open(sys.argv[1], "rb") as f:
+    buffer=f.read(CHUNKSIZE)
+    try:
+        while buffer:
+            sys.stdout.buffer.write(d.decompress(buffer))
+            print("--- {}".format(buffer))
+            buffer=f.read(CHUNKSIZE)
+    except Exception as e:
+        print(e)
+' foo
+```
 
 # Apple Disk Image / Apple Driver Map (dmg)
 

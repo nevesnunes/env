@@ -147,6 +147,30 @@ https://pymotw.com/2/sys/tracing.html
 
 https://alex.dzyoba.com/blog/python-import/
 
+### Modules
+
+```
+main.py
+mypackage/
+    __init__.py
+    mymodule.py
+    myothermodule.py
+```
+
+```python
+# On myothermodule.py
+from .mymodule import as_int
+# On main.py
+from mypackage.myothermodule import add
+```
+
+https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
+https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html
+
+- [!] Avoid importing module with same name as another visible file
+    - e.g. Given `foo.so`, `foo.py`, `import foo` may load `foo.so`
+        - https://stackoverflow.com/questions/65356321/creating-a-python-module-using-ctypes#65356321
+
 # Install local package
 
 ```bash
@@ -540,30 +564,6 @@ Run the command described by args. Wait for command to complete, then return a C
 ```
 
 https://docs.python.org/3/library/subprocess.html
-
-# module imports
-
-```
-main.py
-mypackage/
-    __init__.py
-    mymodule.py
-    myothermodule.py
-```
-
-```python
-# On myothermodule.py
-from .mymodule import as_int
-# On main.py
-from mypackage.myothermodule import add
-```
-
-https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
-https://chrisyeh96.github.io/2017/08/08/definitive-guide-python-imports.html
-
-- [!] Avoid importing module with same name as another visible file
-    - e.g. Given `foo.so`, `foo.py`, `import foo` may load `foo.so`
-        - https://stackoverflow.com/questions/65356321/creating-a-python-module-using-ctypes#65356321
 
 # generate markdown from csv
 

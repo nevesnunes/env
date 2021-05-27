@@ -60,3 +60,4 @@ Alternatives:
 # case studies
 
 - https://cloakedthargoid.wordpress.com/hacking-with-dosbox-debugger/
+- https://astralvx.com/debugging-16-bit-in-qemu-with-gdb-on-windows/

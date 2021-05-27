@@ -77,7 +77,7 @@ for i in *; do ffmpeg -i "$i" -map_metadata 0 -c:a copy -map 0:a "0.$i" && mv "0
 # Edit duration without re-compression
 
 ```bash
-ffmpeg -i foo.mp3 -ss 00:00:01.0 -t 00:05:00 -c copy bar.mp3
+ffmpeg -ss 00:00:01.5 -i foo.mp3 -t 00:05:00 -c copy bar.mp3
 ```
 
 # Edit replay gain without re-compression
