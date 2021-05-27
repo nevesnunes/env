@@ -48,9 +48,13 @@ References:
 # name mangling, name decoration
 
 ```bash
+# GCC / Clang
 c++filt
-# ||
-undname ?func1@a@@AAEXH@Z
+# MSVC
+undname '?func1@a@@AAEXH@Z'
+# Watcom
+# https://github.com/open-watcom/open-watcom-v2/blob/master/bld/lib_misc/c/demangle.c
+demangle 'W?h$n(i)v'
 ```
 
 - https://docs.microsoft.com/en-us/cpp/build/reference/decorated-names?view=msvc-160

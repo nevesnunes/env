@@ -84,3 +84,22 @@ ffmpeg \
   -map_metadata:s:v 0:s:v \
   -map_metadata:s:a 0:s:a \
   output.mkv
+
+# Edit duration (copy) without speciying keyframes
+
+ffmpeg -t 00:00:07.5 -i foo.mkv -ss 00:00:01 -c:v libx265 -x265-params lossless=1 bar.mkv
+
+# Reencode lossless
+
+ffmpeg -i foo.mkv -c:v libx264 -preset ultrafast -crf 0 bar.mkv
+# || keyframe interval set to 5 seconds, given fps = 24
+ffmpeg -i foo.mkv -c:v libx264 -x264-params keyint=$((5*24)):scenecut=0 -preset ultrafast -crf 0 bar.mkv
+# ||
+ffmpeg -i foo.mkv -c:v libx265 -x265-params lossless=1 bar.mkv
+# ||
+ffmpeg -i foo.mkv -c:v ffv1 bar.mkv
+
+# Crop
+# - Parameter: crop=$w:$h:$x:$y
+# - Variables: in_w,in_h
+# - Usage: -vf "crop=480:270:200:100"

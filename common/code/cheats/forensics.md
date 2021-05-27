@@ -4,8 +4,9 @@
 - [filesystem](./filesystem.md)
 - [volatility](./volatility.md)
 
-- https://bitvijays.github.io/LFC-Forensics.html
-- http://freshports.org/sysutils/sleuthkit
+- [CTF Series : Forensics \- tech\.bitvijays\.com](https://bitvijays.github.io/LFC-Forensics.html)
+- [FreshPorts \- sysutils/sleuthkit: Tools and library for filesystem forensic analysis](http://freshports.org/sysutils/sleuthkit)
+- [RWEverything \- Read Write Everything](http://rweverything.com/)
 
 # documentation, specification
 

@@ -757,10 +757,17 @@ sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username
 
 # deserialization
 
+### java
+
 - https://bling.kapsi.fi/blog/jvm-deserialization-broken-classldr.html
 - https://snyk.io/vuln/SNYK-JAVA-COMFASTERXMLJACKSONCORE-608664
 - https://blog.orange.tw/2020/09/how-i-hacked-facebook-again-mobileiron-mdm-rce.html
 - https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet
+
+### php
+
+- [GitHub \- ambionics/phpggc: PHPGGC is a library of PHP unserialize\(\) payloads along with a tool to generate them, from command line or programmatically\.](https://github.com/ambionics/phpggc/)
+- https://blog.redteam-pentesting.de/2021/deserialization-gadget-chain/
 
 # Path Traversal / Local File Inclusion (LFI)
 
