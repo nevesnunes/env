@@ -274,7 +274,7 @@ Shift + Mod4 + w
 
 "xworkspace.sh --goto"
 Mod4 + 0
-"xworkspace.sh --change"
+"xworkspace.sh --move-window"
 Shift + Mod4 + 0
 
 "xworkspace.sh -u"
