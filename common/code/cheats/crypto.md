@@ -125,6 +125,8 @@ console.log(grc(64));
 871782912000
 ```
 
+- [Brute forcing device passwords](https://cybergibbons.com/reverse-engineering-2/brute-forcing-device-passwords/)
+
 # rsa
 
 - [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)

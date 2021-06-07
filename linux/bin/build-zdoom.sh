@@ -8,10 +8,10 @@ ZMUSIC_INCLUDE_DIR=$HOME/opt/ZMusic/build_install/include
 
 basename "$PWD" | grep -q zdoom || cd ~/opt/gzdoom
 
-git config --local remote.origin.fetch \
-  | grep -q 'refs/tags' \
-  || git config --local --add remote.origin.fetch +refs/tags/*:refs/tags/*
-git pull
+#git config --local remote.origin.fetch \
+#  | grep -q 'refs/tags' \
+#  || git config --local --add remote.origin.fetch +refs/tags/*:refs/tags/*
+#git pull
 
 mkdir -p build/
 cd build/

@@ -109,6 +109,7 @@ if _name__ == "__main__":
 Object.prototype.outputFunctionName = 'x;<code>;x'
 ```
 
+- node-convict
 - [GitHub \- msrkp/PPScan: Client Side Prototype Pollution Scanner](https://github.com/msrkp/PPScan)
 - [GitHub \- BlackFan/client\-side\-prototype\-pollution: Prototype Pollution and useful Script Gadgets](https://github.com/BlackFan/client-side-prototype-pollution)
 - [GitHub \- Kirill89/prototype\-pollution\-explained: Prototype Pollution in JavaScript](https://github.com/Kirill89/prototype-pollution-explained)
@@ -436,6 +437,10 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
     - https://blog.npmjs.org/post/80277229932/newly-paranoid-maintainers
     - ~/Downloads/st-20140206_0_0_6b54ce2d2fb912eadd31e2c25c65456d2c8666e1.patch
 
+# Insecure direct object references (IDOR)
+
+- https://randywestergren.com/visa-gift-card-transactions-exposed-gowallet-vulnerability/
+
 # Cross-Site Scripting (XSS)
 
 - ~/code/snippets/ctf/web/injections.js
@@ -647,6 +652,8 @@ sqlmap.py -u http://ctf.sharif.edu:8086/ --method=POST --data="book_selection=a"
 
 # Boolean-based blind sqli
 sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username=a&password=b" -p username --technique=B --string injection --dbms=MySQL --risk=3 -D irish_home -T users --dump --prefix="aa\""
+
+~/share/ctf/2021/tamy/blind_sqli_bitmask.py
 ```
 
 - Error-based

@@ -1,6 +1,7 @@
 
 - [osint](./osint.md)
 - [firewall](./firewall.sh)
+- [mitmproxy](./mitmproxy.sh)
 - [nmap](./nmap.sh)
 - [wireshark](./wireshark.md)
 - [reverse_shell](./reverse_shell.sh)
@@ -78,6 +79,38 @@ socat -u TCP:1.2.3.4:8123 STDOUT > /foo
 ```
 
 - https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
+
+# access point
+
+```bash
+# DHCP and DNS for access point interface (e.g. wlan3)
+dnsmasq -C dnsmasq.conf -H fakehosts.conf -d
+hostapd ./hostapd.conf
+# NAT gateway between wlan3 and wlan0
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -P FORWARD ACCEPT
+sudo iptables --table nat -A POSTROUTING -o wlan0 -j MASQUERADE
+```
+
+- dnsmasq.conf
+    ```
+    interface=wlan3
+    dhcp-range=10.0.0.10,10.0.0.250,12h
+    dhcp-option=3,10.0.0.1
+    dhcp-option=6,10.0.0.1
+    server=8.8.8.8
+    log-queries
+    log-dhcp
+    ```
+- hostapd.conf
+    ```
+    interface=wlan3
+    driver=nl80211
+    ssid=Kali-MITM
+    channel=1
+    ```
+
+- [Quick and easy fake WiFi access point in Kali](https://cybergibbons.com/security-2/quick-and-easy-fake-wifi-access-point-in-kali/)
 
 # connection testing
 

@@ -3,6 +3,7 @@
 - https://syscalls.w3challs.com/
     - http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
     - https://filippo.io/linux-syscall-table/
+    - ~/code/src/systems/execute-syscall
 - https://man7.org/linux/man-pages/man2/syscall.2.html
     - register conventions
         - x64: rdi rsi rdx r10 r8 r9

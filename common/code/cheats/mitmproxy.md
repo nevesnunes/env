@@ -1,10 +1,19 @@
+# Testing
+
+- Onboarding app domain: http://mitm.it
+- Import `mitmproxy-ca-cert.pem` in proxied app
+
+```bash
+mitmdump
+google-chrome --proxy-server="http://127.0.0.1:8080"
+```
+
 # Web interface
 
 ```bash
 mitmweb --listen-port 8081
 ```
 
-- Onboarding app domain: http://mitm.it
 - Filter URL: `~u foo.com`
 
 # Transparent proxy
@@ -25,6 +34,10 @@ sysctl -w net.ipv4.ip_forward=0
 - https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/intercepting-ssl-and-https-traffic-with-mitmproxy-and-sslsplit/
 - https://www.darkcoding.net/software/decrypt-your-https-traffic-with-mitmproxy/
     - Enumerate ciphers with `ssldump`
+- [My phone is spying on me, so I decided to spy on it \| Hacker News](https://news.ycombinator.com/item?id=18298548)
+    - [GitHub \- abcnews/data\-life](https://github.com/abcnews/data-life)
+- Alternatives: Hotspot + dumpcap, VPN server
+    - https://kushaldas.in/posts/tracking-my-phone-s-silent-connections.html
 
 # Edit request manually
 

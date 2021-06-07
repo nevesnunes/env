@@ -300,3 +300,12 @@ ecm d input.img.ecm output.img
 - `7z`
 - `qemu-nbd`
     - [virtualbox \- How can i Extract Files From VDI \- Stack Overflow](https://stackoverflow.com/a/45280201/8020917)
+
+# qcow
+
+```bash
+sudo modprobe nbd
+sudo qemu-nbd -c /dev/nbd0 foo.qcow
+sudo partx -l /dev/nbd0
+sudo mount /dev/nbd0p1 ~/media/disk/
+```
