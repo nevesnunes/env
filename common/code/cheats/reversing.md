@@ -17,6 +17,8 @@
     - ELF format: `ldd -iv` (validates shared libraries initialization)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
+- roms
+    - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
 - syscalls, dynamic library calls
     - ELF format: `strace`, `ltrace`
     - PE format: `procmon`
@@ -183,6 +185,7 @@ perf trace record
 # case studies
 
 - [Changing EXE file into DLL library](https://lubiki.keeperklan.com/other_docs/change_exe_to_dll.htm)
+- [Calling Arbitrary Functions In EXEs: Performing Calls to EXE Functions Like DLL Exports](https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html)
 - [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
     - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
 - easter egg in wrong password handler

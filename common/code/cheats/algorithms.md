@@ -260,7 +260,7 @@ Red-Black
     :( keeping the colour in every tree node bloats the data – quite probably by 8 bytes for the struct size on a modern machine, and many malloc libraries round up to the next multiple or 16 or 32 bytes
 
 scapegoat tree
-    :) vs. red-black - requires only a few bytes of extra global storage (for powers of your acceptable unbalance factor) 
+    :) vs. red-black - requires only a few bytes of extra global storage (for powers of your acceptable unbalance factor)
 
 # Graphs
 
@@ -558,6 +558,17 @@ hex(0xabcdef >> 8 && 0xff)  # 0xcd
 hex(0xabcd >> 8)  # 0xab
 hex(0xff << 8)  # 0xff00
 ```
+
+# case studies
+
+- Iteration order of hash tables
+    - [How malloc broke Serenity&\#39;s JPGLoader, or: how to win the lottery \- sin\-ack&\#39;s writings](https://sin-ack.github.io/posts/jpg-loader-bork/)
+        - [LibGfx: Make JPGLoader iterate components deterministically · SerenityOS/serenity@a10ad24 · GitHub](https://github.com/SerenityOS/Serenity/commit/a10ad24c760bfe713f1493e49dff7da16d14bf39)
+    - https://news.ycombinator.com/item?id=27377867
+        > To add to this, libraries aren't consistent about convention either. Take the common "RGBA". Is this describing the byte order? Or describing most-significant to least-significant 0xRRGGBBAA, which might be little-endian encoded into a "ABGR" byte order? If you think that's stupid idea and that I'm an idiot for suggesting it, what about 16-bit RGB formats where the G component straddles both bytes? Okay, so those aren't so common anymore - but what about DXT/BC compressed formats which encode 4x4 pixel chunks at a time, and don't cleanly decompose into "channels" in the first place?
+        > D3DFMT_A8R8G8B8 (Direct3D 9) is equivalent to DXGI_FORMAT_B8G8R8A8_UNORM (DXGI / Direct3D 10+). Note that one enumeration lists the components in reverse order of the other, and that this is correct! https://docs.microsoft.com/en-us/windows/win32/direct3d10/d3... .
+        > Documentation often completely omits information endian or encoding - and when it doesn't, it's often hidden away where you'll never find it, and usually assumes x86/x64/little-endian processors. The behavior on big-endian machines is best found out through testing - even if the documentation is clear, the documentation stands a good chances of lying, and CI probably doesn't test on big-endian meaning bugs have likely arisen, and there's a good chance your copy of the library is old and doesn't contain any bugfixes.
+        > In light of all of the above, RGB vs BGR confusion is one of the most natural points of confusion to run across when dealing with image formats. "Just use the type system!" ignores where these bugs crop up - (de)serialization, converting streams of bytes to types or vicea versa. Someone must write the code, declaration, whatever - and the type system has no means of ensuring that correctly matches whatever not-computer-readable spec that the (de)serialization is supposed to match - and so it will, frequently, be understandably incorrect.
 
 # +
 

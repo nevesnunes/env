@@ -1,3 +1,10 @@
+# Modify volume
+
+```bash
+pactl list sink-inputs  # Take $sink_input
+pactl set-sink-input-mute "$sink_input" toggle
+```
+
 # Compare audio fingerprints
 
 ```bash

@@ -111,6 +111,7 @@ re.sub("(abc)bcd","\g<1>222","abcbcd");
 # performance
 
 https://learnbyexample.github.io/substitution-with-ripgrep/
+https://swtch.com/~rsc/regexp/
 
 # Blind Regex Injection, REDoS
 

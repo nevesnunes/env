@@ -94,8 +94,10 @@ mkdir -p ~/opt \
 
 - https://f-droid.org/en/packages/com.aurora.store/
 - https://f-droid.org/en/packages/com.aurora.adroid/
+- https://apkmirror.com/
 - https://apkpure.com/
 - https://acmarket.net/download.html
+- https://archive.org/details/apkarchive
 
 ### Validation
 

@@ -36,7 +36,7 @@
 # debug
 
 ```bash
-# Given `.conf` with content: 
+# Given `.conf` with content:
 # debug main.exe
 ~/opt/dosbox-0_74_3/src/dosbox -conf dosbox.conf
 ```
@@ -56,6 +56,15 @@ Alternatives:
 
 - Protected mode: Watcom Debugger
 - Real mode: SoftICE
+
+# 3.1
+
+- Graphics
+    1. dosbox.conf: machine=svga_et4000
+    2. Program Manager > Main > Windows Setup > Display: SVGA 256 colors
+- Sound
+    - ~/share/311/SB16W3x/INSTALL.EXE
+    - IRQ: 7
 
 # case studies
 

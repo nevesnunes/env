@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -eu
+set -eux
 
 # Runs on the directory with zdoom.pk3,
 # with converted paths for other files.
@@ -14,27 +14,30 @@ while [ "$#" -gt 0 ]; do
       file="$(pwd)/$1"
       [ -f "$file" ] || file="$(realpath "$1")"
       args+=("$file")
+      shift
       ;;
     -file)
       args+=("$1")
+      shift
       # Process multiple wads (e.g. btsx)
       while [ "$#" -gt 0 ]; do
-        shift
         # Next argument is an option
         if echo "$1" | grep -q '^-'; then
           args+=("$1")
+          shift
           break
         else
           file="$(pwd)/$1"
           [ -f "$file" ] || file="$(realpath "$1")"
           args+=("$file")
         fi
+        shift
       done
       ;;
     *)
       args+=("$1")
+      shift
   esac
-  shift
 done
 
 zdoom_bin=${ZDOOM_BIN:-zdoom}

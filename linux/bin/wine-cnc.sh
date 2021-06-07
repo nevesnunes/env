@@ -2,6 +2,8 @@
 
 set -eux
 
+iso_name=${1:-cnc-gdi.iso}
+
 iso_dir=$(set -- '/run/media/fn/'*'/FN-NUX/share/games/Command & Conquer' && \
   echo "$1")
 [ -d "$iso_dir" ]
@@ -11,13 +13,13 @@ wine_dir=$(realpath ~/share/wine32)
 [ -d "$wine_dir" ]
 
 mount | grep -q "$mount_dir" || \
-  sudo mount -o loop "$iso_dir"/cnc-gdi.iso \
+  sudo mount -o loop "$iso_dir/$iso_name" \
   "$mount_dir"
 rm -f "$wine_dir"/dosdevices/d:
 ln -fs "$mount_dir" \
   "$wine_dir"/dosdevices/d:
 rm -f "$wine_dir"/dosdevices/d::
-ln -fs "$iso_dir"/cnc-gdi.iso \
+ln -fs "$iso_dir/$iso_name" \
   "$wine_dir"/dosdevices/d::
 
 env \

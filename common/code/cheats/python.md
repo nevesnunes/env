@@ -277,9 +277,17 @@ https://medium.com/knerd/the-nine-circles-of-python-dependency-hell-481d53e3e025
 
 # hex
 
-~/bin/hex2bin.py
-~/bin/hex2char.py
-~/bin/hexwords2bin.py
+- parsing
+    - ~/bin/hex2bin.py
+    - ~/bin/hex2char.py
+    - ~/bin/hexwords2bin.py
+- format
+    ```
+    >>> '{:#010x}'.format(3)
+    '0x00000003'
+    >>> f'{3:#010x}'
+    '0x00000003'
+    ```
 
 ```bash
 addr=200.0.10.1; python -c "

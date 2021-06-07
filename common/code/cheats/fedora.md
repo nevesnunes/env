@@ -38,6 +38,9 @@ dnf clean packages
 ### free up space in root partition
 
 ```bash
+# core dumps
+systemd-tmpfiles --clean
+# containers
 docker system prune -a --volumes
 
 for i in cache lib; do

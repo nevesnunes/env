@@ -301,6 +301,7 @@ https://docs.microsoft.com/en-us/windows/win32/msi/command-line-options
 
 case studies
     chocolatey
+    https://github.com/microsoft/winget-pkgs
 
 # libraries, dll
 
