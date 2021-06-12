@@ -698,26 +698,31 @@ http://www.geoffchappell.com/studies/msvc/link/dump/options/map.htm?tx=12,27,35,
 
 Disable Windows Security prompt:
 
-gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Credential User Interface > Require trusted path for credential entry
+- gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Credential User Interface > Require trusted path for credential entry
 
-https://www.tenforums.com/tutorials/112476-enable-ctrl-alt-delete-secure-desktop-uac-prompt-windows.html
+- https://www.tenforums.com/tutorials/112476-enable-ctrl-alt-delete-secure-desktop-uac-prompt-windows.html
+
+# "This program is blocked due to compatibility issues"
+
+- gpedit.msc > Computer Configuration > Administrative Templates > Windows Components > Application Compatibility
+    - Turn off Application Compatibility Assistant
+    - Turn off Application Compatibility Engine
 
 # shares
 
-https://superuser.com/questions/199387/elevated-command-line-prompt-cant-access-shared-drives
-    https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee844140(v=ws.10)?redirectedfrom=MSDN
-https://nikolar.com/2015/03/10/creating-network-share-with-anonymous-access/
-=>
-cmd.exe > Run as Administrator
-```ps1
-mklink /d "C:\Users\foo\bar.link" "\\1.2.3.4\c$\tmp"
+- https://superuser.com/questions/199387/elevated-command-line-prompt-cant-access-shared-drives
+    - https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee844140(v=ws.10)?redirectedfrom=MSDN
+- https://nikolar.com/2015/03/10/creating-network-share-with-anonymous-access/
+- => cmd.exe > Run as Administrator
+    ```ps1
+    mklink /d "C:\Users\foo\bar.link" "\\1.2.3.4\c$\tmp"
 
-fsutil file queryfileid C:\Users\foo\bar.link
-# Error:  The user name or password is incorrect.
+    fsutil file queryfileid C:\Users\foo\bar.link
+    # Error:  The user name or password is incorrect.
 
-fsutil file queryfileid C:\Users\foo\bar.link
-# File ID is 0x0000000000000000005f000000021246
-```
+    fsutil file queryfileid C:\Users\foo\bar.link
+    # File ID is 0x0000000000000000005f000000021246
+    ```
 
 # isolation, sandboxing
 

@@ -498,3 +498,15 @@ IOCCC's Best Abuse of the Rules in 1988
 [Undefined reference \`\_\_powf\_finite\` with clang 9\.0\.1, Linux 5\.5\.4\-arch1\-1 and glibc 2\.31\-1 · Issue \#2146 · google/filament · GitHub](https://github.com/google/filament/issues/2146)
 [c \- What exactly is \-fno\-builtin doing here? \- Stack Overflow](https://stackoverflow.com/questions/54281780/what-exactly-is-fno-builtin-doing-here)
 [Audacity &\#8211; New Major Release &\#8211; Compile Fix, for Portaudio\.\. &\#8211; Adventures With Linux ™](http://rglinuxtech.com/?p=2093)
+
+### early exit bugs
+
+```c
+mutex.lock();
+// ...
+if (foo) {
+    return; // missed unlock call
+}
+// ...
+mutex.unlock();
+```

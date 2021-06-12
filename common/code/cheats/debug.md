@@ -35,9 +35,50 @@
 - https://blog.safia.rocks/post/170269021619/tips-for-reading-new-codebases
     - public-facing API
 
+### reverse debugging / time travel debugging
+
+- [!] `rr` exits using the recorded process' exit code
+
+```bash
+echo -1 | sudo tee -a /proc/sys/kernel/perf_event_paranoid
+echo 0 | sudo tee -a /proc/sys/kernel/kptr_restrict
+rr ./foo
+```
+
+- increasing starvation in nondeterministic failures
+    - `rr record -h`
+        - https://robert.ocallahan.org/2016/02/introducing-rr-chaos-mode.html
+        - [1237176 \- Intermittent test\_bfcache\.html \| Test timed out](https://bugzilla.mozilla.org/show_bug.cgi?id=1237176#c41)
+        - [1203417 \- Intermittent layout/reftests/scrolling/fixed\-table\-1\.html \| image comparison \(==\), max difference: 165, number of differing pixels: 59976](https://bugzilla.mozilla.org/show_bug.cgi?id=1203417)
+        - [1150737 \- Intermittent test\_remove\_objectStore\.html \| Test timed out](https://bugzilla.mozilla.org/show_bug.cgi?id=1150737#c197)
+    - `sched_setattr(2)`
+        - [GitHub \- osrg/namazu: 鯰: Programmable fuzzy scheduler for testing distributed systems](https://github.com/osrg/namazu)
+        - [ZOOKEEPER\-2212: distributed race condition \- Namazu](http://osrg.github.io/namazu/post/zookeeper-2212/)
+- atomicity violation for variable s_value
+    1. run
+    2. reverse-finish
+    3. watch s_value
+    4. reverse-continue
+    - https://www.modernescpp.com/index.php/resolving-c-c-concurrency-bugs-more-efficiently-with-time-travel-debugging
+- incorrect size used in page table walk
+    1. c
+    2. frame 13
+    3. break tlb_set_page_with_attrs if vaddr == 0x4012a000
+    4. rc
+    5. break arm_cpu_handle_mmu_fault
+    6. rc
+    - https://translatedcode.wordpress.com/2015/05/30/tricks-for-debugging-qemu-rr/
+    - https://lists.gnu.org/archive/html/qemu-devel/2015-05/msg05956.html
+
 # case studies
 
-https://github.com/mattn/gist-vim/issues/48
+### use-after-free
+
+- https://pernos.co/examples/use-after-free
+
+### shellcmd
+
+[Can&\#39;t open file \(win gvim\) · Issue \#48 · mattn/vim\-gist · GitHub](https://github.com/mattn/gist-vim/issues/48)
 
 This is not a permissions problem, and windows DOES in fact unset read-only. It's just a GUI bug that it thinks the bit is set. If you don't believe me, bring up the command prompt, cd to where the folder is, then do: dir /a:r. The folder you turned read-only off will not appear, because it really IS off.
 
@@ -56,17 +97,6 @@ set shellcmdflag=/c
 
 This problem is solved now. I am not certain why this fixes it, because it seems like a race condition where the tmp file is created and closed before the process is done using it. The tmp file is in fact created successfully (I saw this with procmon), but it is closed/deleted before it's truely done with it.
 
----
+### APIs
 
-I've noticed that you commented the contents of the attachment and not the "<urn1:attach>...</urn1:attach>" itself. This is probably a source of errors.
-Anyway, my suggestion would be to:
-    - Create the document you want to create manually on Content Server.
-    - Execute GetNode to retrieve that document.
-    - Recreate the CreateDocument request by copying the relevant parts from the GetNode response and omitting the attachment.
-        - You just need to change the name to avoid a conflict.
-        - You have to be careful with the namespaces.
-    - Add the attachment and try again.
-By doing this you will limit the problem. For example:
-    - By doing 1 and 2 you ensure you're not encoding things wrongly since the API gives you the exact values you need to use when creating a new document.
-    - By doing 3 you test the simplest case first.
-    - If you reach 4, then you know the problem is exclusively related with the content and you can focus there.
+- Try payload from API response endpoints vs. manually crafted.
