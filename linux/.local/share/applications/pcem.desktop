@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=PCem
+Exec=pcem
+Terminal=false
+Type=Application
+Icon=pcem
+Categories=Application;Emulator

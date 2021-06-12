@@ -197,6 +197,12 @@ perf trace record
 
 ### binary patching
 
+- x64dbg
+- [GitHub \- GJDuck/e9patch: A powerful static binary rewriting tool](https://github.com/GJDuck/e9patch)
+    - [Binary Rewriting without Control Flow Recovery](https://www.comp.nus.edu.sg/~gregory/papers/e9patch.pdf)
+- [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
+    - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
+
 - Skype version check
     > The issue is that skype stopped supporting old version, and I am forced to use web skype, or new skype for linux which doesn't meet my expectations.
     > When I launch old skype login screen pops, I enter my credentials and after clicking 'login' skype just exits.
@@ -281,5 +287,3 @@ perf trace record
             ntdll!_RtlUserThreadStart+1b
             ```
         - tools used: `procexp` to take a memory dump, `Debug Diagnostic Tool` to inspect stack trace and memory allocations, `x32dbg` to break on previously identified loop addresses
-
-

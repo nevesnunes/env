@@ -1,8 +1,10 @@
 # +
 
+- ~/code/snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md
+- https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
+- https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
+
 ```bash
-# - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
-# - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
 uptime
 dmesg | tail
 vmstat 1

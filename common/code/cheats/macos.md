@@ -385,4 +385,24 @@ log collect device-udid=foo
 otool -tV /usr/libexec/foo
 ```
 
+# classic
 
+- Debug
+    - http://basalgangster.macgui.com/RetroMacComputing/The_Long_View/Entries/2010/5/1_Resources_and_Resource_Editors.html
+- MacOS 7
+    - https://www.emaculation.com/doku.php/basiliskii_osx_setup
+        1. DiskTools_MacOS7.img
+        2. OS753InstallerParts.dsk
+        3. foo.img
+- MacOS 9
+    ```bash
+    qemu-img create -f qcow2 foo.img 4G
+    qemu-system-ppc -L pc-bios -boot d -M mac99,via=pmu -m 512 \
+        -hda foo.img \
+        -cdrom install.iso
+    # Format: CD > Utilities > Drive Setup > Initialize
+    qemu-system-ppc -L pc-bios -boot d -M mac99,via=pmu -m 512 \
+        -drive file=foo.img,format=qcow2,media=disk \
+        -netdev user,id=network01 -device sungem,netdev=network01 \
+        -device VGA,edid=on
+    ```

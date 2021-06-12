@@ -26,7 +26,7 @@ include_core_bsnes_mercury_performance
 include_core_mednafen_snes
 
 # --- Dreamcast emulator cores ---
-include_core_reicast
+include_core_flycast
 include_core_redream
 
 # --- Genesis emulator cores ---
@@ -35,7 +35,7 @@ include_core_genesis_plus_gx
 #include_core_blastem
 
 # --- Arcade emulator cores ---
-include_core_fbalpha
+include_core_fbneo
 include_core_fbalpha2012
 include_core_fbalpha2012_cps1
 include_core_fbalpha2012_cps2
@@ -54,7 +54,8 @@ include_core_mednafen_gba
 include_core_fceumm
 include_core_nestopia
 #include_core_quicknes
-#include_core_bnes
+include_core_bnes
+include_core_mesen
 
 # --- Nintendo DS emulator cores ---
 include_core_desmume
@@ -129,28 +130,29 @@ include_core_mednafen_vb
 #include_core_pcem
 
 # --- MAME cores ---
-include_core_mame2000
-include_core_mame2003
-include_core_mame2010
-include_core_mame2014
+#include_core_mame2000
+#include_core_mame2003
+#include_core_mame2010
+#include_core_mame2014
 include_core_mame2016
 include_core_mame
 
 # --- N64 emulator cores ---
-include_core_mupen64plus
+include_core_mupen64plus_next
+include_core_parallext
 include_core_parallel_n64
 
 # --- Nintendo Gamecube/Wii cores ---
 include_core_dolphin
 
 # --- Nintendo Pokemon Mini cores ---
-#include_core_pokemini
+include_core_pokemini
 
 # --- Game & Watch cores ---
 include_core_gw
 
 # --- PPSSPP cores ---
-#include_core_ppsspp
+include_core_ppsspp
 
 # --- Atari ProSystem 7800 emulator cores ---
 #include_core_prosystem
@@ -159,7 +161,7 @@ include_core_gw
 #include_core_o2em
 
 # --- 3DO emulator cores ---
-include_core_4do
+include_core_opera
 
 # --- ZX Spectrum emulator cores ---
 include_core_fuse
@@ -174,8 +176,6 @@ include_core_px68k
 
 #include_core_hatari
 #include_core_emux
-#include_core_lutro
-#include_core_uzem
 
 # --- Vectrex emulator cores ---
 include_core_vecx

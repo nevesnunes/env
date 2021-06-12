@@ -50,3 +50,7 @@ winetricks dotnet20
 ```
 
 - https://wiki.winehq.org/Mono#Versions
+
+# performance
+
+- https://github.com/lutris/docs/blob/master/Performance-Tweaks.md

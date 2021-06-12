@@ -1,3 +1,4 @@
+# +
 
 - [osint](./osint.md)
 - [firewall](./firewall.sh)
@@ -18,6 +19,7 @@
     - `nmap` alternative for fingerprinting
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
+- [From Sockets to WebSockets · susam/lab · GitHub](https://github.com/susam/lab/tree/master/web/sockets)
 
 # documentation, specification
 

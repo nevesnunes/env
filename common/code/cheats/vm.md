@@ -95,6 +95,12 @@ sudo mount -t vboxsf -o gid=1000,uid=1000 $share_name $share_mount_dir
 VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/SHARE_NAME 1
 ```
 
+# 3D acceleration
+
+- Windows 95: PCem
+- Windows XP: [virtualbox\.org &bull; View topic \- Direct3D Acceleration not working on Guest Windows XP](https://forums.virtualbox.org/viewtopic.php?t=98113)
+- Windows 7: VirtualBox
+
 # vbox to vmware
 
 ```bash
@@ -227,3 +233,8 @@ sudo vmware-modconfig --console --install-all
 tar -xvf vmmon.tar && cd vmmon-only && make && cp ../vmmon.o "/lib/modules/$(uname -r)/kernel/drivers/misc/vmmon.ko.gz"
 tar -xvf vmnet.tar && cd vmnet-only && make && cp ../vmnet.o "/lib/modules/$(uname -r)/kernel/drivers/misc/vmnet.ko.gz"
 ```
+
+# qemu snapshots
+
+- `savevm` / `loadvm`
+    - https://translatedcode.wordpress.com/2015/07/06/tricks-for-debugging-qemu-savevm-snapshots/
