@@ -77,17 +77,68 @@ tcp port 3389 and tcp[0xd]&18=2
 
 https://wiki.wireshark.org/RDP
 
+# Real-time Transport Protocol (RTP)
+
+- [!] May be presented as UDP traffic
+    1. On packet, open context menu > Decode As... > Current = RTP
+    2. Telephony > RTP > RTP Streams > On stream, open context menu > Analyse
+
 # OpenVPN
 
 ```
 udp port 1194 or tcp port 1194
 ```
 
-# sqlserver
+# SQL Server
 
 ```
 tds
 ```
+
+# Decrypt TLS
+
+- `CLIENT_RANDOM $1 $2`:
+    - `$1`: 32 bytes client random value, encoded in hex (can be used when Session ID = 0)
+        - Packet Details > Handshake Protocol: Client Hello > Random
+    - `$2`: 48 bytes cleartext master secret, encoded in hex
+    - Preferences > SSL > (Pre)-Master-Secret log
+        - https://wiki.wireshark.org/TLS#Using_the_.28Pre.29-Master-Secret
+    - Filter:
+        ```
+        dst host 192.168.1.214
+            and tcp dst port 443  # Outbound packets on port 443/TCP
+            and tcp[13]&8!=0      # PSH flag set
+            and tcp[32]==22       # SSL Handshake Content Type
+            and tcp[37]==1        # Client Hello Handshake Type
+        ```
+- If key exchange algorithm = PSK:
+    - Cleartext Pre-Shared Key
+        - Preferences > SSL > Pre-Shared Key
+- If key exchange algorithm = RSA:
+    - Server Private Key, encoded in PEM (used to decrypt the Pre-Master Secrets)
+        - Preferences > SSL > RSA keys list
+        - `openssl genrsa -out private.pem`
+    - Master Key / Master Secret: PRF(Decrypted Pre-Master Secret, "master secret", Client Random + Server Random)[0..47]
+        - Key Derivation Function / Pseudo Random Function (PRF): [GitHub \- trevp/tlslite: TLS Library in python](https://github.com/trevp/tlslite)
+        - Pre-Master Secret: another client random, encrypted with Server Public Key
+            - Packet Details > Handshake Protocol: Certificate > Export Packet Bytes...
+    - `RSA $1 $2`:
+        - `$1`: first 8 bytes of encrypted Pre-Master Secret, encoded in hex
+        - `$2`: Cleartext Pre-Master Secret, encoded in hex
+    - `RSA Session-ID:$1 Master-Key:$2`:
+        - `$1`: SSL session ID, encoded in hex (used to resume a cached session)
+        - `$2`: Cleartext Master Secret, encoded in hex
+- If key exchange algorithm = Diffie-Hellman:
+    - https://crypto.stackexchange.com/questions/19203/diffie-hellman-and-man-in-the-middle-attacks
+    - https://blog.dragonsector.pl/2014/03/ructf-2014-quals-tls-crypto-300.html
+- If key exchange algorithm = SIDH:
+    - https://github.com/cstanfill/sidh-writeup
+- If non-standard port
+    - Packet List > Decode As...
+
+- https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/how-to-decrypt-ruby-ssl-communications-with-wireshark/
+- https://community.cisco.com/t5/security-documents/troubleshoot-tls-using-wireshark/ta-p/3396123
+- https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Key_Log_Format
 
 # dump certificates
 
@@ -96,6 +147,10 @@ tds
 
 - Validation: `openssl x509 -inform der -in cert.der -text`
 - Convert to PEM: `openssl x509 -inform der -in cert.der -outform pem -out cert.crt`
+
+# dump files
+
+- File > Export Object > HTTP
 
 # memory efficient
 

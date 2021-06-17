@@ -752,6 +752,7 @@ sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username
     - `columnFoo[$regex]=^.foo`
 - [GitHub \- codingo/NoSQLMap: Automated NoSQL database enumeration and web application exploitation tool\.](https://github.com/codingo/NoSQLMap)
     - https://www.defcon.org/images/defcon-21/dc-21-presentations/Chow/DEFCON-21-Chow-Abusing-NoSQL-Databases.pdf
+- https://nullsweep.com/nosql-injection-cheatsheet/
 
 # code injection
 

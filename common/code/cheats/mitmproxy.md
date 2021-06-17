@@ -36,8 +36,14 @@ sysctl -w net.ipv4.ip_forward=0
     - Enumerate ciphers with `ssldump`
 - [My phone is spying on me, so I decided to spy on it \| Hacker News](https://news.ycombinator.com/item?id=18298548)
     - [GitHub \- abcnews/data\-life](https://github.com/abcnews/data-life)
-- Alternatives: Hotspot + dumpcap, VPN server
+- Alternative: Hotspot + dumpcap
     - https://kushaldas.in/posts/tracking-my-phone-s-silent-connections.html
+- Alternative: VPN server
+    - https://openvpn.net/community-resources/how-to/#redirect
+    - ~/code/src/net/ovpn-unified-format-example
+        - e.g. mail .opvn file to phone
+- Alternative: macOS Remote Virtual Interface (RVI)
+    - https://andydavies.me/blog/2019/12/12/capturing-and-decrypting-https-traffic-from-ios-apps/
 
 # Edit request manually
 

@@ -284,6 +284,8 @@ eval "function $name { :; }"; export -f "$name"
 ls .\.
 ls .{,}.
 false||id
+# - Try absolute paths
+/bin/echo
 # - Finding cross-path symlinks
 find -L /dev -xtype l -exec ls -l1 {} \; 2>/dev/null | awk '!/-> ([^\/]|\/dev)/{ print $(NF-2) " -> " $NF }'
 # /dev/fd -> /proc/self/fd
