@@ -186,6 +186,8 @@ perf trace record
 
 - [Changing EXE file into DLL library](https://lubiki.keeperklan.com/other_docs/change_exe_to_dll.htm)
 - [Calling Arbitrary Functions In EXEs: Performing Calls to EXE Functions Like DLL Exports](https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html)
+- [Modifying and running a binary by recompiling a reverse engineered disassembly](https://www.devever.net/~hl/recompile)
+- [America Online Exploits Bug In Own Software](https://www.geoffchappell.com/notes/security/aim/index.htm)
 - [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
     - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
 - easter egg in wrong password handler

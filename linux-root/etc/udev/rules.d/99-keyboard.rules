@@ -1,2 +1,5 @@
-# Check with lsusb or udevadm
-ATTR{idVendor}=="04d9", ATTR{idProduct}=="4545", RUN+="/opt/keyboard.sh"
+# Check with lsusb or udevadm.
+#
+# For a specific device:
+# ATTR{idVendor}=="04d9", ATTR{idProduct}=="4545", RUN+="/opt/keyboard.sh"
+ACTION=="add|change", SUBSYSTEM=="drm|hid|usb", RUN+="/opt/keyboard.sh"

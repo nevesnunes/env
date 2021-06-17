@@ -440,6 +440,7 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 # Insecure direct object references (IDOR)
 
 - https://randywestergren.com/visa-gift-card-transactions-exposed-gowallet-vulnerability/
+- https://www.aon.com/cyber-solutions/aon_cyber_labs/finding-more-idors-tips-and-tricks/
 
 # Cross-Site Scripting (XSS)
 

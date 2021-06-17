@@ -478,6 +478,21 @@ nghttp -v -ans https://foo/index.html
 # || chrome://net-export
 ```
 
+# USB
+
+- capture setup
+    - Linux: Wireshark
+        ```bash
+        # Grant permissions for USB capture interfaces
+        # - http://derbymakers.co.uk/articles/2019/capturing-usb-communications-to-reverse-engineer-a-driver/
+        sudo modprobe usbmon
+        sudo setfacl -m u:$USER:r /dev/usbmon*
+        sudo modprobe -r usbmon
+        ```
+    - Windows: [USBPcap](http://desowin.org/usbpcap/)
+        - [Can&\#39;t capture packets from one device · Issue \#16 · desowin/usbpcap · GitHub](https://github.com/desowin/usbpcap/issues/16)
+    - Virtual machine with USB passthrough
+
 # DNS
 
 - Caching - based on zone reported TTLs

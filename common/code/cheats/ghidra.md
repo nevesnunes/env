@@ -22,4 +22,8 @@
 - https://ghidra.re/ghidra_docs/api/ghidra/program/model/address/Address.html
     - https://github.com/NationalSecurityAgency/ghidra/blob/master/Ghidra/Framework/SoftwareModeling/src/main/java/ghidra/program/model/address/Address.java
 
+# change data string encoding
 
+1. Select bytes
+2. Open: Context menu > Data > String
+3. Open: Context menu > Data > Settings > Charset
