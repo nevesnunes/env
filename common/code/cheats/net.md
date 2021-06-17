@@ -743,4 +743,7 @@ restorecon /foo/bar
 
 - https://www.tldp.org/HOWTO/SMB-HOWTO-8.html
 
+# case studies
 
+- https://systemoverlord.com/2021/03/12/bsidessf-2021-ctf-net-matroyshka-author-writeup.html
+    - http + ftp + rsyncd + tftp (netascii) + smb + git smart protocol + dnscat2 + telnet

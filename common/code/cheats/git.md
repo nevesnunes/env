@@ -392,6 +392,11 @@ find .git/objects/ -type f | xargs -I{} python3 -c '
 import sys, zlib
 print(zlib.decompress(open(sys.argv[1], "rb").read()))
 ' {} | vim -
+
+# Alternative
+git unpack-objects < PACKFILE
+git cat-file --batch-all-objects --batch-check  # Take $blob_id
+git cat-file -p $blob_id
 ```
 
 # show changes in commit

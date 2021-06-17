@@ -257,8 +257,8 @@ packet = Ether()/IP(dst='8.8.8.8')/TCP(dport=53,flags='S')
 send(packet)
 ```
 
-https://0xbharath.github.io/art-of-packet-crafting-with-scapy/network_recon/pcap_analysis/index.html
-https://github.com/kbandla/dpkt
+- https://0xbharath.github.io/art-of-packet-crafting-with-scapy/network_recon/pcap_analysis/index.html
+- [GitHub \- kbandla/dpkt: fast, simple packet creation / parsing, with definitions for the basic TCP/IP protocols](https://github.com/kbandla/dpkt)
 
 # tcp replay / session mocking
 
