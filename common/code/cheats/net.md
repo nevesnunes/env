@@ -10,8 +10,6 @@
 - Port mirroring / Switched Port Analyzer (SPAN)
 - https://rootsh3ll.com/evil-twin-attack/
 
-- [The Illustrated TLS Connection: Every Byte Explained](https://tls.ulfheim.net/)
-- https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
 - http://www.networksorcery.com/enp/Protocol.htm
 - https://github.com/clowwindy/Awesome-Networking
 
@@ -27,8 +25,6 @@
 - [RFC 793 \- Transmission Control Protocol](https://tools.ietf.org/html/rfc793)
 - [RFC 791 \- Internet Protocol](https://tools.ietf.org/html/rfc791)
 - [RFC 8200 \- Internet Protocol, Version 6 \(IPv6\) Specification](https://tools.ietf.org/html/rfc8200)
-- [RFC 7230 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230)
-- [RFC 2246 \- The TLS Protocol Version 1\.0](https://tools.ietf.org/html/rfc2246)
 - [RFC 792 \- Internet Control Message Protocol](https://tools.ietf.org/html/rfc792)
 - [RFC 826 \- An Ethernet Address Resolution Protocol: Or Converting Network Protocol Addresses to 48\.bit Ethernet Address for Transmission on Ethernet Hardware](https://tools.ietf.org/html/rfc826)
 
@@ -391,28 +387,42 @@ mitmproxy -R https://192.168.10.10
 
 SYN and ACK bits sent and received in both directions
 
-tls
-1. client hello - cipher suites supported
-2. server hello - cipher suite selected
-3. server certificate - authentication
-    Packet Details > Handshake Protocol: Certificate > Export Packet Bytes...
-4. server symmetric keys exchange, e.g. Diffie-Helman - confidentiality for secure stream
-    wireshark - filter = ssl, follow = ssl stream
-    https://community.cisco.com/t5/security-documents/troubleshoot-tls-using-wireshark/ta-p/3396123
-    https://crypto.stackexchange.com/questions/19203/diffie-hellman-and-man-in-the-middle-attacks
-- on non-standard port
-    - Packet List > Decode As...
+- https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Technical_overview
+- [RFC 7230 \- Hypertext Transfer Protocol \(HTTP/1\.1\): Message Syntax and Routing](https://tools.ietf.org/html/rfc7230)
 
-- capture setup
+### HTTP/2
+
+```bash
+# Validate server push requests
+nghttp -v -ans https://foo/index.html
+# || https://github.com/fstab/h2c
+# || chrome://net-export
+```
+
+# TLS
+
+- Obsoletes: SSL
+
+- Flow
+    1. Client Hello: Client Random [+ Session ID] + Cipher Suites Supported
+    2. Server Hello: Server Random [+ Session ID] + Cipher Suite Selected + Certificate
+        - Avoids replay attacks: Master Key depends on new generated Server Random
+            - https://security.stackexchange.com/questions/89383/why-does-the-ssl-tls-handshake-have-a-client-and-server-random
+            - https://security.stackexchange.com/questions/98261/purpose-of-client-and-server-random-numbers-in-ssl-handshake
+            - https://security.stackexchange.com/questions/218491/why-using-the-premaster-secret-directly-would-be-vulnerable-to-replay-attack
+    3. Client Response: Encrypted Pre-Master Secret + Change Cipher Spec
+    4. Server Response: Change Cipher Spec
+
+- Capture
     - Npcap || Win10Pcap
         - https://nmap.org/npcap/vs-winpcap.html
     - Wireshark Legacy - skips interface verification
     - https://wiki.wireshark.org/CaptureSetup/InterferingSoftware
         - Cisco VPN client: may hide all packets, even if not connected - disable the firewall in the Cisco VPN client or stop the "Cisco Systems, Inc. VPN Service"
+    - https://begriffs.com/posts/2020-05-25-libressl-keylogging.html
 
-- https://blogs.technet.microsoft.com/nettracer/2010/10/01/how-to-decrypt-an-ssl-or-tls-session-by-using-wireshark
-- https://blogs.technet.microsoft.com/nettracer/2013/10/12/decrypting-ssltls-sessions-with-wireshark-reloaded/
-    - Decrypt with private key
+- Decrypt
+    - With Private Key
         - Edit > Preferences > Protocols > SSL > RSA keys list
             - IP, Port - from host that holds the private key used to decrypt the data and serves the certificate (i.e. the decrypting host, the server)
             - Protocol - upper-layer protocol encrypted by SSL/TLS, e.g. the protocol encrypted over a HTTPS connection is HTTP
@@ -427,13 +437,21 @@ tls
             - `editcap -d`
         - https://packetpushers.net/using-wireshark-to-decode-ssltls-packets/
         - https://www.ibm.com/developerworks/web/tutorials/wa-tomcat/index.html
-    - Decrypt without private key
+    - Without Private Key
         - File > Export SSL Session Keys...
     - Packet list
         - Before = tcp
         - After = tcp, http, ssl, tls
     - Packet details > Expand: "Hypertext Transfer Protocol", "Line-based text data: text/html"
     - Print > Packet Format > Packet details = As displayed
+    - https://github.com/tanc7/Practical-SSL-TLS-Attacks/blob/master/TLS-mitm-methods.md
+    - https://blogs.technet.microsoft.com/nettracer/2010/10/01/how-to-decrypt-an-ssl-or-tls-session-by-using-wireshark
+    - https://blogs.technet.microsoft.com/nettracer/2013/10/12/decrypting-ssltls-sessions-with-wireshark-reloaded/
+
+- Integrity
+    - https://crypto.stackexchange.com/questions/1139/what-is-the-purpose-of-four-different-secrets-shared-by-client-and-server-in-ssl
+    - https://stackoverflow.com/questions/3655516/does-encryption-guarantee-integrity
+    - http://world.std.com/~dtd/sign_encrypt/sign_encrypt7.html
 
 - Termination of TCP connection = encrypted alert, SSL_shutdown
     - https://osqa-ask.wireshark.org/questions/38050/tlsv1-record-layer-encrypted-alert
@@ -469,14 +487,10 @@ tls
     - SAM Account Name (short name) vs User Principle Name (UPN, includes domain)
     - ~/Downloads/BRKSEC-3229.pdf
 
-### HTTP/2
-
-```bash
-# Validate server push requests
-nghttp -v -ans https://foo/index.html
-# || https://github.com/fstab/h2c
-# || chrome://net-export
-```
+- https://crypto.stackexchange.com/questions/27131/differences-between-the-terms-pre-master-secret-master-secret-private-key
+- [The Illustrated TLS Connection: Every Byte Explained](https://tls.ulfheim.net/)
+- [The Transport Layer Security (TLS) Protocol Version 1.2](https://datatracker.ietf.org/doc/html/rfc5246)
+- [RFC 2246 \- The TLS Protocol Version 1\.0](https://tools.ietf.org/html/rfc2246)
 
 # USB
 
