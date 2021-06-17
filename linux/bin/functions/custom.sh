@@ -141,6 +141,7 @@ g() {
     rg --smart-case \
       --follow \
       --max-columns 500 \
+      --max-columns-preview \
       --no-heading \
       --with-filename \
       --line-number \

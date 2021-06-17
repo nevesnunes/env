@@ -141,9 +141,14 @@ eu-unstrip "$stripped_libc" "$symbol_file"
     - Mitigation: `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}`
         - [shell \- What does $\{PATH:\+:$\{PATH\}\} mean? \- Unix &amp; Linux Stack Exchange](https://unix.stackexchange.com/questions/267506/what-does-pathpath-mean/267548)
         - [project\_loader, formatting\_utils: take empty env values into account by sergiusens · Pull Request \#3345 · snapcore/snapcraft · GitHub](https://github.com/snapcore/snapcraft/pull/3345)
-    - https://ubuntu.com/security/CVE-2020-27348
+    - [snap package built by snapcraft includes the current directory in LD_LIBRARY_PATH](https://ubuntu.com/security/CVE-2020-27348)
 - https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
 - [Hijack Execution Flow: LD\_PRELOAD, Sub\-technique T1574\.006 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1574/006/)
+
+# PATH search order
+
+- Windows: `CreateProcess` looks for executables in current directory
+    - [cli: fix arbitrary execution of program bug · BurntSushi/ripgrep@229d1a8 · GitHub](https://github.com/BurntSushi/ripgrep/commit/229d1a8d41b0023420e7815578fa0b39c0d5c2e4)
 
 # stack overflow
 

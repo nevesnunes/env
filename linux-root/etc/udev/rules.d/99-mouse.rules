@@ -1,2 +1,5 @@
-# Check with lsusb or udevadm
-ATTR{idVendor}=="046d", ATTR{idProduct}=="c069", RUN+="/opt/mouse.sh"
+# Check with lsusb or udevadm.
+#
+# For a specific device:
+# ATTR{idVendor}=="046d", ATTR{idProduct}=="c069", RUN+="/opt/mouse.sh"
+ACTION=="add|change", SUBSYSTEM=="drm|hid|usb", RUN+="/opt/mouse.sh"

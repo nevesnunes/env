@@ -1,1 +1,1 @@
-ACTION=="change", SUBSYSTEM=="drm", RUN+="/opt/monitor.sh"
+ACTION=="add|change", SUBSYSTEM=="drm", RUN+="/opt/monitor.sh"
