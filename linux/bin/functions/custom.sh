@@ -87,11 +87,22 @@ e() {
   while true; do
     filename=$(printf "%b" "$lines" | fzf -0)
     if [ -n "$filename" ]; then
-      gvim -v "$filename" </dev/tty
+      gvim -v "$filename" < /dev/tty
     else
       break
     fi
   done
+}
+
+# Edit pipe.
+# Reference: http://git.ankarstrom.se/xutil/tree/ep
+ep() {
+  tmp_dir=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+  tmp=$(mktemp "$tmp_dir"/ep.XXXXXX)
+  cat > "$tmp"
+  gvim -v "$tmp" < /dev/tty > /dev/tty
+  cat "$tmp"
+  rm "$tmp"
 }
 
 f() {
@@ -119,7 +130,7 @@ s() {
       remainder=
     fi
     while [ -n "$first" ] || [ "$first" != "$remainder" ]; do
-      synonyms=$(grep -iw -- "$first" "$database" 2>/dev/null | paste -sd'|')
+      synonyms=$(grep -iw -- "$first" "$database" 2> /dev/null | paste -sd'|')
       if [ -n "$synonyms" ]; then
         query=$(echo "$query" | sed 's/\b'"$first"'\b/('"$synonyms"')/g')
       fi
@@ -137,7 +148,7 @@ s() {
 
 # `grep` with intermediate binary files conversion to plaintext.
 g() {
-  if command -v rg >/dev/null 2>&1; then
+  if command -v rg > /dev/null 2>&1; then
     rg --smart-case \
       --follow \
       --max-columns 500 \
@@ -170,10 +181,10 @@ g() {
     -name "*.epub" \
     -o -name "*.mobi" \
     -o -name "*.pdf" \) \
-    -print0 2>/dev/null \
-    | xargs -0 -I{} plaintext-detached.sh {} 2>/dev/null \
+    -print0 2> /dev/null \
+    | xargs -0 -I{} plaintext-detached.sh {} 2> /dev/null \
     | while IFS= read -r i; do
-      if command -v rg >/dev/null 2>&1; then
+      if command -v rg > /dev/null 2>&1; then
         rg --smart-case \
           --follow \
           --max-columns 500 \
@@ -193,7 +204,7 @@ g() {
 ge() {
   entry=$(git-grep-detached.sh "$*")
   [ -z "$entry" ] && return
-  filename=${entry//:*}
+  filename=${entry//:*/}
   lineno=${entry#$filename:}
   gvim -v "$filename" +"$lineno"
 }
@@ -217,14 +228,14 @@ gf() {
 o() {
   local open_cmd
   case "$OSTYPE" in
-    darwin*) open_cmd='open' ;;
-    cygwin*) open_cmd='cygstart' ;;
-    linux*) open_cmd='xdg-open' ;;
-    msys*) open_cmd='start ""' ;;
-    *)
-      echo "Platform $OSTYPE not supported"
-      return 1
-      ;;
+  darwin*) open_cmd='open' ;;
+  cygwin*) open_cmd='cygstart' ;;
+  linux*) open_cmd='xdg-open' ;;
+  msys*) open_cmd='start ""' ;;
+  *)
+    echo "Platform $OSTYPE not supported"
+    return 1
+    ;;
   esac
   while [ $# -gt 0 ]; do
     "$open_cmd" "$1"
@@ -243,5 +254,7 @@ t() {
 
 # `strings` with multiple encodings
 x() {
-  strings "$@"; strings -eb "$@"; strings -el "$@"
+  strings "$@"
+  strings -eb "$@"
+  strings -el "$@"
 }

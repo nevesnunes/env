@@ -27,3 +27,12 @@
 1. Select bytes
 2. Open: Context menu > Data > String
 3. Open: Context menu > Data > Settings > Charset
+
+# multiple files with same memory map
+
+1. File > Add to program
+2. Memory Map > Add Memory Block
+    - Length: file size
+    - Overlay: check
+    - File Bytes: added file
+    - File Offset: 0

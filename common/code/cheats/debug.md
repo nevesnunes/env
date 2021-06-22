@@ -41,6 +41,35 @@
 - https://blog.safia.rocks/post/170269021619/tips-for-reading-new-codebases
     - public-facing API
 
+### concurrency
+
+Ensuring atomicity, handling exceptions and reentrant calls:
+
+```cpp
+mutex_foo.lock();
+
+try {
+	if (!is_foo_processed) {
+		is_foo_processed = true;
+
+        // ...
+
+        // Avoid deadlock on reentrant calls
+		mutex_foo.unlock();
+		do_foo();
+		mutex_foo.lock();
+
+        // ...
+	}
+} catch(...) {
+	is_foo_processed = false;
+	mutex_foo.unlock();
+	throw;
+}
+
+mutex_foo.unlock();
+```
+
 ### reverse debugging / time travel debugging
 
 - [!] `rr` exits using the recorded process' exit code

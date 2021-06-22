@@ -1,3 +1,7 @@
+# +
+
+- [GitHub \- marin\-m/pbtk: A toolset for reverse engineering and fuzzing Protobuf\-based apps](https://github.com/marin-m/pbtk)
+
 ```protobuf
 syntax = "proto3";
 
@@ -30,6 +34,6 @@ console.log(msg2.getStatus(), msg2.getMessage())
 //      O  K        H   e   l   l   o     J  S  O  N  !
 ```
 
-https://codeburst.io/protocol-buffers-part-3-json-format-e1ca0af27774
+- [Protocol Buffers, Part 3 — JSON Format \| by Tomer Rothschild \| codeburst](https://codeburst.io/protocol-buffers-part-3-json-format-e1ca0af27774)
 
 

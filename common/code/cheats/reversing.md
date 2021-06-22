@@ -14,11 +14,15 @@
     - PE format: `floss`
         - :) extracts stack strings
 - libraries
+    - any format: [GitHub \- maroueneboubakri/lscan: lscan is a library identification tool on statically linked/stripped binaries](https://github.com/maroueneboubakri/lscan)
+        - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)
     - ELF format: `ldd -iv` (validates shared libraries initialization)
+        - [GitHub \- marin\-m/vmlinux\-to\-elf: A tool to recover a fully analyzable \.ELF from a raw kernel, through extracting the kernel symbol table \(kallsyms\)](https://github.com/marin-m/vmlinux-to-elf)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
 - roms
     - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
+    - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
 - syscalls, dynamic library calls
     - ELF format: `strace`, `ltrace`
     - PE format: `procmon`
@@ -72,6 +76,11 @@
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research
 - https://blog.whtaguy.com/2020/04/guys-30-reverse-engineering-tips-tricks.html
+
+# lifting
+
+- [GitHub \- lifting\-bits/mcsema: Framework for lifting x86, amd64, aarch64, sparc32, and sparc64 program binaries to LLVM bitcode](https://github.com/lifting-bits/mcsema)
+    - [GitHub \- lifting\-bits/remill: Library for lifting of x86, amd64, and aarch64 machine code to LLVM bitcode](https://github.com/lifting-bits/remill)
 
 # seccomp
 
