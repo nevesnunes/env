@@ -120,24 +120,25 @@ https://blog.netnerds.net/2017/12/updated-ssh-tunneling-for-windows-people-prote
 
 # Implementations
 
-Supercedes: telnet, rsh
-
-On Windows:
-https://github.com/billziss-gh/sshfs-win
-    net use \\sshfs\USER@HOST[\PATH]
-    https://github.com/billziss-gh/sshfs-win/issues/98
-    https://github.com/billziss-gh/sshfs-win/issues/33
-    https://github.com/billziss-gh/winfsp
-https://github.com/feo-cz/win-sshfs
-    csharp, inactive
+- Supercedes: telnet, rsh
+- On Windows:
+    - [GitHub \- billziss\-gh/sshfs\-win: SSHFS For Windows](https://github.com/billziss-gh/sshfs-win)
+        - net use \\sshfs\USER@HOST[\PATH]
+        - [How to integrate it with my current Cygwin installation, i\.e\., call sshfs from mintty\.exe command line? · Issue \#98 · billziss\-gh/sshfs\-win · GitHub](https://github.com/billziss-gh/sshfs-win/issues/98)
+        - [Use existing cygwin environment · Issue \#33 · billziss\-gh/sshfs\-win · GitHub](https://github.com/billziss-gh/sshfs-win/issues/33)
+        - [GitHub \- billziss\-gh/winfsp: Windows File System Proxy \- FUSE for Windows](https://github.com/billziss-gh/winfsp)
+    - [GitHub \- feo\-cz/win\-sshfs: Fork of http://code\.google\.com/p/win\-sshfs/](https://github.com/feo-cz/win-sshfs)
+        - csharp, inactive
 
 # References
 
-http://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT
-http://man.openbsd.org/sshd.8#SSH_KNOWN_HOSTS_FILE_FORMAT
+- [The Secure Shell \(SSH\) Authentication Protocol](https://datatracker.ietf.org/doc/html/rfc4252)
 
-https://developer.android.com/training/articles/security-ssl.html#CommonHostnameProbs
-[RFC 5280 \- Internet X\.509 Public Key Infrastructure Certificate and Certificate Revocation List \(CRL\) Profile](https://tools.ietf.org/html/rfc5280)
+- http://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT
+- http://man.openbsd.org/sshd.8#SSH_KNOWN_HOSTS_FILE_FORMAT
 
-https://stackoverflow.com/questions/2308774/httpget-with-https-sslpeerunverifiedexception
-https://github.com/vt-middleware/ldaptive/blob/master/core/src/main/java/org/ldaptive/ssl/DefaultHostnameVerifier.java
+- https://developer.android.com/training/articles/security-ssl.html#CommonHostnameProbs
+- [RFC 5280 \- Internet X\.509 Public Key Infrastructure Certificate and Certificate Revocation List \(CRL\) Profile](https://tools.ietf.org/html/rfc5280)
+
+- https://stackoverflow.com/questions/2308774/httpget-with-https-sslpeerunverifiedexception
+- https://github.com/vt-middleware/ldaptive/blob/master/core/src/main/java/org/ldaptive/ssl/DefaultHostnameVerifier.java
