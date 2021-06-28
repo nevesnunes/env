@@ -65,6 +65,15 @@ autorun:
     DEFAULT.CFG > joyb_speed = 29
 limits:
     url: https://www.doomworld.com/forum/topic/52921-thread-of-vanilla-mapping-tricks/
+fast scroll: : |-
+    This is a bug in Vanilla Doom*. What's happening here is there is a linedef action you can assign that scrolls the texture to the left at a certain speed. There is also a technique that is used to save space in WAD files called merging sidedefs. This is featured in a number of popular Doom editors. What it will do is check for multiple linedefs that all have share the same sector, textures, and texture offset, and only create one sidedef, and then make multiple linedefs reference that one sidedef.
+    The problem is, that the texture scroll action actually modfies the sidedef's texture offset. So, if multiple walls are all referencing the same sidedef, and they have that it gets scrolled multiple times per gametic, once for every linedef that references it.
+    ( * Actually not really a bug. After all, this sidedef merging thing is something that the engine wasn't designed to handle )
+infighting:
+    barrel damage: |-
+        You have monster A and monster B. The barrel needs to be damaged, but not destroyed, by monster A. The barrel then needs to explode when monster B is in the blast radius zone. Monster B will blame monster A.
+        Fun fact: it doesn't matter if the barrel is actually destroyed by monster A. It can be destroyed by monster B, by another monster entirely, or by the player. What matters is that the first time the barrel is damaged but not destroyed so it'll switch its target pointer to monster A, so that when the barrel is destroyed monster B will be told that the explosion damage comes from monster A.
+        This is all a bug in the damage logic that causes damage tracking to happen after damage dealing.
 metrics:
     source: |-
         info.c:mobjinfo
@@ -125,7 +134,7 @@ design:
       - Making sure that if a player could see outside that they should be able to somehow get there.
       - Being strict about designing several secret areas on every level.
       - Making my levels flow so the player will revisit areas several times so they will better understand the 3D space of the level.
-      - Creating easily recognizable landmarks in several places for easier navigation. 
+      - Creating easily recognizable landmarks in several places for easier navigation.
       https://web.archive.org/web/20080830035843/http://archive.gamespy.com/articles/december03/doom/romero/index.shtml
 dehacked:
   docs: http://www.aspectsweb.co.uk/dehacked/index.html

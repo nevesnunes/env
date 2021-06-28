@@ -18,6 +18,8 @@
         - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)
     - ELF format: `ldd -iv` (validates shared libraries initialization)
         - [GitHub \- marin\-m/vmlinux\-to\-elf: A tool to recover a fully analyzable \.ELF from a raw kernel, through extracting the kernel symbol table \(kallsyms\)](https://github.com/marin-m/vmlinux-to-elf)
+- resources
+    - NE format: [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
 - roms
@@ -64,9 +66,14 @@
     - calling functions
         - debugger
         - https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html?m=1
-    - monitoring FileRead and FileWrite calls
+    - filesystem
+        - FileRead/FileWrite calls
         - ~/share/forensics/APIMiner-v1.0.0/
         - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
+    - networking
+        - hw read break on packet buffer, frida hook on winsock calls
+        - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
+        - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
 - monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
 - binary patching, code injection, fault inducing
 - alternative to reverse debugging: vm snapshots

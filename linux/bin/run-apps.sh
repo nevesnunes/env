@@ -162,12 +162,12 @@ run_app_with_net browser 2 -h &
 
 # Sequential launches of same app
 task_keys=("\"t\"" C-m)
-run_app "user-terminal.sh tmux new-session \\; send-keys ${task_keys[*]} \\; new-window \\; select-window -t :-" 1 -l
+run_app "user-terminal.sh tmux new-session -s tasks \\; send-keys ${task_keys[*]} \\; new-window \\; select-window -t :-" 1 -l
 vim_keys=("\"cd /home/fn/Dropbox/doc/goals && find . -type f  -iname '*.md' -exec gvim -v -c 'e next.md' {} \+\"" C-m)
-run_app "user-terminal.sh tmux new-session \\; send-keys ${vim_keys[*]} \\; new-window \\; select-window -t :-" 2 -l
+run_app "user-terminal.sh tmux new-session -s main \\; send-keys ${vim_keys[*]} \\; new-window \\; select-window -t :-" 2 -l
 vim_keys=("\"cd /home/fn/Dropbox/doc/goals && gvim -v ctf2.md\"" C-m)
 vim_cheats_keys=("\"cd /home/fn/code/cheats && find . -type f  -iname '*.md' -exec gvim -v -c 'e reversing.md' {} \+\"" C-m)
-run_app "user-terminal.sh tmux new-session \\; send-keys ${vim_keys[*]} \\; new-window \\; send-keys ${vim_cheats_keys[*]} \\; new-window \\; select-window -t :1" 2 -l
+run_app "user-terminal.sh tmux new-session -s ctf \\; send-keys ${vim_keys[*]} \\; new-window \\; send-keys ${vim_cheats_keys[*]} \\; new-window \\; select-window -t :1" 2 -l
 
 # Give time for panel to start
 # sleep 2

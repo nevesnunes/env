@@ -103,3 +103,11 @@ ffmpeg -i foo.mkv -c:v ffv1 bar.mkv
 # - Parameter: crop=$w:$h:$x:$y
 # - Variables: in_w,in_h
 # - Usage: -vf "crop=480:270:200:100"
+
+# Noise
+# Reference: https://stackoverflow.com/questions/15792105/simulating-tv-noise
+# FIXME: Stops after a while
+ffmpeg \
+  -f rawvideo -video_size 1366x768 -pixel_format yuv420p -framerate 60 \
+  -i /dev/urandom -bufsize 1920k -an -t 5 -vf hue=s=0 -f matroska \
+  - | ffplay -

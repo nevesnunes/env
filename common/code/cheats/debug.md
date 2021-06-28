@@ -43,32 +43,37 @@
 
 ### concurrency
 
-Ensuring atomicity, handling exceptions and reentrant calls:
+- Ensuring atomicity, handling exceptions and reentrant calls:
+    ```cpp
+    mutex_foo.lock();
 
-```cpp
-mutex_foo.lock();
+    try {
+        if (!is_foo_processed) {
+            is_foo_processed = true;
 
-try {
-	if (!is_foo_processed) {
-		is_foo_processed = true;
+            // ...
 
-        // ...
+            // Avoid deadlock on reentrant calls
+            mutex_foo.unlock();
+            do_foo();
+            mutex_foo.lock();
 
-        // Avoid deadlock on reentrant calls
-		mutex_foo.unlock();
-		do_foo();
-		mutex_foo.lock();
+            // ...
+        }
+    } catch(...) {
+        is_foo_processed = false;
+        mutex_foo.unlock();
+        throw;
+    }
 
-        // ...
-	}
-} catch(...) {
-	is_foo_processed = false;
-	mutex_foo.unlock();
-	throw;
-}
-
-mutex_foo.unlock();
-```
+    mutex_foo.unlock();
+    ```
+- https://news.ycombinator.com/item?id=27647340
+    > Log as much as you could in the part where you think the bug is. Log every line that's run if you have to. You'll then skim through the log file looking for any unexpected patterns.
+        - in-memory logging with thread-id and time stamps
+    > ask yourself "what would break if a context switch happens right here" for each line.
+    > if you can pinpoint the place where the bug occurs, trigger a SIGSEGV there and run the entire thing under Valgrind.
+    > Back on the N64, I updated the bit of code that swapped threads to write, to a ring buffer, the outgoing/incoming PCs, thread IDs and clock. Found tons of unexpected issues. In another thread you can print that or save it to disk or whatever. Or just wait till it crashes and read memory for it. Found the last crash bug with it. Meanwhile, a colleague took it, and drew color coded bars on the screen so we could see exactly what was taking the time. 
 
 ### reverse debugging / time travel debugging
 

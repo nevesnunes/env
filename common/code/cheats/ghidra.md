@@ -36,3 +36,12 @@
     - Overlay: check
     - File Bytes: added file
     - File Offset: 0
+
+# bindiff
+
+1. Export... > Binary BinExport (v2) for BinDiff
+2. bindiff primary.BinExport secondary.BinExport, take primary_vs_secondary.BinDiff
+3. bindiff --ui
+4. Diffs > Add Existing Diff...
+
+- https://reverseengineering.stackexchange.com/questions/22372/do-i-need-to-have-ida-pro-to-use-the-bindiff-tool

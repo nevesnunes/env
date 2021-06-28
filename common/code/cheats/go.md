@@ -7,6 +7,8 @@
 ```bash
 # Local install:
 # go mod init tmp
+go install $hostname/$module_path
+# version <= 1.17
 go get -u $hostname/$module_path
 # ||
 GO111MODULE=on go get -u $hostname/$module_path

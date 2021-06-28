@@ -79,6 +79,9 @@ elseif (string.match(name, "terminal") or
         string.match(name, "vim")) then
     -- set_window_geometry(xs*w_major_factor+1,0,xs*w_minor_factor-1,ys)
     size_window(xid, "-l")
+    if (string.find(n, "tmux%[tasks%]")) then
+        move_window(xid, "1")
+    end
 elseif ((string.match(class, "VirtualBox Manager") or
         string.match(name, "nautilus") or
         string.match(name, "pcmanfm") or
