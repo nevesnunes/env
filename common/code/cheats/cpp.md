@@ -45,6 +45,48 @@ References:
 
 - https://unix.stackexchange.com/questions/125295/32-bit-vs-64-bit-vs-arm-in-regards-to-programs-and-oses
 
+# following syscall references in libc
+
+- https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/x86/time.c.html
+    - if [vDSO](https://man7.org/linux/man-pages/man7/vdso.7.html) available:
+        ```c
+        _dl_vdso_vsym ("__vdso_time", &linux26) ?:  &__time_syscall
+        ```
+    - else fallback on syscall:
+        ```c
+        static time_t __time_syscall (time_t *t) {
+          INTERNAL_SYSCALL_DECL (err);
+          return INTERNAL_SYSCALL (time, err, 1, t);
+        }
+        ```
+- https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/x86_64/sysdep.h.html#234
+    - redirect to syscall macro (e.g. nr=1 if arg1 passed)
+        ```c
+        #define INTERNAL_SYSCALL(name, err, nr, args...) \
+                internal_syscall##nr (SYS_ify (name), err, args)
+        ```
+- https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/x86_64/sysdep.h.html
+    - convert syscall name to nr
+        ```c
+        /* For Linux we can use the system call table in the header file /usr/include/asm/unistd.h of the kernel.  But these symbols do not follow the SYS_* syntax so we have to redefine the `SYS_ify' macro here.  */
+        #undef SYS_ify
+        #define SYS_ify(syscall_name) __NR_##syscall_name
+        ```
+    - check which table to lookup based on arch
+        ```c
+        # ifdef __i386__
+        #  include <asm/unistd_32.h>
+        # elif defined(__ILP32__)
+        #  include <asm/unistd_x32.h>
+        # else
+        #  include <asm/unistd_64.h>
+        # endif
+        ```
+    - lookup syscall nr in table
+        ```c
+        #define __NR_time 201
+        ```
+
 # name mangling, name decoration
 
 ```bash
@@ -173,7 +215,7 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     # - https://unix.stackexchange.com/questions/496755/how-to-get-the-source-code-used-to-build-the-packages-of-the-base-alpine-linux-d
     # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
     app=
-    apk add --no-cache alpine-sdk
+    apk add --no-cache alpine-sdk sudo
     cd /opt
     git clone --depth 1 --branch v3.13.1 git://git.alpinelinux.org/aports
     cd ./aports/main/"$app"

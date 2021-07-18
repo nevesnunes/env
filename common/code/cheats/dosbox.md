@@ -3,6 +3,7 @@
 - `Alt+Enter`: Switch fullscreen
 - `Alt+Pause`: Pause emulation
 - `Ctrl+F1`: Key mapper
+- `Ctrl+F5`: Take screenshot
 - `Ctrl+F10`: Release mouse
 - `Ctrl+F11`: Decrease DOSBox cycles (slows down the emulation)
 - `Ctrl+F12`: Increase DOSBox cycles (speeds up the emulation)

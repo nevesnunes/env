@@ -7,12 +7,7 @@
 - https://man7.org/linux/man-pages/man2/syscall.2.html
     - register conventions
         - x64: rdi rsi rdx r10 r8 r9
-- https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
-    - `__libc_start_main()`
-    - [GNU Hurd / glibc / How libc startup in a process works](https://www.gnu.org/software/hurd/glibc/startup.html)
 - [Linker and Libraries Guide](https://docs.oracle.com/cd/E19120-01/open.solaris/819-0690/index.html)
-- https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=msvc-160
-    - `_mainCRTStartup`
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/
@@ -27,8 +22,20 @@
 - [NASM Tutorial](https://cs.lmu.edu/~ray/notes/nasmtutorial/)
 
 ```bash
-# assembler source listing, includes symbols
+# Assembler source listing, includes symbols
 gcc -S -masm=intel
+
+# Exploration
+# Preconditions: `binutils` for arch
+python3 -c '
+from pwn import *
+for ctx in [["arm", 32], ["aarch64", 64]]:
+    context.arch, context.bits = ctx
+    print(ctx)
+    sh = shellcraft.sh()
+    print(sh)
+    print(hexdump(asm(sh)))
+'
 ```
 
 - https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
@@ -72,6 +79,15 @@ PUSH  ESI
 PUSH  dword ptr [EAX]
 CALL  FUN_00402100
 ```
+
+- linux
+    - `__libc_start_main()`
+    - https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic.html
+    - [GNU Hurd / glibc / How libc startup in a process works](https://www.gnu.org/software/hurd/glibc/startup.html)
+- windows
+    - `_mainCRTStartup`
+    - 3 pushes (arc, argv, envp) + call
+    - https://docs.microsoft.com/en-us/cpp/build/reference/linking?view=msvc-160
 
 # executable and linkable format (ELF)
 
@@ -211,13 +227,15 @@ https://red0xff.github.io/writeups/volgactf_fhash/#6acb76aa304fcff925cebfc5ac253
 ### stack
 
 ```asm
-; function init ~= `enter` instruction
+; function init/prologue ~= `enter` instruction
 push rbp
 mov rbp,rsp
 push rbx
 
 ; stack space for locals
-sub rsp,0x18
+sub rsp,0x4
+; ||
+push param_1
 
 ; store argv[1]
 mov rsi,qword [rsi + 0x8]
@@ -495,5 +513,12 @@ call eax
 - SectionHeaders == ProgramHeaders
 - ! segment starts at next page-aligned virtual address due to mmap behaviour
     - https://stackoverflow.com/questions/42599558/elf-program-header-virtual-address-and-file-offset
+
+# examples
+
+- arm, aarch64
+    - https://azeria-labs.com/writing-arm-assembly-part-1/
+    - https://thinkingeek.com/arm-assembler-raspberry-pi/
+    - https://opensecuritytraining.info/IntroARM.html
 
 

@@ -20,7 +20,12 @@ ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt 
 
 - https://github.com/zaproxy/zap-extensions/tree/beta/src/org/zaproxy/zap/extension/bruteforce
 
-### wordlists
+# Parameter discovery
+
+- [GitHub \- Sh1Yo/x8: Hidden parameters discovery suite](https://github.com/sh1yo/x8)
+    - [Parameter discovery tools comparison](https://4rt.one/blog/1.html)
+
+# Wordlists
 
 - [Contextual Content Discovery: You've forgotten about the API endpoints &\#8211; Assetnote](https://blog.assetnote.io/2021/04/05/contextual-content-discovery/)
     - https://github.com/assetnote/kiterunner
@@ -29,5 +34,3 @@ ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt 
 - https://github.com/danielmiessler/SecLists
 - https://github.com/allyshka/dirbustlist/tree/master/dirbuster
 - https://github.com/zaproxy/zap-extensions/tree/master/addOns/directorylistv2_3/src/main/zapHomeFiles/fuzzers/dirbuster
-
-
