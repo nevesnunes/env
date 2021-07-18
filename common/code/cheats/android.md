@@ -215,5 +215,6 @@ ANDROID_SDK_ROOT=/opt/android-sdk /opt/android-sdk/emulator/emulator @osint
 
 # case studies
 
+- [GitHub \- rewanthtammana/Damn\-Vulnerable\-Bank: Damn Vulnerable Bank is designed to be an intentionally vulnerable android application\. This provides an interface to assess your android application security hacking skills\.](https://github.com/rewanthtammana/Damn-Vulnerable-Bank)
 - https://upbhack.de/posts/2018/06/writeup-shallweplayagame-from-google-ctf-qualifier-2018/
 - https://medium.com/bugbountywriteup/recovering-a-lost-phone-number-using-hacker-mindset-5e7e7a30edbd

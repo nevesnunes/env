@@ -353,8 +353,39 @@ logging calls
     proxy dll, dll redirection
     https://stackoverflow.com/a/32959212
 
+# fullscreen vs. windowed
+
+- https://doxygen.reactos.org/d7/de9/sdk_2include_2psdk_2ddraw_8h_source.html
+- https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createwindowexa
+    - https://docs.microsoft.com/en-us/windows/win32/winmsg/window-styles
+        - WS_OVERLAPPED = 0x00000000L
+        - WS_POPUP = 0x80000000L
+    - https://docs.microsoft.com/en-us/windows/win32/winmsg/extended-window-styles
+        - WS_EX_LEFT = 0
+    - https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow
+        - SW_NORMAL = 1
+- https://docs.microsoft.com/en-us/windows/win32/api/ddraw/nf-ddraw-idirectdraw7-setcooperativelevel
+    - IDirectDraw_SetCooperativeLevel(lpDirectDraw, hWnd_, DDSCL_NORMAL);
+        - DDSCL_NORMAL = 0x00000008
+        - DDSCAPS_PRIMARYSURFACE = 0x00000200
+- [DDSURFACEDESC structure \(Windows Drivers\) \| Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/windows/hardware/drivers/ff550339(v=vs.85))
+- [DDSCAPS structure \(Windows Drivers\) \| Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/windows/hardware/drivers/ff550286(v=vs.85))
+- https://stackoverflow.com/questions/16865913/creating-a-simple-single-buffer-application-idirectdraw
+    - IDirectDraw_CreateSurface(lpDirectDraw, &ddSurfaceDesc, &lpDirectDrawPrimarySurface, NULL);
+        - ddSurfaceDesc.dwSize         = sizeof ddSurfaceDesc;
+        - ddSurfaceDesc.dwFlags        = DDSD_CAPS;
+        - ddSurfaceDesc.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
+            - DDSD_CAPS = 0x00000001
+    - [!] if no backbuffer, then GetAttachedSurface(&ddscaps,&lpddsback) returns DDERR_NOTFOUND
+    - [!] if windowed, then backbuffer can't be flipped
+      - [DDraw Windowed \- Graphics and GPU Programming \- GameDev\.net](https://www.gamedev.net/forums/topic/119907-ddraw-windowed/)
+      - [Moving from Exclusive Mode to Windowed Mode in DirectX Part I \- Graphics and GPU Programming \- Tutorials \- GameDev\.net](http://www.gamedev.net/reference/articles/article960.asp)
+      - [Moving from Exclusive Mode to Windowed Mode in DirectX Part II \- Graphics and GPU Programming \- Tutorials \- GameDev\.net](http://www.gamedev.net/reference/articles/article1034.asp)
+      > What you do in windowed mode is Blt() from your backbuffer (simply an offscreen surface) to the primary buffer.  Since the Blt() will overwrite what''s already on the primary surface, the behaviour is different, but that should only be an issue for you if your app relies on the back buffer containing the previous primary buffer contents.  Instead it simply contains the previous backbuffer contents.
+
 # injection, hooks
 
+https://www.codeproject.com/Articles/4610/Three-Ways-to-Inject-Your-Code-into-Another-Proces
 https://www.jitsumibooster.com/blogs/jitsumi/cyber-security/injection-methods/62/
 
 mitigations

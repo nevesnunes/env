@@ -4,7 +4,11 @@ set -eu
 
 mkdir -p ./Spectrograms
 
-files=$(find . -maxdepth 1 -type f | sed 's/^\.\///')
+if [ $# -gt 0 ]; then
+  files=$*
+else
+  files=$(find . -maxdepth 1 -type f | sed 's/^\.\///')
+fi
 set -f; IFS='
 '
 for file in $files; do
@@ -12,7 +16,7 @@ for file in $files; do
 
   if ! file --mime-type "$file" \
     | awk -F':' '{print $NF}' \
-    | grep -qi '\(audio\|octet-stream\)'; then
+    | grep -qi '\(audio\|octet-stream\|mp4\)'; then
     continue
   fi
 

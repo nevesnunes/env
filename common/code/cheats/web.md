@@ -308,6 +308,10 @@ Clone:
 - Request URL with CRLF + Headers
     - http://109.233.61.11:27280/?retpath=/news/%0d%0aX-Accel-Redirect:%20/secret/flag
         - https://www.tasteless.eu/post/2014/02/olympic-ctf-sochi-2014-xnginx-writeup/
+- Request URL parameters
+    ```bash
+    curl -X POST https://1.2.3.4/foo.php --data "url=http://127.0.0.1:9999"
+    ```
 - Request URL protocol
     - `view-source:file:///foo`
 - localhost ip octal / hexadecimal / 32bit integer / classful network encoding
@@ -796,6 +800,11 @@ nginx:
 
 # File Upload
 
+- nginx
+    - missing strict check (e.g. `.php$`)
+        ```
+        location ~* .php { fastcgi_pass backend; # [...] }
+        ```
 - multipart request
     ```
     Content-Disposition: form-data; name="upfile"; filename="foo.php.png"

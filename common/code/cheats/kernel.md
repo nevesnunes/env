@@ -308,7 +308,6 @@ cpio -idmv < initramfs.release.img
 
 # debug
 
+- https://01.org/linuxgraphics/gfx-docs/drm/dev-tools/gdb-kernel-debugging.html
 - https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 - https://www.linux.it/~rubini/docs/kconf/
-
-

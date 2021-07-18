@@ -2,6 +2,7 @@
 
 - [Sage Cell Server](https://sagecell.sagemath.org/)
 - [SageMath Documentation ](https://doc.sagemath.org/)
+- [GitHub \- p4\-team/crypto\-commons: Small python module for common CTF crypto functions](https://github.com/p4-team/crypto-commons)
 
 - [Quipquip](https://quipqiup.com/): substitution cipher
 - [Substitution Solver \- www\.guballa\.de](https://guballa.de/substitution-solver): substitution cipher
@@ -52,7 +53,10 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
 
 # hashing
 
-- [Hash Analyzer \- TunnelsUP](https://www.tunnelsup.com/hash-analyzer/)
+- id
+    - https://github.com/HashPals/Name-That-Hash
+    - https://github.com/noraj/haiti
+    - [Hash Analyzer \- TunnelsUP](https://www.tunnelsup.com/hash-analyzer/)
 - [CrackStation \- Online Password Hash Cracking \- MD5, SHA1, Linux, Rainbow Tables, etc\.](https://crackstation.net/)
 - https://github.com/HashPals/Search-That-Hash/blob/main/search_that_hash/cracker/online_mod/online.py
     - MD5, SHA

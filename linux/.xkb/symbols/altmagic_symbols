@@ -11,5 +11,8 @@ xkb_symbols "altmagic" {
     include "level3(ralt_switch)"
     include "keypadmagic_symbols"
 
+    key <AC03> { [ d, D, grave, asciitilde  ] };
     key <AC04> { [ f, F, Escape, Escape  ] };
+    key <AB03> { [ c, C, bracketleft, braceleft ] };
+    key <AB04> { [ v, V, bracketright, braceright ] };
 };

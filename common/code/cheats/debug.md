@@ -10,6 +10,9 @@
 
 - http://man7.org/linux/man-pages/man1/nsenter.1.html
 
+- https://blog.tartanllama.xyz/writing-a-linux-debugger-setup/
+- https://lucasg.github.io/2016/11/27/How-to-Create-and-Debug-a-Process-on-Windows/
+
 # version control
 
 - git blame - reasons behind changes
@@ -38,8 +41,13 @@
     > Replace entire modules with stubs that pretend to do the real thing, but actually do something completely trivial that can't be buggy.
     > Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
     > But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
-- https://blog.safia.rocks/post/170269021619/tips-for-reading-new-codebases
-    - public-facing API
+- https://news.ycombinator.com/item?id=11383999
+    > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
+- Complementing static analysis with dynamic analysis
+    - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
+    > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
+- Starting from public-facing API, tracing back to internals
+    - https://blog.safia.rocks/post/170269021619/tips-for-reading-new-codebases
 
 ### concurrency
 

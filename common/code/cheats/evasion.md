@@ -131,5 +131,6 @@ env LD_PRELOAD=ptrace.so ./foo
 # case studies
 
 - https://tccontre.blogspot.com/2020/11/interesting-formbook-crypter.html
+- https://www.rezilion.com/blog/the-race-to-limit-ptrace/
 
 

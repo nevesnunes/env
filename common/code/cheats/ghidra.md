@@ -3,6 +3,13 @@
 - [GitHub \- NWMonster/ApplySig: Apply IDA FLIRT signatures for Ghidra](https://github.com/NWMonster/ApplySig)
 - [disassembly \- Python Script to get disassembled output of an EXE file \- Reverse Engineering Stack Exchange](https://reverseengineering.stackexchange.com/questions/22377/python-script-to-get-disassembled-output-of-an-exe-file)
 
+# extension build
+
+```bash
+gradle -PGHIDRA_INSTALL_DIR="$HOME/opt/ghidra_9.2.3_PUBLIC" buildExtension
+cp dist/*.zip "$HOME/opt/ghidra_9.2.3_PUBLIC/Extensions/Ghidra/"
+```
+
 # configuration
 
 - Script Manager
@@ -15,6 +22,41 @@
 
 1. Select instructions > Clear Code Block
 2. Select bytes (starting at expected offset) > Disassemble
+
+# type recovery
+
+- File > Export Program > Export As C/C++
+
+```c
+typedef unsigned char undefined;
+typedef unsigned char byte;
+typedef unsigned int dword;
+typedef unsigned int uint;
+typedef unsigned char uint3[3];
+typedef unsigned char undefined1;
+typedef unsigned short undefined2;
+typedef unsigned int undefined4;
+typedef unsigned long long undefined8;
+typedef unsigned short ushort;
+typedef unsigned short word;
+```
+
+# object-oriented code
+
+- init
+    1. `new()`
+        ```
+        PUSH 0xc ; size of object
+        CALL ...
+        ```
+    2. if EAX not zero, then call constructor
+- structs
+    1. find calls where 1st argument is ptr to struct
+    2. find 1st function initializing struct
+    3. on 1st struct var, reset ptr type, create new struct type
+        - unidentified members = char[k] "extra" member
+    4. foreach call, fix type of ptr to struct
+    - https://oalabs.openanalysis.net/2019/06/03/reverse-engineering-c-with-ida-pro-classes-constructors-and-structs/
 
 # scripting
 
