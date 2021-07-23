@@ -18,6 +18,9 @@
 - https://pentester.land/list-of-bug-bounty-writeups.html
 - The Web Application Hacker's Handbook
 
+- https://html.spec.whatwg.org/multipage/parsing.html
+- https://html.spec.whatwg.org/#an-introduction-to-error-handling-and-strange-cases-in-the-parser
+
 # labs
 
 - https://portswigger.net/web-security

@@ -514,6 +514,28 @@ call eax
 - ! segment starts at next page-aligned virtual address due to mmap behaviour
     - https://stackoverflow.com/questions/42599558/elf-program-header-virtual-address-and-file-offset
 
+# object-oriented code
+
+- init
+    1. `new()`
+        ```
+        PUSH 0xc ; size of object
+        CALL ...
+        ```
+    2. if EAX not zero, then call constructor
+- structs
+    1. find calls where 1st argument is ptr to struct
+    2. find 1st function initializing struct (i.e. constructor || setter)
+    3. on 1st struct var, reset ptr type, create new struct type
+        - unidentified members = char[k] "extra" member
+    4. foreach call, fix type of ptr to struct
+    - https://oalabs.openanalysis.net/2019/06/03/reverse-engineering-c-with-ida-pro-classes-constructors-and-structs/
+- virtuals
+    - object has ptr to vftable, which contains addresses for vfuncs
+    - rtti contains constructor names
+
+- [Getting Started Reversing C\+\+ Objects with Ghidra \- YouTube](https://www.youtube.com/watch?v=ir2B1trR0fE)
+
 # examples
 
 - arm, aarch64

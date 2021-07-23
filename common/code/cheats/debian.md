@@ -18,6 +18,9 @@ apt-file find /foo
 # latest installed packages
 grep " install " /var/log/dpkg.log{,.1}
 
+# all installed packages
+apt list --installed
+
 # downgrade
 apt-cache showpkg foo
 apt-get install foo=123
