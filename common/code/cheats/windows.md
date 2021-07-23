@@ -243,11 +243,28 @@ https://twitter.com/swiftonsecurity/status/988909127006085123
 
 # profiling
 
-On procmon:
+On `procmon` GUI:
 
 - Tools > Profiling Events
 - Tools > Stack Summary
 - Select: table header > Select Columns > Check: Duration
+
+On `procmon` CLI:
+
+```
+procmon /quiet /minimized /backingfile c:\temp\trace.pml
+# [reproduce issue...]
+procmon /terminate
+```
+
+# ptrace equivalent
+
+- ETW
+    - StartTrace, EnableTrace
+        - ~/code/snippets/windows/etw-trace.cpp
+        - [Configuring and Starting the NT Kernel Logger Session \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/etw/configuring-and-starting-the-nt-kernel-logger-session?redirectedfrom=MSDN)
+    - EVENT_TRACE_FLAG_SYSTEMCALL flag: Enables SysCallEnter and SysCallLeave events
+        - [SysCallEnter class \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/etw/syscallenter?redirectedfrom=MSDN)
 
 # installers
 

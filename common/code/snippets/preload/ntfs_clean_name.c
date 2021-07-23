@@ -15,6 +15,16 @@
 #include <sys/types.h>
 #include <utime.h>
 
+#ifndef _STAT_VER
+#if defined(__aarch64__)
+#define _STAT_VER 0
+#elif defined(__x86_64__)
+#define _STAT_VER 1
+#else
+#define _STAT_VER 3
+#endif
+#endif
+
 /**
  * Compiling:
  * ```
@@ -22,26 +32,66 @@
  * ```
  *
  * Pitfalls:
- * - Undocumented imported functions, e.g. __fxstatat64
- * - Consider varargs, e.g. mode when creating file:
- * ```
- * openat(AT_FDCWD, "foo", O_WRONLY|O_CREAT|O_NOCTTY|O_NONBLOCK, 0666)
- * openat(AT_FDCWD, "foo._", O_WRONLY|O_CREAT|O_NOCTTY|O_NONBLOCK, 04501)
- * ```
+ * - Undocumented imported functions
+ *   ```
+ *   libc_hidden_def (__fxstatat64)
+ *   strong_alias (__fxstatat, __fxstatat64);
+ *   strong_alias (__fxstatat64, __GI___fxstatat64)
+ *   ```
+ * - Consider varargs, e.g. mode when creating file
+ *	   - May require checking with macro __OPEN_NEEDS_MODE
+ *	       - https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/openat.c.html
+ *	       - https://code.woboq.org/userspace/glibc/io/fcntl.h.html
+ *     ```
+ *     openat(AT_FDCWD, "foo", O_WRONLY|O_CREAT|O_NOCTTY|O_NONBLOCK, 0666)
+ *     openat(AT_FDCWD, "foo._", O_WRONLY|O_CREAT|O_NOCTTY|O_NONBLOCK, 04501)
+ *     ```
+ * - glibc 2.33 compatibility (_STAT_VER removed)
+ *     - https://git.busybox.net/buildroot/commit/?id=f45925a951318e9e53bead80b363e004301adc6f
  */
 
 const char *clean(const char *filename, const char *caller) {
-    int len = strlen(filename);
-    if (filename[len - 1] == '.') {
-        printf("%s: Cleaning filename: %s\n", caller, filename);
+	int len = strlen(filename);
+    int new_len = sizeof(char) * (len * 2 + 1);
+    char *new_filename = malloc(new_len);
+    memset(new_filename, 0, new_len);
 
-        char *new_filename = malloc(sizeof(char) * (strlen(filename) + 2));
-        strcpy(new_filename, filename);
-        strncat(new_filename, "_", len + 1);
-        return new_filename;
+	// Mutable copy for strtok
+    char *strtok_filename = malloc(sizeof(char) * (len + 2));
+    strcpy(strtok_filename, filename);
+
+	// Don't ignore delimiter at start
+    if (len > 0 && filename[0] == '/') {
+        strncat(new_filename, "/", 1);
     }
 
-    return filename;
+    int cleaned = 0;
+    const char delims[] = {'/', '\0'};
+    char *temp = strtok(strtok_filename, delims);
+    while (temp != NULL) {
+        int temp_len = strlen(temp);
+        strncat(new_filename, temp, temp_len);
+
+		// Don't clean special name-inode maps
+        if (!(strcmp(temp, ".") == 0 || strcmp(temp, "..") == 0) &&
+            temp[temp_len - 1] == '.') {
+            cleaned = 1;
+            strncat(new_filename, "_", 1);
+        }
+
+		// If more subpaths are present, append delimiter
+        temp = strtok(NULL, delims);
+        if (temp != NULL) {
+            strncat(new_filename, "/", 1);
+        }
+    }
+
+    if (cleaned) {
+        printf(
+            "%s: Cleaned filename: %s => %s\n", caller, filename, new_filename);
+    }
+
+    return new_filename;
 }
 
 char *basename(const char *filename) {
@@ -92,6 +142,56 @@ int open(const char *filename, int flags, ...) {
 
     // > The argument mode is used only when a file is created.
     // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
+    struct stat stat_buf;
+    if (stat(filename, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(filename, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(filename, flags, mode);
+    }
+}
+
+int __open(const char *filename, int flags, ...) {
+    filename = clean(filename, "__open");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__open");
+
+    // > The argument mode is used only when a file is created.
+    // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
+    struct stat stat_buf;
+    if (stat(filename, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(filename, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(filename, flags, mode);
+    }
+}
+
+int __open_2(const char *filename, int flags, ...) {
+    filename = clean(filename, "__open_2");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__open_2");
+
+    // > The argument mode is used only when a file is created.
+    // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
     struct stat stat_buf;
     if (stat(filename, &stat_buf) == 0) {
         // File exists, ignore mode.
@@ -114,6 +214,8 @@ int open64(const char *filename, int flags, ...) {
 
     // > The argument mode is used only when a file is created.
     // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
     struct stat stat_buf;
     if (stat(filename, &stat_buf) == 0) {
         // File exists, ignore mode.
@@ -127,6 +229,242 @@ int open64(const char *filename, int flags, ...) {
         return (*original)(filename, flags, mode);
     }
 }
+
+int __open64(const char *filename, int flags, ...) {
+    filename = clean(filename, "__open64");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__open64");
+
+    // > The argument mode is used only when a file is created.
+    // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
+    struct stat stat_buf;
+    if (stat(filename, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(filename, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(filename, flags, mode);
+    }
+}
+
+int __open64_2(const char *filename, int flags, ...) {
+    filename = clean(filename, "__open64_2");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__open64_2");
+
+    // > The argument mode is used only when a file is created.
+    // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
+    struct stat stat_buf;
+    if (stat(filename, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(filename, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(filename, flags, mode);
+    }
+}
+
+int __open_nocancel(const char *filename, int flags, ...) {
+    filename = clean(filename, "__open_nocancel");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__open_nocancel");
+
+    // > The argument mode is used only when a file is created.
+    // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
+    struct stat stat_buf;
+    if (stat(filename, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(filename, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(filename, flags, mode);
+    }
+}
+
+int __open64_nocancel(const char *filename, int flags, ...) {
+    filename = clean(filename, "__open64_nocancel");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__open64_nocancel");
+
+    // > The argument mode is used only when a file is created.
+    // - https://www.gnu.org/software/libc/manual/html_node/Opening-and-Closing-Files.html
+	// > `mode` specifies the permissions to use in case a new file is created. This argument must be supplied when O_CREAT is specified in flags; if O_CREAT is not specified, then mode is ignored.
+	// - https://linux.die.net/man/2/open
+    struct stat stat_buf;
+    if (stat(filename, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(filename, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(filename, flags, mode);
+    }
+}
+
+int openat(int dirfd, const char *pathname, int flags, ...) {
+    pathname = clean(pathname, "openat");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "openat");
+
+    // > The openat() system call operates in exactly the same way as open(2),
+	// except for the differences described in this manual page.
+    // - https://linux.die.net/man/2/openat
+    struct stat stat_buf;
+    if (stat(pathname, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(dirfd, pathname, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(dirfd, pathname, flags, mode);
+    }
+}
+
+int openat64(int dirfd, const char *pathname, int flags, ...) {
+    pathname = clean(pathname, "openat64");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "openat64");
+
+    // > The openat() system call operates in exactly the same way as open(2),
+	// except for the differences described in this manual page.
+    // - https://linux.die.net/man/2/openat
+    struct stat stat_buf;
+    if (stat(pathname, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(dirfd, pathname, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(dirfd, pathname, flags, mode);
+    }
+}
+
+
+int __openat(int dirfd, const char *pathname, int flags, ...) {
+    pathname = clean(pathname, "__openat");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__openat");
+
+    // > The openat() system call operates in exactly the same way as open(2),
+	// except for the differences described in this manual page.
+    // - https://linux.die.net/man/2/openat
+    struct stat stat_buf;
+    if (stat(pathname, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(dirfd, pathname, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(dirfd, pathname, flags, mode);
+    }
+}
+
+int __openat64(int dirfd, const char *pathname, int flags, ...) {
+    pathname = clean(pathname, "__openat64");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__openat64");
+
+    // > The openat() system call operates in exactly the same way as open(2),
+	// except for the differences described in this manual page.
+    // - https://linux.die.net/man/2/openat
+    struct stat stat_buf;
+    if (stat(pathname, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(dirfd, pathname, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(dirfd, pathname, flags, mode);
+    }
+}
+
+int __openat_2(int dirfd, const char *pathname, int flags, ...) {
+    pathname = clean(pathname, "__openat_2");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__openat_2");
+
+    // > The openat() system call operates in exactly the same way as open(2),
+	// except for the differences described in this manual page.
+    // - https://linux.die.net/man/2/openat
+    struct stat stat_buf;
+    if (stat(pathname, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(dirfd, pathname, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(dirfd, pathname, flags, mode);
+    }
+}
+
+int __openat64_2(int dirfd, const char *pathname, int flags, ...) {
+    pathname = clean(pathname, "__openat64_2");
+
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "__openat64_2");
+
+    // > The openat() system call operates in exactly the same way as open(2),
+	// except for the differences described in this manual page.
+    // - https://linux.die.net/man/2/openat
+    struct stat stat_buf;
+    if (stat(pathname, &stat_buf) == 0) {
+        // File exists, ignore mode.
+        return (*original)(dirfd, pathname, flags);
+    } else {
+        va_list argp;
+        va_start(argp, flags);
+        mode_t mode = va_arg(argp, mode_t);
+        va_end(argp);
+
+        return (*original)(dirfd, pathname, flags, mode);
+    }
+}
+
 
 int chdir(const char *filename) {
     filename = clean(filename, "chdir");
@@ -216,7 +554,8 @@ int mkdir(const char *filename, mode_t mode) {
 int stat(const char *filename, struct stat *buf) {
     filename = clean(filename, "stat");
 
-    // > The stat family functions are actually wrappers to internal functions in glibc.
+    // > The stat family functions are actually wrappers to internal functions
+    // in glibc.
     //
     // Validation:
     //
@@ -226,11 +565,16 @@ int stat(const char *filename, struct stat *buf) {
     // ```
     //
     // > The `stat', `fstat', `lstat' functions have to be handled special since
-    // > even while not compiling the library with optimization calls to these
-    // > functions in the shared library must reference the `xstat' etc functions.
-    // > We have to use macros but we cannot define them in the normal headers
-    // > since on user level we must use real functions.
-    // - https://code.woboq.org/userspace/glibc/include/sys/stat.h.html
+    // even while not compiling the library with optimization calls to these
+    // functions in the shared library must reference the `xstat' etc
+    // functions. We have to use macros but we cannot define them in the
+    // normal headers since on user level we must use real functions.
+    //     - https://code.woboq.org/userspace/glibc/include/sys/stat.h.html
+	// > The point of all this is to allow the dynamically linked libc to 
+	// support binaries which use various incompatible layouts of struct stat 
+	// and definitions of bits in mode_t.
+	//     - https://stackoverflow.com/questions/5478780/c-and-ld-preload-open-and-open64-calls-intercepted-but-not-stat64
+	//
     // #if IS_IN (libc) || (IS_IN (rtld) && !defined NO_RTLD_HIDDEN)
     // hidden_proto (__fxstat)
     // hidden_proto (__fxstat64)
@@ -255,23 +599,31 @@ int stat64(const char *filename, struct stat64 *buf) {
 int lstat(const char *filename, struct stat *buf) {
     filename = clean(filename, "lstat");
 
-    int (*original)(int stat_ver, const char *filename, struct stat *buf);
-    original = dlsym(RTLD_NEXT, "__lxstat");
-    return (*original)(_STAT_VER, filename, buf);
+    int (*original)(const char *filename, struct stat *buf);
+    original = dlsym(RTLD_NEXT, "lstat");
+    return (*original)(filename, buf);
 }
 
 int lstat64(const char *filename, struct stat64 *buf) {
     filename = clean(filename, "lstat64");
 
-    int (*original)(int stat_ver, const char *filename, struct stat64 *buf);
-    original = dlsym(RTLD_NEXT, "__lxstat64");
-    return (*original)(_STAT_VER, filename, buf);
+    int (*original)(const char *filename, struct stat64 *buf);
+    original = dlsym(RTLD_NEXT, "lstat64");
+    return (*original)(filename, buf);
 }
 
-int __fxstatat(int stat_ver, int dirfd, const char *pathname, struct stat *buf, int flags) {
+int __fxstatat(int stat_ver,
+               int dirfd,
+               const char *pathname,
+               struct stat *buf,
+               int flags) {
     pathname = clean(pathname, "__fxstatat");
 
-    int (*original)(int __ver, int __fildes, const char *__filename, struct stat *__stat_buf, int __flag);
+    int (*original)(int __ver,
+                    int __fildes,
+                    const char *__filename,
+                    struct stat *__stat_buf,
+                    int __flag);
     original = dlsym(RTLD_NEXT, "__fxstatat");
     return (*original)(_STAT_VER, dirfd, pathname, buf, flags);
 }
@@ -279,15 +631,27 @@ int __fxstatat(int stat_ver, int dirfd, const char *pathname, struct stat *buf, 
 int fstatat(int dirfd, const char *pathname, struct stat *buf, int flags) {
     pathname = clean(pathname, "fstatat");
 
-    int (*original)(int __ver, int __fildes, const char *__filename, struct stat *__stat_buf, int __flag);
+    int (*original)(int __ver,
+                    int __fildes,
+                    const char *__filename,
+                    struct stat *__stat_buf,
+                    int __flag);
     original = dlsym(RTLD_NEXT, "__fxstatat");
     return (*original)(_STAT_VER, dirfd, pathname, buf, flags);
 }
 
-int __fxstatat64(int stat_ver, int dirfd, const char *pathname, struct stat64 *buf, int flags) {
+int __fxstatat64(int stat_ver,
+                 int dirfd,
+                 const char *pathname,
+                 struct stat64 *buf,
+                 int flags) {
     pathname = clean(pathname, "__fxstatat64");
 
-    int (*original)(int __ver, int __fildes, const char *__filename, struct stat64 *__stat_buf, int __flag);
+    int (*original)(int __ver,
+                    int __fildes,
+                    const char *__filename,
+                    struct stat64 *__stat_buf,
+                    int __flag);
     original = dlsym(RTLD_NEXT, "__fxstatat64");
     return (*original)(_STAT_VER, dirfd, pathname, buf, flags);
 }
@@ -295,25 +659,53 @@ int __fxstatat64(int stat_ver, int dirfd, const char *pathname, struct stat64 *b
 int fstatat64(int dirfd, const char *pathname, struct stat64 *buf, int flags) {
     pathname = clean(pathname, "fstatat64");
 
-    int (*original)(int __ver, int __fildes, const char *__filename, struct stat64 *__stat_buf, int __flag);
+    int (*original)(int __ver,
+                    int __fildes,
+                    const char *__filename,
+                    struct stat64 *__stat_buf,
+                    int __flag);
     original = dlsym(RTLD_NEXT, "__fxstatat64");
     return (*original)(_STAT_VER, dirfd, pathname, buf, flags);
 }
 
-FTS * fts_open (char * const *path_argv, int options, int (*compar) (const FTSENT **, const FTSENT **)) {
-    const char * new_path_argv = clean(*path_argv, "fts_open");
+int faccessat(int fd, const char *file, int mode, int flag) {
+    file = clean(file, "faccessat");
 
-    FTS * (*original)(char * const *path_argv, int options, int (*compar) (const FTSENT **, const FTSENT **));
-    original = dlsym(RTLD_NEXT, "fts_open");
-    return (*original)((char * const *)&new_path_argv, options, compar);
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "faccessat");
+    return (*original)(fd, file, mode, flag);
 }
 
-FTS * xfts_open (char * const *path_argv, int options, int (*compar) (const FTSENT **, const FTSENT **)) {
-    const char * new_path_argv = clean(*path_argv, "xfts_open");
+int unlinkat(int fd, const char *file, int flag) {
+    file = clean(file, "unlinkat");
 
-    FTS * (*original)(char * const *path_argv, int options, int (*compar) (const FTSENT **, const FTSENT **));
+    int (*original)();
+    original = dlsym(RTLD_NEXT, "unlinkat");
+    return (*original)(fd, file, flag);
+}
+
+FTS *fts_open(char *const *path_argv,
+              int options,
+              int (*compar)(const FTSENT **, const FTSENT **)) {
+    const char *new_path_argv = clean(*path_argv, "fts_open");
+
+    FTS *(*original)(char *const *path_argv,
+                     int options,
+                     int (*compar)(const FTSENT **, const FTSENT **));
+    original = dlsym(RTLD_NEXT, "fts_open");
+    return (*original)((char *const *)&new_path_argv, options, compar);
+}
+
+FTS *xfts_open(char *const *path_argv,
+               int options,
+               int (*compar)(const FTSENT **, const FTSENT **)) {
+    const char *new_path_argv = clean(*path_argv, "xfts_open");
+
+    FTS *(*original)(char *const *path_argv,
+                     int options,
+                     int (*compar)(const FTSENT **, const FTSENT **));
     original = dlsym(RTLD_NEXT, "xfts_open");
-    return (*original)((char * const *)&new_path_argv, options, compar);
+    return (*original)((char *const *)&new_path_argv, options, compar);
 }
 
 int chown(const char *filename, uid_t owner, gid_t group) {
@@ -406,7 +798,8 @@ int execl(const char *filename, const char *arg0, ...) {
     // > This is similar to execv, but the argv strings are specified
     // > individually instead of as an array. A null pointer must be passed
     // > as the last such argument.
-    // - https://www.gnu.org/software/libc/manual/html_node/Executing-a-File.html
+    // -
+    // https://www.gnu.org/software/libc/manual/html_node/Executing-a-File.html
     va_list argp;
     va_start(argp, arg0);
     char *argX = va_arg(argp, char *);
@@ -427,39 +820,251 @@ int execl(const char *filename, const char *arg0, ...) {
     case 3:
         return (*original)(filename, arg0, *args[0], *args[1], *args[2]);
     case 4:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3]);
+        return (*original)(
+            filename, arg0, *args[0], *args[1], *args[2], *args[3]);
     case 5:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4]);
+        return (*original)(
+            filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4]);
     case 6:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5]);
     case 7:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6]);
     case 8:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7]);
     case 9:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8]);
     case 10:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9]);
     case 11:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10]);
     case 12:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11]);
     case 13:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12]);
     case 14:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13]);
     case 15:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14]);
     case 16:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15]);
     case 17:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16]);
     case 18:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17]);
     case 19:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], *args[18]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           *args[18]);
     case 20:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], *args[18], *args[19]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           *args[18],
+                           *args[19]);
     default:
         return (*original)(filename, arg0);
     }
@@ -482,9 +1087,9 @@ int execle(const char *filename, const char *arg0, ...) {
 
     // FIXME: Limited to 20 args.
     // > This is similar to execl, but permits you to specify the environment
-    // > for the new program explicitly. The environment argument is passed
-    // > following the null pointer that marks the last argv argument, and should
-    // > be an array of strings in the same format as for the environ variable.
+    // for the new program explicitly. The environment argument is passed
+    // following the null pointer that marks the last argv argument, and should
+    // be an array of strings in the same format as for the environ variable.
     // - https://www.gnu.org/software/libc/manual/html_node/Executing-a-File.html
     va_list argp;
     va_start(argp, arg0);
@@ -507,39 +1112,272 @@ int execle(const char *filename, const char *arg0, ...) {
     case 3:
         return (*original)(filename, arg0, *args[0], *args[1], *args[2], env);
     case 4:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], env);
+        return (*original)(
+            filename, arg0, *args[0], *args[1], *args[2], *args[3], env);
     case 5:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           env);
     case 6:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           env);
     case 7:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           env);
     case 8:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           env);
     case 9:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           env);
     case 10:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           env);
     case 11:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           env);
     case 12:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           env);
     case 13:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           env);
     case 14:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           env);
     case 15:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           env);
     case 16:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           env);
     case 17:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           env);
     case 18:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           env);
     case 19:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], *args[18], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           *args[18],
+                           env);
     case 20:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], *args[18], *args[19], env);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           *args[18],
+                           *args[19],
+                           env);
     default:
         return (*original)(filename, arg0, env);
     }
@@ -583,39 +1421,251 @@ int execlp(const char *filename, const char *arg0, ...) {
     case 3:
         return (*original)(filename, arg0, *args[0], *args[1], *args[2]);
     case 4:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3]);
+        return (*original)(
+            filename, arg0, *args[0], *args[1], *args[2], *args[3]);
     case 5:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4]);
+        return (*original)(
+            filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4]);
     case 6:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5]);
     case 7:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6]);
     case 8:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7]);
     case 9:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8]);
     case 10:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9]);
     case 11:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10]);
     case 12:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11]);
     case 13:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12]);
     case 14:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13]);
     case 15:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14]);
     case 16:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15]);
     case 17:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16]);
     case 18:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17]);
     case 19:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], *args[18]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           *args[18]);
     case 20:
-        return (*original)(filename, arg0, *args[0], *args[1], *args[2], *args[3], *args[4], *args[5], *args[6], *args[7], *args[8], *args[9], *args[10], *args[11], *args[12], *args[13], *args[14], *args[15], *args[16], *args[17], *args[18], *args[19]);
+        return (*original)(filename,
+                           arg0,
+                           *args[0],
+                           *args[1],
+                           *args[2],
+                           *args[3],
+                           *args[4],
+                           *args[5],
+                           *args[6],
+                           *args[7],
+                           *args[8],
+                           *args[9],
+                           *args[10],
+                           *args[11],
+                           *args[12],
+                           *args[13],
+                           *args[14],
+                           *args[15],
+                           *args[16],
+                           *args[17],
+                           *args[18],
+                           *args[19]);
     default:
         return (*original)(filename, arg0);
     }

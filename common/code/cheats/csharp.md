@@ -11,6 +11,7 @@ internal static extern int ldap_connect(IntPtr ldapHandle, IntPtr timeout);
 ```
 
 - https://stackoverflow.com/questions/26908049/what-is-net-core
+- https://en.wikipedia.org/wiki/List_of_CIL_instructions
 
 # dissassemble / decompile
 

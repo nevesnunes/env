@@ -170,9 +170,13 @@ done
 
 - ~/opt/privilege-escalation-awesome-scripts-suite/
 - ~/opt/LinEnum/
+- https://github.com/TH3xACE/SUDO_KILLER
 
 ```bash
 sudo -l
+# ||
+cat /etc/sudoers
+# || try with `sudo -u`
 
 # specific uid
 find / -uid 1001 -type f 2>/dev/null

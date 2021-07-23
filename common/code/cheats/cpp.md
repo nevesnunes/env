@@ -137,6 +137,7 @@ gcc foo.c -o foo -shared -fPIC
 
 # both c and c++
 ./configure \
+    LDFLAGS="-L/foo/usr/lib" \
     CPPFLAGS="-I/foo" \
     CPATH="/foo"
 
@@ -208,18 +209,21 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     ```bash
     docker pull alpine
     docker run -it -v "$HOME/share:/share:z" alpine
-    apk add --no-cache gcc musl-dev
 
     # From package sources
     # References:
     # - https://unix.stackexchange.com/questions/496755/how-to-get-the-source-code-used-to-build-the-packages-of-the-base-alpine-linux-d
     # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
+    # - https://wiki.alpinelinux.org/wiki/APKBUILD_Reference
     app=
-    apk add --no-cache alpine-sdk sudo
+    apk add --no-cache alpine-sdk gcc musl-dev sudo
     cd /opt
     git clone --depth 1 --branch v3.13.1 git://git.alpinelinux.org/aports
     cd ./aports/main/"$app"
-    # Edit APKBUILD to include `-static` in CFLAGS
+    # Override pkg-config dependencies (e.g. when specifying static libs)
+    # References: [Static compilation errors \- tmux 2\.9, ncurses 6\.1, libevent 2\.1\.8 · Issue \#1729 · tmux/tmux · GitHub](https://github.com/tmux/tmux/issues/1729)
+    export PKG_CONFIG=/bin/true
+    # [Edit APKBUILD to include `-static` in CFLAGS]
     abuild-keygen -a -i
     abuild -F fetch verify
     abuild -F -r
@@ -552,3 +556,42 @@ if (foo) {
 // ...
 mutex.unlock();
 ```
+
+# undefined behaviour
+
+- Validation
+    - `gcc foo.c -fdump-tree-all -O3`
+    - /usr/include/limits.h
+- Integer overflow as a result of adding two int type variables
+    ```c
+    int add(int a, int b) {
+        if (a > 0 && b > 0) {
+            // if (a + b < 0) { // can be optimized out
+            if (a >= 0 ? b > INT_MAX - a : b < INT_MIN - a) {
+                printf("%s\n", "overflow");
+                return 0;
+            }
+        }
+        return a + b;
+    }
+    ```
+- Product overflow check: `n * m * sizeof(int) < PTRDIFF_MAX`
+    - https://godbolt.org/z/PuCbFz
+        - `PTRDIFF_MAX / sizeof(int) / n >= m`
+    - https://godbolt.org/z/QXPYsp
+        ```c
+        #include <stdint.h>
+        #include <stdlib.h>
+
+        _Bool f(size_t m, size_t n)
+        {
+            return
+                n <= SIZE_MAX / (2 * sizeof(int)) &&
+                m <= SIZE_MAX / (2 * sizeof(int) * n);
+        }
+        ```
+- Prefer SecureZeroMemory, explicit_bzero over memset
+    - [35C3 \- Memsad \- YouTube](https://www.youtube.com/watch?v=0WzjAKABSDk)
+    - [CWE-14: Compiler Removal of Code to Clear Buffers](https://cwe.mitre.org/data/definitions/14.html)
+- [AppSec EU 2017 Dangerous Optimizations And The Loss Of Causality by Robert C  Seacord \- YouTube](https://www.youtube.com/watch?v=cjQQCrQ_wvs)
+- [Schr&\#246;dinger's Code \- ACM Queue](https://queue.acm.org/detail.cfm?id=3468263)
