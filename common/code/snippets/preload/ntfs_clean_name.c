@@ -39,9 +39,9 @@
  *   strong_alias (__fxstatat64, __GI___fxstatat64)
  *   ```
  * - Consider varargs, e.g. mode when creating file
- *	   - May require checking with macro __OPEN_NEEDS_MODE
- *	       - https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/openat.c.html
- *	       - https://code.woboq.org/userspace/glibc/io/fcntl.h.html
+ *     - May require checking with macro __OPEN_NEEDS_MODE
+ *         - https://code.woboq.org/userspace/glibc/sysdeps/unix/sysv/linux/openat.c.html
+ *         - https://code.woboq.org/userspace/glibc/io/fcntl.h.html
  *     ```
  *     openat(AT_FDCWD, "foo", O_WRONLY|O_CREAT|O_NOCTTY|O_NONBLOCK, 0666)
  *     openat(AT_FDCWD, "foo._", O_WRONLY|O_CREAT|O_NOCTTY|O_NONBLOCK, 04501)
