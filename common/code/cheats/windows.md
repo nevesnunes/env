@@ -1,8 +1,10 @@
 # +
 
-./windbg.md
+- [windbg](./windbg.md)
 
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
+- [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
+- [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 
 - [OSR Developer Community](https://community.osr.com/)
 

@@ -3,6 +3,7 @@
 - https://docs.docker.com/toolbox/toolbox_install_windows/
 - docker swarm - automatic rollback
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
+- [GitHub \- rootless\-containers/rootlesskit: Linux\-native &quot;fake root&quot; for implementing rootless containers](https://github.com/rootless-containers/rootlesskit)
 
 - https://gtfobins.github.io/gtfobins/docker/
     ```bash

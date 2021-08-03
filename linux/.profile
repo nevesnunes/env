@@ -5,8 +5,12 @@ gdbus call --session --dest org.freedesktop.DBus --object-path /org/freedesktop/
 # Workaround PulseAudio crash
 export PULSE_LATENCY_MSEC=90
 
+# Paths
+# Comment $HOME/.local/bin:$HOME/bin in global configs (i.e. /etc/...{env|rc|login})
+export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
+export MANPATH="$MANPATH:/usr/local/man"
+
 # Perl
-#
 # Generated with:
 # perl -I$HOME/opt/perl5/lib/perl5 -Mlocal::lib
 PATH="$HOME/opt/perl5/bin${PATH:+:${PATH}}"; export PATH;
@@ -29,11 +33,6 @@ export SCALA_HOME="$HOME/opt/scala-2.13.3"
 # Go
 #export GOROOT="$HOME/.local/share/go"
 export GOPATH="$HOME/opt/go"
-
-# Paths
-# Comment $HOME/.local/bin:$HOME/bin in global configs (i.e. /etc/...{env|rc|login})
-export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
-export MANPATH="$MANPATH:/usr/local/man"
 
 # Editors
 export VISUAL='gvim -v'

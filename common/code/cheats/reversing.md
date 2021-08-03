@@ -18,10 +18,12 @@
         - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)
     - ELF format: `ldd -iv` (validates shared libraries initialization)
         - [GitHub \- marin\-m/vmlinux\-to\-elf: A tool to recover a fully analyzable \.ELF from a raw kernel, through extracting the kernel symbol table \(kallsyms\)](https://github.com/marin-m/vmlinux-to-elf)
+    - PE format: [GitHub \- fireeye/capa: The FLARE team&\#39;s open\-source tool to identify capabilities in executable files\.](https://github.com/fireeye/capa)
 - resources
     - NE format: [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
+    - [GitHub \- ExeinfoASL/ASL: ExeinfoPE](https://github.com/ExeinfoASL/ASL)
 - roms
     - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
     - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
@@ -74,8 +76,9 @@
         - hw read break on packet buffer, frida hook on winsock calls
         - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
         - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
-- monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
+- diff/search for data changes before and after blocks: loops, func calls...
 - binary patching, code injection, fault inducing
+- monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
 - alternative to reverse debugging: vm snapshots
 - images
     - produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
@@ -215,6 +218,19 @@ perf trace record
 
 ### binary patching
 
+- coreutils
+    ```bash
+    # Generate
+    diff -Nauw \
+        <(xxd -p 1 | sed 's/\(..\)/\1\n/g') \
+        <(xxd -p 2 | sed 's/\(..\)/\1\n/g') \
+        > 1_2.diff
+
+    # Apply (`patch` requires regular file)
+    xxd -p 1 | sed 's/\(..\)/\1\n/g' > x1
+    patch -u x1 1_2.diff
+    paste -sd '' < x1 | xxd -r -p > 2
+    ```
 - x64dbg
 - [GitHub \- GJDuck/e9patch: A powerful static binary rewriting tool](https://github.com/GJDuck/e9patch)
     - [Binary Rewriting without Control Flow Recovery](https://www.comp.nus.edu.sg/~gregory/papers/e9patch.pdf)

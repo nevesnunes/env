@@ -1,3 +1,11 @@
+# osi
+
+- presentation layer (6): tcp
+- session layer (5)
+    - active FTP: port 20, 21
+    - passive FTP: port 21
+- transport layer (4): tcp
+
 # lifecycle
 
 ```
@@ -18,6 +26,8 @@ put /home/foo/bar
 help
 quit
 ```
+
+- https://xmehulx.github.io/terminal/wireshark-basic-tutorial-using-ftp-session
 
 # kernel support
 
