@@ -1,5 +1,6 @@
 # +
 
+- [SQL Fiddle](http://sqlfiddle.com)
 - [Screenshots of our DB Software \- DbVisualizer](https://www.dbvis.com/features/software-screenshots/)
 - [How to create a 1M record table with a single query \| Anton Zhiyanov](https://antonz.org/random-table/)
 
@@ -690,3 +691,34 @@ union all
 subquery
 coalesce columns
     https://stackoverflow.com/questions/2360396/how-can-i-merge-the-columns-from-two-tables-into-one-output
+
+# case studies
+
+### avoid overbooking
+
+- if using multiple statements:
+    - set isolation level to avoid dirty reads
+        - http://en.wikipedia.org/wiki/Isolation_%28database_systems%29#READ_UNCOMMITTED_.28dirty_reads.29
+    - use `start transaction` to rollback
+        - https://dev.mysql.com/doc/refman/8.0/en/commit.html
+- reservation between dates
+    ```
+    -- OK
+    A_in >= B_out OR A_out <= B_in
+    -- De Morgan's law: NOT (x OR y) = NOT(x) AND NOT(y)
+    -- CONFLICT
+    A_in < B_out AND A_out > B_in
+    ```
+- long processing times (e.g. third-party payment)
+    - hold reservations before collecting payment info
+    - use status flag to signal processing of reservation, set status with transactions, configured with timeout
+- "underhanded sql contest"
+    - no query error
+    - no @@ROWCOUNT check
+    - if users are shown free rooms with a previously run select, this update will cause overbooking
+        ```sql
+        UPDATE table
+        SET status = "reserved"
+        WHERE room_id = "asked_id"
+        AND status = "free";
+        ```

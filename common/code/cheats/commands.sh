@@ -604,3 +604,7 @@ setfattr -h \
     ./source_file | grep '=' | sed -e 's/^.*=//')" \
   -n system.ntfs_reparse_data \
   ./target_file
+
+# dot graph output
+dot -Tsvg structs.dot -o structs.svg
+graph-easy --from=dot --as_ascii < foo.dot

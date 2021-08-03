@@ -12,6 +12,7 @@ fi
 find . -maxdepth "$maxdepth" -type d | while read -r i; do
   branch=$(git --git-dir="$i/.git" --work-tree="$i" branch 2>&1)
   if ! echo "$branch" | grep -q -i "not a git repo"; then
+    echo "Applying 'git $*' to $i" >&2
     git --git-dir="$i/.git" --work-tree="$i" "$@"
   fi
 done

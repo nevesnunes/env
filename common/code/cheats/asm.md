@@ -145,20 +145,33 @@ objcopy --dump-section .text=output.bin input.o
 |uninitialized data aka. `.bss`|zeroed by `exec`|
 |initialized data aka. `.data`|read by `exec`|
 |initialized read-only data aka. `.rodata`|read by `exec`|
-|global offset table aka. `.got`|updated by `_dl_runtime_resolve`, replacing pointer to stub in `.plt`|
+|global offset table aka. `.got`|updated by `_dl_runtime_resolve`, replacing pointer to stub by resolved address, read in `.plt`|
 |executable code aka. `.text`|read by `exec`|
 |procedure linkage table aka. `.plt`||
 
 - `.text`: executable code; RX (=AX) segment; only loaded once, as contents will not change
     - CONTENTS, ALLOC, LOAD, READONLY, CODE
     - [finding address range](https://stackoverflow.com/questions/7370407/get-the-start-and-end-address-of-text-section-in-an-executable/7373301#7373301)
-- `.rela.text`: list of relocations against `.text`
+- `.rela.text`: list of relocations against `.text` (e.g. extern variables)
 - `.data`: initialised data; RW (=WA) segment
 - `.rodata`: initialised read-only data; R (=A) segment
 - `.bss`: uninitialized data; RW segment
 - `.plt`: PLT (Procedure Linkage Table) (IAT equivalent)
 - `.got`: GOT (Global Offset Table), used to access dynamically linked global variables, created during link time, may be populated during runtime
 - `.got.plt`: used to access dynamically linked functions
+    - lazy binding: value on 1st call = next instruction to load identifier and call linker; value on next calls = resolved address patched by linker in GOT
+    ```
+    5c0:   e8 0b ff ff ff         callq  4d0 <foo@plt>
+
+    00000000000004d0 <foo@plt>:
+    4d0:   ff 25 82 03 20 00      jmpq   *0x200382(%rip)        # 200858 <_GLOBAL_OFFSET_TABLE_+0x18>
+    4d6:   68 00 00 00 00         pushq  $0x0
+    4db:   e9 e0 ff ff ff         jmpq   4c0 <_init+0x18>
+
+    Relocation section '.rela.plt' at offset 0x478 contains 2 entries:
+    Offset          Info           Type           Sym. Value    Sym. Name + Addend
+    000000200858  000400000007 R_X86_64_JUMP_SLO 0000000000000000 foo + 0
+    ```
 - `.symtab`: global symbol table
 - `.dynamic`: Holds all needed information for dynamic linking
 - `.dynsym`: symbol tables dedicated to dynamically linked symbols
@@ -176,7 +189,11 @@ objcopy --dump-section .text=output.bin input.o
 
 - https://www.sigflag.at/blog/2020/writeup-plaidctf2020-golfso/
 
-# call convention (e.g. registers for arguments, return values)
+# calling convention
+
+- stdcall - callee cleans stack (i.e. `ret n`)
+- cdecl - caller cleans stack (i.e. `add rsp` after call)
+- fastcall - use registers for 1st 2 arguments (i.e. `sub rsp, n` + `ret n`)
 
 - https://man7.org/linux/man-pages/man2/syscall.2.html
 - https://en.wikipedia.org/wiki/X86_calling_conventions
@@ -184,7 +201,7 @@ objcopy --dump-section .text=output.bin input.o
 # stack
 
 - frame
-    - contains: $ebp; local vars; args; return address = $eip saved by `call`
+    - contains: $ebp; local vars (read w/ offset from $ebp, next address to alloc in $esp); args; return address = $eip saved by `call`
 - segment flags: given section `.note.GNU-stack`, linker parses it and adds segment `PT_GNU_STACK`
     - if no section found, linker assumes executable bit is required
         - [Airs &\#8211; Ian Lance Taylor &raquo; Executable stack](https://www.airs.com/blog/archives/518)
@@ -310,6 +327,9 @@ gcc -m32 -no-pie -nostdlib foo.s -o foo
 # || Using Intel syntax
 nasm -f elf -o foo.o foo.asm
 ld -m elf_i386 -o foo foo.o
+# || 64 bits
+nasm -f elf64 -o foo.o foo.asm
+ld -m elf_x86_64 -o foo foo.o
 
 # || Using AT&T syntax
 as -o foo.o foo.asm
@@ -531,10 +551,25 @@ call eax
     4. foreach call, fix type of ptr to struct
     - https://oalabs.openanalysis.net/2019/06/03/reverse-engineering-c-with-ida-pro-classes-constructors-and-structs/
 - virtuals
-    - object has ptr to vftable, which contains addresses for vfuncs
+    - object constructor stores field w/ ptr to class vftable, which contains addresses for vfuncs
+        - polymorphism: overriden entries in vftable
+        - multiple inheritance: multiple ptrs to vftables
     - rtti contains constructor names
 
+- Ghidra-Cpp-Class-Analyzer
+    - Analysis > All Open > Deselect All > Windows (or GCC) C++ Class Analyzer (prototype) > Decompiler timeout
+
 - [Getting Started Reversing C\+\+ Objects with Ghidra \- YouTube](https://www.youtube.com/watch?v=ir2B1trR0fE)
+- [Reversing Basic C\+\+ Objects with Ghidra: Inheritance and Polymorphism \(Part 2\) \- YouTube](https://www.youtube.com/watch?v=MiX4p2l_IE0)
+
+# methodologies
+
+- rom map
+    - http://datacrystal.romhacking.net/wiki/EarthBound:ROM_map
+- xrefs and symbol exports
+    - https://tcrf.net/Proto:Sonic_the_Hedgehog_2_(Genesis)/Nick_Arcade_Prototype#Object_List.2FSource_Code
+- split dissassemblies
+    > The splitting program searches for pointers in the ROM where data is know to be stored (art, maps, etc.) and splits them out into seperate files (Ness’s art is in one file, Onett’s map is in it’s own file, etc.) for hacking ease. Also, an altered ASM source code is included, with tags that include this split data back in when building. This cuts down on the size of the source code file, as the normal file still contains the data for all these other resources. A comprehensive disassembly may even be done to include subroutine names to help understand which sub does what (like a sub would be called art_unc that uncompresses art, or battle_start when a battle begins).
 
 # examples
 
@@ -542,5 +577,3 @@ call eax
     - https://azeria-labs.com/writing-arm-assembly-part-1/
     - https://thinkingeek.com/arm-assembler-raspberry-pi/
     - https://opensecuritytraining.info/IntroARM.html
-
-
