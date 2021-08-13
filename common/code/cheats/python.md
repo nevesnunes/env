@@ -333,6 +333,10 @@ pytest --cov=dir/
 # Profiling, Benchmarking
 
 ```bash
+tracemalloc
+
+psutils.virtual_memory().used
+
 # https://stackoverflow.com/questions/449560/how-do-i-determine-the-size-of-an-object-in-python
 # ~/code/snippets/py/getsize.py
 pprint.pprint({k: getsize(v) for k, v in locals().items() if not isinstance(v, type(__builtins__)) and not isinstance(v, types.Fun
@@ -582,6 +586,15 @@ df = pd.DataFrame({"A": [1, 2, 3],
                    "B": [1.1, 2.2, 3.3]},
                     index =['a', 'a', 'b'])
 print(df.to_markdown())
+```
+
+# regex escape
+
+```
+>>> re.match(".*'.*", "1\n' OR 1=1--")
+>>>
+>>> re.search(".*'.*", "1\n' OR 1=1--")
+<re.Match object; span=(2, 12), match="' OR 1=1--">
 ```
 
 # jail

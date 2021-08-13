@@ -1,5 +1,6 @@
 *.env
 *.lock
+**/a.out
 **/.asset-cache
 **/.bundle
 **/.jekyll-assets-cache

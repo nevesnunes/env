@@ -1,54 +1,53 @@
-# Suspend (systemctl) [sleep]
+% misc
+
+# Suspend [sleep]
 systemctl -i suspend
 
-# Reboot (systemctl) [restart]
+# Reboot [restart]
 systemctl -i reboot
 
-# Power Off (systemctl) [shutdown]
+# Power Off [shutdown]
 systemctl -i poweroff
 
-# Kernel Messages (dmesg)
+# Kernel Messages
 watch -n 5 dmesg | tail -n 15
 
-# Network Statistics (netstat)
+# Network Statistics
 watch -n 5 "netstat -at | grep -v LISTEN"
 
-# System Journal (journalctl)
+# System journal
 journalctl -f
 
-# List zsh commands (alias)
+# System recent journal
+journalctl --since="30 minutes ago"
+
+# List zsh commands
 alias | cut -f1 -d=
 hash -f
 hash -v | cut -f 1 -d= | sort
 
-# List shell frequent commands (history)
+# List shell frequent commands
 history | awk '{print $2}' | sort | uniq -c | sort -nr | head
 
-# System recent journal (journalctl)
-journalctl --since="30 minutes ago"
-
-# Show IP address info (ip)
+# Show IP address info
 ip addr show
 
 # SELinux audit log
 sudo sealert -a /var/log/audit/audit.log
 
-# Power Off monitor (dkms)
+# Power Off monitor
 xset dpms force off
 
-# Print key names (xkbprint)
+# Print key names
 xkbprint -label name "$DISPLAY"
 
-# Audio Mixer (alsamixer) [music, sound, volume, level]
+# Audio Mixer [music, sound, volume, level]
 alsamixer
 
-# Process Monitor (htop) [memory, input/output, resources, kill]
+# Process Monitor [memory, input/output, resources, kill]
 htop
 
-# Find all logs changed within 5 minutes larger than given size
-find /var/log -mmin -5 -size +2M
-
-# Weather (curl) [wttr.in, wego]
+# Weather [wttr.in, wego]
 curl wttr.in 2> /dev/null | head -n7
 read -r -n 1
 
@@ -61,23 +60,23 @@ curl http://foo/bar -F 'file=@-' < _
 # PUT file from stdin
 curl http://foo/bar --upload-file - < _
 
-# Display keyboard layout (gkbd-keyboard-display) [show]
+# Display keyboard layout [show]
 gkbd-keyboard-display -l "$(~/bin/blocks/keymap | awk '{print $2}')"
 
 # List Built-in Kernel Modules
 cat /lib/modules/"$(uname -r)"/modules.builtin
 
-# Fuzzy search manual pages 7 `Miscellaneous` (apropos)
+# Fuzzy search manual pages 7 `Miscellaneous`
 apropos -s 7 "" | fzf | cut -d"(" -f1 | xargs man
 
-# Regenerate tags for javascript code (jsctags)
+# Regenerate tags for javascript code
 find . -type f \
   -iregex ".*\.js$" -not -path "./node_modules/*" \
   -exec jsctags {} -f \; \
   | sed "/^$/d" \
   | sort > tags
 
-# Gracefully close/kill windows (wmctrl)
+# Gracefully close/kill windows
 (wmctrl -l \
   | grep -v -E "(xterm|scratchpad)" \
   | cut -d" " -f1 \
@@ -85,28 +84,14 @@ find . -type f \
 killall tmux
 uf.sh
 
-# Git fuzzy show commit log (fzf)
-git show $(git log --pretty=oneline --abbrev-commit | fzf | cut -d" " -f1)
-
-# Git fuzzy interactive commit log (fzf)
-git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always \
-  | fzf --ansi --no-sort --reverse --multi --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES | grep -o "[a-f0-9]\{7,\}" | grep -o "[a-f0-9]\{7,\}" <<< {} \
-  | xargs git show --color=always \
-  | $PAGER
-
-# Git remove added files that were later ignored
-git rm -r --cached . \
-  && git add . \
-  && git clean -x -n
-
-# Run new display in a window (xephyr)
+# Run new display in a window
 Xephyr -ac -screen 800x600 -br -reset -terminate :3 2> /dev/null &
 
-# Show backtrace of all active CPUs (sysrq-trigger) [call list dump stack kworker]
+# Show backtrace of all active CPUs [call list dump stack kworker]
 sudo su -c 'echo l > /proc/sysrq-trigger'
 dmesg
 
-# Record backtrace of all active CPUs (perf) [call list dump stack kworker]
+# Record backtrace of all active CPUs [call list dump stack kworker]
 sudo perf record -g -a sleep 10
 sudo perf report
 
@@ -136,9 +121,9 @@ lineno=$(grep -n "# foo" /etc/foo.conf | grep -Eo '^[^:]+')
 sed -i "$(($lineno + 1))foo" /etc/foo.conf
 
 # Encode, Compress, Increase Contrast of JPG
-# References:
-# https://developers.google.com/speed/docs/insights/OptimizeImages
-# https://www.imagemagick.org/Usage/color_mods/#levels
+; References:
+; - https://developers.google.com/speed/docs/insights/OptimizeImages
+; - https://www.imagemagick.org/Usage/color_mods/#levels
 convert image.jpg -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB -level '10%,85%,1.5' image_converted.jpg
 
 # Repair VM
@@ -147,7 +132,7 @@ VBoxManage internalcommands repairhd _ -format VDI
 
 # Split flac
 shnsplit -f file.cue -t '%n. %t' -o flac file.flac
-# ||
+; ||
 cuebreakpoints file.cue | shnsplit -t '%n. %t' -o flac file.flac
 
 # Add metadata tags from cue to audio files
@@ -231,9 +216,6 @@ rsync -rv --delete --existing --ignore-existing --ignore-errors foo/ bar/
 # HTTP/2 web server with automatic HTTPS
 caddy -conf ~/config/Caddyfile
 
-# edit file in different branch
-git show branch_name:/path/to/file.pl | vim - -c 'set syntax=perl'
-
 # input on stdin for commands taking input on file
 ./foo --file=/proc/self/fd/0
 ./foo --file=/dev/stdin
@@ -279,11 +261,11 @@ kill -9 $$
 
 # awk - first instance with common prefix
 awk '{
-dir = substr($0, 1, match($0, /\/[^\/]*$/))
-if (!seen[dir]) {
-  print
-  seen[dir]++
-}
+    dir = substr($0, 1, match($0, /\/[^\/]*$/))
+    if (!seen[dir]) {
+      print
+      seen[dir]++
+    }
 }'
 
 # generate qr code
@@ -300,11 +282,11 @@ fdupes -r --delete .
 
 # dd monitoring with progress / timer / status indicator
 dd if=foo of=/dev/sdb bs=4M status=progress
-# ||
+; ||
 dd if=foo | pv -s 2.8G | dd of=/dev/sdb bs=4M
-# ||
+; ||
 pgrep '^dd$' | xargs -i kill -USR1 {}
-# || https://blog.sleeplessbeastie.eu/2015/01/23/how-to-check-the-progress-of-dd-using-proc-filesystem/
+; || https://blog.sleeplessbeastie.eu/2015/01/23/how-to-check-the-progress-of-dd-using-proc-filesystem/
 sudo su -c "pgrep '^dd$' | xargs -i awk '/^wchar/ {print \$2}' /proc/{}/io"
 
 # dd handle errors
@@ -318,68 +300,68 @@ dd iflag=direct oflag=direct
 
 # hardware info
 dmidecode
-# || motherboard
+; || motherboard
 cat /sys/devices/virtual/dmi/id/board_*
 
 # image format / resolution
-# https://imagemagick.org/script/identify.php
+; - https://imagemagick.org/script/identify.php
 magick identify foo.png
 
 # auto-detect changes in acpi devices
-# https://askubuntu.com/questions/23508/how-to-automatically-change-volume-level-when-un-plugging-headphones
+; - https://askubuntu.com/questions/23508/how-to-automatically-change-volume-level-when-un-plugging-headphones
 acpi_listen > /tmp/foo
 echo '/tmp/foo' | entr ./bar
 
 # backlight
-# Requires: disabled settings daemon color plugin
-# Reference: [Sometimes when I open a window \(especially chromium\) brightness controller resets brightness settings to default \(not on app ui\) · Issue \#102 · LordAmit/Brightness · GitHub](https://github.com/LordAmit/Brightness/issues/102)
+; - Requires: disabled settings daemon color plugin
+; - Reference: [Sometimes when I open a window \(especially chromium\) brightness controller resets brightness settings to default \(not on app ui\) · Issue \#102 · LordAmit/Brightness · GitHub](https://github.com/LordAmit/Brightness/issues/102)
 xrandr | awk '/ connected /{print $1}' | xargs -i xrandr --output {} --brightness .9
-gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness "<15>"
+gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness \<15\>
 gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Get org.gnome.SettingsDaemon.Power.Screen Brightness
 
 # vectorize raster image (autotrace)
 convert -channel RGB -compress None -enhance -contrast +dither -colors 16 -depth 4 input.png bmp:- | potrace -s - -o output.svg
 
 # List fonts and code points for matched fontconfig rule
-#
-# `fc-match` options:
-# - ldd /usr/bin/fc-match
-# - strings /lib64/libfontconfig.so.1
-#
-# `strace` patterns for `unipicker --command 'rofi -dmenu'`:
-# - removed reads from cached font entries
-#    - :%s/openat.*fontconfig.*\.cache.*\n.*fstat.*\n.*fstatfs.*\n.*mmap.*//g
-# - got actual fonts loaded
-# [pid 1608961] access("/home/fn/.local/share/fonts/Meslo LG DZ v1.2.1/MesloLGMDZ-Regular.ttf", R_OK) = 0
-# [pid 1608961] openat(AT_FDCWD, "/home/fn/.local/share/fonts/Meslo LG DZ v1.2.1/MesloLGMDZ-Regular.ttf", O_RDONLY) = 9
-# [pid 1608961] fcntl(9, F_SETFD, FD_CLOEXEC) = 0
-# [pid 1608961] fstat(9, {st_mode=S_IFREG|0664, st_size=636196, ...}) = 0
-# [pid 1608961] mmap(NULL, 636196, PROT_READ, MAP_PRIVATE, 9, 0) = 0x7f170b559000
-# [pid 1608961] close(9)                  = 0
-# ...
-# [pid 1608961] access("/usr/share/fonts/google-noto-emoji/NotoColorEmoji.ttf", R_OK) = 0
-# [pid 1608961] openat(AT_FDCWD, "/usr/share/fonts/google-noto-emoji/NotoColorEmoji.ttf", O_RDONLY) = 9
-# [pid 1608961] fcntl(9, F_SETFD, FD_CLOEXEC) = 0
-# [pid 1608961] fstat(9, {st_mode=S_IFREG|0644, st_size=10468356, ...}) = 0
-# [pid 1608961] mmap(NULL, 10468356, PROT_READ, MAP_PRIVATE, 9, 0) = 0x7f170a0c5000
-# [pid 1608961] close(9)                  = 0
-# ...
-# [pid 1608961] access("/usr/share/fonts/gdouros-symbola/Symbola.ttf", R_OK) = 0
-# [pid 1608961] openat(AT_FDCWD, "/usr/share/fonts/gdouros-symbola/Symbola.ttf", O_RDONLY) = 9
-# [pid 1608961] fcntl(9, F_SETFD, FD_CLOEXEC) = 0
-# [pid 1608961] fstat(9, {st_mode=S_IFREG|0644, st_size=2440452, ...}) = 0
-# [pid 1608961] mmap(NULL, 2440452, PROT_READ, MAP_PRIVATE, 9, 0) = 0x7f1709c1d000
-# [pid 1608961] close(9)                  = 0
-grep -Po '(?<=<family>)(.*Emoji.*)(?=</family>)' /usr/share/fontconfig/conf.avail/60-generic.conf \
+;
+; `fc-match` options:
+; - ldd /usr/bin/fc-match
+; - strings /lib64/libfontconfig.so.1
+;
+; `strace` patterns for `unipicker --command 'rofi -dmenu'`:
+; - removed reads from cached font entries
+;    - :%s/openat.*fontconfig.*\.cache.*\n.*fstat.*\n.*fstatfs.*\n.*mmap.*//g
+; - got actual fonts loaded
+; [pid 1608961] access("/home/fn/.local/share/fonts/Meslo LG DZ v1.2.1/MesloLGMDZ-Regular.ttf", R_OK) = 0
+; [pid 1608961] openat(AT_FDCWD, "/home/fn/.local/share/fonts/Meslo LG DZ v1.2.1/MesloLGMDZ-Regular.ttf", O_RDONLY) = 9
+; [pid 1608961] fcntl(9, F_SETFD, FD_CLOEXEC) = 0
+; [pid 1608961] fstat(9, {st_mode=S_IFREG|0664, st_size=636196, ...}) = 0
+; [pid 1608961] mmap(NULL, 636196, PROT_READ, MAP_PRIVATE, 9, 0) = 0x7f170b559000
+; [pid 1608961] close(9)                  = 0
+; ...
+; [pid 1608961] access("/usr/share/fonts/google-noto-emoji/NotoColorEmoji.ttf", R_OK) = 0
+; [pid 1608961] openat(AT_FDCWD, "/usr/share/fonts/google-noto-emoji/NotoColorEmoji.ttf", O_RDONLY) = 9
+; [pid 1608961] fcntl(9, F_SETFD, FD_CLOEXEC) = 0
+; [pid 1608961] fstat(9, {st_mode=S_IFREG|0644, st_size=10468356, ...}) = 0
+; [pid 1608961] mmap(NULL, 10468356, PROT_READ, MAP_PRIVATE, 9, 0) = 0x7f170a0c5000
+; [pid 1608961] close(9)                  = 0
+; ...
+; [pid 1608961] access("/usr/share/fonts/gdouros-symbola/Symbola.ttf", R_OK) = 0
+; [pid 1608961] openat(AT_FDCWD, "/usr/share/fonts/gdouros-symbola/Symbola.ttf", O_RDONLY) = 9
+; [pid 1608961] fcntl(9, F_SETFD, FD_CLOEXEC) = 0
+; [pid 1608961] fstat(9, {st_mode=S_IFREG|0644, st_size=2440452, ...}) = 0
+; [pid 1608961] mmap(NULL, 2440452, PROT_READ, MAP_PRIVATE, 9, 0) = 0x7f1709c1d000
+; [pid 1608961] close(9)                  = 0
+grep -Po '(?<=\<family\>)(.*Emoji.*)(?=</family>)' /usr/share/fontconfig/conf.avail/60-generic.conf \
   | xargs -i fc-match {} \
   | sort -u \
   | awk -F'"' '$0=$2' \
   | xargs -i fc-match --format='%{family}\n%{charset}\n' {}
 
-# List fonts containing codepoint.
-# Insert codepoint with: Left-Ctrl-Shift + u + 1f921 + Return (Rendered as `<0001f921>`).
-# References:
-# - https://unix.stackexchange.com/questions/162305/find-the-best-font-for-rendering-a-codepoint/268286
+# List fonts containing codepoint
+; Insert codepoint with: Left-Ctrl-Shift + u + 1f921 + Return (Rendered as `<0001f921>`).
+; References:
+; - https://unix.stackexchange.com/questions/162305/find-the-best-font-for-rendering-a-codepoint/268286
 codepoint=
 fc-list ":charset=$(printf '%x' \'$codepoint)"
 
@@ -413,19 +395,16 @@ sha1sum foo.xml | cut -f1 -d\  | xxd -r -p | base64
 exec sudo -u $(id -u -n) -i
 
 # match window class and name
-class=
-name=
-xdotool search --onlyvisible --class "$class" getwindowpid %@ | xargs -i xdotool search --all --pid {} --name "$name"
+xdotool search --onlyvisible --class <class> getwindowpid %@ | xargs -i xdotool search --all --pid {} --name <name>
 
 # hide window from dock
-# - don't search with `xprop`, since window id may not match visible window
-# - don't sync on window map, it can hang when an incorrect id was picked for window unmap
-# Alternatives:
-# - https://stackoverflow.com/questions/19035043/setting-x11-type-property-for-xmessage
-# - https://stackoverflow.com/questions/31361859/simple-window-without-titlebar
-# - https://tronche.com/gui/x/xlib/window-information/XChangeProperty.html
-class=
-id=$(xdotool search --onlyvisible --class "$class" | xargs -i printf '0x%x' {})
+; - don't search with `xprop`, since window id may not match visible window
+; - don't sync on window map, it can hang when an incorrect id was picked for window unmap
+; Alternatives:
+; - https://stackoverflow.com/questions/19035043/setting-x11-type-property-for-xmessage
+; - https://stackoverflow.com/questions/31361859/simple-window-without-titlebar
+; - https://tronche.com/gui/x/xlib/window-information/XChangeProperty.html
+id=$(xdotool search --onlyvisible --class <class> | xargs -i printf '0x%x' {})
 xprop -id "$id" -f _NET_WM_WINDOW_TYPE 32a -set _NET_WM_WINDOW_TYPE _NET_WM_WINDOW_TYPE_NORMAL
 xdotool windowunmap --sync "$id"
 xdotool windowmap "$id"
@@ -433,13 +412,6 @@ xdotool windowmap "$id"
 xprop -id "$id" -f _NET_WM_WINDOW_TYPE 32a -set _NET_WM_WINDOW_TYPE _NET_WM_WINDOW_TYPE_NORMAL
 xdotool windowunmap --sync "$id"
 xdotool windowmap "$id"
-
-# add repos as submodules
-target_root=
-target=$target_root/
-find . -path '*/.git/*' -iname 'config' -exec awk 'FNR == 1{ print FILENAME } /url/{print $3}' {} \; | xargs -L2 sh -c 'r=${1%\/\.git\/config} && cd "'"$target_root"'" && rm -rf "'"$target"'/$r" && git submodule add "$2" "'"$target"'/$r"' _
-### sync
-rsync --cvs-exclude
 
 # send raw data
 curl -H "Content-Type: text/plain" --data "foo" http://foo
@@ -450,9 +422,9 @@ find . -maxdepth 1 -type f -exec file --mime-type {} + \
   | xargs -0 sxiv -qto 2> /dev/null
 
 # convert between newlines and null bytes
-# e.g. paste image paths in vim:
-#     map <leader>i :r !find . -maxdepth 1 -type f -exec file --mime-type {} + \| awk -F: '$2 ~ /image\//{printf "%s%c", $1, 0}' \| xargs -0 sxiv -qto 2>/dev/null <CR><CR>
-#     reference: https://www.reddit.com/r/vim/comments/ic51kg/visually_select_images_and_paste_their_paths_into/
+; e.g. paste image paths in vim:
+;     map <leader>i :r !find . -maxdepth 1 -type f -exec file --mime-type {} + \| awk -F: '$2 ~ /image\//{printf "%s%c", $1, 0}' \| xargs -0 sxiv -qto 2>/dev/null <CR><CR>
+;     reference: https://www.reddit.com/r/vim/comments/ic51kg/visually_select_images_and_paste_their_paths_into/
 printf '%s\n' 'a 1' 'a 2' | tr '\n' '\0'
 printf '%s\n' 'a 1' 'a 2' | paste -sd $'\x1e' | sed 's/\x1e/\x00/g' | xargs -0
 printf '%s\x00' 'a 1' 'a 2' | tr '\0' '\n'
@@ -477,7 +449,7 @@ awk '{printf "%s\r\n", $0}' _
 python -c 'import re, sys; sys.stdout.buffer.write(re.sub(b"\n", b"\r\n", open(sys.argv[1], "rb").read()))' _
 
 # Good compression
-# Note: -z is very slow
+; Note: -z is very slow
 lrzip -vv -S '.zpaq.lrz' -z -L9 -p "$(nproc)" -U file
 
 # Find dupes by md5
@@ -515,10 +487,9 @@ find . -type l -a ! \( \
   -xtype s -o \
   -xtype l \) -exec rm '{}' \; 2> /dev/null
 
-# Low resource usage on filesystem copies,
-# avoiding io buffer contention.
-# References:
-# - https://github.com/Feh/nocache
+# Low resource usage on filesystem copies, avoiding io buffer contention.
+; References:
+; - https://github.com/Feh/nocache
 nice -n19 ionice -c3 nocache rsync -uva
 
 # Multiple files
@@ -553,7 +524,7 @@ inxi -Fmxxxz
 openssl rand -base64 48
 
 # Interactive tree navigation with histogram
-# Reference: `ncdu -o-`
+; Reference: `ncdu -o-`
 printf '[1,1,{"progname":"ncdu","progver":"1.15.1","timestamp":1},
 [{"name":"/","asize":4096,"dsize":4096,"dev":1,"ino":1},
 {"name":"foo","asize":2,"dsize":2,"ino":1},
@@ -573,30 +544,27 @@ head -c16 /dev/urandom | od -tx1 -An -v | tr -d '[:space:]'
 ) | gdb -p "$(pidof mysqld)"
 
 # Alternative to quoted redirection
-# i.e. `sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'`
+; i.e. `sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'`
 echo 1 | sudo tee /proc/sys/kernel/perf_event_paranoid
 
 # Stream via pipe
-# On writer end:
+; On writer end:
 mkfifo foo
 script -f foo
-# On reader end:
+; On reader end:
 cat foo
 
 # kill port
 fuser -k $port/tcp
 
 # throttle download
-aria2c --max-download-limit=100K --max-tries=0 --retry-wait="$(sleep $((RANDOM % 5 + 10)))" foo
-
-# recently modified files since boot
-find / -mount -newer /proc -print
+aria2c --max-download-limit=100K --max-tries=0 --retry-wait="$(sleep $((RANDOM % 5 + 10)))" <url>
 
 # find byte patterns
-yara --print-strings <(echo 'rule _ { strings: $hex_string = { 42 4? } condition: $hex_string }') foo
+yara --print-strings <(echo 'rule _ { strings: $hex_string = { 42 4? } condition: $hex_string }') <file>
 
 # create NTFS symbolic link
-# https://serverfault.com/questions/165389/create-ntfs-symbolic-links-from-within-linux
+; https://serverfault.com/questions/165389/create-ntfs-symbolic-links-from-within-linux
 setfattr -h \
   -v "$(getfattr -h \
     -e hex \
@@ -606,5 +574,137 @@ setfattr -h \
   ./target_file
 
 # dot graph output
-dot -Tsvg structs.dot -o structs.svg
-graph-easy --from=dot --as_ascii < foo.dot
+dot -Tsvg <file>.dot -o <file>.svg
+graph-easy --from=dot --as_ascii < <file>.dot
+
+# File mime type
+xdg-mime query filetype <file>
+
+# Change keymap
+xkbcomp -I$HOME/.xkb <file> $DISPLAY
+$ file: find ~/.xkb/keymap -type f
+
+# Video output for multi-monitor presentation (xrandr)
+xrandr --output VGA1 --mode 1024x768 --right-of LVDS1
+
+# Copy file to backup
+cp <file>{,.backup}
+
+# Execute command in all name matched processes
+ps aux | grep <str> | grep -v grep | awk "{print $2}" | xargs <cmd>
+
+# X all window information from root window
+xwininfo -root -all
+
+# VirtualBox - Install extension pack (VBoxManage)
+sudo VBoxManage extpack install <file>
+
+# Make unified format diff (same as `git diff`)
+diff -Naurw <old> <new> > <file>.diff
+
+# Patch using diff file (removes prefix added by `git diff`)
+patch -p1 < <file>.diff
+
+# Patch specific file using diff file
+patch <file> < <file>.diff
+
+# Undo/revert patch
+patch -R < <file>.diff
+
+# Find recursively, ignoring case
+find . -iname "*<str>*"
+
+# Find all logs changed within 5 minutes larger than given size
+find /var/log -mmin -5 -size +2M
+
+# Find recently modified files since boot
+find / -mount -newer /proc -print
+
+# Find files not matching permissions
+find -type d -not -perm 775
+
+# Rename filenames with colons
+find . -name "*:*" -exec rename 's|:|_|g' {} \;
+
+# Rename all files to lowercase
+find . -depth -exec prename "s/(.*)\/([^\/]*)/$1\/\L$2/" {} \;
+
+# Run command file fuzzy sorted list by latest modified time/date
+find "<filename>" -maxdepth 2 -type f | \
+    xargs -d'\n' -I{} -n1 -r stat --format "%Y %n" {} | sort -nr | cut -d" " -f2- | \
+    fzf | \
+    xargs -d'\n' -I{} -n1 -r xdg-open {}
+
+# Grep recursively, ignoring case and binaries
+grep -riIHn "<str>"
+
+# Run command with most recent file in directory
+ls -t | head -n1 | xargs -d'\n' -I{} -n1 -r <cmd> {}
+
+# Check content type of site/webpage
+curl -s -I -X GET <url> | grep Content-Type
+
+# Reflow pdf file for small screen reading
+k2pdfopt <file> -dev kpw -mode fw -wrap -hy -ws 0.375 -ls-
+
+# Record shell session
+test "$(ps -ocommand= -p $PPID | awk '{print $1}')" == 'script' || (script -f $HOME/$(date +"%d-%b-%y_%H-%M-%S")_shell.log)
+
+# List Firefox bookmarks
+sqlite3 ~/.mozilla/firefox/*.Default\ User/places.sqlite "SELECT strftime('%d.%m.%Y %H:%M:%S', dateAdded/1000000, 'unixepoch', 'localtime'),url FROM moz_places, moz_bookmarks WHERE moz_places.id = moz_bookmarks.fk ORDER BY dateAdded;"
+
+# check security certificate of website (curl)
+verify-certificate <url>
+
+# Change the primary group for a user
+usermod -g <new_group> <user>
+
+# Add a user to a group
+usermod -a -G <new_group> <user>
+
+# Remove a user from a group
+usermod -G <comma_separated_groups> <user>
+
+# Parent process name
+ps -o comm= <ppid>
+
+# Change the Priority of a Running Process
+renice -n -<nice> -p <pid>
+
+# Check details/info/version of remote server
+curl -X OPTIONS <url> --user <user> -v
+
+# Download source rpm
+yumdownloader --source <file>
+
+# Extract source rpm
+rpm2cpio <file> | cpio -idmv
+
+# Reload driver
+modprobe -r <module> && echo mem > /sys/power/state & modprobe <module>
+
+# Convert demo to video recording
+prboom-plus -timedemo <file> -viddump out.mkv
+
+# Normalize/replace single quote
+sed -i "s/\xe2\x80\x99/'/g" <str>
+
+# Resume/continue/finish download
+wget --continue <str>
+
+# Convert YAML to JSON
+python -c 'import sys, yaml, json; y=yaml.load(sys.stdin.read()); print json.dumps(y)' < <str>
+
+# Override OpenGL version
+MESA_GL_VERSION_OVERRIDE=4.2 MESA_GLSL_VERSION_OVERRIDE=420 <cmd>
+
+# GNOME debug
+export G_MESSAGES_DEBUG=all
+
+# Fetch bibtex reference
+curl -LH "Accept: application/x-bibtex" https://doi.org/<doi>
+
+# Generate random ascii
+head -c10000 /dev/urandom | tr -c -d '[:alnum:]'
+
+; vim: filetype=navi

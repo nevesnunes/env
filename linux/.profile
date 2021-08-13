@@ -34,6 +34,10 @@ export SCALA_HOME="$HOME/opt/scala-2.13.3"
 #export GOROOT="$HOME/.local/share/go"
 export GOPATH="$HOME/opt/go"
 
+# Android
+export ANDROID_PREFS_ROOT="/run/media/$USER/TOSHIBA\ EXT/FN-NUX/.android"
+export ANDROID_SDK_HOME="$ANDROID_PREFS_ROOT"
+
 # Editors
 export VISUAL='gvim -v'
 
@@ -55,6 +59,7 @@ export BROWSER='user-browser'
 export FZF_DEFAULT_OPTS='--bind=ctrl-j:accept,ctrl-k:kill-line,ctrl-u:preview-page-down,ctrl-i:preview-page-up,?:toggle-preview --header "ctrl-u:preview-page-down,ctrl-i:preview-page-up" --border=horizontal --color=16,border:7,pointer:2 --preview '"'"'echo {} | sed -e "s/^ *\([0-9]*\) *//" -e "s/.\{$((COLUMNS-4))\}/&\n/g"'"'"' --preview-window down:6:hidden'
 export LC_ALL='en_US.UTF-8'
 export LC_TIME='en_GB'
+export NAVI_PATH=~/code/cheats/navi
 export NODE_PATH=~/.local/lib/node_modules
 export PYTHONSTARTUP=~/.config/pythonrc
 export TERMINFO=~/.terminfo

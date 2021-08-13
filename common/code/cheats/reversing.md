@@ -60,11 +60,14 @@
     - hashing: branchless xors/rols
     - debug symbols: from old versions
 - enumerate exports, imports, function use, syscalls, winapi, mutex, dll dependencies, strings
+    - lifecycle
+        - before OEP
+            - pe format: TLS
+            - elf format: init_array
+        - debugger: break on thread exit, dll unload, process exit, then check stack
     - finding `main()` function
         - on libc `entry`, take 1st argument to `__libc_start_main()`
         - || find which function's return value (saved in eax) is passed to exit(), then follow xrefs in reverse
-    - finding specific functions
-        - take old version introducing specific logic in changelog, then bindiff with current version
     - calling functions
         - debugger
         - https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html?m=1
@@ -76,6 +79,8 @@
         - hw read break on packet buffer, frida hook on winsock calls
         - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
         - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
+    - finding specific functions
+        - take old version introducing specific logic in changelog, then bindiff with current version
 - diff/search for data changes before and after blocks: loops, func calls...
 - binary patching, code injection, fault inducing
 - monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot

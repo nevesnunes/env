@@ -15,8 +15,11 @@
 - https://owasp.org/www-project-web-security-testing-guide/stable/
     - https://owasp.org/www-community/attacks/
     - https://cheatsheetseries.owasp.org/Glossary.html
+- https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html
 - https://pentester.land/list-of-bug-bounty-writeups.html
 - The Web Application Hacker's Handbook
+
+# docs
 
 - https://html.spec.whatwg.org/multipage/parsing.html
 - https://html.spec.whatwg.org/#an-introduction-to-error-handling-and-strange-cases-in-the-parser

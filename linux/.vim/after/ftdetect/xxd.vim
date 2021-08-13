@@ -12,4 +12,13 @@ function! HexSearch(...)
     execute 'normal /\<cr>'
 endfunction
 command! -nargs=1 HexSearch :call HexSearch(<f-args>)
-nnoremap g/ :HexSearch 
+nnoremap g/ :HexSearch
+
+function! P(...)
+    let l:cmd = 'patch.py ' . expand("%:p") . ' ' . join(a:000)
+    call job_start(l:cmd, #{
+        \ exit_cb : { channel,status -> execute('edit') }
+    \})
+endfunction
+command! -nargs=* P :call P(<f-args>)
+nnoremap gp :P

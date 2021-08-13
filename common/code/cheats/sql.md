@@ -722,3 +722,4 @@ coalesce columns
         WHERE room_id = "asked_id"
         AND status = "free";
         ```
+- https://dba.stackexchange.com/questions/158316/strategy-for-concurrent-group-bookings

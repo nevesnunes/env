@@ -30,9 +30,9 @@ wine ~/opt/CUETools_2.1.6/ArCueDotNet.exe _ | grep ID
 #     - .cue DISCID = ca0f7b0f
 ```
 
-Alternatives: 
+Alternatives:
 
-- Chromaprint 
+- Chromaprint
     - `beet import -C`
     - [Chromaprint/Acoustid Plugin &mdash; beets 1\.4\.9 documentation](https://beets.readthedocs.io/en/stable/plugins/chroma.html)
 - [Look up musicbrainz disc id and freedb id from EAC/XLD log](http://eac-log-lookup.blogspot.com/)
@@ -126,6 +126,28 @@ ffmpeg -i "input.webm" -vn -acodec copy "output.oga"
 
 ```bash
 ffmpeg -f lavfi -i color=size=8x8:rate=25:color=black -f lavfi -i anullsrc=channel_layout=mono:sample_rate=8000 -t $((60 * 60 * 4)) output.mp4
+```
+
+# Generate silence
+
+```bash
+sox -n -r 16000 -c 1 out.ogg trim 0.0 0.1
+```
+
+# Generate spectrogram
+
+```bash
+sox _ -c2 -r 44100 -n spectrogram
+```
+
+# Generate noise
+
+```bash
+sox -n -t waveaudio -r 48000 synth pinknoise band -n 2500 6000 reverb 2 vol 0.5
+sox -m \
+    |sox -n -t waveaudio -r 50000 synth trapezium mix F2 band -n 8192 12000 vol 0.1 \
+    |sox -n -t waveaudio -r 50000 synth trapezium mix G2 band -n 8192 12000 pitch 50 vol 0.1 \
+    |sox -n -t waveaudio -r 50000 synth pinknoise band -n 2500 6000 reverb 2 vol 0.5
 ```
 
 # Remove tone, spectogram edit, notch filter

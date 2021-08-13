@@ -313,6 +313,9 @@ ret
     - `eax`: ZEROES 32 high bits of `rax`
 - arm, aarch64
     - `r0`: general, `x0`: 64 bits, `w0`: 32 bits
+    - thumb mode
+        > The opcode for "BX LR" is 0x70 0x47, which translates in ASCII to "pG". By running the strings command on a binary and grepping for this value, you can easily tell whether a chip is using Thumb code.
+        - https://www.pentestpartners.com/security-blog/breaking-samsung-firmware-or-turning-your-s8-s9-s10-into-a-diy-proxmark/
 
 - https://stackoverflow.com/questions/25455447/x86-64-registers-rax-eax-ax-al-overwriting-full-register-contents/25456097
 - https://wiki.cdot.senecacollege.ca/wiki/AArch64_Register_and_Instruction_Quick_Start

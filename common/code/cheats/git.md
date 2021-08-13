@@ -21,6 +21,9 @@ git rebase -i --root master
 ### Changing author
 
 ```bash
+# find commits 
+git log --format='%H %an %ae' | cat -v -
+# || using interactive rebase
 # order
 # 1. e
 git rebase -i HEAD^
@@ -28,6 +31,14 @@ git rebase -i HEAD^
 git commit --amend --author="foo <>"
 git rebase --continue
 git push --force
+
+# ||
+git filter-repo --force --commit-callback '
+    commit.author_name = b"foo"
+    commit.author_email = b""
+    commit.committer_name = b"foo"
+    commit.committer_email = b""
+'
 ```
 
 # Deny push --force

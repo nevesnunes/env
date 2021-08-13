@@ -10,10 +10,16 @@
 # Completion Bugs
 # - http://www.oilshell.org/blog/2020/01/history-and-completion.html
 
+# Manuals
+man ascii
+man operator
+man hier
+man 7 signal
+man 3 errno
+errno -l
+
 # Debug
-
 set -vx
-
 i=0; while caller $i; do ((i++)); done
 
 # Profiling
@@ -60,7 +66,6 @@ umask "$old_umask"
 chmod 700 "$log_dir"
 
 # Null byte terminated
-
 basename -z
 find . -print0
 grep -Z
@@ -104,14 +109,6 @@ if pgrep bash >/dev/null; then
 else
   print -s "$cmd"
 fi
-
-# Manuals
-man ascii
-man operator
-man hier
-man 7 signal
-man 3 errno
-errno -l
 
 # Trace with specific shell options
 env \

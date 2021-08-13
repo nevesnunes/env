@@ -1,1 +1,0 @@
-codepage,locale,encoding

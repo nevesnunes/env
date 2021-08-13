@@ -187,6 +187,28 @@ coredumpctl gdb "$(coredumpctl list | \
 
 http://www.noah.org/wiki/Kill_-9_does_not_work
 
+# suspend
+
+- man
+    - https://www.kernel.org/doc/Documentation/power/basic-pm-debugging.txt
+    - https://wiki.ubuntu.com/DebuggingKernelHibernate
+    - https://01.org/blogs/rzhang/2015/best-practice-debug-linux-suspend/hibernate-issues
+- run
+    - pm_trace
+    - pm_test
+    - https://unix.stackexchange.com/questions/62157/pm-utils-no-network-in-suspend-scripts/63498#63498
+- usb
+    ```bash
+    usbcore.autosuspend=-1
+    cat /sys/module/usbcore/parameters/autosuspend
+    cat /sys/bus/usb/devices/1-2/power/autosuspend_delay_ms
+
+    modprobe -r uhci_hcd
+    modprobe uhci_hcd
+    modprobe -r ehci_hcd
+    modprobe ehci_hcd
+    ```
+
 # clear cache
 
 ```bash
@@ -307,6 +329,12 @@ cpio -idmv < initramfs.release.img
     - https://bugzilla.kernel.org/show_bug.cgi?id=204251
 
 # debug
+
+- pin tools
+- systemtap
+    - e.g. https://myaut.github.io/dtrace-stap-book/kernel/irq.html
+
+### references
 
 - https://01.org/linuxgraphics/gfx-docs/drm/dev-tools/gdb-kernel-debugging.html
 - https://fedoraproject.org/wiki/How_to_debug_Dracut_problems

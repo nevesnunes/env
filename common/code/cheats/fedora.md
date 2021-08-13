@@ -42,10 +42,17 @@ dnf clean packages
 systemd-tmpfiles --clean
 # containers
 docker system prune -a --volumes
+# journal
+journalctl --vaccum-time=1s
 
 for i in cache lib; do
     mkdir -p /home/var/"$i"
     mv /var/"$i"/dnf /home/var/"$i"
     ln -s /home/var/"$i"/dnf /var/"$i"/dnf
 done
+
+# rebuildable files
+rm -f /var/lib/rpm/Packages
+rm -f /var/lib/rpm/__db*
+rpm --rebuilddb
 ```
