@@ -27,6 +27,8 @@
 - https://cryptohack.org/
 - https://cryptopals.com/
 
+- https://www.mersenneforum.org/index.php
+
 ```python
 import gmpy2
 gmpy2.get_context().precision = 200000

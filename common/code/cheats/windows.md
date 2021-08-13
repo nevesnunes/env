@@ -33,6 +33,8 @@ ffmpeg -f gdigrab -framerate 30 -i desktop output.mkv
 
 ./Windows/Microsoft.NET/Framework/v4.0.30319/ASP.NETWebAdminFiles/web.config
 ./Windows/Microsoft.NET/Framework/v4.0.30319/Config/web.config
+
+icacls Download /deny Everyone:(OI)(IO)(X)
 ```
 
 ```ps1

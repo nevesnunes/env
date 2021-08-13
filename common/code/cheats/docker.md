@@ -10,6 +10,8 @@
     sudo docker run -v /:/mnt --rm -it alpine chroot /mnt sh
     ```
 
+# Lifecycle
+
 ```bash
 # Given: yi moby-engine
 sudo dockerd
@@ -38,6 +40,9 @@ docker attach CONTAINER_ID_OR_NAME
 
 # Detached, keep running
 docker run -dit IMAGE sh
+
+# Kill
+docker ps | awk '/[0-9a-f]+/{print $1}' | xargs -i docker stop {}
 ```
 
 # References
@@ -174,6 +179,9 @@ docker start CONTAINER_ID_OR_NAME
 # Multiple containers
 
 ```bash
+docker-compose build
+docker-compose up
+
 docker network create --driver bridge
 docker run --network=foo --name=bar
 ```

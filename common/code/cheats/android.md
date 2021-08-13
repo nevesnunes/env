@@ -21,6 +21,9 @@
 
 # emulation
 
+- android-studio
+    - :) up to date API level support
+    - https://developer.android.com/studio/command-line/variables
 - https://www.android-x86.org/
     - :) Bluetooth, G-sensor support
     - https://osdn.net/projects/android-x86/releases
@@ -168,8 +171,9 @@ chown root /usr/local/bin/anbox-bridge
 # debug
 
 ```bash
+adb shell
 # Find package name, take $pid
-ps | grep -i flag
+ps -A | grep -i flag
 # u0_a49    711   30    1043872 80604          0 0000000000 S lu.hack.Flagdroid
 
 # Use main class
@@ -186,6 +190,12 @@ jdb -connect com.sun.jdi.SocketAttach:hostname=localhost,port=8012
 
 - https://asantoso.wordpress.com/2009/09/26/using-jdb-with-adb-to-debugging-of-android-app-on-a-real-device/
 - https://source.android.com/devices/tech/debug/gdb
+
+### native
+
+```bash
+ndk-gdb --start --verbose --force
+```
 
 # root
 

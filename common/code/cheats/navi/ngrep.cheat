@@ -1,9 +1,7 @@
-#!/usr/bin/env sh
+% ngrep
 
-# ngrep – grep through network traffic
-# Common usage: ngrep -d any -W byline “needle” port 80
-
-# Filtering
+; ngrep – grep through network traffic
+; Common usage: ngrep -d any -W byline “needle” port 80
 
 # Print udp packets
 ngrep '' udp
@@ -29,8 +27,6 @@ ngrep -d any -i "pass|USER" port 80
 # If you’re logged in via SSH you might want to ignore your own traffic
 ngrep -d any port not 22
 
-# Other Options
-
 # Suppress the ‘#’, with -q (for ‘quiet’).
 # Only print packet headers and payload (if relevant)
 ngrep -q -d any "needle" port 80
@@ -43,3 +39,5 @@ ngrep -d any "needle" -n 3 port 80
 
 # Print empty packets with -e
 ngrep -e -d any "needle" port 80
+
+; vim: filetype=navi

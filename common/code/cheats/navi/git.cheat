@@ -1,0 +1,70 @@
+% git
+
+# sync changes from upstream
+git fetch upstream; git merge upstream/master
+
+# add remote
+git remote add upstream <upstream>
+
+# find commit to blame a deleted string
+git log -S <str> <file>
+
+# squash commits
+git rebase -i HEAD~<int>
+
+# remove submodule files from staging
+git rm --cached <submodule_path>
+
+# undo commit amend
+git reset --soft HEAD@{1}; git commit -C HEAD@{1}
+
+# list all remote repository urls
+git-for-all.sh config --get remote.origin.url \
+    | xargs -d'\n' -I{} -n1 -r echo "git clone" {} \
+    | sort
+
+# lines of code per author
+git ls-tree -r -z --name-only HEAD -- */*.c \
+    | xargs -0 -n1 git blame --line-porcelain HEAD \
+    | grep  "^author " | sort | uniq -c | sort -nr
+
+# fuzzy show commit log
+git show $(git log --pretty=oneline --abbrev-commit \
+    | fzf \
+    | cut -d" " -f1)
+
+# fuzzy interactive commit log
+git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always \
+    | fzf --ansi --no-sort --reverse --multi --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES | grep -o "[a-f0-9]\{7,\}" | grep -o "[a-f0-9]\{7,\}" <<< {} \
+    | xargs git show --color=always \
+    | $PAGER
+
+# remove added files that were later ignored
+git rm -r --cached . \
+    && git add . \
+    && git clean -x -n
+
+# add repos as submodules
+target_root=<target_root>
+target=$target_root
+find . -path '*/.git/*' -iname 'config' -exec awk 'FNR == 1{ print FILENAME } /url/{print $3}' {} \; | xargs -L2 sh -c 'r=${1%\/\.git\/config} && cd "'"$target_root"'" && rm -rf "'"$target"'/$r" && git submodule add "$2" "'"$target"'/$r"' _
+
+# edit file in different branch
+git show branch_name:<file_path> | vim - -c 'set syntax=perl'
+
+# resolve conflict/merge
+git checkout --ours -- <file_path>
+
+# remove old history
+git rev-parse HEAD~<int> > .git/info/grafts
+git filter-branch -- --all
+
+# reduce/clean repository size
+git reflog expire --all --expire=now
+git gc --prune=now --aggressive
+
+# new branch
+git checkout -b <str>
+git push --set-upstream origin <str>
+
+; vim: filetype=navi

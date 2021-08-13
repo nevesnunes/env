@@ -12,6 +12,7 @@
         - https://nbk.sh/tools#censys
 - https://spyse.com/
     - Find domains with same A records
+- https://www.zoomeye.org/
 
 # reverse image search
 
@@ -284,6 +285,7 @@ shodan host 1.2.3.4
     - https://web.archive.org/web/*/https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/*
         - https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/master/Breakout%201%20%2B%20UNIX1.pdf
 - https://archive.is
+- https://outline.com
 - hybrid analysis
 - google/yandex cache
     - http://webcache.googleusercontent.com/search?q=cache:foo

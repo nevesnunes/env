@@ -1,3 +1,5 @@
+% gpg
+
 # Encryption
 gpg --armor --output file.gpg --recipient-file public.key --encrypt file
 gpg --output file.gpg --encrypt --recipient _@gmail.com file
@@ -17,7 +19,7 @@ gpg --armor --export pub > ~/pub.key
 
 # Backup
 gpg --output pgp-public-keys.asc --armor --export _@gmail.com
-# ||
+; ||
 gpg --armor --export > pgp-public-keys.asc
 gpg --armor --export-secret-keys > pgp-private-keys.asc
 gpg --export-ownertrust > pgp-ownertrust.asc
@@ -29,3 +31,5 @@ gpg --import-ownertrust < pgp-ownertrust.asc
 
 # Delete
 gpg --delete-secret-and-public-keys key-ID
+
+; vim: filetype=navi

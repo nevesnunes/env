@@ -10,6 +10,7 @@
 
 - http://man7.org/linux/man-pages/man1/nsenter.1.html
 
+- https://abda.nl/posts/understanding-ptrace/
 - https://blog.tartanllama.xyz/writing-a-linux-debugger-setup/
 - https://lucasg.github.io/2016/11/27/How-to-Create-and-Debug-a-Process-on-Windows/
 
@@ -43,6 +44,9 @@
     > But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
 - https://news.ycombinator.com/item?id=11383999
     > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
+- loop until hang/deadlock
+    > If you know what part of the code produces it, you iterate over it indefinitely in a debugger until it hangs, then once you notice the iteration has stopped you “step in” to the debugger. Then you run another script that dumps the current trace back for each existing thread. That should be enough to detect the lock normally.
+    - https://news.ycombinator.com/item?id=27518087
 - Complementing static analysis with dynamic analysis
     - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
     > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
@@ -81,7 +85,7 @@
         - in-memory logging with thread-id and time stamps
     > ask yourself "what would break if a context switch happens right here" for each line.
     > if you can pinpoint the place where the bug occurs, trigger a SIGSEGV there and run the entire thing under Valgrind.
-    > Back on the N64, I updated the bit of code that swapped threads to write, to a ring buffer, the outgoing/incoming PCs, thread IDs and clock. Found tons of unexpected issues. In another thread you can print that or save it to disk or whatever. Or just wait till it crashes and read memory for it. Found the last crash bug with it. Meanwhile, a colleague took it, and drew color coded bars on the screen so we could see exactly what was taking the time. 
+    > Back on the N64, I updated the bit of code that swapped threads to write, to a ring buffer, the outgoing/incoming PCs, thread IDs and clock. Found tons of unexpected issues. In another thread you can print that or save it to disk or whatever. Or just wait till it crashes and read memory for it. Found the last crash bug with it. Meanwhile, a colleague took it, and drew color coded bars on the screen so we could see exactly what was taking the time.
 
 ### reverse debugging / time travel debugging
 
@@ -120,9 +124,47 @@ rr ./foo
 
 # case studies
 
+- [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
+
 ### use-after-free
 
-- https://pernos.co/examples/use-after-free
+- [Debugging a use\-after\-free in gdb](https://pernos.co/examples/use-after-free)
+
+### ref count
+
+- library not unloading due to ref count bump from call to GetModuleHandleExW()
+    - Validation: On WinDbg: `bm *GetModuleHandle*`, proc address argument in library mmap
+    - [Debugging a Dynamic Library that Wouldn't Unload \- ForrestTheWoods](https://www.forrestthewoods.com/blog/debugging-a-dynamic-library-that-wouldnt-unload/)
+
+### segv on invalid breakpoints
+
+> This occurs when gdb sets breakpoints on various probe events in the dynamic loader. The probe event locations are exported from ld.so as SDT markers, but gdb needs to know whether ARM or Thumb instructions are being exported at each marker so that it can insert the appropriate breakpoint instruction sequence. It does this by mapping the probe location to a function symbol (see arm_pc_is_thumb in gdb/arm-tdep.c), and using the target address of the symbol to determine if the function is called in Thumb or ARM more (bit 0 of the target address will be set for Thumb mode).
+> The problem here is that gdb can't map any of the probes to a symbol if the debug symbols aren't installed, and arm_pc_is_thumb returns false in this case (indicating ARM instructions).
+    - [Bug \#1576432 “gdb crashes when trying to start a debugging sessi\.\.\.” : Bugs : gdb](https://bugs.launchpad.net/gdb/+bug/1576432)
+
+### nested symbol lookups unconditionally reset register restoration
+
+```
+commit 84088310ce06bfc5759b37f0cd043dce80f578b6
+Author: Ulrich Drepper <drepper@redhat.com>
+Date:   Tue Aug 25 10:42:30 2009 -0700
+
+    Handle AVX saving on x86-64 in interrupted smbol lookups.
+
+    If a signal arrived during a symbol lookup and the signal handler also
+    required a symbol lookup, the end of the lookup in the signal handler reset
+    the flag whether restoring AVX/SSE registers is needed.  Resetting means
+    in this case that the tail part of the outer lookup code will try to
+    restore the registers and this can fail miserably.  We now restore to the
+    previous value which makes nesting calls possible.
+```
+
+- [519081 &ndash; Random crashes with ld\-linux loader on x86\_64](https://bugzilla.redhat.com/show_bug.cgi?id=519081)
+
+### checksum for replay
+
+> found a bunch of bugs waiting to happen (uninitalized variables / dangling pointer sort of stuff) that would trigger an error when replaying from a file didn't produce the same results as the original play (we had a checksum of game state that we could check)
+    - https://news.ycombinator.com/item?id=27517391
 
 ### cpu bug
 

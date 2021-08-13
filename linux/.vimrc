@@ -592,9 +592,6 @@ augroup filetype_group
     autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json | normal! Gddgg
     autocmd BufRead,BufNewFile *.{diz,DIZ,nfo,NFO} setlocal filetype=nfo
 
-    " Hex mode
-    autocmd FileType xml,html,xhtml,json setlocal foldmethod=manual | normal! zR
-
     " Open folds
     autocmd FileType markdown normal! zR
     autocmd FileType vim setlocal keywordprg=:help foldmethod=marker | normal! zR

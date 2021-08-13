@@ -27,6 +27,10 @@ execstack -s foo
 ulimit -c unlimited / ulimit -c 0
 
 info gdb
+
+python print gdb.current_progspace().filename
+
+remote get _path _local_path
 ```
 
 ```gdb
@@ -93,10 +97,14 @@ bt
 2  0x000055555555483a in ?? ()
 
 # /!\ rbp is char**
-# Modifies one char:
+# Modifies one byte of pointer (not string):
 set *(char*)($rbp - 0x18) = 0x41424344
-# Modifies all chars:
+# Modifies pointer (not string):
 set *(char**)($rbp - 0x18) = 0x41424344
+# Modifies one char:
+set **(char**)($rbp - 0x18) = 0x41424344
+# Modifies all chars:
+set **(char***)($rbp - 0x18) = 0x41424344
 
 # /!\ A syntax error in expression, near `**)($rbp - 0x30) = 0x8'
 p ($rbp - 0x30)
