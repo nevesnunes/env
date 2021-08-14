@@ -31,6 +31,10 @@ cp dist/*.zip "$HOME/opt/ghidra_9.2.3_PUBLIC/Extensions/Ghidra/"
 
 - https://ghidra.re/ghidra_docs/analyzeHeadlessREADME.html
 
+# stack
+
+Listing > Edit the Listing fields > Instruction Data > Add Field > Stack Depth
+
 # type recovery
 
 - File > Export Program > Export As C/C++

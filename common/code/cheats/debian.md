@@ -25,6 +25,12 @@ apt list --installed
 apt-cache showpkg foo
 apt-get install foo=123
 apt-mark hold foo
+
+# dependencies
+apt-get source foo
+grep Build-Depends foo-1.dsc \
+    | sed 's/Build-Depends: //g; s/\( ([^\)]*)\)\?, / /g; s/ \[[^]]*\] */ /g;' \
+    | xargs apt install
 ```
 
 ### upgrade distro version

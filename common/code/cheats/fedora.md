@@ -15,11 +15,19 @@ dnf remove $package-$version
 
 ### conflicts
 
-- file `/foo` from install `foo-2` conflicts with file from package `foo-1`
+> file `/foo` from install `foo-2` conflicts with file from package `foo-1`
 
 ```bash
-rpm --erase  --nodeps foo-1
+rpm --erase --nodeps foo-1
 dnf upgrade -y --allowerasing --best
+```
+
+> All matches were filtered out by exclude filtering
+
+```bash
+sudo dnf install --disableexcludes=all foo
+# Validation
+grep -R exclude -- /etc/yum.repos.d/ /etc/dnf/dnf.conf
 ```
 
 # upgrade distro version
@@ -55,4 +63,7 @@ done
 rm -f /var/lib/rpm/Packages
 rm -f /var/lib/rpm/__db*
 rpm --rebuilddb
+
+dnf clean all
+dnf makecache
 ```
