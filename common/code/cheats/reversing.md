@@ -174,11 +174,12 @@ diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log |
 # - [On why my tbreak tracing trick did not work \- gynvael\.coldwind//vx\.log](https://gynvael.coldwind.pl/?id=638)
 
 # execution trace
-~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinstrace_x86_text.so -- ./a.out
+# :) stable inscount
+qemu-x86_64 -d in_asm a.out
 # ||
 pin.sh -t obj-intel64/instat.so ./a.out
-# ||
-qemu-x86_64 -d in_asm a.out
+# || :( variable inscount
+~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinstrace_x86_text.so -- ./a.out
 # ||
 # - https://man7.org/linux/man-pages/man1/perf-intel-pt.1.html
 # - https://perf.wiki.kernel.org/index.php/Tutorial#Source_level_analysis_with_perf_annotate
