@@ -243,6 +243,9 @@ perf trace record
 - [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
     - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
 
+- Multi-threading safe call patching
+    - NativeCall::replace_mt_safe()
+        - https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/19fb8f93c59dfd791f62d41f332db9e306bc1422/src/hotspot/cpu/x86/nativeInst_x86.cpp#L199
 - Skype version check
     > The issue is that skype stopped supporting old version, and I am forced to use web skype, or new skype for linux which doesn't meet my expectations.
     > When I launch old skype login screen pops, I enter my credentials and after clicking 'login' skype just exits.

@@ -265,6 +265,7 @@ find / -perm -u=s -type f 2>/dev/null
             | uniq \
             | xxd -r -p > loremipsum.txt
         ```
+    - https://github.com/yarrick/iodine
     - https://github.com/leonjza/dnsfilexfer
     - https://github.com/vp777/DNS-data-exfiltration
     - https://github.com/coryschwartz/dns_exfiltration

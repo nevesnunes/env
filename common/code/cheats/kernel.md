@@ -330,9 +330,65 @@ cpio -idmv < initramfs.release.img
 
 # debug
 
-- pin tools
-- systemtap
-    - e.g. https://myaut.github.io/dtrace-stap-book/kernel/irq.html
+```bash
+cd /usr/src/kernels/$kernel/
+gdb /boot/vmlinux /proc/kcore
+```
+
+- gdb server implementation: kgdb
+    - on target (boot parameters): `kgdboc=ttymxc0,115200 kgdbwait`
+    - on target (runtime):
+        ```bash
+        echo ttymxc0 > /sys/module/kgdboc/parameters/kgdboc
+        echo g > /proc/sysrq-trigger
+        ```
+    - on host:
+        ```gdb
+        add-auto-load-safe-path /usr/src/kernels/$kernel/
+        set serial baud 115200
+        target remote /dev/ttyUSB0
+        ```
+    - if using serial port for both console and kgdb:
+        ```bash
+        git clone https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy
+        cd agent-proxy/
+        make
+        ./agent-proxy 5550^5551 0 /dev/ttyUSB0,115200
+        # on terminal 1
+        telnet localhost 5550
+        # on terminal 2
+        gdb vmlinux
+        # target remote localhost:5551
+        ```
+    - https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html
+- tracing
+    - pin tools
+    - systemtap
+        - e.g. https://myaut.github.io/dtrace-stap-book/kernel/irq.html
+    - https://www.kernel.org/doc/html/latest/trace/
+- communication
+    - /proc files
+    - ioctl() syscalls
+- hangs / lockups
+    - CONFIG_HARDLOCKUP_DETECTOR, CONFIG_SOFTLOCKUP_DETECTOR
+        - take $PC address from oops
+    - ftrace
+        ```bash
+        trace-cmd record -p function_graph -O nofuncgraph-irqs -F foo > /proc/bar
+        trace-cmd restore trace.dat.cpu0 trace.dat.cpu1 ...
+        kernelshark trace.dat
+        ```
+    - magic sysrq
+- memory leaks
+    - /sys/kernel/debug/kmemleak
+- oops
+    - convert address to source line: `addr2line -f -e vmlinux 0x12345678`
+    - store log: pstore
+    - boot into dump: kdump, kexec
+    - https://www.kernel.org/doc/html/latest/admin-guide/bug-hunting.html
+
+- https://e-labworks.com/talks/ew2020
+- https://www.oreilly.com/library/view/linux-device-drivers/0596005903/ch04.html
 
 ### references
 
