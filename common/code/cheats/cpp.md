@@ -5,6 +5,7 @@
 # repl
 
 ```bash
+gdb /bin/true -ex 'b main' -ex 'r'
 printf 'int main(){}' | gcc -o /tmp/1 -x c - && gdb /tmp/1 -ex 'b main' -ex 'r'
 ```
 

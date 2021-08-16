@@ -516,4 +516,19 @@ info proc map
 print ((int*(*)(const char *))(0x56206755e000 + 0x00000000000e0420))("/dev/pts/7")
 ```
 
+### send input to inferior via ioctl
 
+```gdb
+# ioctl(/dev/stdin, TIOCSTI, "\x03")
+call (int)syscall(16, 0, 0x5412, "\x03")
+# ^C
+# Program received signal SIGINT, Interrupt.
+# 0x00007ffff7ebce0d in syscall () from /lib64/libc.so.6
+# => 0x00007ffff7ebce0d <syscall+29>:     48 3d 01 f0 ff ff       cmp    rax,0xfffffffffffff001
+# The program being debugged was signaled while in a function called from GDB.
+# GDB remains in the frame where the signal was received.
+# To change this behavior use "set unwindonsignal on".
+# Evaluation of the expression containing the function
+# (syscall) will be abandoned.
+# When the function is done executing, GDB will silently stop.
+```

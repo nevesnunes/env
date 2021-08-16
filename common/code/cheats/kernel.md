@@ -389,9 +389,9 @@ gdb /boot/vmlinux /proc/kcore
 
 - https://e-labworks.com/talks/ew2020
 - https://www.oreilly.com/library/view/linux-device-drivers/0596005903/ch04.html
-
-### references
-
-- https://01.org/linuxgraphics/gfx-docs/drm/dev-tools/gdb-kernel-debugging.html
 - https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 - https://www.linux.it/~rubini/docs/kconf/
+
+# testing
+
+- https://github.com/linux-test-project/ltp
