@@ -309,3 +309,11 @@ sudo qemu-nbd -c /dev/nbd0 foo.qcow
 sudo partx -l /dev/nbd0
 sudo mount /dev/nbd0p1 ~/media/disk/
 ```
+
+# raw images
+
+```bash
+losetup /dev/loop0 foo.disk
+partprobe /dev/loop0
+mount /dev/loop0p1 /mnt/foo
+```
