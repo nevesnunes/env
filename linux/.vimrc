@@ -591,6 +591,7 @@ augroup filetype_group
     autocmd BufNewFile Makefile* 0r ~/code/snippets/recipes/Makefile | normal! Gddgg
     autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json | normal! Gddgg
     autocmd BufRead,BufNewFile *.{diz,DIZ,nfo,NFO} setlocal filetype=nfo
+    autocmd BufNewFile pom.xml 0r ~/code/snippets/recipes/pom.xml | normal! Gdd
 
     " Open folds
     autocmd FileType markdown normal! zR

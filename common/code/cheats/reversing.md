@@ -244,8 +244,13 @@ perf trace record
     - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
 
 - Multi-threading safe call patching
-    - NativeCall::replace_mt_safe()
-        - https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/19fb8f93c59dfd791f62d41f332db9e306bc1422/src/hotspot/cpu/x86/nativeInst_x86.cpp#L199
+    - [NativeCall::set_destination_mt_safe()](https://github.com/AdoptOpenJDK/openjdk-jdk11u/blob/fa3ecefdd6eb14a910ae75b7c0aefb1cf8eedcce/src/hotspot/cpu/x86/nativeInst_x86.cpp#L258): patch a single jump at the beginning, then the last 3 bytes, then the first 2 bytes
+        - ensure cache invalidation with memory barrier calls
+        - ensure cache line alignment with at least 2 byte boundary
+            ```c
+            ((uintptr_t)instruction_address() / cache_line_size == ((uintptr_t)instruction_address()+1) / cache_line_size)
+            ```
+        - ./reports/replace-mt-safe.md
 - Skype version check
     > The issue is that skype stopped supporting old version, and I am forced to use web skype, or new skype for linux which doesn't meet my expectations.
     > When I launch old skype login screen pops, I enter my credentials and after clicking 'login' skype just exits.
