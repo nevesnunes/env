@@ -722,24 +722,57 @@ metrics
     jcmd 1234 PerfCounter.print
 - profiling during load
     1. HPROF -> JVM flags
-    2. Java Flight Recording (JFR) -> JVM flags + jcmd
-    3. Attach to JVM at runtime -> https://github.com/patric-r/jvmtop
+    2. Java Flight Recording (JFR)
+		- JVM flags
+			```
+			-XX:+UnlockCommercialFeatures -XX:+FlightRecorder
+			-XX:FlightRecorderOptions=loglevel=info
+			-XX:StartFlightRecording=delay=20s,duration=60s,name=MyRecording,filename=C:\TEMP\myrecording.jfr,settings=profile
+			||
+			-XX:+UnlockCommercialFeatures -XX:+FlightRecorder
+			-XX:FlightRecorderOptions=defaultrecording=true,dumponexit=true,dumponexitpath=C:\demos\dumponexit.jfr
+			||
+			-XX:+UnlockCommercialFeatures -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+FlightRecorder
+			```
+		- jcmd
+			```bash
+			# ? jcmd 1234 VM.unlock_commercial_features
+			jcmd 1234 JFR.start name=MyRecording settings=profile delay=20s duration=2m filename=C:\TEMP\myrecording.jfr
+			jcmd 1234 JFR.check
+			jcmd 1234 JFR.stop
+			jcmd 1234 JFR.dump name=MyRecording filename=C:\TEMP\myrecording.jfr
+			# ! Analyse dump with JMC parser
+			```
+    3. Attach to JVM at runtime
+		- https://github.com/jvm-profiling-tools/async-profiler
+			```bash
+			./profiler.sh -d 10 -e alloc -o summary,flat `pidof java`
+			```
+		- https://github.com/patric-r/jvmtop
     4. OS-Level -> perf report thread ids -(xref)-> jcmd thread dump ids
-    ---
-    -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
-    -XX:FlightRecorderOptions=loglevel=info
-    -XX:StartFlightRecording=delay=20s,duration=60s,name=MyRecording,filename=C:\TEMP\myrecording.jfr,settings=profile
-    ||
-    -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
-    -XX:FlightRecorderOptions=defaultrecording=true,dumponexit=true,dumponexitpath=C:\demos\dumponexit.jfr
-    ||
-    -XX:+UnlockCommercialFeatures -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+FlightRecorder
-    ? jcmd 1234 VM.unlock_commercial_features
-    jcmd 1234 JFR.start name=MyRecording settings=profile delay=20s duration=2m filename=C:\TEMP\myrecording.jfr
-    jcmd 1234 JFR.check
-    jcmd 1234 JFR.stop
-    jcmd 1234 JFR.dump name=MyRecording filename=C:\TEMP\myrecording.jfr
-    ! Analyse dump with JMC parser
+		- ~/code/doc/java/srecon18americas_slides_goldshtein.pdf
+		```bash
+		git clone https://github.com/BrendanGregg/FlameGraph
+		sudo perf record -F 97 -g -p `pidof java` -- sleep 10
+		sudo perf script \
+			| FlameGraph/stackcollapse-perf.pl \
+			| FlameGraph/flamegraph.pl \
+			> flame.svg
+		```
+	5. OS-Level -> BCC probes
+		```bash
+		# Enumeration
+		tplist -p $(pidof java) | grep 'hotspot.*gc'
+		nm -C $(find /usr/lib/debug -name libjvm.so.debug) | grep 'card.*table'
+		# Trace
+		trace 'r:/usr/bin/bash:readline "%s", retval'
+		LIBJVM=$(find /usr/lib -name libjvm.so)
+		funccount -p $(pidof java) "$LIBJVM:*do_collection*"
+		# Heap
+		funccount -p $(pidof java) u:$LIBJVM:object__alloc
+		argdist -p $(pidof java) -C "u:$LIBJVM:object__alloc():char*:arg2"
+		```
+	- https://github.com/epickrram/grav
     - https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr006.html
     - http://blog2.vorburger.ch/2018/08/how-to-profile-performance-and-memory.html
     - https://www.oracle.com/technetwork/oem/soa-mgmt/con10912-javaflightrecorder-2342054.pdf

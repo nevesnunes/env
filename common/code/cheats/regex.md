@@ -152,4 +152,5 @@ https://stackoverflow.com/questions/53497/regular-expression-that-matches-valid-
 [Automatic Generation of Text Extraction Patterns from Examples](http://regex.inginf.units.it/)
     [Automatic Regex Golf Player!](http://regex.inginf.units.it/golf/)
 [GitHub \- MaLeLabTs/RegexGenerator: This project contains the source code of a tool for generating regular expressions for text extraction:  1\. automatically, 2\. based only on examples of the desired behavior, 3\. without any external hint about how the target regex should look like](https://github.com/MaLeLabTs/RegexGenerator)
+[GitHub \- devongovett/regexgen: Generate regular expressions that match a set of strings](https://github.com/devongovett/regexgen)
 [xkcd 1313: Regex Golf (Part 2: Infinite Problems) \- Jupyter Notebook Viewer](https://nbviewer.jupyter.org/url/norvig.com/ipython/xkcd1313-part2.ipynb)

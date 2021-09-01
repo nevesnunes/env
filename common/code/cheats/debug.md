@@ -47,6 +47,11 @@
 - loop until hang/deadlock
     > If you know what part of the code produces it, you iterate over it indefinitely in a debugger until it hangs, then once you notice the iteration has stopped you “step in” to the debugger. Then you run another script that dumps the current trace back for each existing thread. That should be enough to detect the lock normally.
     - https://news.ycombinator.com/item?id=27518087
+- Debugging version of malloc/free
+    > The version I use adds guard bytes before and after every allocation, and maintains an "allocated" list which free checks freed chunks against.
+    > Free should fill the freed memory with a known pattern (traditionally, 0xDEADBEEF ) It helps if allocated structures include a "magic number" element, and liberally include checks for the appropriate magic number before using a structure.
+    > verified on delete and causes a program triggered break point which automatically drops me into debugger.
+    - https://softwareengineering.stackexchange.com/questions/252696/debugging-memory-corruption/252745
 - Complementing static analysis with dynamic analysis
     - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
     > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
@@ -124,6 +129,8 @@ rr ./foo
 
 # case studies
 
+- https://stackoverflow.com/questions/42741370/how-to-debug-nondeterministic-memory-corruption 
+    - set a breakpoint on A that sets the write watch on the value and continues execution then have a break point on B that disables the watch; check if value changed
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 
 ### use-after-free

@@ -597,6 +597,10 @@ print(df.to_markdown())
 <re.Match object; span=(2, 12), match="' OR 1=1--">
 ```
 
+# deobfuscation
+
+- [GitHub \- landaire/unfuck: Python 2\.7 bytecode d̶e̶o̶b̶f̶u̶s̶c̶a̶t̶o̶r unfucker](https://github.com/landaire/unfuck)
+
 # jail
 
 - `eval() / exec() / compile()`: execute any python code

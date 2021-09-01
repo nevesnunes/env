@@ -59,6 +59,10 @@ typedef unsigned short word;
 - https://ghidra.re/ghidra_docs/api/ghidra/program/model/address/Address.html
     - https://github.com/NationalSecurityAgency/ghidra/blob/master/Ghidra/Framework/SoftwareModeling/src/main/java/ghidra/program/model/address/Address.java
 
+### pcode
+
+- https://www.riverloopsecurity.com/blog/2019/05/pcode/
+
 # change data string encoding
 
 1. Select bytes

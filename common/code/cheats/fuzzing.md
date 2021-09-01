@@ -1,3 +1,36 @@
+# Fault injection
+
+- use byte value of surronding data to bypass input sanitization
+- apply faults at elements seperated by delimiters to reduce test cases
+- apply deltas to common buffer sizes (e.g. k^2, k^10, -+20)
+
+### Feedback based fuzzing
+
+```fasm
+; store old reg values
+lea rsp, [rsp-98h]
+mov [rsp+a0h+var_a0], rdx
+mov [rsp+a0h+var_98], rcx
+mov [rsp+a0h+var_90], rax
+; instrumentation
+mov rcx, 0be80h
+call __afl_maybe_log
+; restore old reg values
+mov rax, [rsp+a0h+var_90]
+mov rcx, [rsp+a0h+var_98]
+mov rdx, [rsp+a0h+var_a0]
+lea rsp, [rsp+98h]
+```
+
+- without recompilation
+    - qemu target
+    - https://github.com/GJDuck/e9afl
+
+### Case studies
+
+- Modern strace - Dmitry Levin
+- Can strace make you fail? - Dmitry Levin
+
 # Directory busting
 
 ```bash

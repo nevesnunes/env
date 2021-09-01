@@ -99,6 +99,7 @@ CALL  FUN_00402100
 - section
     - describes: linking view (instructions, data, symbols...)
 
+- `man elf`
 - ./files/ELF101.png
     - https://raw.githubusercontent.com/corkami/pics/master/binary/ELF101.png
 - https://wiki.osdev.org/ELF#Tables
@@ -197,6 +198,11 @@ objcopy --dump-section .text=output.bin input.o
 
 - https://man7.org/linux/man-pages/man2/syscall.2.html
 - https://en.wikipedia.org/wiki/X86_calling_conventions
+
+### System V
+
+- stack is 16 byte aligned
+    - substract from rsp || push registers 
 
 # stack
 
@@ -576,7 +582,23 @@ call eax
 
 # examples
 
-- arm, aarch64
-    - https://azeria-labs.com/writing-arm-assembly-part-1/
-    - https://thinkingeek.com/arm-assembler-raspberry-pi/
-    - https://opensecuritytraining.info/IntroARM.html
+### minimal elf
+
+1. take `e_entry` @ 0x18
+2. take `vaddr` @ 0x34 (3rd field of 1st program header)
+3. disassemble from `file offset = *e_entry - *vaddr`
+
+- e.g. code overlaps header
+    - https://github.com/mathiasbynens/small/blob/master/elf.o
+    ```bash
+    dd if=elf.o of=elf.o.entry skip=$((0x19 + 1)) bs=1 count=$(($(wc -c < elf.o) - $((0x19 + 1))))
+    objdump -b binary -m i386:x64-32:intel -D elf.o.entry
+    # 0000000000000000 <.data>:
+    #    0: cd 80   int 0x80
+    ```
+
+### arm, aarch64
+
+- https://azeria-labs.com/writing-arm-assembly-part-1/
+- https://thinkingeek.com/arm-assembler-raspberry-pi/
+- https://opensecuritytraining.info/IntroARM.html

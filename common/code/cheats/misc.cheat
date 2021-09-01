@@ -214,7 +214,7 @@ rsync -Pa --checksum --inplace --no-whole-file
 rsync -rv --delete --existing --ignore-existing --ignore-errors foo/ bar/
 
 # HTTP/2 web server with automatic HTTPS
-caddy -conf ~/config/Caddyfile
+caddy -conf ~/code/config/Caddyfile
 
 # input on stdin for commands taking input on file
 ./foo --file=/proc/self/fd/0
@@ -279,6 +279,9 @@ v4l2ucp
 
 # remove duplicate files
 fdupes -r --delete .
+
+# find duplicate files
+fdupes -r <dir1> <dir2> | tee ~/fdupes.out
 
 # dd monitoring with progress / timer / status indicator
 dd if=foo of=/dev/sdb bs=4M status=progress
@@ -445,7 +448,7 @@ find . -type f | xargs -i file -i {} | grep ':[[:space:]]\+text/[^:]*$' | awk -F
 
 # replace newlines
 awk '{printf "%s\r\n", $0}' _
-# ||
+; ||
 python -c 'import re, sys; sys.stdout.buffer.write(re.sub(b"\n", b"\r\n", open(sys.argv[1], "rb").read()))' _
 
 # Good compression
@@ -706,5 +709,8 @@ curl -LH "Accept: application/x-bibtex" https://doi.org/<doi>
 
 # Generate random ascii
 head -c10000 /dev/urandom | tr -c -d '[:alnum:]'
+
+# Recover temporary files
+strace -f -e signal=none -e /unlink -e inject=all:retval=0 <cmd>
 
 ; vim: filetype=navi

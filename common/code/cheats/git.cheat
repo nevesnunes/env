@@ -39,6 +39,9 @@ git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --gra
     | xargs git show --color=always \
     | $PAGER
 
+# branch topology with collapsed linear edges
+git log --graph --decorate --simplify-by-decoration --oneline --all
+
 # remove added files that were later ignored
 git rm -r --cached . \
     && git add . \
@@ -66,5 +69,17 @@ git gc --prune=now --aggressive
 # new branch
 git checkout -b <str>
 git push --set-upstream origin <str>
+
+# list all objects
+git cat-file --batch-all-objects --batch-check
+git rev-list --objects --all | git cat-file --batch-check='%(objectname) %(objecttype) %(rest)'
+
+# list k largest blobs
+git verify-pack -v .git/objects/pack/*.idx \
+    | grep blob \
+    | cut -c1-40,48- \
+    | cut -d' ' -f1,3 \
+    | sort -n -r --key 2 \
+    | head -<k>
 
 ; vim: filetype=navi

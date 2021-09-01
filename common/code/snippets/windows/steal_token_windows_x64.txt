@@ -1,0 +1,34 @@
+On Guest VM:
+C:\Users\Administrator>whoami
+win-2v2jfp9h9ts\administrator
+
+On Windbg (Host VM):
+
+dt nt!_EPROCESS
+
++0x358 Token            : _EX_FAST_REF
+
+// Get the list of procs and the EPROCESS address of each one
+7: kd> !dml_proc
+Address           PID  Image file name
+ffff840d`e406c300 4    System         
+..
+ffffc68d`9aa3c080 1188 cmd.exe  
+
+// Get the token addr from 'System'
+7: kd> dq ffff840d`e406c300+358 L1
+ffff840d`e406c658  ffffd309`aa80617e
+
+// Mask off the 4 lowest bits of the value
+7: kd> ? ffffd309`aa80617e & ffffffff`fffffff0
+
+7: kd> !token ffffd309`aa806170
+The address ffffd309aa806170 does not point to a token object.
+
+// Overwrite token in the target process
+7: kd> eq ffffc68d`9aa3c080+358 ffffd309aa806170
+
+On Guest VM:
+
+C:\Users\Administrator>whoami
+nt authority\system

@@ -23,6 +23,8 @@ internal static extern int ldap_connect(IntPtr ldapHandle, IntPtr timeout);
     - :) more plugin support
 - http://reflexil.net/
     - .NET assembly editor
+- https://www.red-gate.com/products/dotnet-development/reflector/
+    - .NET decompiler
 - https://github.com/0xd4d/de4dot
     - deobfuscator
 - https://github.com/HoLLy-HaCKeR/EazFixer

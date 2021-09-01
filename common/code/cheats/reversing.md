@@ -28,7 +28,7 @@
     - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
     - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
 - syscalls, dynamic library calls
-    - ELF format: `strace`, `ltrace`
+    - ELF format: `strace -X verbose -if -s 9999`, `ltrace -if`
     - PE format: `procmon`
 - constants
     - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)

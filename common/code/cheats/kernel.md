@@ -335,32 +335,42 @@ cd /usr/src/kernels/$kernel/
 gdb /boot/vmlinux /proc/kcore
 ```
 
-- gdb server implementation: kgdb
-    - on target (boot parameters): `kgdboc=ttymxc0,115200 kgdbwait`
-    - on target (runtime):
+- interactive debugging
+    - gdb server implementation: kgdb
+        - on target (boot parameters): `kgdboc=ttymxc0,115200 kgdbwait`
+        - on target (runtime):
+            ```bash
+            echo ttymxc0 > /sys/module/kgdboc/parameters/kgdboc
+            echo g > /proc/sysrq-trigger
+            ```
+        - on host:
+            ```gdb
+            add-auto-load-safe-path /usr/src/kernels/$kernel/
+            set serial baud 115200
+            target remote /dev/ttyUSB0
+            ```
+        - if using serial port for both console and kgdb:
+            ```bash
+            git clone https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy
+            cd agent-proxy/
+            make
+            ./agent-proxy 5550^5551 0 /dev/ttyUSB0,115200
+            # on terminal 1
+            telnet localhost 5550
+            # on terminal 2
+            gdb vmlinux
+            # target remote localhost:5551
+            ```
+        - https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html
+        - https://github.com/alesax/gdb-kdump
+        - https://github.com/ptesarik/libkdumpfile
+    - qemu running kernel
         ```bash
-        echo ttymxc0 > /sys/module/kgdboc/parameters/kgdboc
-        echo g > /proc/sysrq-trigger
+        qemu-system-arm -M vexpress-a9 -cpu cortex-a9 -m 256M -nographic -kernel ./zImage -append 'console=ttyAMA0,115200 rw nfsroot=10.0.2.2:/opt/debian/wheezy-armel-rootfs,v3 ip=dhcp' -dtb ./vexpress-v2p-ca9.dtb -s
+        arm-linux-gnueabi-gdb vmlinux
+        # target remote :1234
         ```
-    - on host:
-        ```gdb
-        add-auto-load-safe-path /usr/src/kernels/$kernel/
-        set serial baud 115200
-        target remote /dev/ttyUSB0
-        ```
-    - if using serial port for both console and kgdb:
-        ```bash
-        git clone https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy
-        cd agent-proxy/
-        make
-        ./agent-proxy 5550^5551 0 /dev/ttyUSB0,115200
-        # on terminal 1
-        telnet localhost 5550
-        # on terminal 2
-        gdb vmlinux
-        # target remote localhost:5551
-        ```
-    - https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html
+    - board bring-up: gdbremote compliant JTAG probe e.g. OpenOCD
 - tracing
     - pin tools
     - systemtap
@@ -391,6 +401,7 @@ gdb /boot/vmlinux /proc/kcore
 - https://www.oreilly.com/library/view/linux-device-drivers/0596005903/ch04.html
 - https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 - https://www.linux.it/~rubini/docs/kconf/
+- GDB and Linux Kernel Awareness - Peter Griffin
 
 # testing
 
