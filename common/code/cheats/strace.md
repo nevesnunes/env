@@ -8,14 +8,11 @@
 - poll(POLLIN|POLLOUT), all returning POLLOUT => if no writes, loops as fast as possible until data finally available => replace POLLOUT | POLLIN by POLLOUT if writing else POLLIN
     - https://bitbucket.org/pypy/pypy/issues/2900/high-cpu-100-usage-on-reading-from-socket
 
-run with `time` to get diff between syscalls time and library calls time
+- https://github.com/pgbovine/strace-plus/blob/master/README-linux-ptrace
 
-https://github.com/pgbovine/strace-plus/blob/master/README-linux-ptrace
+# methodologies
 
-# Case Studies
-
-- [How does \`ls\` work? · GitHub](https://gist.github.com/amitsaha/8169242)
-    - ~/Downloads/ls.rst
+- run with `time` to get diff between syscalls time and library calls time
 
 # statistics
 
@@ -95,7 +92,9 @@ gawk '
 '"'"' < '"$f"' | sort -V' _ {}
 ```
 
-# connection closed by client
+# examples
+
+### connection closed by client
 
 ```strace
 select(5, [0 4], [], NULL, NULL)        = 1 (in [4])
@@ -106,7 +105,7 @@ recvfrom(4, "", 8192, 0, NULL, NULL)    = 0
 close(4)                                = 0
 ```
 
-# read until EOF
+### read until EOF
 
 ```
 read(3, "628   1575370401.788909 restart_"..., 65536) = 2201
@@ -118,7 +117,7 @@ SysV compatibility
 https://unix.stackexchange.com/questions/517064/why-does-hexdump-try-to-read-through-eof
     https://sourceware.org/ml/libc-alpha/2012-09/msg00343.html
 
-# follow fds
+### follow fds
 
 ```
 open("/foo.sh", O_RDONLY) = 3
@@ -138,7 +137,7 @@ rt_sigprocmask(SIG_BLOCK, NULL, [], 8)  = 0
 read(255, "#!/bin/sh\n[...]", 257) = 257
 ```
 
-# read in alternative resource
+### read in alternative resource
 
 ```
 open("/foo.zip", O_RDONLY) = 12
@@ -148,13 +147,13 @@ lseek(12, 34295740, SEEK_SET <unfinished ...>
 read(12,  <unfinished ...>
 ```
 
-# javaagent was loaded
+### javaagent was loaded
 
 ```
 stat("/example/com/sun/btrace/org/objectweb/asm/ClassVisitor.class", <unfinished ...>
 ```
 
-# silent logging
+### silent logging
 
 ```
 stat("/root/.visualvm/8u40/var/log/messages.log", {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
@@ -168,7 +167,7 @@ java.lang.UnsatisfiedLinkError: /opt/jdk1.8.0_77/jre/lib/amd64/libawt_xawt.so: l
         at sun.awt.X11GraphicsEnvironment$1.run(X11GraphicsEnvironment.java:77)
 ```
 
-# gnome-shell notifications
+### gnome-shell notifications
 
 ```bash
 strace -f -s 9999 -p 2140 2>1
@@ -188,7 +187,7 @@ vim 1
 - [ ] how to cluster these lines? by most common (e.g. GLIB_OLD_LOG_API), by least common (e.g. show-banners)...
     - ~/code/data/strace-patterns/gnome-shell-notifications
 
-# Xorg
+### Xorg
 
 repeated pattern:
 
@@ -228,3 +227,8 @@ repeated pattern:
 [pid  2236] getpid()                    = 2236
 [pid  2236] getpid()                    = 2236
 ```
+
+# case studies
+
+- [How does \`ls\` work? · GitHub](https://gist.github.com/amitsaha/8169242)
+    - ~/Downloads/ls.rst

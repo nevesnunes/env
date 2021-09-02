@@ -4,6 +4,11 @@
 - [wasm](./wasm.md)
 - [evasion](./evasion.md)
 
+- [ghidra](ghidra.md)
+- [ida](ida.md)
+- [r2](r2.md)
+- [strace](./strace.md)
+
 - [angr](./angr.md)
 - [frida](./frida.md)
 - [z3](./z3.md)
@@ -46,13 +51,13 @@
         # Given $PYTHONPATH with matplotlib:
         env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
         ```
-    - Alternatives: Audacity
+    - audacity
 - diff
     - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
     - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
     - [GitHub \- ubfx/BinDiffHelper: Ghidra Extension to integrate BinDiff for function matching](https://github.com/ubfx/BinDiffHelper)
 
-# methodology
+# methodologies
 
 - taxonomies
     - str array: strs are accessed w/ an offset from the 1st str (array base), which _will_ have an xref
@@ -73,7 +78,6 @@
         - https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html?m=1
     - filesystem
         - FileRead/FileWrite calls
-        - ~/share/forensics/APIMiner-v1.0.0/
         - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
     - networking
         - hw read break on packet buffer, frida hook on winsock calls
@@ -205,7 +209,8 @@ perf trace record
 
 # clean room design
 
-- [French Cafe technique - How Samba was written](https://www.samba.org/ftp/tridge/misc/french_cafe.txt)
+- [Myths About Samba](https://www.samba.org/samba/docs/myths_about_samba.html)
+    - [French Cafe technique - How Samba was written](https://www.samba.org/ftp/tridge/misc/french_cafe.txt)
 
 # case studies
 

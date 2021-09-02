@@ -328,6 +328,16 @@ cpio -idmv < initramfs.release.img
 - https://01.org/linux-acpi/documentation/debug-how-isolate-linux-acpi-issues
     - https://bugzilla.kernel.org/show_bug.cgi?id=204251
 
+# interrupts
+
+```bash
+grep '' /proc/interrupts
+grep '' /sys/kernel/irq/*/*
+```
+
+- e.g. [diff before/after suspend](./reports/interrupts.md)
+- [Add support to monitor interrupts through /sys/kernel/irq · Issue \#1416 · netdata/netdata · GitHub](https://github.com/netdata/netdata/issues/1416)
+
 # debug
 
 ```bash
