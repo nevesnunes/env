@@ -90,11 +90,11 @@
     mutex_foo.unlock();
     ```
 - https://news.ycombinator.com/item?id=27647340
-    > Log as much as you could in the part where you think the bug is. Log every line that's run if you have to. You'll then skim through the log file looking for any unexpected patterns.
+    > - Log as much as you could in the part where you think the bug is. Log every line that's run if you have to. You'll then skim through the log file looking for any unexpected patterns.
         - in-memory logging with thread-id and time stamps
-    > ask yourself "what would break if a context switch happens right here" for each line.
-    > if you can pinpoint the place where the bug occurs, trigger a SIGSEGV there and run the entire thing under Valgrind.
-    > Back on the N64, I updated the bit of code that swapped threads to write, to a ring buffer, the outgoing/incoming PCs, thread IDs and clock. Found tons of unexpected issues. In another thread you can print that or save it to disk or whatever. Or just wait till it crashes and read memory for it. Found the last crash bug with it. Meanwhile, a colleague took it, and drew color coded bars on the screen so we could see exactly what was taking the time.
+    > - ask yourself "what would break if a context switch happens right here" for each line.
+    > - if you can pinpoint the place where the bug occurs, trigger a SIGSEGV there and run the entire thing under Valgrind.
+    > - Back on the N64, I updated the bit of code that swapped threads to write, to a ring buffer, the outgoing/incoming PCs, thread IDs and clock. Found tons of unexpected issues. In another thread you can print that or save it to disk or whatever. Or just wait till it crashes and read memory for it. Found the last crash bug with it. Meanwhile, a colleague took it, and drew color coded bars on the screen so we could see exactly what was taking the time.
 
 ### reverse debugging / time travel debugging
 
@@ -149,9 +149,9 @@ rr ./foo
 
 ### segv on invalid breakpoints
 
-> This occurs when gdb sets breakpoints on various probe events in the dynamic loader. The probe event locations are exported from ld.so as SDT markers, but gdb needs to know whether ARM or Thumb instructions are being exported at each marker so that it can insert the appropriate breakpoint instruction sequence. It does this by mapping the probe location to a function symbol (see arm_pc_is_thumb in gdb/arm-tdep.c), and using the target address of the symbol to determine if the function is called in Thumb or ARM more (bit 0 of the target address will be set for Thumb mode).
-> The problem here is that gdb can't map any of the probes to a symbol if the debug symbols aren't installed, and arm_pc_is_thumb returns false in this case (indicating ARM instructions).
-    - [Bug \#1576432 “gdb crashes when trying to start a debugging sessi\.\.\.” : Bugs : gdb](https://bugs.launchpad.net/gdb/+bug/1576432)
+> - This occurs when gdb sets breakpoints on various probe events in the dynamic loader. The probe event locations are exported from ld.so as SDT markers, but gdb needs to know whether ARM or Thumb instructions are being exported at each marker so that it can insert the appropriate breakpoint instruction sequence. It does this by mapping the probe location to a function symbol (see arm_pc_is_thumb in gdb/arm-tdep.c), and using the target address of the symbol to determine if the function is called in Thumb or ARM more (bit 0 of the target address will be set for Thumb mode).
+> - The problem here is that gdb can't map any of the probes to a symbol if the debug symbols aren't installed, and arm_pc_is_thumb returns false in this case (indicating ARM instructions).
+- [Bug \#1576432 “gdb crashes when trying to start a debugging sessi\.\.\.” : Bugs : gdb](https://bugs.launchpad.net/gdb/+bug/1576432)
 
 ### nested symbol lookups unconditionally reset register restoration
 
@@ -175,7 +175,7 @@ Date:   Tue Aug 25 10:42:30 2009 -0700
 ### checksum for replay
 
 > found a bunch of bugs waiting to happen (uninitalized variables / dangling pointer sort of stuff) that would trigger an error when replaying from a file didn't produce the same results as the original play (we had a checksum of game state that we could check)
-    - https://news.ycombinator.com/item?id=27517391
+- https://news.ycombinator.com/item?id=27517391
 
 ### cpu bug
 
