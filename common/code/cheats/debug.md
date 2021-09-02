@@ -21,40 +21,44 @@
 
 # methodologies
 
-- http://yellerapp.com/posts/2014-08-11-scientific-debugging.html
-    - timestamped log of problem statement, hypothesis, expected vs actual results
-- https://mhandroid.wordpress.com/2011/01/25/how-cc-debugging-works-on-android/
-    > Because gdbserver is attached to the already running process (as opposed to situation where process would be started by gdbserver) it can miss some code execution which take place soon after the application start.
-    > [...] I usually write some endless while loop and then change the control variable after gdb is fully started.
-- https://lobste.rs/s/h7f6qk/what_debugging_technique_did_it_take_you
-    > If there’s a piece of code that’s not doing what you expect, add a loop around it whose condition is a variable that can be modified by the debugger. The resulting binary can be effectively unchanged such that the loop executes once, but if a debugger is present and you see the strange behavior, you can go back and step through it. 1a. This can also be done by modifying the instruction pointer, but that requires restoring register state. I do this too but it’s more tricky.
-    > The unused portion of the stack often contains clues about what happened recently.
-    > Break on access (ba in WinDbg) uses CPU registers to break on a memory address when it’s used. This is wonderful for tracking how state moves across a system, or tracking when locks are acquired and released, etc.
-    > Using breakpoints with conditions allows things like breaking on a common thing, like opening a file, printing out the state of the operation, and resuming execution, allowing interesting conditions to be logged.
-    > While very common, it’s also useful to get a debug memory allocator that can do things like mark pages as invalid on free (to generate access violations on use after free), or add a guard page after a memory allocation (to cause access violations on memory overruns.) A good one of these can also keep around allocation information after free for debugging, such as the stack that freed memory, and track the number of allocations to detect leaks.
-    > Altering thread priorities in the debugger is one way to promote the code you’re trying to look at and/or demote code that’s interfering with you.
-    > If you have a race condition, thoughtfully adding sleep in the right place can provoke it allowing it to be debugged and understood.
-    > If code aborts in ways you don’t expect, add a breakpoint to the exception filter (which decides which handlers to execute.) This executes when the full stack that caused the exception to be raised is present.
-    > Further to the previous comments about patching code, if you’re stepping through code and a branch goes somewhere you don’t want, change the instruction pointer. If you want that branch to happen again, change the condition jump to an unconditional jump.
-    > In WinDbg, dps on import tables or import table entries to show where indirect calls will go. This is useful when something else is trying to hijack your code.
-    > Keep an in memory circular log of interesting cases in your code. This log often doesn’t need to be big, and doesn’t need to allocate on insert, but if something bad happens in your code you can dump the interesting cases that were hit recently.
-- https://www.quora.com/Programming-Interviews/Whats-the-hardest-bug-youve-debugged/answer/Dave-Baggett?srid=pxH3&share=1
-    > Replace entire modules with stubs that pretend to do the real thing, but actually do something completely trivial that can't be buggy.
-    > Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
-    > But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
-- https://news.ycombinator.com/item?id=11383999
-    > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
+- predictable attach after running
+    > - Because gdbserver is attached to the already running process (as opposed to situation where process would be started by gdbserver) it can miss some code execution which take place soon after the application start.
+    > - [...] I usually write some endless while loop and then change the control variable after gdb is fully started.
+    - https://mhandroid.wordpress.com/2011/01/25/how-cc-debugging-works-on-android/
+- interactive flow control
+    > - If there’s a piece of code that’s not doing what you expect, add a loop around it whose condition is a variable that can be modified by the debugger. The resulting binary can be effectively unchanged such that the loop executes once, but if a debugger is present and you see the strange behavior, you can go back and step through it. 1a. This can also be done by modifying the instruction pointer, but that requires restoring register state. I do this too but it’s more tricky.
+    > - The unused portion of the stack often contains clues about what happened recently.
+    > - Break on access (ba in WinDbg) uses CPU registers to break on a memory address when it’s used. This is wonderful for tracking how state moves across a system, or tracking when locks are acquired and released, etc.
+    > - Using breakpoints with conditions allows things like breaking on a common thing, like opening a file, printing out the state of the operation, and resuming execution, allowing interesting conditions to be logged.
+    > - While very common, it’s also useful to get a debug memory allocator that can do things like mark pages as invalid on free (to generate access violations on use after free), or add a guard page after a memory allocation (to cause access violations on memory overruns.) A good one of these can also keep around allocation information after free for debugging, such as the stack that freed memory, and track the number of allocations to detect leaks.
+    > - Altering thread priorities in the debugger is one way to promote the code you’re trying to look at and/or demote code that’s interfering with you.
+    > - If you have a race condition, thoughtfully adding sleep in the right place can provoke it allowing it to be debugged and understood.
+    > - If code aborts in ways you don’t expect, add a breakpoint to the exception filter (which decides which handlers to execute.) This executes when the full stack that caused the exception to be raised is present.
+    > - Further to the previous comments about patching code, if you’re stepping through code and a branch goes somewhere you don’t want, change the instruction pointer. If you want that branch to happen again, change the condition jump to an unconditional jump.
+    > - In WinDbg, dps on import tables or import table entries to show where indirect calls will go. This is useful when something else is trying to hijack your code.
+    > - Keep an in memory circular log of interesting cases in your code. This log often doesn’t need to be big, and doesn’t need to allocate on insert, but if something bad happens in your code you can dump the interesting cases that were hit recently.
+    - https://lobste.rs/s/h7f6qk/what_debugging_technique_did_it_take_you
 - loop until hang/deadlock
     > If you know what part of the code produces it, you iterate over it indefinitely in a debugger until it hangs, then once you notice the iteration has stopped you “step in” to the debugger. Then you run another script that dumps the current trace back for each existing thread. That should be enough to detect the lock normally.
     - https://news.ycombinator.com/item?id=27518087
 - Debugging version of malloc/free
-    > The version I use adds guard bytes before and after every allocation, and maintains an "allocated" list which free checks freed chunks against.
-    > Free should fill the freed memory with a known pattern (traditionally, 0xDEADBEEF ) It helps if allocated structures include a "magic number" element, and liberally include checks for the appropriate magic number before using a structure.
-    > verified on delete and causes a program triggered break point which automatically drops me into debugger.
+    > - The version I use adds guard bytes before and after every allocation, and maintains an "allocated" list which free checks freed chunks against.
+    > - Free should fill the freed memory with a known pattern (traditionally, 0xDEADBEEF ) It helps if allocated structures include a "magic number" element, and liberally include checks for the appropriate magic number before using a structure.
+    > - verified on delete and causes a program triggered break point which automatically drops me into debugger.
     - https://softwareengineering.stackexchange.com/questions/252696/debugging-memory-corruption/252745
+- visualizing internal structures
+    > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
+    - https://news.ycombinator.com/item?id=11383999
 - Complementing static analysis with dynamic analysis
-    - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
     > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
+    - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
+- hardware timings
+    > - Replace entire modules with stubs that pretend to do the real thing, but actually do something completely trivial that can't be buggy.
+    > - Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
+    > - But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
+    - https://www.quora.com/Programming-Interviews/Whats-the-hardest-bug-youve-debugged/answer/Dave-Baggett?srid=pxH3&share=1
+- timestamped log of problem statement, hypothesis, expected vs actual results
+    - http://yellerapp.com/posts/2014-08-11-scientific-debugging.html
 - Starting from public-facing API, tracing back to internals
     - https://blog.safia.rocks/post/170269021619/tips-for-reading-new-codebases
 
