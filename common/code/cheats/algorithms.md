@@ -475,6 +475,8 @@ https://en.wikipedia.org/wiki/Earley_parser
 https://en.wikipedia.org/wiki/Dynamic_time_warping
 https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm
 
+https://florian.github.io/diffing/
+
 # Examples - Common functions
 
 O(1) - Determining if a number is even or odd; using a constant-size lookup table or hash table

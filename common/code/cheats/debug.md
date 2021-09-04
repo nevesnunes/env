@@ -81,6 +81,11 @@
 - graphics diagnostics - flush screen with color
     > I tried to set the screen color to the value it reads when it exits the loop and then hard-lock so the color doesn’t get changed.
     - https://mgba.io/2020/01/25/infinite-loop-holy-grail/
+- reduce watchpoint hits by patching-out instructions
+    > - Using the Project64 debugger to set watchpoints on reads or writes to the controller state memory was fruitless because they were constantly triggered by code that I assume was generic system-level code checking and updating the controller state every frame.
+    > - Instead I tried a more indirect approach with memory scanning on the Gallery menu. First I tracked down the location of the current button index with the standard technique of repeatedly updating the selection and then scanning memory for the newly changed value. Then I could set read watchpoints on the button index value to see if I could identify where the menu handling code was.
+    > - Initially this also caused the watchpoint to trigger repeatedly. By patching out the read instruction that was repeatedly triggered, I saw it was caused by the glowing orange cursor that shows above the currently selected button. After removing that read instruction I got much more useful results: the watchpoint triggered when the menu description text for the currently selected button was changed, and when I pressed A to trigger the currently selected button.
+    - https://jamchamb.net/2021/08/17/snap-station.html
 - hardware timings
     > - Replace entire modules with stubs that pretend to do the real thing, but actually do something completely trivial that can't be buggy.
     > - Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
@@ -195,6 +200,7 @@ rr ./foo
 - [Reasons why bugs might feel &\#34;impossible&\#34;](https://jvns.ca/blog/2021/06/08/reasons-why-bugs-might-feel-impossible/)
 - [What does debugging a program look like?](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/)
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
+- [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
 
 ```
 # specific issues
