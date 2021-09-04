@@ -156,7 +156,7 @@ objcopy --dump-section .text=output.bin input.o
 - `.rela.text`: list of relocations against `.text` (e.g. extern variables)
 - `.data`: initialised data; RW (=WA) segment
 - `.rodata`: initialised read-only data; R (=A) segment
-- `.bss`: uninitialized data; RW segment
+- `.bss`: uninitialized data (e.g. static or global variables); RW segment
 - `.plt`: PLT (Procedure Linkage Table) (IAT equivalent)
 - `.got`: GOT (Global Offset Table), used to access dynamically linked global variables, created during link time, may be populated during runtime
 - `.got.plt`: used to access dynamically linked functions

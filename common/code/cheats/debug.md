@@ -196,6 +196,29 @@ rr ./foo
 - [What does debugging a program look like?](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/)
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 
+```
+# specific issues
+site:https://github.com AND inurl:issues "race condition"
+
+# dependency usage in other projects
+site:https://github.com AND inurl:issues AND -inurl:foo "foo"
+```
+
+### reproducing race condition in test
+
+1. [TonYApplicationMaster has race condition where thread is interrupted while flush is happening · Issue \#157 · tony\-framework/TonY · GitHub](https://github.com/tony-framework/TonY/issues/157)
+    - `.close()` internally calls `.flush()`, exception thrown when `interrupt()` happens during the `.flush()`
+2. [Fix race condition where thread is interrupted while flush is in progress by erwa · Pull Request \#158 · tony\-framework/TonY · GitHub](https://github.com/tony-framework/TonY/pull/158)
+    - move `dataFileWriter.close()` call into the `stop()` method, after the event handler thread has terminated.
+3. [Add regression test for issue \#157 by nevesnunes · Pull Request \#595 · tony\-framework/TonY · GitHub](https://github.com/tony-framework/TonY/pull/595)
+    > This test ensures that when `interrupt()` is called, the EventHandler thread is not calling `dataFileWriter.close()`. In order to have a reproducable test and avoid flakyness, we mock the following methods to ensure the order and timming of the race condition:
+    > - `dataFileWriter.close()` is locked on a latch until an `interrupt()` is sent, if that interrupt happens inside this call, it will cause an assertion fail;
+    > - `interrupt()` unlocks that latch after executing the real implementation;
+
+### reproducing dangling pointer in game engine
+
+- [prevent appearance of dangling pointers in corpse queue · coelckers/gzdoom@a9ad3d1 · GitHub](https://github.com/coelckers/gzdoom/commit/a9ad3d1fc3c97a0dbf8cbe55bf8b3f9d329c98ea)
+
 ### resource leaks
 
 - https://randomascii.wordpress.com/2021/07/25/finding-windows-handle-leaks-in-chromium-and-others/

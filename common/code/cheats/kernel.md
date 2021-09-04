@@ -324,6 +324,15 @@ cpio -idmv < initramfs.release.img
 
 # acpi
 
+```bash
+grep '' /proc/acpi/wakeup | sort
+
+# toggle enabled/disabled
+echo EHC1 > /proc/acpi/wakeup
+echo EHC2 > /proc/acpi/wakeup
+echo XHCI > /proc/acpi/wakeup
+```
+
 - https://www.kernel.org/doc/html/latest/firmware-guide/acpi/namespace.html
 - https://01.org/linux-acpi/documentation/debug-how-isolate-linux-acpi-issues
     - https://bugzilla.kernel.org/show_bug.cgi?id=204251

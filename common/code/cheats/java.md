@@ -1,5 +1,8 @@
 # +
 
+- [maven](./maven.md)
+- [gradle](./gradle.md)
+
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()
     
@@ -15,6 +18,77 @@ try{
 
 return clazz.toString() + " ---- " + name.toString();
 ```
+
+# Build
+
+```bash
+srcs=
+classesDir=
+jarDir=
+javac -cp "$jarDir/*" "$srcs"
+jar -cvfe Foo.jar MainClassFoo "$classesDir/"
+```
+
+# Running
+
+```bash
+# Working directory hierarchy:
+# ~/code/wip/javawip/build/classes/java/main
+# └── javawip
+#     ├── App.class
+#     └── FormLargestNum.class
+java javawip.FormLargestNum
+```
+
+# Debugging
+
+```ps1
+& "C:\Program Files\Java\jdk1.8.0_151\bin\jdb" -connect "com.sun.jdi.SocketAttach:hostname=localhost,port=1043"
+```
+
+```
+stop in com.foo.Bar.doBaz
+stop at com.foo.Bar:305
+next
+
+locals
+dump fooObject
+
+eval ((com.fasterxml.jackson.databind.ObjectMapper) java.lang.Thread.currentThread().getContextClassLoader().loadClass("com.fasterxml.jackson.databind.ObjectMapper").newInstance()).writerWithDefaultPrettyPrinter().writeValueAsString(foo)
+
+eval String.class.getProtectionDomain().getCodeSource().getLocation()
+eval String.class.getResource('/' + String.class.getName().replace('.', '/') + ".class");
+```
+
+### Debug info
+
+Variable info required to resolve values in IDE debugger
+
+```bash
+# Generate LineNumberTable
+javac -g:lines
+# Generate LocalVariableTable
+javac -g:vars
+# Generate all info
+javac -g
+
+# Validation
+javap -l | grep 'LineNumberTable\|LocalVariableTable'
+```
+
+https://synyx.de/blog/java-deep-dive-class-file-format-for-debug-information/
+    https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.12
+
+# Processes
+
+```
+eclipse
+\_ /usr/bin/java [...] org.eclipse.equinox.launcher.Main
+    \_ /usr/bin/java [...] foo.Bar (Run as: Java Application)
+    \_ /usr/bin/java [...] org.eclipse.jdt.internal.junit.runner.RemoteTestRunner (Run as: JUnit Test)
+```
+
+Picked up by `visualvm`
 
 # configure java
 
@@ -1067,93 +1141,6 @@ invokedynamic	0:apply (Lorg/assertj/core/util/introspection/FieldSupport;Ljava/l
     162)CONSTANT_Utf8[1]("apply")
     163)CONSTANT_Utf8[1]("(Lorg/assertj/core/util/introspection/FieldSupport;Ljava/lang/String;Ljava/lang/Class;)Ljava/util/function/Function;")
 ```
-
-# Processes
-
-```
-eclipse
-\_ /usr/bin/java [...] org.eclipse.equinox.launcher.Main
-    \_ /usr/bin/java [...] foo.Bar (Run as: Java Application)
-    \_ /usr/bin/java [...] org.eclipse.jdt.internal.junit.runner.RemoteTestRunner (Run as: JUnit Test)
-```
-
-Picked up by `visualvm`
-
-# Build
-
-```bash
-srcs=
-classesDir=
-jarDir=
-javac -cp "$jarDir/*" "$srcs"
-jar -cvfe Foo.jar MainClassFoo "$classesDir/"
-```
-
-# Running
-
-```bash
-# Working directory hierarchy:
-# ~/code/wip/javawip/build/classes/java/main
-# └── javawip
-#     ├── App.class
-#     └── FormLargestNum.class
-java javawip.FormLargestNum
-
-# Working directory hierarchy:
-# ~/code/wip/javawip
-# ├── build
-# │   ├── classes
-# │   │   └── java
-# │   │       └── main
-# │   │           └── javawip
-# │   │               ├── App.class
-# │   │               └── FormLargestNum.class
-# [...]
-# ├── build.gradle
-# ├── gradlew
-# ├── gradlew.bat
-# ├── settings.gradle
-# [...]
-./gradlew -PmainClassNameProperty=javawip.FormLargestNum run
-# ||
-gradle build -x test
-```
-
-# Debugging
-
-& "C:\Program Files\Java\jdk1.8.0_151\bin\jdb" -connect "com.sun.jdi.SocketAttach:hostname=localhost,port=1043"
-```
-stop in com.foo.Bar.doBaz
-stop at com.foo.Bar:305
-next
-
-locals
-dump fooObject
-
-eval ((com.fasterxml.jackson.databind.ObjectMapper) java.lang.Thread.currentThread().getContextClassLoader().loadClass("com.fasterxml.jackson.databind.ObjectMapper").newInstance()).writerWithDefaultPrettyPrinter().writeValueAsString(foo)
-
-eval String.class.getProtectionDomain().getCodeSource().getLocation()
-eval String.class.getResource('/' + String.class.getName().replace('.', '/') + ".class");
-```
-
-### Debug info
-
-Variable info required to resolve values in IDE debugger
-
-```bash
-# Generate LineNumberTable
-javac -g:lines
-# Generate LocalVariableTable
-javac -g:vars
-# Generate all info
-javac -g
-
-# Validation
-javap -l | grep 'LineNumberTable\|LocalVariableTable'
-```
-
-https://synyx.de/blog/java-deep-dive-class-file-format-for-debug-information/
-    https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.12
 
 # Standard streams
 
