@@ -26,3 +26,5 @@ https://kentcdodds.com/blog/testing-implementation-details
 [Accessing ReactDebugCurrentFrame without using \_\_SECRET\_INTERNALS\_DO\_NOT\_USE\_OR\_YOU\_WILL\_BE\_FIRED · Issue \#13704 · facebook/react · GitHub](https://github.com/facebook/react/issues/13704)
 [SECRET DOM DO Not USE OR YOU WILL BE FIRED | Hacker News](https://news.ycombinator.com/item?id=11447020)
 
+https://overreacted.io/a-complete-guide-to-useeffect/
+[Fun with React Hooks \- Michael Jackson and Ryan Florence \- YouTube](https://www.youtube.com/watch?v=1jWS7cCuUXw)

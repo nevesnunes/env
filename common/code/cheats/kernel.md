@@ -350,6 +350,8 @@ grep '' /sys/kernel/irq/*/*
 # debug
 
 ```bash
+qemu-system-x86_64 -boot c -m 2048M -kernel linux-5.8/arch/x86/boot/bzImage -hda buildroot/output/images/rootfs.ext4 -nographic -append "root=/dev/sda rw console=ttyS0"
+
 cd /usr/src/kernels/$kernel/
 gdb /boot/vmlinux /proc/kcore
 ```

@@ -3,6 +3,7 @@
 - [GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
     - https://github.com/DexPatcher/dex2jar/releases/
 - [GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
+- [GitHub \- Storyyeller/enjarify](https://github.com/Storyyeller/enjarify)
 - http://www.javadecompilers.com/apk
 - http://www.decompileandroid.com/
 
@@ -15,9 +16,9 @@
 - [0x05j-testing-resiliency-against-reverse-engineering](https://mobile-security.gitbook.io/mobile-security-testing-guide/android-testing-guide/0x05j-testing-resiliency-against-reverse-engineering)
 - [Decompiling Google Safety Net \- Jared Rummler](https://jaredrummler.com/2017/03/07/decompiling-google-safety-net/)
 
-# dissassembler
+# debugger
 
-- https://ibotpeaches.github.io/Apktool/install/
+- [GitHub \- JesusFreke/smalidea: smalidea is a smali language plugin for IntelliJ IDEA](https://github.com/JesusFreke/smalidea)
 
 # emulation
 
@@ -57,6 +58,31 @@ apt -y install snapd \
 
 - https://github.com/aind-containers/aind
 
+# extracting / unpacking
+
+```bash
+apktool d -r -s foo.apk
+```
+
+# patching / repacking / rebuild
+
+```bash
+# build
+apktool b -f -d foo
+
+# sign
+keytool -genkey -v -keystore foo.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore foo.keystore foo.apk alias_name
+jarsigner -verify -verbose -certs foo.apk
+
+# align
+./zipalign -v 4 foo.apk foo-aligned.apk
+```
+
+- add logging to smali bytecode
+    - decompile example project to obtain logging instructions
+    - https://yepoleb.github.io/blog/2021/08/18/reverse-engineering-the-check-at-android-app/
+
 # dynamic instrumentation
 
 ```bash
@@ -67,6 +93,9 @@ adb push frida-server /data/local/tmp
 - ~/code/snippets/frida/android.py
     - https://bananamafia.dev/post/r2frida-1/
 - https://github.com/Areizen/JNI-Frida-Hook
+
+- https://github.com/Project-ARTist/ARTist
+    - https://saarsec.rocks/2018/11/27/Gunshop.html
 
 # class loading
 

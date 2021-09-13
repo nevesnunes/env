@@ -1,20 +1,22 @@
-# +
+# Detection
 
-- bruteforce crc
-    - https://codisec.com/backdoorctf16-crc/
+- [GitHub \- temisu/ancient: Decompression routines for ancient formats](https://github.com/temisu/ancient_format_decompressor)
+- [Help:Contents/Finding Content/Compression Algorithms \- The Cutting Room Floor](https://tcrf.net/Help:Contents/Finding_Content/Compression_Algorithms)
 
-- dictionary - improves run-length encoding
-    - https://news.ycombinator.com/item?id=9288710
-    - https://stackoverflow.com/questions/2011653/how-to-find-a-good-optimal-dictionary-for-zlib-setdictionary-when-processing-a
+# Types
 
-- [Deflate \- Wikipedia](https://en.wikipedia.org/wiki/DEFLATE)
-    - `zlib.decompress(decoded_data , -15)`
-        - https://github.com/ResultsMayVary/ctf/tree/master/PlaidCTF-2017/misc50_zipper
+- run-length encoding
+- entropy
+- dictionary
+
+# DEFLATE
+
+- `zlib.decompress(decoded_data , -15)`
+    - https://github.com/ResultsMayVary/ctf/tree/master/PlaidCTF-2017/misc50_zipper
+- [Improving compression with a preset DEFLATE dictionary \| Hacker News](https://news.ycombinator.com/item?id=9288710)
+- [java \- How to find a good/optimal dictionary for zlib &\#39;setDictionary&\#39; when processing a given set of data? \- Stack Overflow](https://stackoverflow.com/questions/2011653/how-to-find-a-good-optimal-dictionary-for-zlib-setdictionary-when-processing-a)
 - [RFC 1950 ZLIB Compressed Data Format Specification version 3\.3](http://www.zlib.org/rfc-zlib.html)
     - [zlib 1.2.11 Manual \- Advanced Functions](https://zlib.net/manual.html#Advanced)
-- [Does Microsoft OneDrive export large ZIP files that are corrupt?](https://www.bitsgalore.org/2020/03/11/does-microsoft-onedrive-export-large-ZIP-files-that-are-corrupt)
-    - ZIP64 end of central dir locator, total number of disks: expected 1, got 0
-- [Shrink, Reduce, and Implode: The Legacy Zip Compression Methods](https://www.hanshq.net/zip2.html)
 
 ```bash
 # brute deflate
@@ -47,36 +49,6 @@ with open(sys.argv[1], "rb") as f:
         print(e)
 ' foo
 ```
-
-# Apple Disk Image / Apple Driver Map (dmg)
-
-```bash
-# Decompress
-dmg2img foo.dmg
-# ||
-7z x foo.dmg
-
-# Validation
-file -ib ~/Downloads/SF-Font-Pro.dmg
-# application/zlib; charset=binary
-file -ib foo.img
-# application/x-apple-diskimage; charset=binary
-
-# Extract files from filesystem
-sudo mount -t hfsplus -o force,rw foo.dmg ~/media/dmg
-# ||
-7z x foo.img
-7z x bar.pkg
-7z x Payload~
-
-# Validation
-grep HFS /boot/config-"$(uname --kernel-release)"
-find /lib/modules/"$(uname --kernel-release)" -name "hfs*.ko*"
-modinfo hfs hfsplus
-```
-
-- [p7zip / Bugs / \#113 zip extraction loss execute bit in applications](https://sourceforge.net/p/p7zip/bugs/113/)
-- [How to work with DMG files on Linux](https://eastmanreference.com/how-to-work-with-dmg-files-on-linux)
 
 # zip
 
@@ -168,3 +140,46 @@ patch.py 1_2.zip 0x364 0x14
 patch.py 1_2.zip 0x365 0x03
 patch.py 1_2.zip 0x366 1
 ```
+
+### case studies
+
+- https://codisec.com/backdoorctf16-crc/
+    - bruteforce crc
+- [Does Microsoft OneDrive export large ZIP files that are corrupt?](https://www.bitsgalore.org/2020/03/11/does-microsoft-onedrive-export-large-ZIP-files-that-are-corrupt)
+    - ZIP64 end of central dir locator, total number of disks: expected 1, got 0
+- [Shrink, Reduce, and Implode: The Legacy Zip Compression Methods](https://www.hanshq.net/zip2.html)
+
+# Rob Northern Compression (RNC)
+
+- [RNC · CorsixTH/CorsixTH Wiki · GitHub](https://github.com/CorsixTH/CorsixTH/wiki/RNC)
+- [RNC ProPack \- MultimediaWiki](https://wiki.multimedia.cx/index.php/RNC_ProPack)
+
+# Apple Disk Image / Apple Driver Map (dmg)
+
+```bash
+# Decompress
+dmg2img foo.dmg
+# ||
+7z x foo.dmg
+
+# Validation
+file -ib ~/Downloads/SF-Font-Pro.dmg
+# application/zlib; charset=binary
+file -ib foo.img
+# application/x-apple-diskimage; charset=binary
+
+# Extract files from filesystem
+sudo mount -t hfsplus -o force,rw foo.dmg ~/media/dmg
+# ||
+7z x foo.img
+7z x bar.pkg
+7z x Payload~
+
+# Validation
+grep HFS /boot/config-"$(uname --kernel-release)"
+find /lib/modules/"$(uname --kernel-release)" -name "hfs*.ko*"
+modinfo hfs hfsplus
+```
+
+- [p7zip / Bugs / \#113 zip extraction loss execute bit in applications](https://sourceforge.net/p/p7zip/bugs/113/)
+- [How to work with DMG files on Linux](https://eastmanreference.com/how-to-work-with-dmg-files-on-linux)

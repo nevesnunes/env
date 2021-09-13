@@ -241,7 +241,7 @@ Get-ChildItem | sort LastWriteTime | Where-Object {
 Get-ChildItem | % { get-content $_ -TotalCount 1 2>&1 >$null; $_ } | sort lastwritetime
 
 # ||
-# /!\ without date, count from tail
+# [!] without date, count from tail
 $start = -5
 $now = get-date
 $a = ''

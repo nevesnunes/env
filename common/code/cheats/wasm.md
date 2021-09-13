@@ -1,6 +1,7 @@
 # +
 
 - [WasmExplorer - convert c / wat / firefox asm](https://mbebenita.github.io/WasmExplorer/)
+- [GitHub \- WebAssembly/wabt: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
 
 # documentation, specification
 

@@ -122,7 +122,10 @@ winedump -j export foo.dll
 mingw-objdump -p foo.dll
 python3 -m pefile foo.exe
 r2 -c 'iae' -qq foo.exe
+7z x foo.exe # => .rsrc/VERSION/1
+env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/peres -v foo.exe
 env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/readpe foo.exe
+# [PEdump \- dump your PE!](http://pedump.me/)
 # https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py
 ```
 

@@ -1,9 +1,6 @@
-# +
+# APIs
 
-```bash
-networksetup
-systemsetup
-```
+https://github.com/phracker/MacOSX-SDKs
 
 # shortcuts
 
@@ -60,11 +57,11 @@ pbzx -n foo | cpio -i
 
 # automation
 
-https://github.com/facebook/idb
+[GitHub \- facebook/idb: idb is a flexible command line interface for automating iOS simulators and devices](https://github.com/facebook/idb)
 
 # unpack
 
-https://github.com/NiklasRosenstein/pbzx
+[GitHub \- nrosenstein\-stuff/pbzx: Fork of the pbzx stream parser \(www\.tonymacx86\.com/general\-help/135458\-pbzx\-stream\-parser\.html\)](https://github.com/NiklasRosenstein/pbzx)
 
 ```bash
 open -W _.xip
@@ -74,20 +71,21 @@ xip -x _.xip
 # install
 
 ```bash
-# IDE
+# Settings
+networksetup
+systemsetup
 
+# IDE
 xcode-select --install
 
 # System Package Manager
-
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 grep -qi '/usr/local/bin' ~/.bash_profile || echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bash_profile
 brew install git vim
 
 # Language Package Manager
-
 # Update from: ruby 2.0.0p648
-# https://stackoverflow.com/questions/38194032/how-to-update-ruby-version-2-0-0-to-the-latest-version-in-mac-osx-yosemite
+# References: https://stackoverflow.com/questions/38194032/how-to-update-ruby-version-2-0-0-to-the-latest-version-in-mac-osx-yosemite
 brew install ruby
 echo 'export PATH="/usr/local/opt/ruby/bin:$PATH"' >> ~/.profile
 echo 'export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"' >> ~/.profile
@@ -153,7 +151,9 @@ xcodebuild -workspace myApp.xcworkspace -scheme myApp -sdk iphoneos -configurati
 xcodebuild -exportArchive -archivePath $PWD/build/myApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build
 ```
 
-```exportOptions.plist
+exportOptions.plist:
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -166,7 +166,9 @@ xcodebuild -exportArchive -archivePath $PWD/build/myApp.xcarchive -exportOptions
 </plist>
 ```
 
-```exportOptionsXcode9.plist
+exportOptionsXcode9.plist:
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -194,15 +196,17 @@ xcodebuild -exportArchive -archivePath $PWD/build/myApp.xcarchive -exportOptions
 </plist>
 ```
 
+```bash
 xcodebuild -help
+```
 
 # apple development program
 
-/!\ Assigned devices page is not acessible
-    => free provisioning
-        :( device needs to be connected
-        https://stackoverflow.com/questions/44060482/xcode-8-3-xcode-9-0-refresh-provisioning-profile-devices
-    https://forums.developer.apple.com/thread/47746
+- [!] Assigned devices page is not acessible
+    - => free provisioning
+        - :( device needs to be connected
+        - https://stackoverflow.com/questions/44060482/xcode-8-3-xcode-9-0-refresh-provisioning-profile-devices
+    - https://forums.developer.apple.com/thread/47746
 
 # vm
 
@@ -217,11 +221,16 @@ smc.version = "0"
 
 ### usb
 
-usb 2.0
-focus vmware before pluging in
+- usb 2.0
+- focus vmware before pluging in
 
+```bash
 grep -i 'found device.*apple.*vid.*pid' vmware.log
-```foo.vmx
+```
+
+foo.vmx:
+
+```
 usb.quirks.device0 = "0x05ac:0x12a8 skip-reset, skip-refresh, skip-setconfig"
 ```
 
@@ -246,8 +255,9 @@ for i in /usr/libexec/gvfs*; do sudo killall "$i"; done
 /usr/libexec/gvfs-udisks2-volume-monitor &disown
 ```
 
-vmware.log
-```
+vmware.log:
+
+```log
 2019-02-27T23:26:40.824Z| vmx| I125: USB: Connecting device desc:name:Apple\ iPhone vid:05ac pid:12a8 path:2/2 speed:high family:imaging serialnum:604ce5b1932c31c3ef5d7a033f6d5e75bf1ad12c arbRuntimeKey:9 quirks:slow-reconnect version:3 id:0x1000000905ac12a8
 2019-02-27T23:26:40.844Z| vmx| I125: Policy_GetUSBDevAccess: checking usb devices at policy path: /vm/#_VMX/mvm/policyState/val/policySet/usbDevices/#
 2019-02-27T23:26:40.844Z| vmx| I125: Policy_GetUSBDevAccess: allowConnect = YES
@@ -263,7 +273,23 @@ vmware.log
     - https://kb.vmware.com/s/article/774?lang=en_US
     - https://askubuntu.com/questions/645/how-do-you-reset-a-usb-device-from-the-command-line/661#661
 
-# ios packaging, upload
+# iOS databases
+
+- Contacts: `var/mobile/Library/AddressBook/AddressBook.sqlitedb`
+- Calls: `var/mobile/Library/CallHistoryDB/CallHistory.storedata`
+- SMS: `var/mobile/Library/SMS/sms.db`
+- Safari: `var/mobile/Library/Safari/History.db`
+- Google Maps: `var/mobile/Library/Maps/History.plist`
+- Apple Maps: 
+    - `var/mobile/Library/Maps/Bookmarks.plist`
+    - `var/mobile/Containers/Shared/AppGroup/group.com.apple.Maps/Maps/MapsSync_0.0.1`
+    - `var/mobile/Containers/Shared/AppGroup/group.com.apple.Maps/Maps/MapsSync_0.0.1_deviceLocalCache.db`
+    - iOS13: `var/mobile/Library/Maps/GeoHistory.mapsdata`
+    - iOS8: `var/mobile/Library/Maps/History.mapsdata`
+
+- BLOB extraction: [GitHub \- threeplanetssoftware/sqlite\_miner: A script to mine SQLite databases for hidden gems that might be overlooked](https://github.com/threeplanetssoftware/sqlite_miner)
+
+# iOS packaging, upload
 
 ### macos
 
@@ -280,7 +306,7 @@ ideviceinstaller -i _.ipa
 
 # search
 
-https://ss64.com/osx/mdfind.html
+- [mdfind Man Page \- macOS \- SS64\.com](https://ss64.com/osx/mdfind.html)
 
 # service management
 
@@ -290,22 +316,22 @@ launchd
 
 # dict
 
-https://github.com/josh-/DictionaryPlusPlus
+- [GitHub \- josh\-/DictionaryPlusPlus: Dictionary\+\+ is a simple interface to iOS&\#39;s system dictionary\.](https://github.com/josh-/DictionaryPlusPlus)
 
-MobileAssetError Unable to copy asset attributes
-MobileAssetError Unable to copy asset information from https://mesu.apple.com/assets for asset type com.apple.MobileAsset.TextInput.SpellChecker
-    => ? simulator network/wifi access
-    http://mesu.apple.com/assets/com_apple_MobileAsset_TextInput_SpellChecker/com_apple_MobileAsset_TextInput_SpellChecker.xml
-    https://stackoverflow.com/questions/43419437/errors-ios-10-unable-to-copy-asset-information-from-https-mesu-apple-com-ass?rq=1
-    https://stackoverflow.com/questions/39868842/error-in-ios-10-unable-to-copy-asset-information-from-https-mesu-apple-com-a
-    https://stackoverflow.com/a/39581193
-        https://llvm.org/svn/llvm-project/lldb/trunk/source/Plugins/Platform/MacOSX/PlatformDarwin.cpp
+- MobileAssetError Unable to copy asset attributes
+- MobileAssetError Unable to copy asset information from https://mesu.apple.com/assets for asset type com.apple.MobileAsset.TextInput.SpellChecker
+    - => ? simulator network/wifi access
+    - http://mesu.apple.com/assets/com_apple_MobileAsset_TextInput_SpellChecker/com_apple_MobileAsset_TextInput_SpellChecker.xml
+    - https://stackoverflow.com/questions/43419437/errors-ios-10-unable-to-copy-asset-information-from-https-mesu-apple-com-ass?rq=1
+    - https://stackoverflow.com/questions/39868842/error-in-ios-10-unable-to-copy-asset-information-from-https-mesu-apple-com-a
+    - https://stackoverflow.com/a/39581193
+        - https://llvm.org/svn/llvm-project/lldb/trunk/source/Plugins/Platform/MacOSX/PlatformDarwin.cpp
 
-https://github.com/willhains/Kotoba
+- [GitHub \- willhains/Kotoba: Quickly search the built\-in iOS dictionary to see definitions of words\. Collect words you want to remember\.](https://github.com/willhains/Kotoba)
 
 # docs
 
-https://developer.apple.com/documentation/foundation/nsstring
+- https://developer.apple.com/documentation/foundation/nsstring
 
 # constraints
 
@@ -352,19 +378,19 @@ sudo dtruss -f -p 43334
 
 # jailbreak
 
-change root password
-update hosts file
+- change root password
+- update hosts file
 
-https://www.reddit.com/r/jailbreak/wiki/index
+- https://www.reddit.com/r/jailbreak/wiki/index
 
 ### iOS 10
 
-https://h3lix.tihmstar.net/
-https://www.reddit.com/r/jailbreak/wiki/ios10jailbreakhelp
+- https://h3lix.tihmstar.net/
+- https://www.reddit.com/r/jailbreak/wiki/ios10jailbreakhelp
 
 # firewall
 
-https://github.com/objective-see/LuLu
+- [GitHub \- objective\-see/LuLu: LuLu is the free macOS firewall](https://github.com/objective-see/LuLu)
 
 # unified logging
 

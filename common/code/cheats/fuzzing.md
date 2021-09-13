@@ -24,7 +24,20 @@ lea rsp, [rsp+98h]
 
 - without recompilation
     - qemu target
+        - https://www.mathyvanhoef.com/2015/09/csaw-ctf-solving-reversing-wyvern-500.html
+        ```bash
+        afl-fuzz -Q -i indir -o sync_dir -M fuzzer01 ./wyvern
+        afl-fuzz -Q -i indir -o sync_dir -S fuzzer02 ./wyvern
+        ```
     - https://github.com/GJDuck/e9afl
+- redirect socket to stdin/stdout
+    - https://lolware.net/blog/2015-04-28-nginx-fuzzing/
+    ```bash
+    echo 'GET / HTTP/1.1 [...]' > testcases/in.txt
+    LD_PRELOAD=preeny/Linux_x86_64/desock.so afl-fuzz -i testcases -o findings ./nginx
+    ```
+- emulation
+    - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
 
 ### Case studies
 

@@ -1,7 +1,13 @@
 # +
 
-- [GitHub \- NWMonster/ApplySig: Apply IDA FLIRT signatures for Ghidra](https://github.com/NWMonster/ApplySig)
 - [disassembly \- Python Script to get disassembled output of an EXE file \- Reverse Engineering Stack Exchange](https://reverseengineering.stackexchange.com/questions/22377/python-script-to-get-disassembled-output-of-an-exe-file)
+
+# FID
+
+- `Tools > Function ID > Populate FidDb from programs`
+- [GitHub \- NWMonster/ApplySig: Apply IDA FLIRT signatures for Ghidra](https://github.com/NWMonster/ApplySig)
+- https://github.com/NationalSecurityAgency/ghidra/blob/master/Ghidra/Features/FunctionID/data/building_fid.txt
+- https://blog.threatrack.de/2019/09/20/ghidra-fid-generator/
 
 # extension build
 

@@ -155,8 +155,20 @@ dd if=/proc/7/mem bs=$((0x1000)) skip=$((Ox7fb84ee44 + 0x207)) count=1 of=out
 qpdf --decrypt input.pdf out.pdf
 pdftk input.pdf output out.pdf allow AllFeatures
 gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOutputFile=%stdout% -c .setpdfwrite -f input.pdf > output.pdf
+
+# decompress streams
+qpdf --qdf --object-streams=disable foo.pdf foo.decompressed.pdf
+
+# enumerate references
+f=challenge.pdf && { \
+  peepdf "$f" | \
+  grep 'Objects ([0-9]*):' | \
+  sed 's/.*\[\(.*\)\]/\1/; s/\([0-9]\+\)\(, \)\?/references to \1\n/g' | \
+  peepdf "$f" -i
+} 2>/dev/null
 ```
 
+- https://blog.didierstevens.com/programs/pdf-tools/
 - references to objects, tree
     - https://eternal-todo.com/tools/peepdf-pdf-analysis-tool#usage
 - streams
@@ -290,6 +302,10 @@ unrar x foo.part1.rar
 - [ALASKA2: Image Steganalysis \- All you need to know | Kaggle](https://www.kaggle.com/prashant111/alaska2-image-steganalysis-all-you-need-to-know)
 - [DDE Download Section](http://dde.binghamton.edu/download/)
 - https://cs.cmu.edu/~biglou/PSS.pdf
+
+### printers, yellow dots, machine identification code
+
+- [DEDA - tracking Dots Extraction, Decoding and Anonymisation toolkit](https://github.com/dfd-tud/deda)
 
 # copy protection
 
@@ -442,6 +458,7 @@ file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i env LC_ALL=C awk 'match($0
 - https://klanec.github.io/inctf/2020/08/02/inctf-lookout-foxy.html
     - firefed (firefox), undbx (mails), mpack (MIME attachments)
 - https://cyberdefenders.org/labs/37
+- https://www.ashemery.com/dfir.html
 
 ### zeroing section headers to thwart dissassemblers
 

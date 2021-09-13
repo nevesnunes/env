@@ -18,26 +18,56 @@
     - ELF format: [match x86 that appears to be stack string creation · GitHub](https://gist.github.com/williballenthin/ed7b3de224d5b986bc04dc882c5ee7c5)
     - PE format: `floss`
         - :) extracts stack strings
-- libraries
+- syscalls, dynamic library calls
     - any format: [GitHub \- maroueneboubakri/lscan: lscan is a library identification tool on statically linked/stripped binaries](https://github.com/maroueneboubakri/lscan)
         - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)
-    - ELF format: `ldd -iv` (validates shared libraries initialization)
+    - ELF format:
+        - `ldd -iv` (validates shared libraries initialization)
+        - `ltrace -if`
+        - `strace -X verbose -if -s 9999`
         - [GitHub \- marin\-m/vmlinux\-to\-elf: A tool to recover a fully analyzable \.ELF from a raw kernel, through extracting the kernel symbol table \(kallsyms\)](https://github.com/marin-m/vmlinux-to-elf)
-    - PE format: [GitHub \- fireeye/capa: The FLARE team&\#39;s open\-source tool to identify capabilities in executable files\.](https://github.com/fireeye/capa)
+    - PE format:
+        - `procmon`
+        - [GitHub \- fireeye/capa: The FLARE team&\#39;s open\-source tool to identify capabilities in executable files\.](https://github.com/fireeye/capa)
+    - signatures detection with parameter names on pushed registers
+        - [ghidra](./ghidra.md#FID)
+        - [IDA](./ida.md#FLIRT)
 - resources
+    - PE format: `wrestool`
     - NE format: [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
     - [GitHub \- ExeinfoASL/ASL: ExeinfoPE](https://github.com/ExeinfoASL/ASL)
+    - [methodologies](./evasion.md#generic)
 - roms
     - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
     - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
-- syscalls, dynamic library calls
-    - ELF format: `strace -X verbose -if -s 9999`, `ltrace -if`
-    - PE format: `procmon`
 - constants
     - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)
     - https://hiddencodes.wordpress.com/2011/12/23/string-manipulation-functions-in-glibc-ms-visual-studio-and-0x7efefeff-0x81010100-0x81010101/
+- data structures
+    - find addresses pointing to lists of names + other fields
+        - modify nearby addresses and observe effects
+    - asm
+        - global
+            ```fasm
+            mov     ds:dword_405020, 1
+            mov     ds:dword_405024, 2
+            mov     ds:dword_405028, 3
+            ```
+        - local
+            ```fasm
+            mov     [esp+30h+var_18], 1
+            mov     [esp+30h+var_14], 2
+            mov     [esp+30h+var_10], 3
+            ```
+        - heap
+            ```fasm
+            mov     eax, [esp+20h+var_4]
+            mov     dword ptr [eax], 1
+            mov     dword ptr [eax+4], 2
+            mov     dword ptr [eax+8], 3
+            ```
 - visual structure
     - https://binvis.io/
         - https://github.com/binvis/binvis.io
@@ -45,6 +75,13 @@
     - https://justine.storage.googleapis.com/memzoom/index.html
     - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
     - [Hex viewers and editors](https://twitter.com/i/events/841916822014332930)
+- diff
+    - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
+    - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
+    - [DarunGrim: A Patch Analysis and Binary Diffing Tool](http://www.darungrim.org/)
+    - [radiff2](https://radareorg.github.io/blog/posts/binary-diffing/)
+    - [GitHub \- ubfx/BinDiffHelper: Ghidra Extension to integrate BinDiff for function matching](https://github.com/ubfx/BinDiffHelper)
+    - [Limits of Ghidra Patch Diffing](https://blog.threatrack.de/2019/10/17/ghidra-patchdiff-cve-2019-3568/)
 - entropy
     - binwalk
         ```bash
@@ -52,10 +89,6 @@
         env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
         ```
     - audacity
-- diff
-    - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
-    - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
-    - [GitHub \- ubfx/BinDiffHelper: Ghidra Extension to integrate BinDiff for function matching](https://github.com/ubfx/BinDiffHelper)
 
 # methodologies
 
@@ -64,32 +97,58 @@
     - algorithm: google constants
     - hashing: branchless xors/rols
     - debug symbols: from old versions
-- enumerate exports, imports, function use, syscalls, winapi, mutex, dll dependencies, strings
+- enumerate exports, imports, syscalls, winapi, registry keys, services, dll dependencies, handles, mutex, strings
     - lifecycle
         - before OEP
-            - pe format: TLS
-            - elf format: init_array
+            - ELF format: init_array
+            - PE format: TLS callback
         - debugger: break on thread exit, dll unload, process exit, then check stack
     - finding `main()` function
-        - on libc `entry`, take 1st argument to `__libc_start_main()`
-        - || find which function's return value (saved in eax) is passed to exit(), then follow xrefs in reverse
+        - any format:
+            - || follow xrefs to exit(), find which function's return value (saved in rax) is passed to exit()
+            > Basically rax contains the return code of "main". When main ends, the return code of the program is sent to exit() (and later on to ExitProcess(), on windows)
+        - ELF format: on libc `entry()`, take 1st argument to `__libc_start_main()`
+        - PE format: `mainCRTStartup(), __scrt_common_main_seh() > invoke_main()`
     - calling functions
-        - debugger
-        - https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html?m=1
+        - any format:
+            ```python
+            import ctypes
+
+            user32_dll = ctypes.cdll.LoadLibrary('User32.dll')
+            print(user32_dll.GetDoubleClickTime())
+
+            # libc = ctypes.cdll.msvcrt # Windows
+            # libc = ctypes.CDLL('libc.dylib') # Mac
+            libc = ctypes.CDLL('libc.so') # Linux and most other *nix
+            libc.printf(b'hi there, %s\n', b'world')
+            ```
+        - ELF format: https://github.com/taviso/ctypes.sh
+        - PE format: https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html?m=1
     - filesystem
         - FileRead/FileWrite calls
-        - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
+        - FileDelete monitoring and recovery
+            - https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon#event-id-23-filedelete-file-delete-archived
+            - [Sysinternals Update April 2020 \- YouTube](https://www.youtube.com/watch?v=_MUP4tgdM7s)
     - networking
         - hw read break on packet buffer, frida hook on winsock calls
         - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
         - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
-    - finding specific functions
+    - APIs
+        - [API Monitor: Spy on API Calls and COM Interfaces \(Freeware 32\-bit and 64\-bit Versions!\) \| rohitab\.com](http://www.rohitab.com/apimonitor)
+        - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
+        - [GitHub \- hasherezade/tiny\_tracer: A Pin Tool for tracing API calls etc](https://github.com/hasherezade/tiny_tracer)
+        - [GitHub \- CodeCracker\-Tools/MegaDumper: Dump native and \.NET assemblies](https://github.com/CodeCracker-Tools/MegaDumper)
+        - [GitHub \- tyranid/oleviewdotnet: A \.net OLE/COM viewer and inspector to merge functionality of OleView and Test Container](https://github.com/tyranid/oleviewdotnet)
+        - [RpcView](http://rpcview.org)
+    - finding functions
         - take old version introducing specific logic in changelog, then bindiff with current version
 - diff/search for data changes before and after blocks: loops, func calls...
 - binary patching, code injection, fault inducing
-- monitor memory maps - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
-- alternative to reverse debugging: vm snapshots
-- images
+    - removing field in request to trigger error message
+        - https://ferib.dev/blog.php?l=post/How_I_automated_McDonalds_mobile_game_to_win_free_iphones
+- monitor memory maps
+    - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
+- image parsing
     - produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
@@ -214,18 +273,35 @@ perf trace record
 
 # case studies
 
-- [Changing EXE file into DLL library](https://lubiki.keeperklan.com/other_docs/change_exe_to_dll.htm)
-- [Calling Arbitrary Functions In EXEs: Performing Calls to EXE Functions Like DLL Exports](https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html)
-- [Modifying and running a binary by recompiling a reverse engineered disassembly](https://www.devever.net/~hl/recompile)
-- [America Online Exploits Bug In Own Software](https://www.geoffchappell.com/notes/security/aim/index.htm)
-- [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
-    - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
+- transformation
+    - [Changing EXE file into DLL library](https://lubiki.keeperklan.com/other_docs/change_exe_to_dll.htm)
+    - [How to turn a DLL into a standalone EXE](https://hshrzd.wordpress.com/2016/07/21/how-to-turn-a-dll-into-a-standalone-exe/)
+    - [Calling Arbitrary Functions In EXEs: Performing Calls to EXE Functions Like DLL Exports](https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html)
+    - [Modifying and running a binary by recompiling a reverse engineered disassembly](https://www.devever.net/~hl/recompile)
 - easter egg in wrong password handler
     - https://twitter.com/suddendesu/status/1386994549302562818
         > [...] these all lead to gameplay stages by looking at the code. If it finds a match in the password table, it stores that offset in one of the "current stage" variables. directly.
         > The code then jumps to the init gameplay after a match. This means that each entry in the list above corresponds to a gameplay stage. First one (1111) is map 1, the next (0142) is map 2, and so on. There are no special cases that lead to anything besides a game map.
     - https://twitter.com/new_cheats_news/status/1387832686484525057
         > You looked in the different place ;) special password is checked in a special place when wrong passwords goes to, then you need a button code to be held additionally, and voila. ;)
+- finding correlations/patterns
+    - [\(DSCTF 2019\) CPU Adventure &\#8211; Unknown CPU Reversing &\#8211; Robert Xiao](https://www.robertxiao.ca/hacking/dsctf-2019-cpu-adventure-unknown-cpu-reversing/)
+    - https://docs.mongodb.com/v3.2/reference/method/ObjectId/
+        ```
+        4-byte value representing the seconds since the Unix epoch,
+            incrementing, mod base 16 => 2. linear search, inc length of substring when all lines passed
+        3-byte machine identifier
+            fixed => 1. lcs
+        2-byte process id, and
+            fixed...
+        3-byte counter, starting with a random value.
+            incrementing...
+        ```
+- [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
+    - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
+- [America Online Exploits Bug In Own Software](https://www.geoffchappell.com/notes/security/aim/index.htm)
+    > - The reason is that the packet data, as received from the AIM server, is contrived so that the corruption of memory by the AIM client is carefully controlled. The buggy routine in the AIM client is made to “return” to an address at which it is known there will be the bytes for a call esp instruction (actually provided in the bitmap for an icon in the AIM.EXE resources). The effect of this instruction is to start executing some of the packet data.
+    > - The next part of the contrivance is that this part of the packet data actually has been prepared as executable code. It does two things. One is to recover from the bug, so that the AIM client resumes apparently normal execution. The other, done as a little side-trip before recovery, is to form some of the downloaded packet data into a new packet that the AIM client is induced to send to the AIM server.
 
 ### binary patching
 

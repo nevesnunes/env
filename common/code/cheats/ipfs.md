@@ -57,7 +57,7 @@ ipfs cat /ipns/torrent-paradise.ml/index.html
 ipfs add -r ~/code/ipfs/hello
 # => added QmbByGfU478oztLuL57FceepYxECmoX8stNJP1RSNta3nP hello
 
-# /!\ This URI starts with something that looks like a broken CIDv0 (case-sensitive "Qm…"). Some browser vendors force lowecase in URIs before IPFS Companion is able to fix it.
+# [!] This URI starts with something that looks like a broken CIDv0 (case-sensitive "Qm…"). Some browser vendors force lowecase in URIs before IPFS Companion is able to fix it.
 # Workaround: convert the original CIDv0 to case-insensitive CIDv1 and try again.
 # References: https://docs.ipfs.io/guides/guides/addressing
 ipfs cid base32 QmbByGfU478oztLuL57FceepYxECmoX8stNJP1RSNta3nP

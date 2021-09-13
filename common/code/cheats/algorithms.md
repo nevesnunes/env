@@ -374,7 +374,7 @@ Prim
 Dijkstra
     shortest paths with non-negative edges
     maintain priority queue (e.g. min-heap) with nodes to visit - impl. TreeSet
-        /!\ use unique id instead of edge value for TreeSet `compareTo()`
+        [!] use unique id instead of edge value for TreeSet `compareTo()`
     ```
     add nodes to priority queue
     while priority queue is not empty
@@ -575,6 +575,10 @@ hex(0xff << 8)  # 0xff00
 # +
 
 https://github.com/VAR-solutions/Algorithms
+
+https://github.com/fragglet/c-algorithms
+http://fxr.watson.org/fxr/source/sys/queue.h
+    https://github.com/TaborKelly/queue-example/blob/master/queue_example.c
 
 ~/code/doc/algorithms/big-o-cheatsheet.pdf
 ~/code/doc/algorithms/CLRS-3rd.pdf

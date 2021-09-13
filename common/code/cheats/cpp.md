@@ -21,6 +21,10 @@ sudo make install
 make prefix="$HOME/foo" install
 ```
 
+### pkgconfig
+
+- `PKG_CONFIG_PATH` set to path containing .pc files
+
 ### position-independent code
 
 ```bash

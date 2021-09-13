@@ -36,7 +36,7 @@ switch_to_main_workspace() {
   if wmctrl -m | grep -qi gnome; then
     TRIES=10
     while [ $TRIES -gt 0 ]; do
-      if /home/"$USER"/bin/check-compositor/check-compositor | greq -q 1; then
+      if /home/"$USER"/bin/check-compositor/check-compositor | grep -q 1; then
         break
       fi
       sleep 1
@@ -91,10 +91,10 @@ run_app() {
     eval "${app_command[@]}"
   fi
   TRIES=60
-  while [ -z $(wmctrl -lx | \
+  while [ -z "$(wmctrl -lx | \
       cut -d' ' -f-4 | \
       grep -i "$app" | \
-      cut -d' ' -f1) ] && \
+      cut -d' ' -f1)" ] && \
         [ $TRIES -gt 0 ]; do
     sleep 2
 

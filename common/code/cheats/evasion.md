@@ -85,9 +85,14 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 
 ### generic
 
-1. At entrypoint, set hardware watch on `$rsp`
-    - On break, take `jmp` address, subtract image base (`0x400000`) to get original entrypoint (oep)
-2. Dump using Scylla
+- find uncompressed data in memory
+- dumping
+    1. At entrypoint, set hardware watch on `$rsp`
+        - On break, take `jmp` address, subtract image base (`0x400000`) to get original entrypoint (oep)
+    2. Dump using Scylla
+- emulation
+    > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
+    > Packers tend not to touch any custom chips or be affected by any kind of timing/irqs, so just functional CPU emulation will do the job to make a depacking tool.
 
 # anti-debugging
 
@@ -103,6 +108,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 
 ### LD_PRELOAD
 
+- /etc/ld.so.preload => applied to setuid binaries loaded by glibc /lib/ld-linux.so
 - https://haxelion.eu/article/LD_NOT_PRELOADED_FOR_REAL/
 
 ### ptrace(PTRACE_TRACEME, 0, 0)

@@ -302,10 +302,6 @@ noremap H Hzb
 nnoremap <Space> <C-f>
 nnoremap <C-x>]  <Esc>:exe "ptjump " . expand("<cWORD>")<Esc>
 
-map ,' ciW''<Esc>P
-map ," ciW""<Esc>P
-map ,( ciW()<Esc>P
-
 vmap <Space> "xy:@x<CR>
 
 function! VisualPositions()

@@ -96,7 +96,7 @@ bt
 1  0x00007ffff7ddd042 in __libc_start_main (main=0x555555554bea, argc=1, argv=0x7fffffffd228, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, stack_end=0x7fffffffd218) at ../csu/libc-start.c:308
 2  0x000055555555483a in ?? ()
 
-# /!\ rbp is char**
+# [!] rbp is char**
 # Modifies one byte of pointer (not string):
 set *(char*)($rbp - 0x18) = 0x41424344
 # Modifies pointer (not string):
@@ -106,7 +106,7 @@ set **(char**)($rbp - 0x18) = 0x41424344
 # Modifies all chars:
 set **(char***)($rbp - 0x18) = 0x41424344
 
-# /!\ A syntax error in expression, near `**)($rbp - 0x30) = 0x8'
+# [!] A syntax error in expression, near `**)($rbp - 0x30) = 0x8'
 p ($rbp - 0x30)
 # $2 = (void *) 0x7ffff5815d00
 set *0x7ffff5815d00 = 0x8

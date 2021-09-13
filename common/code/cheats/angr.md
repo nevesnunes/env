@@ -90,7 +90,7 @@ https://reverseengineering.stackexchange.com/questions/21565/angr-populate-int-a
 
 https://docs.angr.io/core-concepts/states
 
-# /!\ endianess
+# [!] endianess
 
 ```python
 addr = state.regs.esi

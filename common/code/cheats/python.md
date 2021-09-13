@@ -372,7 +372,7 @@ python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
         python3.6 -c 'import imp;print(int.from_bytes(imp.get_magic()[:2], "little"))'
         # 0xd33 => 3379
         ```
-    - `/!\` 3.6 bytecode header is 12 bytes
+    - `[!]` 3.6 bytecode header is 12 bytes
         - e.g. `diff <(xxd -l32 __pycache__/checker1.cpython-36.pyc) <(xxd -l32 __pycache__/checker1.cpython-38.pyc)`
             ```diff
             1,2c1,2
@@ -512,7 +512,7 @@ https://github.com/mozilla/crawl-prep/blob/master/setup-python-venv.sh
 jupyter notebook
 ```
 
-`/!\` Python files on same directory as notebook must not contain errors, as jupyter automatically loads them and fails to load kernel on errors
+`[!]` Python files on same directory as notebook must not contain errors, as jupyter automatically loads them and fails to load kernel on errors
 
 ### converting
 
@@ -658,6 +658,7 @@ print(df.to_markdown())
 - [Breaking Out of a Python Sandbox · Issue \#6 · se162xg/notes · GitHub](https://github.com/se162xg/notes/issues/6)
 - [GitHub \- OpenToAllCTF/Tips: Useful tips by OTA CTF members \- Python jails](https://github.com/OpenToAllCTF/Tips#python-jails)
 - https://gynvael.coldwind.pl/n/python_sandbox_escape
+- https://kmh.zone/blog/2021/02/07/ti1337-plus-ce/
 
 ### type coercion
 

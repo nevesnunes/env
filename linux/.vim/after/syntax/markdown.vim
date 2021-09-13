@@ -28,3 +28,9 @@ syn region htmlTag start=+<[^/]+   end=+>+ fold contains=htmlTagN,htmlString,htm
 
 silent! syn clear markdownCodeBlock
 syn region markdownCodeBlock start="    \|\t" end="$" contains=markdownInlineURL contained
+
+syn match mkdTodo "\<\(TODO\|FIXME\)" containedin=ALLBUT,mkdCode,markdownCodeBlock
+
+hi! mkdTodo ctermfg=1 guifg=red cterm=bold gui=bold
+
+hi! mkdHeading ctermfg=6 guifg=red cterm=bold gui=bold

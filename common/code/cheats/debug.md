@@ -10,7 +10,8 @@
     - https://github.com/HyperDbg/HyperDbg
     - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
 
-- https://blog.ret2.io/2021/04/20/tenet-trace-explorer/
+- [Tenet: A Trace Explorer for Reverse Engineers \| RET2 Systems Blog](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
+- [GitHub \- bootleg/ret\-sync: ret\-sync is a set of plugins that helps to synchronize a debugging session \(WinDbg/GDB/LLDB/OllyDbg2/x64dbg\) with IDA/Ghidra/Binary Ninja disassemblers\.](https://github.com/bootleg/ret-sync)
 
 # implementation
 
@@ -78,6 +79,8 @@
 - visualizing internal structures
     > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
     - https://news.ycombinator.com/item?id=11383999
+- visualizing layout
+    - https://raymii.org/s/articles/Rectangle_debugging_in_QML_just_like_printf.html
 - graphics diagnostics - flush screen with color
     > I tried to set the screen color to the value it reads when it exits the loop and then hard-lock so the color doesn’t get changed.
     - https://mgba.io/2020/01/25/infinite-loop-holy-grail/
@@ -99,6 +102,7 @@
     - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
 - timestamped log of problem statement, hypothesis, expected vs actual results
     - http://yellerapp.com/posts/2014-08-11-scientific-debugging.html
+- alternative to reverse debugging: vm snapshots
 - general guidelines
     - [Testing and Debugging \- Dr\. Jody Paul](http://jodypaul.com/SWE/TD/TestDebug.html)
 

@@ -17,7 +17,7 @@ target_link_library()
         => workaround cyclic dependencies
         public -target-prop-> LINK_LIBRARIES, INTERFACE_LINK_LIBRARIES
         private -target-prop-> LINK_LIBRARIES
-    /!\ order sensitive - https://stackoverflow.com/questions/38530491/undefined-reference-to-function-cmake
+    [!] order sensitive - https://stackoverflow.com/questions/38530491/undefined-reference-to-function-cmake
 
 phases
     build

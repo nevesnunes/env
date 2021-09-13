@@ -263,6 +263,7 @@ video/3gpp=mpv.desktop
 inode/directory=pcmanfm.desktop
 x-scheme-handler/irc=pidgin.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop
+x-scheme-handler/eclipse+command=_usr_share_dbeaver-ce_.desktop
 
 [Removed Associations]
 image/png=kde4-krita.desktop;kde4-krita_png.desktop;

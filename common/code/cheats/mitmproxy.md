@@ -20,6 +20,7 @@ mitmweb --listen-port 8081
 
 ```bash
 sysctl -w net.ipv4.ip_forward=1
+
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8081
 iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8081
 
@@ -44,6 +45,22 @@ sysctl -w net.ipv4.ip_forward=0
         - e.g. mail .opvn file to phone
 - Alternative: macOS Remote Virtual Interface (RVI)
     - https://andydavies.me/blog/2019/12/12/capturing-and-decrypting-https-traffic-from-ios-apps/
+
+### VPN
+
+```bash
+sysctl -w net.ipv4.ip_forward=1
+
+ip tuntap add name tun0 mode tun
+openvpn --genkey --secret static.key
+openvpn --dev tun0 --ifconfig 10.0.0.1 10.0.0.2 --secret static.key
+iptables -t nat -A POSTROUTING -o eth0 -s 10.0.0.0/24 -j MASQUERADE
+
+iptables -t nat -A PREROUTING -i tun0 -p tcp --dport 80 -j REDIRECT --to-port 8081
+iptables -t nat -A PREROUTING -i tun0 -p tcp --dport 443 -j REDIRECT --to-port 8081
+
+mitmproxy --mode transparent --showhost
+```
 
 # Edit request manually
 

@@ -52,6 +52,10 @@ curl 'https://stat.ripe.net/data/ris-asns/data.json?list_asns=true'
 
 - https://securitytrails.com/blog/asn-lookup
 
+- https://www.riskiq.com/products/passivetotal/
+    - registrants
+    - e.g. http://ropgadget.com/posts/embracing_failure.html
+
 # dns
 
 ./net.md#dns-zone-transfer

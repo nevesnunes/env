@@ -53,7 +53,7 @@ https://kramdown.gettalong.org/rdoc/Kramdown/Options.html
 ```
 {::options syntax_highlighter_opts="{block: {line_numbers: false\} \}" /}
 
-/!\ Does not work - `false` applied to whole document
+[!] Does not work - `false` applied to whole document
 
 Option 2:
 
@@ -64,7 +64,7 @@ Option 2:
 ```
 {% endhighlight %}
 
-/!\ Includes fenced block in content
+[!] Includes fenced block in content
 
 Option 3:
 

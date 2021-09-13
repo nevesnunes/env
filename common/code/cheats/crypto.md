@@ -7,6 +7,7 @@
 - [Quipquip](https://quipqiup.com/): substitution cipher
 - [Substitution Solver \- www\.guballa\.de](https://guballa.de/substitution-solver): substitution cipher
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
+- [Modular conversion, encoding and encryption online — Cryptii](https://cryptii.com/): enigma
 - [CSCBE2019 - Rosetta](https://renaud11232.github.io/ctf/CSCBE2019/Finals/rosetta/): multiple ciphers / alphabets / languages / fonts
 
 - [CyberChef](https://gchq.github.io/CyberChef/): magic mode
@@ -271,6 +272,12 @@ m = pow(c, d, n)
     openssl enc -aes-128-ecb -nosalt -pass pass:"ANNA" -in body.bin -out body.ecb.bin
     cat header.txt body.ecb.bin > Tux.ecb.ppm
     ```
+
+# stream ciphers
+
+- fixed nonce => similar to repeating xor key, but using same keystream bytes across ciphertexts
+    - https://book-of-gehn.github.io/articles/2018/12/04/Fixed-Nonce-CTR-Attack.html
+    - https://cedricvanrompay.gitlab.io/cryptopals/challenges/19-and-20.html
 
 # mitigations
 

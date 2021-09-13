@@ -258,3 +258,32 @@ x() {
   strings -eb "$@"
   strings -el "$@"
 }
+
+# colorize output
+c() {
+  # foreground
+  tpfn=$(tput reset) # normal
+  tpfb=$(tput bold)
+  
+  # normal colours
+  tpf0=$(tput setaf 0) # black
+  tpf1=$(tput setaf 1) # red
+  tpf2=$(tput setaf 2) # green
+  tpf3=$(tput setaf 3) # yellow
+  tpf4=$(tput setaf 4) # blue
+  tpf5=$(tput setaf 5) # magenta
+  tpf6=$(tput setaf 6) # cyan
+  tpf7=$(tput setaf 7) # white
+
+  while IFS= read -r i; do
+    if echo "$i" | grep -q ERR; then
+      echo "$tpfb$tpf1$i$tpfn"
+    elif echo "$i" | grep -q WARN; then
+      echo "$tpfb$tpf5$i$tpfn"
+    elif echo "$i" | grep -q INFO; then
+      echo "$tpfb$tpf2$i$tpfn"
+    else
+      echo "$i"
+    fi
+  done
+}
