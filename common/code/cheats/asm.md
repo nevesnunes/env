@@ -126,7 +126,8 @@ r2 -c 'iae' -qq foo.exe
 env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/peres -v foo.exe
 env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/readpe foo.exe
 # [PEdump \- dump your PE!](http://pedump.me/)
-# https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py
+# [pestudio](http://www.winitor.com/)
+# [pecheck.py](https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py)
 ```
 
 # section headers

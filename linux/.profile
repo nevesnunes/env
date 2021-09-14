@@ -62,6 +62,7 @@ export LC_TIME='en_GB'
 export NAVI_PATH=~/code/cheats
 export NODE_PATH=~/.local/lib/node_modules
 export PYTHONSTARTUP=~/.config/pythonrc
+export SDL_VIDEO_ALLOW_SCREENSAVER=1
 export TERMINFO=~/.terminfo
 export QT_SCALE_FACTOR=1
 export QT_STYLE_OVERRIDE=adwaita

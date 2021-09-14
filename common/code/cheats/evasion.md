@@ -6,6 +6,7 @@
 - [Map \- Unprotect Project](https://search.unprotect.it/map)
 - [Anti\-Debug Tricks](https://anti-debug.checkpoint.com/)
 - https://github.com/CheckPointSW/Evasions
+    - https://evasions.checkpoint.com/
 - https://github.com/seifreed/awesome-sandbox-evasion
 
 # detection
@@ -86,6 +87,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 ### generic
 
 - find uncompressed data in memory
+- trace contains many loops (high jumps/all_instructions ratio)
 - dumping
     1. At entrypoint, set hardware watch on `$rsp`
         - On break, take `jmp` address, subtract image base (`0x400000`) to get original entrypoint (oep)

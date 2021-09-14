@@ -283,7 +283,11 @@ unrar x foo.part1.rar
     - https://stegonline.georgeom.net/upload
     - stegoveritas
     - zsteg
+    - foremost
     ```bash
+    # Histogram
+    convert _ -format %c histogram:info:-
+
     # If differences in most pixels, maybe LSB applied
     compare foo.png original.jpg foo.diff.png
     ```
@@ -291,6 +295,7 @@ unrar x foo.part1.rar
     - steghide
         - adds huffman table: `()*56789:CDEFGHI`
     - outguess
+    - stepic
     - RGB vs RGBA
         - https://medium.com/swlh/lsb-image-steganography-using-python-2bbbee2c69a2
 - [GitHub \- RobinDavid/LSB\-Steganography: Python program to steganography files into images using the Least Significant Bit\.](https://github.com/RobinDavid/LSB-Steganography)
