@@ -12,7 +12,7 @@ gtkui.color.bar_foreground 19018 37008 55769
 gtkui.color.tabstrip_playing_text 0 0 0
 gtkui.color.tabstrip_selected_text 0 0 0
 gtkui.color.tabstrip_text 0 0 0
-gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"31","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"158","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"234","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"53","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"32","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"163","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"227","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"55","align":"0","color_override":"0","color":"#ff313739"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
@@ -84,7 +84,7 @@ playback.volume -4.123711
 playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0
-playlist.scroll.0 -3
+playlist.scroll.0 -8
 playlist.scroll.1 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default

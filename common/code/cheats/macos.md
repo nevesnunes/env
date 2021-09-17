@@ -405,6 +405,12 @@ log collect device-name="foo's iPhone"
 log collect device-udid=foo
 ```
 
+# boot logging
+
+```bash
+nvram boot-args=”-v”
+```
+
 # dissassemly
 
 ```bash

@@ -9,7 +9,7 @@ def chunks(lst, n):
     return [lst[i - n : i] for i in range(n, len(lst) + n, n)]
 
 
-def truncate(data, at, size):
+def truncate(data, from_byte, from_bit, size):
     data_chunks = chunks(bin(v)[2:], 8)
     print(data_chunks)
 
@@ -17,7 +17,13 @@ def truncate(data, at, size):
     x = None
     y_size = size
     has_trailing_bits = False
+    i_from_byte = 0
+    at = from_bit
     for y in data_chunks:
+        if i_from_byte < from_byte:
+            data_chunks_truncated.append(y)
+            i_from_byte += 1
+            continue
         if not x:
             x = y
             continue
@@ -36,6 +42,7 @@ def truncate(data, at, size):
 
 if __name__ == "__main__":
     v = int(sys.argv[1], 0)
-    at = int(sys.argv[2], 0)
-    size = int(sys.argv[3], 0)
-    print(truncate(v, at, size))
+    from_byte = int(sys.argv[2], 0)
+    from_bit = int(sys.argv[3], 0)
+    size = int(sys.argv[4], 0)
+    print(truncate(v, from_byte, from_bit, size))

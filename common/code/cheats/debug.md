@@ -36,7 +36,15 @@
 
 ### version control
 
-- git bisect - reduce test cases
+- git bisect - reduce regression test cases
+    - [!] Can also find fixes instead of regressions
+        - https://web.archive.org/web/20110715102644/http://www.worksmartlabs.com/blog/2011/07/13/sleuthing-git-using-git-or-regression-testing-done-backwards/
+        ```bash
+        # "good" means "not fixed yet", and "bad" means "fixed"
+        git bisect start
+        git bisect bad # i.e., the fix has been introduced in the latest version.
+        git bisect good v1.7.0.4 # i.e., the bug still existed at this tag.
+        ```
 - git blame - reasons behind changes
 - issues, pull requests - relate with source code
 
@@ -74,8 +82,10 @@
     > - In WinDbg, dps on import tables or import table entries to show where indirect calls will go. This is useful when something else is trying to hijack your code.
     > - Keep an in memory circular log of interesting cases in your code. This log often doesn’t need to be big, and doesn’t need to allocate on insert, but if something bad happens in your code you can dump the interesting cases that were hit recently.
     - https://lobste.rs/s/h7f6qk/what_debugging_technique_did_it_take_you
-- finding and logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
+- logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
     - https://florian.github.io/count-min-sketch/
+- logging variable values at each algorithm iteration
+    - https://en.wikipedia.org/wiki/Trace_table
 - visualizing internal structures
     > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
     - https://news.ycombinator.com/item?id=11383999

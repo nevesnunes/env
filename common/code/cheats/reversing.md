@@ -82,6 +82,7 @@
     - [radiff2](https://radareorg.github.io/blog/posts/binary-diffing/)
     - [GitHub \- ubfx/BinDiffHelper: Ghidra Extension to integrate BinDiff for function matching](https://github.com/ubfx/BinDiffHelper)
     - [Limits of Ghidra Patch Diffing](https://blog.threatrack.de/2019/10/17/ghidra-patchdiff-cve-2019-3568/)
+    - [Patch Diffing a Cisco RV110W Firmware Update \(Part II\) \| QTNKSR](https://quentinkaiser.be/exploitdev/2020/10/01/patch-diffing-cisco-rv110/)
 - entropy
     - binwalk
         ```bash
@@ -96,7 +97,6 @@
     - str array: strs are accessed w/ an offset from the 1st str (array base), which _will_ have an xref
     - algorithm: google constants
     - hashing: branchless xors/rols
-    - debug symbols: from old versions
 - enumerate exports, imports, syscalls, winapi, registry keys, services, dll dependencies, handles, mutex, strings
     - lifecycle
         - before OEP
@@ -137,19 +137,24 @@
         - [API Monitor: Spy on API Calls and COM Interfaces \(Freeware 32\-bit and 64\-bit Versions!\) \| rohitab\.com](http://www.rohitab.com/apimonitor)
         - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
         - [GitHub \- hasherezade/tiny\_tracer: A Pin Tool for tracing API calls etc](https://github.com/hasherezade/tiny_tracer)
+        - [GitHub \- microsoft/Detours: Detours is a software package for monitoring and instrumenting API calls on Windows\.  It is distributed in source code form\.](https://github.com/microsoft/Detours)
+            - e.g. http://web.archive.org/web/20070222031635/http://www.matasano.com/log/620/hand-detouring-windows-function-calls-with-ht/
         - [GitHub \- CodeCracker\-Tools/MegaDumper: Dump native and \.NET assemblies](https://github.com/CodeCracker-Tools/MegaDumper)
         - [GitHub \- tyranid/oleviewdotnet: A \.net OLE/COM viewer and inspector to merge functionality of OleView and Test Container](https://github.com/tyranid/oleviewdotnet)
         - [RpcView](http://rpcview.org)
-    - finding functions
+    - finding debug symbols
+        - take old versions, patches, API examples, API clients
+            - e.g. https://lock.cmpxchg8b.com/lotus123.html
+    - finding functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
-- diff/search for data changes before and after blocks: loops, func calls...
 - binary patching, code injection, fault inducing
     - removing field in request to trigger error message
         - https://ferib.dev/blog.php?l=post/How_I_automated_McDonalds_mobile_game_to_win_free_iphones
+    - image parsing coverage changes on error
+        > produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
 - monitor memory maps
     - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
-- image parsing
-    - produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
+    - diff/search for data changes before and after blocks: loops, func calls...
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research
