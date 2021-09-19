@@ -1,8 +1,5 @@
 # +
 
-- [shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
-- [Linux/x64 \- execve\(/bin/sh\) Shellcode \(21 bytes\) \- Linux\_x86\-64 shellcode Exploit](https://www.exploit-db.com/exploits/41750)
-
 - [libc database search](https://libc.blukat.me/)
 - [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
 - [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
@@ -149,6 +146,16 @@ eu-unstrip "$stripped_libc" "$symbol_file"
 
 - Windows: `CreateProcess` looks for executables in current directory
     - [cli: fix arbitrary execution of program bug · BurntSushi/ripgrep@229d1a8 · GitHub](https://github.com/BurntSushi/ripgrep/commit/229d1a8d41b0023420e7815578fa0b39c0d5c2e4)
+
+# shellcode
+
+```bash
+printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x73\x68\x00\x50\x48\x89\xe7\xb8\x3b\x00\x00\x00\x0f\x05";(*(void(*)())a)();}' | gcc -o /tmp/1 -z execstack -x c - && gdb /tmp/1 -ex 'b main' -ex 'r'
+```
+
+- [Write your shellcode](https://masterccc.github.io/memo/shellcode/)
+- [shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
+- [Linux/x64 \- execve\(/bin/sh\) Shellcode \(21 bytes\) \- Linux\_x86\-64 shellcode Exploit](https://www.exploit-db.com/exploits/41750)
 
 # stack overflow
 
@@ -390,3 +397,8 @@ if ssl:
             - https://github.com/guywhataguy/DisableDynamicLoadAddress
 
 - [FuzzySecurity \| Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)
+
+# case studies
+
+- [GitHub \- socram8888/tonyhax: PS1 savegame exploit](https://github.com/socram8888/tonyhax)
+    - [tonyhax with a game exploit \| orca\.pet](https://orca.pet/tonyhax/game-exploit.html)

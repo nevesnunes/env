@@ -6,7 +6,8 @@
     - https://github.com/rr-debugger/rr
     - http://man7.org/linux/man-pages/man1/nsenter.1.html
 - windows
-    - [windbg](windbg.md)
+    - [x64dbg](./x64dbg.md)
+    - [windbg](./windbg.md)
     - https://github.com/HyperDbg/HyperDbg
     - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
 

@@ -201,6 +201,10 @@ http://www.eclipse.org/mat/
 - Run > Debug Configurations
     - `-XX:MaxPermSize=512m`
 
+### Dynamic Instrumentation
+
+[GitHub \- hluwa/Wallbreaker: 🔨 Break Java Reverse Engineering form Memory World!](https://github.com/hluwa/Wallbreaker)
+
 ### Extract Thread Dump from Heap Dump
 
 ```bash

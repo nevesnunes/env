@@ -1,7 +1,6 @@
 # +
 
-- [WasmExplorer - convert c / wat / firefox asm](https://mbebenita.github.io/WasmExplorer/)
-- [GitHub \- WebAssembly/wabt: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
+- Online shell: [WebAssembly\.sh](https://webassembly.sh/)
 
 # documentation, specification
 
@@ -9,6 +8,9 @@
 - [GitHub \- WebAssembly/tool\-conventions: Conventions supporting interoperatibility between tools working with WebAssembly\.](https://github.com/WebAssembly/tool-conventions)
 
 # decompiling
+
+- [WasmExplorer - convert c / wat / firefox asm](https://mbebenita.github.io/WasmExplorer/)
+- [GitHub \- WebAssembly/wabt: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
 
 - Firefox: F12 > Debugger > Sources = `wasm://`
 

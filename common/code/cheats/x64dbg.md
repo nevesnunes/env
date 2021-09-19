@@ -11,6 +11,12 @@
 
 - Debug > Run to user code
 
+# DLL
+
+1. load rundll32.exe
+2. File > Change Command Line > `"C:\Windows\System32\rundll32.exe" "C:\foo.dll", #1`
+3. Option > Preferences > Check: "DLL Entry Point"
+
 # Scripting
 
 1. On `Command` input field:

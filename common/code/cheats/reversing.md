@@ -133,6 +133,10 @@
         - hw read break on packet buffer, frida hook on winsock calls
         - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
         - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
+    - registry
+        - [Regshot \- take a snapshot of your registry and then compare it with a second one](https://sourceforge.net/projects/regshot/)
+        - [REGDIFF \- command line tool to compare two registry files, export the registry, merge .REG files](http://p-nand-q.com/download/regdiff.html)
+        - [GitHub \- bitranox/fingerprint: Monitoring Registry and File Changes in Windows](https://github.com/bitranox/fingerprint)
     - APIs
         - [API Monitor: Spy on API Calls and COM Interfaces \(Freeware 32\-bit and 64\-bit Versions!\) \| rohitab\.com](http://www.rohitab.com/apimonitor)
         - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
@@ -142,10 +146,15 @@
         - [GitHub \- CodeCracker\-Tools/MegaDumper: Dump native and \.NET assemblies](https://github.com/CodeCracker-Tools/MegaDumper)
         - [GitHub \- tyranid/oleviewdotnet: A \.net OLE/COM viewer and inspector to merge functionality of OleView and Test Container](https://github.com/tyranid/oleviewdotnet)
         - [RpcView](http://rpcview.org)
-    - finding debug symbols
+    - debug symbols
         - take old versions, patches, API examples, API clients
             - e.g. https://lock.cmpxchg8b.com/lotus123.html
-    - finding functions without debug symbols
+        - Run-time type information (RTTI)
+            - applies to classes with virtual functions, compiled with Visual Studio
+            - describes vtable function addresses, type, and level of inheritance (hierarchy)
+            - https://sourceforge.net/projects/classinformer/
+            - https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information?view=msvc-160
+    - id functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
 - binary patching, code injection, fault inducing
     - removing field in request to trigger error message
