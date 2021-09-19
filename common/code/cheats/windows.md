@@ -730,6 +730,11 @@ Test-WSMan -ComputerName REMOTEMACHINE -Credential "MYDOMAIN\MYUSER" -Authentica
 
 # WMI access through WinRM
 Get-WSManInstance -ComputerName REMOTEMACHINE -Credential "MYDOMAIN\MYUSER" -Enumerate -ResourceURI wmicimv2/* -Filter "SELECT * FROM Win32_ComputerSystem"
+
+# Execute method
+$cred = get-credential
+Get-WmiObject -class win32_operatingsystem -ComputerName $server -credential $cred |
+    Invoke-WMIMethod -name Win32Shutdown -credential $cred -argumentlist @(2)
 ```
 
 # disasm

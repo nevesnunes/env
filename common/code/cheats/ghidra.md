@@ -74,6 +74,15 @@ typedef unsigned short word;
 
 - https://www.riverloopsecurity.com/blog/2019/05/pcode/
 
+# add cpu architecture / processor module
+
+- https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/
+- https://spinsel.dev/2020/06/17/ghidra-brainfuck-processor-1.html
+
+- https://ghidra.re/courses/languages/html/sleigh.html
+- https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Framework/SoftwareModeling/data/languages
+- https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Features/Decompiler/src/main/doc
+
 # change data string encoding
 
 1. Select bytes

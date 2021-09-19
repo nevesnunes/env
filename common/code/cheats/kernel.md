@@ -296,6 +296,10 @@ gsettings set org.gnome.desktop.media-handling automount false
 	- https://stackoverflow.com/questions/2103315/linux-kernel-system-call-hooking-example
 	- https://uwnthesis.wordpress.com/2016/12/26/basics-of-making-a-rootkit-from-syscall-to-hook/
 
+# custom syscalls
+
+- https://codingkaiser.blog/2021/07/17/create-your-own-system-calls%e2%80%8a-%e2%80%8aprocess-weights/
+
 # namespaces
 
 ```bash

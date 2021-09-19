@@ -9,21 +9,27 @@ export LC_ALL
 LANG=${SCRATCHPAD_TERMINAL_OLD_LANG:-${LANG}}
 export LANG
 
-fzf_cmd="$HOME/opt/fzf/bin/fzf -0 -1 --no-border"
+# Accept commands from either an entry or a query including arguments
+export FZF_DEFAULT_OPTS=
+fzf_cmd="$HOME/opt/fzf/bin/fzf -0 -1 --color=16,pointer:2 --no-border --print-query"
 eval "set -- $fzf_cmd"
 if command -v stest >/dev/null 2>&1; then
   cmd=$(IFS=: command eval 'stest -flx $PATH' \
     | awk '!a[$1]++' \
-    | "$@")
+    | "$@" \
+    | tail -1)
 else
   cmd=$(IFS=: command eval 'printf "%s\n" $PATH' \
-    | xargs -i find {} \
+    | xargs -I{} find {} \
       -executable \
       -maxdepth 1 \
       -type f \
-    | "$@")
+    | "$@" \
+    | tail -1)
 fi
-cmd_expanded=$(command -v "$cmd" 2>/dev/null)
+eval "set -- $cmd"
+cmd_expanded=$(command -v "$1" 2>/dev/null)
+shift
 if [ -n "$cmd_expanded" ]; then
   # Validation:
   # find /usr/bin -type f -executable -print0 | xargs -0 -i sh -c 'a=$(ldd "$1" 2>/dev/null | grep -q "^\s*lib\(n\?curses\|tinfo\)" && objdump -D "$1" | grep -m 1 "stdin@@"); [ -n "$a" ] && echo $1 --- $a' _ {}
@@ -64,8 +70,8 @@ if [ -n "$cmd_expanded" ]; then
     ' \
     && requires_tty=1
   if [ -n "$requires_tty" ]; then
-    exec "$cmd_expanded"
+    exec "$cmd_expanded" "$@"
   else
-    exec sh -c -i "nohup $cmd_expanded </dev/null >/dev/null 2>&1 &"
+    exec sh -c -i "nohup $cmd_expanded $* </dev/null >/dev/null 2>&1 &"
   fi
 fi

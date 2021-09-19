@@ -319,6 +319,10 @@ find / -perm -u=s -type f 2>/dev/null
     ```
 - TLS SNI field
     - https://www.mnemonic.no/blog/introducing-snicat/
+- Remote desktop
+    - base64 typed with AutoHotkey
+    - qr codes / 3 bit pixels
+        - https://www.pentestpartners.com/security-blog/exfiltration-by-encoding-data-in-pixel-colour-values/
 
 # encodings
 

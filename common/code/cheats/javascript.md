@@ -231,11 +231,12 @@ https://programming.vip/docs/realization-and-analysis-of-virtual-dom-diff-algori
 
 - https://stackoverflow.com/questions/34700438/global-events-in-angular
 
-# Browser Automation
+# Browser Automation / Headless Browser
 
 - selenium webdriver
 - pyppeteer
     - ~/code/guides/ctf/TFNS---writeups/2020-04-12-ByteBanditsCTF/notes-app/sources/mynotes/visit_link.py
+- https://htmlunit.sourceforge.io/
 
 # Selectors
 
