@@ -10,6 +10,8 @@
     - [windbg](./windbg.md)
     - https://github.com/HyperDbg/HyperDbg
     - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
+    - [processes](./windows.md#debug)
+    - [filesystems](./filesystem.md#debug)
 
 - [Tenet: A Trace Explorer for Reverse Engineers \| RET2 Systems Blog](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
 - [GitHub \- bootleg/ret\-sync: ret\-sync is a set of plugins that helps to synchronize a debugging session \(WinDbg/GDB/LLDB/OllyDbg2/x64dbg\) with IDA/Ghidra/Binary Ninja disassemblers\.](https://github.com/bootleg/ret-sync)

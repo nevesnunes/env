@@ -3,6 +3,10 @@
 - [disk](./disk.md)
 - [floppy](./floppy.md)
 
+# debug
+
+- Windows: [FileTest](http://www.zezula.net/en/fstools/filetest.html)
+
 # metadata
 
 ```bash

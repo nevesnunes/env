@@ -85,6 +85,23 @@ _NT_SYMBOL_PATH = C:\Windows\SYMBOLS*https://msdl.microsoft.com/download/symbols
 - https://voidsec.com/windows-kernel-debugging-exploitation/
 - https://www.endgame.com/blog/technical-blog/introduction-windows-kernel-debugging
 
+# trace sessions
+
+```
+# trace
+.sympath+ path
+!wmitrace.searchpath path
+!wmitrace.enable name guid
+!wmitrace.START name -kd
+
+# session buffers
+!wmitrace.logdump
+```
+
+- https://community.osr.com/discussion/157565/wpp-trace-output-in-kernel-debug-or-debugview
+- https://docs.microsoft.com/en-us/windows/win32/etw/configuring-and-starting-an-autologger-session
+- https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/wpp-software-tracing
+
 # log syscalls
 
 ```

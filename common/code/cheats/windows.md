@@ -1,6 +1,8 @@
 # +
 
-- [windbg](./windbg.md)
+- [batch](batch.md)
+- [powershell](powershell.ps1)
+- [wmi](./wmi.md)
 
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
@@ -104,10 +106,13 @@ disable virtual memory
 
 fiddler
 
-# debug - crash dump, memory dump
+# debug 
 
-https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps
-https://channel9.msdn.com/Shows/Defrag-Tools/Defrag-Tools-15-WinDbg-Bugchecks
+- process lifecycle (threads, exceptions, exit...)
+    - OllyDbg Test.exe
+- crash dump, memory dump
+    - https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps
+    - https://channel9.msdn.com/Shows/Defrag-Tools/Defrag-Tools-15-WinDbg-Bugchecks
 
 # WMI event handlers
 

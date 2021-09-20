@@ -129,6 +129,9 @@
         - FileDelete monitoring and recovery
             - https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon#event-id-23-filedelete-file-delete-archived
             - [Sysinternals Update April 2020 \- YouTube](https://www.youtube.com/watch?v=_MUP4tgdM7s)
+    - events
+        - Windows: debugview / tracelog -kd + tracefmt, [windbg](./windbg.md#trace-sessions), eventvwr, evtutil
+        - Linux: dmesg, journalctl
     - networking
         - hw read break on packet buffer, frida hook on winsock calls
         - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
