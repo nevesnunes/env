@@ -267,6 +267,7 @@ shodan host 1.2.3.4
 - http://www.gharchive.org/
 - http://10degres.net/github-tools-collection/
 - https://codeload.github.com/foo/bar/zip/master
+- https://connectionrequired.com/gitspective/
 
 - https://docs.github.com/en/github/searching-for-information-on-github/searching-for-repositories#search-by-repository-name-description-or-contents-of-the-readme-file
     - https://github.com/search?q=user%3Afoo+fork%3Atrue&type=Repositories

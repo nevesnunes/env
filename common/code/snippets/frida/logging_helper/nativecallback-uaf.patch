@@ -1,0 +1,114 @@
+diff --git a/bindings/gumjs/gumquickcore.c b/bindings/gumjs/gumquickcore.c
+index b0b54c3e..6ffa7179 100644
+--- a/bindings/gumjs/gumquickcore.c
++++ b/bindings/gumjs/gumquickcore.c
+@@ -139,6 +139,10 @@ struct _GumQuickNativeCallback
+   ffi_type ** atypes;
+   GSList * data;
+ 
++  gboolean destroyed;
++  gchar * ctor_stack;
++  gchar * dtor_stack;
++
+   GumQuickCore * core;
+ };
+ 
+@@ -1131,6 +1135,8 @@ _gum_quick_core_dispose (GumQuickCore * self)
+   self->weak_map_delete_method = JS_NULL;
+ 
+   gum_quick_core_teardown_atoms (self);
++
++  self->disposed = TRUE;
+ }
+ 
+ void
+@@ -3437,6 +3443,33 @@ invalid_value:
+   }
+ }
+ 
++static gchar *
++gum_quick_capture_js_stack_here (GumQuickCore * core)
++{
++  gchar * result;
++  JSContext * ctx = core->ctx;
++  JSValue exception_val, stack_val;
++  const char * stack, * newline;
++
++  if (core->disposed)
++    return g_strdup ("<teardown>");
++
++  JS_ThrowInternalError (ctx, "oops");
++  exception_val = JS_GetException (ctx);
++
++  stack_val = JS_GetPropertyStr (ctx, exception_val, "stack");
++  stack = JS_ToCString (ctx, stack_val);
++
++  newline = strchr (stack, '\n');
++  result = g_strdup ((newline != NULL) ? newline + 1 : stack);
++
++  JS_FreeCString (ctx, stack);
++  JS_FreeValue (ctx, stack_val);
++  JS_FreeValue (ctx, exception_val);
++
++  return result;
++}
++
+ GUMJS_DEFINE_CONSTRUCTOR (gumjs_native_callback_construct)
+ {
+   JSValue wrapper = JS_NULL;
+@@ -3518,6 +3551,8 @@ GUMJS_DEFINE_CONSTRUCTOR (gumjs_native_callback_construct)
+       JS_DupValue (ctx, func),
+       0);
+ 
++  cb->ctor_stack = gum_quick_capture_js_stack_here (core);
++
+   return wrapper;
+ 
+ alloc_failed:
+@@ -3560,6 +3595,10 @@ GUMJS_DEFINE_FINALIZER (gumjs_native_callback_finalize)
+ static void
+ gum_quick_native_callback_finalize (GumQuickNativeCallback * callback)
+ {
++  callback->destroyed = TRUE;
++  callback->dtor_stack = gum_quick_capture_js_stack_here (callback->core);
++
++#if 0
+   ffi_closure_free (callback->closure);
+ 
+   while (callback->data != NULL)
+@@ -3571,6 +3610,7 @@ gum_quick_native_callback_finalize (GumQuickNativeCallback * callback)
+   g_free (callback->atypes);
+ 
+   g_slice_free (GumQuickNativeCallback, callback);
++#endif
+ }
+ 
+ static void
+@@ -3592,6 +3632,15 @@ gum_quick_native_callback_invoke (ffi_cif * cif,
+   JSValue * argv;
+   JSValue result;
+ 
++  if (self->destroyed)
++  {
++    g_critical ("NativeCallback use-after-free detected!\n\nCreated here:\n%s"
++        "\n\nDestroyed here:\n%s",
++        self->ctor_stack,
++        self->dtor_stack);
++    return;
++  }
++
+   _gum_quick_scope_enter (&scope, core);
+ 
+   JS_DupValue (ctx, self->wrapper);
+diff --git a/bindings/gumjs/gumquickcore.h b/bindings/gumjs/gumquickcore.h
+index 43cbd355..136b7c8c 100644
+--- a/bindings/gumjs/gumquickcore.h
++++ b/bindings/gumjs/gumquickcore.h
+@@ -63,6 +63,7 @@ struct _GumQuickCore
+   JSContext * ctx;
+   GHashTable * module_data;
+   GumQuickScope * current_scope;
++  gboolean disposed;
+ 
+   GRecMutex * mutex;
+   volatile guint usage_count;

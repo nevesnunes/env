@@ -1,0 +1,179 @@
+commit 1251a7f314022f126266127fd174a472ac7b9710
+Author: Ole André Vadla Ravnås <oleavr@gmail.com>
+Date:   Tue Aug 20 23:21:49 2019 +0200
+
+    Add temporary logging to investigate Interceptor issue
+
+diff --git a/gum/backend-arm/guminterceptor-arm.c b/gum/backend-arm/guminterceptor-arm.c
+index 2be32087..cf878acf 100644
+--- a/gum/backend-arm/guminterceptor-arm.c
++++ b/gum/backend-arm/guminterceptor-arm.c
+@@ -420,6 +420,8 @@ _gum_interceptor_backend_create_trampoline (GumInterceptorBackend * self,
+   ctx->overwritten_prologue_len = reloc_bytes;
+   memcpy (ctx->overwritten_prologue, function_address, reloc_bytes);
+ 
++  gum_log ("\t[ctx=%p] Generated on_enter=%p on_leave=%p", ctx, ctx->on_enter_trampoline, ctx->on_leave_trampoline);
++
+   return TRUE;
+ }
+ 
+@@ -459,6 +461,7 @@ _gum_interceptor_backend_activate_trampoline (GumInterceptorBackend * self,
+         gum_emit_push_cpu_context_high_part (tw);
+         gum_thumb_writer_put_bl_imm (tw,
+             GUM_ADDRESS (ctx->trampoline_deflector->trampoline));
++        gum_log ("\t[ctx=%p] Using shared Thumb deflector at %p", ctx, ctx->trampoline_deflector->trampoline);
+       }
+       else
+       {
+@@ -466,12 +469,14 @@ _gum_interceptor_backend_activate_trampoline (GumInterceptorBackend * self,
+             GUM_INTERCEPTOR_THUMB_TINY_REDIRECT_SIZE);
+         gum_thumb_writer_put_b_imm (tw,
+             GUM_ADDRESS (ctx->trampoline_deflector->trampoline));
++        gum_log ("\t[ctx=%p] Using dedicated Thumb deflector at %p", ctx, ctx->trampoline_deflector->trampoline);
+       }
+     }
+     else
+     {
+       gum_thumb_writer_put_ldr_reg_address (tw, ARM_REG_PC,
+           GUM_ADDRESS (ctx->on_enter_trampoline));
++      gum_log ("\t[ctx=%p] Using direct Thumb branch", ctx);
+     }
+ 
+     gum_thumb_writer_flush (tw);
+@@ -490,11 +495,13 @@ _gum_interceptor_backend_activate_trampoline (GumInterceptorBackend * self,
+           GUM_INTERCEPTOR_ARM_TINY_REDIRECT_SIZE);
+       gum_arm_writer_put_b_imm (aw,
+           GUM_ADDRESS (ctx->trampoline_deflector->trampoline));
++      gum_log ("\t[ctx=%p] Using dedicated ARM deflector at %p", ctx, ctx->trampoline_deflector->trampoline);
+     }
+     else
+     {
+       gum_arm_writer_put_ldr_reg_address (aw, ARM_REG_PC,
+           GUM_ADDRESS (ctx->on_enter_trampoline));
++      gum_log ("\t[ctx=%p] Using direct ARM branch", ctx);
+     }
+ 
+     gum_arm_writer_flush (aw);
+@@ -508,6 +515,7 @@ _gum_interceptor_backend_deactivate_trampoline (GumInterceptorBackend * self,
+                                                 gpointer prologue)
+ {
+   memcpy (prologue, ctx->overwritten_prologue, ctx->overwritten_prologue_len);
++  gum_log ("\t[ctx=%p] Deactivated", ctx);
+ }
+ 
+ gpointer
+diff --git a/gum/gum.c b/gum/gum.c
+index 06539a12..b3eda4f7 100644
+--- a/gum/gum.c
++++ b/gum/gum.c
+@@ -602,6 +602,44 @@ gum_on_log_message (const gchar * log_domain,
+ #endif
+ }
+ 
++void
++gum_log (const gchar * format,
++         ...)
++{
++  static GumInterceptor * interceptor = NULL;
++  gchar * path, * message;
++  va_list args;
++  FILE * file;
++
++  if (interceptor == NULL)
++  {
++    interceptor = gum_interceptor_obtain ();
++  }
++
++  gum_interceptor_ignore_current_thread (interceptor);
++
++  path = g_strdup_printf ("/data/local/tmp/frida-debug/pid_%u-uid_%u.log", getpid (), getuid ());
++
++  va_start (args, format);
++  message = g_strdup_vprintf (format, args);
++  va_end (args);
++
++  file = fopen (path, "a");
++  if (file != NULL)
++  {
++    fputs (message, file);
++    fputc ('\n', file);
++
++    fclose (file);
++  }
++
++  g_free (message);
++
++  g_free (path);
++
++  gum_interceptor_unignore_current_thread (interceptor);
++}
++
+ static GumAddress *
+ gum_address_copy (const GumAddress * address)
+ {
+diff --git a/gum/gumdefs.h b/gum/gumdefs.h
+index 57e19414..a2b7c25f 100644
+--- a/gum/gumdefs.h
++++ b/gum/gumdefs.h
+@@ -447,6 +447,8 @@ GUM_API void gum_cpu_context_replace_return_value (GumCpuContext * self,
+ GUM_API GType gum_address_get_type (void) G_GNUC_CONST;
+ GUM_API GType gum_cpu_type_get_type (void) G_GNUC_CONST;
+ 
++GUM_API void gum_log (const gchar * format, ...);
++
+ G_END_DECLS
+ 
+ #endif
+diff --git a/gum/guminterceptor.c b/gum/guminterceptor.c
+index 00d08790..14f9e171 100644
+--- a/gum/guminterceptor.c
++++ b/gum/guminterceptor.c
+@@ -15,6 +15,7 @@
+ #include "gumprocess.h"
+ #include "gumtls.h"
+ 
++#include <dlfcn.h>
+ #include <string.h>
+ 
+ #ifdef HAVE_MIPS
+@@ -665,6 +666,22 @@ gum_interceptor_instrument (GumInterceptor * self,
+   if (ctx == NULL)
+     return NULL;
+ 
++  {
++    Dl_info info;
++    const gchar * name;
++
++    if (dladdr (function_address, &info) != 0 && info.dli_sname != NULL)
++    {
++      name = info.dli_sname;
++    }
++    else
++    {
++      name = "(unknown)";
++    }
++
++    gum_log ("Hooking %p (%s) => ctx=%p", function_address, name, ctx);
++  }
++
+   if (!_gum_interceptor_backend_create_trampoline (self->backend, ctx))
+   {
+     gum_function_context_finalize (ctx);
+@@ -1204,6 +1221,8 @@ _gum_function_context_begin_invocation (GumFunctionContext * function_ctx,
+   system_error = gum_thread_get_system_error ();
+ #endif
+ 
++  gum_log ("[ctx=%p] begin_invocation()", function_ctx);
++
+   if (interceptor->selected_thread_id != 0)
+   {
+     invoke_listeners =
+@@ -1322,6 +1341,8 @@ _gum_function_context_end_invocation (GumFunctionContext * function_ctx,
+   GPtrArray * listener_entries;
+   guint i;
+ 
++  gum_log ("[ctx=%p] end_invocation()", function_ctx);
++
+ #ifdef G_OS_WIN32
+   system_error = gum_thread_get_system_error ();
+ #endif

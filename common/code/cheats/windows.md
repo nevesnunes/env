@@ -110,6 +110,7 @@ fiddler
 
 - process lifecycle (threads, exceptions, exit...)
     - OllyDbg Test.exe
+        - ![testexe.gif](./files/testexe.gif)
 - crash dump, memory dump
     - https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps
     - https://channel9.msdn.com/Shows/Defrag-Tools/Defrag-Tools-15-WinDbg-Bugchecks

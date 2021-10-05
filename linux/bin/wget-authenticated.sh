@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# `--user-agent`: Unused, since credentials stored in 
-# cookies may depend on the user-agent of the browser 
+# `--user-agent`: Unused, since credentials stored in
+# cookies may depend on the user-agent of the browser
 # that generated them
 #
 # `--span-hosts`: Used if assets stored in different subdomains

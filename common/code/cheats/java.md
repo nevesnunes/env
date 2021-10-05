@@ -420,7 +420,11 @@ jcmd $PID VM.system_properties
 jcmd $PID VM.flags
 ```
 
-# code dump
+# bytecode dump
+
+- https://github.com/Securityinbits/blog-posts/tree/master/java_agent
+
+# native code dump
 
 ### Java >= 9
 
@@ -1359,3 +1363,9 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 	```
 	(0).toString().charAt(0).toChars(99)%5b0%5d.toString()+(0).toString().charAt(0).toChars(117)%5b0%5d.toString()+(0).toString().charAt(0).toChars(114)%5b0%5d.toString()+(0).toString().charAt(0).toChars(108)%5b0%5d.toString()+(0).toString().charAt(0).toChars(32)%5b0%5d.toString()+
 	```
+
+# case studies
+
+- [Solving warsaw&\#8217;s Java Crackme 3 &\#8211; ReWolf&\#039;s blog](http://blog.rewolf.pl/blog/?p=856)
+- [crackmes\.one: noverify's GraxCode's Java CrackMe 1 \- nullsecurity\.org/articles](http://www.nullsecurity.org/article/crackmes_one_noverify_graxcode_java_crackme_1)
+- [Solving Java Reversing Challenges \- Noverify&\#39;s Crackme 3](https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/)

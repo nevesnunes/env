@@ -317,6 +317,7 @@ unrar x foo.part1.rar
 - [QuickBMS generic files extractor and reimporter \- Luigi Auriemma](http://quickbms.aluigi.org/)
 - [GitHub \- Sembiance/dexvert: Decompress EXtract and CONVert old file formats into modern ones](https://github.com/Sembiance/dexvert)
 - [Index of /fileFormatSamples/](https://telparia.com/fileFormatSamples/)
+- [Category:Electronic File Formats \- Just Solve the File Format Problem](http://fileformats.archiveteam.org/wiki/Category:Electronic_File_Formats)
 
 ### polyglots
 
@@ -427,6 +428,11 @@ file -k * | grep '\s*data' | cut -d':' -f1 | xargs -i env LC_ALL=C awk 'match($0
     - https://github.com/apoirrier/CTFs-writeups/blob/master/DarkCTF2020/Misc/QuickFix.md
 - extract patterns from specifications
     - http://www.libpng.org/pub/png/spec/1.2/PNG-Chunks.html
+        
+# NAND storage
+
+- strip out bytes of separate / adjacent areas (used in ECC)
+    - e.g. https://medium.com/tenable-techblog/arris-cable-modem-teardown-5e294b7007eb
 
 # case studies
 

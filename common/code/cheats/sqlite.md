@@ -5,9 +5,11 @@ sqlite3 foo.db .dump | vim -
 echo 'select * from sqlite_master;' | sqlite3 foo.db | vim -
 ```
 
+```
 .mode list
 .output out.txt
 .read in.sql
+```
 
 ```sql
 -- list tables / schemas
@@ -16,13 +18,21 @@ SELECT name, sql FROM sqlite_master WHERE type='table'
 
 # csv
 
+```
 .mode csv
 .import foo.csv foo
+```
+
+```bash
+sqlite3 -header -csv foo.db < query.sql > data.csv
+```
 
 # columns
 
+```
 .schema foo
 PRAGMA table_info('foo')
+```
 
 # iphone
 

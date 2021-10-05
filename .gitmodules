@@ -22,3 +22,6 @@
 [submodule "common/code/snippets/gdb/gdb_python_api"]
 	path = common/code/snippets/gdb/gdb_python_api
 	url = https://github.com/jefftrull/gdb_python_api
+[submodule "common/code/snippets/frida/logging_helper"]
+	path = common/code/snippets/frida/logging_helper
+	url = https://gist.github.com/oleavr/00d71868d88d597ee322a5392db17af6

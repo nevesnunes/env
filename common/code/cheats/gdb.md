@@ -78,6 +78,11 @@ x/i $pc
 x/-1i $pc
 # 0x7fffff6681d9 <_pselect+89>: syscall
 
+# structs
+set print pretty on
+p (short[16])*foo->bar
+p foo->bar@16
+
 p/x $rbp - 0xc
 $5 = 0x7fffffffd124
 x/d $rbp - 0x0c

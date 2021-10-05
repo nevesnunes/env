@@ -7,7 +7,7 @@
 
 set -eux
 
-version=${1:-4.4}.
+version=${1:-5.4}.
 config_dir=${2:-/home/$USER/code/config/kernel}
 download_dir=${3:-/home/$USER/code/dependencies}
 

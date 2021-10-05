@@ -1,0 +1,16 @@
+diff --git a/src/frida.vala b/src/frida.vala
+index eb431593..11002e37 100644
+--- a/src/frida.vala
++++ b/src/frida.vala
+@@ -2602,8 +2602,11 @@ namespace Frida {
+ 
+ 		private async void do_perform_operation () {
+ 			try {
++				printerr (">>> %s\n", this.get_type ().name ());
+ 				result = yield perform_operation ();
++				printerr ("<<< %s\n", this.get_type ().name ());
+ 			} catch (GLib.Error e) {
++				printerr ("<<< %s error=\"%s\"\n", this.get_type ().name (), e.message);
+ 				error = e;
+ 			}
+ 

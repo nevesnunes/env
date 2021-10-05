@@ -77,6 +77,17 @@ Lookbehind Conditional | `(?(?<=...)yes|no)` | `\(\%(condition\)\@<=then\|\%(con
 - https://www.regular-expressions.info/lookaround.html
 - https://www.regular-expressions.info/conditional.html
 
+### posix alternative
+
+```
+s/^foo$/bar/g;
+s/^foo\([^a-zA-Z0-9]\)/bar\1/g;
+s/\([^a-zA-Z0-9]\)foo$/\1bar/g;
+s/\([^a-zA-Z0-9]\)foo\([^a-zA-Z0-9]\)foo\([^a-zA-Z0-9]\)foo\([^a-zA-Z0-9]\)/\1bar\2bar\3bar\4/g;
+s/\([^a-zA-Z0-9]\)foo\([^a-zA-Z0-9]\)foo\([^a-zA-Z0-9]\)/\1bar\2bar\3/g;
+s/\([^a-zA-Z0-9]\)foo\([^a-zA-Z0-9]\)/\1bar\2/g;
+```
+
 # regex with back references followed by number
 
 ### awk

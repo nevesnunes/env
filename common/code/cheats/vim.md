@@ -149,6 +149,12 @@ Alternative: `CTRL-SHIFT-u, 0041, ENTER`
 :set virtualedit=all
 ```
 
+# Hex edit zip file
+
+```bash
+vim -b --cmd 'let g:loaded_zipPlugin = 1' foo.zip
+```
+
 # Jail, rvim
 
 ```

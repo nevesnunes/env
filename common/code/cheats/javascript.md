@@ -518,4 +518,6 @@ https://github.com/bretcope/node-gc-profiler
 
 # case studies
 
-https://stackoverflow.com/questions/38637003/what-s-happening-in-this-code-with-number-objects-holding-properties-and-increme#38637228
+- https://stackoverflow.com/questions/38637003/what-s-happening-in-this-code-with-number-objects-holding-properties-and-increme#38637228
+- https://www.ekioh.com/devblog/google-docs-in-a-clean-room-browser/
+    > Pressing some keys inserted one letter, but other keys inserted that letter twice.

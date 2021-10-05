@@ -134,6 +134,10 @@ console.log(grc(64));
 
 - [Brute forcing device passwords](https://cybergibbons.com/reverse-engineering-2/brute-forcing-device-passwords/)
 
+### checksums
+
+- [GitHub \- 8051Enthusiast/delsum: A reverse engineer&\#39;s checksum toolbox](https://github.com/8051Enthusiast/delsum)
+
 # rsa
 
 - [GitHub \- Ganapati/RsaCtfTool: RSA attack tool \(mainly for ctf\) \- retreive private key from weak public key and/or uncipher data](https://github.com/Ganapati/RsaCtfTool)

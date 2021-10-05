@@ -64,6 +64,11 @@ find . -name "*.pcd" -type f -exec convert '{}[5]' ../../pngs/'{}'.png \;
 # Alternatives:
 g++ main.cpp pcdDecode.cpp -ljpeg -lpthread -o pcdtojpeg
 find . -name "*.pcd" -type f -exec pcdtojpeg -r 5 '{}' \;
+
+# PDF to JPEG
+pdfimages -all foo.pdf ./out/
+pdftoppm -tiff -r 300 foo.pdf ./out/pg
+pdftoppm -jpeg -jpegopt quality=100 -r 300 foo.pdf ./out/pg
 ```
 
 # write / export from plaintext
@@ -241,3 +246,14 @@ Filters > Distorts > Whirl and Pinch...
 
 - ~/code/snippets/graphics/redpwnCTF2019-dedication.py
     - [CTFtime\.org / redpwnCTF 2019 / Dedication / Writeup](https://ctftime.org/writeup/16173)
+
+# small size / lossy compression
+
+```bash
+pngquant --quality 40-60 -s1 --skip-if-larger -f foo.png && \
+  ect -9 --allfilters --pal_sort=20 --mt-deflate foo-fs8.png
+# ||
+mogrify -strip PNG8:foo.png
+# ||
+cwebp -psnr 40 foo.png -o foo.webp
+```

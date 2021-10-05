@@ -240,42 +240,46 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
 
 # tooling
 
-clang-tidy
-ASAN
-    gcc -fuse-ld=gold
-    gcc -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -static-libasan
-valgrind --vgdb=full --vgdb-error=0 ./a.out
+- clang-tidy
+- ASAN
+    - gcc -fuse-ld=gold
+    - gcc -g -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -static-libasan
+- valgrind --vgdb=full --vgdb-error=0 ./a.out
 
-cpplint
-clazy
-include-what-you-use -Xiwyu
+- cpplint
+- clazy
+- include-what-you-use -Xiwyu
 
-gcov
-https://www.cdash.org/
+- gcov
+- https://www.cdash.org/
 
-gcc -ggdb3
-gdb, cgdb
+- gcc -ggdb3
+- gdb, cgdb
+    ```
     -D_FORTIFY_SOURCE=1
     python gdb.execute()
     python gdb.parser_and_eval()
     python help('gdb')
-lldb
-rr
-undodb
-live recorder
+    ```
+- lldb
+- rr
+- undodb
+- live recorder
 
-perf, sysprof
-valgrind --trace-children=yes
-ftrace
-    trace-cmd
-strace -k
-    prints backtrace
+- perf, sysprof
+- valgrind --trace-children=yes
+- ftrace: trace-cmd
+- strace -k
 
-https://github.com/dalance/flexlint
+- [GitHub \- dalance/flexlint: A flexible linter with rules defined by regular expression](https://github.com/dalance/flexlint)
+- [Finding Number Related Memory Corruption Vulns](https://maxwelldulin.com/BlogPost?post=9715056640)
+    ```
+    -ftrapv
+    -fsanitize=integer,float-cast-overflow
+    ```
 
-http://www.mingw.org/wiki/MS_resource_compiler
-
-https://chromium.googlesource.com/chromium/src.git/+/master/docs/linux/eclipse_dev.md
+- http://www.mingw.org/wiki/MS_resource_compiler
+- https://chromium.googlesource.com/chromium/src.git/+/master/docs/linux/eclipse_dev.md
 
 ---
 

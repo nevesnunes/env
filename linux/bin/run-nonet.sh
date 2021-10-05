@@ -69,7 +69,7 @@ sudo iptables -A OUTPUT -m owner --uid-owner "$(id -u nonet)" -j DROP
 
 # Configure X server access control
 if xdpyinfo -queryExtensions -ext all | grep -i security; then
-  sudo su - nonet -c "unset XAUTHORITY; xauth add $(xauth list)"
+  sudo su - nonet -c "unset XAUTHORITY; xauth add $(xauth list | sed 's/\/unix:[0-9]*/'"$DISPLAY"'/g')"
   # ||
   # xauth generate :0 . trusted 
   # xauth add ${HOST}:0 . $(xxd -l 16 -p /dev/urandom)

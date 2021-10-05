@@ -12,6 +12,9 @@
     - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
     - [processes](./windows.md#debug)
     - [filesystems](./filesystem.md#debug)
+- embedded systems: JTAG
+    - https://github.com/riscv/riscv-debug-spec
+        - https://github.com/pulp-platform/riscv-dbg/blob/master/doc/debug-system.md
 
 - [Tenet: A Trace Explorer for Reverse Engineers \| RET2 Systems Blog](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
 - [GitHub \- bootleg/ret\-sync: ret\-sync is a set of plugins that helps to synchronize a debugging session \(WinDbg/GDB/LLDB/OllyDbg2/x64dbg\) with IDA/Ghidra/Binary Ninja disassemblers\.](https://github.com/bootleg/ret-sync)
@@ -26,6 +29,7 @@
 - https://abda.nl/posts/understanding-ptrace/
 - https://blog.tartanllama.xyz/writing-a-linux-debugger-setup/
 - https://lucasg.github.io/2016/11/27/How-to-Create-and-Debug-a-Process-on-Windows/
+- https://aarzilli.github.io/debugger-bibliography/
 
 # documentation
 
@@ -217,6 +221,7 @@ rr ./foo
 - [Reasons why bugs might feel &\#34;impossible&\#34;](https://jvns.ca/blog/2021/06/08/reasons-why-bugs-might-feel-impossible/)
 - [What does debugging a program look like?](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/)
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
+- [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
 
 ```

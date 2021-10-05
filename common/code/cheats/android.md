@@ -16,9 +16,10 @@
 - [0x05j-testing-resiliency-against-reverse-engineering](https://mobile-security.gitbook.io/mobile-security-testing-guide/android-testing-guide/0x05j-testing-resiliency-against-reverse-engineering)
 - [Decompiling Google Safety Net \- Jared Rummler](https://jaredrummler.com/2017/03/07/decompiling-google-safety-net/)
 
-# debugger
+# debugging
 
 - [GitHub \- JesusFreke/smalidea: smalidea is a smali language plugin for IntelliJ IDEA](https://github.com/JesusFreke/smalidea)
+- [GitHub \- bannsec/enableAPKDebugging: Application to simplify apk\-&gt;apk w/ debugging enabled](https://github.com/bannsec/enableAPKDebugging)
 
 # emulation
 

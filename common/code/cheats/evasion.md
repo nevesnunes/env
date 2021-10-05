@@ -137,6 +137,10 @@ long ptrace(int request, int pid, void *addr, void *data) {
 env LD_PRELOAD=ptrace.so ./foo
 ```
 
+# anti-dbi, anti-frida
+
+- [r2\-pay: anti\-debug, anti\-root & anti\-frida \(part 1\) \| Romain Thomas](https://www.romainthomas.fr/post/20-09-r2con-obfuscated-whitebox-part1/)
+
 # copy protection
 
 - Detection
@@ -160,3 +164,4 @@ env LD_PRELOAD=ptrace.so ./foo
 
 - https://tccontre.blogspot.com/2020/11/interesting-formbook-crypter.html
 - https://www.rezilion.com/blog/the-race-to-limit-ptrace/
+- https://katyscode.wordpress.com/2021/01/24/reverse-engineering-adventures-brute-force-function-search-or-how-to-crack-genshin-impact-with-powershell/

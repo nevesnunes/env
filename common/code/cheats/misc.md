@@ -353,6 +353,14 @@ find / -perm -u=s -type f 2>/dev/null
     - [RFC 7518 \- JSON Web Algorithms \(JWA\)](https://tools.ietf.org/html/rfc7518#page-30)
 - https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
 
+### base64
+
+- Search encoded content using all possible 3 byte offsets
+    - [Lee Holmes \| Searching for Content in Base\-64 Strings](https://www.leeholmes.com/searching-for-content-in-base-64-strings/)
+- Multiple encodings of same data using variable paddings
+    - [Encoding Mutations: A Base64 Case Study](https://n0.lol/encmute/)
+    - [GitHub \- netspooky/b64mute: Base64 Mutator](https://github.com/netspooky/b64mute)
+
 ### unicode
 
 - hostnames

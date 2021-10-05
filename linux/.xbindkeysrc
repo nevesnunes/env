@@ -158,13 +158,17 @@ Mod4 + y
 "xlayouts.sh Split"
 Mod1 + Mod4 + y
 
+# "Open link"
+"mpv-open-link.sh"
+Mod4 + v
+
 # "Run || Raise Browser"
 "xapp.sh browser"
 Mod4 + b
 
 # "Run || Raise GVim"
-"xapp.sh gvim"
-Mod4 + v
+# "xapp.sh gvim"
+# Mod4 + v
 
 # "Run || Raise Tmux"
 "xapp.sh term"
@@ -195,8 +199,8 @@ Shift + Mod4 + Return
 Mod1 + Mod4 + Return
 
 # "Gvim"
-"gvim"
-Shift + Mod4 + v
+# "gvim"
+# Shift + Mod4 + v
 
 # "Gvim" quick edits
 "user-terminal.sh gvim -v -c 'noremap q :%y+ <bar> :qa!<CR>'"

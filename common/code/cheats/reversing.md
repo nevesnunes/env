@@ -42,6 +42,8 @@
 - roms
     - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
     - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
+    - [GitHub \- jrspruitt/ubi\_reader: Collection of Python scripts for reading information about and extracting data from UBI and UBIFS images\.](https://github.com/jrspruitt/ubi_reader)
+    - [FlashcatUSB \- Flashcat Memory Programmers \- NAND NOR Serial and Parallel](https://flashcatusb.com/)
 - constants
     - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)
     - https://hiddencodes.wordpress.com/2011/12/23/string-manipulation-functions-in-glibc-ms-visual-studio-and-0x7efefeff-0x81010100-0x81010101/
@@ -75,7 +77,10 @@
     - https://justine.storage.googleapis.com/memzoom/index.html
     - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
     - [Hex viewers and editors](https://twitter.com/i/events/841916822014332930)
-- diff
+- hex diff
+    - [GitHub \- 8051Enthusiast/biodiff: Hex diff viewer using alignment algorithms from biology](https://github.com/8051Enthusiast/biodiff)
+        - e.g. [Test Point Break: Analysis of Huawei’s OTA Fix For BootROM Vulnerabilities \- taszk\.io labs](https://labs.taszk.io/articles/post/huawei_kirin990_bootrom_patch/)
+- binary diff
     - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
     - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
     - [DarunGrim: A Patch Analysis and Binary Diffing Tool](http://www.darungrim.org/)
@@ -103,6 +108,7 @@
             - ELF format: init_array
             - PE format: TLS callback
         - debugger: break on thread exit, dll unload, process exit, then check stack
+        - [Intercepting Program Startup on Windows and Trying to Not Mess Things Up / Habr](https://habr.com/en/post/544456/)
     - finding `main()` function
         - any format:
             - || follow xrefs to exit(), find which function's return value (saved in rax) is passed to exit()
@@ -142,6 +148,7 @@
         - [GitHub \- bitranox/fingerprint: Monitoring Registry and File Changes in Windows](https://github.com/bitranox/fingerprint)
     - APIs
         - [API Monitor: Spy on API Calls and COM Interfaces \(Freeware 32\-bit and 64\-bit Versions!\) \| rohitab\.com](http://www.rohitab.com/apimonitor)
+        - [WinAPIOverride : Free Advanced API Monitor, spy or override API or exe internal functions](http://jacquelin.potier.free.fr/winapioverride32/)
         - [GitHub \- poona/APIMiner: API Logger for Windows Executables](https://github.com/poona/APIMiner/)
         - [GitHub \- hasherezade/tiny\_tracer: A Pin Tool for tracing API calls etc](https://github.com/hasherezade/tiny_tracer)
         - [GitHub \- microsoft/Detours: Detours is a software package for monitoring and instrumenting API calls on Windows\.  It is distributed in source code form\.](https://github.com/microsoft/Detours)
@@ -159,7 +166,7 @@
             - https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information?view=msvc-160
     - id functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
-- binary patching, code injection, fault inducing
+- binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
     - removing field in request to trigger error message
         - https://ferib.dev/blog.php?l=post/How_I_automated_McDonalds_mobile_game_to_win_free_iphones
     - image parsing coverage changes on error
@@ -283,6 +290,16 @@ perf trace record
 - [GitHub \- notaz/ia32rtools](https://github.com/notaz/ia32rtools)
     - [Starcraft on Open Pandora: How the Port Came to Be &\#8211; Giant Pockets](https://www.giantpockets.com/starcraft-pandora-port-came/)
 
+# binary rewriting
+
+- [GitHub \- GJDuck/e9patch: A powerful static binary rewriting tool](https://github.com/GJDuck/e9patch)
+    - [Binary Rewriting without Control Flow Recovery](https://www.comp.nus.edu.sg/~gregory/papers/e9patch.pdf)
+- [GitHub \- HexHive/retrowrite: RetroWrite \-\-  Retrofitting compiler passes though binary rewriting](https://github.com/HexHive/retrowrite)
+- [GitHub \- utds3lab/multiverse: A static binary rewriter that does not use heuristics](https://github.com/utds3lab/multiverse)
+- [GitHub \- dyninst/dyninst: DyninstAPI: Tools for binary instrumentation, analysis, and modification\.](https://github.com/dyninst/dyninst)
+- [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
+    - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
+
 # clean room design
 
 - [Myths About Samba](https://www.samba.org/samba/docs/myths_about_samba.html)
@@ -294,6 +311,8 @@ perf trace record
     - [Changing EXE file into DLL library](https://lubiki.keeperklan.com/other_docs/change_exe_to_dll.htm)
     - [How to turn a DLL into a standalone EXE](https://hshrzd.wordpress.com/2016/07/21/how-to-turn-a-dll-into-a-standalone-exe/)
     - [Calling Arbitrary Functions In EXEs: Performing Calls to EXE Functions Like DLL Exports](https://blog.whtaguy.com/2020/04/calling-arbitrary-functions-in-exes.html)
+    - [windows \- how to use class member function defined in a exe within a dll \- Reverse Engineering Stack Exchange](https://reverseengineering.stackexchange.com/questions/26006/how-to-use-class-member-function-defined-in-a-exe-within-a-dll)
+    - [Transforming an ELF executable into a library — LIEF Documentation](https://lief-project.github.io/doc/latest/tutorials/08_elf_bin2lib.html)
     - [Modifying and running a binary by recompiling a reverse engineered disassembly](https://www.devever.net/~hl/recompile)
 - easter egg in wrong password handler
     - https://twitter.com/suddendesu/status/1386994549302562818
@@ -335,12 +354,6 @@ perf trace record
     patch -u x1 1_2.diff
     paste -sd '' < x1 | xxd -r -p > 2
     ```
-- x64dbg
-- [GitHub \- GJDuck/e9patch: A powerful static binary rewriting tool](https://github.com/GJDuck/e9patch)
-    - [Binary Rewriting without Control Flow Recovery](https://www.comp.nus.edu.sg/~gregory/papers/e9patch.pdf)
-- [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
-    - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
-
 - Multi-threading safe call patching
     - [NativeCall::set_destination_mt_safe()](https://github.com/AdoptOpenJDK/openjdk-jdk11u/blob/fa3ecefdd6eb14a910ae75b7c0aefb1cf8eedcce/src/hotspot/cpu/x86/nativeInst_x86.cpp#L258): patch a single jump at the beginning, then the last 3 bytes, then the first 2 bytes
         - ensure cache invalidation with memory barrier calls

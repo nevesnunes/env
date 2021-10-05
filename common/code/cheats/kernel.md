@@ -142,6 +142,8 @@ systemctl enable snap-core-current-etc-ssl-certs.mount
 - eBPF 3.15, 4.1
    - https://github.com/iovisor/bcc
 
+- https://www.kernel.org/doc/html/latest/trace/tracepoint-analysis.html#lower-level-analysis-with-pcl
+
 # swap
 
 https://wiki.archlinux.org/index.php/zswap
@@ -421,6 +423,9 @@ gdb /boot/vmlinux /proc/kcore
     - store log: pstore
     - boot into dump: kdump, kexec
     - https://www.kernel.org/doc/html/latest/admin-guide/bug-hunting.html
+- [GitHub \- bannsec/linux\-kernel\-lab: Lab Environment For Learning About The Linux Kernel](https://github.com/bannsec/linux-kernel-lab)
+
+### References
 
 - https://e-labworks.com/talks/ew2020
 - https://www.oreilly.com/library/view/linux-device-drivers/0596005903/ch04.html
@@ -430,4 +435,4 @@ gdb /boot/vmlinux /proc/kcore
 
 # testing
 
-- https://github.com/linux-test-project/ltp
+- [GitHub \- linux\-test\-project/ltp: Linux Test Project http://linux\-test\-project\.github\.io/](https://github.com/linux-test-project/ltp)

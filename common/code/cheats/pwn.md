@@ -256,6 +256,13 @@ https://pwn-maher.blogspot.com/2020/11/pwn10-heap-exploitation-for-glibc-232.htm
     - FULL RELRO is enabled/GOT is read-only
     - https://github.com/OpenToAllCTF/Tips#_hooks
 
+- eBPF
+    - https://www.zerodayinitiative.com/blog/2020/4/8/cve-2020-8835-linux-kernel-privilege-escalation-via-improper-ebpf-program-verification
+    - https://www.graplsecurity.com/post/kernel-pwning-with-ebpf-a-love-story
+        - using maps to leak addresses, bypass verifier pointer checks to make OOB read/writes
+- Windows CTF
+    - https://googleprojectzero.blogspot.com/2019/08/down-rabbit-hole.html
+
 # format string
 
 Reading:

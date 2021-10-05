@@ -260,30 +260,25 @@ x() {
 }
 
 # colorize output
+# Reference: `man terminfo`
 c() {
   # foreground
-  tpfn=$(tput reset) # normal
-  tpfb=$(tput bold)
+  fn=$(tput sgr0) # turn off all attributes (i.e. normal text)
+  fb=$(tput bold) # turn on bold (extra bright) mode
   
   # normal colours
-  tpf0=$(tput setaf 0) # black
-  tpf1=$(tput setaf 1) # red
-  tpf2=$(tput setaf 2) # green
-  tpf3=$(tput setaf 3) # yellow
-  tpf4=$(tput setaf 4) # blue
-  tpf5=$(tput setaf 5) # magenta
-  tpf6=$(tput setaf 6) # cyan
-  tpf7=$(tput setaf 7) # white
+  f0=$(tput setaf 0) # black
+  f1=$(tput setaf 1) # red
+  f2=$(tput setaf 2) # green
+  f3=$(tput setaf 3) # yellow
+  f4=$(tput setaf 4) # blue
+  f5=$(tput setaf 5) # magenta
+  f6=$(tput setaf 6) # cyan
+  f7=$(tput setaf 7) # white
 
-  while IFS= read -r i; do
-    if echo "$i" | grep -q ERR; then
-      echo "$tpfb$tpf1$i$tpfn"
-    elif echo "$i" | grep -q WARN; then
-      echo "$tpfb$tpf5$i$tpfn"
-    elif echo "$i" | grep -q INFO; then
-      echo "$tpfb$tpf2$i$tpfn"
-    else
-      echo "$i"
-    fi
-  done
+  sed '
+    s/\b\(ERR\|ERROR\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
+    s/\b\(WARN\|WARNING\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
+    s/\b\(INFO\)\b\(.*\)/'"$fb$f2\1\2$fn"'/g;
+  ' /dev/stdin
 }

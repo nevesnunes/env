@@ -26,6 +26,12 @@ print(inspect.cleandoc(c))
 flask-unsign --sign --cookie "{'end': '2020-07-13 10:59:59+0000'}" --secret 'Time' --legacy
 ```
 
+# Try older versions
+
+```bash
+docker run -it --rm -v $(pwd):/tmp/foo:z python:3.5-slim sh
+```
+
 # Performance
 
 - Use JIT compiler: [PyPy](https://www.pypy.org/)

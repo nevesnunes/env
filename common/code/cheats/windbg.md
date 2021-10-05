@@ -142,6 +142,15 @@ sxn c00000005
 bd *; gu; be *;
 ```
 
+# conditional breakpoint
+
+```
+bp USER32!RegisterWindowMessageW "gu; j (@rax != 0xC046) 'gc'; ''"
+g
+# stopped
+k
+```
+
 # printf open files
 
 ```

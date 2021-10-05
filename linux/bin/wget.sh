@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # TODO: Generate user agent from browser that generated cookies file
 # - make request with webdriver / headless instance, take user agent from headers
@@ -24,13 +24,13 @@ wget \
   --convert-links \
   -e robots=off \
   --header='Accept-Language: en,en-US;q=0.5' \
-  --limit-rate=500k --random-wait --wait=0.2 \
+  --limit-rate=500k --random-wait --wait=1.5 \
   --load-cookies "$cookies" \
   --max-redirect=20 \
   --no-parent \
-  --no-use-server-timestamps \
   --page-requisites \
   --server-response \
+  --timestamping \
   --trust-server-names \
   --user-agent="Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0" \
   "$url"

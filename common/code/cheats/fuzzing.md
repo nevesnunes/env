@@ -1,7 +1,7 @@
 # Fault injection
 
-- use byte value of surronding data to bypass input sanitization
-- apply faults at elements seperated by delimiters to reduce test cases
+- use byte value of surrounding data to bypass input sanitization
+- apply faults at elements separated by delimiters to reduce test cases
 - apply deltas to common buffer sizes (e.g. k^2, k^10, -+20)
 
 ### Feedback based fuzzing

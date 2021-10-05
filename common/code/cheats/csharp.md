@@ -56,3 +56,8 @@ $env:COREHOST_TRACE = 1
 # References
 
 - [error MSB4236: The SDK &\#39;Microsoft\.NET\.Sdk&\#39; specified could not be found\. · Issue \#2532 · dotnet/msbuild · GitHub](https://github.com/microsoft/msbuild/issues/2532)
+
+# Case Studies
+
+- bugfixing with bytecode reassembly
+    - https://www.c-sharpcorner.com/UploadFile/ajyadav123/bug-fixing-net-reverse-engineering-part-4/
