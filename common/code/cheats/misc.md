@@ -328,8 +328,13 @@ find / -perm -u=s -type f 2>/dev/null
 
 ### binary-to-text
 
-- base64
-    - 4 char block = 3 char message
+- public keys - JWK
+    - [RFC 7518 \- JSON Web Algorithms \(JWA\)](https://tools.ietf.org/html/rfc7518#page-30)
+- https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
+
+### base64
+
+- 4 char block = 3 char message
     ```bash
     echo 00 | xxd -r -p | base64
     # AA==
@@ -346,15 +351,9 @@ find / -perm -u=s -type f 2>/dev/null
     echo 414141 | xxd -r -p | base64
     # QUFB
     ```
-    - URL payloads: base64url
-        - `s/+/-/g; s/\//_/g`
-        - [RFC 4648 \- The Base16, Base32, and Base64 Data Encodings \- Base 64 Encoding with URL and Filename Safe Alphabet](https://tools.ietf.org/html/rfc4648#page-7)
-- public keys - JWK
-    - [RFC 7518 \- JSON Web Algorithms \(JWA\)](https://tools.ietf.org/html/rfc7518#page-30)
-- https://en.wikipedia.org/wiki/Category:Binary-to-text_encoding_formats
-
-### base64
-
+- URL payloads: base64url
+    - `s/+/-/g; s/\//_/g`
+    - [RFC 4648 \- The Base16, Base32, and Base64 Data Encodings \- Base 64 Encoding with URL and Filename Safe Alphabet](https://tools.ietf.org/html/rfc4648#page-7)
 - Search encoded content using all possible 3 byte offsets
     - [Lee Holmes \| Searching for Content in Base\-64 Strings](https://www.leeholmes.com/searching-for-content-in-base-64-strings/)
 - Multiple encodings of same data using variable paddings

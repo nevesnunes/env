@@ -238,3 +238,7 @@ tar -xvf vmnet.tar && cd vmnet-only && make && cp ../vmnet.o "/lib/modules/$(una
 
 - `savevm` / `loadvm`
     - https://translatedcode.wordpress.com/2015/07/06/tricks-for-debugging-qemu-savevm-snapshots/
+
+# qemu passthrough
+
+- [GitHub \- darkguy2008/hotplugger: VirtIO \(VFIO\) USB Port passthrough helper](https://github.com/darkguy2008/hotplugger)

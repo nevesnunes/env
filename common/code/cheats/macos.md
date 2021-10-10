@@ -304,6 +304,12 @@ vmware.log:
 ideviceinstaller -i _.ipa
 ```
 
+# iOS trace
+
+```bash
+idevicesyslog
+```
+
 # search
 
 - [mdfind Man Page \- macOS \- SS64\.com](https://ss64.com/osx/mdfind.html)

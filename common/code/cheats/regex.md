@@ -117,12 +117,12 @@ re.sub("(abc)bcd","\g<1>222","abcbcd");
 
 # parser combinators
 
-[introduction\-to\-parser\-combinators\.md · GitHub](https://gist.github.com/yelouafi/556e5159e869952335e01f6b473c4ec1)
+- [introduction\-to\-parser\-combinators\.md · GitHub](https://gist.github.com/yelouafi/556e5159e869952335e01f6b473c4ec1)
 
 # performance
 
-https://learnbyexample.github.io/substitution-with-ripgrep/
-https://swtch.com/~rsc/regexp/
+- https://learnbyexample.github.io/substitution-with-ripgrep/
+- https://swtch.com/~rsc/regexp/
 
 # Blind Regex Injection, REDoS
 
@@ -149,19 +149,20 @@ https://swtch.com/~rsc/regexp/
     - use negative lookaround for "bar"
     - or: delete "foo" and "bar" matching lines, then match "foo"
 
-https://alf.nu/RegexGolf
-    [Best known Regex Golf solutions \(SPOILERS\) \- Classic level set \- \(SPOILERS\) · GitHub](https://gist.github.com/Davidebyzero/9221685)
-        ~/Downloads/Collected solutions for Regex Golf.md
-    [Regex Golf | Hacker News](https://news.ycombinator.com/item?id=6941231)
-[http://play\.inginf\.units\.it solutions · GitHub](https://gist.github.com/pavi2410/d7a6b038ff7d1386ea9dbf3bb5aa6b48)
-    ~/Downloads/play.inginf.units.it-solutions.md
-https://codegolf.stackexchange.com/questions/tagged/regular-expression
+- https://alf.nu/RegexGolf
+    - [Best known Regex Golf solutions \(SPOILERS\) \- Classic level set \- \(SPOILERS\) · GitHub](https://gist.github.com/Davidebyzero/9221685)
+        - ~/Downloads/Collected solutions for Regex Golf.md
+    - [Regex Golf | Hacker News](https://news.ycombinator.com/item?id=6941231)
+- [http://play\.inginf\.units\.it solutions · GitHub](https://gist.github.com/pavi2410/d7a6b038ff7d1386ea9dbf3bb5aa6b48)
+    - ~/Downloads/play.inginf.units.it-solutions.md
+- https://codegolf.stackexchange.com/questions/tagged/regular-expression
 
-https://stackoverflow.com/questions/53497/regular-expression-that-matches-valid-ipv6-addresses
-    https://nbviewer.jupyter.org/github/rasbt/python_reference/blob/master/tutorials/useful_regex.ipynb
-        ~/code/snippets/regex.ipynb
-[Automatic Generation of Text Extraction Patterns from Examples](http://regex.inginf.units.it/)
-    [Automatic Regex Golf Player!](http://regex.inginf.units.it/golf/)
-[GitHub \- MaLeLabTs/RegexGenerator: This project contains the source code of a tool for generating regular expressions for text extraction:  1\. automatically, 2\. based only on examples of the desired behavior, 3\. without any external hint about how the target regex should look like](https://github.com/MaLeLabTs/RegexGenerator)
-[GitHub \- devongovett/regexgen: Generate regular expressions that match a set of strings](https://github.com/devongovett/regexgen)
-[xkcd 1313: Regex Golf (Part 2: Infinite Problems) \- Jupyter Notebook Viewer](https://nbviewer.jupyter.org/url/norvig.com/ipython/xkcd1313-part2.ipynb)
+- https://mathiasbynens.be/demo/url-regex
+- https://stackoverflow.com/questions/53497/regular-expression-that-matches-valid-ipv6-addresses
+    - https://nbviewer.jupyter.org/github/rasbt/python_reference/blob/master/tutorials/useful_regex.ipynb
+        - ~/code/snippets/regex.ipynb
+- [Automatic Generation of Text Extraction Patterns from Examples](http://regex.inginf.units.it/)
+    - [Automatic Regex Golf Player!](http://regex.inginf.units.it/golf/)
+- [GitHub \- MaLeLabTs/RegexGenerator: This project contains the source code of a tool for generating regular expressions for text extraction:  1\. automatically, 2\. based only on examples of the desired behavior, 3\. without any external hint about how the target regex should look like](https://github.com/MaLeLabTs/RegexGenerator)
+- [GitHub \- devongovett/regexgen: Generate regular expressions that match a set of strings](https://github.com/devongovett/regexgen)
+- [xkcd 1313: Regex Golf (Part 2: Infinite Problems) \- Jupyter Notebook Viewer](https://nbviewer.jupyter.org/url/norvig.com/ipython/xkcd1313-part2.ipynb)

@@ -1366,6 +1366,16 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 
 # case studies
 
+### ctf
+
 - [Solving warsaw&\#8217;s Java Crackme 3 &\#8211; ReWolf&\#039;s blog](http://blog.rewolf.pl/blog/?p=856)
 - [crackmes\.one: noverify's GraxCode's Java CrackMe 1 \- nullsecurity\.org/articles](http://www.nullsecurity.org/article/crackmes_one_noverify_graxcode_java_crackme_1)
 - [Solving Java Reversing Challenges \- Noverify&\#39;s Crackme 3](https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/)
+
+### performance
+
+- `corePoolSize=0` causes worker queue busy polling
+	- [100% CPU: My Fault?](https://josephmate.github.io/2021-10-03-my-bug-used-up-100cpu-or-did-it/)
+	- [\(JDK\-8129861\) High processor load for ScheduledThreadPoolExecutor with 0 core threads \- Java Bug System](https://bugs.openjdk.java.net/browse/JDK-8129861)
+- [Vanilla Java](http://vanillajava.blogspot.com/)
+- [Mechanical Sympathy](https://mechanical-sympathy.blogspot.com/)

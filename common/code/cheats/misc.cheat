@@ -105,7 +105,7 @@ arp -a
 PM_DEBUG=true pm-suspend
 
 # Qt debug
-export QT_DEBUG_PLUGINS=1
+export QT_DEBUG_PLUGINS=1 QML_IMPORT_TRACE=1
 
 # Dynamic library debug
 export LD_DEBUG=libs

@@ -74,6 +74,10 @@ typedef unsigned short word;
 
 - https://www.riverloopsecurity.com/blog/2019/05/pcode/
 
+# emulation
+
+- [GitHub \- Nalen98/GhidraEmu: Native Pcode emulator](https://github.com/Nalen98/GhidraEmu)
+
 # add cpu architecture / processor module
 
 - https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/

@@ -54,6 +54,8 @@ Client script:
 session.enable_debugger()
 ```
 
+- MemoryAccessMonitor
+
 Instrumentation script:
 
 ```javascript

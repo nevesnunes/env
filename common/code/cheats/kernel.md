@@ -148,7 +148,7 @@ systemctl enable snap-core-current-etc-ssl-certs.mount
 
 https://wiki.archlinux.org/index.php/zswap
 
-# format handlers
+# miscellaneous binary format interpreters
 
 ```bash
 mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc
@@ -427,10 +427,11 @@ gdb /boot/vmlinux /proc/kcore
 
 ### References
 
-- https://e-labworks.com/talks/ew2020
 - https://www.oreilly.com/library/view/linux-device-drivers/0596005903/ch04.html
-- https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
 - https://www.linux.it/~rubini/docs/kconf/
+- https://www.kernel.org/doc/html/latest/kernel-hacking/hacking.html
+- https://fedoraproject.org/wiki/How_to_debug_Dracut_problems
+- https://e-labworks.com/talks/ew2020
 - GDB and Linux Kernel Awareness - Peter Griffin
 
 # testing

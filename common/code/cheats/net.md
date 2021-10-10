@@ -34,6 +34,7 @@
 - https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
 - https://hc.apache.org/httpclient-3.x/performance.html
 - [The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
+- [Coping with the TCP TIME\-WAIT state on busy Linux servers](https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#summary)
 
 # transfer
 

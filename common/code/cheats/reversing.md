@@ -40,6 +40,7 @@
     - [GitHub \- ExeinfoASL/ASL: ExeinfoPE](https://github.com/ExeinfoASL/ASL)
     - [methodologies](./evasion.md#generic)
 - roms
+    - [Symgrate \- A Web API for Thumb2 Firmware Reverse Engineering](https://symgrate.com/)
     - [uCON64 \- ReadMe](https://ucon64.sourceforge.io/ucon64/readme.html)
     - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
     - [GitHub \- jrspruitt/ubi\_reader: Collection of Python scripts for reading information about and extracting data from UBI and UBIFS images\.](https://github.com/jrspruitt/ubi_reader)

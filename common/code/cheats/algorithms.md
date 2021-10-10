@@ -1,3 +1,34 @@
+# +
+
+- https://www.baeldung.com/java-collections-complexity
+
+- https://github.com/fragglet/c-algorithms
+- http://fxr.watson.org/fxr/source/sys/queue.h
+    - https://github.com/TaborKelly/queue-example/blob/master/queue_example.c
+
+- [GitHub \- VAR\-solutions/Algorithms: A repository of different Algorithms and Data Structures implemented in many programming languages\.](https://github.com/VAR-solutions/Algorithms)
+
+- ~/code/doc/algorithms/big-o-cheatsheet.pdf
+- ~/code/doc/algorithms/CLRS-3rd.pdf
+- ~/code/doc/algorithms/CLRS-3rd-Solutions.pdf
+- ~/code/doc/algorithms/TheAlgorithmDesignManual.pdf
+- http://ssp.impulsetrain.com/big-o.html
+- https://en.wikipedia.org/wiki/List_of_logarithmic_identities
+
+- https://news.ycombinator.com/item?id=7953725
+    - https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_Tortoise_and_Hare
+- https://en.wikipedia.org/wiki/Karatsuba_algorithm
+
+- string processing
+    - LZW algorithm
+    - longest common subsequence algorithm
+- tree graph processing
+    - post order depth first search
+- list processing
+    - group elements in an array into sub arrays of length k
+- integer processing
+    - change of radix algorithm (e.g. change a number from base 10 to base 2)
+
 # Big-O
 
 Runtime execution proportional to a given input size
@@ -8,6 +39,7 @@ O(f) = { g ∣ g(n) <= M*f(n) for some M > 0 for large n}
 
 # Sorts
 
+```
 Algorithm      Time Complexity                           Space Complexity
                Best        Average        Worst          Worst
 Quicksort      Ω(n log(n)) Θ(n log(n))    O(n^2)         O(log(n))
@@ -23,6 +55,7 @@ Bucket Sort    Ω(n+k)      Θ(n+k)         O(n^2)         O(n)
 Radix Sort     Ω(nk)       Θ(nk)          O(nk)          O(n+k)
 Counting Sort  Ω(n+k)      Θ(n+k)         O(n+k)         O(k)
 Cubesort       Ω(n)        Θ(n log(n))    O(n log(n))    O(n)
+```
 
 Selection Sort
     go through array, updating minimum
@@ -561,6 +594,11 @@ hex(0xabcd >> 8)  # 0xab
 hex(0xff << 8)  # 0xff00
 ```
 
+# xor
+
+- [That XOR Trick](https://florian.github.io/xor-trick/)
+- [All About XOR](https://accu.org/journals/overload/20/109/lewin_1915/)
+
 # case studies
 
 - Iteration order of hash tables
@@ -571,37 +609,3 @@ hex(0xff << 8)  # 0xff00
         > D3DFMT_A8R8G8B8 (Direct3D 9) is equivalent to DXGI_FORMAT_B8G8R8A8_UNORM (DXGI / Direct3D 10+). Note that one enumeration lists the components in reverse order of the other, and that this is correct! https://docs.microsoft.com/en-us/windows/win32/direct3d10/d3... .
         > Documentation often completely omits information endian or encoding - and when it doesn't, it's often hidden away where you'll never find it, and usually assumes x86/x64/little-endian processors. The behavior on big-endian machines is best found out through testing - even if the documentation is clear, the documentation stands a good chances of lying, and CI probably doesn't test on big-endian meaning bugs have likely arisen, and there's a good chance your copy of the library is old and doesn't contain any bugfixes.
         > In light of all of the above, RGB vs BGR confusion is one of the most natural points of confusion to run across when dealing with image formats. "Just use the type system!" ignores where these bugs crop up - (de)serialization, converting streams of bytes to types or vicea versa. Someone must write the code, declaration, whatever - and the type system has no means of ensuring that correctly matches whatever not-computer-readable spec that the (de)serialization is supposed to match - and so it will, frequently, be understandably incorrect.
-
-# +
-
-https://github.com/VAR-solutions/Algorithms
-
-https://github.com/fragglet/c-algorithms
-http://fxr.watson.org/fxr/source/sys/queue.h
-    https://github.com/TaborKelly/queue-example/blob/master/queue_example.c
-
-~/code/doc/algorithms/big-o-cheatsheet.pdf
-~/code/doc/algorithms/CLRS-3rd.pdf
-~/code/doc/algorithms/CLRS-3rd-Solutions.pdf
-~/code/doc/algorithms/TheAlgorithmDesignManual.pdf
-http://ssp.impulsetrain.com/big-o.html
-https://en.wikipedia.org/wiki/List_of_logarithmic_identities
-
-https://www.baeldung.com/java-collections-complexity
-
-https://news.ycombinator.com/item?id=7953725
-    https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_Tortoise_and_Hare
-
-https://en.wikipedia.org/wiki/Karatsuba_algorithm
-
-string processing
-    LZW algorithm
-    longest common subsequence algorithm
-tree graph processing
-    post order depth first search
-list processing
-    group elements in an array into sub arrays of length k
-integer processing
-    change of radix algorithm (e.g. change a number from base 10 to base 2)
-
-
