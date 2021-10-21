@@ -49,6 +49,8 @@ $env:MSBuildSDKsPath = 'C:\Program Files\dotnet\sdk\3.1.101\Sdks'
 
 # Debug
 
+- ildasm + ilasm /debug 
+
 ```ps1
 $env:COREHOST_TRACE = 1
 ```

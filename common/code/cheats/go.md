@@ -36,6 +36,8 @@ GO111MODULE=on go get golang.org/x/tools/gopls@latest
 # Dissassembly
 
 - [GitHub \- felberj/gotools: Plugin for Ghidra to assist reversing Golang binaries](https://github.com/felberj/gotools)
+- [GitHub \- sibears/IDAGolangHelper: Set of IDA Pro scripts for parsing GoLang types information stored in compiled binary](https://github.com/sibears/IDAGolangHelper)
+
 - [Reverse Engineering Go, Part II &\#8211; OSIRIS Lab at NYU Tandon](https://blog.osiris.cyber.nyu.edu/2019/12/19/ugo-ghidra-plugin/)
 - [Reverse Engineering Go Binaries with Ghidra \- CUJO AI](https://cujo.com/reverse-engineering-go-binaries-with-ghidra/)
     - https://github.com/getCUJO/ThreatIntel/tree/master/Research_materials/Golang_reversing

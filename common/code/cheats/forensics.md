@@ -159,6 +159,11 @@ gs -sPDFPassword=$PASS -q -dNOPAUSE -dBATCH -dSAFER -r300 -sDEVICE=pdfwrite -sOu
 # decompress streams
 qpdf --qdf --object-streams=disable foo.pdf foo.decompressed.pdf
 
+# edit
+qpdf -qdf --stream-data=uncompress foo.pdf foo.decompressed.pdf
+# [...]
+mutool clean
+
 # enumerate references
 f=challenge.pdf && { \
   peepdf "$f" | \
@@ -169,6 +174,7 @@ f=challenge.pdf && { \
 ```
 
 - https://blog.didierstevens.com/programs/pdf-tools/
+- https://www.bitsgalore.org/2021/09/06/pdf-processing-and-analysis-with-open-source-tools
 - references to objects, tree
     - https://eternal-todo.com/tools/peepdf-pdf-analysis-tool#usage
 - streams

@@ -11,6 +11,7 @@
   {"test": 1, "test\ud800": 2}
   {"test": 2, "extra": /*, "test": 1, "extra2": */}
   ```
+- [Parsing JSON is a Minefield](http://seriot.ch/projects/parsing_json.html)
 
 # Non-Standard Extensions
 

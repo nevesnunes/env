@@ -67,6 +67,38 @@ Alternatives:
     - ~/share/311/SB16W3x/INSTALL.EXE
     - IRQ: 7
 
+# MS-DOS 6.22
+
+```bash
+qemu-img create -f qcow msdos.disk 2G
+
+# install
+qemu-system-i386 -hda msdos.disk -m 64 -L . -fda dos622_1.img -boot a
+# ||
+sudo mount -o rw -t vfat Disk1.img ~/media/floppy/1
+qemu-system-i386 -hda msdos.disk -m 64 -L . -fda fat:floppy:rw:$HOME/media/floppy/1 -boot a
+# (qemu) change floppy0 dos622_2.img
+
+# run
+qemu-system-i386 -hda msdos.disk -m 64 -L . -soundhw sb16,adlib,pcspk
+
+# share
+dd if=/dev/zero of="$HOME/media/floppy/image" bs=1440K count=1
+mkfs.vfat ~/media/floppy/image
+mkdir -p ~/media/floppy/mount
+sudo mount -o rw -t vfat ~/media/floppy/image ~/media/floppy/mount
+```
+
+- Sound
+    ```
+    BLASTER=A220 I5 D1 H5 P330 T5
+    ```
+- Graphics
+    ```
+    edit windows\system.ini
+    # display.drv=VGA.DRV
+    ```
+
 # case studies
 
 - https://cloakedthargoid.wordpress.com/hacking-with-dosbox-debugger/

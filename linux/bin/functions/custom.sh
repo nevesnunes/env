@@ -276,9 +276,15 @@ c() {
   f6=$(tput setaf 6) # cyan
   f7=$(tput setaf 7) # white
 
-  sed '
-    s/\b\(ERR\|ERROR\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
-    s/\b\(WARN\|WARNING\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
-    s/\b\(INFO\)\b\(.*\)/'"$fb$f2\1\2$fn"'/g;
-  ' /dev/stdin
+  if [ $# -gt 0 ]; then
+    sed '
+      s/\b\('"$*"'\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
+    ' /dev/stdin
+  else
+    sed '
+      s/\b\(ERR\|ERROR\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
+      s/\b\(WARN\|WARNING\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
+      s/\b\(INFO\)\b\(.*\)/'"$fb$f2\1\2$fn"'/g;
+    ' /dev/stdin
+  fi
 }

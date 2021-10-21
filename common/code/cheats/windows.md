@@ -37,6 +37,11 @@ ffmpeg -f gdigrab -framerate 30 -i desktop output.mkv
 ./Windows/Microsoft.NET/Framework/v4.0.30319/Config/web.config
 
 icacls Download /deny Everyone:(OI)(IO)(X)
+
+# SMB
+\\live.sysinternals.com\tools\PsExec.exe -s -c cmd.exe
+# WebDav over HTTPS
+net use z: hxxps://live.sysinternals.com/tools && z:\PsExec.exe -s -c cmd.exe
 ```
 
 ```ps1

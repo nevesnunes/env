@@ -425,13 +425,28 @@ otool -tV /usr/libexec/foo
 
 # classic
 
+- Docs
+    - [GitHub \- dgelessus/mac\_file\_format\_docs: A collection of technical documentation and specifications about Apple\- and Mac\-related file formats](https://github.com/dgelessus/mac_file_format_docs)
+    - http://freaky.staticusers.net/textfiles/
 - Debug
+    - Macsbug, MacNosy
+    - [MacsBug on QEMU \- E\-Maculation](https://www.emaculation.com/forum/viewtopic.php?p=60310)
+- Disassembly, Resources
+    - ResEdit, Resourcerer, Macintosh Programmer's Workshop
     - http://basalgangster.macgui.com/RetroMacComputing/The_Long_View/Entries/2010/5/1_Resources_and_Resource_Editors.html
+    - http://basalgangster.macgui.com/RetroMacComputing/The_Long_View/Entries/2010/4/10_Fixing_Canvas.html
 - MacOS 7
     - https://www.emaculation.com/doku.php/basiliskii_osx_setup
-        1. DiskTools_MacOS7.img
-        2. OS753InstallerParts.dsk
-        3. foo.img
+    - Volumes
+        - Before install
+            1. DiskTools_MacOS7.img
+            2. OS753InstallerParts.dsk
+            3. foo.img
+        - After install
+            1. foo.img
+    - Mac Model ID: Mac IIci (MacOS 7.x)
+    - CPU Type: 68030 with FPU
+    - ROM File: old_world/512KB ROMs/1989-09 - 368CADFE - Mac IIci.ROM
 - MacOS 9
     ```bash
     qemu-img create -f qcow2 foo.img 4G

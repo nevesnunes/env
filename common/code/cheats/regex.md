@@ -46,7 +46,7 @@ https://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotati
 
 - General Expression
     - `\B`: assert position where `\b` does not match
-    - `\b`: assert position at a word boundary: `(^\w|\w$|\W\w|\w\W)`
+    - `\b`: assert position at a word boundary: `(^\w|\w$|\W\w|\w\W)` || `(?<!\w)(?=\w)|(?<=\w)(?!\w)`
 - Vim Dialect
     - `\<`: assert position at word start
     - `\>`: assert position at word end

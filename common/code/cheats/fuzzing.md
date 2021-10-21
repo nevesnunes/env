@@ -53,6 +53,7 @@ gobuster dir --url http://vulnerable --wordlist /tmp/wordlist
 gobuster dir --url http://vulnerable --wordlist ~/opt/zap-extensions/tree/master/addOns/directorylistv2_3/src/main/zapHomeFiles/fuzzers/dirbuster/directory-list-2.3-medium.txt
 # ||
 gobuster dir --url http://vulnerable --wordlist SecLists/Discovery/Web_Content/raft-large-files.txt
+for i in files directories; do gobuster dir -t 30 -u http://vulnerable -w SecLists/Discovery/Web_Content/raft-medium-$i.txt; done
 
 # Specific file extensions
 gobuster -x .php,.html

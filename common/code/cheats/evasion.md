@@ -14,8 +14,16 @@
 - dynamic analysis
     - [Cuckoo Sandbox \- Automated Malware Analysis \- Installation](https://cuckoo.readthedocs.io/en/latest/installation/)
     - [INetSim: Internet Services Simulation Suite \- Features](https://www.inetsim.org/features.html)
+    - APIs
+        - Memory allocation/map: VirtualAllocEx, NtCreateSection
+        - Write code/data: WriteProcessMemory, NtMapViewOfSection
+        - Execution: CreateRemoteThread, SetThreadContext, QueueUserAPC
+    - stack alignment
+- static analysis
+    - high-entropy data
 - process injection
     - [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
+    - [AddressOfEntryPoint Code Injection without VirtualAllocEx RWX \- Red Teaming Techniques & Experiments](https://www.ired.team/offensive-security/code-injection-process-injection/addressofentrypoint-code-injection-without-virtualallocex-rwx)
 - registry keys
     ```
     {HKCU,HKLM}\Software\Microsoft\Windows\CurrentVersion\{Run,RunOnce,RunOnceEx,RunServices,RunServicesOnce}
@@ -101,12 +109,27 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 ### Windows
 
 - user mode (ring 3)
-    - https://github.com/x64dbg/ScyllaHide
+    - [GitHub \- x64dbg/ScyllaHide: Advanced usermode anti\-anti\-debugger\. Forked from https://bitbucket\.org/NtQuery/scyllahide](https://github.com/x64dbg/ScyllaHide)
 - kernel mode (ring 0)
-    - https://github.com/mrexodia/TitanHide
+    - [GitHub \- mrexodia/TitanHide: Hiding kernel\-driver for x86/x64\.](https://github.com/mrexodia/TitanHide)
 
 - [NtQueryInformationProcess function \(winternl\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess?redirectedfrom=MSDN)
     - ProcessDebugPort != 0
+- heap tail checking enabled => 0xABABABAB signature appended at end of allocated blocks
+    ```fasm
+    call [ebp+RtlAllocateHeap]
+    cmp [eax+10h], ecx  ; 0xABABABAB
+    jz short debugger_detected
+    ```
+- raise exception => hardware breakpoint addresses present in ContextRecord structure passed to exception handler
+    ```fasm
+    mov eax, [esp+0xc]  ; ContextRecord
+    mov ecx, [eax+0x4]  ; DR0
+    or ecx, [eax+0x8]  ; DR1
+    or ecx, [eax+0xc]  ; DR2
+    or ecx, [eax+0x10]  ; DR3
+    jne debugger_detected
+    ```
 
 ### LD_PRELOAD
 

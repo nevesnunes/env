@@ -72,11 +72,33 @@
 
 # methodologies
 
+- query partitioning: generate several queries outputting disjoint subsets of original's set, then compare union of subsets with original's set
+    > The core idea of Query Partitioning is to, starting from a given original query, derive multiple, more complex queries (called partitioning queries), each of which computes a partition of the result. The individual partitions are then composed to compute a result set that must be equivalent to the original query's result set. A bug in the DBMS is detected when these result sets differ. 
+        ```sql
+        CREATE TABLE t0(c0 INT);
+        CREATE TABLE t1(c0 DOUBLE);
+        INSERT INTO t0 VALUES (0);
+        INSERT INTO t1 VALUES('-0');
+
+        SELECT * FROM t0, t1; -- {0, -0}
+
+        SELECT * FROM t0, t1 WHERE t0.c0 = t1.c0
+        UNION ALL SELECT * FROM t0, t1 WHERE NOT(t0.c0 = t1.c0)
+        UNION ALL SELECT * FROM t0, t1 WHERE (t0.c0 = t1.c0) IS NULL; -- {}
+        ```
+    - https://doi.org/10.1145/3428279
+    - [Manuel Rigger \| Bugs found in Database Management Systems](https://www.manuelrigger.at/dbms-bugs/)
+- remote host file to network relay
+    > [...] the best logging method on WindowsCE is the use of remote debugging using a log file name of tcp://<ip-addr>:<port>.
+    - https://gnupg.org/documentation/manuals/gnupg/Debugging-Hints.html
 - predictable attach after running
     > - Because gdbserver is attached to the already running process (as opposed to situation where process would be started by gdbserver) it can miss some code execution which take place soon after the application start.
     > - [...] I usually write some endless while loop and then change the control variable after gdb is fully started.
     - https://mhandroid.wordpress.com/2011/01/25/how-cc-debugging-works-on-android/
-- USR1 interrupt handler as alternative to attaching under debugger
+- interrupt handler as alternative to attaching under debugger
+    - e.g. Linux: USR1
+- attaching to debugger using trap
+    - e.g. Mac OS 68k: `FKEY` resource containing `_Debugger trap + RTS instruction` and ID 7, invoke debugger with keybind `Command-Shift-7` 
 - interactive flow control
     > - If there’s a piece of code that’s not doing what you expect, add a loop around it whose condition is a variable that can be modified by the debugger. The resulting binary can be effectively unchanged such that the loop executes once, but if a debugger is present and you see the strange behavior, you can go back and step through it. 1a. This can also be done by modifying the instruction pointer, but that requires restoring register state. I do this too but it’s more tricky.
     > - The unused portion of the stack often contains clues about what happened recently.
@@ -122,6 +144,15 @@
 - alternative to reverse debugging: vm snapshots
 - general guidelines
     - [Testing and Debugging \- Dr\. Jody Paul](http://jodypaul.com/SWE/TD/TestDebug.html)
+
+### cross-pollination
+
+- refraction using tape
+    > Use Scotch tape on an IC to more easily identify part markings. Just beware of ESD when removing!
+    - https://twitter.com/joegrand/status/985962672683343872
+- diff using light
+    > Back in the day when I was poring over slightly different disassemblies, I'd print them both out, stack them, and look at them with a light behind them. That's how you diff old school.
+    - https://twitter.com/babbageboole/status/1323442671730397184
 
 ### APIs
 

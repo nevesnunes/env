@@ -326,6 +326,9 @@ sudo modprobe nbd
 sudo qemu-nbd -c /dev/nbd0 foo.qcow
 sudo partx -l /dev/nbd0
 sudo mount /dev/nbd0p1 ~/media/disk/
+
+# teardown
+sudo qemu-nbd -d /dev/nbd0
 ```
 
 # raw images

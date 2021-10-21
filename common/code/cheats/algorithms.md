@@ -558,19 +558,23 @@ skiena
 
 ### closed forms
 
-Sum(from: i=1, to: n, body: 1) = n
-
 arithmetic progressions
+
+```
+Sum(from: i=1, to: n, body: 1) = n
 
 Sum(from: i=1, to: n, body: i) =
 Sum(from: i=1, to: n/2, body: (i+(n-i+1))) =
 n(n+1)/2
 
 S(n, p) = Sum(from: i, to: n, body: i^p) = Theta(n^(p+1))
+```
 
 geometric progressions
 
+```
 G(n, p) = Sum(from: i=0, to: n, body: p^i) = p(p^(n+1)-1)/(p-1)
+```
 
 other
 
@@ -586,13 +590,15 @@ permutations
 
 combinations
 
-# bit manipulation, twiddling
+# bit manipulation, bit twiddling
 
 ```python
 hex(0xabcdef >> 8 && 0xff)  # 0xcd
 hex(0xabcd >> 8)  # 0xab
 hex(0xff << 8)  # 0xff00
 ```
+
+- [bithacks](https://graphics.stanford.edu/~seander/bithacks.html)
 
 # xor
 
@@ -609,3 +615,10 @@ hex(0xff << 8)  # 0xff00
         > D3DFMT_A8R8G8B8 (Direct3D 9) is equivalent to DXGI_FORMAT_B8G8R8A8_UNORM (DXGI / Direct3D 10+). Note that one enumeration lists the components in reverse order of the other, and that this is correct! https://docs.microsoft.com/en-us/windows/win32/direct3d10/d3... .
         > Documentation often completely omits information endian or encoding - and when it doesn't, it's often hidden away where you'll never find it, and usually assumes x86/x64/little-endian processors. The behavior on big-endian machines is best found out through testing - even if the documentation is clear, the documentation stands a good chances of lying, and CI probably doesn't test on big-endian meaning bugs have likely arisen, and there's a good chance your copy of the library is old and doesn't contain any bugfixes.
         > In light of all of the above, RGB vs BGR confusion is one of the most natural points of confusion to run across when dealing with image formats. "Just use the type system!" ignores where these bugs crop up - (de)serialization, converting streams of bytes to types or vicea versa. Someone must write the code, declaration, whatever - and the type system has no means of ensuring that correctly matches whatever not-computer-readable spec that the (de)serialization is supposed to match - and so it will, frequently, be understandably incorrect.
+- ring buffer wraparound
+    - http://doc.9gridchan.org/blog/161214.hubfsdebug
+        > Periodically, the client I was not actively using would stop receiving messages, although it could still send data successfully.
+        > Hubfs uses ring-buffer type data structures, and the logic for handling "wrap around" is tricky. The bug is occurring when multiple readers' requests are stored at the maximum end of the queue, wraparound happens, and then their requests are forgotten.
+    - http://doc.9gridchan.org/blog/161216.hubfsbugfix
+        > Rather than having complex logic changing the pattern the mail carrier walks, it was much simpler to "change the numbers on the boxes" and copy the pointers from the end of the message queue to the beginning. That way, no extra variables or variant message-answering loops were needed.
+    - what if there's double wraparound? won't k messages in the 2nd wraparound overwrite the first k messages in the 1st wraparound?

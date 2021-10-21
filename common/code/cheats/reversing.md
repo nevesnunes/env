@@ -34,7 +34,12 @@
         - [IDA](./ida.md#FLIRT)
 - resources
     - PE format: `wrestool`
-    - NE format: [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
+    - NE format: 
+        - [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
+        - Borland Resource Workshop
+        - eXeScope
+- installers
+    - [GitHub \- Bioruebe/UniExtract2: Universal Extractor 2 is a tool to extract files from any type of archive or installer\.](https://github.com/Bioruebe/UniExtract2)
 - packers
     - [GitHub \- horsicq/Detect\-It\-Easy: Program for determining types of files for Windows, Linux and MacOS\.](https://github.com/horsicq/Detect-It-Easy)
     - [GitHub \- ExeinfoASL/ASL: ExeinfoPE](https://github.com/ExeinfoASL/ASL)
@@ -107,7 +112,7 @@
     - lifecycle
         - before OEP
             - ELF format: init_array
-            - PE format: TLS callback
+            - PE format: TLS callback (IMAGE_DIRECTORY_ENTRY_TLS)
         - debugger: break on thread exit, dll unload, process exit, then check stack
         - [Intercepting Program Startup on Windows and Trying to Not Mess Things Up / Habr](https://habr.com/en/post/544456/)
     - finding `main()` function
@@ -160,14 +165,40 @@
     - debug symbols
         - take old versions, patches, API examples, API clients
             - e.g. https://lock.cmpxchg8b.com/lotus123.html
-        - Run-time type information (RTTI)
-            - applies to classes with virtual functions, compiled with Visual Studio
-            - describes vtable function addresses, type, and level of inheritance (hierarchy)
-            - https://sourceforge.net/projects/classinformer/
-            - https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information?view=msvc-160
+        - Windows:
+            - Run-time type information (RTTI)
+                - applies to classes with virtual functions, compiled with Visual Studio
+                - describes vtable function addresses, type, and level of inheritance (hierarchy)
+                - https://sourceforge.net/projects/classinformer/
+                - https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information?view=msvc-160
+            - .pdb: [PDB Downloader](https://github.com/rajkumar-rangaraj/PDB-Downloader), Dia2Dump, https://docs.microsoft.com/en-us/visualstudio/debugger/debug-interface-access/querying-the-dot-pdb-file?view=vs-2019
     - id functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
+    - static instrumentation by taking instructions from another compiled source
+        - https://ctf.harrisongreen.me/2021/midnightsunfinals/elbrus/
+            > Most of my experience with patching at this point relied on either disassemblers like Binary Ninja or programatically modifying certain instructions at the assembly level. However, since there is no existing interactive disassembler for Elbrus and I don’t understand it well enough to program assembly for it, I used the e2k-gcc tool to compile C code and then simply copied the instructions directly into the binary. 
+            ```c
+            // Patch into check
+            void foo() {
+                // check is too small to hold all three of the calls so we need 
+                // to use a short trampoline to jump into a separate area.
+                void (*_target)() = (void (*)())(0x53b10);
+                _target();
+            }
+
+            // Patch into 0x53b10 (unused libc function)
+            int main() {
+                void (*__libc_write)(int fd, const void *buffer, unsigned long size) = (void (*)())(0x6b188);
+                void (*_exit)(int r) = (void (*)())(0x68cf8);
+                void *buf1 = (void *)0x1af250;
+                void *buf2 = (void *)0x1b25d8;
+
+                __libc_write(1, buf1, 12 * 4);
+                __libc_write(1, buf2, 12 * 4);
+                _exit(0);
+            }
+            ```
     - removing field in request to trigger error message
         - https://ferib.dev/blog.php?l=post/How_I_automated_McDonalds_mobile_game_to_win_free_iphones
     - image parsing coverage changes on error

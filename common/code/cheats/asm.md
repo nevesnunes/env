@@ -410,6 +410,11 @@ qemu-arm -L /usr/arm-linux-gnueabihf/ crackme
 # debug
 qemu-aarch64 -singlestep -g 1234 -L /usr/aarch64-linux-gnu/ foo
 gdb-multiarch -ex 'target remote localhost:1234'
+
+# GDB server with qemu-user
+qemu-arm -g 1337 ./foo
+# GDB client
+r2 -a arm -b 32 -d gdb://127.0.0.1:1337
 ```
 
 - build objdump from binutils for target architecture

@@ -445,6 +445,21 @@ sudo make install
 
 https://github.com/pwndbg/pwndbg/issues/577#issuecomment-445590185
 
+# sources
+
+```gdb
+# break at source code lineno
+break foo/bar.cpp:123
+
+# setup sources directory
+directory /a/b
+# || replace directory from `objdump -g` .debug_info section
+set substitute-path /1/2 /a/b
+```
+
+- [How to point GDB to your sources \| There is no magic here](https://alex.dzyoba.com/blog/gdb-source-path/)
+- [Source Path \(Debugging with GDB\)](https://sourceware.org/gdb/onlinedocs/gdb/Source-Path.html)
+
 # plugins
 
 - [peda](./peda.md)

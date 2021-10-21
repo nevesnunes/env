@@ -5,10 +5,8 @@
 - Numega SmartCheck
 - [VBReFormer](https://qiil.io/VBReFormer.aspx)
 
-- VB native code
-    - => OllyDbg, IDA
-- VB P-code
-    - => VB Decompiler Pro
+- VB native code: OllyDbg, IDA
+- VB P-code: WKTVBDE, VB Decompiler Pro
 
 # bootstrap
 
