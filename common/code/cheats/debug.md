@@ -74,6 +74,7 @@
 
 - query partitioning: generate several queries outputting disjoint subsets of original's set, then compare union of subsets with original's set
     > The core idea of Query Partitioning is to, starting from a given original query, derive multiple, more complex queries (called partitioning queries), each of which computes a partition of the result. The individual partitions are then composed to compute a result set that must be equivalent to the original query's result set. A bug in the DBMS is detected when these result sets differ. 
+    - e.g.
         ```sql
         CREATE TABLE t0(c0 INT);
         CREATE TABLE t1(c0 DOUBLE);
@@ -86,8 +87,8 @@
         UNION ALL SELECT * FROM t0, t1 WHERE NOT(t0.c0 = t1.c0)
         UNION ALL SELECT * FROM t0, t1 WHERE (t0.c0 = t1.c0) IS NULL; -- {}
         ```
-    - https://doi.org/10.1145/3428279
     - [Manuel Rigger \| Bugs found in Database Management Systems](https://www.manuelrigger.at/dbms-bugs/)
+    - https://doi.org/10.1145/3428279
 - remote host file to network relay
     > [...] the best logging method on WindowsCE is the use of remote debugging using a log file name of tcp://<ip-addr>:<port>.
     - https://gnupg.org/documentation/manuals/gnupg/Debugging-Hints.html
