@@ -7,10 +7,10 @@
 - [ghidra](ghidra.md)
 - [ida](ida.md)
 - [r2](r2.md)
-- [strace](./strace.md)
 
 - [angr](./angr.md)
 - [frida](./frida.md)
+- [strace](./strace.md)
 - [z3](./z3.md)
 
 - text
@@ -34,7 +34,7 @@
         - [IDA](./ida.md#FLIRT)
 - resources
     - PE format: `wrestool`
-    - NE format: 
+    - NE format:
         - [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
         - Borland Resource Workshop
         - eXeScope
@@ -161,6 +161,7 @@
             - e.g. http://web.archive.org/web/20070222031635/http://www.matasano.com/log/620/hand-detouring-windows-function-calls-with-ht/
         - [GitHub \- CodeCracker\-Tools/MegaDumper: Dump native and \.NET assemblies](https://github.com/CodeCracker-Tools/MegaDumper)
         - [GitHub \- tyranid/oleviewdotnet: A \.net OLE/COM viewer and inspector to merge functionality of OleView and Test Container](https://github.com/tyranid/oleviewdotnet)
+        - [oledump\.py \| Didier Stevens](https://blog.didierstevens.com/programs/oledump-py/)
         - [RpcView](http://rpcview.org)
     - debug symbols
         - take old versions, patches, API examples, API clients
@@ -177,11 +178,11 @@
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
     - static instrumentation by taking instructions from another compiled source
         - https://ctf.harrisongreen.me/2021/midnightsunfinals/elbrus/
-            > Most of my experience with patching at this point relied on either disassemblers like Binary Ninja or programatically modifying certain instructions at the assembly level. However, since there is no existing interactive disassembler for Elbrus and I don’t understand it well enough to program assembly for it, I used the e2k-gcc tool to compile C code and then simply copied the instructions directly into the binary. 
+            > Most of my experience with patching at this point relied on either disassemblers like Binary Ninja or programatically modifying certain instructions at the assembly level. However, since there is no existing interactive disassembler for Elbrus and I don’t understand it well enough to program assembly for it, I used the e2k-gcc tool to compile C code and then simply copied the instructions directly into the binary.
             ```c
             // Patch into check
             void foo() {
-                // check is too small to hold all three of the calls so we need 
+                // check is too small to hold all three of the calls so we need
                 // to use a short trampoline to jump into a separate area.
                 void (*_target)() = (void (*)())(0x53b10);
                 _target();

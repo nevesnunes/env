@@ -1,2 +1,2 @@
-alias -a db = dashboard
-dashboard -layout assembly expressions !history memory registers source stack !threads
+alias -a context = dashboard
+dashboard -layout assembly !breakpoints !expressions !history memory registers source stack !threads variables

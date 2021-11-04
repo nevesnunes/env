@@ -355,17 +355,18 @@ python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 # Disassembly, decompilation
 
 - [GitHub \- zrax/pycdc: C\+\+ python bytecode disassembler and decompiler](https://github.com/zrax/pycdc)
+- [GitHub \- rocky/python\-decompile3: Python decompiler for 3\.7\-3\.8 Stripped down from uncompyle6 so we can refactor and start to fix up some long\-standing problems](https://github.com/rocky/python-decompile3)
 
 - header format
     - **[..3.3]**
-        - version + `0d 0a` (4 bytes)
+        - version + `0d 0a` (4 bytes, le)
         - modification timestamp (4 bytes)
     - **[3.3..3.7]**
-        - version + `0d 0a` (4 bytes)
+        - version + `0d 0a` (4 bytes, le)
         - modification timestamp (4 bytes)
         - file size (4 bytes)
     - **[3.7..]**
-        - version + `0d 0a` (4 bytes)
+        - version + `0d 0a` (4 bytes, le)
         - bit field (4 bytes)
             - if 0, then 3rd word is timestamp, 4th word is file size
             - if lowest bit 1, then 3rd to 4th word are 64-bit file hash
@@ -406,9 +407,15 @@ f = open(sys.argv[1], "rb")
 f.seek(16) # skip 16 byte header (in case of invalid magic bytes)
 co = marshal.load(f)
 print(dis.dis(co)) # bytecode
+# ||
+# dis.dis(co.co_code) # bytecode
 f2 = open(sys.argv[2], "w")
-uncompyle6.main.decompile(3.7, co, f2, showast=False) # source
+uncompyle6.main.decompile(3.7, co, f2, showast=False)
+# >= 3.8
+# uncompyle6.main.decompile((3,8), co, f2, showast=False)
 ' foo
+
+uncompyle6.main.decompile((3,8),list(globals().items())[-3][1].__code__, sys.stderr, showast=False)
 ```
 
 ```python

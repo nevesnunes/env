@@ -12,6 +12,9 @@
     - https://code.woboq.org/qt5/include/sys/user.h.html
 
 ```bash
+# gdb-multiarch
+./configure --enable-targets=all
+
 # address space layout
 cat /proc/789/maps
 
@@ -168,6 +171,12 @@ condition 2 *(int*)__errno_location() == 3
 
 - https://sourceware.org/gdb/current/onlinedocs/gdb/Checkpoint_002fRestart.html
     - :( previous side-effects still applied
+
+# gdbserver client
+
+```
+target remote :1234
+```
 
 # scripting
 

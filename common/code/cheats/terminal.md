@@ -8,12 +8,23 @@
 
 # exit status codes
 
-- `64-78`
+- `0`: EXIT_SUCCESS
+- `1`: EXIT_FAILURE
+- `2-7`: LSB-specific
+    - https://refspecs.linuxbase.org/LSB_5.0.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html
+- `64-78`: BSD-specific
     - https://man.openbsd.org/sysexits.3
-- `2, 125-128`
-    - http://tldp.org/LDP/abs/html/exitcodes.html
-- `129-154`
+    - [D27176 Discourage the use of sysexits\(3\) in new code](https://reviews.freebsd.org/D27176)
+- `129-154`: program starts another
+    - `2`: Misuse of shell builtins (according to Bash documentation)
+    - `126`: Command invoked cannot execute
+    - `127`: Command not found
+    - `128`: Invalid argument to exit
+    - `128 plus the signal number`: process terminated abnormally (note: POSIX only specifies "greater than 128" and that `kill -l` exitstatus can be used to find the signal's short name)
     - https://man.openbsd.org/signal.3
+    - http://tldp.org/LDP/abs/html/exitcodes.html
+- `200-243`: systemd-specific
+    - https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Process%20Exit%20Codes
 
 # scancodes
 

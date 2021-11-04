@@ -32,6 +32,8 @@ str_suggests='APT::Install-Suggests "false";'
 target=/etc/apt/apt.conf.d/99noextras
 grep -q "$str_recommends" "$target" || printf '%s\n%s\n' "$str_recommends" "$str_suggests" >> "$target"
 
+apt-get source package_name
+
 # https://packages.ubuntu.com/
 update-dlocatedb
 dlocate

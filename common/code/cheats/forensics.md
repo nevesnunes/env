@@ -182,6 +182,8 @@ f=challenge.pdf && { \
 - xrefs
     - https://labs.appligent.com/pdfblog/pdf_cross_reference_table/
     - https://resources.infosecinstitute.com/topic/pdf-file-format-basic-structure/
+    - https://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art019
+        > If you follow this backwards, you'll see that the startxref entry points to the line that reads xref
 
 # zlib
 

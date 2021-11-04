@@ -334,7 +334,15 @@ sudo qemu-nbd -d /dev/nbd0
 # raw images
 
 ```bash
-losetup /dev/loop0 foo.disk
-partprobe /dev/loop0
-mount /dev/loop0p1 /mnt/foo
+sudo losetup /dev/loop0 foo.disk
+sudo partprobe /dev/loop0
+sudo mount -o rw /dev/loop0p1 /mnt/foo
+
+# teardown
+sudo losetup -d /dev/loop0
+# ||
+sudo modprobe -r loop && sudo modprobe loop
+
+# validation
+sudo losetup -a  # no entry for /dev/loop0
 ```

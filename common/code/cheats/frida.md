@@ -97,3 +97,61 @@ whoami -privs | sls 'SeDebugPrivilege.*Enabled'
 
 frida foo.exe -l "C:\interceptor-backtrace.js"
 ```
+
+# iOS
+
+### debuggable
+
+Create debuggable oproject in Xcode, add entitlements
+
+### library injection
+
+Decrypt:
+
+- https://github.com/BishopFox/bfinject
+- https://github.com/KJCracks/Clutch
+
+Signing Identity:
+
+- Xcode
+  - Preferences > Accounts > Agent > Manage Certificates > iOS Development
+  - Target = foo > Signing & Capabilites > Team = $team
+  - Take ./embedded.mobileprovision from generated app
+
+Patch:
+
+```bash
+security find-identity -p codesigning -v # take $sig
+
+curl -O https://build.frida.re/frida/ios/lib/FridaGadget.dylib
+cp FridaGadget.dylib Payload/foo.app/Frameworks
+
+git clone https://github.com/Tyilo/insert_dylib
+cd insert_dylib
+xcodebuild
+./insert_dylib --strip-codesig --inplace '@executable_path/Frameworks/FridaGadget.dylib' Payload/foo.app/foo
+
+codesign -f -v -s  5E25E<snipped-signing-identity> Payload/foo.app/Frameworks/FridaGadget.dylib
+zip -qry patchedapp.ipa Payload
+npm install -g applesign
+applesign -i $sig -m embedded.mobileprovision -o patched_codesign.ipa patchedapp.ipa
+
+npm install -g ios-deploy
+mkdir ./patched
+cp ./patched_codesign.ipa ./patched/
+cd ./patched/
+unzip ./patched_codesign.ipa
+ios-deploy --bundle Payload/*.app --debug -W
+
+# ||
+objection patchipa --source foo.ipa --codesign-signature $sig
+ios-deploy --bundle Payload/foo.app -W -d
+objection explore
+
+# Validation
+frida-ps -Uai
+frida -U Gadget
+```
+
+- https://medium.com/@dinezh.shetty/setting-up-frida-without-jailbreak-on-devices-running-latest-ios-12-4-27c7cfa6c9a2
+- https://labs.f-secure.com/blog/repacking-and-resigning-ios-applications/

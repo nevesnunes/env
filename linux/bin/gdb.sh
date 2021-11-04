@@ -15,4 +15,15 @@ set -eu
 
 echo "source ~/.gdbinit-base" > "$HOME"/.gdbinit
 
-gdb -q --tui "$@"
+gdb_bin=$(realpath "$1")
+[ -f "$gdb_bin" ]
+shift
+
+while [ $# -gt 0 ]; do
+  plugin_file=$(realpath "$1")
+  [ -f "$plugin_file" ]
+  echo "source $plugin_file" >> "$HOME"/.gdbinit
+  shift
+done
+
+"$gdb_bin" -q "$@"

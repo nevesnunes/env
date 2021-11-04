@@ -250,6 +250,8 @@ Filters > Distorts > Whirl and Pinch...
 # small size / lossy compression
 
 ```bash
+svgo foo.svg
+
 pngquant --quality 40-60 -s1 --skip-if-larger -f foo.png && \
   ect -9 --allfilters --pal_sort=20 --mt-deflate foo-fs8.png
 # ||

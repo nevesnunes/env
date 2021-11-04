@@ -242,3 +242,35 @@ tar -xvf vmnet.tar && cd vmnet-only && make && cp ../vmnet.o "/lib/modules/$(una
 # qemu passthrough
 
 - [GitHub \- darkguy2008/hotplugger: VirtIO \(VFIO\) USB Port passthrough helper](https://github.com/darkguy2008/hotplugger)
+
+# qemu windows ce
+
+- add driver
+    > The drivers REG file needs to be imported into OSDesign.reg, its BIB file over to OSDesign.bib and the DLL must be placed in the /Windows directory, then rebuild.
+    - https://www.hpcfactor.com/forums/forums/thread-view.asp?tid=20081&start=16
+- load bin
+    - `loadcepc hpc2000.bin /D:0 /L:640x480x16`
+    > The PCI Bus is used to detect a network card. If there is no PCI Bus, loadcepc assumes the card is an ISA NE2000-based Ethernet adapter
+    - https://www.betaarchive.com/forum/viewtopic.php?t=3233
+
+```bash
+qemu-img convert -f vpc -O raw foo.vhd foo.img
+
+qemu-system-i386 -hda foo.img \
+    -m 128 -L . -vga cirrus \
+    -netdev user,id=n1 \
+    -device ne2k_isa,mac=00:2e:3c:92:11:01,netdev=n1,irq=10,iobase=0x320
+```
+
+On guest:
+
+```
+ceatadrv
+cd \blah
+```
+
+- https://virtuallyfun.com/wordpress/2010/12/18/ata-ide-driver-for-windows-ce-3-0/
+
+Alternatives:
+
+- bochs

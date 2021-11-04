@@ -600,6 +600,7 @@ ps aux | grep <str> | grep -v grep | awk "{print $2}" | xargs <cmd>
 xwininfo -root -all
 
 # VirtualBox - Install extension pack (VBoxManage)
+sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'; \
 sudo VBoxManage extpack install <file>
 
 # Make unified format diff (same as `git diff`)

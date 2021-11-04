@@ -1,23 +1,18 @@
-# +
+# docs
 
-https://github.com/lcatro/Angr-CTF-Learn-Note
-https://github.com/jakespringer/angr_ctf
-https://github.com/acdwas/ctf/blob/master/2020/Google_2020/rev/beginner/solver.py
-
-https://binaryresearch.github.io/2020/01/22/more-angr-defeating-5-ELF-crackmes.html
-https://jkrshnmenon.wordpress.com/2019/01/31/even-the-king-bows-before-angr/
-    ~/code/snippets/angr/king.py
-[CTFtime\.org / SwampCTF 2018 / Journey / Writeup](https://ctftime.org/writeup/9452)
-
-https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md
-
-https://github.com/AlyaGomaa/CTFs/tree/master/redpwn/r1sc
+- [GitHub \- lcatro/Angr\-CTF\-Learn\-Note: The learn note of Angr\-CTF \.\.](https://github.com/lcatro/Angr-CTF-Learn-Note)
+- [GitHub \- jakespringer/angr\_ctf](https://github.com/jakespringer/angr_ctf)
+- https://flagbot.ch/material/#lesson-5-constraint-solving-and-symbolic-execution-13-april-2020
+- https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md
 
 # init state
 
 - if: requires shared library constructors or preinitializers (e.g. `scanf()`)
     - then: `full_init_state()`
     - https://docs.angr.io/core-concepts/states#state-presets
+- if: process dump
+    - then: `load_shellcode()` || `Project("./coredump")`
+    - [Loading memory during symbolic execution · Issue \#1969 · angr/angr · GitHub](https://github.com/angr/angr/issues/1969)
 
 # constraints
 
@@ -34,7 +29,8 @@ for i in range(length):
     state.solver.add( AND1(flag.get_byte(i)) ) 
 ```
 
-https://blog.efiens.com/tamuctf-2019/
+- https://blog.efiens.com/tamuctf-2019/
+- https://github.com/acdwas/ctf/blob/master/2020/Google_2020/rev/beginner/solver.py
 
 # hooks
 
@@ -45,6 +41,9 @@ def crc32_hook(state):
 instruction_len = 5
 project.hook(0x4012a2, crc32_hook, length=instruction_len)
 ```
+
+- https://docs.angr.io/extending-angr/simprocedures
+    > The general rule is, if you want your SimProcedure to either be able to extract function arguments or cause a program return, write a full SimProcedure class. Otherwise, use a user hook.
 
 # argv
 
@@ -64,8 +63,8 @@ simfile = angr.SimFile('/tmp/stdin',size=symsize)
 state = p.factory.entry_state(stdin=simfile)
 ```
 
-[justCTF 2019 - FSMir](https://ctftime.org/writeup/17632)
-https://docs.angr.io/advanced-topics/file_system
+- [justCTF 2019 - FSMir](https://ctftime.org/writeup/17632)
+- https://docs.angr.io/advanced-topics/file_system
 
 # memory read / store
 
@@ -86,9 +85,8 @@ state.regs.rdi = my_buf
 flag_data = goal_state.memory.load(in_array_addr, in_array_size)
 ```
 
-https://reverseengineering.stackexchange.com/questions/21565/angr-populate-int-array-with-constraints
-
-https://docs.angr.io/core-concepts/states
+- https://reverseengineering.stackexchange.com/questions/21565/angr-populate-int-array-with-constraints
+- https://docs.angr.io/core-concepts/states
 
 # [!] endianess
 
@@ -97,8 +95,8 @@ addr = state.regs.esi
 b32 = state.memory.load(addr).reversed
 ```
 
-[UIUCTF 2020 / Tasks / cricket32 / Writeup](https://ctftime.org/writeup/22420)
-    https://ohaithe.re/post/624142953693249536/uiuctf-2020-cricket32
+- [UIUCTF 2020 / Tasks / cricket32 / Writeup](https://ctftime.org/writeup/22420)
+    - https://ohaithe.re/post/624142953693249536/uiuctf-2020-cricket32
 
 # multi-threading
 
@@ -111,11 +109,10 @@ ex = pg.explore(find=find, avoid=avoid)
 
 # debug
 
-input api changes
-    [I wonder how to give program input stdin \(scanf,ReadConsoleA,read function\) by angr · Issue \#1566 · angr/angr · GitHub](https://github.com/angr/angr/issues/1566)
-
-increase claripy.BVS number of bits for scanf
-    https://reverseengineering.stackexchange.com/questions/19164/problem-with-scanf-fgets-in-angr-stdin-exploration
+- input api changes
+    - [I wonder how to give program input stdin \(scanf,ReadConsoleA,read function\) by angr · Issue \#1566 · angr/angr · GitHub](https://github.com/angr/angr/issues/1566)
+- increase claripy.BVS number of bits for scanf
+    - https://reverseengineering.stackexchange.com/questions/19164/problem-with-scanf-fgets-in-angr-stdin-exploration
 
 ```python
 import signal
@@ -151,7 +148,7 @@ flag: p4{I_really_hope_you_automated_this_somehow_otherwise_it_might_be_a_bit_fr
 ~/code/snippets/angr/solve_with_avoids.py elementary addresses_to_avoid  375.71s user 34.03s system 125% cpu 5:27.16 total
 ```
 
-[Got an unsat result · Issue \#1360 · angr/angr · GitHub](https://github.com/angr/angr/issues/1360)
+- [Got an unsat result · Issue \#1360 · angr/angr · GitHub](https://github.com/angr/angr/issues/1360)
 
 # install
 
@@ -161,9 +158,18 @@ pip3 install angr
 pip3 install -U protobuf
 ```
 
-https://docs.angr.io/introductory-errata/install
-https://pypi.org/project/angr/#history
+- https://docs.angr.io/introductory-errata/install
+- https://pypi.org/project/angr/#history
 
 # alternatives
 
-https://github.com/trailofbits/manticore/wiki
+- https://blog.quarkslab.com/triton-under-the-hood.html
+- https://github.com/trailofbits/manticore/wiki
+
+# case studies
+
+- http://ctfhacker.com/reverse/2018/09/16/flareon-2018-level6-angr.html
+- https://binaryresearch.github.io/2020/01/22/more-angr-defeating-5-ELF-crackmes.html
+- https://jkrshnmenon.wordpress.com/2019/01/31/even-the-king-bows-before-angr/
+    - ~/code/snippets/angr/king.py
+- [CTFtime\.org / SwampCTF 2018 / Journey / Writeup](https://ctftime.org/writeup/9452)
