@@ -151,6 +151,8 @@ objection explore
 # Validation
 frida-ps -Uai
 frida -U Gadget
+frida -U -f com.apple.mobilemail
+frida -U -l launchd.js -p 1 --no-pause  # https://gist.github.com/csftech/a0915ff0a32b1c51441584eff19b8345
 ```
 
 - https://medium.com/@dinezh.shetty/setting-up-frida-without-jailbreak-on-devices-running-latest-ios-12-4-27c7cfa6c9a2
