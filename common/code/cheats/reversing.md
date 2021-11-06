@@ -117,9 +117,9 @@
         - [Intercepting Program Startup on Windows and Trying to Not Mess Things Up / Habr](https://habr.com/en/post/544456/)
     - finding `main()` function
         - any format:
-            - || follow xrefs to exit(), find which function's return value (saved in rax) is passed to exit()
+            - follow xrefs to exit(), find which function's return value (saved in rax) is passed to exit()
             > Basically rax contains the return code of "main". When main ends, the return code of the program is sent to exit() (and later on to ExitProcess(), on windows)
-        - ELF format: on libc `entry()`, take 1st argument to `__libc_start_main()`
+        - ELF format: on `entry()`, take 1st argument to `__libc_start_main()`
         - PE format: `mainCRTStartup(), __scrt_common_main_seh() > invoke_main()`
     - calling functions
         - any format:
@@ -177,6 +177,7 @@
         - take old version introducing specific logic in changelog, then bindiff with current version
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
     - static instrumentation by taking instructions from another compiled source
+        - https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/
         - https://ctf.harrisongreen.me/2021/midnightsunfinals/elbrus/
             > Most of my experience with patching at this point relied on either disassemblers like Binary Ninja or programatically modifying certain instructions at the assembly level. However, since there is no existing interactive disassembler for Elbrus and I don’t understand it well enough to program assembly for it, I used the e2k-gcc tool to compile C code and then simply copied the instructions directly into the binary.
             ```c

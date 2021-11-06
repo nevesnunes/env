@@ -73,8 +73,6 @@
 # methodologies
 
 - trace: make internal state explicit
-    - compile example code then take compiled instrumentation
-        - https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/
     - logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
         - https://florian.github.io/count-min-sketch/
     - logging variable values at each algorithm iteration
