@@ -30,6 +30,9 @@ flask-unsign --sign --cookie "{'end': '2020-07-13 10:59:59+0000'}" --secret 'Tim
 
 ```bash
 docker run -it --rm -v $(pwd):/tmp/foo:z python:3.5-slim sh
+
+# || On Ubuntu
+sudo add-apt-repository ppa:deadsnakes/ppa
 ```
 
 # Performance
@@ -404,11 +407,13 @@ python python_exe_unpack.py -i foo.exe
 python -c '
 import dis, marshal, sys, uncompyle6
 f = open(sys.argv[1], "rb")
-f.seek(16) # skip 16 byte header (in case of invalid magic bytes)
+f.seek(12) # skip header (in case of invalid magic bytes)
+# >= 3.8
+# f.seek(16)
 co = marshal.load(f)
-print(dis.dis(co)) # bytecode
+dis.dis(co) # bytecode
 # ||
-# dis.dis(co.co_code) # bytecode
+# dis.dis(co.co_code)
 f2 = open(sys.argv[2], "w")
 uncompyle6.main.decompile(3.7, co, f2, showast=False)
 # >= 3.8

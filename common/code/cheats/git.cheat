@@ -82,4 +82,8 @@ git verify-pack -v .git/objects/pack/*.idx \
     | sort -n -r --key 2 \
     | head -<k>
 
+# checkout with filter
+git clone --depth=1 --no-checkout --filter=blob:limit=10m <url>
+git rev-list --filter=blob:limit=10m --objects HEAD | awk '{print $1}' | xargs -I{} git checkout {} .
+
 ; vim: filetype=navi

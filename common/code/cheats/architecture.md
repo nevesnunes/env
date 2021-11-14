@@ -25,3 +25,7 @@
 
 - `envsubst`: replace variables in stream
     - [Dynamic configuration variables in Prometheus Config · Issue \#6047 · prometheus/prometheus · GitHub](https://github.com/prometheus/prometheus/issues/6047)
+
+# Design decisions
+
+- [NetworkInterfaceNames \- Debian Wiki](https://wiki.debian.org/NetworkInterfaceNames)

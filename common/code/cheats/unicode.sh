@@ -59,3 +59,9 @@ echo 👏🏿 | sed 's/../A/' | xxd
 # > Create two files in a #git repository with equal names, but differing a letter: á = U+00E1; á = U+0061 U+0301. Clone on a mac. #UnicodeHell
 #     - https://github.com/Kayvlim/badrepo
 # - https://github.com/unicode-org/last-resort-font/
+
+# Matching non-printable unicode characters: \p{C}
+# Validation: `{ foo,ㅤ}`
+# - https://stackoverflow.com/questions/44034232/undocumented-java-regex-character-class-pc
+# - https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/master/src/jdk.scripting.nashorn/share/classes/jdk/nashorn/internal/runtime/regexp/RegExpScanner.java
+# - https://github.com/AdoptOpenJDK/openjdk-jdk9u/blob/master/jdk/src/java.base/share/classes/java/util/regex/CharPredicates.java

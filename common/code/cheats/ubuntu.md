@@ -23,6 +23,18 @@ do-release-upgrade
 # package management
 
 ```bash
+# Edit dependencies
+# https://serverfault.com/questions/250224/how-do-i-get-apt-get-to-ignore-some-dependencies
+apt download foo
+cd deb
+ar x ../foo.deb
+tar xzf control.tar.gz (will create: postinst postrm preinst prerm md5sums control)
+# || tar xf control.tar.xz (will create: postinst postrm preinst prerm md5sums control)
+# [After fixing dependencies in control]
+tar --ignore-failed-read -cvzf control.tar.gz {post,pre}{inst,rm} md5sums control
+# || tar --ignore-failed-read -cvJf control.tar.xz {post,pre}{inst,rm} md5sums control
+ar rcs ../foo.deb debian-binary control.tar.gz data.tar.gz
+
 # https://askubuntu.com/questions/148715/how-to-fix-package-is-in-a-very-bad-inconsistent-state-error
 dpkg --remove --force-remove-reinstreq foo
 

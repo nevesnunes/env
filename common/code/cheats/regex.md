@@ -20,6 +20,13 @@ https://github.com/google/re2/wiki/Syntax
 
 https://stackoverflow.com/questions/12870489/regex-to-match-a-word-with-unique-non-repeating-characters
 
+# multi-byte characters
+
+- input: `\u20AC` or `\x{20AC}`
+- invalid stripping
+    > In Tcl 8.5 and prior you have to be careful with this syntax, because Tcl used to eat up all hexadecimal characters after \x and treat the last 4 as a Unicode code point. So \xA9ABC20AC would match the euro symbol. Tcl 8.6 only takes the first two hexadecimal digits as part of the \x, as all other regex flavors do, so \xA9ABC20AC matches ©ABC20AC
+    - https://www.regular-expressions.info/nonprint.html
+
 # between delimiters
 
 ```bash

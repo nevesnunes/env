@@ -561,3 +561,64 @@ call (int)syscall(16, 0, 0x5412, "\x03")
 # (syscall) will be abandoned.
 # When the function is done executing, GDB will silently stop.
 ```
+
+# Qt
+
+### scripts
+
+~/.gdbinit:
+
+```
+python
+import sys
+
+sys.path.insert(0, '/home/foo/kdevelop/plugins/gdb/printers')
+from qt4 import register_qt4_printers
+register_qt4_printers (None)
+
+end
+set print pretty 1
+```
+
+- https://projects.kde.org/projects/kde/kdesdk/kde-dev-scripts
+- https://github.com/KDE/kdevelop/blob/master/plugins/gdb/printers/qt.py
+- https://www.qt.io/blog/2010/10/15/peek-and-poke-vol-4
+
+### manual
+
+```gdb
+(gdb) p my_string.toStdString().c_str()
+
+define pqts
+    printf "(QString)0x%x (length=%i): \"",&$arg0,$arg0.d->size
+    set $i=0
+    while $i < $arg0.d->size
+        set $c=$arg0.d->data[$i++]
+        if $c < 32 || $c > 127
+            printf "\\u0x%04x", $c
+        else
+            printf "%c", (char)$c
+        end
+    end
+    printf "\"\n"
+end
+
+define pqt5s
+  set $d=$arg0.d
+  printf "(Qt5 QString)0x%x length=%i: \"",&$arg0,$d->size
+  set $i=0
+  set $ca=(const ushort*)(((const char*)$d)+$d->offset)
+  while $i < $d->size
+    set $c=$ca[$i++]
+    if $c < 32 || $c > 127
+      printf "\\u%04x", $c
+    else
+      printf "%c" , (char)$c
+    end
+  end
+  printf "\"\n"
+end
+```
+
+- https://github.com/dov/dov-env/blob/master/dotfiles/.gdbinit
+- http://silmor.de/qtstuff.printqstring.php

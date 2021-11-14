@@ -604,3 +604,14 @@ mutex.unlock();
     - [CWE-14: Compiler Removal of Code to Clear Buffers](https://cwe.mitre.org/data/definitions/14.html)
 - [AppSec EU 2017 Dangerous Optimizations And The Loss Of Causality by Robert C  Seacord \- YouTube](https://www.youtube.com/watch?v=cjQQCrQ_wvs)
 - [Schr&\#246;dinger's Code \- ACM Queue](https://queue.acm.org/detail.cfm?id=3468263)
+
+# Qt
+
+```cpp
+connect(manager, SIGNAL(finished(QNetworkReply*)), this,
+                 SLOT(replyFinished(QNetworkReply*)));
+
+void NetworkHandler::replyFinished(QNetworkReply *reply) {
+  qDebug() << reply->readAll();
+}
+```

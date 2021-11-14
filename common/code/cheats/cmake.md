@@ -119,6 +119,16 @@ PATH="$bin_overrides":$PATH
 export WX_CONFIG=/usr/lib64/wx/config/gtk2-unicode-3.0
 ```
 
+### Flags
+
+```cmake
+IF( NOT CMAKE_BUILD_TYPE )
+   SET( CMAKE_BUILD_TYPE Release ... FORCE )
+ENDIF()
+```
+
+- https://stackoverflow.com/questions/23907679/cmake-ignores-d-cmake-build-type-debug
+
 # Find Libraries
 
 ```cmake

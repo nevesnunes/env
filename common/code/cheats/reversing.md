@@ -288,6 +288,7 @@ diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log |
 # - https://stackoverflow.com/questions/53218160/how-can-i-do-code-path-analysis-in-a-debugger
 # - https://stackoverflow.com/questions/22507169/how-to-run-record-instruction-history-and-function-call-history-in-gdb
 # - https://dynamorio.org/dynamorio_docs/page_drcov.html
+# - http://mysqlentomologist.blogspot.com/2021/10/bpftrace-as-codefunction-coverage-tool.html
 
 # ||
 # 1. grep xrefs from asm dump, take addresses

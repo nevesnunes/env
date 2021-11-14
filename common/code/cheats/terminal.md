@@ -113,6 +113,13 @@ echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 
 - [GitHub \- nelhage/reptyr: Reparent a running program to a new terminal](https://github.com/nelhage/reptyr)
 
+# unbuffered
+
+```bash
+stty -icanon && nc 127.0.0.1 4501 # sender side
+stdbuf -i0 -o0 nc 127.0.0.1 4501 -lk -I 1 # receiver side
+```
+
 # case studies
 
 - [tcgetpgrp\(\) behavior and tmux · Issue \#1063 · microsoft/WSL · GitHub](https://github.com/microsoft/WSL/issues/1063)

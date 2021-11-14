@@ -266,6 +266,17 @@ while [ $port -lt 1024 ]; do
   [ $? == 0 ] && echo $port "is open" >> /tmp/ports.txt
   port=$((port + 1))
 done
+
+# Filter ports without response from listening services
+target_ip=
+port=1
+while [ $port -lt 1024 ]; do
+  exec 3<>/dev/tcp/$target_ip/$port
+  printf '\r\n\r\n' 1>&3
+  response="$(wc -c <&3)"
+  [ $response -gt 0 ] && echo $port "is responding" >> /tmp/ports.txt
+  port=$((port + 1))
+done
 ```
 
 # replay
