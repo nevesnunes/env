@@ -246,6 +246,7 @@ shodan host 1.2.3.4
         - :) literal match (e.g. `<path:filename>`)
     - https://searchcode.com/?q=
         - :) literal match, but not visible in results
+    - https://archive.softwareheritage.org/
 - general sites
     - https://nerdydata.com/
     - https://publicwww.com/

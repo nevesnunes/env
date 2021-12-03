@@ -599,6 +599,7 @@ hex(0xff << 8)  # 0xff00
 ```
 
 - [bithacks](https://graphics.stanford.edu/~seander/bithacks.html)
+- Hacker's Delight
 
 # xor
 

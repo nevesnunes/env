@@ -156,6 +156,7 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
 - [Write your shellcode](https://masterccc.github.io/memo/shellcode/)
 - [shell\-storm | Shellcodes Database](http://shell-storm.org/shellcode/)
 - [Linux/x64 \- execve\(/bin/sh\) Shellcode \(21 bytes\) \- Linux\_x86\-64 shellcode Exploit](https://www.exploit-db.com/exploits/41750)
+- [Category:Shellcode \- NetSec](https://nets.ec/Category:Shellcode)
 
 # stack overflow
 

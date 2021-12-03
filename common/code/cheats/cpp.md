@@ -614,4 +614,13 @@ connect(manager, SIGNAL(finished(QNetworkReply*)), this,
 void NetworkHandler::replyFinished(QNetworkReply *reply) {
   qDebug() << reply->readAll();
 }
+
+void debugRequest(QNetworkRequest request, QByteArray data = QByteArray()) {
+  qDebug() << request.url().toString();
+  const QList<QByteArray>& rawHeaderList(request.rawHeaderList());
+  foreach (QByteArray rawHeader, rawHeaderList) {
+    qDebug() << request.rawHeader(rawHeader);
+  }
+  qDebug() << data;
+}
 ```

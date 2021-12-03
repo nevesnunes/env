@@ -205,6 +205,9 @@
         - https://ferib.dev/blog.php?l=post/How_I_automated_McDonalds_mobile_game_to_win_free_iphones
     - image parsing coverage changes on error
         > produce a blank image, add one pixel (say purple - that is 50% Red, 50% Blue, 0% Green), change the color of the pixel, then change the location of the pixel, to see how the BMP binary code changes.
+    - identifying variables
+        - if small address space, then watch memory value changes on input action; override memory address with static value; turn function into no-op by setting first instruction to a return
+            - [Reprogramming Mega Man 4&\#39;s Charged Shot \- Behind the Code \- YouTube](https://www.youtube.com/watch?v=n1yloWiWVxY)
 - monitor memory maps
     - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
     - diff/search for data changes before and after blocks: loops, func calls...

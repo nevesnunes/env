@@ -88,6 +88,9 @@
     - checksum for replay
         > found a bunch of bugs waiting to happen (uninitalized variables / dangling pointer sort of stuff) that would trigger an error when replaying from a file didn't produce the same results as the original play (we had a checksum of game state that we could check)
         - https://news.ycombinator.com/item?id=27517391
+    - multi-threaded interactions
+        > with time-stamps, user-ids, user-agent strings, session-id, basic operations, you learn a lot about the running system and why it might have failed for one particular user. 
+        - https://blog.jvroom.com/2012/02/08/debugging-hard-problems/
     - structured logging
         - https://www.honeycomb.io/wp-content/uploads/2019/08/From-Unstructured-Logs-to-Observability-Honeycomb.pdf
         - https://www.honeycomb.io/wp-content/uploads/2018/07/Honeycomb-Guide-Achieving-Observability-v1.pdf
@@ -276,6 +279,10 @@ site:https://github.com AND inurl:issues "race condition"
 # dependency usage in other projects
 site:https://github.com AND inurl:issues AND -inurl:foo "foo"
 ```
+
+### producers-consumers with bad notify call
+
+- [Extreme Programming Challenge Fourteen The Bug](http://wiki.c2.com/?ExtremeProgrammingChallengeFourteenTheBug)
 
 ### reproducing race condition in test
 

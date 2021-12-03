@@ -12,12 +12,12 @@ gtkui.color.bar_foreground 19018 37008 55769
 gtkui.color.tabstrip_playing_text 0 0 0
 gtkui.color.tabstrip_selected_text 0 0 0
 gtkui.color.tabstrip_text 0 0 0
-gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"23","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"146","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"163","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"40","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"30","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"145","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"235","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"63","align":"0","color_override":"0","color":"#ff313739"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 1
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=478 {} } 
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=672 {} } 
 gtkui.mmb_delete_playlist 1
 gtkui.name_playlist_from_folder 1
 gtkui.override_bar_colors 1
@@ -84,7 +84,7 @@ playback.volume -4.508194
 playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0
-playlist.scroll.0 -6
+playlist.scroll.0 0
 playlist.scroll.1 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default

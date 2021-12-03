@@ -155,6 +155,12 @@ convert in.png -crop "$((1366-$((1366-752+2))))x$((768-$((768-464+26))))+1+26" o
 convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
 ```
 
+# scale
+
+```bash
+for i in *.png; do convert -strip -quality 92% -resize x2600\>  "$i" "$i".jpg; done
+```
+
 # visual regression testing
 
 - python - selenium webdriver `save_screenshot()` + Pillow `ImageChops.difference()`

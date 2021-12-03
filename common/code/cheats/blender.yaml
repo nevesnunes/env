@@ -10,3 +10,6 @@ A: add
 moving:
     F: fly mode
     S-MMB: pan
+
+edit_mode:
+   N: transform properties window, shows the coordinates of the selected vertex, edge, or face
