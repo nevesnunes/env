@@ -22,10 +22,14 @@
     - any format: [GitHub \- maroueneboubakri/lscan: lscan is a library identification tool on statically linked/stripped binaries](https://github.com/maroueneboubakri/lscan)
         - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)
     - ELF format:
-        - `ldd -iv` (validates shared libraries initialization)
-        - `ltrace -if`
-        - `strace -X verbose -if -s 9999`
-        - [GitHub \- marin\-m/vmlinux\-to\-elf: A tool to recover a fully analyzable \.ELF from a raw kernel, through extracting the kernel symbol table \(kallsyms\)](https://github.com/marin-m/vmlinux-to-elf)
+        - static
+            - `ldd -iv` (validates shared libraries initialization)
+            - `./pax-utils/lddtree.py` (tree formatting)
+            - [GitHub \- marin\-m/vmlinux\-to\-elf: A tool to recover a fully analyzable \.ELF from a raw kernel, through extracting the kernel symbol table \(kallsyms\)](https://github.com/marin-m/vmlinux-to-elf)
+        - dynamic
+            - `LD_DEBUG=files /bin/ls >/dev/null 2>&1 | grep needed`
+            - `ltrace -if`
+            - `strace -X verbose -if -s 9999`
     - PE format:
         - `procmon`
         - [GitHub \- fireeye/capa: The FLARE team&\#39;s open\-source tool to identify capabilities in executable files\.](https://github.com/fireeye/capa)

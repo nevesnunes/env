@@ -87,6 +87,31 @@ stty "$old_stty"
 echo $v | sed 's/.*\(rgb:[0-9a-f/]*\).*/\1/'
 ```
 
+### alternative charset mode (ACS, VT100 graphics characters)
+
+untic:
+
+```
+eA=^[(B^[)0  enable
+ae=^O        exit
+as=^N        enter
+```
+
+session:
+
+```sh
+# enable
+printf '\x1b(B\x1b)0'
+# enter (shift-in)
+printf '\x0e'; echo abcdefghijklmnopqrstuvwxyz
+# exit (shift-out)
+printf '\x0f'; echo abcdefghijklmnopqrstuvwxyz
+```
+
+- [DEC Special Graphics \- Wikipedia](https://en.wikipedia.org/wiki/DEC_Special_Graphics)
+- [VTTEST &ndash; National Replacement Character Sets](https://invisible-island.net/vttest/vttest-nrcs.html)
+- [konsole/vt100\_colorized\_termcap\.txt at master · KDE/konsole · GitHub](https://github.com/KDE/konsole/blob/master/doc/developer/old-documents/More/vt100_colorized_termcap.txt)
+
 ### issues
 
 - [NVD \- CVE\-2003\-0063](https://nvd.nist.gov/vuln/detail/CVE-2003-0063)

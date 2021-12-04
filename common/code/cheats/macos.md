@@ -423,6 +423,10 @@ nvram boot-args=”-v”
 otool -tV /usr/libexec/foo
 ```
 
+# libraries
+
+- [GitHub \- kwin/macdependency: MacDependency shows all dependent libraries and frameworks of a given executable, dynamic library or framework on Mac OS X](https://github.com/kwin/macdependency)
+
 # classic
 
 - Docs

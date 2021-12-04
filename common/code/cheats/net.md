@@ -697,6 +697,11 @@ nghttp -v -ans https://foo/index.html
 - [The Transport Layer Security (TLS) Protocol Version 1.2](https://datatracker.ietf.org/doc/html/rfc5246)
 - [RFC 2246 \- The TLS Protocol Version 1\.0](https://tools.ietf.org/html/rfc2246)
 
+### Alternatives to certificate dumping 
+
+- replace `https://` by `http://` in URLs
+    - may fail on: integrity checks, dynamically constructed URLs, servers that only listen for HTTPS
+
 # USB
 
 - capture setup
