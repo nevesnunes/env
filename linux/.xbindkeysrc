@@ -122,6 +122,14 @@ Shift + Mod4 + l
 "xsize.sh --half-left"
 Shift + Mod4 + h
 
+# "Maximize"
+"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
+Shift + Mod4 + j
+
+# "Minimize"
+"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
+Shift + Mod4 + k
+
 # "Tile (Top)"
 "xsize.sh -k"
 Mod1 + Mod4 + k
