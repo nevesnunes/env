@@ -124,11 +124,11 @@ Shift + Mod4 + h
 
 # "Maximize"
 "wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
-Shift + Mod4 + j
+Shift + Mod4 + k
 
 # "Minimize"
-"wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
-Shift + Mod4 + k
+"xdotool getactivewindow windowminimize"
+Shift + Mod4 + j
 
 # "Tile (Top)"
 "xsize.sh -k"
@@ -183,7 +183,7 @@ Mod4 + b
 Mod4 + Return
 
 # "Run || Raise File Manager"
-"xapp.sh pcmanfm"
+"xapp.sh thunar"
 Mod4 + f
 
 # "Run || Raise Zathura"
