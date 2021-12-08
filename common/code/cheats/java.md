@@ -1377,5 +1377,7 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 - `corePoolSize=0` causes worker queue busy polling
 	- [100% CPU: My Fault?](https://josephmate.github.io/2021-10-03-my-bug-used-up-100cpu-or-did-it/)
 	- [\(JDK\-8129861\) High processor load for ScheduledThreadPoolExecutor with 0 core threads \- Java Bug System](https://bugs.openjdk.java.net/browse/JDK-8129861)
+- [Java vs\. Scala: Divided We Fail](https://shipilev.net/blog/2014/java-scala-divided-we-fail/)
+
 - [Vanilla Java](http://vanillajava.blogspot.com/)
 - [Mechanical Sympathy](https://mechanical-sympathy.blogspot.com/)

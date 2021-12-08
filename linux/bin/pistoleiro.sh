@@ -173,7 +173,7 @@ while true; do
       # shellcheck disable=SC2206
       args+=($warp_args)
     else
-      args+=('-warp' "$warp")
+      args+=('-warp' $warp)
     fi
   fi
   env SDL_AUDIODRIVER=alsa PULSE_LATENCY_MSEC=150 \

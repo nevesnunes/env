@@ -83,10 +83,11 @@ function make_desktop_geometry {
     reset_tile_factors
   fi
 
-  # TODO: Support multi-monitor: Need to get active window's screen
+  # TODO: Support multi-monitor: Need to get active window's screen.
+  # Note: `mawk` does not support regex interval operators, need to match 1 or more characters.
   geo=$(xrandr | awk '
     /[[:space:]]connected/ {
-      r = match($0, "[0-9]{3,4}x[0-9]{3,4}\\+0\\+0");
+      r = match($0, "[0-9]+x[0-9]+\\+0\\+0");
       if (r > 0) print substr($0, RSTART, RLENGTH - 4);
     }
   ')

@@ -1,13 +1,14 @@
-SHELL := /bin/bash
+SHELL := /bin/sh
 
-BIN = gtk.gresource
+assets = $(shell find . -iname '*.css' -type f)
+bin = gtk.gresource
 
-all: $(BIN)
+all: $(bin)
 
-$(BIN):
-	glib-compile-resources gtk.gresource.xml
+$(bin): gtk.gresource.xml $(assets)
+	glib-compile-resources $<
 
 clean:
-	rm -f $(BIN)
+	rm -f $(bin)
 
 .PHONY: clean all

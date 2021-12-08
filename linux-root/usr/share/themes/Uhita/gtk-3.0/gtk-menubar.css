@@ -1,0 +1,22 @@
+menubar {
+    border: 0 solid transparent;
+    background-color: #4a5050;
+    background-image: none;
+    box-shadow: none;
+}
+
+menubar:backdrop {
+    background-color: #788484;
+    background-image: none;
+    box-shadow: none;
+}
+
+menubar>menuitem,
+menubar>menuitem label {
+    color: #eeeeec;
+}
+
+menubar>menuitem:backdrop,
+menubar>menuitem label:backdrop {
+    color: #cccccc;
+}

@@ -5,7 +5,7 @@ stage {
 .legacy-tray {
     background-color: transparent;
     border: 0 transparent;
-    color: transparent; 
+    color: transparent;
 }
 
 .legacy-tray-icon-box {
@@ -24,4 +24,24 @@ stage {
 .legacy-tray-handle:hover {
     background-color: #4a5050;
     color: #ededed;
+}
+
+
+/*
+ * Reference: https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/master/data/theme/gnome-shell-sass/widgets/_calendar.scss
+ */
+
+.calendar-day-base {
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+
+/*
+ * Reference: https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/data/theme/gnome-shell-sass/widgets/_workspace-switcher.scss
+ */
+
+.ws-switcher-box {
+    background: rgba(255, 255, 255, 0.15);
+    height: 4px;
 }

@@ -1,15 +1,35 @@
+/*
+ * References:
+ * - https://gitlab.gnome.org/GNOME/gtk/raw/3.24.13/gtk/theme/Adwaita/gtk-contained-dark.css
+ *
+ * Test cases:
+ * - General: gtk3-widget-factory
+ * - Dialogs: nautilus, pcmanfm
+ * - Custom titlebar: gedit
+ * - Input field in titlebar: nautilus
+ * - Minimum button height: gnome-terminal
+ * - Paned nodes: gnome-disks
+ * - Selection mode titlebar: totem
+ * - Transition (buttons in titlebar): gnome-control-center (change display mode)
+ */
+
 * {
     outline-width: 2px;
+}
+
+scrollbar {
+    padding: 2px;
 }
 
 scrollbar slider {
     min-width: 10px;
     min-height: 10px;
-    border-radius: 10px;
+    border-radius: 9999px;
 }
 
 .csd decoration {
     box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .375), 0 0 0 1px rgba(0, 0, 0, .20);
+    margin: 0;
 }
 
 .csd decoration:backdrop {
@@ -30,46 +50,153 @@ tooltip * {
  * Buttons
  */
 
-.ssd .titlebar.default-decoration button.titlebutton {
-    padding: 0 8px;
-    min-width: 0;
-    min-height: 0;
-    margin: 0;
+.titlebar entry,
+.titlebar spinbutton:not(.vertical) {
+    min-height: 24px;
+    margin: 4px 0;
 }
 
-.ssd .titlebar button.titlebutton {
+.titlebar switch {
+    min-height: 16px;
+    margin: 6px 0;
+}
+
+.titlebar .pathbar,
+.titlebar .path-bar-box {
     color: #eeeeec;
-    padding: 0 8px;
-    border-color: transparent;
-    border-radius: 4px;
-    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(255, 255, 255, 0.1);
     background-image: none;
     box-shadow: inset 0 1px rgba(255, 255, 255, 0), 0 1px rgba(238, 238, 236, 0);
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+    transition: none;
 }
 
-.ssd .titlebar button.titlebutton:hover {
+.titlebar button,
+.titlebar.default-decoration button {
+    color: #eeeeec;
     border-color: rgba(0, 0, 0, 0.35);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px rgba(238, 238, 236, 0.15);
+    background-color: rgba(255, 255, 255, 0.1);
+    background-image: none;
+    min-width: 24px;
+    min-height: 28px;
+    /* Note: Increases titlebar height, causing switches to vertically stretch */
+    margin: 4px 0;
+    padding: 0 8px;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0), 0 1px rgba(238, 238, 236, 0);
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+    transition: none;
 }
 
-.ssd .titlebar button.titlebutton:active,
-.ssd .titlebar button.titlebutton:checked {
+.titlebar button.titlebutton,
+.titlebar.default-decoration button.titlebutton {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 4px;
+    min-width: 24px;
+    min-height: 0;
+    margin: 0;
+    padding: 0 8px;
+}
+
+.csd .titlebar button.titlebutton,
+.csd .titlebar.default-decoration button.titlebutton,
+.csd headerbar.titlebar button,
+.csd headerbar.titlebar.default-decoration button,
+.csd paned.titlebar headerbar button,
+.csd paned.titlebar.default-decoration headerbar button {
+    min-width: 24px;
+    min-height: 28px;
+    /* Note: Increases titlebar height, causing switches to vertically stretch */
+    margin: 4px 0;
+    padding: 0 8px;
+    transition: none;
+}
+
+.titlebar .pathbar:hover,
+.titlebar .path-bar-box:hover,
+.titlebar button:hover,
+.titlebar button.titlebutton:hover {
+    color: #eeeeec;
+    border-color: rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px rgba(238, 238, 236, 0.15);
+    text-shadow: none;
+    -gtk-icon-shadow: none;
+}
+
+.titlebar .pathbar:active,
+.titlebar .pathbar:checked,
+.titlebar .path-bar-box:active,
+.titlebar .path-bar-box:checked,
+.titlebar button:active,
+.titlebar button:checked,
+.titlebar button.toggle:active,
+.titlebar button.toggle:checked,
+.titlebar button.toggle.image-button:active,
+.titlebar button.toggle.image-button:checked,
+.titlebar button.toggle.popup:active,
+.titlebar button.toggle.popup:checked,
+.titlebar button.titlebutton:active,
+.titlebar button.titlebutton:checked {
+    color: #eeeeec;
     border-color: rgba(0, 0, 0, 0.5);
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3));
-    -gtk-icon-shadow: 0 -1px rgba(0, 0, 0, 0.89176);
     box-shadow: inset 0 1px rgba(0, 0, 0, 0.07), inset 0 2px 4px -4px rgba(0, 0, 0, 0.3), 0 1px rgba(238, 238, 236, 0.1);
+    text-shadow: none;
+    -gtk-icon-shadow: none;
 }
 
-.ssd .titlebar button.titlebutton:backdrop,
-.ssd .titlebar button.titlebutton:disabled,
-.ssd .titlebar button.titlebutton:backdrop:disabled {
+.titlebar .pathbar:backdrop,
+.titlebar .pathbar:disabled,
+.titlebar .path-bar-box:backdrop,
+.titlebar .path-bar-box:disabled,
+.titlebar button:backdrop,
+.titlebar button:disabled,
+.titlebar button:backdrop:disabled,
+.titlebar button:backdrop label,
+.titlebar button:backdrop label:backdrop,
+.titlebar button.toggle:backdrop,
+.titlebar button.toggle:disabled,
+.titlebar button.toggle:backdrop:disabled,
+.titlebar button.toggle.image-button:backdrop,
+.titlebar button.toggle.image-button:disabled,
+.titlebar button.toggle.image-button:backdrop:disabled,
+.titlebar button.toggle.popup:backdrop,
+.titlebar button.toggle.popup:disabled,
+.titlebar button.toggle.popup:backdrop:disabled {
+    background: transparent;
+    border-color: rgba(0, 0, 0, 0.35);
     color: #cccccc;
 }
 
-.ssd .titlebar button.titlebutton:backdrop:hover,
-.ssd .titlebar button.titlebutton:backdrop:active,
-.ssd .titlebar button.titlebutton:backdrop:checked {
+.titlebar .titlebutton:backdrop,
+.titlebar .titlebutton:disabled,
+.titlebar .titlebutton:backdrop:disabled {
+    border-color: transparent;
+}
+
+.titlebar button:backdrop:hover,
+.titlebar button.toggle:backdrop:hover,
+.titlebar button.toggle.image-button:backdrop:hover,
+.titlebar button.toggle.popup:backdrop:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(0, 0, 0, 0.35);
+    color: #eeeeec;
+}
+
+.titlebar button:backdrop:active,
+.titlebar button:backdrop:checked,
+.titlebar button.toggle:backdrop:active,
+.titlebar button.toggle:backdrop:checked,
+.titlebar button.toggle.image-button:backdrop:active,
+.titlebar button.toggle.image-button:backdrop:checked,
+.titlebar button.toggle.popup:backdrop:active,
+.titlebar button.toggle.popup:backdrop:checked {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3));
+    border-color: rgba(0, 0, 0, 0.35);
     color: #eeeeec;
 }
 
@@ -78,26 +205,60 @@ tooltip * {
  * Header bars
  */
 
-.ssd .title {
-    color: #eeeeec;
+.titlebar:not(headerbar),
+.titlebar.default-decoration:not(headerbar),
+.titlebar headerbar,
+.titlebar headerbar.default-decoration,
+paned.titlebar headerbar,
+paned.titlebar headerbar.default-decoration,
+headerbar,
+headerbar.default-decoration {
+    border-color: transparent;
+    min-height: 16px;
 }
 
-.ssd .titlebar {
+.titlebar,
+paned.titlebar headerbar {
     padding: 0 4px;
     border: 0 solid transparent;
     background-color: #4a5050;
     background-image: none;
-    box-shadow: inset 0 -1px #1c1f1f, inset 0 1px rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(238, 238, 236, 0.1);
 }
 
-.ssd .title:backdrop {
+.titlebar:backdrop,
+paned.titlebar headerbar:backdrop {
+    background-color: #788484;
+    background-image: none;
+    box-shadow: inset 0 1px rgba(238, 238, 236, 0.1);
+}
+
+:not(messagedialog) .titlebar label,
+:not(messagedialog) .titlebar .title {
+    color: #eeeeec;
+}
+
+:not(messagedialog) .titlebar label:backdrop,
+:not(messagedialog) .titlebar .title:backdrop {
     color: #cccccc;
 }
 
-.ssd .titlebar:backdrop {
-    background-color: #788484;
+box.titlebar separator,
+hdyleaflet.titlebar separator,
+headerbar.titlebar separator,
+leaflet.titlebar separator,
+paned.titlebar separator {
+    background-color: #3c3f3f;
     background-image: none;
-    box-shadow: inset 0 -1px #4a5050, inset 0 1px rgba(238, 238, 236, 0.1);
+}
+
+box.titlebar separator:backdrop,
+hdyleaflet.titlebar separator:backdrop,
+headerbar.titlebar separator:backdrop,
+leaflet.titlebar separator:backdrop,
+paned.titlebar separator:backdrop {
+    background-color: #4a5050;
+    background-image: none;
 }
 
 
@@ -125,6 +286,7 @@ notebook box scrolledwindow {
     background-color: #ffffff;
 }
 
+
 /*
  * Menus
  *
@@ -132,7 +294,12 @@ notebook box scrolledwindow {
  * on non-composited window managers.
  * See: https://gitlab.gnome.org/GNOME/gtk/issues/1661
  */
-menu, .menu, .context-menu,
-.csd menu, .csd .menu, .csd .context-menu {
+
+menu,
+.menu,
+.context-menu,
+.csd menu,
+.csd .menu,
+.csd .context-menu {
     border-radius: 0;
 }

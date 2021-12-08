@@ -9,6 +9,15 @@
 wget --recursive --no-parent --no-host-directories 192.168.1.5:8123
 ```
 
+# distribution version
+
+```bash
+lsb_release -a
+hostnamectl
+cat /proc/version
+cat /etc/*-release
+```
+
 # package manager
 
 ```bash
@@ -56,7 +65,16 @@ dpkg --configure foo
 dpkg --configure -a
 ```
 
-https://www.debian.org/releases/buster/amd64/release-notes/ch-upgrading.en.html
+- [Chapter 4\. Upgrades from Debian 9 \(stretch\)](https://www.debian.org/releases/buster/amd64/release-notes/ch-upgrading.en.html)
+
+### 11
+
+On /etc/apt/sources.list:
+
+```
+deb http://security.debian.org/debian-security/ bullseye-security main
+deb-src http://security.debian.org/debian-security/ bullseye-security main
+```
 
 ### non-free repositories
 

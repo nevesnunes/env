@@ -161,6 +161,14 @@ convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
 for i in *.png; do convert -strip -quality 92% -resize x2600\>  "$i" "$i".jpg; done
 ```
 
+# stitch, panorama
+
+- if scanned images, then use 5 degrees
+  - [Autostiching scan with Hugin \- David Revoy](https://www.davidrevoy.com/article314/autostiching-scan-with-hugin)
+  - [Hugin tutorial &\#8212; Stitching flat scanned images](http://hugin.sourceforge.net/tutorials/scans/en.shtml)
+- control points
+  - [How to stitch photos together on Linux](https://www.xmodulo.com/stitch-photos-together-linux.html)
+
 # visual regression testing
 
 - python - selenium webdriver `save_screenshot()` + Pillow `ImageChops.difference()`

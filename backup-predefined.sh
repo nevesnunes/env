@@ -147,4 +147,8 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./bin/functions \
   ./linux/
 
-
+rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
+  --copy-links \
+  --filter='dir-merge,- .gitignore' \
+  /usr/share/themes/Uhita \
+  ./linux-root/

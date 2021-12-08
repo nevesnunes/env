@@ -346,3 +346,7 @@ sudo modprobe -r loop && sudo modprobe loop
 # validation
 sudo losetup -a  # no entry for /dev/loop0
 ```
+
+# benchmarking
+
+- [File system performance benchmarking \| GitLab](https://docs.gitlab.com/ee/administration/operations/filesystem_benchmarking.html)

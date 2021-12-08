@@ -1,0 +1,71 @@
+/*
+References:
+- https://gitlab.com/kalilinux/packages/kali-themes/-/blob/kali/master/share/themes/Kali-Dark/gtk-3.0/gtk.css
+*/
+
+
+/* XFCE4 PANEL */
+
+.xfce4-panel.background {
+    background: @bg_color_dark;
+}
+
+.xfce4-panel button {
+    background: transparent;
+    color: @base_color;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.xfce4-panel button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.873255);
+    -gtk-icon-shadow: 0 -1px rgba(0, 0, 0, 0.873255);
+}
+
+.xfce4-panel button:checked,
+.xfce4-panel button:active {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 4px 0 #2777ff;
+}
+
+.xfce4-panel.vertical button:checked,
+.xfce4-panel.vertical button:active {
+    box-shadow: inset 4px 0 0 #2777ff;
+}
+
+
+/* XFCE4 NOTIFICATIONS */
+
+#XfceNotifyWindow {
+    background-color: @bg_color_dark;
+}
+
+
+/* XFCE4 workspace switcher */
+
+wnck-pager {
+    background-color: #3d4251;
+}
+
+wnck-pager:selected {
+    background-color: black;
+}
+
+wnck-pager:hover {
+    background-color: black;
+}
+
+@define-color base_color #FFFFFF;
+@define-color fg_color #2E3436;
+@define-color tooltip_fg_color #FFFFFF;
+@define-color selected_bg_color #4A90D9;
+@define-color selected_fg_color #FFFFFF;
+@define-color text_color #313739;
+@define-color bg_color #EDEDED;
+@define-color insensitive_bg_color #F4F4F2;
+@define-color tooltip_bg_color #000000;
+@define-color bg_color_dark #272B2B;
+@define-color bg_color_smooth_dark #777777;
