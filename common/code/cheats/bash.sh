@@ -4,6 +4,9 @@
 # - https://github.com/dylanaraps/pure-sh-bible
 # - https://github.com/dylanaraps/pure-bash-bible
 
+# Provisioning
+# - [How to write idempotent Bash scripts &middot; Fatih Arslan](https://arslan.io/2019/07/03/how-to-write-idempotent-bash-scripts/)
+
 # Parameters, Expansions
 # - http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06
 

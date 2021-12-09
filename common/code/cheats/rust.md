@@ -11,6 +11,8 @@ rustc foo.rs
 
 cargo install --path .
 # ||
+cargo install --force --path .
+# ||
 cargo build -j 2 --release
 ```
 

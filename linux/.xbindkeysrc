@@ -183,7 +183,7 @@ Mod4 + b
 Mod4 + Return
 
 # "Run || Raise File Manager"
-"xapp.sh thunar"
+"xapp.sh pcmanfm"
 Mod4 + f
 
 # "Run || Raise Zathura"
