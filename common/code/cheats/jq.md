@@ -6,6 +6,12 @@ https://megamorf.gitlab.io/cheat-sheets/cheat-sheet-jq.html
 https://stackoverflow.com/questions/47551333/jq-convert-a-list-of-objects-into-a-summarized-object
 https://stackoverflow.com/questions/42427725/using-jq-convert-array-of-objects-to-object-with-named-keys
 
+# add element from argument
+
+```bash
+echo '{"hello": "world"}' | jq --arg foo bar '.foo += [$foo, 123]'
+```
+
 # interactive
 
 ```bash

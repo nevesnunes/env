@@ -263,6 +263,7 @@ x-scheme-handler/irc=pidgin.desktop
 x-scheme-handler/mailto=mozilla-thunderbird.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop
 x-scheme-handler/unknown=firefox.desktop
+x-scheme-handler/eclipse+mpc=_home_fn_opt_eclipse_.desktop
 
 [Removed Associations]
 application/x-gzpostscript=zathura-ps.desktop;

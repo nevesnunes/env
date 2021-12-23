@@ -1,22 +1,7 @@
 #!/bin/sh
-#
-# fluxbox startup-script:
-#
-# Lines starting with a '#' are ignored.
 
-# Change your keymap:
-# xmodmap "/home/fn/.Xmodmap"
-
-# Applications you want to run with fluxbox.
-# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
-#
-# unclutter -idle 2 &
-# wmnd &
-# wmsmixer -w &
-# idesk &
-
-export $(gnome-keyring-daemon --daemonize --replace)
-tint2 &
+# export $(gnome-keyring-daemon --daemonize --replace)
+# tint2 &
 
 autoruns.sh &
 run-daemons.sh &

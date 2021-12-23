@@ -17,7 +17,7 @@ gtkui.embolden_current_track 1
 gtkui.eq.visible 0
 gtkui.hide_remove_from_disk 1
 gtkui.hide_tray_icon 1
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=672 {} } 
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1" fill="1 1" homogeneous=0 {playtb {} hbox expand="1 1" fill="1 1" homogeneous=1 {seekbar {} hbox expand="1 1" fill="1 1" homogeneous=1 {volumebar {} spectrum {} } } } tabbed_playlist hideheaders=0 width=478 {} } 
 gtkui.mmb_delete_playlist 1
 gtkui.name_playlist_from_folder 1
 gtkui.override_bar_colors 1
@@ -80,7 +80,7 @@ network.proxy.type HTTP
 output_plugin alsa
 playback.loop 1
 playback.order 0
-playback.volume -4.508194
+playback.volume -4.098360
 playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0

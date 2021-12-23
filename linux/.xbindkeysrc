@@ -214,6 +214,10 @@ Mod1 + Mod4 + Return
 "user-terminal.sh gvim -v -c 'noremap q :%y+ <bar> :qa!<CR>'"
 Mod1 + Mod4 + v
 
+# "rfkill dance"
+"sh -c 'rfkill block 1; rfkill unblock 1; notify-send rfkilling...'"
+Mod4 + r
+
 # Calendar 
 "scratchpad-terminal.sh status.sh"
 Mod4 + n

@@ -62,6 +62,13 @@ msf > show options
 msf > set FOO 123
 ```
 
+# security feeds
+
+- https://nvd.nist.gov/download/nvd-rss.xml
+- https://www.cisa.gov/uscert/mailing-lists-and-feeds
+- https://rss.packetstormsecurity.com/files/
+- https://seclists.org/rss/fulldisclosure.rss
+
 # racing, race-condition
 
 - [Temmo's Tiny Shop - 0CTF 2017](https://www.40huo.cn/blog/0ctf-2017-writeup.html)

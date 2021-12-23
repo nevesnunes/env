@@ -1,7 +1,23 @@
+# sandboxing
+
+- FireJail
+    - [Simple application sandboxing using AppArmor and Firejail](https://pvera.net/posts/apparmor-firejail-sandboxing/)
+    - :( [how to blacklist everything? · Issue \#354 · netblue30/firejail · GitHub](https://github.com/netblue30/firejail/issues/354)
+
+# MAC
+
+- [AppArmor](./apparmor.md)
+- [SELinux](./selinux.md)
+
 # namespaces
 
 - `sudo unshare -n -- sudo -u sandboxuser bash -c 'foo'`
     - https://unix.stackexchange.com/questions/68956/block-network-access-of-a-process
+
+# network
+
+- https://security.stackexchange.com/questions/5969/network-policies-under-apparmor-selinux
+    - https://serverfault.com/questions/366922/selinux-limit-httpd-outbound-connections-by-address-and-port
 
 # X11
 
@@ -13,11 +29,3 @@
     ```
 - [Short setups to provide X display to container · mviereck/x11docker Wiki · GitHub](https://github.com/mviereck/x11docker/wiki/Short-setups-to-provide-X-display-to-container)
 - [X11 Guide \| Firejail](https://firejail.wordpress.com/documentation-2/x11-guide/)
-
-# MAC
-
-- [selinux](./selinux.md)
-
-- https://gitlab.com/apparmor/apparmor/-/wikis/AppArmorWine
-    - https://github.com/mk-fg/apparmor-profiles/blob/master/profiles/usr.bin.wine
-- https://ubuntu.com/tutorials/beginning-apparmor-profile-development#3-generating-a-basic-profile

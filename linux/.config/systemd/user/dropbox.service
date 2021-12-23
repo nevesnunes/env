@@ -10,7 +10,8 @@ After=local-fs.target dump-systemd-env.service
 
 [Service]
 EnvironmentFile=/home/%u/.local/share/systemd/env
-Type=forking
+# When launched via firejail, Type=forking causes timeout.
+Type=simple
 ExecStartPre=-/usr/bin/pkill dropbox
 ExecStart=/usr/bin/dropbox start
 ExecStop=/usr/bin/dropbox stop

@@ -426,6 +426,23 @@ git show COMMIT
 git clone git@foo.com:foo-team/foo.git
 ```
 
+# push to multiple remotes
+
+```bash
+# add urls
+git remote add all $remote_url
+git remote set-url all -push -add $remote_url_1
+git remote set-url all -push -add $remote_url_2
+# || group remotes
+git config –add remote.all.url $remote_url_1
+git config –add remote.all.url $remote_url_2
+
+git push all master
+
+# validation
+git remote -v
+```
+
 # grep / search
 
 ```bash

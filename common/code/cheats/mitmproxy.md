@@ -35,8 +35,11 @@ sysctl -w net.ipv4.ip_forward=0
 - https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/intercepting-ssl-and-https-traffic-with-mitmproxy-and-sslsplit/
 - https://www.darkcoding.net/software/decrypt-your-https-traffic-with-mitmproxy/
     - Enumerate ciphers with `ssldump`
+- https://stackoverflow.com/questions/9555403/capturing-mobile-phone-traffic-on-wireshark
 - [My phone is spying on me, so I decided to spy on it \| Hacker News](https://news.ycombinator.com/item?id=18298548)
     - [GitHub \- abcnews/data\-life](https://github.com/abcnews/data-life)
+- Alternative: Set OS proxy to Burp Suite, Add root certificate to OS keystore
+    - [Wacom drawing tablets track the name of every application that you open \| Robert Heaton](https://robertheaton.com/2020/02/05/wacom-drawing-tablets-track-name-of-every-application-you-open/)
 - Alternative: Hotspot + dumpcap
     - https://kushaldas.in/posts/tracking-my-phone-s-silent-connections.html
 - Alternative: VPN server

@@ -1,1 +1,27 @@
-/home/fn/.config/systemd/user/dropbox.service
+[Unit]
+Description=Dropbox
+# Tray icon will not appear without display variables
+Requires=dump-systemd-env.service
+# Sync must have system online
+Wants=network-online.target
+# local-fs: Sync must have mounts available
+# dump-systemd-env: Display variables must be written before being read
+After=local-fs.target dump-systemd-env.service
+
+[Service]
+EnvironmentFile=/home/%u/.local/share/systemd/env
+# When launched via firejail, Type=forking causes timeout.
+Type=simple
+ExecStartPre=-/usr/bin/pkill dropbox
+ExecStart=/usr/bin/dropbox start
+ExecStop=/usr/bin/dropbox stop
+PIDFile=/home/%u/.dropbox/dropbox.pid
+KillMode=process
+Restart=on-failure
+RestartSec=10
+TimeoutSec=30
+StartLimitIntervalSec=30s
+StartLimitBurst=3
+
+[Install]
+WantedBy=default.target

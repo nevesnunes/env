@@ -155,7 +155,7 @@ done
 
 switch_to_main_workspace &
 
-run_app keepassx 1 -l &
+run_app keepassxc 1 -l &
 
 run_app_with_net thunderbird 1 -h &
 run_app_with_net browser 2 -h &

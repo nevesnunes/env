@@ -1,3 +1,7 @@
+# Completions
+
+Windows > Preferences > Java > Editor > Content Assist > Advanced > Select all Java only
+
 # Importing maven projects with child projects
 
 Repository Exploring > Check Out

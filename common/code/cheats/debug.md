@@ -13,6 +13,7 @@
     - [processes](./windows.md#debug)
     - [filesystems](./filesystem.md#debug)
 - embedded systems: JTAG
+    - https://openocd.org/doc-release/html/About.html#What-is-OpenOCD_003f
     - https://github.com/riscv/riscv-debug-spec
         - https://github.com/pulp-platform/riscv-dbg/blob/master/doc/debug-system.md
 

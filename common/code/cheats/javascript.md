@@ -516,6 +516,18 @@ node --v8-options | grep -i 'expose\|prof'
 https://github.com/bretcope/node-gc-profiler
     https://www.dynatrace.com/news/blog/understanding-garbage-collection-and-hunting-memory-leaks-in-node-js/
 
+# Chrome extension source
+
+```bash
+extension_id=jifpbeccnghkjeaalbbjmodiffmgedin
+curl -L -o "$extension_id.zip" "https://clients2.google.com/service/update2/crx?response=redirect&os=mac&arch=x86-64&nacl_arch=x86-64&prod=chromecrx&prodchannel=stable&prodversion=44.0.2403.130&x=id%3D$extension_id%26uc"
+unzip -d "$extension_id-source" "$extension_id.zip"
+```
+
+- `chrome://version/ > Profile Path > Extensions`
+- [CRX Viewer](https://robwu.nl/crxviewer/)
+- [GitHub \- Rob\-\-W/crxviewer: Add\-on / web app to view the source code of Chrome / Firefox / Opera 15 extensions and zip files\.](https://github.com/Rob--W/crxviewer)
+
 # case studies
 
 - https://stackoverflow.com/questions/38637003/what-s-happening-in-this-code-with-number-objects-holding-properties-and-increme#38637228

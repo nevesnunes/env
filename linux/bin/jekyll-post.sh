@@ -20,7 +20,7 @@ cat > "$fileName" <<DELIM
 ---
 layout: post
 title: $title
-date: $(date "+%Y-%m-%d %H:%M:%S") +0100
+date: $(date "+%Y-%m-%d %H:%M:%S") +0000
 ---
 
 {% include custom.html %}

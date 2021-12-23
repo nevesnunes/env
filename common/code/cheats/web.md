@@ -461,6 +461,11 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 - [Directory Traversal in st | Snyk \- Open Source Security](https://snyk.io/vuln/SNYK-JS-MINHTTPSERVER-608658)
     - https://blog.npmjs.org/post/80277229932/newly-paranoid-maintainers
     - ~/Downloads/st-20140206_0_0_6b54ce2d2fb912eadd31e2c25c65456d2c8666e1.patch
+- [Security: Fix directory traversal issue \(\#42846\) · grafana/grafana@c798c0e · GitHub](https://github.com/grafana/grafana/commit/c798c0e958d15d9cc7f27c72113d572fa58545ce#diff-2e51080c3987968b4ea97b2aa6747caced5777413ba75deca2efdcc185cc2b12L293)
+    - https://news.ycombinator.com/item?id=29494394
+    > 3. Eliminate each inner .. path name element (the parent directory) along with the non-.. element that precedes it.
+    > 4. Eliminate .. elements that begin a rooted path: that is, replace "/.." by "/" at the beginning of a path, assuming Separator is '/'.
+    > A quick reading of 3 and 4 will make you assume that a path has no ".."s after being "Clean"d. If you actually think about it more, you'll realize that of course it will leave ".." at the beginning of relative paths
 
 # Insecure Direct Object References (IDOR)
 

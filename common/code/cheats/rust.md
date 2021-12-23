@@ -14,6 +14,10 @@ cargo install --path .
 cargo install --force --path .
 # ||
 cargo build -j 2 --release
+
+# compiler output
+# e.g. https://stackoverflow.com/questions/46388386/what-exactly-does-derivedebug-mean-in-rust
+cargo +nightly rustc -- -Zunstable-options --pretty=expanded
 ```
 
 # Deploy
