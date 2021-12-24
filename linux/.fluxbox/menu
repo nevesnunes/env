@@ -23,14 +23,12 @@
             </usr/share/icons/hicolor/24x24/apps/firefox.png>
     [exec] (Chrome) {google-chrome-stable}
             </usr/share/icons/hicolor/24x24/apps/google-chrome.png>
-    [exec] (UXterm) {uxterm}
-            </usr/share/icons/Adwaita/24x24/apps/utilities-terminal.png>
-    [exec] (Nautilus) {nautilus}
-            </usr/share/icons/Adwaita/24x24/apps/system-file-manager.png>
-    [exec] (GIMP) {gimp.sh}
+    [exec] (Terminal) {uxterm}
+            </usr/share/icons/gnome/24x24/apps/utilities-terminal.png>
+    [exec] (File Manager) {pcmanfm}
+            </usr/share/icons/gnome/24x24/apps/system-file-manager.png>
+    [exec] (GIMP) {gimp}
             </usr/share/icons/hicolor/24x24/apps/gimp.png>
-    [exec] (Krita) {krita}
-            </usr/share/icons/hicolor/32x32/apps/calligrakrita2.png>
     [separator]
     [config] (Configure)
 [submenu] (System Styles) {Choose a style...}

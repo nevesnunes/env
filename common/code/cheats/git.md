@@ -420,6 +420,17 @@ git diff COMMIT^!
 git show COMMIT
 ```
 
+# make changes without overwriting dirty state
+
+```bash
+git diff --exit-code &&
+    vim ./foo &&
+    ! git diff --quiet ./foo &&
+    git commit -qm 'sync' ./foo &&
+    git pull -q --rebase &&
+    git push -q
+```
+
 # clone using ssh key
 
 ```bash

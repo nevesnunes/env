@@ -4,7 +4,7 @@ set -eu
 
 wm=${1:-fluxbox}
 
-Xephyr -ac -screen 1280x1024 -br -reset -terminate 2> /dev/null :3 &
+Xephyr -ac -screen 1280x900 -br -reset -terminate 2> /dev/null :3 &
 
 # Wait for X server to be ready
 inotifywait --timeout 2 /tmp/.X11-unix/

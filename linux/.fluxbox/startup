@@ -1,6 +1,12 @@
 #!/bin/sh
 
 # export $(gnome-keyring-daemon --daemonize --replace)
+
+# On ./init, set these entries to use fluxbox's panel:
+# ```
+# session.screen0.toolbar.visible: true
+# session.screen0.toolbar.tools: prevworkspace, workspacename, nextworkspace, iconbar, systemtray, clock
+# ```
 # tint2 &
 
 autoruns.sh &
@@ -9,7 +15,6 @@ run-apps.sh &
 
 # And last but not least we start fluxbox.
 # Because it is the last app you have to run it with ''exec'' before it.
-
 exec fluxbox
 # or if you want to keep a log:
 # exec fluxbox -log "/home/fn/.fluxbox/log"
