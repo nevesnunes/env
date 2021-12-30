@@ -16,7 +16,7 @@ _fishy_collapsed_wd() {
 }
 
 _git() {
-    git branch &>/dev/null || return
+    git branch >/dev/null 2>&1 || return
     HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
     BRANCH="${HEAD##*/}"
     git status 2>/dev/null | \
@@ -25,14 +25,14 @@ _git() {
 }
 
 _hg() {
-    hg branch &>/dev/null || return
+    hg branch >/dev/null 2>&1 || return
     BRANCH="$(hg branch 2>/dev/null)"
     [ -n "$(hg status 2>/dev/null)" ] && STATUS="*"
     printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
 }
 
 _svn() {
-    svn info &>/dev/null || return
+    svn info >/dev/null 2>&1 || return
     URL="$(svn info 2>/dev/null | \
         awk -F': ' '$1 == "URL" {print $2}')"
     ROOT="$(svn info 2>/dev/null | \
@@ -41,13 +41,13 @@ _svn() {
     BRANCH=${BRANCH#/}
     BRANCH=${BRANCH#branches/}
     BRANCH=${BRANCH%%/*}
-    [[ -n "$(svn status 2>/dev/null)" ]] && STATUS="*"
+    [ -n "$(svn status 2>/dev/null)" ] && STATUS="*"
     printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
 }
 
 _vcs() {
     local status=$(_git || _svn || _hg)
-    [ -n "$status" ] && echo -n "$prompt_reset$status$prompt_fg"
+    [ -n "$status" ] && printf '%s' "$prompt_reset$status$prompt_fg"
 }
 
 prompt_main() {
