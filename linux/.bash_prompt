@@ -1,25 +1,37 @@
-prompt_fg="\[$(tput setaf 6)\]"
+prompt_fg="\[$(tput setaf 2)\]"
 prompt_red_fg="\[$(tput setaf 1)\]"
 prompt_bold="\[$(tput bold)\]"
 prompt_reset="\[$(tput sgr0)\]"
 
-prompt_git() {
+_fishy_collapsed_wd() {
+    wd=$(pwd)
+    last_dir="${wd##*/}"
+    echo "$wd" | sed '
+        s|^'"$HOME"'|~|g;
+        s|/\([^/.]\)[^/]*|/\1|g;
+        s|/\([^/.]\)[^/]*$|/'"$last_dir"'|g;
+        s|/\.\([^/]\)[^/]*|/.\1|g;
+        s|/\.\([^/]\)[^/]*$|/'"$last_dir"'|g;
+    '
+}
+
+_git() {
     git branch &>/dev/null || return
     HEAD="$(git symbolic-ref HEAD 2>/dev/null)"
     BRANCH="${HEAD##*/}"
-    [ -n "$(git status 2>/dev/null | \
-        grep -E 'working (tree|directory) clean')" ] || STATUS="*"
+    git status 2>/dev/null | \
+        grep -qE 'working (tree|directory) clean' || STATUS="*"
     printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
 }
 
-prompt_hg() {
+_hg() {
     hg branch &>/dev/null || return
     BRANCH="$(hg branch 2>/dev/null)"
     [ -n "$(hg status 2>/dev/null)" ] && STATUS="*"
     printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
 }
 
-prompt_svn() {
+_svn() {
     svn info &>/dev/null || return
     URL="$(svn info 2>/dev/null | \
         awk -F': ' '$1 == "URL" {print $2}')"
@@ -33,8 +45,8 @@ prompt_svn() {
     printf ' (%s)' "${BRANCH:-unknown}${STATUS}"
 }
 
-prompt_vcs() {
-    local status=$(prompt_git || prompt_svn || prompt_hg)
+_vcs() {
+    local status=$(_git || _svn || _hg)
     [ -n "$status" ] && echo -n "$prompt_reset$status$prompt_fg"
 }
 
@@ -55,15 +67,15 @@ prompt_main() {
         fi
     fi
 
-    local prompt_jobs=""
+    local prompt_jobs=
     count_jobs=$(jobs -l | wc -l)
     if [ "$count_jobs" -gt 0 ]; then
         prompt_jobs=" ${prompt_reset}[${count_jobs}]${prompt_fg}"
     fi
 
-    local prompt_vcs_status=$(prompt_vcs)
+    local prompt_vcs_status=$(_vcs)
 
-    user_at_host=
+    local user_at_host=
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_TTY" ]; then
         user_at_host='\u@\h '
     fi
@@ -72,7 +84,8 @@ prompt_main() {
     # terminals with column length matching prompt length 
     # have invalid line wrapping.
     # TODO: show user@host on cwd parsed from `mount -t fuse.sshfs`
-    PS1="$prompt_fg$user_at_host\W$prompt_vcs_status$prompt_jobs$prompt_exit_status ####$prompt_reset "
+    # PS1="$prompt_fg$user_at_host\W$prompt_vcs_status$prompt_jobs$prompt_exit_status $prompt_bold####$prompt_reset "
+    PS1="$prompt_fg$user_at_host$(_fishy_collapsed_wd)$prompt_vcs_status$prompt_jobs$prompt_exit_status $prompt_bold####$prompt_reset "
 }
 
 # References:
