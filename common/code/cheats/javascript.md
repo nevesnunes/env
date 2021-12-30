@@ -209,6 +209,13 @@ https://stackoverflow.com/questions/50894000/eslint-process-is-not-defined
 https://localvoid.github.io/uibench/
 https://github.com/krausest/js-framework-benchmark
 
+# Testing
+
+- Remove / Nullify URL parameters
+- Concurrent requests / sessions
+    - e.g.  remove element in one window, view same element in another window
+- Misalignments when updating dynamic content
+
 # WebSocket
 
 https://github.com/websockets/ws/issues/353

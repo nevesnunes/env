@@ -44,7 +44,14 @@ grep FTP /boot/config-5.6.12-300.fc32.x86_64
 
 # issues
 
-ftp.exe does not support passive mode
+### no connection
+
+- try external app (e.g. filezilla)
+- check firewall ports on client-side
+- [FTPClient \(Apache Commons Net 3\.8\.0 API\)](https://commons.apache.org/proper/commons-net/apidocs/org/apache/commons/net/ftp/FTPClient.html)
+    - compare `enterRemotePassiveMode()` vs. `enterLocalPassiveMode()`
+
+### ftp.exe does not support passive mode
 
 ```
 dir

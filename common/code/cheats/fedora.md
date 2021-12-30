@@ -51,7 +51,7 @@ systemd-tmpfiles --clean
 # containers
 docker system prune -a --volumes
 # journal
-journalctl --vaccum-time=1s
+journalctl --vaccum-time 1s
 
 for i in cache lib; do
     mkdir -p /home/var/"$i"

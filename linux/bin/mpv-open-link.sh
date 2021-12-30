@@ -10,10 +10,10 @@ else
   link="$contents_clipboard"
 fi
 
+icon=/usr/share/icons/hicolor/symbolic/apps/mpv-symbolic.svg
 if ! echo "$link" | grep -q "://"; then
-  notify-send "$script_name" "Skipping: $link"
+  notify-send -i "$icon" "$script_name" "Skipping: $link"
   exit 1
 fi
-
-notify-send "$script_name" "Opening: $link"
+notify-send -i "$icon" "$script_name" "Opening: $link"
 exec mpv "$link"

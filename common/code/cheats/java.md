@@ -79,6 +79,10 @@ javap -l | grep 'LineNumberTable\|LocalVariableTable'
 https://synyx.de/blog/java-deep-dive-class-file-format-for-debug-information/
     https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.12
 
+### memory leaks
+
+- socket handles: xref. OS sockets with objects in heap, check if closed connections leave objects with refs; xref. tid in strace with thread dumps
+
 # Processes
 
 ```

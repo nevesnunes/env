@@ -14,6 +14,14 @@ paste -d$'\t' \
     | while IFS=$'\t' read -r i j; do diff <(fpcalc "$i") <(fpcalc "$j"); done
 ```
 
+# Compare frequencies
+
+```bash
+sox -S -m -v 1 foo.flac -v -1 bar.flac -n spectrogram -x 640 -y 200 -Z -30 -o diff.png
+```
+
+- https://stackoverflow.com/questions/60787686/ffmpeg-lowpass-filter-increase-roll-off
+
 # Ripping
 
 ```bash

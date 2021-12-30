@@ -215,7 +215,7 @@ Mod1 + Mod4 + Return
 Mod1 + Mod4 + v
 
 # "rfkill dance"
-"sh -c 'rfkill block 1; rfkill unblock 1; notify-send rfkilling...'"
+"sh -c 'rfkill block 1; rfkill unblock 1; notify-send -i /usr/share/icons/Adwaita/scalable/devices/network-wireless-symbolic.svg rfkill-ing...'"
 Mod4 + r
 
 # Calendar 
