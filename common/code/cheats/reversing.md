@@ -42,6 +42,8 @@
         - [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
         - Borland Resource Workshop
         - eXeScope
+- object manager namespace
+    - [WinObj \- Windows Sysinternals \| Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/winobj)
 - installers
     - [GitHub \- Bioruebe/UniExtract2: Universal Extractor 2 is a tool to extract files from any type of archive or installer\.](https://github.com/Bioruebe/UniExtract2)
 - packers

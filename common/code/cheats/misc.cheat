@@ -717,7 +717,7 @@ strace -f -e signal=none -e /unlink -e inject=all:retval=0 <cmd>
 # Decompress
 for i in *.(7z|ace|ar|arc|bz|bz2|cpio|cpt|dgc|dmg|gz|rar|shar|tar|tgz|txz|xar|xpi|xz|zip|ZIP); do atool -x "$i" && rm -f "$i"; done
 ; ||
-find . -type f -iregex '.*.\(7z\|ace\|ar\|arc\|bz\|bz2\|cpio\|cpt\|dgc\|dmg\|gz\|rar\|shar\|tar\|tgz\|txz\|xar\|xpi\|xz\|zip\)' -exec sh -c 'atool -x "{}" && rm -f "{}"' \;
+find . -maxdepth 1 -type f -iregex '.*.\(7z\|ace\|ar\|arc\|bz\|bz2\|cpio\|cpt\|dgc\|dmg\|gz\|rar\|shar\|tar\|tgz\|txz\|xar\|xpi\|xz\|zip\)' -exec sh -c 'atool -x "{}" && rm -f "{}"' \;
 
 # `strings` alternative
 grep -E -a -o '[[:print:]]{4,}'

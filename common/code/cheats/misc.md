@@ -175,9 +175,13 @@ done
 
 ### enumeration
 
-- ~/opt/privilege-escalation-awesome-scripts-suite/
-- ~/opt/LinEnum/
-- https://github.com/TH3xACE/SUDO_KILLER
+- windows
+    - [GitHub \- GhostPack/Seatbelt: Seatbelt is a C\# project that performs a number of security oriented host\-survey &quot;safety checks&quot; relevant from both offensive and defensive security perspectives\.](https://github.com/GhostPack/Seatbelt)
+    - [GitHub \- gpoguy/GetVulnerableGPO: PowerShell script to find &\#39;vulnerable&\#39; security\-related GPOs that should be hardended](https://github.com/gpoguy/GetVulnerableGPO)
+- linux
+    - ~/opt/privilege-escalation-awesome-scripts-suite/
+    - ~/opt/LinEnum/
+    - [GitHub \- TH3xACE/SUDO\_KILLER: A tool to identify and exploit sudo rules&\#39; misconfigurations and vulnerabilities within sudo for linux privilege escalation\.](https://github.com/TH3xACE/SUDO_KILLER)
 
 ```bash
 sudo -l

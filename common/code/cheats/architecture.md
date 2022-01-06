@@ -29,3 +29,14 @@
 # Design decisions
 
 - [NetworkInterfaceNames \- Debian Wiki](https://wiki.debian.org/NetworkInterfaceNames)
+
+# Hot-Swapping
+
+### Executables
+
+- reuse sockets
+    - systemd socket activation + delegation
+    - [GitHub \- zimbatm/socketmaster: Zero downtime restarts for your apps](https://github.com/zimbatm/socketmaster)
+- pid reparenting
+    - [Controlling nginx \- Upgrading Executable on the Fly](https://nginx.org/en/docs/control.html#upgrade)
+    - [caddy/upgrade\.go at v1 · caddyserver/caddy · GitHub](https://github.com/caddyserver/caddy/blob/v1/upgrade.go)

@@ -2,6 +2,7 @@
 
 - [batch](batch.md)
 - [powershell](powershell.ps1)
+- [rdp](./rdp.md)
 - [wmi](./wmi.md)
 
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
@@ -9,6 +10,7 @@
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 
 - [OSR Developer Community](https://community.osr.com/)
+- [theForger's Win32 API Tutorial](http://www.winprog.org/tutorial/)
 
 ```
 get-command notepad.exe | select Source
@@ -92,11 +94,12 @@ https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/
 
 https://github.com/d1pakda5/PowerShell-for-Pentesters/blob/master/20-Remoting-Part-1.md
 
-– PowerShell functions. These are easy, since the function "is" the source code. You can do something like this to open the file up in the ise, if the command is a function: powershell_ise (Get-Command Get-CMSoftwareUpdate).ScriptBlock.File
-– Cmdlets. These are .NET classes, usually written in C#. Unless the source code is open-source, you can't get its original form, but you can decompile back to a somewhat-readable C# file using free tools such as ILSpy or DotPeek. If it's a cmdlet, you can find the file that needs to be decompiled like this: (Get-Command Get-CMSoftwareUpdate).ImplementingType.Assembly.Location
-– CIM commands. These are auto-generated PowerShell wrappers around WMI classes; they're generated from cdxml files in the module directory. I'm not sure if there's an easy way to open an individual command's file, but once you know that's what you're dealing with, you can browse to the module's folder and open up the cdxml files to see what it's doing.
+> PowerShell functions. These are easy, since the function "is" the source code. You can do something like this to open the file up in the ise, if the command is a function: powershell_ise (Get-Command Get-CMSoftwareUpdate).ScriptBlock.File
+> Cmdlets. These are .NET classes, usually written in C#. Unless the source code is open-source, you can't get its original form, but you can decompile back to a somewhat-readable C# file using free tools such as ILSpy or DotPeek. If it's a cmdlet, you can find the file that needs to be decompiled like this: (Get-Command Get-CMSoftwareUpdate).ImplementingType.Assembly.Location
+> CIM commands. These are auto-generated PowerShell wrappers around WMI classes; they're generated from cdxml files in the module directory. I'm not sure if there's an easy way to open an individual command's file, but once you know that's what you're dealing with, you can browse to the module's folder and open up the cdxml files to see what it's doing.
 
 https://stackoverflow.com/questions/54787115/how-to-debug-a-windows-kernel-driver-properly
+https://github.com/Microsoft/Windows-driver-samples/tree/master/filesys/miniFilter/minispy
 
 # vms
 
@@ -642,6 +645,9 @@ ctfmon.exe
 # Registry
 
 ```
+reg query HKLM /f foo /t REG_SZ /s
+reg query HKCU /f foo /t REG_SZ /s
+
 regedit /e C:\dump.txt "HKEY_LOCAL_MACHINE\SYSTEM"
 ```
 
@@ -717,7 +723,10 @@ https://en.wikipedia.org/wiki/Environment_variable#Windows
 
 # Windows Defender Firewall with Advanced Security
 
+```ps1
 wf.msc
+netsh advfirewall firewall dump
+```
 
 # Disable Windows Defender
 
