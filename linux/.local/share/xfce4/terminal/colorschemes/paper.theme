@@ -1,0 +1,9 @@
+[Scheme]
+Name=Paper
+ColorForeground=#000000
+ColorBackground=#dddddd
+ColorCursor=#000000
+TabActivityColor=#d22d48
+ColorPalette=#222222;#d22d48;#37730d;#622e04;#4e6cd0;#8854ab;#285055;#dddddd;#000000;#d22d48;#37730d;#622e04;#4e6cd0;#8854ab;#285055;k707070
+ColorBold=#000000
+ColorBoldUseDefault=FALSE
