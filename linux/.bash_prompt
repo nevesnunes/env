@@ -4,7 +4,7 @@ prompt_bold="\[$(tput bold)\]"
 prompt_reset="\[$(tput sgr0)\]"
 
 _fishy_collapsed_wd() {
-    wd=$(pwd)
+    wd=$PWD
     last_dir="${wd##*/}"
     echo "$wd" | sed '
         s|^'"$HOME"'|~|g;
@@ -80,12 +80,17 @@ prompt_main() {
         user_at_host='\u@\h '
     fi
 
+    # Always align prompt at first column, 
+    # so that history completions don't overwrite rendered output.
+    # printf '\033[6n'; read -s -d \; _; read -s -d R col
+    # [ "$col" -gt 1 ] && echo
+
     # Note: if reset is not followed by a printable character, 
     # terminals with column length matching prompt length 
     # have invalid line wrapping.
     # TODO: show user@host on cwd parsed from `mount -t fuse.sshfs`
     # PS1="$prompt_fg$user_at_host\W$prompt_vcs_status$prompt_jobs$prompt_exit_status $prompt_bold####$prompt_reset "
-    PS1="$prompt_fg$user_at_host$(_fishy_collapsed_wd)$prompt_vcs_status$prompt_jobs$prompt_exit_status $prompt_bold####$prompt_reset "
+    PS1="$prompt_reset$prompt_fg$user_at_host$(_fishy_collapsed_wd)$prompt_vcs_status$prompt_jobs$prompt_exit_status $prompt_bold####$prompt_reset "
 }
 
 # References:

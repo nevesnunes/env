@@ -96,6 +96,19 @@ awk '{print "r:"($3 / 2 / 1024)" w:"($7 / 2 / 1024)}' /sys/block/sda/stat
 
 ulimit -a
 
+# i/o wait delays
+# Note: compile ./foo with `-fno-omit-frame-pointer`
+perf stat -e sched:sched_stat_iowait ./foo
+# ||
+perf record -e sched:sched_stat_iowait:r -f -R -c 1 ./foo
+perf trace
+# ||
+perf report -g fractal --no-children
+
+# identify candidate functions to optimize
+# - https://perf.wiki.kernel.org/index.php/Perf_examples
+perf report --sort comm,dso,symbol
+
 # resource utilization
 # vmstat + iostat
 sar -A
@@ -159,6 +172,9 @@ renice -n 19 -p 1234
 # https://github.com/torden/cpulimit
 cpulimit -l 25 -p 1234
 
+# https://www.linux.org/docs/man8/turbostat.html
+turbostat ls >/dev/null
+
 # cgroups
 # For multiple processes of same binary: https://scoutapm.com/blog/restricting-process-cpu-usage-using-nice-cpulimit-and-cgroups
 sudo cgcreate -g cpu:/cpulimited
@@ -193,3 +209,7 @@ CPUQuota=10%
 ktrace -p PID
 kdump -l
 ```
+
+# case studies
+
+- [A Kernel Dev&\#39;s Approach to Improving Mutt&\#39;s Performance \- Part 1](https://www.codeblueprint.co.uk/2016/12/19/a-kernel-devs-approach-to-improving.html)

@@ -9,6 +9,14 @@
     - upper bounds - most visited sites - e.g. wikipedia
 - database server in separate host
 
+# RESTful API
+
+- Client-server model — a client requests data from a separated server, often over a network
+- Uniform interface — all clients and servers interact with the API in the same way (e.g., multiple resource endpoints)
+- Layered system — a client doesn't have to be connected to the end server
+- Statelessness — a client holds the state between requests and responses
+- Cacheability — a client can cache a server's reponse
+
 # Configuration
 
 ### Overriding
@@ -26,9 +34,17 @@
 - `envsubst`: replace variables in stream
     - [Dynamic configuration variables in Prometheus Config · Issue \#6047 · prometheus/prometheus · GitHub](https://github.com/prometheus/prometheus/issues/6047)
 
-# Design decisions
+# Naming
 
 - [NetworkInterfaceNames \- Debian Wiki](https://wiki.debian.org/NetworkInterfaceNames)
+
+# Privileges
+
+- unix-domain sockets: SCM_CREDENTIALS, SO_PEERCRED
+- pkexec
+    > The thing with setuid/setgid is that the invoked privileged process inherits a lot of implicit state and context that people aren't really aware of or fully understand. i.e. it's not just env vars and argv[], it's cgroup memberships, audit fields, security contexts, open fds, child pids, parent pids, cpu masks, IO/CPU scheduling priorities, various prctl() settings, tty control, signal masks + handlers, … and so on. And it's not even clear what gets inherited as many of these process properties are added all the time.
+    > If you do privileged execution of specific operations via IPC you get the guarantee that whatever is done, is done from a well-defined, pristine execution environment, without leaking context implicitly. The IPC message is the *full* vulnerable surface, and that's as minimal as it can get. And that's great. 
+    - [Fedora and pkexec \(LWN\.net\)](https://lwn.net/SubscriberLink/883547/d2b752eb979b3eb1/)
 
 # Hot-Swapping
 

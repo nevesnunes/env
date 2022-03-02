@@ -266,7 +266,7 @@ Mod4 + BackSpace
 Mod4 + Insert
 
 # "ratpoison tribute"
-"xdotool mousemove 9999 9999"
+"sh -c 'xdotool mousemove 9999 9999 mousemove_relative --sync 0 -80'"
 Mod4 + period
 
 # "Type from selection clipboard"

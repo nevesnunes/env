@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Reduces both bit rate and sample rate.
+
 # Alternative:
 # ```
 # sox input.flac -G -b 16 output.flac rate -v -L 44100 dither

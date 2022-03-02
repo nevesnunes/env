@@ -5,11 +5,12 @@
 - https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb
 - http://bl0rg.krunch.be/segfault-gdb-strace.html
 - [How Does a C Debugger Work? \(2014\) | Hacker News](https://news.ycombinator.com/item?id=24814854)
+- PTRACE_PEEKUSER: access tracee process state
+    - https://code.woboq.org/qt5/include/sys/user.h.html
 
 - https://github.com/taskcluster/react-gdb
 
-- PTRACE_PEEKUSER: access tracee process state
-    - https://code.woboq.org/qt5/include/sys/user.h.html
+- https://book.hacktricks.xyz/pentesting/pentesting-remote-gdbserver
 
 ```bash
 # gdb-multiarch

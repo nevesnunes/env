@@ -95,6 +95,7 @@
 - binary diff
     - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
     - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
+        - [GitHub \- FernandoDoming/r2diaphora](https://github.com/FernandoDoming/r2diaphora)
     - [DarunGrim: A Patch Analysis and Binary Diffing Tool](http://www.darungrim.org/)
     - [radiff2](https://radareorg.github.io/blog/posts/binary-diffing/)
     - [GitHub \- ubfx/BinDiffHelper: Ghidra Extension to integrate BinDiff for function matching](https://github.com/ubfx/BinDiffHelper)
@@ -107,6 +108,26 @@
         env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
         ```
     - audacity
+- frequency analysis
+    ```bash
+    xxd -p < foo | paste -sd '' | sed 's/\(..\)/\1\n/g' | sort | uniq -c | sort -n
+
+    # ||
+    sed 's/\(.\)/\1\n/g' < foo | LC_ALL=C awk -F "" '
+    BEGIN {
+        for (i = 0; i <= 255; i++) {
+            t = sprintf("%c", i)
+            ord[t] = sprintf("%x", i)
+        }
+    }
+    { freq[$0]++; }
+    END {
+        for (i in freq) {
+            printf("%8d %2s\n", freq[i], ord[i]);
+        }
+    }
+    ' | sort -n
+    ```
 
 # methodologies
 
@@ -151,6 +172,7 @@
         - Windows: debugview / tracelog -kd + tracefmt, [windbg](./windbg.md#trace-sessions), eventvwr, evtutil
         - Linux: dmesg, journalctl
     - networking
+        - https://www.aldeid.com/wiki/FakeNet
         - hw read break on packet buffer, frida hook on winsock calls
         - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
         - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
@@ -181,6 +203,9 @@
             - .pdb: [PDB Downloader](https://github.com/rajkumar-rangaraj/PDB-Downloader), Dia2Dump, https://docs.microsoft.com/en-us/visualstudio/debugger/debug-interface-access/querying-the-dot-pdb-file?view=vs-2019
     - id functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
+    - headers
+        - [pestudio](https://www.winitor.com/features)
+        - [pe-bear](https://hshrzd.wordpress.com/pe-bear/)
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
     - static instrumentation by taking instructions from another compiled source
         - https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/

@@ -1,22 +1,22 @@
 # +
 
+- [ports](./ports.md)
 - [osint](./osint.md)
 - [firewall](./firewall.sh)
 - [mitmproxy](./mitmproxy.md)
 - [nmap](./nmap.sh)
 - [wireshark](./wireshark.md)
 
-- Port mirroring / Switched Port Analyzer (SPAN)
-- https://rootsh3ll.com/evil-twin-attack/
-
+- https://www.malware-traffic-analysis.net/training-exercises.html
 - http://www.networksorcery.com/enp/Protocol.htm
 - https://github.com/clowwindy/Awesome-Networking
 
-- [p0f v3](https://lcamtuf.coredump.cx/p0f3/)
-    - `nmap` alternative for fingerprinting
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [From Sockets to WebSockets · susam/lab · GitHub](https://github.com/susam/lab/tree/master/web/sockets)
+
+- Port mirroring / Switched Port Analyzer (SPAN)
+- https://rootsh3ll.com/evil-twin-attack/
 
 # documentation, specification
 
@@ -29,12 +29,25 @@
 
 - https://www.firewall.cx/networking-topics/protocols.html
 
+- https://en.wikipedia.org/wiki/Type%E2%80%93length%E2%80%93value
+
 # performance
 
 - https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
 - https://hc.apache.org/httpclient-3.x/performance.html
 - [The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
 - [Coping with the TCP TIME\-WAIT state on busy Linux servers](https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#summary)
+
+# fingerprinting
+
+- [p0f v3](https://lcamtuf.coredump.cx/p0f3/)
+- [firewalk NSE Script](https://nmap.org/nsedoc/scripts/firewalk.html)
+- trigger responses / protocol errors
+    - anti-virus: https://blog.nintechnet.com/anatomy-of-the-eicar-antivirus-test-file/
+    - delimiters: `\x0a\x0a (\n\n)`
+        - https://twitter.com/_mattata/status/1458265906363129861
+- honeypots
+    - [GitHub \- drk1wi/portspoof: Portspoof](https://github.com/drk1wi/portspoof)
 
 # transfer
 
@@ -119,8 +132,11 @@ sha1sum payload
 - https://medium.com/@PenTest_duck/almost-all-the-ways-to-file-transfer-1bd6bf710d65
 - https://nullsweep.com/pivot-cheatsheet-for-pentesters/
 - https://blog.raw.pm/en/state-of-the-art-of-network-pivoting-in-2019/
+- https://github.com/hyperreality/ctf-writeups/blob/master/2020-defcon-redteamvillage/README.md
 
 # reverse shell
+
+- [Online \- Reverse Shell Generator](https://www.revshells.com/)
 
 ```bash
 # +
@@ -397,36 +413,6 @@ netsh advfirewall firewall del rule name="Open Port 48333"
 Get-Process chrome | Stop-Process
 ```
 
-# RESTful API
-
-- Client-server model — a client requests data from a separated server, often over a network
-- Uniform interface — all clients and servers interact with the API in the same way (e.g., multiple resource endpoints)
-- Layered system — a client doesn't have to be connected to the end server
-- Statelessness — a client holds the state between requests and responses
-- Cacheability — a client can cache a server's reponse
-
-# CRUD
-
-HTTP methods:
-- POST - Creates a resource
-- GET - Reads data for a resource
-- PUT - Update a resource's data
-- DELETE - Deletes a resource
-
-# GraphQL
-
-![graphql.png](./files/graphql.png)
-
-- data in a graph structure (versus by resources)
-- one interface (versus multiple endpoints)
-- type system
-    - for each node an object type
-- entrypoints
-    - query
-    - mutation
-
-> Data exposed to the API is represented by a graph where objects are represented by nodes and relationships between these objects are described by edges.  GraphQL is a RESTful API and more: a type system defines all queryable data on one endpoint.  There is no mapping between functions implemented on the server and HTTP methods. Each object is backed by a resolver. The resolver is responsible for accessing the server’s data.
-
 # MTU
 
 > The DHCP client daemon was not applying the MTU setting received from my DHCP server (On my private network I have set the MTU to 9000).
@@ -559,8 +545,10 @@ iperf -i 1 -c $server_ip
     > at least "-s 94" for IPv4 or "-s 114" for IPv6
 
 ```bash
-# packet trace
+# packet trace using ICMP
 traceroute
+# || using TCP
+hping3 -z -t 1 -S google.com -p 80
 
 # given netmask 255.255.255.0
 # => ignore broadcast addresses: 10.0.2.0, 10.0.2.255
@@ -629,6 +617,8 @@ nghttp -v -ans https://foo/index.html
 ```
 
 # TLS
+
+- [GitHub \- nabla\-c0d3/sslyze: Fast and powerful SSL/TLS scanning library\.](https://github.com/nabla-c0d3/sslyze)
 
 - Obsoletes: SSL
 
@@ -932,10 +922,23 @@ echo -n "POST / HTTP/1.1\r\nHost: ac281f2f1e11201c8009578100490024.web-security-
 tcpdump -i any -s 0 -l -vvv -w - dst port 3306 | strings
 tcpdump -i any -s 0 -l -vvv -w /tmp/1.pcap
 
-tcpdump -i tun0 icmp
 ping -c1 123
+# On host 123
+tcpdump -i tun0 icmp
 
 tcpflow -a -r foo.pcap -o ./out/
+```
+
+- https://github.com/SergK/cheatsheat-tcpdump/blob/master/tcpdump_advanced_filters.txt
+
+# dissect
+
+```python
+import sys
+from scapy.all import *
+pcap = defrag(rdpcap(sys.argv[1]))
+for packet in pcap:
+    packet.show()
 ```
 
 # smb
@@ -984,3 +987,5 @@ restorecon /foo/bar
 
 - https://systemoverlord.com/2021/03/12/bsidessf-2021-ctf-net-matroyshka-author-writeup.html
     - http + ftp + rsyncd + tftp (netascii) + smb + git smart protocol + dnscat2 + telnet
+- https://remyhax.xyz/posts/protonvpn-tcp-hacks/
+    - send TCP+SYS response without verifying open port (lower latency, tamper port scanning), if port closed then send RST+SYS

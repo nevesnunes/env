@@ -20,9 +20,11 @@ for file in $files; do
     continue
   fi
 
+  # Ignore false positives from `octet-stream` files
   target_filename=./Spectrograms/"${file%.*}.png"
   test -f "$target_filename" \
-    || sox "$file" -n spectrogram -o "$target_filename"
+    || sox "$file" -n spectrogram -o "$target_filename" \
+    || true
 done
 set +f; unset IFS
 

@@ -2,6 +2,7 @@
 
 - [RAW Pixels Viewer](https://rawpixels.net/)
 - [GitHub \- lovell/sharp: High performance Node\.js image processing, the fastest module to resize JPEG, PNG, WebP, AVIF and TIFF images\. Uses the libvips library\.](https://github.com/lovell/sharp)
+- [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php)
 
 # graphics api
 

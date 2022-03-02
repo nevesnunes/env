@@ -131,8 +131,8 @@ imap <C-v> <C-r><C-o>+
 
 |Action|Keys|
 |---|---|
-|**R**educe all|`zR`|
-|**M**ore all|`zM`|
+|**M**inimize all|`zM`|
+|**R**estore all|`zR`|
 |Toggle all|`zA`|
 
 # Typing

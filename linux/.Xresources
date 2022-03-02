@@ -5,6 +5,7 @@ Xcursor.size: 24
 Xcursor.theme: Adwaita
 
 Xft.antialias: 1
+Xft.autohint: false
 Xft.dpi: 96
 Xft.hinting: 1
 Xft.hintstyle: hintslight
@@ -44,10 +45,10 @@ rofi.color-urgent: #393f3f, #cc4433, #393f3f, #ededed, #cc4433
 URxvt*boldFont: xft:Monospace-10:bold,xft:Source Han Sans CN:pixelsize=10:bold:antialias=true
 URxvt*italicFont: xft:Monospace-10:italic,xft:Source Han Sans CN:pixelsize=10:italic:antialias=true
 URxvt*font: xft:Monospace-10,xft:Source Han Sans CN:pixelsize=10:antialias=true
-URxvt*letterSpace: 0
+URxvt*letterSpace: -1
 
 URxvt*geometry: 84x38
-URxvt*internalBorder: 5
+URxvt*internalBorder: 1
 URxvt*jumpScroll: true
 URxvt*loginShell: true
 URxvt*scrollBar: false
@@ -92,13 +93,14 @@ xterm*termName: xterm-16color
 ! UXTerm.VT100.font: -*-terminus-bold-r-normal-*-14-*-*-*-*-*-iso10646-1
 
 UXTerm*faceNameDoublesize: Source Han Sans CN
-UXTerm*faceName: Iosevka Custom
+! UXTerm*faceName: Iosevka Custom
 ! UXTerm*faceName: Nixedsys
 ! UXTerm*faceName: Dina:style=Bold
 ! UXTerm*faceName: Xnu Iso
 ! UXTerm*faceName: Bm437 IBM VGA 8x14 OTB
 ! UXTerm*faceName: Bm437 ToshibaSat 8x14 OTB
-UXTerm*faceSize: 10
+UXTerm*faceName: PxPlus IBM VGA 8x16
+UXTerm*faceSize: 12
 UXTerm*geometry: 84x38
 UXTerm*jumpScroll: true
 UXTerm*locale: true

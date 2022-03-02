@@ -21,6 +21,8 @@ sudo systemctl start docker.service
 docker pull ubuntu
 docker run ubuntu bash -c "apt-get -y install nginx"
 docker run -it ubuntu bash
+# Redirect port
+docker run -p 3000:3000 foo
 
 docker container ls
 docker ps -l

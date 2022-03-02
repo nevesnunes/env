@@ -1,6 +1,7 @@
 # Reload in bash:
 # ```
 # bind -f ~/.inputrc
+# bind -v | grep foo
 # ```
 #
 # Reload in zsh:
@@ -8,7 +9,7 @@
 # eval "$(sed -e '/^\"/! d;
 #     s/^/bindkey -- /;
 #     s/\\e/\x1B/g;
-#     s/\":/\"/; 
+#     s/\":/\"/;
 #     s/bindkey\ --\ \([^"]*"[^"]*".*\)/bindkey -s \1/;
 #     s/history-search/history-beginning-search/' \
 #     /etc/inputrc $(test -f ~/.inputrc && echo ~/.inputrc))"

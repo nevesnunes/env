@@ -28,6 +28,8 @@ hping3 --traceroute -V -1 0daysecurity.com
 
 # 3. Checking port: Here hping3 will send a Syn packet to a specified port (80 in our example). We can control also from which local port will start the scan (5050).
 hping3 -V -S -p 80 -s 5050 0daysecurity.com
+# || scan all ports starting at 1
+hping3 -V -S -p ++1 0daysecurity.com
 
 # 4. Traceroute to a determined port: A nice feature from Hping3 is that you can do a traceroute to a specified port watching where your packet is blocked. It can just be done by adding --traceroute to the last command.
 hping3 --traceroute -V -S -p 80 -s 5050 0daysecurity.com

@@ -1,5 +1,6 @@
 # +
 
+- [Introduction to Windbg and debugging windows \- YouTube](https://www.youtube.com/playlist?list=PLhx7-txsG6t6n_E2LgDGqgvJtCHPL7UFu)
 - [pykd \- automate debugging and crash dump analysis using Python](https://githomelab.ru/pykd)
 - https://hshrzd.wordpress.com/2017/05/28/starting-with-windows-kernel-exploitation-part-1-setting-up-the-lab/
 - https://kiewic.com/2014-07-26/win32-mutex-handles-and-windbg-handle-extension

@@ -1,3 +1,7 @@
+# +
+
+- [C\+\+ Cheat Sheets &amp; Infographics \| hacking C\+\+](https://hackingcpp.com/cpp/cheat_sheets.html)
+
 # explain
 
 - [cdecl: C gibberish &harr; English](https://cdecl.org/)

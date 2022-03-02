@@ -20,6 +20,7 @@ man hier
 man 7 signal
 man 3 errno
 errno -l
+info coreutils
 
 # Debug
 set -vx

@@ -5,6 +5,7 @@
 - [rdp](./rdp.md)
 - [wmi](./wmi.md)
 
+- [WADComs](https://wadcoms.github.io/)
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
@@ -101,6 +102,8 @@ https://github.com/d1pakda5/PowerShell-for-Pentesters/blob/master/20-Remoting-Pa
 https://stackoverflow.com/questions/54787115/how-to-debug-a-windows-kernel-driver-properly
 https://github.com/Microsoft/Windows-driver-samples/tree/master/filesys/miniFilter/minispy
 
+https://github.com/janosgyerik/cheatsheets/blob/master/Windows-cheat-sheet.mediawiki
+
 # vms
 
 https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
@@ -186,6 +189,13 @@ getfattr --only-values FILE0
 
 || browser
 file:///C:/foo.txt:FILE0:$DATA
+```
+
+# ext4
+
+```
+wmic diskdrive list brief
+wsl --mount \\.\PHYSICALDRIVE0
 ```
 
 # windows update

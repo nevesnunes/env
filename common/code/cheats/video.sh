@@ -1,3 +1,7 @@
+# change fps
+
+ffmpeg -i input.mp4 -c:v libx265 -crf 26 -preset fast -filter:v fps=30 output.mp4
+
 # dump encrypted vobs
 # See: https://www.reddit.com/r/linuxquestions/comments/5r0159/how_can_i_backup_copy_protected_dvds_on_linux/
 

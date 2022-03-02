@@ -8,8 +8,8 @@
 Benchmarks:
 
 ```bash
-(cd /run/media/fn/TOSHIBA\ EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/rnd-w-toshiba_ext.txt)
-(cd /run/media/fn/SanDisk SSD/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/rnd-w-sandisk_ssd.txt)
+(cd /run/media/fn/TOSHIBA-EXT/ && fio --name benchmark --eta-newline=5s --rw=randwrite --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/rnd-w-toshiba_ext.txt)
+(cd /run/media/fn/SanDisk SSD/ && fio --name benchmark --eta-newline=5s --rw=randwrite --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/rnd-w-sandisk_ssd.txt)
 
 diff -Nauw <(grep IOPS rnd-w-toshiba_ext.txt) <(grep IOPS rnd-w-sandisk_ssd.txt) | tail -n +4
 ```
@@ -22,7 +22,7 @@ diff -Nauw <(grep IOPS rnd-w-toshiba_ext.txt) <(grep IOPS rnd-w-sandisk_ssd.txt)
 ```
 
 ```bash
-(cd /run/media/fn/TOSHIBA\ EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-toshiba_ext_usb3.txt)
+(cd /run/media/fn/TOSHIBA-EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-toshiba_ext_usb3.txt)
 (cd /run/media/fn/SanDisk SSD/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-sandisk_ssd_usb2.txt)
 
 diff -Nauw <(grep IOPS seq-w-toshiba_ext_usb3.txt) <(grep IOPS seq-w-sandisk_ssd_usb2.txt) | tail -n +4
@@ -57,7 +57,7 @@ diff -Nauw <(grep IOPS seq-w-sandisk_ssd.txt) <(grep IOPS seq-w-sandisk_ssd_gpt.
 Benchmarks:
 
 ```bash
-(cd /run/media/fn/TOSHIBA\ EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-toshiba_ext_usb3.txt)
+(cd /run/media/fn/TOSHIBA-EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-toshiba_ext_usb3.txt)
 (cd /run/media/fn/SanDisk SSD/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-sandisk_ssd.txt)
 
 diff -Nauw <(grep IOPS seq-w-toshiba_ext_usb3_ext_hub.txt) <(grep IOPS seq-w-sandisk_ssd_gpt_usb3_ext_hub.txt) | tail -n +4
@@ -75,7 +75,7 @@ diff -Nauw <(grep IOPS seq-w-toshiba_ext_usb3_ext_hub.txt) <(grep IOPS seq-w-san
 Benchmarks:
 
 ```bash
-(cd /run/media/fn/TOSHIBA\ EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-toshiba_ext_usb2.txt)
+(cd /run/media/fn/TOSHIBA-EXT/ && fio --name benchmark --eta-newline=5s --rw=write --size=60g --io_size=100g --blocksize=1024k --ioengine=libaio --fsync=10000 --iodepth=32 --direct=1 --numjobs=1 --runtime=300 --group_reporting > disk-benchmarks/seq-w-toshiba_ext_usb2.txt)
 
 diff -Nauw <(grep IOPS seq-w-toshiba_ext_usb2.txt) <(grep IOPS seq-w-toshiba_ext_usb3_ext_hub.txt)
 ```

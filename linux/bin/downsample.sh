@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Reduce frequency range by applying a low-pass filter without dithering.
+# Reduces sample rate by applying a low-pass filter without dithering. To also convert bit rate, use `./dither.sh`.
 
 set -eux
 
@@ -23,6 +23,12 @@ while read -r i; do
     continue
   fi
 
+  if head -c 3 "$i" | grep -q 'DSD'; then
+    ffmpeg -nostdin -i "$i" "${i%.*}.flac"
+    rm "$i"
+    i=${i%.*}.flac
+  fi
+
   # Downsample to common multiple:
   # - 88.2KHz or 176.4KHz to 44.1KHz
   # - 96KHz or 192KHz to 48KHz
@@ -33,10 +39,12 @@ while read -r i; do
     echo "Already in target sample rate: $sample_rate, skipping: $i" >&2
     continue
   elif ((sample_rate / 2 == 48000)) \
-    || ((sample_rate / 4 == 48000)); then
+    || ((sample_rate / 4 == 48000)) \
+    || ((sample_rate / 8 == 48000)); then
     target_sample_rate=48000
   elif ((sample_rate / 2 == 44100)) \
-    || ((sample_rate / 4 == 44100)); then
+    || ((sample_rate / 4 == 44100)) \
+    || ((sample_rate / 8 == 44100)); then
     target_sample_rate=44100
   elif [ -z "$force" ]; then
     echo "Unexpected sample rate: $sample_rate, skipping: $i" >&2
@@ -45,12 +53,12 @@ while read -r i; do
   target_sample_rate=${target_sample_rate:-$sample_rate}
   aformat="aformat=s32:$target_sample_rate"
 
-  sox -S "$i" --compression 8 "$tmp_sox_dir/$i" sinc -$((target_sample_rate / 2)) -t 4k
+  sox -S "$i" --compression 8 "$tmp_sox_dir/$i" sinc -$((target_sample_rate / 2 - 1000)) -t 4k
   ffmpeg -nostdin -i "$tmp_sox_dir/$i" -af "$aformat" "$tmp_ffmpeg_dir/$i"
 
   rm "$i"
+  mv "$tmp_ffmpeg_dir/$i" .
 done <<< "$(find . -maxdepth 1 -type f | sed 's/^\.\///')"
-mv "$tmp_ffmpeg_dir"/*.flac ./
 
 cat > "info.downsample.txt" << EOF
 Downsample command:

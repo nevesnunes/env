@@ -13,8 +13,10 @@ HISTSIZE=50000
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# If set, a command name that is the name of a directory is executed as if it were the argument to the cd command. This option is only used by interactive shells.
+shopt -s autocd
+
+# If set, bash checks the window size after each external (non-builtin) command and, if necessary, updates the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # If set, Bash lists the status of any stopped and running jobs before exiting an interactive shell. If any jobs are running, this causes the exit to be deferred until a second exit is attempted without an intervening command. The shell always postpones exiting if any jobs are stopped. 
@@ -35,6 +37,9 @@ set -o notify
 
 # User specific aliases and functions
 # export TERM=xterm-256color
+
+# Kill the word behind point, using white space and the slash character as the word boundaries.
+bind '"\eq": unix-filename-rubout'
 
 # Custom completions
 complete -W "$([ -f Makefile ] && grep -oE '^[a-zA-Z0-9_-]+:([^=]|$)' Makefile | sed 's/[^a-zA-Z0-9_-]*$//')" make

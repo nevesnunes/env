@@ -141,6 +141,8 @@ eu-unstrip "$stripped_libc" "$symbol_file"
     - [snap package built by snapcraft includes the current directory in LD_LIBRARY_PATH](https://ubuntu.com/security/CVE-2020-27348)
 - https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/
 - [Hijack Execution Flow: LD\_PRELOAD, Sub\-technique T1574\.006 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1574/006/)
+- Running custom loader that bypasses `LD_TRACE_LOADED_OBJECTS`
+    - [ldd arbitrary code execution](https://catonmat.net/ldd-arbitrary-code-execution)
 
 # PATH search order
 

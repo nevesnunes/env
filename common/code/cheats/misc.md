@@ -7,6 +7,7 @@
 - https://snovvcrash.rocks/cheatsheets/
 - https://hausec.com/pentesting-cheatsheet/
 - https://www.malwarearchaeology.com/cheat-sheets
+- https://m0chan.github.io/2019/07/30/Windows-Notes-and-Cheatsheet.html
 
 - https://github.com/adon90/pentest_compilation
 - https://github.com/Orange-Cyberdefense/arsenal
@@ -175,6 +176,7 @@ done
 
 ### enumeration
 
+- [GitHub \- Tib3rius/AutoRecon: AutoRecon is a multi\-threaded network reconnaissance tool which performs automated enumeration of services\.](https://github.com/Tib3rius/AutoRecon)
 - windows
     - [GitHub \- GhostPack/Seatbelt: Seatbelt is a C\# project that performs a number of security oriented host\-survey &quot;safety checks&quot; relevant from both offensive and defensive security perspectives\.](https://github.com/GhostPack/Seatbelt)
     - [GitHub \- gpoguy/GetVulnerableGPO: PowerShell script to find &\#39;vulnerable&\#39; security\-related GPOs that should be hardended](https://github.com/gpoguy/GetVulnerableGPO)
@@ -182,6 +184,7 @@ done
     - ~/opt/privilege-escalation-awesome-scripts-suite/
     - ~/opt/LinEnum/
     - [GitHub \- TH3xACE/SUDO\_KILLER: A tool to identify and exploit sudo rules&\#39; misconfigurations and vulnerabilities within sudo for linux privilege escalation\.](https://github.com/TH3xACE/SUDO_KILLER)
+    - [GitHub \- DominicBreuker/pspy: Monitor linux processes without root permissions](https://github.com/DominicBreuker/pspy)
 
 ```bash
 sudo -l

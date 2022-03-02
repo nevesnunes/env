@@ -41,20 +41,27 @@ curl 'https://stat.ripe.net/data/country-asns/data.json?resource=de'
 curl 'https://stat.ripe.net/data/ris-asns/data.json?list_asns=true'
 ```
 
-- https://bgpview.io/
-- http://whoxy.com
-- http://viewdns.info/
-- https://domainbigdata.com/
-- https://www.godaddy.com/whois
-
-- https://web.archive.org/web/*/https://who.is/whois/thomascook.com
-- || https://www.apnic.net/static/whowas-ui/
-
-- https://securitytrails.com/blog/asn-lookup
-
-- https://www.riskiq.com/products/passivetotal/
-    - registrants
+- reverse whois lookups
+    - http://whoxy.com
+    - https://bgpview.io/
+    - http://viewdns.info/
+    - https://domainbigdata.com/
+    - https://www.godaddy.com/whois
+    - https://web.archive.org/web/*/https://who.is/whois/thomascook.com
+    - || https://www.apnic.net/static/whowas-ui/
+- asn lookups
+    - https://securitytrails.com/blog/asn-lookup
+    - https://hackertarget.com/as-ip-lookup/
+    - https://bgp.he.net/
+- reverse ns lookups
+    - https://dnslytics.com/reverse-ns
+- subdomains
+    - https://opendata.rapid7.com/sonar.fdns_v2/
+    - https://crt.sh/?q=%25.bishopfox.com
+- registrants
+    - https://www.riskiq.com/products/passivetotal/
     - e.g. http://ropgadget.com/posts/embracing_failure.html
+- https://www.sshell.co/attack-surface-basics/
 
 # dns
 
@@ -63,6 +70,8 @@ curl 'https://stat.ripe.net/data/ris-asns/data.json?list_asns=true'
 - https://host.io/
 - https://securitytrails.com/domain/0x00sec.org/dns
 - https://www.eurodns.com/domain-name-search
+- wordlists
+    - https://github.com/danielmiessler/SecLists/tree/master/Discovery/DNS
 
 ```bash
 # DNS Dumpster
@@ -138,6 +147,7 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 
 # subdomains
 
+- https://github.com/aboul3la/Sublist3r
 - https://findsubdomains.com/
 - https://pentest-tools.com/information-gathering/find-subdomains-of-domain
 - https://github.com/tomnomnom/waybackurls
@@ -236,7 +246,9 @@ shodan host 1.2.3.4
 
 ```bash
 # https://github.com/urbanadventurer/WhatWeb
-./whatweb "$domain"
+./whatweb -a 3 "$url"
+# https://github.com/ShielderSec/webtech
+./webtech -u "$url"
 ```
 
 # source code
@@ -256,6 +268,7 @@ shodan host 1.2.3.4
 
 - regex, signatures
     - [GitHub \- eth0izzle/shhgit: Ah shhgit! Find secrets in your code\. Secrets detection for your GitHub, GitLab and Bitbucket repositories: www\.shhgit\.com](https://github.com/eth0izzle/shhgit/)
+    - https://github.com/databricks/security-bucket-brigade/blob/3f25fe0908a3969b325542906bae5290beca6d2f/Tools/s3-secrets-scanner/rules.json
 - entropy
     - [GitHub \- dxa4481/truffleHog: Searches through git repositories for high entropy strings and secrets, digging deep into commit history](https://github.com/dxa4481/truffleHog)
 - json, yaml

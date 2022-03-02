@@ -11,10 +11,12 @@
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/
+- https://defuse.ca/online-x86-assembler.htm
 - https://www.felixcloutier.com/x86/index.html
     - https://software.intel.com/en-us/articles/intel-sdm
 - http://unixwiz.net/techtips/x86-jumps.html
 - https://www.sandpile.org/
+- http://ref.x86asm.net/geek64.html
 
 - [Notes on x86\-64 Assembly and Machine Code · GitHub](https://gist.github.com/mikesmullin/6259449)
 - [Single Byte or Small x86 Opcodes \| Dru Nelson](http://xxeo.com/single-byte-or-small-x86-opcodes)
@@ -608,6 +610,15 @@ call eax
     ```
 
 ### arm, aarch64
+
+- loop
+    - https://stackoverflow.com/questions/21649289/what-bytes-to-emit-for-an-arm64-equivalent-of-ebfe
+    ```
+    $ echo "b ." | aarch64-linux-gnu-as
+    $ aarch64-linux-gnu-objdump -d a.out
+
+    0:   14000000        b       0 <.text>
+    ```
 
 - https://azeria-labs.com/writing-arm-assembly-part-1/
 - https://thinkingeek.com/arm-assembler-raspberry-pi/

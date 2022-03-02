@@ -15,9 +15,16 @@
 - http://ssp.impulsetrain.com/big-o.html
 - https://en.wikipedia.org/wiki/List_of_logarithmic_identities
 
+- [Developer Roadmaps](https://roadmap.sh/)
+- [GitHub \- tayllan/awesome\-algorithms: A curated list of awesome places to learn and/or practice algorithms\.](https://github.com/tayllan/awesome-algorithms)
+- [GitHub \- TSiege/Tech\-Interview\-Cheat\-Sheet: Studying for a tech interview sucks\. Here&\#39;s an open source cheat sheet to help](https://github.com/TSiege/Tech-Interview-Cheat-Sheet)
+- [Algorithms and Data Structures Cheatsheet](https://algs4.cs.princeton.edu/cheatsheet/)
+
 - https://news.ycombinator.com/item?id=7953725
     - https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_Tortoise_and_Hare
 - https://en.wikipedia.org/wiki/Karatsuba_algorithm
+- https://en.wikipedia.org/wiki/Log-structured_merge-tree
+    - optimize access to disks by writing append-only
 
 - string processing
     - LZW algorithm
@@ -28,6 +35,7 @@
     - group elements in an array into sub arrays of length k
 - integer processing
     - change of radix algorithm (e.g. change a number from base 10 to base 2)
+- array list, linked list, hash map, set, stack, heap, queue
 
 # Big-O
 
@@ -215,6 +223,8 @@ stores words where shared prefixes share same parents
 find()
     O(k), k = length of prefix
 
+https://github.com/naskitis/B-trie
+
 ### balanced trees
 
 ensures O(log n) runtime for insert() and find()
@@ -294,6 +304,9 @@ Red-Black
 
 scapegoat tree
     :) vs. red-black - requires only a few bytes of extra global storage (for powers of your acceptable unbalance factor)
+
+R-tree
+    indexing multi-dimensional information such as geographical coordinates, rectangles or polygons
 
 # Graphs
 
@@ -608,6 +621,14 @@ hex(0xff << 8)  # 0xff00
 
 # case studies
 
+- efficient weighted graph traversal
+    - https://github.com/Pusty/writeups/tree/master/pbctf2021#binary-tree
+- API references with time complexity
+    - https://redis.io/commands/
+- Implicit type checking uses too much memory
+    - https://news.ycombinator.com/item?id=26340517
+- Parameter values require implicit type casting but also invalidate database index
+    - https://news.ycombinator.com/item?id=26338468
 - Iteration order of hash tables
     - [How malloc broke Serenity&\#39;s JPGLoader, or: how to win the lottery \- sin\-ack&\#39;s writings](https://sin-ack.github.io/posts/jpg-loader-bork/)
         - [LibGfx: Make JPGLoader iterate components deterministically · SerenityOS/serenity@a10ad24 · GitHub](https://github.com/SerenityOS/Serenity/commit/a10ad24c760bfe713f1493e49dff7da16d14bf39)

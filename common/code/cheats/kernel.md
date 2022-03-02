@@ -1,3 +1,8 @@
+# +
+
+- [code search](https://livegrep.com/search/linux)
+- [Linux Device Drivers, 3rd Edition](http://www.makelinux.net/ldd3/)
+
 # headers
 
 - For custom kernel, Location: `$custom_kernel_root/include`

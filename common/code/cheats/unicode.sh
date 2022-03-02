@@ -65,3 +65,6 @@ echo 👏🏿 | sed 's/../A/' | xxd
 # - https://stackoverflow.com/questions/44034232/undocumented-java-regex-character-class-pc
 # - https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/master/src/jdk.scripting.nashorn/share/classes/jdk/nashorn/internal/runtime/regexp/RegExpScanner.java
 # - https://github.com/AdoptOpenJDK/openjdk-jdk9u/blob/master/jdk/src/java.base/share/classes/java/util/regex/CharPredicates.java
+
+# Fixing bad encodings:
+# - [Home \- ftfy: fixes text for you](https://ftfy.readthedocs.io/en/latest/)

@@ -95,6 +95,10 @@ smartctl -l scterc,50,50 /dev/sda
 watch -d -n 60 smartctl -a /dev/sdb
 # ||
 while true; do dd if=/dev/sdb2 of=/dev/null count=1; sleep 60; done
+
+# Alternative: Active scan
+# - https://wiki.archlinux.org/title/badblocks#Read-write_test_(non-destructive)
+badblocks -nsv /dev/sdaX
 ```
 
 # power-saving

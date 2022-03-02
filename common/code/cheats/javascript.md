@@ -431,18 +431,20 @@ window.eval = function() {
 
 # Running untrusted code
 
-https://www.freecodecamp.org/news/running-untrusted-javascript-as-a-saas-is-hard-this-is-how-i-tamed-the-demons-973870f76e1c/
-    https://github.com/apocas/dockerode
-    https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
-    https://github.com/patriksimek/vm2
-https://medium.com/@devnullnor/a-secure-node-sandbox-f23b9fc9f2b0
-    https://github.com/asvd/jailed
-    https://gvisor.dev/
-        https://github.com/google/gvisor/issues/115
-[In\-Application Sandboxing with Web Workers · GitHub](https://gist.github.com/pfrazee/8949363)
-    https://www.owasp.org/index.php/HTML5_Security_Cheat_Sheet#Web_Workers
-    http://www.w3.org/TR/CSP11/#processing-model
-    https://github.com/martindrapeau/csvjson-app/blob/master/js/src/sandbox.js
+- https://urlscan.io/
+
+- https://www.freecodecamp.org/news/running-untrusted-javascript-as-a-saas-is-hard-this-is-how-i-tamed-the-demons-973870f76e1c/
+    - https://github.com/apocas/dockerode
+    - https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
+    - https://github.com/patriksimek/vm2
+- https://medium.com/@devnullnor/a-secure-node-sandbox-f23b9fc9f2b0
+    - https://github.com/asvd/jailed
+    - https://gvisor.dev/
+        - [DNS not working in Docker Compose · Issue \#115 · google/gvisor · GitHub](https://github.com/google/gvisor/issues/115)
+- [In\-Application Sandboxing with Web Workers · GitHub](https://gist.github.com/pfrazee/8949363)
+    - https://www.owasp.org/index.php/HTML5_Security_Cheat_Sheet#Web_Workers
+    - http://www.w3.org/TR/CSP11/#processing-model
+    - https://github.com/martindrapeau/csvjson-app/blob/master/js/src/sandbox.js
 
 # webpack
 
@@ -540,3 +542,5 @@ unzip -d "$extension_id-source" "$extension_id.zip"
 - https://stackoverflow.com/questions/38637003/what-s-happening-in-this-code-with-number-objects-holding-properties-and-increme#38637228
 - https://www.ekioh.com/devblog/google-docs-in-a-clean-room-browser/
     > Pressing some keys inserted one letter, but other keys inserted that letter twice.
+- https://github.com/mendix/docs/blob/development/content/howto/monitoring-troubleshooting/detect-and-resolve-performance-issues.md
+    - add timings around functions to profile; add indexes for complex queries on DOM tree; avoid complex loops or multiple modifications using batching; avoid multiple network requests by simplifying nested views

@@ -9,6 +9,7 @@
 - [Decode.fr](https://www.dcode.fr/): old school ciphers
 - [Modular conversion, encoding and encryption online — Cryptii](https://cryptii.com/): enigma
 - [CSCBE2019 - Rosetta](https://renaud11232.github.io/ctf/CSCBE2019/Finals/rosetta/): multiple ciphers / alphabets / languages / fonts
+- [Code\-Breaking, Cipher and Logic Puzzle solving tools \| Boxentriq](https://www.boxentriq.com/code-breaking)
 
 - [CyberChef](https://gchq.github.io/CyberChef/): magic mode
     - [Enigma Simulation in Javascript/HTML](http://people.physik.hu-berlin.de/~palloks/js/enigma/index_en.html)
@@ -82,6 +83,7 @@ cipher = Cipher(algorithms.AES(b'1234567890123456'), modes.ECB(), backend = defa
 
 - Given `AES_CTR(SHA1(msg), KEY)` (AES keystream unchanged):
     - length extension
+        - https://hack.more.systems/writeup/2015/10/06/tumctfteaser2015-bad-apple/
     - hmac value calculation: `mac_evil = mac_good ^ sha1(msg_good) ^ sha1(msg_evil)`
 
 ### similarity

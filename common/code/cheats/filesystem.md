@@ -83,6 +83,10 @@ cat /proc/swaps
 # /dev/hdz2 partition 2047996 0-2
 cat /etc/fstab
 # /dev/hdz2 swap swap defaults 0 0
+
+# Fixing backup GPT
+sfdisk -d /dev/sda > ./sda.part
+sgdisk -e /dev/sda
 ```
 
 - https://www.tldp.org/HOWTO/Partition/fdisk_partitioning.html
