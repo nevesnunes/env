@@ -93,24 +93,24 @@ npm install -g ndb
 ndb node app.js
 ```
 
-https://nodejs.org/en/docs/guides/debugging-getting-started/
-https://nodejs.org/en/docs/inspector
-https://github.com/GoogleChromeLabs/ndb
-https://github.com/11ways/janeway
+- https://nodejs.org/en/docs/guides/debugging-getting-started/
+- https://nodejs.org/en/docs/inspector
+- https://github.com/GoogleChromeLabs/ndb
+- https://github.com/11ways/janeway
 
-conditional breakpoint on func call
-    debug(postMessage, 'arguments[1] == "*"')
-log dom events for object
-    monitorEvents(window, 'message')
-modify dom response from requests
-    overrides > enable local overrides
-network tab - file dependencies
-    ctrl-click JS and DOC
-    shift-select file - other are highlighted
-memory tab > heap snapshot - strings in memory
-    retainers > object
-    :) strings already concatenated / evaled, could be missed when searching source code
-https://www.youtube.com/watch?v=Y1S5s3FmFsI
+- conditional breakpoint on func call
+    - debug(postMessage, 'arguments[1] == "*"')
+- log dom events for object
+    - monitorEvents(window, 'message')
+- modify dom response from requests
+    - overrides > enable local overrides
+- network tab - file dependencies
+    - ctrl-click JS and DOC
+    - shift-select file - other are highlighted
+- memory tab > heap snapshot - strings in memory
+    - retainers > object
+    - :) strings already concatenated / evaled, could be missed when searching source code
+- [Improve Your Hacking Skills Using Devtools \| Bug Bounty Tips \- YouTube](https://www.youtube.com/watch?v=Y1S5s3FmFsI)
 
 ### V8
 
@@ -206,8 +206,8 @@ https://stackoverflow.com/questions/50894000/eslint-process-is-not-defined
 
 # Benchmarking
 
-https://localvoid.github.io/uibench/
-https://github.com/krausest/js-framework-benchmark
+- https://localvoid.github.io/uibench/
+- https://github.com/krausest/js-framework-benchmark
 
 # Testing
 
@@ -218,20 +218,22 @@ https://github.com/krausest/js-framework-benchmark
 
 # WebSocket
 
-https://github.com/websockets/ws/issues/353
+- [How to check client is connected in web socket? · Issue \#353 · websockets/ws · GitHub](https://github.com/websockets/ws/issues/353)
+
+- [Misc CTF \- XSS to CSRF :: hg8&\#39;s Notes — My notes about infosec world\. Pentest/Bug Bounty/CTF Writeups\.](https://hg8.sh/posts/misc-ctf/xss-to-csrf/)
 
 # Virtual DOM, diff patch trees
 
-https://github.com/Matt-Esch/virtual-dom
-https://reactjs.org/docs/reconciliation.html
-https://programming.vip/docs/realization-and-analysis-of-virtual-dom-diff-algorithm.html
-[React in 33 lines | Hacker News](https://news.ycombinator.com/item?id=22776753)
+- https://github.com/Matt-Esch/virtual-dom
+- https://reactjs.org/docs/reconciliation.html
+- https://programming.vip/docs/realization-and-analysis-of-virtual-dom-diff-algorithm.html
+- [React in 33 lines | Hacker News](https://news.ycombinator.com/item?id=22776753)
 
 # Frameworks
 
-~/code/src/web/todomvc/examples/vanilla-es6/
-~/code/src/web/todomvc/examples/vanillajs
-    http://todomvc.com/examples/vanillajs/#/
+- ~/code/src/web/todomvc/examples/vanilla-es6/
+- ~/code/src/web/todomvc/examples/vanillajs
+    - http://todomvc.com/examples/vanillajs/#/
 - https://medium.com/javascript-in-plain-english/i-created-the-exact-same-app-in-react-and-vue-here-are-the-differences-e9a1ae8077fd
 - https://hnpwa.com/
 - https://github.com/gothinkster/realworld
@@ -268,7 +270,7 @@ Object.entries(window)
 
 # Overriding
 
-https://stackoverflow.com/questions/9267157/why-is-it-impossible-to-change-constructor-function-from-prototype
+- https://stackoverflow.com/questions/9267157/why-is-it-impossible-to-change-constructor-function-from-prototype
 
 # Generated code
 
@@ -278,8 +280,8 @@ node --print-opt-code
 
 # Cross-Origin script errors
 
-https://insert-script.blogspot.com/2019/07/errorpreparestacktrace-allows-to-catch.html
-https://portswigger.net/blog/json-hijacking-for-the-modern-web
+- https://insert-script.blogspot.com/2019/07/errorpreparestacktrace-allows-to-catch.html
+- https://portswigger.net/blog/json-hijacking-for-the-modern-web
 
 # Packages - Deduplication, Version Pinning
 
@@ -290,8 +292,8 @@ yarn why
 npm shrinkwrap
 ```
 
-https://docs.npmjs.com/files/package-locks
-https://yarnpkg.com/lang/en/docs/selective-version-resolutions/
+- https://docs.npmjs.com/files/package-locks
+- https://yarnpkg.com/lang/en/docs/selective-version-resolutions/
 
 # Packages - Updating version
 
@@ -318,8 +320,8 @@ npm install some-package
 Object.getOwnPropertySymbols()
 ```
 
-https://medium.com/intrinsic/javascript-symbols-but-why-6b02768f4a5c
-https://developer.mozilla.org/en-US/docs/Glossary/Symbol
+- https://medium.com/intrinsic/javascript-symbols-but-why-6b02768f4a5c
+- https://developer.mozilla.org/en-US/docs/Glossary/Symbol
 
 # Promises
 

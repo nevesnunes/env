@@ -27,6 +27,8 @@
 - if no debugger attached, then interrupt handler sends SIGTRAP to threads
     - https://stackoverflow.com/questions/22379105/does-executing-an-int-3-interrupt-stop-the-entire-process-on-linux-or-just-the-c
 
+- https://code.woboq.org/linux/linux/arch/x86/include/asm/ptrace.h.html
+
 - https://abda.nl/posts/understanding-ptrace/
 - https://blog.tartanllama.xyz/writing-a-linux-debugger-setup/
 - https://lucasg.github.io/2016/11/27/How-to-Create-and-Debug-a-Process-on-Windows/
@@ -125,6 +127,7 @@
     - https://dba.stackexchange.com/help/minimal-reproducible-example
     - https://skerritt.blog/divide-and-conquer-algorithms/
 - dynamic analysis: understanding logic with the context of runtime state
+    - mock libc as alternative to strace
     - remote host file to network relay
         > [...] the best logging method on WindowsCE is the use of remote debugging using a log file name of tcp://<ip-addr>:<port>.
         - https://gnupg.org/documentation/manuals/gnupg/Debugging-Hints.html
@@ -309,6 +312,16 @@ site:https://github.com AND inurl:issues AND -inurl:foo "foo"
 
 - [Debugging a use\-after\-free in gdb](https://pernos.co/examples/use-after-free)
 
+### confusing size of buffer with size of structure
+
+> - Function a() called function b(). When function b() returned, a local variable in function a() had changed from 0 to 1. "Aha!" you say. "You're smashing the stack! Function b() is writing outside its stack frame." But function b() was provably not doing that.
+
+> - Function b() called msgrcv(), which has a very badly designed API. It takes a pointer to a structure, and a size parameter. The structure is supposed to be a type field (long), and then a buffer (array of char). The size parameter is supposed to be the size of the buffer, not the size of the structure. The original code that implemented this came from a contractor, and they made the very natural mistake of putting the size of the whole structure in the size field. This meant that an extra long was read from the message queue, and smashed the stack.
+
+> - But that should mess up the stack from from function b(). How did it mess up a variable in function a()? Well, the compiler put that variable in a register, not on the stack. So when b() was called, it had to save off the registers it was going to use, so a()'s local variable wound up in b()'s stack frame.
+
+- https://news.ycombinator.com/item?id=9956129
+
 ### bad reference count
 
 - library not unloading due to ref count bump from call to GetModuleHandleExW()
@@ -318,7 +331,9 @@ site:https://github.com AND inurl:issues AND -inurl:foo "foo"
 ### segv on invalid breakpoints
 
 > - This occurs when gdb sets breakpoints on various probe events in the dynamic loader. The probe event locations are exported from ld.so as SDT markers, but gdb needs to know whether ARM or Thumb instructions are being exported at each marker so that it can insert the appropriate breakpoint instruction sequence. It does this by mapping the probe location to a function symbol (see arm_pc_is_thumb in gdb/arm-tdep.c), and using the target address of the symbol to determine if the function is called in Thumb or ARM more (bit 0 of the target address will be set for Thumb mode).
+
 > - The problem here is that gdb can't map any of the probes to a symbol if the debug symbols aren't installed, and arm_pc_is_thumb returns false in this case (indicating ARM instructions).
+
 - [Bug \#1576432 “gdb crashes when trying to start a debugging sessi\.\.\.” : Bugs : gdb](https://bugs.launchpad.net/gdb/+bug/1576432)
 
 ### nested symbol lookups unconditionally reset register restoration
@@ -343,6 +358,38 @@ Date:   Tue Aug 25 10:42:30 2009 -0700
 ### cpu bug
 
 - [772330 \- layout crashes with AuthenticAMD Family 20 \(0x14\), Models 1 and 2 CPUs \(also shows as AMD Radeon HD 6xxx series\), spiking at various times](https://bugzilla.mozilla.org/show_bug.cgi?id=772330#c21)
+
+### socket leaks
+
+> - Netty has a boss thread that accepts incoming connections and assigns each successfully-opened socket to a single particular I/O thread.
+
+> - Each I/O thread runs an infinite loop that repeatedly waits for activity on its assigned sockets (using epoll/kqueue/select) and runs each received TCP segment through our Netty pipeline on that thread.
+
+> - Usually when an I/O thread writes to one of its own sockets, the write takes place synchronously. However, crucially, it may defer at least part of the write until later, for example if the kernel’s buffer is full. The write would then be performed on a later loop when the selector (epoll/kqueue/select) reports that the socket is ready for writing.
+
+> - We were writing to a channel and then blocking on the result Future to see if it succeeded. Since we were writing from the I/O thread, the write would usually be performed synchronously so the returned future would already be complete and the application would continue. However, sometimes the write wouldn’t fully complete and the future could not be completed until the next time around the selector loop. But the I/O thread was blocked, so the loop couldn’t proceed, so the future would never complete.
+
+> - Since the I/O thread was stuck, it couldn’t respond to any further messages from any of its managed sockets. Eventually the client would give up and send a FIN segment, and the kernel’s TCP/IP stack would put the socket in the CLOSE_WAIT state. Usually the I/O thread handles this in its worker loop by calling close on the socket, but it was stuck so this code never ran and the socket would never close.
+
+> - The boss thread was still running, so the system continued to accept new connections and assign some of them to the stuck I/O thread.
+
+- https://news.ycombinator.com/item?id=18479681
+
+### non-compliant implementations
+
+> - When BIND started, it would take our root hints, load them into it's cache, and begin to perform AAAA queries for the root servers. One of the upstream servers would respond with 0 records, the other would respond with NXDOMAIN. The server that responded with NXDOMAIN, would subsequently get deleted from our BIND servers cache, and would no longer be used as a root.
+
+> - The next question was why?
+
+> - After some sleuthing through the DNS RFCs, I eventually found the answer. There are two ways for a DNS server to return that an answer to a query doesn't exist. Returning 0 records, and returning NXDOMAIN, and they have slightly different meaning. Returning 0 records, means that the label (think example.cm) exists, but the type of record does not (AAAA doesn't exist, but A/SRV/TXT/etc might). Returning NXDOMAIN means the the label doesn't exists, for any type of record, so don't bother querying me again for a different record type (There may have been some vagueness around this, I don't remember).
+
+> The second discovery, is that we had a typo in our configuration, what we configured as the name of that root server, didn't match what our GRX provider had configured, which is why we were getting NXDOMAIN on one but not all servers we had configured as our roots.
+
+> - The next question was why were our old servers working? This typo was actually duplicated from our older servers... which still worked during that outage.
+
+> - So using my simulation, I tested every version of BIND released across something like a 3 year period, until I found it. Older version of BIND interpreted NXDOMAIN the same as 0 record answer, and at some point, I can only assume they fixed a bug, that updated this interpretation of NXDOMAIN.
+
+- https://news.ycombinator.com/item?id=18478816
 
 ### shellcmd
 

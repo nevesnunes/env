@@ -207,8 +207,14 @@ join -t , -1 2 -2 1 <(sort -t , -k 2 enrollments.csv) <(sort -t , -k 1 courses.c
 # Processes using swap
 for file in /proc/*/status; do awk '/Name/{printf "%24s", $2} /Tgid|VmSwap/{printf " %8s %s", $2, $3} END{print ""}' $file; done | grep kB | sort -k 3 -n
 
+# integrity check
+rsync -canv
+
 # delta transfer
-rsync -Pa --checksum --inplace --no-whole-file
+rsync -caP --inplace --no-whole-file
+
+# resume delta transfer
+rsync -caP --inplace --no-whole-file --append
 
 # delete extraneous files
 rsync -rv --delete --existing --ignore-existing --ignore-errors foo/ bar/

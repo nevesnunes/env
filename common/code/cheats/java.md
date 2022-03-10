@@ -3,6 +3,8 @@
 - [maven](./maven.md)
 - [gradle](./gradle.md)
 
+- [VM Options Explorer \- OpenJDK11 HotSpot](https://chriswhocodes.com/)
+
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()
     

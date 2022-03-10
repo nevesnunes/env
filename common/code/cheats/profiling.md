@@ -1,5 +1,6 @@
 # +
 
+- [perf-oneliners](./perf-oneliners.md)
 - ~/code/snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md
 - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
 - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
@@ -21,12 +22,12 @@ top
 # host statistics
 # - r > number of cpus => saturation
 # - si, so > 0 => oom, swapping
-vmstat 1
+vmstat -w 1
 vmstat | sort -b -n -k2
 # natural sort by given order of columns
 vmstat | sort -b -n -k2b,2 -k1,1
 # include disk, mem
-vmstat -a -d | sort -b -n -k2b,2 -k1,1
+vmstat -w -a -d | sort -b -n -k2b,2 -k1,1
 # xref:
 # - /proc/meminfo
 # - /proc/stat
@@ -209,6 +210,18 @@ CPUQuota=10%
 ktrace -p PID
 kdump -l
 ```
+
+# detecting multithreading
+
+```sh
+strace -f -e trace=clone git grep 'class TestDefaultNameNodePort' 2>&1 | grep -c '] +++ exited with '
+# 8
+
+strace -f -e trace=clone grep -rI --exclude=.git 'class TestDefaultNameNodePort' *  2>&1 | grep -c '] +++ exited with '
+# 0
+```
+
+- https://news.ycombinator.com/item?id=7167897
 
 # case studies
 

@@ -16,6 +16,14 @@ gcc -static -nodefaultlibs -m32 -march=i686
 
 LD_DEBUG=all foo
 
+# Dynamic linking
+
+echo 'int foo(){return 123;}' | gcc -x c - -shared -o libfoo.so
+echo 'int main(){return foo();}' | gcc -x c - -L. -lfoo
+LD_LIBRARY_PATH=. ltrace ./a.out
+# foo(1, 0x7ffd4adc7828, 0x7ffd4adc7838, 0x7f3ee872a598) = 123
+# +++ exited (status 123) +++
+
 # Old distro
 # https://wiki.debian.org/DebianSqueeze#FAQ
 # https://cdimage.debian.org/mirror/cdimage/archive/6.0.6-live/i386/iso-hybrid/debian-live-6.0.6-i386-standard.iso
