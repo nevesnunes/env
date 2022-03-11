@@ -76,10 +76,9 @@
 # methodologies
 
 - trace: make internal state explicit
-    - logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
-        - https://florian.github.io/count-min-sketch/
-    - logging variable values at each algorithm iteration
-        - https://en.wikipedia.org/wiki/Trace_table
+    - chain relays to validate transformations
+        > From your code, it appears that it should successfully change the values of request parameters. Perhaps try chaining a second instance of Burp as upstream proxy from the first, so that you can see the actual requests that are hitting the wire.
+        - https://forum.portswigger.net/thread/automatically-modifying-request-parameters-8c3e71ff
     - visualizing internal structures
         > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
         - https://news.ycombinator.com/item?id=11383999
@@ -94,6 +93,10 @@
     - multi-threaded interactions
         > with time-stamps, user-ids, user-agent strings, session-id, basic operations, you learn a lot about the running system and why it might have failed for one particular user. 
         - https://blog.jvroom.com/2012/02/08/debugging-hard-problems/
+    - logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
+        - https://florian.github.io/count-min-sketch/
+    - logging variable values at each algorithm iteration
+        - https://en.wikipedia.org/wiki/Trace_table
     - structured logging
         - https://www.honeycomb.io/wp-content/uploads/2019/08/From-Unstructured-Logs-to-Observability-Honeycomb.pdf
         - https://www.honeycomb.io/wp-content/uploads/2018/07/Honeycomb-Guide-Achieving-Observability-v1.pdf
