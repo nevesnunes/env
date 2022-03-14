@@ -234,6 +234,15 @@ tar -xvf vmmon.tar && cd vmmon-only && make && cp ../vmmon.o "/lib/modules/$(una
 tar -xvf vmnet.tar && cd vmnet-only && make && cp ../vmnet.o "/lib/modules/$(uname -r)/kernel/drivers/misc/vmnet.ko.gz"
 ```
 
+# qemu debug
+
+```bash
+# On terminal 1
+qemu-system-i386 -gdb tcp::1234 -S -kernel ./foo
+# On terminal 2
+gdb -ex 'target remote localhost:1234'
+```
+
 # qemu snapshots
 
 - `savevm` / `loadvm`

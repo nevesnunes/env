@@ -74,6 +74,7 @@ ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt 
 
 # Wordlists
 
+- https://wordlists.assetnote.io/
 - [Contextual Content Discovery: You've forgotten about the API endpoints &\#8211; Assetnote](https://blog.assetnote.io/2021/04/05/contextual-content-discovery/)
     - https://github.com/assetnote/kiterunner
     - https://wordlists-cdn.assetnote.io/data/kiterunner/swagger-wordlist.txt

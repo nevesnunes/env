@@ -64,6 +64,33 @@ apt-file list package_name
 dnf provides file_name
 ```
 
+### conflicting 32-bit packages
+
+```bash
+dpkg --add-architecture i386
+apt update
+
+# chroot
+# https://jblevins.org/log/ubuntu-chroot
+apt-get install debootstrap schroot
+debootstrap --variant=buildd --arch i386 focal /var/chroot/i386 http://archive.ubuntu.com/ubuntu/
+### validate
+schroot -l
+schroot -c i386 -u root
+### delete
+schroot --list --all-sessions
+schroot -e -c $id
+grep '/var/chroot/i386' /etc/mtab | awk '{print $1}' | xargs -I{} umount {}
+rm -rf /var/chroot/i386
+
+# container
+docker pull i386/ubuntu:focal
+docker run -it -v "$PWD":share --platform linux/i386 i386/ubuntu:focal bash
+
+# Optional: set personality
+linux32 foo
+```
+
 ### disable automatic updates
 
 /etc/apt/apt.conf.d/20auto-upgrades

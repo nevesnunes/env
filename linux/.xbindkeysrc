@@ -268,6 +268,10 @@ Mod4 + BackSpace
 "scratchpad-terminal.sh bash --norc -ci uf.sh"
 Mod4 + Insert
 
+# "Move windows"
+"sh -c 'killall devilspie2; devilspie2 &'"
+Mod4 + equal
+
 # "ratpoison tribute"
 "sh -c 'xdotool mousemove 9999 9999 mousemove_relative --sync 0 -80'"
 Mod4 + period

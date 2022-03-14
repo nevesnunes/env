@@ -2,6 +2,7 @@
 
 - [GitHub \- zardus/preeny: Some helpful preload libraries for pwning stuff\.](https://github.com/zardus/preeny)
 - [GitHub \- jonatan1024/CpuidSpoofer: x64dbg plugin for simple spoofing of CPUID instruction behavior](https://github.com/jonatan1024/CpuidSpoofer)
+- [GitHub \- mgeeky/ShellcodeFluctuation: An advanced in\-memory evasion technique fluctuating shellcode&\#39;s memory protection between RW/NoAccess &amp; RX and then encrypting/decrypting its contents](https://github.com/mgeeky/ShellcodeFluctuation)
 
 - [Map \- Unprotect Project](https://search.unprotect.it/map)
 - [Anti\-Debug Tricks](https://anti-debug.checkpoint.com/)

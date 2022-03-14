@@ -97,6 +97,8 @@
         - https://florian.github.io/count-min-sketch/
     - logging variable values at each algorithm iteration
         - https://en.wikipedia.org/wiki/Trace_table
+    - masks vs levels
+        - [ACPI debug output: `/sys/module/acpi/parameters/debug_layer`](https://www.kernel.org/doc/Documentation/acpi/debug.txt)
     - structured logging
         - https://www.honeycomb.io/wp-content/uploads/2019/08/From-Unstructured-Logs-to-Observability-Honeycomb.pdf
         - https://www.honeycomb.io/wp-content/uploads/2018/07/Honeycomb-Guide-Achieving-Observability-v1.pdf

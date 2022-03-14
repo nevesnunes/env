@@ -4,14 +4,12 @@ set -eu
 
 mkdir -p ./Spectrograms
 
-if [ $# -gt 0 ]; then
-  files=$*
-else
-  files=$(find . -maxdepth 1 -type f | sed 's/^\.\///')
+if [ $# -eq 0 ]; then
+  set -- "$(find . -maxdepth 1 -type f | sed 's/^\.\///')"
 fi
 set -f; IFS='
 '
-for file in $files; do
+for file in $@; do
   set +f; unset IFS
 
   if ! file --mime-type "$file" \
@@ -21,7 +19,7 @@ for file in $files; do
   fi
 
   # Ignore false positives from `octet-stream` files
-  target_filename=./Spectrograms/"${file%.*}.png"
+  target_filename=./Spectrograms/$(basename "${file%.*}.png")
   test -f "$target_filename" \
     || sox "$file" -n spectrogram -o "$target_filename" \
     || true

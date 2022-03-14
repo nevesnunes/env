@@ -113,6 +113,9 @@ if _name__ == "__main__":
 
 ### referrer
 
+- if request host must match referrer host and must be localhost
+    - then serve a filename containing `127.0.0.1`
+        - https://s3.amazonaws.com/talos-intelligence-site/production/document_files/files/000/095/747/original/021522_ZTE_Vulnerability.pdf?1646670998
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
     - On typo in `Referrer-Policy: ...`, set to `unsafe-url`
         - [CTFtime\.org / justCTF \(\*\) 2020 / Computeration / Writeup](https://ctftime.org/writeup/25868)

@@ -165,6 +165,9 @@ LIBS=-lfoo ./configure
 
 # include specific library version
 LIBS=-l:libfoo.so.123 ./configure
+
+# debug
+less ./config.log
 ```
 
 https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
@@ -224,19 +227,25 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     # - https://unix.stackexchange.com/questions/496755/how-to-get-the-source-code-used-to-build-the-packages-of-the-base-alpine-linux-d
     # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
     # - https://wiki.alpinelinux.org/wiki/APKBUILD_Reference
-    app=
-    apk add --no-cache alpine-sdk gcc musl-dev sudo
+    apk add --no-cache alpine-sdk binutils-dev elfutils-dev libunwind-dev libunwind-static musl-dev linux-headers autoconf automake gawk gcc sudo
     cd /opt
-    git clone --depth 1 --branch v3.13.1 git://git.alpinelinux.org/aports
-    cd ./aports/main/"$app"
+    git clone --depth 1 --branch v3.15.0 git://git.alpinelinux.org/aports
+    # Build
+    app=
+    cd /opt/aports/main/"$app"
     # Override pkg-config dependencies (e.g. when specifying static libs)
     # References: [Static compilation errors \- tmux 2\.9, ncurses 6\.1, libevent 2\.1\.8 · Issue \#1729 · tmux/tmux · GitHub](https://github.com/tmux/tmux/issues/1729)
     export PKG_CONFIG=/bin/true
     # [Edit APKBUILD to include `-static` in CFLAGS]
-    abuild-keygen -a -i
+    # [For strace: ~/code/config/alpine/static.sh]
+    echo | abuild-keygen -a -i
     abuild -F fetch verify
     abuild -F -r
+    # Unpack
     tar -xzvf /root/packages/main/x86_64/"$app".apk
+    cp "$app" /share/
+    # ||
+    cp ./pkg/strace/usr/bin/"$app" /share/
     ```
 - Unsupported in `libtool`
     - [\#11064 \- CRITICAL: libtool makes static linking impossible \- GNU bug report logs](https://debbugs.gnu.org/cgi/bugreport.cgi?bug=11064)

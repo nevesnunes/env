@@ -1,0 +1,46 @@
+diff --git a/main/libucontext/APKBUILD b/main/libucontext/APKBUILD
+index c625b8de..5e1d205b 100644
+--- a/main/libucontext/APKBUILD
++++ b/main/libucontext/APKBUILD
+@@ -17,7 +17,7 @@ case "$CTARGET_ARCH" in
+ esac
+
+ build() {
+-       make ARCH="$LIBUCONTEXT_ARCH"
++       make ARCH="$LIBUCONTEXT_ARCH" LDFLAGS=-static
+        make ARCH="$LIBUCONTEXT_ARCH" docs
+ }
+
+diff --git a/main/strace/APKBUILD b/main/strace/APKBUILD
+index d10d0d12..62843438 100644
+--- a/main/strace/APKBUILD
++++ b/main/strace/APKBUILD
+@@ -21,13 +21,15 @@ build() {
+        musl) export CFLAGS="$CFLAGS -Dsigcontext_struct=sigcontext" ;;
+        esac
+
+-       ./configure \
++       LIBS="-l:liblzma.a -l:libucontext.a" ./configure \
++               LDFLAGS=-static \
+                --build=$CBUILD \
+                --host=$CHOST \
+                --prefix=/usr \
+                --sysconfdir=/etc \
+                --mandir=/usr/share/man \
+                --localstatedir=/var \
++               --with-libunwind \
+                --enable-mpers=no
+        make
+ }
+diff --git a/main/xz/APKBUILD b/main/xz/APKBUILD
+index a8022f59..0355238a 100644
+--- a/main/xz/APKBUILD
++++ b/main/xz/APKBUILD
+@@ -12,6 +12,7 @@ source="https://tukaani.org/xz/xz-$pkgver.tar.xz"
+
+ build() {
+        ./configure \
++               LDFLAGS=-static \
+                --build=$CBUILD \
+                --host=$CHOST \
+                --prefix=/usr \

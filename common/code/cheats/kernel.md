@@ -358,6 +358,23 @@ grep '' /sys/kernel/irq/*/*
 - e.g. [diff before/after suspend](./reports/interrupts.md)
 - [Add support to monitor interrupts through /sys/kernel/irq · Issue \#1416 · netdata/netdata · GitHub](https://github.com/netdata/netdata/issues/1416)
 
+### irq handler
+
+```c
+#include <system.h>
+
+void timer_handler(struct regs *r) {
+    // ...
+}
+
+int main() {
+    // IRQ0 = system clock
+    irq_install_handler(0, timer_handler);
+
+    return 0;
+}
+```
+
 # debug
 
 ```bash
