@@ -265,6 +265,13 @@ find / -perm -u=s -type f 2>/dev/null
     ```
 - [Hacking with Environment Variables](https://www.elttam.com/blog/env/)
 
+# process name
+
+- [GitHub \- dvarrazzo/py\-setproctitle: A Python module to customize the process title](https://github.com/dvarrazzo/py-setproctitle)
+    - linux: prctl(PR_SET_NAME, "foo")
+    - postgres: moves environ when clobbering argv
+        - https://github.com/dvarrazzo/py-setproctitle/blob/b6befd449bc0c35c3971f9910ecc195aa68e08ab/src/spt_status.c
+
 # process pseudo-filesystem
 
 - /proc/self/cmdline

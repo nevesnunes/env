@@ -11,6 +11,7 @@
 - http://www.networksorcery.com/enp/Protocol.htm
 - https://github.com/clowwindy/Awesome-Networking
 
+- [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [From Sockets to WebSockets · susam/lab · GitHub](https://github.com/susam/lab/tree/master/web/sockets)
@@ -989,3 +990,5 @@ restorecon /foo/bar
     - http + ftp + rsyncd + tftp (netascii) + smb + git smart protocol + dnscat2 + telnet
 - https://remyhax.xyz/posts/protonvpn-tcp-hacks/
     - send TCP+SYS response without verifying open port (lower latency, tamper port scanning), if port closed then send RST+SYS
+- https://nstarke.github.io/netgear/nday/2022/03/13/reverse-engineering-a-netgear-nday.html
+    - capture requests from upnp client; on /etc/proxychains4.conf: `http $proxy_host $proxy_port`; run with `proxychains4 python2 miranda.py`

@@ -133,6 +133,8 @@
     - https://skerritt.blog/divide-and-conquer-algorithms/
 - dynamic analysis: understanding logic with the context of runtime state
     - mock libc as alternative to strace
+    - fault injecton via sandboxing as alternative to debugging
+    - fault injecton on data to verify parsing
     - remote host file to network relay
         > [...] the best logging method on WindowsCE is the use of remote debugging using a log file name of tcp://<ip-addr>:<port>.
         - https://gnupg.org/documentation/manuals/gnupg/Debugging-Hints.html

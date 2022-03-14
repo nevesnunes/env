@@ -4,6 +4,7 @@
 - docker swarm - automatic rollback
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)
 - [GitHub \- rootless\-containers/rootlesskit: Linux\-native &quot;fake root&quot; for implementing rootless containers](https://github.com/rootless-containers/rootlesskit)
+- [GitHub \- opencontainers/runtime\-spec: OCI Runtime Specification](https://github.com/opencontainers/runtime-spec)
 
 - https://book.hacktricks.xyz/pentesting/2375-pentesting-docker
 - https://securityboulevard.com/2019/02/abusing-docker-api-socket/
