@@ -135,6 +135,7 @@
     - mock libc as alternative to strace
     - fault injecton via sandboxing as alternative to debugging
     - fault injecton on data to verify parsing
+        - e.g. corrupting compressed graphics causes error in decompression routine; use unique byte pattern for memory search
     - remote host file to network relay
         > [...] the best logging method on WindowsCE is the use of remote debugging using a log file name of tcp://<ip-addr>:<port>.
         - https://gnupg.org/documentation/manuals/gnupg/Debugging-Hints.html
