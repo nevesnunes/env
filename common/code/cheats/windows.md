@@ -12,6 +12,7 @@
 
 - [OSR Developer Community](https://community.osr.com/)
 - [theForger's Win32 API Tutorial](http://www.winprog.org/tutorial/)
+- [Programming reference for the Win32 API \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/)
 
 ```
 get-command notepad.exe | select Source

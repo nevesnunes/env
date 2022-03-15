@@ -30,8 +30,6 @@
 
 - https://www.firewall.cx/networking-topics/protocols.html
 
-- https://en.wikipedia.org/wiki/Type%E2%80%93length%E2%80%93value
-
 # performance
 
 - https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote

@@ -43,6 +43,7 @@ for ctx in [["arm", 32], ["aarch64", 64]]:
 
 - https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
 - [ARM Assembly, Emulation, Disassembly using Keystone, Unicorn, and Capstone · GitHub](https://gist.github.com/cspensky/3a5153b29143e6be785a5e1a702bbd9e)
+- [Unicorn Trace还原Ollvm算法！《安卓高级研修班》2022年班开始招生！](https://bbs.pediy.com/thread-267018.htm)
 
 # mnemonics
 
@@ -582,6 +583,13 @@ call eax
 
 - [Getting Started Reversing C\+\+ Objects with Ghidra \- YouTube](https://www.youtube.com/watch?v=ir2B1trR0fE)
 - [Reversing Basic C\+\+ Objects with Ghidra: Inheritance and Polymorphism \(Part 2\) \- YouTube](https://www.youtube.com/watch?v=MiX4p2l_IE0)
+
+# optimizations
+
+- [GitHub \- foo123/code\-optimization\-methods: A summary of code optimization methods](https://github.com/foo123/code-optimization-methods)
+- [An optimization guide for assembly programmers and compiler makers \(2018\) \(pdf\) \| Hacker News](https://news.ycombinator.com/item?id=19137660)
+- [Assembly Optimization Tips](http://mark.masmcode.com/)
+- [Compiler optimizer tricks in x86 assembly, part 1 &laquo;  Nynaeve](http://www.nynaeve.net/?p=64)
 
 # methodologies
 

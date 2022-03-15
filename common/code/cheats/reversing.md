@@ -135,7 +135,7 @@
     - str array: strs are accessed w/ an offset from the 1st str (array base), which _will_ have an xref
     - algorithm: google constants
     - hashing: branchless xors/rols
-- enumerate exports, imports, syscalls, winapi, registry keys, services, dll dependencies, handles, mutex, strings
+- enumerate exports, imports, syscalls, xrefs to winapi, registry keys, services, dll dependencies, handles, mutex, strings
     - lifecycle
         - before OEP
             - ELF format: init_array
@@ -206,6 +206,9 @@
     - headers
         - [pestudio](https://www.winitor.com/features)
         - [pe-bear](https://hshrzd.wordpress.com/pe-bear/)
+    - protocols
+        - https://en.wikipedia.org/wiki/Type%E2%80%93length%E2%80%93value
+            - invalid size may lead to unchecked memory read/write
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
     - static instrumentation by taking instructions from another compiled source
         - https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/
@@ -336,13 +339,16 @@ qemu-x86_64 -d in_asm a.out
 pin.sh -t obj-intel64/instat.so ./a.out
 # || :( variable inscount
 ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinstrace_x86_text.so -- ./a.out
-# ||
+# || frida stalker
+# - https://github.com/bmax121/sktrace
+python3 sktrace/sktrace.py -m attach -l libnative-lib.so -i Java_com_kanxue_ollvm_1ndk_MainActivity_UUIDCheckSum com.kanxue.ollvm_ndk_9
+# || perf
 # - https://man7.org/linux/man-pages/man1/perf-intel-pt.1.html
 # - https://perf.wiki.kernel.org/index.php/Tutorial#Source_level_analysis_with_perf_annotate
 perf script --call-trace
 perf script --insn-trace --xed -F+srcline,+srccode
 perf trace record
-# ||
+# || debugger
 # - ~/code/snippets/instrace.gdb
 # - x64dbg - https://help.x64dbg.com/en/latest/gui/views/Trace.html#start-run-trace
 #     - Trace view > Start Run Trace
