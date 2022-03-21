@@ -13,6 +13,7 @@
 - [OSR Developer Community](https://community.osr.com/)
 - [theForger's Win32 API Tutorial](http://www.winprog.org/tutorial/)
 - [Programming reference for the Win32 API \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/)
+- [The Portable Executable File Format from Top to Bottom](http://web.archive.org/web/20200806080448im_/http://www.csn.ul.ie/windows.md7Ecaolan/pub/winresdump/winresdump/doc/pefile2.html)
 
 ```
 get-command notepad.exe | select Source
@@ -826,12 +827,34 @@ https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
 
 [GitHub \- decalage2/oletools: oletools \- python tools to analyze MS OLE2 files \(Structured Storage, Compound File Binary Format\) and MS Office documents, for malware analysis, forensics and debugging\.](https://github.com/decalage2/oletools)
 
+# Disable ASLR
+
+```batch
+:: Global
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "MoveImages" /t REG_DWORD /d 0 /f
+
+:: Executable
+editbin /DYNAMICBASE:NO foo.exe
+:: || Windows 10
+Set-Processmitigation -Name foo.exe -Disable ForceRelocateImages
+:: || File Header > Characteristics |= 1 (Relocation info stripped)
+:: || Optional Header > DLLCHARACTERISTICS = 0x8100 (DYNAMIC_BASE = 0)
+:: || Optional Header > DataDirectory[Base Relocation Table a.k.a. IMAGE_DIRECTORY_ENTRY_BASERELOC] = 0
+
+:: Validation
+dumpbin /headers foo.exe
+:: || Process Explorer > Process > ASLR = n/a
+```
+
+- ! `File Header > Characteristics` overrides `Optional Header > DLL Characteristics`
+    - [When &quot;ASLR&quot; Is Not Really ASLR \- The Case of Incorrect Assumptions and Bad Defaults](https://insights.sei.cmu.edu/blog/when-aslr-is-not-really-aslr-the-case-of-incorrect-assumptions-and-bad-defaults/)
+
 # jail
 
-```
-# 0xFB switch
-# where û is ALT+150 and jut a mapping of Endash in 437 code page
-# - https://twitter.com/Hexacorn/status/1300563682854875142
+```batch
+:: 0xFB switch
+:: where û is ALT+150 and jut a mapping of Endash in 437 code page
+:: - https://twitter.com/Hexacorn/status/1300563682854875142
 certutil û<command>
 ```
 

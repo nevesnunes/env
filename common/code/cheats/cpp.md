@@ -617,6 +617,7 @@ mutex.unlock();
     - [CWE-14: Compiler Removal of Code to Clear Buffers](https://cwe.mitre.org/data/definitions/14.html)
 - [AppSec EU 2017 Dangerous Optimizations And The Loss Of Causality by Robert C  Seacord \- YouTube](https://www.youtube.com/watch?v=cjQQCrQ_wvs)
 - [Schr&\#246;dinger's Code \- ACM Queue](https://queue.acm.org/detail.cfm?id=3468263)
+- [Quirks of C · GitHub](https://gist.github.com/fay59/5ccbe684e6e56a7df8815c3486568f01)
 
 # Qt
 

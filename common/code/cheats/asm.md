@@ -8,6 +8,7 @@
     - register conventions
         - x64: rdi rsi rdx r10 r8 r9
 - [Linker and Libraries Guide](https://docs.oracle.com/cd/E19120-01/open.solaris/819-0690/index.html)
+- [Beginner's Guide to Linkers](https://www.lurklurk.org/linkers/linkers.html)
 
 - https://gcc.godbolt.org/
 - https://onlinedisassembler.com/

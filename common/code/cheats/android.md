@@ -1,5 +1,6 @@
 # decompiler
 
+- [GitHub \- JesusFreke/smali: smali/baksmali](https://github.com/JesusFreke/smali)
 - [GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
     - https://github.com/DexPatcher/dex2jar/releases/
 - [GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)

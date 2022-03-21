@@ -351,6 +351,13 @@ sudo modprobe -r loop && sudo modprobe loop
 sudo losetup -a  # no entry for /dev/loop0
 ```
 
+# initial ramdisk (initrd)
+
+```bash
+# extract
+gzip -dc initrd | cpio -idv --no-absolute-filenames
+```
+
 # benchmarking
 
 - [File system performance benchmarking \| GitLab](https://docs.gitlab.com/ee/administration/operations/filesystem_benchmarking.html)

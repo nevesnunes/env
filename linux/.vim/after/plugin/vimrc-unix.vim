@@ -28,7 +28,7 @@ map ,w :w !sudo tee %<CR>
 if has('gui_running')
     map <silent> <S-Insert> "*p
     imap <silent> <S-Insert> <Esc>"*pa
-    set guifont=Monospace\ 12
+    set guifont=Monospace\ 10
 endif
 
 " Refresh title on buffer change

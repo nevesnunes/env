@@ -2,10 +2,12 @@
 
 - [perf-oneliners](./perf-oneliners.md)
 - ~/code/snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md
+- https://www.brendangregg.com/USEmethod/use-linux.html
 - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
 - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
 
 ```bash
+# top10
 uptime
 dmesg | tail
 vmstat 1
@@ -16,9 +18,7 @@ free -m
 sar -n DEV 1
 sar -n TCP,ETCP 1
 top
-```
 
-```bash
 # host statistics
 # - r > number of cpus => saturation
 # - si, so > 0 => oom, swapping
@@ -33,12 +33,18 @@ vmstat -w -a -d | sort -b -n -k2b,2 -k1,1
 # - /proc/stat
 # - /proc/*/stat
 
-# per cpu
+# cpu utilization
 # - single hot => single-threaded app hanging
-mpstat -P ALL 1
+mpstat -P ALL 1 # sum fields except "%idle" and "%iowait"
+sar -P ALL
+# cpu saturation
+sar -q # "runq-sz" > CPU count
+perf sched latency # avg, max
+# cpu count
+nproc --all
 
 # process statistics
-pidstat 1
+pidstat 1 # cpu
 pidstat -l 1 -p $JAVA_PID
 # include threads
 pidstat -lt 1
@@ -66,20 +72,26 @@ lsof -n
 lsof -X
 ls -l /proc/15232/fd | wc -l
 
-slabtop
-# ||
-grep Slab /proc/meminfo
-
-nproc --all
-
-dmesg | tail
-
+# Memory utilization
 # Expect: buffers > 0, cached > 0
-free -m
+free -m # "Mem:" (main memory), "Swap:" (virtual memory)
+sar -r # "%memused"
+slabtop -s c # kmem slab allocator cache
+grep Slab /proc/meminfo
+# Memory saturation
+vmstat 1 # "si"/"so" (swapping)
+sar -B # "pgscank" + "pgscand" (scanning)
+sar -W # per-process: 10th field (min_flt) from /proc/PID/stat for minor-fault rate
+dmesg | grep killed # OOM killer
 
-# Monitor disk r/w kb/s
-# avgqu-sz > 1 => saturation on non-parallel/non-virtual devices
-iostat -xz 1
+# Disk r/w kb/s
+iostat -xz 1 # "%util"
+sar -d
+iotop # per process
+pidstat -d
+cat /proc/PID/sched # "se.statistics.iowait_sum"
+# Disk saturation
+iostat -xnz 1 # "avgqu-sz" > 1, or high "await" => saturation on non-parallel/non-virtual devices
 
 # Average disk r/w Mb/s
 #
@@ -94,8 +106,6 @@ iostat -xz 1
 # - https://www.kernel.org/doc/Documentation/iostats.txt
 # - https://www.kernel.org/doc/Documentation/block/stat.txt
 awk '{print "r:"($3 / 2 / 1024)" w:"($7 / 2 / 1024)}' /sys/block/sda/stat
-
-ulimit -a
 
 # i/o wait delays
 # Note: compile ./foo with `-fno-omit-frame-pointer`
@@ -113,8 +123,15 @@ perf report --sort comm,dso,symbol
 # resource utilization
 # vmstat + iostat
 sar -A
+
 # network interface throughtput
 sar -n DEV 1
+ip -s link
+# network interface saturation
+ifconfig # "overruns", "dropped"
+netstat -s # "segments retransmited"
+sar -n EDEV # *drop and *fifo metrics; /proc/net/dev, RX/TX "drop"
+
 # TCP metrics
 # Expect: retrans = 0
 sar -n TCP,ETCP 1
@@ -137,6 +154,7 @@ top -n 1 -H -p $pid
 # || with thread start time
 ps -p $pid -Lo pid,tid,lwp,nlwp,ruser,pcpu,lstart,stime,etime
 
+# Filesystem partitions
 df -h
 fdisk -l
 ```
@@ -164,8 +182,11 @@ sudo su user1 -c "ulimit -Hn"
 # resources
 
 ```bash
-# single process
-taskset -p -c 1 45678
+# process resource limits
+ulimit -a
+
+# single cpu affinity
+taskset -p -c 1 1234
 
 # less cpu time
 renice -n 19 -p 1234
@@ -203,6 +224,31 @@ sudo systemctl edit --force user-1234.slice
 [Slice]
 CPUQuota=10%
 ```
+
+# eBPF
+
+```bash
+# top10
+execsnoop  # New processes (via exec(2)); table
+opensnoop  # Files opened; table
+ext4slower # Slow filesystem I/O; table
+biolatency # Disk I/O latency histogram; heat map
+biosnoop   # Disk I/O per-event details; table, offset heat map
+cachestat  # File system cache statistics; line charts
+tcplife    # TCP connections; table, distributed graph
+tcpretrans # TCP retransmissions; table
+runqlat    # CPU scheduler latency; heat map
+profile    # CPU stack trace samples; flame graph
+
+# exit reason
+exitsnoop
+# syscall trace
+perf trace -e 'syscalls:sys_enter_*kill'
+# signal stacks
+bpftrace -e 't:signal:signal_generate /comm == "slack"/ { printf("%d, %s%s\n", args->sig, kstack, ustack); }'
+```
+
+- https://github.com/iovisor/bcc/blob/master/docs/tutorial.md
 
 # `strace` for mac and bsd
 

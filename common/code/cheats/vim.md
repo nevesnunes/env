@@ -118,6 +118,12 @@ strace -f -s 9999 -e process -p $vim_pid
 :syntax sync fromstart
 ```
 
+# Align markdown table
+
+```vim
+:!column -t -o' '
+```
+
 # Natural copy-paste
 
 ```vim
@@ -153,6 +159,13 @@ Alternative: `CTRL-SHIFT-u, 0041, ENTER`
 
 ```bash
 vim -b --cmd 'let g:loaded_zipPlugin = 1' foo.zip
+```
+
+# Hex replace
+
+```vim
+" FIXME: \x00 truncates replacement
+:%s/\%x01/\="\x02"/
 ```
 
 # Jail, rvim

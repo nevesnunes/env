@@ -28,6 +28,7 @@
 - https://sockpuppet.org/blog/2013/07/22/applied-practical-cryptography/
 - https://cryptohack.org/
 - https://cryptopals.com/
+- https://id0-rsa.pub/
 
 - https://www.mersenneforum.org/index.php
 

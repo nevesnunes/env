@@ -260,6 +260,7 @@ Biham and Kocher's known plaintext attack:
     # Take key values, pass to `-k`
     bkcrack -C encrypted.zip -c encrypted.jpg -k c072e51c a36b7996 b6f8d312 -d decrypted.jpg
     ```
+- [GitHub \- keyunluo/pkcrack: pkcrack with modern  building tools](https://github.com/keyunluo/pkcrack)
 - [ZIP Attacks with Reduced Known Plaintext](~/code/doc/zip/zipattacks.pdf)
     - [A known plaintext attack on the PKZIP stream cipher](~/code/doc/zip/CS0842.pdf)
     - https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
@@ -324,8 +325,13 @@ unrar x foo.part1.rar
 
 - [QuickBMS generic files extractor and reimporter \- Luigi Auriemma](http://quickbms.aluigi.org/)
 - [GitHub \- Sembiance/dexvert: Decompress EXtract and CONVert old file formats into modern ones](https://github.com/Sembiance/dexvert)
-- [Index of /fileFormatSamples/](https://telparia.com/fileFormatSamples/)
 - [Category:Electronic File Formats \- Just Solve the File Format Problem](http://fileformats.archiveteam.org/wiki/Category:Electronic_File_Formats)
+
+### datasets
+
+- [GitHub \- openpreserve/format\-corpus: An openly\-licensed corpus of small example files, covering a wide range of formats and creation tools\.](https://github.com/openpreserve/format-corpus)
+- [telparia.com \- Index of /fileFormatSamples/](https://telparia.com/fileFormatSamples/)
+- [samples.ffmpeg.org \- Index of /](http://samples.ffmpeg.org/)
 
 ### polyglots
 

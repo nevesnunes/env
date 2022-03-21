@@ -72,6 +72,15 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 - https://shanetully.com/2013/12/writing-a-self-mutating-x86_64-c-program/
 - https://redcanary.com/blog/process-memory-integrity-linux/
 
+### .NET
+
+- dynamically loaded assemblies: `Assembly.Load`
+- dynamically call methods: reflection APIs, VB.NET `LateBinding.LateCall/LateGet`
+- duplicated CLR stream names, unusal CLR tables like EncLog/EncMap, unicode .NET method names in MethodDef table
+- encrypted data: resources, `FieldRva` table for static arrays pointers, `#US` for user strings
+
+- https://malcat.fr/blog/statically-unpacking-a-simple-net-dropper/
+
 ### upx
 
 - Identification: sequence of null bytes after jmp to oep

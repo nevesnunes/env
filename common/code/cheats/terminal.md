@@ -1,7 +1,3 @@
-# +
-
-- [GitHub \- nelhage/reptyr: Reparent a running program to a new terminal](https://github.com/nelhage/reptyr)
-
 # emulators
 
 - [GitHub \- microsoft/node\-pty: Fork pseudoterminals in Node\.JS](https://github.com/microsoft/node-pty)

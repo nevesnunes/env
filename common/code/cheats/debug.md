@@ -79,6 +79,9 @@
     - chain relays to validate transformations
         > From your code, it appears that it should successfully change the values of request parameters. Perhaps try chaining a second instance of Burp as upstream proxy from the first, so that you can see the actual requests that are hitting the wire.
         - https://forum.portswigger.net/thread/automatically-modifying-request-parameters-8c3e71ff
+    - validating parts vs whole
+        > you may think of other things you can do with that exploit (ex: instead of RCE just leaking application secrets that can forge a cookie).  Or even just simplifying the exploit and instead of using it to get code execution, try putting in a sleep, DNS request, echo, etc to verify at least a piece of the exploit works. [...] you’ll see me do a bunch of enumeration from the exploit such as leaking java/OS version and environment variables which would have confirmed why the Remote Class Loading wasn’t working. The enumeration is simple, its just putting ${java:version} in the URL
+        - https://thesecuritynoob.com/interviews/interview-with-ippsec-of-youtube-and-hackthebox/
     - visualizing internal structures
         > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
         - https://news.ycombinator.com/item?id=11383999
@@ -128,6 +131,8 @@
         > - Instead I tried a more indirect approach with memory scanning on the Gallery menu. First I tracked down the location of the current button index with the standard technique of repeatedly updating the selection and then scanning memory for the newly changed value. Then I could set read watchpoints on the button index value to see if I could identify where the menu handling code was.
         > - Initially this also caused the watchpoint to trigger repeatedly. By patching out the read instruction that was repeatedly triggered, I saw it was caused by the glowing orange cursor that shows above the currently selected button. After removing that read instruction I got much more useful results: the watchpoint triggered when the menu description text for the currently selected button was changed, and when I pressed A to trigger the currently selected button.
         - https://jamchamb.net/2021/08/17/snap-station.html
+    - trace down / learn up; make bite-sized changes
+        - https://mitchellh.com/writing/contributing-to-complex-projects
     - https://tex.meta.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-working-example-mwe-what-is-that
     - https://dba.stackexchange.com/help/minimal-reproducible-example
     - https://skerritt.blog/divide-and-conquer-algorithms/
@@ -273,16 +278,20 @@ rr ./foo
 
 # case studies
 
-- hardware timings
-    > - Replace entire modules with stubs that pretend to do the real thing, but actually do something completely trivial that can't be buggy.
-    > - Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
-    > - But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
-    - https://www.quora.com/Programming-Interviews/Whats-the-hardest-bug-youve-debugged/answer/Dave-Baggett?srid=pxH3&share=1
 - [Reasons why bugs might feel &\#34;impossible&\#34;](https://jvns.ca/blog/2021/06/08/reasons-why-bugs-might-feel-impossible/)
 - [What does debugging a program look like?](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/)
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 - [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
+
+### hardware timings
+
+> - Replace entire modules with stubs that pretend to do the real thing, but actually do something completely trivial that can't be buggy.
+> - Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
+> - But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
+- https://www.quora.com/Programming-Interviews/Whats-the-hardest-bug-youve-debugged/answer/Dave-Baggett?srid=pxH3&share=1
+
+### github dumpster diving
 
 ```
 # specific issues
@@ -291,6 +300,13 @@ site:https://github.com AND inurl:issues "race condition"
 # dependency usage in other projects
 site:https://github.com AND inurl:issues AND -inurl:foo "foo"
 ```
+
+### recovering stderr messages
+
+- [Slack's Secret STDERR Messages](https://www.brendangregg.com/blog/2021-08-27/slack-crashes-secret-stderr.html)
+    ```bash
+    shellsnoop $pid
+    ```
 
 ### producers-consumers with bad notify call
 

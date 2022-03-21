@@ -15,6 +15,7 @@
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [From Sockets to WebSockets · susam/lab · GitHub](https://github.com/susam/lab/tree/master/web/sockets)
+- [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)
 
 - Port mirroring / Switched Port Analyzer (SPAN)
 - https://rootsh3ll.com/evil-twin-attack/

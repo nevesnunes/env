@@ -108,6 +108,9 @@
         env PYTHONPATH="$HOME/.local/lib/python3.8/site-packages" binwalk --entropy
         ```
     - audacity
+    - e.g. high valued with some drops
+        > clear-text bootloader is the one in charge of decrypting the other partitions during the boot process
+        - https://www.shielder.com/blog/2022/03/reversing-embedded-device-bootloader-u-boot-p.1/
 - frequency analysis
     ```bash
     xxd -p < foo | paste -sd '' | sed 's/\(..\)/\1\n/g' | sort | uniq -c | sort -n
@@ -128,6 +131,8 @@
     }
     ' | sort -n
     ```
+
+- [Program Analysis Reading List &mdash; Möbius Strip Reverse Engineering](https://www.msreverseengineering.com/program-analysis-reading-list)
 
 # methodologies
 
@@ -296,10 +301,12 @@
 
 ```bash
 # instruction counting
-~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinscount.so -- ./a.out \
-    | awk '/Instrumentation results:/{print $3}'
 qemu-x86_64 -d in_asm ./a.out 2>&1 \
     | awk '/IN:/{i+=1} END{print i}'
+# || :( variable inscount
+~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinscount.so -- ./a.out \
+    | awk '/Instrumentation results:/{print $3}'
+# || :( variable inscount
 gcc -O0 a.c && echo 'a' \
     | perf stat -e instructions:u ./a.out 2>&1 \
     | awk '/instructions.u/{print $1}'
@@ -345,9 +352,10 @@ python3 sktrace/sktrace.py -m attach -l libnative-lib.so -i Java_com_kanxue_ollv
 # || perf
 # - https://man7.org/linux/man-pages/man1/perf-intel-pt.1.html
 # - https://perf.wiki.kernel.org/index.php/Tutorial#Source_level_analysis_with_perf_annotate
+# - https://lore.kernel.org/lkml/20180914031038.4160-4-andi@firstfloor.org/
+perf trace record -- ./foo
 perf script --call-trace
 perf script --insn-trace --xed -F+srcline,+srccode
-perf trace record
 # || debugger
 # - ~/code/snippets/instrace.gdb
 # - x64dbg - https://help.x64dbg.com/en/latest/gui/views/Trace.html#start-run-trace

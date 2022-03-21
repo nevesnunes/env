@@ -676,7 +676,7 @@ print(df.to_markdown())
     ```
 
 - https://book.hacktricks.xyz/misc/basic-python/bypass-python-sandboxes
-- https://ctf-wiki.github.io/ctf-wiki/pwn/linux/sandbox/python-sandbox-escape/
+- https://ctf-wiki.org/pwn/sandbox/python/python-sandbox-escape/
 - [Breaking Out of a Python Sandbox · Issue \#6 · se162xg/notes · GitHub](https://github.com/se162xg/notes/issues/6)
 - [GitHub \- OpenToAllCTF/Tips: Useful tips by OTA CTF members \- Python jails](https://github.com/OpenToAllCTF/Tips#python-jails)
 - https://gynvael.coldwind.pl/n/python_sandbox_escape

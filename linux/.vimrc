@@ -554,7 +554,7 @@ augroup filetype_group
     autocmd BufEnter *
                 \ if &filetype !=# 'markdown' && line('$') < 100 |
                 \     for i in range(1, line('$')) |
-                \         if strlen(getline(i)) >= 500 |
+                \         if strlen(getline(i)) >= 800 |
                 \             setlocal syntax=off |
                 \             break |
                 \         endif |

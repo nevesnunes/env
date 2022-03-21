@@ -1,6 +1,7 @@
 # +
 
 - [disassembly \- Python Script to get disassembled output of an EXE file \- Reverse Engineering Stack Exchange](https://reverseengineering.stackexchange.com/questions/22377/python-script-to-get-disassembled-output-of-an-exe-file)
+- [GitHub \- TorgoTorgo/ghidra\-findcrypt: Ghidra analysis plugin to locate cryptographic constants](https://github.com/TorgoTorgo/ghidra-findcrypt)
 
 # function ID (FID)
 
