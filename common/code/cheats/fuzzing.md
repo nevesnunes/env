@@ -4,6 +4,38 @@
 - apply faults at elements separated by delimiters to reduce test cases
 - apply deltas to common buffer sizes (e.g. k^2, k^10, -+20)
 
+### Syscalls
+
+```bash
+strace -e mprotect -e fault=all:error=EPERM:when=1 \
+    pwd
+strace -e inject=write:delay_exit=100000 -e write -o/dev/null \
+    dd if=/dev/zero of=/dev/null bs=1M count=10
+```
+
+- Modern strace - Dmitry Levin
+- Can strace make you fail? - Dmitry Levin
+
+### Network
+
+```bash
+# packet loss
+iptables -A INPUT -m statistic --mode random --probability 0.1 -j DROP
+iptables -A OUTPUT -m statistic --mode random --probability 0.1 -j DROP
+# network latency, limited bandwidth, and packet loss
+tc qdisc add dev eth0 root netem delay 250ms loss 10% rate 1mbps
+# network latency w/ jitter
+tc qdisc add dev eth0 root netem delay 50ms 20ms distribution normal
+# re-order, duplicate, and corrupt packets.
+tc qdisc add dev eth0 root netem reorder 0.02 duplicate 0.05 corrupt 0.01
+```
+
+- https://bravenewgeek.com/sometimes-kill-9-isnt-enough/
+
+### OS
+
+- https://docs.kernel.org/fault-injection/fault-injection.html
+
 ### Feedback based fuzzing
 
 ```fasm
@@ -38,11 +70,6 @@ lea rsp, [rsp+98h]
     ```
 - emulation
     - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
-
-### Case studies
-
-- Modern strace - Dmitry Levin
-- Can strace make you fail? - Dmitry Levin
 
 # Directory busting
 
