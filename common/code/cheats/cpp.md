@@ -22,6 +22,8 @@ autoreconf -fi
 make
 sudo make install
 # ||
+./configure --prefix="$HOME/foo"
+# ||
 make prefix="$HOME/foo" install
 ```
 

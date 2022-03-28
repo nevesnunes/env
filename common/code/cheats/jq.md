@@ -1,10 +1,10 @@
 # +
 
-[jq Cheet Sheet · GitHub](https://gist.github.com/olih/f7437fb6962fb3ee9fe95bda8d2c8fa4)
-https://megamorf.gitlab.io/cheat-sheets/cheat-sheet-jq.html
+- [jq Cheet Sheet · GitHub](https://gist.github.com/olih/f7437fb6962fb3ee9fe95bda8d2c8fa4)
+- https://megamorf.gitlab.io/cheat-sheets/cheat-sheet-jq.html
 
-https://stackoverflow.com/questions/47551333/jq-convert-a-list-of-objects-into-a-summarized-object
-https://stackoverflow.com/questions/42427725/using-jq-convert-array-of-objects-to-object-with-named-keys
+- https://stackoverflow.com/questions/47551333/jq-convert-a-list-of-objects-into-a-summarized-object
+- https://stackoverflow.com/questions/42427725/using-jq-convert-array-of-objects-to-object-with-named-keys
 
 # add element from argument
 
@@ -17,6 +17,11 @@ echo '{"hello": "world"}' | jq --arg foo bar '.foo += [$foo, 123]'
 ```bash
 fzf --disabled --preview-window up:99%:nohidden --print-query --preview "<{f} jq {q}" <<< '{"a":"/","b":1}'
 ```
+
+Alternatives:
+
+- [GitHub \- fiatjaf/jiq: jid on jq \- interactive JSON query tool using jq expressions](https://github.com/fiatjaf/jiq)
+- [GitHub \- simeji/jid: json incremental digger](https://github.com/simeji/jid)
 
 # beautify / format
 

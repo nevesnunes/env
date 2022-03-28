@@ -147,10 +147,16 @@ javascript:void(window.open('https://web.archive.org/web/*/'+location.href.repla
 
 # subdomains
 
-- https://github.com/aboul3la/Sublist3r
-- https://findsubdomains.com/
-- https://pentest-tools.com/information-gathering/find-subdomains-of-domain
-- https://github.com/tomnomnom/waybackurls
+```bash
+# [GitHub \- OWASP/Amass: In\-depth Attack Surface Mapping and Asset Discovery](https://github.com/OWASP/Amass)
+amass -active -brute -o hosts.txt -d yahoo.com
+```
+
+- [GitHub \- michenriksen/aquatone: A Tool for Domain Flyovers](https://github.com/michenriksen/aquatone)
+- [GitHub \- aboul3la/Sublist3r: Fast subdomains enumeration tool for penetration testers](https://github.com/aboul3la/Sublist3r)
+- [Subdomain Finder \- Quick and Precise Enumeration \| Spyse](https://findsubdomains.com/)
+- [Free subdomain finder online 🛡️ find subdomains of domain](https://pentest-tools.com/information-gathering/find-subdomains-of-domain)
+- [GitHub \- tomnomnom/waybackurls: Fetch all the URLs that the Wayback Machine knows about for a domain](https://github.com/tomnomnom/waybackurls)
 
 # google search dorks
 

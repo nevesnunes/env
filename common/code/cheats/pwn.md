@@ -412,3 +412,6 @@ if ssl:
 
 - [GitHub \- socram8888/tonyhax: PS1 savegame exploit](https://github.com/socram8888/tonyhax)
     - [tonyhax with a game exploit \| orca\.pet](https://orca.pet/tonyhax/game-exploit.html)
+- [FireFox 2\.0\.0\.11 and Opera 9\.50 beta Remote Memory Information Leak, FireFox 2\.0\.0\.11 Remote Denial of Service \- CXSecurity\.com](https://cxsecurity.com/issue/WLB-2008020087)
+    - Read unitialized memory allocated for BMP palette with less entries than specified
+    > If the attacker creates a BMP file with biClrUser = 0, and fills it with gradient, from 0 to 255: 00 01 02 03 04 05 ... and so on, the displayed BMP will in fact copy the palette to the screen, which of course means that it copies the data lying on the heap to the screen.

@@ -392,6 +392,7 @@ Examples:
     - https://en.wikipedia.org/wiki/Gifar
 - msi + jar
     - https://blog.virustotal.com/2019/01/distribution-of-malicious-jar-appended.html
+- https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecure%20Files
 
 Parasites:
 

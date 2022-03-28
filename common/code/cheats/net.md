@@ -985,9 +985,19 @@ restorecon /foo/bar
 
 # case studies
 
-- https://systemoverlord.com/2021/03/12/bsidessf-2021-ctf-net-matroyshka-author-writeup.html
-    - http + ftp + rsyncd + tftp (netascii) + smb + git smart protocol + dnscat2 + telnet
+### performance
+
+- https://news.ycombinator.com/item?id=9269325
+    > The RTT mechanisms in resolvers have a high degree of randomness and will aggressively try the other, slower name servers again. E.g., out of 1000 samples, my desktop in the Netherlands (via XS4All) sees low latencies from Route 53 ~60% of the time
+    ```bash
+    seq 1 1000 | xargs -n 1 sh -c 'dig test-$0.trosc.com | grep "Query time" | awk "{print \$4}"' | histogram.py -f "%3d"
+    ```
 - https://remyhax.xyz/posts/protonvpn-tcp-hacks/
     - send TCP+SYS response without verifying open port (lower latency, tamper port scanning), if port closed then send RST+SYS
+
+### ctf
+
+- https://systemoverlord.com/2021/03/12/bsidessf-2021-ctf-net-matroyshka-author-writeup.html
+    - http + ftp + rsyncd + tftp (netascii) + smb + git smart protocol + dnscat2 + telnet
 - https://nstarke.github.io/netgear/nday/2022/03/13/reverse-engineering-a-netgear-nday.html
     - capture requests from upnp client; on /etc/proxychains4.conf: `http $proxy_host $proxy_port`; run with `proxychains4 python2 miranda.py`

@@ -206,6 +206,18 @@ sudo cgexec -g cpu:cpulimited ./foo
 # e.g. 0.2 seconds out of 1 second
 sudo cgset -r cpu.cfs_quota_us=200000 cpulimited
 sudo cgset -r cpu.cfs_period_us=1000000 cpulimited
+# Alternative: Using systemd slices: https://blog.monosoul.dev/2020/09/15/using-cgroups-to-make-local-test-runs-less-painful/
+cat <<EOF >/usr/lib/systemd/system/foo.slice
+[Unit]
+Before=slices.target
+[Slice]
+CPUQuota=200%
+MemoryMax=500M
+EOF
+cat <<EOF >/usr/lib/systemd/system/foo.service
+[Service]
+Slice=foo.slice
+EOF
 
 # suspend and resume process
 kill -TSTP $pid

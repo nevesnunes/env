@@ -36,6 +36,8 @@
 
 # documentation
 
+- implementation differentials/bugs outlined by RFCs: "Security Considerations" section, past versions, erratas 
+    - https://edoverflow.com/2022/reading-rfcs-for-bug-bounty-hunters/
 - if software wasn't always tracked in vcs, then changelog files document changes in older versions
     - e.g. [CHANGES \- bash\.git \- bash](https://git.savannah.gnu.org/cgit/bash.git/tree/CHANGES)
 - documentation isn't as detailed about borrowed semantics as older documentation where they were introduced
@@ -176,9 +178,14 @@
 
 ### cross-pollination
 
-- refraction using tape
-    > Use Scotch tape on an IC to more easily identify part markings. Just beware of ESD when removing!
-    - https://twitter.com/joegrand/status/985962672683343872
+- readable laser markings
+    - refraction using tape
+        > Use Scotch tape on an IC to more easily identify part markings. Just beware of ESD when removing!
+        - https://twitter.com/joegrand/status/985962672683343872
+    - lens polarizer
+        > reject specular (shiny) reflections by placing one linear polarizer in front of your light source, then a second offset by 90 degrees in front of your camera lens.
+        - https://www.reddit.com/r/netsec/comments/tk4no2/comment/i1oi5q4
+        - https://twitter.com/azonenberg/status/1494061604161220615
 - diff using light
     > Back in the day when I was poring over slightly different disassemblies, I'd print them both out, stack them, and look at them with a light behind them. That's how you diff old school.
     - https://twitter.com/babbageboole/status/1323442671730397184

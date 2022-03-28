@@ -298,6 +298,8 @@
     - ~/code/snippets/pin/count_me_if_you_can.py
     - [write\-up for dont\_panic \- Eternal Stories](http://eternal.red/2017/dont_panic-writeup/)
 - syscall counting - `strace | sort | uniq -c`
+- ! instruction counting disturbed by OS scheduler
+    - [performance \- Perf overcounting simple CPU\-bound loop: mysterious kernel work? \- Stack Overflow](https://stackoverflow.com/questions/39864416/perf-overcounting-simple-cpu-bound-loop-mysterious-kernel-work)
 
 ```bash
 # instruction counting

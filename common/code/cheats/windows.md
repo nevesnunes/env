@@ -232,7 +232,9 @@ net start cryptsvc
 
 net stop wuauserv
 net stop bits
+net stop dosvc
 rename $env:windir\SoftwareDistribution $env:windir\SoftwareDistribution.bak
+net start dosvc
 net start bits
 net start wuauserv
 

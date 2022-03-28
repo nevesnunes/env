@@ -486,6 +486,12 @@ rsync --ignore-times -rv --include '*/' --include '*.js' --exclude '*' src/ targ
 # Extract tar
 tar -zxvf data.tar.gz
 
+# Extract single file from zip/cbz
+zipinfo -1 ./foo | grep 123 | xargs -I{} unzip -j ./foo {}
+
+# Extract single file from rar/cbr
+unrar lb ./foo | grep 123 | xargs -I{} unrar e ./foo {}
+
 # Find and remove broken symlinks
 find . -type l -a ! \( \
   -xtype b -o \

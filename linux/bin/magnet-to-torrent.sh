@@ -2,7 +2,11 @@
 
 set -eux
 
-read -r magnet
+if [ "$#" -gt 0 ]; then
+  magnet=$*
+else
+  read -r magnet
+fi
 
 # Magnet file must contain hash
 echo "$magnet" | grep -q 'xt=urn:btih:[^&/]\+'

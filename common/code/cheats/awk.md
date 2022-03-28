@@ -30,6 +30,43 @@ echo '1:2 3' | awk -F '[[:space:]:]*' '{print $2 " " $3}'
 seq 1 3 | awk 'NR==1{p=$0; next} {print p " " $0; p=$0}'
 ```
 
+# aggregations
+
+### group by
+
+```bash
+<foo.csv awk -F, 'NR>1{arr[$1]++} END{for (a in arr) print a, arr[a]}'
+```
+
+- https://stackoverflow.com/a/14916890/8020917
+
+### average, standard deviation
+
+```bash
+<foo.csv awk '
+{ for (i=1; i<=NF; i++) { sum[i] += $i; sumsq[i] += ($i)^2 } }
+END {
+    for (i=1;i<=NF;i++) {
+        printf "%f %f \n", sum[i]/NR, sqrt((sumsq[i]-sum[i]^2/NR)/NR)
+    }
+}
+'
+```
+
+- https://stackoverflow.com/questions/18786073/compute-average-and-standard-deviation-with-awk
+
+Alternatives:
+
+- https://www.gnu.org/software/datamash/
+
+### p95
+
+```bash
+sort -u foo.csv | awk '{all[NR] = $0} END{print all[int(NR*0.95 - 0.5)]}'
+```
+
+- https://stackoverflow.com/questions/24707705/calculating-95th-percentile-with-awk
+
 # permutations
 
 ```bash

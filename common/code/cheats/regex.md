@@ -12,6 +12,39 @@ https://github.com/google/re2/wiki/Syntax
 
 - `(.)\1+`
 
+# sequences with k length
+
+```r
+str <- " = == === ==== ===== ====== ======="
+
+gsub("=(?====)",      "-", str, perl = TRUE) # (1) Pos. lookahead
+gsub("(?<====)=",     "-", str, perl = TRUE) # (2) Pos. look-behing
+gsub("(?<===)=(?==)", "-", str, perl = TRUE) # (3) Middle part for cases of 4 or 5 ='s (1/2)
+gsub("(?<==)=(?===)", "-", str, perl = TRUE) # (4) Middle part for cases of 4 or 5 ='s (2/2)
+
+# Combining all, we have:
+gsub("((?<====)=)|(=(?====))|((?<===)=(?==))|((?<==)=(?===))", "-", str, perl = TRUE) # (5)
+
+# (1) = == === -=== --=== ---=== ----===
+# (2) = == === ===- ===-- ===--- ===----
+# (3) = == === ==-= ==--= ==---= ==----=
+# (4) = == === =-== =--== =---== =----==
+# (5) = == === ---- ----- ------ -------
+
+# First, deal with 4 & 5 equal signs with negative look-behind and lookahead
+str <- gsub("(?<!=)={4}(?!=)", "----",     str, perl = TRUE) # (2.1)
+str <- gsub("(?<!=)={5}(?!=)", "-----",    str, perl = TRUE) # (2.2)
+
+# Then use regex (3) from above for 6+ equal signs
+str <- gsub("((?<====)=)|(=(?====))", "-", str, perl = TRUE) # (2.3)
+
+# (2.1) = == === ---- ===== ====== =======
+# (2.2) = == === ---- ----- ====== =======
+# (2.3) = == === ---- ----- ------ -------
+```
+
+[Regex\- replace sequence of one character with same number of another character \- Stack Overflow](https://stackoverflow.com/a/61300918/8020917)
+
 # unique characters
 
 - `(?:([A-Za-z])(?!.*\1))*`

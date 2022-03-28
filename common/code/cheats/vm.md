@@ -252,6 +252,13 @@ gdb -ex 'target remote localhost:1234'
 
 - [GitHub \- darkguy2008/hotplugger: VirtIO \(VFIO\) USB Port passthrough helper](https://github.com/darkguy2008/hotplugger)
 
+# qemu resize
+
+```bash
+qemu-img convert -O qcow2 foo.img foo.qcow2
+qemu-img resize foo.qcow2 +1G
+```
+
 # qemu windows ce
 
 - add driver
