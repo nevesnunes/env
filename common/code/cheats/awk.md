@@ -67,6 +67,17 @@ sort -u foo.csv | awk '{all[NR] = $0} END{print all[int(NR*0.95 - 0.5)]}'
 
 - https://stackoverflow.com/questions/24707705/calculating-95th-percentile-with-awk
 
+# jaccard similarity
+
+```bash
+jaccard() {
+    comm --total --check-order "$@" | tail -n 1 | awk '{ print ($3 / ($3 + $2 + $1)) }'
+}
+jaccard <(sort ./foo) <(sort ./bar)
+```
+
+- [bashML: Why Spark when you can Bash? \- rev\.ng](https://rev.ng/blog/bashml/post.html)
+
 # permutations
 
 ```bash
