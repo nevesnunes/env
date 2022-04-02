@@ -619,9 +619,14 @@ print(df.to_markdown())
 
 - [GitHub \- landaire/unfuck: Python 2\.7 bytecode d̶e̶o̶b̶f̶u̶s̶c̶a̶t̶o̶r unfucker](https://github.com/landaire/unfuck)
 
+# deserialization
+
+- https://zeta-two.com/software/2022/01/07/simpler-unpickle-payloads-with-walrus.html
+
 # jail
 
 - `eval() / exec() / compile()`: execute any python code
+    - `eval('a', {}, {'a': 3})`
 - `globals() / locals() / vars()`: finding useful variables, using built-ins
     - [CTFtime\.org / Really Awesome CTF 2020 / Puffer Overflow](https://ctftime.org/task/11928)
 - `getattr() / setattr()`: call object.banned(), e.g. `getattr(object, "ban"+"ned")`

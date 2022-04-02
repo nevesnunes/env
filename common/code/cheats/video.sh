@@ -1,3 +1,11 @@
+# webcam workarounds
+
+# if: uvcvideo 1-1.3:1.3: Failed to submit URB 0 (-28).
+# then: not enough bandwidth, try USB 3.0 hub
+dmesg
+# https://community.jitsi.org/t/old-webcams-in-linux-gspca-drivers/38033
+env LD_PRELOAD=/usr/lib64/libv4l/v4l1compat.so
+
 # change fps
 
 ffmpeg -i input.mp4 -c:v libx265 -crf 26 -preset fast -filter:v fps=30 output.mp4

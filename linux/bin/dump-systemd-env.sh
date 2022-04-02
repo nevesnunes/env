@@ -9,4 +9,8 @@ if [ -z "$d" ]; then
   echo "DISPLAY not set!"
   exit 1
 fi
-echo "DISPLAY=$d" > ~/.local/share/systemd/env
+cat <<EOF >"$HOME/.local/share/systemd/env"
+DBUS_SESSION_BUS_ADDRESS=/dev/null
+DISPLAY=$d
+PATH=/usr/local/nopshim:$PATH
+EOF

@@ -615,8 +615,11 @@ xwininfo -root -all
 sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'; \
 sudo VBoxManage extpack install <file>
 
-# Make unified format diff (same as `git diff`)
-diff -Naurw <old> <new> > <file>.diff
+# Word diff 
+git diff --no-index --color-words <old> <new>
+
+# Unified format diff (same as `git diff`)
+diff -Nauw <old> <new>
 
 # Patch using diff file (removes prefix added by `git diff`)
 patch -p1 < <file>.diff

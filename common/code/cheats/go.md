@@ -35,6 +35,15 @@ GO111MODULE=on go get golang.org/x/tools/gopls@latest
 
 # Dissassembly
 
+```bash
+# With compiler flag
+go tool compile '-d=unified=1' -p . -S <(printf '%s' 'package main
+func main() {
+    print(0xff)
+}
+')
+```
+
 - [GitHub \- felberj/gotools: Plugin for Ghidra to assist reversing Golang binaries](https://github.com/felberj/gotools)
 - [GitHub \- sibears/IDAGolangHelper: Set of IDA Pro scripts for parsing GoLang types information stored in compiled binary](https://github.com/sibears/IDAGolangHelper)
 

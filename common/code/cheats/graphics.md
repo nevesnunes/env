@@ -4,8 +4,14 @@
 - [GitHub \- lovell/sharp: High performance Node\.js image processing, the fastest module to resize JPEG, PNG, WebP, AVIF and TIFF images\. Uses the libvips library\.](https://github.com/lovell/sharp)
 - [Fred's ImageMagick Scripts](http://www.fmwconcepts.com/imagemagick/index.php)
 
+# textures
+
+- [Graphics/Texture finders and viewers \- XeNTaX](https://forum.xentax.com/viewtopic.php?t=15540)
+- http://wiki.polycount.com/wiki/DXT
+
 # graphics api
 
+- [RenderDoc](https://renderdoc.org/)
 - [GitHub \- apitrace/apitrace: Tools for tracing OpenGL, Direct3D, and other graphics APIs](https://github.com/apitrace/apitrace)
 
 ### GLSL

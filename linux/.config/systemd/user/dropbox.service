@@ -10,7 +10,6 @@ After=local-fs.target dump-systemd-env.service
 
 [Service]
 EnvironmentFile=/home/%u/.local/share/systemd/env
-Environment="DBUS_SESSION_BUS_ADDRESS=/dev/null"
 # When launched via firejail, Type=forking causes timeout.
 Type=simple
 ExecStartPre=-/usr/bin/pkill dropbox

@@ -135,6 +135,8 @@
         - https://jamchamb.net/2021/08/17/snap-station.html
     - trace down / learn up; make bite-sized changes
         - https://mitchellh.com/writing/contributing-to-complex-projects
+    - [HackTheBox \- Laser \- YouTube](https://www.youtube.com/watch?v=vD3jSJlc0ro&t=2070s)
+        - Verifying payloads against local server, JSON validation, alternatives in URL encoding, if hangs also happen with bad paths, other boolean-based checks...
     - https://tex.meta.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-working-example-mwe-what-is-that
     - https://dba.stackexchange.com/help/minimal-reproducible-example
     - https://skerritt.blog/divide-and-conquer-algorithms/

@@ -136,10 +136,17 @@
 
 # methodologies
 
+- overview
+    - make state explicit: tracing, instrumentation, diffing, input PoCs (e.g. change 1 byte/field on each iteration)...
+    - follow interfaces: apis, tests, modes, algorithmic functions (e.g. decompression)...
+    - know the shape of data: addresses, structs, protocols...
+        - https://margin.re/media/an-opinionated-guide-on-how-to-reverse-engineer-software-part-1.aspx
+    - bottom-up analysis: constants (e.g. error message string, unique numbers), conditional control-flow (e.g. when is error handler called)...
 - taxonomies
     - str array: strs are accessed w/ an offset from the 1st str (array base), which _will_ have an xref
     - algorithm: google constants
     - hashing: branchless xors/rols
+        - https://blog.whtaguy.com/2020/04/guys-30-reverse-engineering-tips-tricks.html
 - enumerate exports, imports, syscalls, xrefs to winapi, registry keys, services, dll dependencies, handles, mutex, strings
     - lifecycle
         - before OEP
@@ -253,7 +260,6 @@
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research
-- https://blog.whtaguy.com/2020/04/guys-30-reverse-engineering-tips-tricks.html
 
 # lifting
 
