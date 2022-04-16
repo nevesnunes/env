@@ -7,8 +7,8 @@
 HISTCONTROL=ignoreboth:erasedups
 HISTIGNORE="&:[ ]*:cd:cp:l[alrs]:mv:pwd*:[bf]g*:history*:clear:exit"
 HISTTIMEFORMAT='%s '
-HISTFILESIZE=20000
-HISTSIZE=50000
+HISTFILESIZE=200000
+HISTSIZE=250000
 
 # append to the history file, don't overwrite it
 shopt -s histappend

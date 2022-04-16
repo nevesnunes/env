@@ -270,6 +270,7 @@ Clone:
 - https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
+- https://elongl.github.io/exploitation/2021/05/30/pwning-home-router.html
 
 ### Server-Side Template Injection (SSTI)
 

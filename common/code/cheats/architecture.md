@@ -53,6 +53,14 @@
     > If you do privileged execution of specific operations via IPC you get the guarantee that whatever is done, is done from a well-defined, pristine execution environment, without leaking context implicitly. The IPC message is the *full* vulnerable surface, and that's as minimal as it can get. And that's great. 
     - [Fedora and pkexec \(LWN\.net\)](https://lwn.net/SubscriberLink/883547/d2b752eb979b3eb1/)
 
+# Authentication
+
+### MFA
+
+- https://twitter.com/_MG_/status/1508931354154524673
+    > - The worst thing is when the MFA notifications don't tell you what it's for or when the attempt was generated.
+    > - Yep! Some do, though it’s relatively easy to miss. A relatively easy improvement would be to ask the user what app they are expecting it to come from. (Select from 9 tiles, etc) Obviously still flawed, but better.
+
 # Hot-Swapping
 
 ### Executables
@@ -63,3 +71,14 @@
 - pid reparenting
     - [Controlling nginx \- Upgrading Executable on the Fly](https://nginx.org/en/docs/control.html#upgrade)
     - [caddy/upgrade\.go at v1 · caddyserver/caddy · GitHub](https://github.com/caddyserver/caddy/blob/v1/upgrade.go)
+
+# Atomic operations
+
+### file writes
+
+- write > fsync > rename > sync
+    - https://github.com/AdamJacobMuller/atomicxt/blob/master/file.go
+    - https://news.ycombinator.com/item?id=31046325
+        > Without the fsync() before rename(), on system crash, you can end up with the rename having been executed but the data of the new file not yet written to stable storage, losing the data.
+- [ext4 and data loss \(LWN\.net\)](https://lwn.net/Articles/322823/)
+    - https://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4.git/commit/?id=8750c6d5fcbd3342b3d908d157f81d345c5325a7

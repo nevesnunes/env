@@ -218,7 +218,23 @@ https://stackoverflow.com/questions/50894000/eslint-process-is-not-defined
 
 # WebSocket
 
+```sh
+curl \
+    --http1.1 \
+    --include \
+    --no-buffer \
+    --header "Connection: Upgrade" \
+    --header "Upgrade: websocket" \
+    --header "Host: example.com:80" \
+    --header "Origin: http://example.com:80" \
+    --header "Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==" \
+    --header "Sec-WebSocket-Version: 13" \
+    http://example.com:80/
+```
+
 - [How to check client is connected in web socket? · Issue \#353 · websockets/ws · GitHub](https://github.com/websockets/ws/issues/353)
+- [From Sockets to WebSockets · susam/lab · GitHub](https://github.com/susam/lab/tree/master/web/sockets)
+- [GitHub \- joewalnes/websocketd: Turn any program that uses STDIN/STDOUT into a WebSocket server\. Like inetd, but for WebSockets\.](https://github.com/joewalnes/websocketd)
 
 - [Misc CTF \- XSS to CSRF :: hg8&\#39;s Notes — My notes about infosec world\. Pentest/Bug Bounty/CTF Writeups\.](https://hg8.sh/posts/misc-ctf/xss-to-csrf/)
 

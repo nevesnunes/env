@@ -16,8 +16,10 @@
 - text
     - any format: `strings` (`-el` for 16-bit le)
     - ELF format: [match x86 that appears to be stack string creation · GitHub](https://gist.github.com/williballenthin/ed7b3de224d5b986bc04dc882c5ee7c5)
-    - PE format: `floss`
-        - :) extracts stack strings
+    - PE format: 
+        - `floss` (extracts stack strings)
+        - [Script to generate stackstrings YARA signatures for common implementation patterns · GitHub](https://gist.github.com/notareverser/4f6b9c644d4fe517889b3fbb0b4271ca)
+        - [GitHub \- CybercentreCanada/assemblyline\-service\-frankenstrings: Assemblyline 4 IOC and String extraction service](https://github.com/CybercentreCanada/assemblyline-service-frankenstrings)
 - syscalls, dynamic library calls
     - any format: [GitHub \- maroueneboubakri/lscan: lscan is a library identification tool on statically linked/stripped binaries](https://github.com/maroueneboubakri/lscan)
         - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)

@@ -2,13 +2,28 @@
 
 - [The Go Playground](https://play.golang.org/)
 
-# Install / Update module
+# Modules
+
+- [Using Go Modules \- The Go Programming Language](https://blog.golang.org/using-go-modules)
+- [Go Modules Reference \- The Go Programming Language](https://go.dev/ref/mod)
+
+### Install / Update
 
 ```bash
-# Local install:
-# go mod init tmp
+# Local install
+go mod init tmp
+
+# Download and save a specific module in `go.mod`
+go mod download $hostname/$module_path
+# ||
+go get -d $hostname/$module_path
+
+# Upgrade all direct and indirect dependencies
+go get -u ./...
+
+# Install
 go install $hostname/$module_path
-# version <= 1.17
+# || version <= 1.17
 go get -u $hostname/$module_path
 # ||
 GO111MODULE=on go get -u $hostname/$module_path
@@ -22,10 +37,6 @@ GO111MODULE=on go get -u $hostname/$module_path
 ```bash
 GOOS=darwin GOARCH=386 go build -v
 ```
-
-# Modules
-
-- https://blog.golang.org/using-go-modules
 
 # Language Server
 
@@ -52,3 +63,4 @@ func main() {
     - https://github.com/getCUJO/ThreatIntel/tree/master/Research_materials/Golang_reversing
     - https://github.com/getCUJO/ThreatIntel/tree/master/Scripts/Ghidra
 - [Reversing GO binaries like a pro \| RedNaga Security](https://rednaga.io/2016/09/21/reversing_go_binaries_like_a_pro/)
+- [Reversing Golang Binaries \| x0r19x91](https://suvaditya.one/blog/2021/reversing-go/)

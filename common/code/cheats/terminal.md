@@ -112,6 +112,7 @@ printf '\x0f'; echo abcdefghijklmnopqrstuvwxyz
 
 - [NVD \- CVE\-2003\-0063](https://nvd.nist.gov/vuln/detail/CVE-2003-0063)
 - ['\(Konsole\-devel\) Fwd: Terminal Emulator Security Issues' \- MARC](https://marc.info/?l=konsole-devel&m=104617524910254&w=2)
+- [oss\-security \- Re: zgrep, xzgrep: arbitrary\-file\-write vulnerability](https://www.openwall.com/lists/oss-security/2022/04/08/2)
 
 # capabilities
 
@@ -139,6 +140,12 @@ echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 ```bash
 stty -icanon && nc 127.0.0.1 4501 # sender side
 stdbuf -i0 -o0 nc 127.0.0.1 4501 -lk -I 1 # receiver side
+```
+
+# limits
+
+```bash
+xargs --show-limit </dev/null
 ```
 
 # case studies

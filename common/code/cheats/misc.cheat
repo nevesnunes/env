@@ -737,4 +737,12 @@ find . -maxdepth 1 -type f -iregex '.*.\(7z\|ace\|ar\|arc\|bz\|bz2\|cpio\|cpt\|d
 # `strings` alternative
 grep -E -a -o '[[:print:]]{4,}'
 
+# EBCDIC encoding
+; https://git.savannah.gnu.org/gitweb/?p=libiconv.git;a=blob;f=lib/encodings_zos.def;hb=dc461c464839b8db40017d17c0e7d1b09f2198f5
+; https://web.archive.org/web/20180509131048/http://www-01.ibm.com/software/globalization/cp/cp_cpgid.html
+printf '\xc8\xc5\xd3\xd3\xd6' | iconv -f IBM037 -t latin1
+
+# Match EBCDIC text (includes false positives)
+printf 'HELLO\xc8\xc5\xd3\xd3\xd6' | LC_ALL=C grep -Poa '[\x00-\x2f\x32-\x3d\x3f\x40\x4a-\x4f\x50\x5a-\x5f\x60\x61\x6a-\x6f\x79-\x7f\x81-\x89\x8f\x91-\x99\xa1-\xa9\xb0\xba\xbb\xc0-\xc9\xd0-\xd9\xe0\xe2-\xe9\xf0-\xf9\xff]*' | iconv -f IBM037 -t latin1 | xxd
+
 ; vim: filetype=navi

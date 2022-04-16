@@ -174,12 +174,17 @@
         > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
         - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
 - general guidelines
+    - finding bugfixes in recent versions, build with debug symbols
+        - https://blog.nelhage.com/post/computers-can-be-understood/#do-the-easy-thing-first
     - timestamped log of problem statement, hypothesis, expected vs actual results
         - http://yellerapp.com/posts/2014-08-11-scientific-debugging.html
     - [Testing and Debugging \- Dr\. Jody Paul](http://jodypaul.com/SWE/TD/TestDebug.html)
 
 ### cross-pollination
 
+- decomposing a problem and finding approaches for each identified property
+    - [Dror HELPER: Unit testing patterns for Concurrent code \| UCP2019 \- YouTube](https://www.youtube.com/watch?v=tRe3ddG8O1Y)
+    - [I'll Let Myself In: Tactics of Physical Pen Testers \- YouTube](https://www.youtube.com/watch?v=rnmcRTnTNC8)
 - readable laser markings
     - refraction using tape
         > Use Scotch tape on an IC to more easily identify part markings. Just beware of ESD when removing!
@@ -289,6 +294,7 @@ rr ./foo
 
 - [Reasons why bugs might feel &\#34;impossible&\#34;](https://jvns.ca/blog/2021/06/08/reasons-why-bugs-might-feel-impossible/)
 - [What does debugging a program look like?](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/)
+- [nelhage debugs shit](https://nelhagedebugsshit.tumblr.com/)
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 - [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)

@@ -16,7 +16,6 @@
 - [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
 
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
-- [From Sockets to WebSockets · susam/lab · GitHub](https://github.com/susam/lab/tree/master/web/sockets)
 - [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)
 
 - Port mirroring / Switched Port Analyzer (SPAN)
@@ -272,6 +271,7 @@ curl --head vulnerable --header 'Connection: close' --header 'User-Agent: () { :
 ```
 
 - https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
+- https://linux.die.net/man/1/mini-inetd
 - https://github.com/fijimunkii/bash-dev-tcp
 
 # Port scanner

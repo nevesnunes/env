@@ -23,6 +23,9 @@ sigmake foo.pat foo.sig
 - Views > Open subviews > Pseudocode (`F5`)
 - [!] "positive sp value has been found" => change offset (`Alt-k`)
 
+- [Igor’s tip of the week \#79: Handling variable reuse &\#8211; Hex Rays](https://hex-rays.com/blog/igors-tip-of-the-week-79-handling-variable-reuse/)
+    - using union types for polymorphic variables / reused stack slots
+
 # Config
 
 - Options > General > Disassembly > Number of opcode bytes (Graph) = 8
@@ -31,6 +34,11 @@ sigmake foo.pat foo.sig
 # Data
 
 - change size: move cursor to line at address to change (no visual select), then press `d`
+
+# Imports
+
+- take memory snapshot, then find and rebuild Import Address Table (IAT), by renaming dynamically added entries
+    - https://github.com/deontpearson/the4deons/blob/master/7553/idademo70/idc/renimp.idc
 
 # Symbols
 

@@ -245,6 +245,19 @@ docker ps \
     | xargs -I{} docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' {}
 ```
 
+# alternatives
+
+### lxc
+
+```sh
+lxc image list images: os=Fedora
+lxc launch images:fedora/35 foo
+lxc exec foo -- sudo /bin/bash
+
+lxc network attach enp3s0 foo eth0
+lxc restart foo
+```
+
 # case studies
 
 - https://kitctf.de/writeups/32c3ctf/docker

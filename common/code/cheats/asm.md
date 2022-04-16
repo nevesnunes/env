@@ -112,6 +112,7 @@ CALL  FUN_00402100
 - https://gitlab.com/x86-psABIs/x86-64-ABI
 - https://fasterthanli.me/series/making-our-own-executable-packer/part-1
 - https://web.archive.org/web/20171129031316/http://nairobi-embedded.org/040_elf_sec_seg_vma_mappings.html
+- [GitHub \- tmpout/awesome\-elf](https://github.com/tmpout/awesome-elf)
 
 # symbols
 
