@@ -32,5 +32,5 @@ wget \
   --server-response \
   --timestamping \
   --trust-server-names \
-  --user-agent="Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:72.0) Gecko/20100101 Firefox/72.0" \
+  --user-agent="Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0" \
   "$url"

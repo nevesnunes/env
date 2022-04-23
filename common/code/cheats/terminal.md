@@ -113,6 +113,7 @@ printf '\x0f'; echo abcdefghijklmnopqrstuvwxyz
 - [NVD \- CVE\-2003\-0063](https://nvd.nist.gov/vuln/detail/CVE-2003-0063)
 - ['\(Konsole\-devel\) Fwd: Terminal Emulator Security Issues' \- MARC](https://marc.info/?l=konsole-devel&m=104617524910254&w=2)
 - [oss\-security \- Re: zgrep, xzgrep: arbitrary\-file\-write vulnerability](https://www.openwall.com/lists/oss-security/2022/04/08/2)
+    - https://git.savannah.gnu.org/cgit/gzip.git/commit/?id=dc9740df61e575e8c3148b7bd3c147a81ea00c7c
 
 # capabilities
 

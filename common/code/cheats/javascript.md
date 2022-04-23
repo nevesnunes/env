@@ -356,6 +356,18 @@ Promise.resolve()
         });
 ```
 
+### async
+
+```javascript
+async foo() {}
+// ==
+const foo = () => new Promise(resolve => resolve())
+
+await Promise.all([..., ...])
+// ==
+return { foo: await x, bar: await y }
+```
+
 # Deobfuscation
 
 - [de4js \| JavaScript Deobfuscator and Unpacker](https://lelinhtinh.github.io/de4js/)

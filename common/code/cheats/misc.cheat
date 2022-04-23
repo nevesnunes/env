@@ -277,6 +277,9 @@ awk '{
 # generate qr code
 qrencode -t ASCII 'foo' | sed 's/#/█/g'
 
+# clipboard to qr code
+xclip -o -s c | qrencode -o - | feh --force-aliasing -ZF -
+
 # call library function
 \vim -u NONE -c 'redir>>/dev/stdout | echo libcall ("'"$(ldd "$(command -pv vim)" | awk '/libc.so/{print $1; exit}')"'", "getenv", "HOME") | q'
 

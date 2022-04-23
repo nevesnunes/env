@@ -872,6 +872,11 @@ certutil û<command>
 > Locate the cmd.exe file then drag and drop any Dynamic-Link Library (DLL) over it. For example, choose the clusapi.dll file located near the cmd.exe executable. This will open a Command Prompt screen as an unprivileged user.
     - https://blog.korelogic.com/blog/2020/06/29/cellebrite_good_times_come_on
 
+# reset user password
+
+> Boot some livecd Linux, replace utilman.exe with cmd.exe, restart and select to run in safe mode with defender disabled. Now on login screen click on "ease of access" / press Win+U and boom you get a root CMD shell where you can change user password.
+    - https://www.reddit.com/r/HowToHack/comments/tu45ua/comment/i32xg77/
+
 # install xp on hard disk
 
 On Windows host:

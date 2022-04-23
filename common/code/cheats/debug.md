@@ -140,6 +140,12 @@
     - https://tex.meta.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-working-example-mwe-what-is-that
     - https://dba.stackexchange.com/help/minimal-reproducible-example
     - https://skerritt.blog/divide-and-conquer-algorithms/
+    - https://en.wikipedia.org/wiki/Fractional_factorial_design
+- reshape: manipulate data to be consumed by format-specific tools
+    - e.g. sqlite for sql queries on csv data
+    - e.g. coreutils for line-oriented data
+        - ~/bin/git-grep-detached.sh
+        - ~/bin/plaintext-detached.sh
 - dynamic analysis: understanding logic with the context of runtime state
     - mock libc as alternative to strace
     - fault injecton via sandboxing as alternative to debugging

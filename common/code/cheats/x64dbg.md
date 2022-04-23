@@ -2,6 +2,9 @@
 
 - http://reverseengineeringtips.blogspot.com/2015/01/an-introduction-to-x64dbg.html
 
+- https://github.com/mrexodia/StackContains
+- https://github.com/Air14/HyperHide
+
 # Keybinds
 
 - Options > Shortcuts

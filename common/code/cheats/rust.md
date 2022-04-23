@@ -1,5 +1,6 @@
 # +
 
+- https://play.rust-lang.org/
 - [GitHub \- immunant/c2rust: Migrate C code to Rust](https://github.com/immunant/c2rust)
 
 # Docs
@@ -32,6 +33,13 @@ rustc -C opt-level=3
 # compiled without debug info
 cargo web deploy --release
 ```
+
+# Unsafe
+
+- https://github.com/rust-lang/unsafe-code-guidelines/
+- https://doc.rust-lang.org/nomicon/intro.html
+- https://crates.io/crates/bytemuck
+    - `pub fn foo<T: Pod>(data: &T) -> Result<&[u8], Error>`
 
 # Assembly
 

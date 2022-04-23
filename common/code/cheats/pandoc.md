@@ -10,6 +10,14 @@ convert from html without empty tags or attributes:
 pandoc --lua-filter="$HOME/code/snippets/pandoc/remove-attr.lua" --from=html --to=gfm-raw_html-native_divs-native_spans --wrap=none a.html -o a.md
 ```
 
+### anchors
+
+```markdown
+<a name="foo">foo</a>
+...
+- [foo](#foo)
+```
+
 # Filters
 
 - http://scorreia.com/software/panflute/

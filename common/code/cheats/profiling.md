@@ -262,6 +262,11 @@ bpftrace -e 't:signal:signal_generate /comm == "slack"/ { printf("%d, %s%s\n", a
 
 - https://github.com/iovisor/bcc/blob/master/docs/tutorial.md
 
+### memory writes
+
+- `bpf_probe_write_user()`
+    - https://embracethered.com/blog/posts/2021/offensive-bpf-libbpf-bpf_probe_write_user/
+
 # `strace` for mac and bsd
 
 ```bash

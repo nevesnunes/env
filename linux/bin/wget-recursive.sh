@@ -15,6 +15,7 @@ wget \
   --adjust-extension \
   --convert-links \
   -e robots=off \
+  --header='Accept-Language: en,en-US;q=0.5' \
   --limit-rate=500k --random-wait --wait=0.2 \
   --load-cookies "$cookies" \
   --max-redirect=20 \

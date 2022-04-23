@@ -337,6 +337,9 @@ sudo qemu-nbd -d /dev/nbd0
 
 # raw images
 
+- `7z`
+- `loop` block devices
+
 ```bash
 sudo losetup /dev/loop0 foo.disk
 sudo partprobe /dev/loop0
@@ -357,6 +360,10 @@ sudo losetup -a  # no entry for /dev/loop0
 # extract
 gzip -dc initrd | cpio -idv --no-absolute-filenames
 ```
+
+# ntfs
+
+- https://sec-consult.com/blog/detail/pentesters-windows-ntfs-tricks-collection/
 
 # benchmarking
 

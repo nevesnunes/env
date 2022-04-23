@@ -7,10 +7,12 @@
 # - Port scan: -p- --reason == -p1-65535 --reason
 # - Treat host as online: -Pn
 # - Skip DNS resolution: -n
+nmap -sSV -O -p- -Pn -n --version-all --reason 10.0.2.0/24
+# || OS detection, version detection, script scanning, traceroute: -A
 nmap -sS -A -p- -Pn -n --version-all --reason 10.0.2.0/24
 # || UDP:
 nmap -sU -A -p- -Pn -n --version-all --reason 10.0.2.0/24
-# Alternatives: 
+# Alternatives:
 # - report connection status only (-z)
 nc -z -v -w 1 10.0.2.4 80
 # - enumerate app servers

@@ -18,7 +18,9 @@
 - http://unixwiz.net/techtips/x86-jumps.html
 - https://www.sandpile.org/
 - http://ref.x86asm.net/geek64.html
+- https://cloud.binary.ninja/
 
+- [GitHub \- airbus\-seclab/cpu\_rec: Recognize cpu instructions in an arbitrary binary file](https://github.com/airbus-seclab/cpu_rec)
 - [Notes on x86\-64 Assembly and Machine Code · GitHub](https://gist.github.com/mikesmullin/6259449)
 - [Single Byte or Small x86 Opcodes \| Dru Nelson](http://xxeo.com/single-byte-or-small-x86-opcodes)
 - [GitHub \- michalmalik/linux\-re\-101: A collection of resources for linux reverse engineering](https://github.com/michalmalik/linux-re-101)
@@ -41,6 +43,8 @@ for ctx in [["arm", 32], ["aarch64", 64]]:
     print(hexdump(asm(sh)))
 '
 ```
+
+# emulation
 
 - https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
 - [ARM Assembly, Emulation, Disassembly using Keystone, Unicorn, and Capstone · GitHub](https://gist.github.com/cspensky/3a5153b29143e6be785a5e1a702bbd9e)
@@ -214,7 +218,7 @@ objcopy --dump-section .text=output.bin input.o
 ### System V
 
 - stack is 16 byte aligned
-    - substract from rsp || push registers 
+    - substract from rsp || push registers
 
 # stack
 
@@ -635,6 +639,13 @@ call eax
 - https://azeria-labs.com/writing-arm-assembly-part-1/
 - https://thinkingeek.com/arm-assembler-raspberry-pi/
 - https://opensecuritytraining.info/IntroARM.html
+
+### infinite loop
+
+```bash
+printf 'main(){a:goto a;}' | gcc -o /tmp/1 -x c - && objdump --disassemble=main /tmp/1
+# 40110a:       eb fe                   jmp    40110a <main+0x4>
+```
 
 # case studies
 

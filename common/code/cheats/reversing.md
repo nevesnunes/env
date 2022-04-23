@@ -16,7 +16,7 @@
 - text
     - any format: `strings` (`-el` for 16-bit le)
     - ELF format: [match x86 that appears to be stack string creation · GitHub](https://gist.github.com/williballenthin/ed7b3de224d5b986bc04dc882c5ee7c5)
-    - PE format: 
+    - PE format:
         - `floss` (extracts stack strings)
         - [Script to generate stackstrings YARA signatures for common implementation patterns · GitHub](https://gist.github.com/notareverser/4f6b9c644d4fe517889b3fbb0b4271ca)
         - [GitHub \- CybercentreCanada/assemblyline\-service\-frankenstrings: Assemblyline 4 IOC and String extraction service](https://github.com/CybercentreCanada/assemblyline-service-frankenstrings)
@@ -267,6 +267,24 @@
 
 - [GitHub \- lifting\-bits/mcsema: Framework for lifting x86, amd64, aarch64, sparc32, and sparc64 program binaries to LLVM bitcode](https://github.com/lifting-bits/mcsema)
     - [GitHub \- lifting\-bits/remill: Library for lifting of x86, amd64, and aarch64 machine code to LLVM bitcode](https://github.com/lifting-bits/remill)
+
+# llvm
+
+- https://llvm.org/docs/LangRef.html
+
+```sh
+# disasm
+clang -emit-llvm -S foo.c -o foo.ll
+llvm-as foo.ll -o foo.bc
+llvm-dis foo.bc -o foo.ll
+
+# run
+lli foo.bc
+
+# compile
+llc -march=x86-64 foo.bc -o foo.s
+clang -S foo.bc -o foo.s -fomit-frame-pointer
+```
 
 # seccomp
 
