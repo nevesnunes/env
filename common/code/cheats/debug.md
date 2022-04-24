@@ -135,12 +135,19 @@
         - https://jamchamb.net/2021/08/17/snap-station.html
     - trace down / learn up; make bite-sized changes
         - https://mitchellh.com/writing/contributing-to-complex-projects
-    - [HackTheBox \- Laser \- YouTube](https://www.youtube.com/watch?v=vD3jSJlc0ro&t=2070s)
-        - Verifying payloads against local server, JSON validation, alternatives in URL encoding, if hangs also happen with bad paths, other boolean-based checks...
-    - https://tex.meta.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-working-example-mwe-what-is-that
-    - https://dba.stackexchange.com/help/minimal-reproducible-example
-    - https://skerritt.blog/divide-and-conquer-algorithms/
-    - https://en.wikipedia.org/wiki/Fractional_factorial_design
+    - verifying payloads against local server, JSON validation, alternatives in URL encoding, if hangs also happen with bad paths, other boolean-based checks...
+        - [HackTheBox \- Laser \- YouTube](https://www.youtube.com/watch?v=vD3jSJlc0ro&t=2070s)
+    - minimal cases
+        - https://jvns.ca/blog/2022/03/23/a-toy-version-of-tls/
+        - https://tex.meta.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-working-example-mwe-what-is-that
+        - https://dba.stackexchange.com/help/minimal-reproducible-example
+        - https://skerritt.blog/divide-and-conquer-algorithms/
+        - https://en.wikipedia.org/wiki/Fractional_factorial_design
+    - interactive examples
+        - script for processing a chunk of bytes at a given step
+            - e.g. [Server Handshake Keys Calc \- The Illustrated TLS 1\.3 Connection: Every Byte Explained](https://tls13.ulfheim.net/)
+        - [New tool: Mess with DNS!](https://jvns.ca/blog/2021/12/15/mess-with-dns/)
+        - [GitHub \- corkami/mitra: A generator of weird files \(binary polyglots, near polyglots\.\.\.\)](https://github.com/corkami/mitra)
 - reshape: manipulate data to be consumed by format-specific tools
     - e.g. sqlite for sql queries on csv data
     - e.g. coreutils for line-oriented data
