@@ -140,6 +140,9 @@
 
 - overview
     - make state explicit: tracing, instrumentation, diffing, input PoCs (e.g. change 1 byte/field on each iteration)...
+        - [Ali Rizvi-Santiago @ OffensiveCon22 \- Mark Dowd\- Keynote \-How Do You Actually Find Bugs? \- YouTube](https://www.youtube.com/watch?v=7Ysy6iA2sqA&lc=Ugy8whDYBW9MnPSJhWF4AaABAg)
+            > - Simple reversing tip: If you're doing static-reversing, first thing you should _always_ do to help slice out things of relevance is to run a hit-trace (coverage) so you know what code is actually relevant, and what code does _not_ get exercised. It's worth considering analyzing the code that doesn't get exercised.
+            > - Also, don't be allergic to writing code... Simple things like storing your results in a set and augmenting your function notations or coloring your addresses is such a low-effort power. Think of it like this, how can you quickly find the code that's responsible for parsing input from a socket without having to do any reversing? Collect a set of all of the functions that are executed. That's set #1. Now connect to socket and send some data a couple of times, set2 (or set3 or set4). After union'ing your second set of sets, diff the results from set1. Now you know where the parser starts. There's embedded languages in all debuggers and disassemblers, make sure you use them because you get them for free.
     - follow interfaces: apis, tests, modes, algorithmic functions (e.g. decompression)...
     - know the shape of data: addresses, structs, protocols...
         - https://margin.re/media/an-opinionated-guide-on-how-to-reverse-engineer-software-part-1.aspx

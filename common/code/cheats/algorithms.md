@@ -37,6 +37,25 @@
     - change of radix algorithm (e.g. change a number from base 10 to base 2)
 - array list, linked list, hash map, set, stack, heap, queue
 
+# linked list
+
+```c
+Node deleteNote(Node head, int d) {
+    Node n = head;
+    if (n.data == d) {
+        return head.next;
+    }
+    while (n.next != null) {
+        if (n.next.data == d) {
+            n.next = n.next.next;
+            return head;
+        }
+        n = n.text;
+    }
+    return head;
+}
+```
+
 # Big-O
 
 Runtime execution proportional to a given input size
@@ -104,7 +123,8 @@ Insertion Sort
 
 Bubble Sort
     pairwise compare indexes
-        switch if smaller is last index
+        if smaller is last index
+            switch
     last element will be ordered
         then loop for length - 1
     => use bool for swapped (stop condition)
@@ -326,18 +346,18 @@ Breadth-First Search (BFS)
     use case - path between two nodes (quicker for less deep paths)
     => bidirectional search (BFS started from both nodes)
         O(k^d) vs. O(2*k^(d/2)), k = count_adjacent_nodes, d = path_length
-    ```c
+    ```cpp
     void search(Node root, int current_time = 0) {
-        Queue queue = new Queue();
-        queue.enqueue(root);
-        while (!queue.isEmpty()) {
-            Node r = queue.dequeue();
+        Queue q = new Queue();
+        q.enqueue(root);
+        while (!q.isEmpty()) {
+            Node r = q.dequeue();
             visit(r);
             r.visited = true;
             r.visit_time = current_time + 1;
             for (Node n : r.adjacent) {
                 if (n.visited == false) {
-                    queue.enqueue(n);
+                    q.enqueue(n);
                 }
             }
             r.finished = true;
@@ -349,7 +369,7 @@ Breadth-First Search (BFS)
 
 Depth-First Search (DFS)
     use case - visit every node
-    ```c
+    ```cpp
     void search(Node root, int current_time = 0) {
         if (root == null) {
             return;

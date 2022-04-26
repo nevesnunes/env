@@ -11,8 +11,6 @@ go.sh -t
 #nohup strike-alert.sh &
 #nohup "$HOME"/bin/user-menu/um-launcher.sh &
 
-#nohup autocutsel &
-#nohup autocutsel -selection PRIMARY &
 nohup devilspie2 &
 nohup pyls --tcp --port=10777 &
 nohup udisksctl mount --block-device /dev/disk/by-label/FATSO &

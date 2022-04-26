@@ -140,7 +140,42 @@ env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pe
 # [PEdump \- dump your PE!](http://pedump.me/)
 # [pestudio](http://www.winitor.com/)
 # [pecheck.py](https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py)
+
+# Add symbols: function `main` at `.text base address - offset = 0x12` and variable `mem` at `.bss base address - offset = 0x34`
+# References:
+# - https://naliferopoulos.github.io/ThinkingInBinary/symbolicating-stripped-elf-files-manually
+# Alternatives:
+# - `eu-unstrip` from https://sourceware.org/elfutils/
+# - [GitHub \- sciencemanx/dress: add symbols back into a stripped ELF binary \(~strip\)](https://github.com/sciencemanx/dress)
+objcopy ./foo \
+    --add-symbol main=.text:0x12,function,global \
+    --add-symbol mem=.bss:0x34,object,global \
+    ./foo.dressed
 ```
+
+### flags
+
+```
+local,              BSF_LOCAL
+global,             BSF_GLOBAL
+export,             BSF_EXPORT
+debug,              BSF_DEBUGGING
+function,           BSF_FUNCTION
+weak,               BSF_WEAK
+section,            BSF_SECTION_SYM
+constructor,        BSF_CONSTRUCTOR
+warning,            BSF_WARNING
+indirect,           BSF_INDIRECT
+file,               BSF_FILE
+object,             BSF_OBJECT
+synthetic,          BSF_SYNTHETIC
+indirect-function,  BSF_GNU_INDIRECT_FUNCTION  |  BSF_FUNCTION
+unique-object,      BSF_GNU_UNIQUE             |  BSF_OBJECT
+before=,            *other
+```
+
+- https://github.com/redox-os/binutils-gdb/blob/0860693812fff944ab0602e72b762a4a2078da5b/bfd/syms.c
+- https://github.com/redox-os/binutils-gdb/blob/0860693812fff944ab0602e72b762a4a2078da5b/binutils/objcopy.c#L807
 
 # section headers
 
