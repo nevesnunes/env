@@ -36,7 +36,7 @@
 
 # documentation
 
-- implementation differentials/bugs outlined by RFCs: "Security Considerations" section, past versions, erratas 
+- implementation differentials/bugs outlined by RFCs: "Security Considerations" section, past versions, erratas
     - https://edoverflow.com/2022/reading-rfcs-for-bug-bounty-hunters/
 - if software wasn't always tracked in vcs, then changelog files document changes in older versions
     - e.g. [CHANGES \- bash\.git \- bash](https://git.savannah.gnu.org/cgit/bash.git/tree/CHANGES)
@@ -96,7 +96,7 @@
         > found a bunch of bugs waiting to happen (uninitalized variables / dangling pointer sort of stuff) that would trigger an error when replaying from a file didn't produce the same results as the original play (we had a checksum of game state that we could check)
         - https://news.ycombinator.com/item?id=27517391
     - multi-threaded interactions
-        > with time-stamps, user-ids, user-agent strings, session-id, basic operations, you learn a lot about the running system and why it might have failed for one particular user. 
+        > with time-stamps, user-ids, user-agent strings, session-id, basic operations, you learn a lot about the running system and why it might have failed for one particular user.
         - https://blog.jvroom.com/2012/02/08/debugging-hard-problems/
     - logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
         - https://florian.github.io/count-min-sketch/
@@ -109,7 +109,7 @@
         - https://www.honeycomb.io/wp-content/uploads/2018/07/Honeycomb-Guide-Achieving-Observability-v1.pdf
 - diff: compare executions against baseline
     - query partitioning: generate several queries outputting disjoint subsets of original's set, then compare union of subsets with original's set
-        > The core idea of Query Partitioning is to, starting from a given original query, derive multiple, more complex queries (called partitioning queries), each of which computes a partition of the result. The individual partitions are then composed to compute a result set that must be equivalent to the original query's result set. A bug in the DBMS is detected when these result sets differ. 
+        > The core idea of Query Partitioning is to, starting from a given original query, derive multiple, more complex queries (called partitioning queries), each of which computes a partition of the result. The individual partitions are then composed to compute a result set that must be equivalent to the original query's result set. A bug in the DBMS is detected when these result sets differ.
         - e.g.
             ```sql
             CREATE TABLE t0(c0 INT);
@@ -155,6 +155,7 @@
         - ~/bin/git-grep-detached.sh
         - ~/bin/plaintext-detached.sh
 - dynamic analysis: understanding logic with the context of runtime state
+    - 5 min rolling window for logging - space independent from duration
     - mock libc as alternative to strace
     - fault injecton via sandboxing as alternative to debugging
     - fault injecton on data to verify parsing
@@ -169,7 +170,7 @@
     - interrupt handler as alternative to attaching under debugger
         - e.g. Linux: USR1
     - attaching to debugger using trap
-        - e.g. Mac OS 68k: `FKEY` resource containing `_Debugger trap + RTS instruction` and ID 7, invoke debugger with keybind `Command-Shift-7` 
+        - e.g. Mac OS 68k: `FKEY` resource containing `_Debugger trap + RTS instruction` and ID 7, invoke debugger with keybind `Command-Shift-7`
     - interactive flow control
         > - If there’s a piece of code that’s not doing what you expect, add a loop around it whose condition is a variable that can be modified by the debugger. The resulting binary can be effectively unchanged such that the loop executes once, but if a debugger is present and you see the strange behavior, you can go back and step through it. 1a. This can also be done by modifying the instruction pointer, but that requires restoring register state. I do this too but it’s more tricky.
         > - The unused portion of the stack often contains clues about what happened recently.
@@ -268,6 +269,8 @@
     > - if you can pinpoint the place where the bug occurs, trigger a SIGSEGV there and run the entire thing under Valgrind.
     > - Back on the N64, I updated the bit of code that swapped threads to write, to a ring buffer, the outgoing/incoming PCs, thread IDs and clock. Found tons of unexpected issues. In another thread you can print that or save it to disk or whatever. Or just wait till it crashes and read memory for it. Found the last crash bug with it. Meanwhile, a colleague took it, and drew color coded bars on the screen so we could see exactly what was taking the time.
     - https://news.ycombinator.com/item?id=27647340
+- Record before and after states in local vars, then log them after failure / event of interest, check they are consistent with expectations
+    - :) avoids timing issues vs. adding logging to code block
 
 ### reverse debugging / time travel debugging
 
@@ -312,6 +315,19 @@ rr ./foo
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 - [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
+
+### file descriptor double close
+
+- [Re: Weirdest Tomcat Behavior Ever? \- Paul Carter\-Brown \- org\.apache\.tomcat\.users \- MarkMail](https://tomcat.markmail.org/thread/bf6oz7ibxccvodd2)
+    - tcp fin sent by tomcat, socket closed without close called explicitly, bad file descriptor expection caught
+    - native library from jre was closing file descriptor twice, while tomcat was already using that fd as socket
+    - [Debugging complex issues in web applications \- Mark Thomas \- YouTube](https://www.youtube.com/watch?v=UglxkO2Y5mU)
+
+### bad synchronization
+
+- [Re: Trouble with HTTP/2 during concurrent bulk data transfer \(server \-&gt; client\) \- Mark Thomas \- org\.apache\.tomcat\.users \- MarkMail](https://tomcat.markmail.org/thread/texcre345tmyn337)
+    - avoid thread t1 clearing writeOperation state of thread t2 with reordered operations: t1 clear its state, then release semaphore
+    - [Fix potential hang with concurrent reads or concurrent writes · apache/tomcat@92b9185 · GitHub](https://github.com/apache/tomcat/commit/92b91857)
 
 ### hardware timings
 
