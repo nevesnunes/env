@@ -138,11 +138,12 @@
     - verifying payloads against local server, JSON validation, alternatives in URL encoding, if hangs also happen with bad paths, other boolean-based checks...
         - [HackTheBox \- Laser \- YouTube](https://www.youtube.com/watch?v=vD3jSJlc0ro&t=2070s)
     - minimal cases
-        - https://jvns.ca/blog/2022/03/23/a-toy-version-of-tls/
+        - https://www.dataversity.net/debugging-complex-sql-queries/
         - https://tex.meta.stackexchange.com/questions/228/ive-just-been-asked-to-write-a-minimal-working-example-mwe-what-is-that
         - https://dba.stackexchange.com/help/minimal-reproducible-example
         - https://skerritt.blog/divide-and-conquer-algorithms/
         - https://en.wikipedia.org/wiki/Fractional_factorial_design
+        - https://jvns.ca/blog/2022/03/23/a-toy-version-of-tls/
     - interactive examples
         - script for processing a chunk of bytes at a given step
             - e.g. [Server Handshake Keys Calc \- The Illustrated TLS 1\.3 Connection: Every Byte Explained](https://tls13.ulfheim.net/)

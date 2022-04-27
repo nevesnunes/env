@@ -1091,6 +1091,18 @@ resize (doubling the size of the hash table to reduce the depth of the bucket ch
     https://dzone.com/articles/concurrenthashmap-isnt-always-enough
     https://dzone.com/articles/how-concurrenthashmap-works-internally-in-java
 
+### Thread-safe collections
+
+- `HashMap` => `ConcurrentHashMap`
+- `LinkedHashMap` => `Collections.synchronizedMap(new LinkedHashMap())`
+- `TreeMap` => `ConcurrentSkipListMap`
+- `Arraylist` => `CopyOnWriteArrayList`
+- `HashSet` => `Collections.newSetFromMap(new ConcurrentHashMap<>())`
+- `PriorityQueue` => `PriorityBlockingQueue`
+- `ArrayDeque` => `ArrayBlockingQueue`
+
+- https://www.jrebel.com/blog/java-collections-cheat-sheet
+
 ### Thread pool
 
 https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html

@@ -146,21 +146,26 @@ Heap Sort
         Redo heapify
 
 Quick Sort
-    Choose last element as pivot
-        Check i=0 and j=pivot-1
-            if i > pivot then
-                j = pivot
-                pivot-old = i
-                i = j
-            else
-                j = pivot
-                pivot-old = j
-                i = j
-        i++
-        j--
-    Subdivide into two lists
-        0 until pivot
-        pivot+1 until end
+    ```python
+    def quickSort(arr, left, right):
+        if left < right:
+            pivot = partition(arr, left, right)
+            quickSort(arr, left, pivot - 1)
+            quickSort(arr, pivot, right)
+        return arr
+    def partition(arr, left, right):
+        pivot = arr[(left + right) // 2]
+        while left <= right:
+            while arr[left] < pivot: left += 1
+            while arr[right] > pivot: right -= 1
+            if left <= right:
+                (arr[left], arr[right]) = (arr[right], arr[left])
+                left += 1
+                right -= 1
+        return left
+    ```
+    1-pivot vs. dual-pivot
+        https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#sort(byte[])
 
 Counting sort
     index array (length = largest value) -> store counts of each index
@@ -174,7 +179,7 @@ Counting sort
 Radix sort
     :) O(kn) can be better than O(n log(n)), n = count_elements, k = count_passes
 
-### Binary Search
+# Binary Search
 
 ```java
 Collections.sort(list, Collections.reverseOrder());
@@ -236,6 +241,7 @@ extract_minimum()
     O(log n)
 
 https://www.geeksforgeeks.org/min-heap-in-java/
+https://www.geeksforgeeks.org/min-heap-in-python/
 
 ### trie
 
@@ -638,6 +644,10 @@ hex(0xff << 8)  # 0xff00
 
 - [That XOR Trick](https://florian.github.io/xor-trick/)
 - [All About XOR](https://accu.org/journals/overload/20/109/lewin_1915/)
+
+# concurrency
+
+- e.g. [Java thread-safe collections](./java.md#thread-safe-collections)
 
 # case studies
 
