@@ -107,6 +107,9 @@
     - structured logging
         - https://www.honeycomb.io/wp-content/uploads/2019/08/From-Unstructured-Logs-to-Observability-Honeycomb.pdf
         - https://www.honeycomb.io/wp-content/uploads/2018/07/Honeycomb-Guide-Achieving-Observability-v1.pdf
+    - alternatives to debugger attaching to external process (i.e. Windows process creating remote thread)
+        - patch jmp with offset 0 (i.e. jmp to self): `eb fe`
+        - http://paulslaboratory.blogspot.com/2014/04/ebfe-debugging-remote-thread.html
     - alternatives to read memory / cpu context
         - instrument drivers, write to EFI variable / CMOS, then read from EFI shell
         - read opcodes from cache line using JTAG debugger

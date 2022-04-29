@@ -38,6 +38,10 @@
     - signatures detection with parameter names on pushed registers
         - [ghidra](./ghidra.md#FID)
         - [IDA](./ida.md#FLIRT)
+- branches
+    - [An introduction to last branch records \(LWN\.net\)](https://lwn.net/Articles/680985/)
+    - [Advanced usage of last branch records \(LWN\.net\)](https://lwn.net/Articles/680996/)
+    - [Last branch records and branch tracing \- CodeProject](https://www.codeproject.com/Articles/517466/Last-branch-records-and-branch-tracing)
 - resources
     - PE format: `wrestool`
     - NE format:
@@ -276,6 +280,7 @@
     - memory maps
         - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
         - diff/search for data changes before and after blocks: loops, func calls...
+        - hook `memcpy()` + `strcpy()`
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research

@@ -122,6 +122,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
     - [GitHub \- x64dbg/ScyllaHide: Advanced usermode anti\-anti\-debugger\. Forked from https://bitbucket\.org/NtQuery/scyllahide](https://github.com/x64dbg/ScyllaHide)
 - kernel mode (ring 0)
     - [GitHub \- mrexodia/TitanHide: Hiding kernel\-driver for x86/x64\.](https://github.com/mrexodia/TitanHide)
+- use kernel debugger to bypass user mode evasion
 
 - [NtQueryInformationProcess function \(winternl\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess?redirectedfrom=MSDN)
     - ProcessDebugPort != 0
