@@ -365,6 +365,19 @@ gzip -dc initrd | cpio -idv --no-absolute-filenames
 
 - https://sec-consult.com/blog/detail/pentesters-windows-ntfs-tricks-collection/
 
+# overlayfs
+
+```sh
+sudo mount -t overlay overlay
+    -o lowerdir=lower,upperdir=upper,workdir=work
+    merged
+
+echo > merged/new_file
+ls */new_file
+# merged/new_file
+# upper/new_file
+```
+
 # benchmarking
 
 - [File system performance benchmarking \| GitLab](https://docs.gitlab.com/ee/administration/operations/filesystem_benchmarking.html)

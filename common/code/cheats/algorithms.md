@@ -221,6 +221,7 @@ void preOrderTraversal(TreeNode node) {
 
 min-heap - each node is smaller than children
 max-heap - each node is larger than children
+
 ```java
 public class MaxComparator implements Comparator<Integer> {
     public int compare( Integer x, Integer y ) {
@@ -644,6 +645,9 @@ hex(0xff << 8)  # 0xff00
 
 - [That XOR Trick](https://florian.github.io/xor-trick/)
 - [All About XOR](https://accu.org/journals/overload/20/109/lewin_1915/)
+
+- reduce storage requirements
+    - e.g. [encoded prev and next in one address](https://en.wikipedia.org/wiki/XOR_linked_list)
 
 # concurrency
 

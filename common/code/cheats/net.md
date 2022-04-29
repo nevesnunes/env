@@ -14,6 +14,7 @@
 - [Convert curl commands to code](https://curlconverter.com/)
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
+- [GitHub \- jrmdev/mitm\_relay: Hackish way to intercept and modify non\-HTTP protocols through Burp &amp; others\.](https://github.com/jrmdev/mitm_relay)
 
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)

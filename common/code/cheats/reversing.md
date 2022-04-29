@@ -59,6 +59,15 @@
     - [GitHub \- jrspruitt/ubi\_reader: Collection of Python scripts for reading information about and extracting data from UBI and UBIFS images\.](https://github.com/jrspruitt/ubi_reader)
     - [FlashcatUSB \- Flashcat Memory Programmers \- NAND NOR Serial and Parallel](https://flashcatusb.com/)
 - constants
+    - e.g.
+        ```python
+        # localhost ip address prefix
+        >>> ''.join([struct.pack('<B', x).hex() for x in [192,168]])
+        'c0a8'
+        # unix timestamp
+        >>> struct.pack('<L', int(time.time())).hex()
+        '88da6b62'
+        ```
     - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)
     - https://hiddencodes.wordpress.com/2011/12/23/string-manipulation-functions-in-glibc-ms-visual-studio-and-0x7efefeff-0x81010100-0x81010101/
 - data structures
@@ -259,9 +268,14 @@
     - identifying variables
         - if small address space, then watch memory value changes on input action; override memory address with static value; turn function into no-op by setting first instruction to a return
             - [Reprogramming Mega Man 4&\#39;s Charged Shot \- Behind the Code \- YouTube](https://www.youtube.com/watch?v=n1yloWiWVxY)
-- monitor memory maps
-    - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
-    - diff/search for data changes before and after blocks: loops, func calls...
+- monitoring
+    - file system, accounts, services, ports, certificate stores, registry
+        - snapshot before and after installation, then before and after execution
+        - https://github.com/Microsoft/AttackSurfaceAnalyzer
+        - https://www.microsoft.com/security/blog/2019/05/15/announcing-new-attack-surface-analyzer-2-0/
+    - memory maps
+        - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
+        - diff/search for data changes before and after blocks: loops, func calls...
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research

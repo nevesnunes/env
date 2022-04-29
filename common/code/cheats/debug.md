@@ -12,7 +12,7 @@
     - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
     - [processes](./windows.md#debug)
     - [filesystems](./filesystem.md#debug)
-- embedded systems: JTAG
+- firmware / embedded systems: JTAG
     - https://openocd.org/doc-release/html/About.html#What-is-OpenOCD_003f
     - https://github.com/riscv/riscv-debug-spec
         - https://github.com/pulp-platform/riscv-dbg/blob/master/doc/debug-system.md
@@ -107,6 +107,11 @@
     - structured logging
         - https://www.honeycomb.io/wp-content/uploads/2019/08/From-Unstructured-Logs-to-Observability-Honeycomb.pdf
         - https://www.honeycomb.io/wp-content/uploads/2018/07/Honeycomb-Guide-Achieving-Observability-v1.pdf
+    - alternatives to read memory / cpu context
+        - instrument drivers, write to EFI variable / CMOS, then read from EFI shell
+        - read opcodes from cache line using JTAG debugger
+        - given memory dump, on windbg: `!for_each_module "s @#Base @#End ?? ?? ??"` and look for offsets within page (low 3 digits of the address) - they stay the same from boot to boot
+        - https://twitter.com/ivanrouzanov/status/1503858933173211153
 - diff: compare executions against baseline
     - query partitioning: generate several queries outputting disjoint subsets of original's set, then compare union of subsets with original's set
         > The core idea of Query Partitioning is to, starting from a given original query, derive multiple, more complex queries (called partitioning queries), each of which computes a partition of the result. The individual partitions are then composed to compute a result set that must be equivalent to the original query's result set. A bug in the DBMS is detected when these result sets differ.
@@ -232,6 +237,15 @@
     > - While very common, it’s also useful to get a debug memory allocator that can do things like mark pages as invalid on free (to generate access violations on use after free), or add a guard page after a memory allocation (to cause access violations on memory overruns.) A good one of these can also keep around allocation information after free for debugging, such as the stack that freed memory, and track the number of allocations to detect leaks.
     - https://lobste.rs/s/h7f6qk/what_debugging_technique_did_it_take_you
 - Loop around allocations
+- Allocation metadata
+    - e.g. Windows pool tags
+        - Object type / driver signature: `Tag`
+        - Paging: `PoolType`
+        - Bounds checking: `NumberofBytes`
+        - Call stack of allocator / deallocator: [Pool Tracking \- Windows drivers \| Microsoft Docs](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/pool-tracking)
+        - [An Introduction to Pool Tags \- Microsoft Tech Community](https://techcommunity.microsoft.com/t5/ask-the-performance-team/an-introduction-to-pool-tags/ba-p/372983)
+        - [Windows NT Kernel memory pool tags](http://alter.org.ua/en/docs/win/pooltag/index1.php)
+        - https://github.com/kodybrown/rktools2k3/blob/master/pooltag.txt
 
 ### concurrency
 

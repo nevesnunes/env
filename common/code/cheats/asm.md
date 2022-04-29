@@ -404,14 +404,16 @@ ld -o foo foo.o
 
 - https://stackoverflow.com/questions/46756320/change-a-call-address-in-memory
 
-# dissassembling
+# disassembling
 
 ```bash
 objdump -d _.so | grep func
 nm -A _so | grep func
 
 dumpbin /exports _.dll | find "func"
+link -dump -disasm
 # || CFF Explorer
+# || Windbg `uf`
 
 c++filt -n _ZdlPvm
 readelf -Ws _.so

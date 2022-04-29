@@ -84,10 +84,14 @@ typedef unsigned short word;
 
 - https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/
 - https://spinsel.dev/2020/06/17/ghidra-brainfuck-processor-1.html
+- ~/code/doc/reversing/Implementing\ a\ New\ CPU\ Architecture\ for\ Ghidra.pdf
 
+- https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/master/GhidraDocs/languages/index.html
 - https://ghidra.re/courses/languages/html/sleigh.html
+    - https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Framework/SoftwareModeling/src/main/antlr/ghidra/sleigh/grammar
 - https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Framework/SoftwareModeling/data/languages
 - https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Features/Decompiler/src/main/doc
+- https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Processors
 
 # change data string encoding
 

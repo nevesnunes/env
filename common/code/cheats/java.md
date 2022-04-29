@@ -5,6 +5,7 @@
 
 - [VM Options Explorer \- OpenJDK11 HotSpot](https://chriswhocodes.com/)
 - [GitHub \- aragozin/jvm\-tools: Small set of tools for JVM troublshooting, monitoring and profiling\.](https://github.com/aragozin/jvm-tools)
+- [HotSpot Tools](https://wiki.openjdk.java.net/display/HotSpot/HotSpot+Tools)
 
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()
