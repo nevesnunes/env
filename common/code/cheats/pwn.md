@@ -17,6 +17,8 @@
 - [GitHub \- Gallopsled/pwntools: CTF framework and exploit development library](https://github.com/Gallopsled/pwntools)
 - [GitHub \- libpwntools/libpwntools: pwntools library implementation in c\+\+](https://github.com/libpwntools/libpwntools)
 
+- [GitHub \- nccgroup/exploit\_mitigations: Knowledge base of exploit mitigations available across numerous  operating systems, architectures and applications and versions\.](https://github.com/nccgroup/exploit_mitigations)
+
 # methodology
 
 ```bash

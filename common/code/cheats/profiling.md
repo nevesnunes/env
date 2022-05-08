@@ -5,6 +5,7 @@
 - https://www.brendangregg.com/USEmethod/use-linux.html
 - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
 - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
+- http://web.archive.org/web/20130726055137/http://devo.ps/blog/2013/03/06/troubleshooting-5minutes-on-a-yet-unknown-box.html
 
 ```bash
 # top10

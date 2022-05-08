@@ -281,7 +281,7 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
 - undodb
 - live recorder
 
-- perf, sysprof
+- perf, sysprof, gperftools (pprof)
 - valgrind --trace-children=yes
 - ftrace: trace-cmd
 - strace -k
@@ -489,6 +489,7 @@ source ~/code/sand/boost-build/profile.sh
 ```c
 #define protected public
 #define private public
+#define final
 #include <foo.h>
 ```
 

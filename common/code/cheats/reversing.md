@@ -48,6 +48,10 @@
         - [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
         - Borland Resource Workshop
         - eXeScope
+- linkers
+    - https://github.com/RolfRolles/Miscellaneous/blob/master/MSVC-CRT.md
+    - [GitHub \- horsicq/Nauz\-File\-Detector: Linker/Compiler/Tool detector  for Windows, Linux and MacOS\.](https://github.com/horsicq/Nauz-File-Detector)
+        - [GitHub \- horsicq/SpecAbstract](https://github.com/horsicq/SpecAbstract)
 - object manager namespace
     - [WinObj \- Windows Sysinternals \| Microsoft Docs](https://docs.microsoft.com/en-us/sysinternals/downloads/winobj)
 - installers
@@ -62,6 +66,10 @@
     - [GitHub \- al3xtjames/ghidra\-firmware\-utils: Ghidra utilities for analyzing PC firmware](https://github.com/al3xtjames/ghidra-firmware-utils)
     - [GitHub \- jrspruitt/ubi\_reader: Collection of Python scripts for reading information about and extracting data from UBI and UBIFS images\.](https://github.com/jrspruitt/ubi_reader)
     - [FlashcatUSB \- Flashcat Memory Programmers \- NAND NOR Serial and Parallel](https://flashcatusb.com/)
+    - [Hex2bin](http://hex2bin.sourceforge.net/)
+    - [SRecord \- Tools for manipulating EPROM load files](http://srecord.sourceforge.net/)
+- drivers
+    - windows in VM, plug USB adapter, run vendor software in the vm, run usbmon + wireshark on the host
 - constants
     - e.g.
         ```python
@@ -77,6 +85,10 @@
 - data structures
     - find addresses pointing to lists of names + other fields
         - modify nearby addresses and observe effects
+    - object references
+        - Text search for unique method / member offset
+            - e.g. byte at +174h: `movb al, [rcx+174h]`
+        - [Immediate search](https://hex-rays.com/blog/igors-tip-of-the-week-48-searching-in-ida/)
     - asm
         - global
             ```fasm
@@ -230,7 +242,11 @@
                 - describes vtable function addresses, type, and level of inheritance (hierarchy)
                 - https://sourceforge.net/projects/classinformer/
                 - https://docs.microsoft.com/en-us/cpp/cpp/run-time-type-information?view=msvc-160
-            - .pdb: [PDB Downloader](https://github.com/rajkumar-rangaraj/PDB-Downloader), Dia2Dump, https://docs.microsoft.com/en-us/visualstudio/debugger/debug-interface-access/querying-the-dot-pdb-file?view=vs-2019
+            - .pdb
+                - [GitHub \- MolecularMatters/raw\_pdb: A C\+\+11 library for reading Microsoft Program DataBase PDB files](https://github.com/MolecularMatters/raw_pdb)
+                - [GitHub \- KirillOsenkov/Dia2Dump: Taken from C:\\Program Files \(x86\)\\Microsoft Visual Studio\\2017\\Enterprise\\DIA SDK\\Samples\\DIA2Dump](https://github.com/KirillOsenkov/Dia2Dump)
+                - [PDB Downloader](https://github.com/rajkumar-rangaraj/PDB-Downloader)
+                - https://docs.microsoft.com/en-us/visualstudio/debugger/debug-interface-access/querying-the-dot-pdb-file?view=vs-2019
     - id functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
     - headers
@@ -272,6 +288,7 @@
     - identifying variables
         - if small address space, then watch memory value changes on input action; override memory address with static value; turn function into no-op by setting first instruction to a return
             - [Reprogramming Mega Man 4&\#39;s Charged Shot \- Behind the Code \- YouTube](https://www.youtube.com/watch?v=n1yloWiWVxY)
+    - disable function (e.g. patch `ret`)
 - monitoring
     - file system, accounts, services, ports, certificate stores, registry
         - snapshot before and after installation, then before and after execution

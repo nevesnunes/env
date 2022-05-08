@@ -11,6 +11,7 @@
 - [Beginner's Guide to Linkers](https://www.lurklurk.org/linkers/linkers.html)
 
 - https://gcc.godbolt.org/
+- https://dis.yaxpeax.net/x86_64/31C0FFC0C1E003660F3800C1
 - https://onlinedisassembler.com/
 - https://defuse.ca/online-x86-assembler.htm
 - https://www.felixcloutier.com/x86/index.html
@@ -49,6 +50,7 @@ for ctx in [["arm", 32], ["aarch64", 64]]:
 - https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
 - [ARM Assembly, Emulation, Disassembly using Keystone, Unicorn, and Capstone · GitHub](https://gist.github.com/cspensky/3a5153b29143e6be785a5e1a702bbd9e)
 - [Unicorn Trace还原Ollvm算法！《安卓高级研修班》2022年班开始招生！](https://bbs.pediy.com/thread-267018.htm)
+- [GitHub \- bet4it/udbserver: Unicorn Emulator Debug Server \- Written in Rust, with bindings of C, Go, Java and Python](https://github.com/bet4it/udbserver)
 
 # mnemonics
 
@@ -142,10 +144,12 @@ env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pe
 # [pecheck.py](https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py)
 
 # Add symbols: function `main` at `.text base address - offset = 0x12` and variable `mem` at `.bss base address - offset = 0x34`
+# FIXME: .bss vs .data
 # References:
 # - https://naliferopoulos.github.io/ThinkingInBinary/symbolicating-stripped-elf-files-manually
 # Alternatives:
 # - `eu-unstrip` from https://sourceware.org/elfutils/
+# - `ld --defsym foo=0x123` for global symbols
 # - [GitHub \- sciencemanx/dress: add symbols back into a stripped ELF binary \(~strip\)](https://github.com/sciencemanx/dress)
 objcopy ./foo \
     --add-symbol main=.text:0x12,function,global \
@@ -208,6 +212,7 @@ objcopy --dump-section .text=output.bin input.o
 - `.data`: initialised data; RW (=WA) segment
 - `.rodata`: initialised read-only data; R (=A) segment
 - `.bss`: uninitialized data (e.g. static or global variables); RW segment
+    - [unix \- Difference between data section and the bss section in C \- Stack Overflow](https://stackoverflow.com/a/16557776/8020917)
 - `.plt`: PLT (Procedure Linkage Table) (IAT equivalent)
 - `.got`: GOT (Global Offset Table), used to access dynamically linked global variables, created during link time, may be populated during runtime
 - `.got.plt`: used to access dynamically linked functions

@@ -14,7 +14,6 @@
 - [Convert curl commands to code](https://curlconverter.com/)
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
-- [GitHub \- jrmdev/mitm\_relay: Hackish way to intercept and modify non\-HTTP protocols through Burp &amp; others\.](https://github.com/jrmdev/mitm_relay)
 
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)
@@ -301,6 +300,8 @@ done
 # replay
 
 - https://tcpreplay.appneta.com/
+- [GitHub \- jrmdev/mitm\_relay: Hackish way to intercept and modify non\-HTTP protocols through Burp &amp; others\.](https://github.com/jrmdev/mitm_relay)
+- [GitHub \- JohnDMcMaster/usbrply: Replay USB messages from Wireshark \(\.cap\) files](https://github.com/JohnDMcMaster/usbrply)
 
 # access point
 
@@ -913,6 +914,19 @@ curl http://localhost:5000/ls$'\x00\x41'
 curl 'http://localhost:5000/ls%00%41'
 # "GET /ls%00A HTTP/1.1" 200 -
 # You said (len = 4): b'ls\x00A'
+```
+
+# stream
+
+```sh
+mkfifo /tmp/1;
+wireshark -k -i /tmp/1 &
+ssh 1.2.3.4 "tcpdump -s 0 -U -n -w - -i lo not port 22" > /tmp/1
+```
+
+```python
+from scapy.all import *
+sniff(filter="host 1.2.3.4",prn=lambda x:x.summary())
 ```
 
 # dump

@@ -41,7 +41,8 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 
 # REPL
 
-https://ipython.org/ipython-doc/stable/interactive/qtconsole.html
+- https://pyodide.org/en/stable/console.html
+- https://ipython.org/ipython-doc/stable/interactive/qtconsole.html
 
 # Debugging
 

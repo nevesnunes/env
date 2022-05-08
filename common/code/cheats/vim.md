@@ -112,10 +112,17 @@ Run sub-process listing parent pid, corresponding to vim process, taken as `$vim
 strace -f -s 9999 -e process -p $vim_pid
 ```
 
-# Fix highlighting
+# Highlight sync
 
 ```vim
 :syntax sync fromstart
+```
+
+# Highlight between offsets
+
+```vim
+highlight foo ctermfg=green cterm=bold
+call matchadd('foo','\%>1c\%<4c',-1)
 ```
 
 # Align markdown table

@@ -365,6 +365,22 @@ gzip -dc initrd | cpio -idv --no-absolute-filenames
 
 - https://sec-consult.com/blog/detail/pentesters-windows-ntfs-tricks-collection/
 
+# ext4
+
+```sh
+# casefold
+# - https://www.collabora.com/news-and-blog/blog/2020/08/27/using-the-linux-kernel-case-insensitive-feature-in-ext4/
+mkfs -t ext4 -O casefold /dev/vda
+# validation
+cat /sys/fs/ext4/features/casefold
+cat /sys/fs/unicode/version
+dumpe2fs -h /dev/vda | grep 'Filesystem features'
+mount /dev/vda /mnt; dmesg
+# alternative
+truncate -s 10G foo.img
+mkfs.ext4 foo.img
+```
+
 # overlayfs
 
 ```sh

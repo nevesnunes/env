@@ -232,7 +232,7 @@ PriorityQueue maxHeap = new PriorityQueue(size, new MaxComparator());
 ```
 
 insert()
-    at rightmost position, ensuring complete tree property
+    at rightmost bottom position, ensuring complete tree property
     swap new node with parent, until ensuring min-heap property
     O(log n)
 extract_minimum()

@@ -197,11 +197,15 @@
         > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
         - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
 - general guidelines
+    - solving related problem
+        > If you cannot solve the proposed problem try to solve first some related problem. Could you imagine a more accessible related problem? A more general problem? A more special problem? An analogous problem? Could you solve a part of the problem? Keep only a part of the condition, drop the other part; how far is the unknown then determined, how can it vary? Could you derive something useful from the data? Could you think of other data appropriate to determine the unknown? Could you change the unknown or the data, or both if necessary, so that the new unknown and the new data are nearer to each other?
+        - [George Polya's Problem\-solving Tips](http://www.toroidalsnark.net/howto.html)
     - finding bugfixes in recent versions, build with debug symbols
         - https://blog.nelhage.com/post/computers-can-be-understood/#do-the-easy-thing-first
     - timestamped log of problem statement, hypothesis, expected vs actual results
         - http://yellerapp.com/posts/2014-08-11-scientific-debugging.html
     - [Testing and Debugging \- Dr\. Jody Paul](http://jodypaul.com/SWE/TD/TestDebug.html)
+    - [Psychic debugging: Why Chinese characters don&\#039;t work \- The Old New Thing](https://devblogs.microsoft.com/oldnewthing/20120829-00/?p=6733)
 
 ### cross-pollination
 
@@ -219,6 +223,8 @@
 - diff using light
     > Back in the day when I was poring over slightly different disassemblies, I'd print them both out, stack them, and look at them with a light behind them. That's how you diff old school.
     - https://twitter.com/babbageboole/status/1323442671730397184
+- heating dispersal like air pockets in butterfly wings
+    - [Publications on butterfly thin films as solar collectors](http://web.archive.org/web/20080720234650/http://it.stlawu.edu/~koon/lep_ref.html)
 
 ### APIs
 
@@ -332,6 +338,12 @@ rr ./foo
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 - [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
+
+### missing balanced token leads to false positive spurious token
+
+- [pocorgtfo/README\.md at master · angea/pocorgtfo · GitHub](https://github.com/angea/pocorgtfo/blob/master/writeups/19/README.md#a-pdf-document-initially)
+    > - Error: Ignoring spurious ET operator.
+    > - Clearly here, the End Text tag ET is after the graphical state push q, unbalanced.
 
 ### file descriptor double close
 

@@ -929,4 +929,10 @@ On Windows host:
 
 - https://fedoraproject.org/wiki/GRUB_2
 
+# compiling
 
+```bat
+set include=C:\MSVC20\INC
+.\setvars.bat
+nmake
+```

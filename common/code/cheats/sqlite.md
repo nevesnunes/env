@@ -34,6 +34,10 @@ sqlite3 -header -csv foo.db < query.sql > data.csv
 PRAGMA table_info('foo')
 ```
 
+# diff
+
+- https://www.sqlite.org/sqldiff.html
+
 # iphone
 
 ```sql
