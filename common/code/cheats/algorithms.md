@@ -653,6 +653,53 @@ hex(0xff << 8)  # 0xff00
 
 - e.g. [Java thread-safe collections](./java.md#thread-safe-collections)
 
+# parsing
+
+```java
+// lexer: generate list of tokens
+private void scanToken() {
+    char c = advance();
+    switch (c) {
+      case '(': addToken(LEFT_PAREN); break;
+      case ')': addToken(RIGHT_PAREN); break;
+      case '=': addToken(match('=') ? EQUAL_EQUAL : EQUAL); break;
+      case '/':
+        if (match('/')) {
+          // A comment goes until the end of the line.
+          while (peek() != '\n' && !isAtEnd()) advance();
+        } else {
+          addToken(SLASH);
+        }
+        break;
+        case '"': string(); break;
+    }
+}
+private boolean match(char expected) {
+    if (isAtEnd()) return false;
+    if (source.charAt(current) != expected) return false;
+    current++;
+    return true;
+}
+// parser: consume list of tokens
+private Expr unary() {
+    if (match(BANG, MINUS)) {
+      Token operator = previous();
+      Expr right = unary();
+      return new Expr.Unary(operator, right);
+    }
+    return primary();
+}
+```
+
+- java
+    - https://craftinginterpreters.com/contents.html
+- rust
+    - https://www.huy.rocks/everyday/05-08-2022-parsing-recursive-descent-parser
+    - https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html
+    - https://github.com/sqlparser-rs/sqlparser-rs
+- precedence
+    - https://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
+
 # case studies
 
 - efficient weighted graph traversal

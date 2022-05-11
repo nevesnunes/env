@@ -43,6 +43,8 @@ dnf system-upgrade clean
 dnf clean packages
 ```
 
+- https://docs.fedoraproject.org/en-US/quick-docs/dnf-system-upgrade/
+
 ### free up space in root partition
 
 ```bash

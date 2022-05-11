@@ -74,6 +74,17 @@ export EDITOR=vi
 export PAGER=vi
 ```
 
+# Map resources
+
+```sh
+mitmproxy \
+    --mode reverse:https://foo/ \
+    -p 1234 \
+    --map-local '|https://foo/js/app.js|local_app.js' \
+    -H '|Origin|https://foo/' \
+    -H '|Referer|https://foo'
+```
+
 # URL redirect, rewrite
 
 Option 1:

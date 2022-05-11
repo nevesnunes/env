@@ -16,5 +16,6 @@ nohup pyls --tcp --port=10777 &
 nohup udisksctl mount --block-device /dev/disk/by-label/FATSO &
 nohup xbindkeys &
 
+nohup /opt/keyboard.sh &
 nohup /opt/mouse.sh &
 nohup /opt/notify-tasks.sh &
