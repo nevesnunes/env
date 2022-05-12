@@ -651,7 +651,36 @@ hex(0xff << 8)  # 0xff00
 
 # concurrency
 
-- e.g. [Java thread-safe collections](./java.md#thread-safe-collections)
+- [Java thread-safe collections](./java.md#thread-safe-collections)
+
+- patterns
+    - avoid concurrency: logic1 > async > logic2 (e.g. onMessage)
+        - before test: logic1 > fake; after test: fake > logic2
+        - xunitpatterns humble object (i.e. avoid sleeps due to expensive boilerplate we don't want to test)
+    - run in single thread
+        - assert async operation didn't run: turn into sync using ThreadScheduler that runs task immediately instead of spawning a new thread
+        - mock object called by thread to fire event immediately
+            - https://www.typemock.com/docs/?book=Isolator&page=Documentation%2FHtmlDocs%2Ffiringevents.htm
+    - synchronize test
+        - signaled pattern: mock object to trigger latch, test awaits on latch
+        - busy assert (a.k.a. await with retries)
+        - https://github.com/ben-manes/caffeine/blob/1ea398c2f222b39acdc1c4317634a0176494052c/caffeine/src/test/java/com/github/benmanes/caffeine/cache/EvictionTest.java#L205-L236
+    - [Dror HELPER: Unit testing patterns for Concurrent code \| UCP2019 \- YouTube](https://www.youtube.com/watch?v=tRe3ddG8O1Y)
+        - https://github.com/dhelper/ConcurrentUnitTesting
+    - https://www.baeldung.com/java-testing-multithreaded
+- maximize thread interleavings
+    - run more threads than cpu virtual cores, synchronize logic with CyclicBarrier
+        - e.g. Java Concurrency In Practice: 12. Testing Concurrent Programs
+    - bruteforce all interleavings
+        - https://github.com/google/thread-weaver
+        - https://github.com/openjdk/jcstress
+        - https://github.com/vmlens/vmlens
+    - [Unit testing concurrent code \- YouTube](https://www.youtube.com/watch?v=FvH4RBn2gJ8)
+- delays from added logs may decrease reproducability
+    - store state in-memory for block under test, then log state after block end
+- bad thread started in one test, test passes with thread still running, then thread fails on next test
+    - log test name + thread id on thread creation and on failure
+    - xref. [The illusion of a call stack \- Why modern systems need a new programming model \- Akka Documentation](https://doc.akka.io/docs/akka/current/typed/guide/actors-motivation.html#the-illusion-of-a-call-stack)
 
 # parsing
 

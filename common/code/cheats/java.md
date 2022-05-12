@@ -1102,7 +1102,8 @@ resize (doubling the size of the hash table to reduce the depth of the bucket ch
 - `PriorityQueue` => `PriorityBlockingQueue`
 - `ArrayDeque` => `ArrayBlockingQueue`
 
-- https://www.jrebel.com/blog/java-collections-cheat-sheet
+- [Java Collections Cheat Sheet \| JRebel &amp; XRebel by Perforce](https://www.jrebel.com/blog/java-collections-cheat-sheet)
+- [Java Concurrent Animated\-2020 by Victor Grazi \- YouTube](https://www.youtube.com/watch?v=DCvdVU6DXkQ)
 
 ### Thread pool
 
