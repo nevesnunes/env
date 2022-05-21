@@ -80,8 +80,8 @@ javac -g
 javap -l | grep 'LineNumberTable\|LocalVariableTable'
 ```
 
-https://synyx.de/blog/java-deep-dive-class-file-format-for-debug-information/
-    https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.12
+- https://synyx.de/blog/java-deep-dive-class-file-format-for-debug-information/
+    - https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.7.12
 
 ### memory leaks
 
@@ -204,7 +204,7 @@ return jsonObjectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(doc)
 jstat –gc $java_pid
 ```
 
-http://www.eclipse.org/mat/
+- http://www.eclipse.org/mat/
 
 - Run > Debug Configurations
     - `-XX:MaxPermSize=512m`
@@ -235,11 +235,18 @@ jconsole
 
 # Deadlock
 
-```bash
-jstack $pid
-```
-
-~/code/snippets/java/Deadlock.java
+- ~/code/snippets/java/Deadlock.java
+- stack traces
+	```bash
+	jstack $pid
+	```
+- code dump
+	- https://docs.oracle.com/javase/9/tools/jhsdb.htm
+		- `sudo $JAVA_HOME/bin/java -cp $JAVA_HOME/lib/sa-jdi.jar sun.jvm.hotspot.CLHSDB`
+	- [A deadlock in the VM triggered by a BTrace script · GitHub](https://gist.github.com/rednaxelafx/2158975)
+		```
+		pstack -v
+		```
 
 # Profiling
 
@@ -516,6 +523,9 @@ list
 where
 ````
 
+- scriptable debugger
+	- https://youdebug.kohsuke.org/
+	- http://java.sun.com/javase/6/docs/technotes/guides/jpda/architecture.html#jdi
 - https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr011.html
 - https://www.infoq.com/articles/Troubleshooting-Java-Memory-Issues/
 

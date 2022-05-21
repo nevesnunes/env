@@ -7,6 +7,7 @@
 
 - [WADComs](https://wadcoms.github.io/)
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
+- [Winbindex \- The Windows Binaries Index](https://winbindex.m417z.com)
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 

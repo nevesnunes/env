@@ -19,7 +19,6 @@
 - `F5`: Run / Resume from break
 - `F9`: Set / Remove breakpoint
 - `F10/F11`: Step over / trace into instruction
-- `Ctrl+F10`: Release mouse
 
 - `Alt+D/E/S/X/B`: Set data view to DS:SI/ES:DI/SS:SP/DS:DX/ES:BX
 - `C / D [segment]:[offset]`: Set code / data view address.
@@ -46,7 +45,7 @@
 memdumpbin ds:0 ffffff
 
 heavylog
-log 20000
+log ffff
 
 # read key press
 # https://en.wikipedia.org/wiki/INT_16H

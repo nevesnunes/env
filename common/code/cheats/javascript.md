@@ -33,6 +33,12 @@ console.table(["apples", "oranges", "bananas"]);
 console.trace();
 console.log(new Error().stack);
 
+// Convert argument to string to avoid delayed evaluation in browser's dev tools including updates after log statement
+let l = [];
+l.push("1")
+console.log(""+l); // Outputs: 1
+l.push("2");
+
 eval('console.log((function() { return !this; })());')
 eval('"use strict"; console.log((function() { return !this; })());')
 ```

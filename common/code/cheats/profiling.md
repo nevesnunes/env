@@ -268,6 +268,25 @@ bpftrace -e 't:signal:signal_generate /comm == "slack"/ { printf("%d, %s%s\n", a
 - `bpf_probe_write_user()`
     - https://embracethered.com/blog/posts/2021/offensive-bpf-libbpf-bpf_probe_write_user/
 
+### simulator
+
+```sh
+git clone git://sourceware.org/git/binutils-gdb.git
+cd binutils-gdb
+./configure bpf
+make
+./gdb/gdb <sample_ret0.o>
+```
+
+```gdb
+target sim bpf
+sim memory-size 4Mb
+load
+run
+```
+
+- https://stackoverflow.com/questions/69849129/gdb-simulator-crash-after-target-sim-sim-memory-size-4mb-load-run
+
 # `strace` for mac and bsd
 
 ```bash

@@ -183,6 +183,8 @@ semanage fcontext -a -t public_content_rw_t "/var/crash(/.*)?"
 setsebool -P abrt_anon_write 1
 service abrtd.service restart
 
+coredumpctl gdb "$(coredumpctl list --json=short | jq '.[-1].pid')"
+# ||
 coredumpctl gdb "$(coredumpctl list | \
     tail -n1 | \
     grep -o '  [0-9]*  ' | \
@@ -192,7 +194,17 @@ coredumpctl gdb "$(coredumpctl list | \
 
 # kill
 
-http://www.noah.org/wiki/Kill_-9_does_not_work
+- http://www.noah.org/wiki/Kill_-9_does_not_work
+
+### oom killer
+
+- decreasing reaping probability
+    - `vm.overcommit_memory=2`
+    - `oom_score_adj=-1000`
+- cgroups
+    - `/sys/fs/cgroup/memory/memory.usage_in_bytes`
+    - `/sys/fs/cgroup/memory/memory.limit_in_bytes`
+- https://www.crunchydata.com/blog/deep-postgresql-thoughts-the-linux-assassin
 
 # suspend
 

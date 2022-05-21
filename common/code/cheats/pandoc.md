@@ -42,6 +42,7 @@ pandoc --lua-filter="$HOME/code/snippets/pandoc/remove-attr.lua" --from=html --t
 # Dependencies:
 # pacman -S mingw-w64-x86_64-wkhtmltopdf-git
 pandoc --from=markdown --to=html5 --self-contained -c ~/code/web/styles/github.css -o out.html foo.md
+pandoc --from=markdown --to=html5 --self-contained -c ~/code/web/styles/github.css --pdf-engine-opt=--enable-local-file-access -o out.pdf foo.md
 pandoc --from=markdown --to=odt --reference-odt=a.odt -o out.odt foo.md
 pandoc --from=markdown --to=docx --reference-doc=a.docx -o out.docx foo.md
 

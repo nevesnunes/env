@@ -691,6 +691,10 @@ printf 'main(){a:goto a;}' | gcc -o /tmp/1 -x c - && objdump --disassemble=main 
 
 # case studies
 
+### sign extension causing invalid pointers
+
+- [Add support for large\-address aware applications by m417z · Pull Request \#21 · rwfpl/rewolf\-wow64ext · GitHub](https://github.com/rwfpl/rewolf-wow64ext/pull/21)
+
 ### shutdown using bash process memory
 
 ```bash

@@ -44,6 +44,9 @@
     - e.g. ssh vs rlogin escape characters
         - [linux \- Exit SSH connection with user switched inside in one step \- Unix &amp; Linux Stack Exchange](https://unix.stackexchange.com/a/454228/5132)
         - [unix\-history\-repo/cu\.c at usr/src/BSD\-SCCS\-Import · dspinellis/unix\-history\-repo · GitHub](https://github.com/dspinellis/unix-history-repo/blob/usr/src/BSD-SCCS-Import/usr/src/old/cu/cu.c#L29)
+- documentation wasn't updated after fixed logic
+    - e.g. cron support for ranges of lists of names
+        - https://thenewstack.io/what-happens-when-you-find-a-decades-old-bug/
 - older version of specification may directly address core conceptual issues
 
 ### version control
@@ -338,6 +341,22 @@ rr ./foo
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 - [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
+
+- [OffensiveCon22 \- Mark Dowd\- Keynote \-How Do You Actually Find Bugs? \- YouTube](https://www.youtube.com/watch?v=7Ysy6iA2sqA)
+    - in-depth understanding of codebase leads to noticing idiosyncrasies that are exploitable when combined, insufficient testing
+        - [Issue 2232: XNU kernel use-after-free in mach_msg \- Monorail](https://bugs.chromium.org/p/project-zero/issues/detail?id=2232)
+        - [Project Zero: This shouldn't have happened: A vulnerability postmortem](https://googleprojectzero.blogspot.com/2021/12/this-shouldnt-have-happened.html)
+    - look at different codebases to better understand a feature, see if one makes the mistake that the other carefully avoided
+
+### inconsistent view of file cache leaves zeros in code section
+
+- [Compiler bug? Linker bug? Windows Kernel bug. \| Random ASCII \- tech blog of Bruce Dawson](https://randomascii.wordpress.com/2018/02/25/compiler-bug-linker-bug-windows-kernel-bug/)
+
+### header prediction logic missing on bulk data receiver
+
+- [Uncovering a 24\-year\-old bug in the Linux Kernel &\#8211; Skroutz Engineering](https://engineering.skroutz.gr/blog/uncovering-a-24-year-old-bug-in-the-linux-kernel/)
+    - [TCP sender stuck in persist despite peer advertising non\-zero window](https://lore.kernel.org/netdev/87eelz4abk.fsf@marvin.dmesg.gr/T/#u)
+    - [4.2.4. Header Prediction \- RFC 1323 \- TCP Extensions for High Performance](https://datatracker.ietf.org/doc/html/rfc1323#page-23)
 
 ### missing balanced token leads to false positive spurious token
 

@@ -289,6 +289,7 @@
         - if small address space, then watch memory value changes on input action; override memory address with static value; turn function into no-op by setting first instruction to a return
             - [Reprogramming Mega Man 4&\#39;s Charged Shot \- Behind the Code \- YouTube](https://www.youtube.com/watch?v=n1yloWiWVxY)
     - disable function (e.g. patch `ret`)
+    - find threads by patching a jump with a short jump (x86: `EBFE`) to create an endless loop you can then search for
 - monitoring
     - file system, accounts, services, ports, certificate stores, registry
         - snapshot before and after installation, then before and after execution
@@ -494,13 +495,10 @@ perf script --insn-trace --xed -F+srcline,+srccode
 - coreutils
     ```bash
     # Generate
-    diff -Nauw \
-        <(xxd -p 1 | sed 's/\(..\)/\1\n/g') \
-        <(xxd -p 2 | sed 's/\(..\)/\1\n/g') \
-        > 1_2.diff
+    diff -u0 <(xxd -c1 -p 1) <(xxd -c1 -p 2) > 1_2.diff
 
     # Apply (`patch` requires regular file)
-    xxd -p 1 | sed 's/\(..\)/\1\n/g' > x1
+    xxd -c1 -p 1 > x1
     patch -u x1 1_2.diff
     paste -sd '' < x1 | xxd -r -p > 2
     ```

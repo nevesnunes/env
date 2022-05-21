@@ -19,46 +19,52 @@ LIMIT 10;
 
 # window functions, common table expressions
 
-https://modern-sql.com/blog/2018-04/mysql-8.0
-https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html
-https://dev.mysql.com/doc/refman/8.0/en/with.html
+- https://modern-sql.com/blog/2018-04/mysql-8.0
+- https://dev.mysql.com/doc/refman/8.0/en/window-function-descriptions.html
+- https://dev.mysql.com/doc/refman/8.0/en/with.html
 
 # debug
 
 explain analyze _
 
-insert/update from database driver not applied in database
-    check if auto-commit on
-        expect: each insert/update in their own transaction => exception in 1st does not affect next ones
-        vs start transaction + ... + commit
-        https://dba.stackexchange.com/questions/27963/postgres-requires-commit-or-rollback-after-exception
-    check if query = INSERT .. ON CONFLICT () DO NOTHING
-    try manual commit in debugger
-    try manual insert/update in external database client
+- insert/update from database driver not applied in database
+    - check if auto-commit on
+        - expect: each insert/update in their own transaction => exception in 1st does not affect next ones
+        - vs start transaction + ... + commit
+        - https://dba.stackexchange.com/questions/27963/postgres-requires-commit-or-rollback-after-exception
+    - check if query = INSERT .. ON CONFLICT () DO NOTHING
+    - try manual commit in debugger
+    - try manual insert/update in external database client
 
 ### postgresql
 
-triggers
-    https://dba.stackexchange.com/questions/233735/track-all-modifications-to-a-postgresql-table
+- `pg_stat_statements`: record query performance in table
+- `log_min_duration_statement`: if a query takes longer than a specified time, record query in logs
+- `auto_explain`: if a query takes longer than a specified time, record the query execution plan in logs
+
+- triggers
+    - https://dba.stackexchange.com/questions/233735/track-all-modifications-to-a-postgresql-table
+- commented queries: add stackframe to trace back to app source code
+    - https://www.crunchydata.com/blog/database-traceability-using-sql-comments
 
 ### sqlserver
 
-SQL Server Profiler
-    SMSS > Tools > SQL Server Profiler
-    https://stackoverflow.com/questions/25836444/how-can-i-see-which-tables-are-changed-in-sql-server
-|| Server Side Trace
-    ~/code/snippets/sqlserver/server_side_trace.sql
-    https://www.mssqltips.com/sqlservertip/1035/sql-server-performance-statistics-using-a-server-side-trace/
+- SQL Server Profiler
+    - SMSS > Tools > SQL Server Profiler
+    - https://stackoverflow.com/questions/25836444/how-can-i-see-which-tables-are-changed-in-sql-server
+- || Server Side Trace
+    - ~/code/snippets/sqlserver/server_side_trace.sql
+    - https://www.mssqltips.com/sqlservertip/1035/sql-server-performance-statistics-using-a-server-side-trace/
 
 ### generic change audit
 
-! take snapshots, binary diff, then parse db format up to closest table name entry, export data for matched tables, diff those tables
-    :) smaller snapshots
-    ./debug.md
+- ! take snapshots, binary diff, then parse db format up to closest table name entry, export data for matched tables, diff those tables
+    - :) smaller snapshots
+    - ./debug.md
 
 # full text search
 
-https://stackoverflow.com/questions/46122175/fulltext-search-combined-with-fuzzysearch-in-postgresql/51433877#51433877
+- https://stackoverflow.com/questions/46122175/fulltext-search-combined-with-fuzzysearch-in-postgresql/51433877#51433877
 
 ```sql
 drop index if exists idx_search;
@@ -97,12 +103,12 @@ order by ts_rank(search,to_tsquery('joe')) desc;
 
 # Optimizations
 
-Could try (nolock) for the SELECT parts or SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; prior to the CTE to be easier on transactions. (It might also be a terrible idea, depending on the data integrity requirements, YMMV)
+> Could try (nolock) for the SELECT parts or SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; prior to the CTE to be easier on transactions. (It might also be a terrible idea, depending on the data integrity requirements, YMMV)
 
 # Constraints
 
-unique constraint creates implicit unique index
-    https://medium.com/flatiron-engineering/uniqueness-in-postgresql-constraints-versus-indexes-4cf957a472fd
+- unique constraint creates implicit unique index
+    - https://medium.com/flatiron-engineering/uniqueness-in-postgresql-constraints-versus-indexes-4cf957a472fd
 
 # Duplicates
 
@@ -145,9 +151,9 @@ select schema_to_xmlschema('public', 't', 't', 'text');
 
 # performance
 
-! use exclusion criteria in `where` clause along with intended inclusion criteria
+- ! use exclusion criteria in `where` clause along with intended inclusion criteria
 
-using functions ignores index and does full table scan
+- using functions ignores index and does full table scan
 
 ```diff
   SELECT NAME
@@ -156,17 +162,17 @@ using functions ignores index and does full table scan
 + WHERE DOJ >= '20180101' and DOJ <= '20181231';
 ```
 
-http://blogs.lobsterpot.com.au/2010/01/22/sargable-functions-in-sql-server/
-https://github.com/lob/pg_insights
+- http://blogs.lobsterpot.com.au/2010/01/22/sargable-functions-in-sql-server/
+- https://github.com/lob/pg_insights
 
 # hierarchies, trees, graphs
 
-standard sql
-~/code/doc/databases/Joe Celkos Trees and Hierarchies in SQL for Smarties, Second Edition.pdf
-    2.4.2. Self-Joins - fixed depth, leafs end in NULL
-    2.4.3. Recursive CTE
-    2.4.4. Iterations - use temporary table in procedure
-    2.7. Leveled - use depth column, find with BFS
+- standard sql
+- ~/code/doc/databases/Joe Celkos Trees and Hierarchies in SQL for Smarties, Second Edition.pdf
+    - 2.4.2. Self-Joins - fixed depth, leafs end in NULL
+    - 2.4.3. Recursive CTE
+    - 2.4.4. Iterations - use temporary table in procedure
+    - 2.7. Leveled - use depth column, find with BFS
 
 ### oracle
 
@@ -602,16 +608,16 @@ SELECT name, collation_name
 FROM sys.databases
 ```
 
-https://dba.stackexchange.com/questions/231087/process-to-change-collation-on-a-database
-https://docs.microsoft.com/en-us/sql/relational-databases/collations/set-or-change-the-server-collation?view=sql-server-2017
+- https://dba.stackexchange.com/questions/231087/process-to-change-collation-on-a-database
+- https://docs.microsoft.com/en-us/sql/relational-databases/collations/set-or-change-the-server-collation?view=sql-server-2017
 
-https://ppolyzos.com/2016/12/07/change-sql-server-database/
-https://www.mssqltips.com/sqlservertip/3519/changing-sql-server-collation-after-installation/
+- https://ppolyzos.com/2016/12/07/change-sql-server-database/
+- https://www.mssqltips.com/sqlservertip/3519/changing-sql-server-collation-after-installation/
 
-https://stackoverflow.com/questions/6296936/can-sql-server-sql-latin1-general-cp1-ci-as-be-safely-converted-to-latin1-genera
-    SQL_Latin1_General_CP1_CI_AS => `ß` is not expanded to `ss`.
+- https://stackoverflow.com/questions/6296936/can-sql-server-sql-latin1-general-cp1-ci-as-be-safely-converted-to-latin1-genera
+    - SQL_Latin1_General_CP1_CI_AS => `ß` is not expanded to `ss`.
 
-comparing diff collations
+- comparing diff collations
     ```sql
     WHERE Col1 COLLATE SQL_Latin1_General_CP1_CS_AS
           = Col2 COLLATE SQL_Latin1_General_CP1_CS_AS
@@ -687,12 +693,23 @@ https://stackoverflow.com/questions/10589350/oracle-db-equivalent-of-on-duplicat
 
 # combine results
 
-union all
-subquery
-coalesce columns
-    https://stackoverflow.com/questions/2360396/how-can-i-merge-the-columns-from-two-tables-into-one-output
+- union all
+- subquery
+- coalesce columns
+    - https://stackoverflow.com/questions/2360396/how-can-i-merge-the-columns-from-two-tables-into-one-output
 
 # case studies
+
+### length operator loads full blob data
+
+- [Michael Lynch on Twitter: \"I had an interesting time investigating a bug related to SQLite performance today, so I thought I'd share a thread. A PicoShare user reported that it took 14.57 seconds to load their list of files.\"](https://twitter.com/deliberatecoder/status/1520399221291163648)
+    - analysis: files stored as blobs, test with large file, replace `sum(length(data))` by `sum(1)` removes bottleneck
+    - attempt 1: storing chunk size in entries table, still slow due to chunk data filling most of the pages
+        - https://www.sqlite.org/fileformat2.html
+    - attempt 2: storing chunk size in metadata table, better performance 
+        - https://github.com/mtlynch/picoshare/pull/221
+    - attempt 3: creating index on `entries_data(id, LENGTH(chunk))`, query on `SUM(LENGTH(chunk))`, avoids storing size redundantly
+        - https://github.com/mtlynch/picoshare/pull/230
 
 ### avoid overbooking
 

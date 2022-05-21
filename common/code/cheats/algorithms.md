@@ -739,6 +739,8 @@ private Expr unary() {
     - https://news.ycombinator.com/item?id=26340517
 - Parameter values require implicit type casting but also invalidate database index
     - https://news.ycombinator.com/item?id=26338468
+- runtime hash-table creation and lookup slower than binary search, due to amortized cost of malloc+free
+    - https://phasetw0.com/windows-internals/optimizing_function_resolving/
 - Iteration order of hash tables
     - [How malloc broke Serenity&\#39;s JPGLoader, or: how to win the lottery \- sin\-ack&\#39;s writings](https://sin-ack.github.io/posts/jpg-loader-bork/)
         - [LibGfx: Make JPGLoader iterate components deterministically · SerenityOS/serenity@a10ad24 · GitHub](https://github.com/SerenityOS/Serenity/commit/a10ad24c760bfe713f1493e49dff7da16d14bf39)

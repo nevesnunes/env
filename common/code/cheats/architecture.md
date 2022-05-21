@@ -44,6 +44,62 @@
 # Naming
 
 - [NetworkInterfaceNames \- Debian Wiki](https://wiki.debian.org/NetworkInterfaceNames)
+- [PredictableNetworkInterfaceNames](https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/)
+- [internet-not-working-without-gpu-installed](-https://unix.stackexchange.com/questions/353674/internet-not-working-without-gpu-installed)
+
+# Distributed Tracing
+
+```javascript
+const express = require("express");
+
+const PORT = process.env.PORT || "8080";
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+app.listen(parseInt(PORT, 10), () => {
+  console.log(`Listening for requests on http://localhost:${PORT}`);
+});
+
+const opentelemetry = require("@opentelemetry/sdk-node");
+const { getNodeAutoInstrumentations } = require("@opentelemetry/auto-instrumentations-node");
+
+const sdk = new opentelemetry.NodeSDK({
+  traceExporter: new opentelemetry.tracing.ConsoleSpanExporter(),
+  instrumentations: [getNodeAutoInstrumentations()]
+});
+
+sdk.start()
+```
+
+```sh
+npm install express @opentelemetry/sdk-node @opentelemetry/api @opentelemetry/auto-instrumentations-node
+
+node --require './tracing.js' app.js
+```
+
+```
+{
+  traceId: '625c35eb6e397e25558bccb3479ed6f8',
+  parentId: '896d5cd21e9ee250',
+  name: 'middleware - query',
+  id: 'b395a543f6f65605',
+  kind: 0,
+  timestamp: 1639407989740794,
+  duration: 260,
+  attributes: {
+    'http.route': '/',
+    'express.name': 'query',
+    'express.type': 'middleware'
+  },
+  status: { code: 0 },
+  events: []
+}
+```
+
+- https://www.containiq.com/post/distributed-tracing
 
 # Privileges
 

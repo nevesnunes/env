@@ -276,6 +276,10 @@ https://hack3rlab.wordpress.com/gdb-disassemble-instructions-in-hex-format/
 
 # Watchpoints
 
+-  watch: on write
+- rwatch: on read
+- awatch: on read/write
+
 ```gdb
 # Break on register write
 watch $rax

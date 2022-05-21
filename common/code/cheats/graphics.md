@@ -81,6 +81,9 @@ find . -name "*.pcd" -type f -exec pcdtojpeg -r 5 '{}' \;
 pdfimages -all foo.pdf ./out/
 pdftoppm -tiff -r 300 foo.pdf ./out/pg
 pdftoppm -jpeg -jpegopt quality=100 -r 300 foo.pdf ./out/pg
+
+# LBM to PNG
+ilbmtoppm foo.lbm | pnmtopng > foo.png
 ```
 
 # write / export from plaintext

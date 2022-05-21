@@ -1102,6 +1102,9 @@ nginx:
         - `GET /foo.js` + `x-forwarded-host: foo` leading to stored xss
         - `GET /foo?size=32x32&siz%65=0` where cache key uses first parameter but backend uses second parameter
         - [headers\.txt · GitHub](https://gist.github.com/iustin24/92a5ba76ee436c85716f003dda8eecc6)
+    - https://www.saddns.net/
+- TOCTOU on custom header validation happening before connection header is processed: set custom header key as connection header value, which is removed by proxy
+    - https://www.horizon3.ai/f5-icontrol-rest-endpoint-authentication-bypass-technical-deep-dive/
 - https://haboob.sa/ctf/nullcon-2019/babyJs.html
     - [Breakout in v3\.6\.9 · Issue \#186 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/186)
     - [Escaping the vm sandbox · Issue \#32 · patriksimek/vm2 · GitHub](https://github.com/patriksimek/vm2/issues/32)
