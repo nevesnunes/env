@@ -114,3 +114,59 @@ printf '%s\n' \
 # case studies
 
 - [GitHub \- step\-/JSON\.awk: Practical JSON parser written in awk](https://github.com/step-/JSON.awk)
+
+### sorting logs
+
+- ~/bin/normalize-ids.awk
+- ~/bin/normalize-numbers.awk
+- ~/bin/normalize_timestamps.py
+
+```bash
+# unique entries
+awk '
+    timestamp {
+        if(/^([0-9-]*[[:space:]]*[0-9,:]*).*/) {
+            print $0
+        } else {
+            print timestamp $0
+        }
+    }
+    match($0,/^([0-9-]*[[:space:]]*[0-9,:]*).*/,e) {
+        timestamp=e[1]
+    }
+    NR==1 {
+        print $0
+    }
+' *.log *.log.1 | sort | awk '
+    {
+        gsub("^[0-9-]*[[:space:]]*[0-9,:]*", "")
+        if(!x[$0]++) {
+            print
+        }
+    }
+' | vim -
+
+# ranged entries
+start_pattern='2019-12-01[[:space:]]*[0-9,:]*'
+awk -v start_pattern="$start_pattern" '
+    timestamp {
+        if(/^([0-9-]*[[:space:]]*[0-9,:]*).*/) {
+            out = $0
+        } else {
+            out = timestamp $0
+        }
+        if(match(out, start_pattern, e)) {
+            print out
+        }
+    }
+    match($0,/^([0-9-]*[[:space:]]*[0-9,:]*).*/,e) {
+        timestamp=e[1]
+    }
+    NR==1 {
+        print $0
+    }
+' catalina* localhost*
+
+# Alternatives:
+# - https://unix.stackexchange.com/questions/195604/matching-and-merging-lines-with-awk-printing-with-solaris
+```
