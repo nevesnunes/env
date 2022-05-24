@@ -14,6 +14,7 @@
 - [Convert curl commands to code](https://curlconverter.com/)
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
+- [GitHub \- gabriel\-sztejnworcel/pipe\-intercept: Intercept Windows Named Pipes communication using Burp or similar HTTP proxy tools](https://github.com/gabriel-sztejnworcel/pipe-intercept)
 
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)
@@ -869,6 +870,8 @@ netsh trace start scenario=NetConnection capture=yes report=yes persistent=no ma
 netsh trace stop
 ```
 
+- [GitHub \- microsoft/etl2pcapng: Utility that converts an \.etl file containing a Windows network packet capture into \.pcapng format\.](https://github.com/microsoft/etl2pcapng)
+- [GitHub \- aaptel/etl2pcap: extract network frames from ETL trace files and export them to \.pcap](https://github.com/aaptel/etl2pcap)
 - https://blogs.technet.microsoft.com/yongrhee/2018/05/25/network-tracing-packet-sniffing-built-in-to-windows-server-2008-r2-and-windows-server-2012-2/
 
 # url encoding

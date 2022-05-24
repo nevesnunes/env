@@ -4,6 +4,15 @@
 - [Debuggex: Online visual regex tester. JavaScript, Python, and PCRE.](https://www.debuggex.com/r/h3WCCQv-ek1K5VTJ)
 - [Show HN: Regex Cheatsheet | Hacker News](https://news.ycombinator.com/item?id=22200584)
 
+# approximate / fuzzy matching
+
+```sh
+agrep 'foob{~1}' <(echo foo-bar)
+# foo-bar
+```
+
+- [Introduction to the TRE regexp matching library\.](https://laurikari.net/tre/about/)
+
 # lowest common denominator
 
 https://github.com/google/re2/wiki/Syntax
@@ -80,7 +89,46 @@ https://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotati
 
 # named capture groups
 
-[Verbose regular expressions, now you have one and a bit problems \- Misspelled Nemesis Club](https://moreati.org.uk/blog/2020/06/30/verbose-regular-expressions.html)
+### pcre
+
+```
+(?(DEFINE)
+  (?<code>
+    [A-Z]*H  # prefix
+    \d+      # digits
+    [a-z]*   # suffix
+  )
+  (?<multicode>
+    (?: \( \s* )?               # maybe open paren and maybe space
+    (?&code)                    # one code
+    (?: \s* \+ \s* (?&code) )*  # maybe followed by other codes, plus-separated
+    (?: \s* [\):+] )?           # maybe space and maybe close paren or colon or plus
+  )
+)
+( (?&multicode) )           # code (capture)
+( .*? )                     # message (capture): everything ...
+(?=                         # ... up to (but excluding) ...
+    (?&multicode)           # ... the next code
+        (?! [^\w\s] )       # (but not when followed by punctuation)
+    | $                     # ... or the end
+)
+```
+
+### python
+
+```python
+>>> multicode = fr"""
+... (?: \( )?         # maybe open paren
+... {code}            # one code
+... (?: \+ {code} )*  # maybe other codes, plus-separated
+... (?: \) )?         # maybe close paren
+... """
+>>> re.findall(multicode, text, re.VERBOSE)
+['H1', '(AH2b+EUH3)']
+```
+
+- [The unreasonable effectiveness of f\-strings and re\.VERBOSE \- death and gravity](https://death.andgravity.com/f-re)
+- [Verbose regular expressions, now you have one and a bit problems \- Misspelled Nemesis Club](https://moreati.org.uk/blog/2020/06/30/verbose-regular-expressions.html)
 
 # word boundaries
 

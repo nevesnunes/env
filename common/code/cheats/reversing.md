@@ -253,6 +253,8 @@
         - [pestudio](https://www.winitor.com/features)
         - [pe-bear](https://hshrzd.wordpress.com/pe-bear/)
     - protocols
+        - versioning: magic bytes
+        - packet fragmentation: length of remaining bytes; sequence numbers
         - https://en.wikipedia.org/wiki/Type%E2%80%93length%E2%80%93value
             - invalid size may lead to unchecked memory read/write
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
@@ -290,6 +292,9 @@
             - [Reprogramming Mega Man 4&\#39;s Charged Shot \- Behind the Code \- YouTube](https://www.youtube.com/watch?v=n1yloWiWVxY)
     - disable function (e.g. patch `ret`)
     - find threads by patching a jump with a short jump (x86: `EBFE`) to create an endless loop you can then search for
+    - chaining trampolines to follow dynamic/obfuscated blocks
+        - http://www.giovanni-rocca.com/reverse-engineering-supercell-part-6/
+    - [GitHub \- jxy\-s/vfdynf: Application Verifier Dynamic Fault Injection](https://github.com/jxy-s/vfdynf)
 - monitoring
     - file system, accounts, services, ports, certificate stores, registry
         - snapshot before and after installation, then before and after execution

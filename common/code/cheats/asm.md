@@ -627,6 +627,8 @@ call eax
         - polymorphism: overriden entries in vftable
         - multiple inheritance: multiple ptrs to vftables
     - rtti contains constructor names
+    - [VTable Hooking](https://dimitrifourny.github.io/2014/07/02/vtable-hooking.html)
+    - [GitHub \- Thordin/vtable\-hook: C\+\+ Vtable Hooking Library](https://github.com/Thordin/vtable-hook)
 
 - Ghidra-Cpp-Class-Analyzer
     - Analysis > All Open > Deselect All > Windows (or GCC) C++ Class Analyzer (prototype) > Decompiler timeout
@@ -677,6 +679,9 @@ call eax
 
     0:   14000000        b       0 <.text>
     ```
+- `Interceptor.attach()`
+    > If you're dealing with an address where you're not sure if the Thumb bit is already set, use `.or(1)`.
+    - [Correct way to use Interceptor · Issue \#681 · frida/frida · GitHub](https://github.com/frida/frida/issues/681)
 
 - https://azeria-labs.com/writing-arm-assembly-part-1/
 - https://thinkingeek.com/arm-assembler-raspberry-pi/

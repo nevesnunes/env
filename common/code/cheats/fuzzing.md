@@ -96,6 +96,7 @@ ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt 
 
 # Parameter discovery
 
+- [Param Miner \- PortSwigger](https://portswigger.net/bappstore/17d2949a985c4b7ca092728dba871943)
 - [GitHub \- Sh1Yo/x8: Hidden parameters discovery suite](https://github.com/sh1yo/x8)
     - [Parameter discovery tools comparison](https://4rt.one/blog/1.html)
 

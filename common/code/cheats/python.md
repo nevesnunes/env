@@ -609,7 +609,7 @@ print(df.to_markdown())
 
 # regex escape
 
-```
+```python
 >>> re.match(".*'.*", "1\n' OR 1=1--")
 >>>
 >>> re.search(".*'.*", "1\n' OR 1=1--")

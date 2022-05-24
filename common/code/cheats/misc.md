@@ -185,6 +185,7 @@ done
     - ~/opt/LinEnum/
     - [GitHub \- TH3xACE/SUDO\_KILLER: A tool to identify and exploit sudo rules&\#39; misconfigurations and vulnerabilities within sudo for linux privilege escalation\.](https://github.com/TH3xACE/SUDO_KILLER)
     - [GitHub \- DominicBreuker/pspy: Monitor linux processes without root permissions](https://github.com/DominicBreuker/pspy)
+    - https://www.sandflysecurity.com/linux-compromise-detection-command-cheatsheet.pdf
 
 ```bash
 sudo -l

@@ -1,8 +1,9 @@
 # Debugging
 
-- `usbmon` - collect traces of I/O on the USB bus, analogous to a packet socket used by network monitoring tools such as `tcpdump`
+- `/dev/usbmon`: collect traces of I/O on the USB bus, analogous to a packet socket used by network monitoring tools such as `tcpdump`
+- [GitHub \- djpnewton/busdog: busdog is a filter driver for MS Windows \(XP and above\) to sniff USB traffic\.](https://github.com/djpnewton/busdog)
 
-~/Downloads/USB_Debugging_and_Profiling_Techniques.pdf
+- ~/Downloads/USB_Debugging_and_Profiling_Techniques.pdf
 
 # Hub ports, 2.0 vs. 3.0
 
@@ -46,8 +47,8 @@ Look at board, google `$ID datasheet`
 devcon hwids =usb
 ```
 
-https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-descriptors
-https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/devcon
+- https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-descriptors
+- https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/devcon
 
 # USB1 support
 

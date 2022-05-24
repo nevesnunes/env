@@ -33,3 +33,4 @@ bpftrace -e 'tracepoint:syscalls:sys_enter_openat /cgroup == cgroupid("/sys/fs/c
 ```
 
 - [GitHub \- iovisor/bpftrace: High\-level tracing language for Linux eBPF](https://github.com/iovisor/bpftrace)
+    - [bpftrace/tutorial\_one\_liners\.md at master · iovisor/bpftrace · GitHub](https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md)

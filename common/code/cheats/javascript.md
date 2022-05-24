@@ -279,6 +279,30 @@ document.querySelectorAll('iframe').forEach( item =>
 setTimeout(() => Array.prototype.filter.call(document.querySelectorAll('a'), e => {return /evening/.test(e.textContent);})[0].click(), 2000)
 ```
 
+# Arrays
+
+```javascript
+/*
+Conversion to Array turns holes into undefined elements:
+> Array.from([,])
+[ undefined ]
+> [...[,]]
+[ undefined ]
+*/
+0 in [...[,]]; // true
+
+/*
+`in` detects properties, Array elements are props and holes are missing props:
+> Reflect.ownKeys(['a', 'b'])
+[ '0', '1', 'length' ]
+> Reflect.ownKeys([,])
+[ 'length' ]
+*/
+0 in [,]; // false
+```
+
+- https://exploringjs.com/impatient-js/ch_arrays.html#array-indices
+
 # Introspection
 
 Function.prototype.toString

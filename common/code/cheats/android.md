@@ -21,6 +21,8 @@
 
 - [GitHub \- JesusFreke/smalidea: smalidea is a smali language plugin for IntelliJ IDEA](https://github.com/JesusFreke/smalidea)
 - [GitHub \- bannsec/enableAPKDebugging: Application to simplify apk\-&gt;apk w/ debugging enabled](https://github.com/bannsec/enableAPKDebugging)
+- [GitHub \- iGio90/Dwarf: Full featured multi arch/os debugger built on top of PyQt5 and frida](https://github.com/iGio90/Dwarf)
+- [GitHub \- iGio90/frida\-onload: Frida module to hook module initializations on android](https://github.com/iGio90/frida-onload)
 
 # emulation
 

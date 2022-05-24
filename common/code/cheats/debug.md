@@ -343,10 +343,27 @@ rr ./foo
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
 
 - [OffensiveCon22 \- Mark Dowd\- Keynote \-How Do You Actually Find Bugs? \- YouTube](https://www.youtube.com/watch?v=7Ysy6iA2sqA)
-    - in-depth understanding of codebase leads to noticing idiosyncrasies that are exploitable when combined, insufficient testing
+    - in-depth understanding of codebase leads to noticing idiosyncrasies that are exploitable when combined
         - [Issue 2232: XNU kernel use-after-free in mach_msg \- Monorail](https://bugs.chromium.org/p/project-zero/issues/detail?id=2232)
+    - insufficient testing
         - [Project Zero: This shouldn't have happened: A vulnerability postmortem](https://googleprojectzero.blogspot.com/2021/12/this-shouldnt-have-happened.html)
     - look at different codebases to better understand a feature, see if one makes the mistake that the other carefully avoided
+- [35C3 \-  The Layman&\#39;s Guide to Zero\-Day Engineering \- YouTube](https://www.youtube.com/watch?v=WbuGMs2OcbE)
+    - understand architecture; security track record
+        > exploit writeup, exploiting javascript engines, javascriptcore cve, javascriptcore vulnerability, webkit architecture, safari exploitdb, compile webkit, debugging webkit
+    - identify sources of user input, and follow the data, dumb fuzzing by bit-flipping that data
+    - less coverage correlates with edge-cases
+- [Keynote Day 2 | Hunting Evasive Vulnerabilities: Finding Flaws That Others Miss by James Kettle - YouTube](-https://www.youtube.com/watch?v=skbKjO8ahCI)
+    - attention trap when picking techniques: look for behaviour, not technology
+        - e.g. which inputs influence the response > is this input unkeyed and cached? > is this input unkeyed, cached, and harmful? > is this exploitable via cache poisoning?
+        - [How "\.\./sms" could bypass Authy 2 Factor Authentication](https://sakurity.com/blog/2015/03/15/authy_bypass.html): implementation-specific input vs. sqli
+    - test bad implementation of mitigation
+        - [Security: Cross\-domain search timing](https://scarybeastsecurity.blogspot.com/2009/12/cross-domain-search-timing.html)
+        - [761655 \- \(CVE\-2012\-1961\) Firefox ignores X\-Frame\-Options when set to SAMEORIGIN, SAMEORIGIN \(duplicated header\)](https://bugzilla.mozilla.org/show_bug.cgi?id=761655): iframe timing attack working even with X-Frame-Options header present
+    - read original research since use cases change over time
+        - [HTTP Request Smuggling](https://www.cgisecurity.com/lib/HTTP-Request-Smuggling.pdf): desync vs. waf bypass
+    - make asking questions cheap
+        - https://portswigger.net/research/backslash-powered-scanning-hunting-unknown-vulnerability-classes
 
 ### inconsistent view of file cache leaves zeros in code section
 
