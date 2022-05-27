@@ -46,10 +46,11 @@
 
 # memory analysis
 
-- ./volatility.md
-    - any format
-- AccessData FTK_Imager
-    - EnCase format
+- any format
+    - ./volatility.md
+    - [GitHub \- ufrisk/MemProcFS: The Memory Process File System](https://github.com/ufrisk/MemProcFS)
+- EnCase format
+    - AccessData FTK_Imager
 
 - compare running processes with known file hashes
     - [Current RDS Hash Sets | NIST](https://www.nist.gov/itl/ssd/software-quality-group/national-software-reference-library-nsrl/nsrl-download/current-rds)

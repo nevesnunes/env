@@ -57,7 +57,7 @@ nmap <F3>t :ALEGoToTypeDefinition<CR>
 
 augroup ale_group
     autocmd!
-    autocmd CursorMoved,CursorHold * if exists('*ale#engine#Cleanup') && mode() == 'n' | ALEHover | endif
+    autocmd CursorMoved,CursorHold * if &filetype !=# 'java' && exists('*ale#engine#Cleanup') && mode() == 'n' | ALEHover | endif
 augroup END
 let g:ale_hover_to_preview = 1
 
@@ -87,7 +87,7 @@ let g:ale_fixers = {
             \ }
 let g:ale_linters = {
             \ 'go': ['gopls'],
-            \ 'java': ['javac'],
+            \ 'java': ['eclipselsp', 'javac'],
             \ 'javascript': ['tsserver', 'eslint'],
             \ 'python': ['pyls'],
             \ 'sh': ['shellcheck'],

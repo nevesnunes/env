@@ -365,6 +365,11 @@ rr ./foo
     - make asking questions cheap
         - https://portswigger.net/research/backslash-powered-scanning-hunting-unknown-vulnerability-classes
 
+### caller not saving volatile register
+
+- [Sometimes it \*is\* a compiler bug](https://quick-lint-js.com/blog/bug-journey/)
+    - [Bug: dlltool delaylibs corrupt float/double arguments](https://lists.gnu.org/archive/html/bug-binutils/2022-05/msg00099.html)
+
 ### inconsistent view of file cache leaves zeros in code section
 
 - [Compiler bug? Linker bug? Windows Kernel bug. \| Random ASCII \- tech blog of Bruce Dawson](https://randomascii.wordpress.com/2018/02/25/compiler-bug-linker-bug-windows-kernel-bug/)

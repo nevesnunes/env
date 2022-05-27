@@ -1,5 +1,7 @@
 # +
 
+- [sqlite3 fiddle](https://sqlite.org/fiddle/)
+
 ```bash
 sqlite3 foo.db .dump | vim -
 echo 'select * from sqlite_master;' | sqlite3 foo.db | vim -
