@@ -101,6 +101,8 @@
     - multi-threaded interactions
         > with time-stamps, user-ids, user-agent strings, session-id, basic operations, you learn a lot about the running system and why it might have failed for one particular user.
         - https://blog.jvroom.com/2012/02/08/debugging-hard-problems/
+    - using compile-time macros as instrumentation
+        - ~/code/snippets/trace_returns.c
     - logging unique query patterns (check if we've seen it before, how often have we seen it, if it's new, log it)
         - https://florian.github.io/count-min-sketch/
     - logging variable values at each algorithm iteration
@@ -364,6 +366,13 @@ rr ./foo
         - [HTTP Request Smuggling](https://www.cgisecurity.com/lib/HTTP-Request-Smuggling.pdf): desync vs. waf bypass
     - make asking questions cheap
         - https://portswigger.net/research/backslash-powered-scanning-hunting-unknown-vulnerability-classes
+- [From CTFs to Real\-Exploitation \(Part 3\)](https://dayzerosec.com/blog/2021/05/22/from-ctfs-to-real-exploitation-part-3.html)
+    - sudoku approach: spot new gadgets and primitives you can chain with the vulnerability
+        > - If you’ve got an info-leak, try leaking something else, try coercing the heap/stack into leaking something else, or reading another segment of memory. Then build an exploit off something else that you can leak.
+        > - If its a write-primitive, find a new write-target.
+        > - UAF, find a new object for the reuser, or maybe a new after-free path.
+        > - Add a self-imposed restriction, deal with a mitigation even if its not implemented
+        > - Require stability or portability
 
 ### caller not saving volatile register
 
@@ -405,6 +414,11 @@ rr ./foo
 > - Reading and writing (I/O) involves precise timing. [...] the low-level code that reads and writes has to do so according to a clock. [...] I noticed that we set the programmable timer on the PlayStation 1 to 1 kHz (1000 ticks/second) [...] I modified the load/save code to reset the programmable timer to its default setting (100 Hz) before accessing the memory card, then put it back to 1 kHz afterwards. We never saw the read/write problems again.
 > - But the gist of it was that crosstalk between individual parts on the motherboard, and the combination of sending data over both the controller port and the memory card port while running the timer at 1 kHz would cause bits to get dropped... and the data lost... and the card corrupted.
 - https://www.quora.com/Programming-Interviews/Whats-the-hardest-bug-youve-debugged/answer/Dave-Baggett?srid=pxH3&share=1
+
+### y2k38 problem
+
+- [&quot;Cannot initialize system file configuration&quot; · Issue \#21 · taviso/123elf · GitHub](https://github.com/taviso/123elf/issues/21#issuecomment-1140315604)
+    > if you use -D_FILE_OFFSET_BITS=64 (which I do) you get stat64, which is supposed to handle these issues. I can see the kernel reports the correct result, but glibc just returns EOVERFLOW.
 
 ### github dumpster diving
 

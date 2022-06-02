@@ -25,6 +25,16 @@ cargo build -j 2 --release
 cargo +nightly rustc -- -Zunstable-options --pretty=expanded
 ```
 
+### Toolchains
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# version pinning
+rustup install 1.52.0
+cargo +1.52.0 run
+```
+
 # Deploy
 
 ```bash

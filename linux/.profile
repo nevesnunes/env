@@ -75,3 +75,4 @@ export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 export TMPDIR="$XDG_RUNTIME_DIR"
 
 unset SSH_ASKPASS
+. "$HOME/.cargo/env"

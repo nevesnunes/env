@@ -4,8 +4,6 @@
 - apply faults at elements separated by delimiters to reduce test cases
 - apply deltas to common buffer sizes (e.g. k^2, k^10, -+20)
 
-- https://gitlab.com/akihe/radamsa
-
 ### Syscalls
 
 ```bash
@@ -38,7 +36,7 @@ tc qdisc add dev eth0 root netem reorder 0.02 duplicate 0.05 corrupt 0.01
 
 - https://docs.kernel.org/fault-injection/fault-injection.html
 
-### Feedback based fuzzing
+### Coverage / Feedback based fuzzing
 
 ```fasm
 ; store old reg values
@@ -73,7 +71,23 @@ lea rsp, [rsp+98h]
 - emulation
     - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
 
+### Mutation based fuzzing
+
+- [Aki Helin / radamsa · GitLab](https://gitlab.com/akihe/radamsa)
+
 # Directory busting
+
+- burp
+    - Scope > Target Scope > Host / IP range > add target domains
+    - Site Map > select entry, open context menu, select "Send to Intruder"
+    - Positions > add variable `$foo$` as request header "Host" value, "Attack type" = "Cluster bomb"
+        - Payloads > "Payload type" = "Simple list", add subdomains
+        - check: http 200, https 301...
+        - extract links from resources (.html, .js), wayback machine...
+    - Positions > add variable `/$foo$` as host, "Attack type" = "Sniper"
+        - Payloads > "Payload type" = "Simple list", add wordlist, limit concurrent requests to 100
+        - check: http 200, https 301...
+    - [Bug Bounty 101: \#18 \- Approaching a Public Target \(Pinterest\) \- YouTube](https://www.youtube.com/watch?v=LeQ8RIK6OpE)
 
 ```bash
 grep -v '%' ~/opt/dirbustlist/dirbuster/directory-list-2.3-medium.txt > /tmp/wordlist

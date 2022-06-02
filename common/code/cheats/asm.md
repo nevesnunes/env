@@ -9,6 +9,7 @@
         - x64: rdi rsi rdx r10 r8 r9
 - [Linker and Libraries Guide](https://docs.oracle.com/cd/E19120-01/open.solaris/819-0690/index.html)
 - [Beginner's Guide to Linkers](https://www.lurklurk.org/linkers/linkers.html)
+- [Expanded Main Page \- OSDev Wiki](https://wiki.osdev.org/Main_Page)
 
 - https://gcc.godbolt.org/
 - https://dis.yaxpeax.net/x86_64/31C0FFC0C1E003660F3800C1
@@ -680,6 +681,26 @@ call eax
 
     0:   14000000        b       0 <.text>
     ```
+- condition code suffixes
+    ```
+    Suffix  Flags           Meaning
+    EQ      Z = 1           Equal
+    NE      Z = 0           Not equal
+    CS/HS   C = 1           Higher or same, unsigned
+    CC/LO   C = 0           Lower, unsigned
+    MI      N = 1           Negative
+    PL      N = 0           Positive or zero
+    VS      V = 1           Overflow
+    VC      V = 0           No overflow
+    HI      C = 1 and Z = 0 Higher, unsigned
+    LS      C = 0  or Z = 1 Lower or same, unsigned
+    GE      N = V           Greater than or equal, signed
+    LT      N != V          Less than, signed
+    GT      Z = 0 and N=V   Greater than, signed
+    LE      Z = 1 and N!=V  Less than or equal, signed
+    AL      -----           Always. This is the default when no suffix is specified.
+    ```
+    - https://developer.arm.com/documentation/dui0552/a/the-cortex-m3-instruction-set/about-the-instruction-descriptions/conditional-execution?lang=en
 - `Interceptor.attach()`
     > If you're dealing with an address where you're not sure if the Thumb bit is already set, use `.or(1)`.
     - [Correct way to use Interceptor · Issue \#681 · frida/frida · GitHub](https://github.com/frida/frida/issues/681)

@@ -506,6 +506,8 @@ set hidden
 
 syntax on
 
+set redrawtime=5000
+
 " References:
 " - https://stackoverflow.com/questions/3828606/vim-markdown-folding
 "     - https://github.com/tpope/vim-markdown/blob/master/ftplugin/markdown.vim

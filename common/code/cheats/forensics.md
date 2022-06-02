@@ -25,6 +25,7 @@
 
 - https://hybrid-analysis.com/
 - https://app.any.run/
+- https://www.capesandbox.com/
 - https://www.virustotal.com/gui/home
 
 - https://zeltser.com/media/docs/malware-analysis-cheat-sheet.pdf

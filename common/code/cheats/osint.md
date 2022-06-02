@@ -157,6 +157,7 @@ amass -active -brute -o hosts.txt -d yahoo.com
 - [Subdomain Finder \- Quick and Precise Enumeration \| Spyse](https://findsubdomains.com/)
 - [Free subdomain finder online 🛡️ find subdomains of domain](https://pentest-tools.com/information-gathering/find-subdomains-of-domain)
 - [GitHub \- tomnomnom/waybackurls: Fetch all the URLs that the Wayback Machine knows about for a domain](https://github.com/tomnomnom/waybackurls)
+    - :) extract old endpoints that may still be reachable but not currently indexed
 
 # google search dorks
 
@@ -189,6 +190,8 @@ site:*.atlassian.net "company"
 http://atlassian.net "company"
 inurl:gitlab "company"
 ```
+
+- [Google Hacking Database \(GHDB\) \- Google Dorks, OSINT, Recon](https://www.exploit-db.com/google-hacking-database)
 
 # blog
 

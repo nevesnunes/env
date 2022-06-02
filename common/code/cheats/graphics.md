@@ -197,6 +197,15 @@ for i in *.png; do convert -strip -quality 92% -resize x2600\>  "$i" "$i".jpg; d
     - ~/Downloads/ReDeCheck - An Automatic Layout Failure Checking Tool for Responsively Designed Web Pages.pdf
     - user-defined layout constraints checked against different viewports
 
+# raw bitmap / 3 bytes per pixel
+
+```bash
+convert image.bmp -depth 8 image.rgb
+convert -size 512x512 -depth 8 image.rgb image.bmp
+```
+
+- https://legacy.imagemagick.org/Usage/formats/#rgb
+
 # preserve indexed palette on resize
 
 ```bash

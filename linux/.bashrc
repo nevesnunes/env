@@ -61,3 +61,4 @@ fi
 
 # Reset exit status for first prompt
 :
+. "$HOME/.cargo/env"

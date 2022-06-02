@@ -1,5 +1,8 @@
 # +
 
+- [fuzzing](./fuzzing.md)
+- [osint](osint.md)
+
 - https://book.hacktricks.xyz/pentesting-methodology
 - http://bitvijays.github.io/LFC-VulnerableMachines.html
 - https://fortyseven.github.io/ctfpanel/
@@ -22,6 +25,11 @@
 - https://github.com/rmusser01/Infosec_Reference/blob/master/Draft/Building_A_Lab.md
 
 # vulnerability databases
+
+```
+$name enumeration
+$name $version exploit
+```
 
 - [Exploit Database \- Exploits for Penetration Testers, Researchers, and Ethical Hackers](https://www.exploit-db.com/)
 - [Shodan Exploits](https://exploits.shodan.io/)

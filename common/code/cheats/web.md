@@ -2,7 +2,6 @@
 
 - [javascript](./javascript.md)
 - [wasm](./wasm.md)
-- [fuzzing](./fuzzing.md)
 - [net](./net.md)
 
 - https://portswigger-labs.net/hackability/inspector/index.php?input=window
@@ -95,6 +94,7 @@ if _name__ == "__main__":
 - response status codes
     - e.g. 403 for registered users and 404 for invalid users
     - https://book.hacktricks.xyz/pentesting/pentesting-web/403-and-401-bypasses
+        - try headers with ip value for distinct private subnets (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`)
 - parameter pollution
     1. search?q=foo
     2. search?q=bar
@@ -1193,3 +1193,10 @@ done 2>/dev/null | vim -
     curl -v 'https://foo.s3.amazonaws.com/bar?versionId=zcoAvy97sFgFdR08.kypq1KyLj9iZuAD'
     aws s3api get-object --bucket foo --key bar bar
     ```
+
+# xml
+
+- [Issue 2254: Zoom: Remote Code Execution with XMPP Stanza Smuggling](https://bugs.chromium.org/p/project-zero/issues/detail?id=2254)
+    - parser differential: expat removes `<?... ?>` tags, but not when they are part of an invalid 3-byte utf-8 sequence (`<aaa\xeb/>\xeb<?\xeb ?/>`); when gloox sees the sequence `<?xml ?>` or `<?foo ?><xml>` it will reset the parser state: the next node is considered a root node (`<aaa\xeb/>\xeb<?\xeb ?/><xml><message>...</message></xml>`)
+
+

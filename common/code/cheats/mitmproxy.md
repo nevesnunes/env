@@ -65,7 +65,9 @@ iptables -t nat -A PREROUTING -i tun0 -p tcp --dport 443 -j REDIRECT --to-port 8
 mitmproxy --mode transparent --showhost
 ```
 
-# Edit request manually
+# Edit request
+
+### Manual
 
 mitmproxy v4 has key binding `v` ("View flow body in an external viewer")
 
@@ -74,12 +76,20 @@ export EDITOR=vi
 export PAGER=vi
 ```
 
+### Script
+
+```bash
+# addons = [ Foo() ]
+mitmdump -s foo.py
+```
+
 # Map resources
 
 ```sh
 mitmproxy \
+    --certs *=cert.pem
     --mode reverse:https://foo/ \
-    -p 1234 \
+    -p 443 \
     --map-local '|https://foo/js/app.js|local_app.js' \
     -H '|Origin|https://foo/' \
     -H '|Referer|https://foo'

@@ -534,6 +534,17 @@ hex(0xff << 8)  # 0xff00
 - [bithacks](https://graphics.stanford.edu/~seander/bithacks.html)
 - Hacker's Delight
 
+### reverse bits
+
+```python
+def bitrev_u8(n):
+    return int(f"{n:08b}"[::-1], 2)
+
+lut = [bitrev_u8(n) for n in range(256)]
+def bitrev_u8_fast(n):
+    return lut[n]
+```
+
 # xor
 
 - [That XOR Trick](https://florian.github.io/xor-trick/)

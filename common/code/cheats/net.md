@@ -275,6 +275,8 @@ curl --head vulnerable --header 'Connection: close' --header 'User-Agent: () { :
 - https://linux.die.net/man/1/mini-inetd
 - https://github.com/fijimunkii/bash-dev-tcp
 
+- https://docs.microsoft.com/en-us/windows/win32/rpc/remote-procedure-calls-using-rpc-over-http
+
 # Port scanner
 
 ```bash

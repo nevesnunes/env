@@ -417,3 +417,4 @@ if ssl:
 - [FireFox 2\.0\.0\.11 and Opera 9\.50 beta Remote Memory Information Leak, FireFox 2\.0\.0\.11 Remote Denial of Service \- CXSecurity\.com](https://cxsecurity.com/issue/WLB-2008020087)
     - Read unitialized memory allocated for BMP palette with less entries than specified
     > If the attacker creates a BMP file with biClrUser = 0, and fills it with gradient, from 0 to 255: 00 01 02 03 04 05 ... and so on, the displayed BMP will in fact copy the palette to the screen, which of course means that it copies the data lying on the heap to the screen.
+- [Sudo Vulnerability Walkthrough \- LiveOverflow](https://liveoverflow.com/topic/sudo-vulnerability/)
