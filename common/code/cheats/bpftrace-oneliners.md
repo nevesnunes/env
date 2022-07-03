@@ -1,6 +1,16 @@
 # +
 
 ```sh
+# Trace libc calls 
+# - /!\ need to scope glob, use dynamic syms: ~/bin/libctrace.sh
+sudo bpftrace -e '
+BEGIN { @start = nsecs; } 
+uprobe:/usr/lib64/libc-2.33.so:* /@start != 0 && pid == cpid/ { 
+    printf("%-08d %-04d %s\n", tid, (nsecs - @start) / 1000000, func); 
+}' -c '/bin/sleep 2'
+```
+
+```sh
 # Files opened by process
 bpftrace -e 'tracepoint:syscalls:sys_enter_open { printf("%s %s\n", comm, str(args->filename)); }'
 
@@ -34,3 +44,4 @@ bpftrace -e 'tracepoint:syscalls:sys_enter_openat /cgroup == cgroupid("/sys/fs/c
 
 - [GitHub \- iovisor/bpftrace: High\-level tracing language for Linux eBPF](https://github.com/iovisor/bpftrace)
     - [bpftrace/tutorial\_one\_liners\.md at master · iovisor/bpftrace · GitHub](https://github.com/iovisor/bpftrace/blob/master/docs/tutorial_one_liners.md)
+    - [bpftrace/reference\_guide\.md at master · iovisor/bpftrace · GitHub](https://github.com/iovisor/bpftrace/blob/master/docs/reference_guide.md)

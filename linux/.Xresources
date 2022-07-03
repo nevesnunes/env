@@ -100,8 +100,8 @@ UXTerm*faceNameDoublesize: Source Han Sans CN
 ! UXTerm*faceName: Bm437 IBM VGA 8x14 OTB
 ! UXTerm*faceName: Bm437 ToshibaSat 8x14 OTB
 UXTerm*faceName: PxPlus IBM VGA 8x16
-UXTerm*faceSize: 12
-UXTerm*geometry: 84x38
+UXTerm*faceSize: 10
+UXTerm*geometry: 84x24
 UXTerm*jumpScroll: true
 UXTerm*locale: true
 UXTerm*multiScroll: true

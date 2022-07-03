@@ -71,6 +71,15 @@ find . -iname 'Makefile*' -exec grep -Hin -B 3 "$module_name" {} \;
 - https://www.linuxtopia.org/online_books/linux_kernel/kernel_configuration/ch08s02.html
 - https://stackoverflow.com/questions/45905642/mapping-kernel-config-variables-to-modules
 
+### macro expansions
+
+```bash
+# Preprocessed source
+make kernel/foo.i 
+# Assembly output
+make kernel/foo.s
+```
+
 ### graphical (modeset)
 
 ```bash
@@ -471,3 +480,9 @@ gdb /boot/vmlinux /proc/kcore
 # testing
 
 - [GitHub \- linux\-test\-project/ltp: Linux Test Project http://linux\-test\-project\.github\.io/](https://github.com/linux-test-project/ltp)
+
+# hardening
+
+- [GitHub \- a13xp0p0v/kconfig\-hardened\-check: A tool for checking the security hardening options of the Linux kernel](https://github.com/a13xp0p0v/kconfig-hardened-check)
+- https://www.kicksecure.com/wiki/Hardened-kernel
+- https://docs.windriver.com/bundle/Wind_River_Linux_Carrier_Grade_Profile_Users_Guide_9_1/page/rnb1487717713115.html

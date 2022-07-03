@@ -5,7 +5,9 @@
 
 - [VM Options Explorer \- OpenJDK11 HotSpot](https://chriswhocodes.com/)
 - [GitHub \- aragozin/jvm\-tools: Small set of tools for JVM troublshooting, monitoring and profiling\.](https://github.com/aragozin/jvm-tools)
+	- e.g. https://thelastpickle.com/blog/2018/01/16/cassandra-flame-graphs.html
 - [HotSpot Tools](https://wiki.openjdk.java.net/display/HotSpot/HotSpot+Tools)
+- [GitHub \- GraxCode/JByteMod\-Beta: Java bytecode editor](https://github.com/GraxCode/JByteMod-Beta)
 
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()

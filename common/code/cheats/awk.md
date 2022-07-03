@@ -17,6 +17,19 @@ gawk -Wposix
 mawk -Wposix
 ```
 
+# uniq
+
+```bash
+printf '%s\n' 1 2 3 2 2 3 4 1 5 | awk '{if (!set[$0]) {print; set[$0]++; show=1} else if (show) {print "..."; show=0} }'
+# 1
+# 2
+# 3
+# ...
+# 4
+# ...
+# 5
+```
+
 # delimiters
 
 ```bash

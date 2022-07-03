@@ -454,6 +454,13 @@ git push all master
 git remote -v
 ```
 
+# convert to shallow
+
+```bash
+git pull --depth=1
+git gc --prune=all
+```
+
 # grep / search
 
 ```bash

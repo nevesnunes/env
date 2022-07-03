@@ -1,6 +1,8 @@
 # +
 
-- /etc/services
+- linux: /etc/services
+- windows: %windir%\System32\drivers\etc\services
+
 - ephemeral ports: high numbered ports (>1024) used by client applications as the "source port" when connecting/sending data to a system port, and are used by the server application for the return data
 
 # common ports

@@ -26,8 +26,17 @@ SELECT name, sql FROM sqlite_master WHERE type='table'
 ```
 
 ```bash
-sqlite3 -header -csv foo.db < query.sql > data.csv
+# query as `stdin`, output with header
+sqlite3 -csv -header foo.db < query.sql > data.csv
+# db as `foo.csv`
+sqlite3 :memory: -csv -cmd '.import foo.csv foo' 'SELECT * from foo'
+# db as `stdin`
+printf '%s\n' 'a,b' '1,2' | sqlite3 :memory: -csv -cmd ".import '|cat -' foo" 'SELECT * from foo'
+# output with markdown table
+printf '%s\n' 'a,b' '1,2' | sqlite3 :memory: -csv -cmd ".import '|cat -' foo" -cmd '.mode markdown' 'select * from foo'
 ```
+
+- [One\-liner for running queries against CSV files with SQLite \| Simon Willison’s TILs](https://til.simonwillison.net/sqlite/one-line-csv-operations)
 
 # columns
 

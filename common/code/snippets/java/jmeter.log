@@ -1,0 +1,38 @@
+2020-04-19 16:45:26,171 INFO o.a.j.u.JMeterUtils: Setting Locale to en_US
+2020-04-19 16:45:26,190 INFO o.a.j.JMeter: Loading user properties from: /home/fn/opt/apache-jmeter-5.2.1/bin/user.properties
+2020-04-19 16:45:26,191 INFO o.a.j.JMeter: Loading system properties from: /home/fn/opt/apache-jmeter-5.2.1/bin/system.properties
+2020-04-19 16:45:26,193 INFO o.a.j.JMeter: Copyright (c) 1998-2019 The Apache Software Foundation
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: Version 5.2.1
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: java.version=1.8.0_242
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: os.name=Linux
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: os.arch=amd64
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: os.version=5.5.10-100.fc30.x86_64
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: file.encoding=UTF-8
+2020-04-19 16:45:26,194 INFO o.a.j.JMeter: java.awt.headless=null
+2020-04-19 16:45:26,195 INFO o.a.j.JMeter: Max memory     =1364721664
+2020-04-19 16:45:26,195 INFO o.a.j.JMeter: Available Processors =4
+2020-04-19 16:45:26,199 INFO o.a.j.JMeter: Default Locale=English (United States)
+2020-04-19 16:45:26,200 INFO o.a.j.JMeter: JMeter  Locale=English (United States)
+2020-04-19 16:45:26,200 INFO o.a.j.JMeter: JMeterHome=/home/fn/opt/apache-jmeter-5.2.1
+2020-04-19 16:45:26,200 INFO o.a.j.JMeter: user.dir  =/home/fn/code/snippets/java
+2020-04-19 16:45:26,200 INFO o.a.j.JMeter: PWD       =/home/fn/code/snippets/java
+2020-04-19 16:45:26,243 INFO o.a.j.JMeter: IP: 192.168.1.5 Name: mnutop FullName: mnutop.home
+2020-04-19 16:45:26,673 INFO o.a.j.g.a.LookAndFeelCommand: Installing Darcula LAF
+2020-04-19 16:45:26,777 INFO o.a.j.g.a.LookAndFeelCommand: Using look and feel: javax.swing.plaf.metal.MetalLookAndFeel [Darcula]
+2020-04-19 16:45:26,777 INFO o.a.j.JMeter: Setting LAF to: javax.swing.plaf.metal.MetalLookAndFeel
+2020-04-19 16:45:26,791 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2020-04-19 16:45:29,159 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-19 16:45:29,160 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-19 16:45:29,160 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-19 16:45:29,160 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2020-04-19 16:45:29,161 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2020-04-19 16:45:29,161 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2020-04-19 16:45:29,626 INFO o.a.j.e.KeyToolUtils: keytool found at 'keytool'
+2020-04-19 16:45:29,629 INFO o.a.j.p.h.p.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /home/fn/opt/apache-jmeter-5.2.1/bin/proxyserver.jks
+2020-04-19 16:45:29,846 INFO o.a.j.s.FileServer: Default base='/home/fn/code/snippets/java'
+2020-04-19 16:45:30,423 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2020-04-19 16:45:30,424 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to ISO-8859-1
+2020-04-19 16:45:30,424 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2020-04-19 16:45:30,424 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2020-04-19 16:45:30,457 INFO o.a.j.v.ViewResultsFullVisualizer: Add JavaFX to your Java installation if you want to use renderer: org.apache.jmeter.visualizers.RenderInBrowser

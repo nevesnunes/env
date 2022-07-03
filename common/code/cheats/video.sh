@@ -8,7 +8,7 @@ env LD_PRELOAD=/usr/lib64/libv4l/v4l1compat.so
 
 # change fps
 
-ffmpeg -i input.mp4 -c:v libx265 -crf 26 -preset fast -filter:v fps=30 output.mp4
+ffmpeg -i input.mp4 -c:v libx265 -crf 17 -preset fast -filter:v fps=30 output.mp4
 
 # dump encrypted vobs
 # See: https://www.reddit.com/r/linuxquestions/comments/5r0159/how_can_i_backup_copy_protected_dvds_on_linux/
@@ -56,10 +56,8 @@ vlc http://server_ip_address:8082/stream.flv
 # rip dvd
 
 ffmpeg -i concat:VTS_02_1.VOB\|VTS_02_2.VOB\|VTS_02_3.VOB\|VTS_02_4.VOB\|VTS_02_5.VOB -map 0:v:0 -map 0:a:0 -codec:a libvo_aacenc -ab 128 -codec:v libx264 -vpre libx264-ipod640 movie.mp4
-
 # ||
 ffmpeg -i your_VOB_file.VOB -c:v copy -c:a copy output.mp4
-
 # ||
 ffmpeg -analyzeduration 100M -probesize 100M -i output.vob
 # Input #0, mpeg, from 'output.vob':
@@ -80,7 +78,7 @@ ffmpeg \
   -metadata:s:a:1 language=eng -metadata:s:a:1 title="English stereo" \
   -metadata:s:s:0 language=ita -metadata:s:s:0 title="Italian" \
   -metadata:s:s:1 language=eng -metadata:s:s:1 title="English" \
-  -codec:v libx264 -crf 21 \
+  -codec:v libx264 -crf 17 \
   -codec:a libmp3lame -qscale:a 2 \
   -codec:s copy \
   output.mkv
@@ -110,6 +108,15 @@ ffmpeg -i foo.mkv -c:v libx264 -x264-params keyint=$((5*24)):scenecut=0 -preset 
 ffmpeg -i foo.mkv -c:v libx265 -x265-params lossless=1 bar.mkv
 # ||
 ffmpeg -i foo.mkv -c:v ffv1 bar.mkv
+
+# Reencode lossy
+
+# https://trac.ffmpeg.org/wiki/TheoraVorbisEncodingGuide
+# :( huge
+ffmpeg -i foo.mkv -c:v libtheora -qscale:v 10 foo.ogg
+# https://trac.ffmpeg.org/wiki/Encode/AV1
+# :( slow
+ffmpeg -i foo.mkv -c:v libaom-av1 -crf 17 -b:v 0 foo.webm
 
 # Crop
 # - Parameter: crop=$w:$h:$x:$y

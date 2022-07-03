@@ -72,14 +72,7 @@ let b:ale_warn_about_trailing_whitespace = 0
 
 " TODO: add linters
 " - typescript-language-server
-call ale#linter#Define('python', {
-            \   'name': 'pyls',
-            \   'lsp': 'socket',
-            \   'address': '127.0.0.1:10777',
-            \   'language': 'python',
-            \   'project_root': 'ale#python#FindProjectRoot',
-            \   'completion_filter': 'ale#completion#python#CompletionItemFilter',
-            \ })
+" - 'java': ['eclipselsp', 'javac'],
 let g:ale_fixers = {
             \ 'c': ['clangtidy'],
             \ 'cpp': ['clangtidy'],
@@ -87,7 +80,7 @@ let g:ale_fixers = {
             \ }
 let g:ale_linters = {
             \ 'go': ['gopls'],
-            \ 'java': ['eclipselsp', 'javac'],
+            \ 'java': ['javac'],
             \ 'javascript': ['tsserver', 'eslint'],
             \ 'python': ['pyls'],
             \ 'sh': ['shellcheck'],
@@ -178,6 +171,17 @@ function! g:Undotree_CustomMap()
 endfunction
 
 function! VimEnterPluginBehaviour()
+    if exists('*ale#linter#Define')
+        call ale#linter#Define('python', {
+                    \   'name': 'pyls',
+                    \   'lsp': 'socket',
+                    \   'address': '127.0.0.1:10777',
+                    \   'language': 'python',
+                    \   'project_root': 'ale#python#FindProjectRoot',
+                    \   'completion_filter': 'ale#completion#python#CompletionItemFilter',
+                    \ })
+    endif
+
     if exists(':GundoToggle')
         " Dependencies: python2
         nnoremap <F4> :GundoToggle<CR>
@@ -576,20 +580,22 @@ augroup filetype_group
     " redir @">|silent echo '# ' . expand('%:t:r')|redir END|put
     autocmd BufNewFile *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown} put = '# ' . expand('%:t:r') | normal! ggdd2o
 
-    autocmd BufNewFile *.awk 0r ~/code/snippets/recipes/awk | normal! Gdd
-    autocmd BufNewFile *.java 0r ~/code/snippets/recipes/java |
-                \ for i in range(1, line('$')) |
-                \     call setline(i, substitute(getline(i), '%%%', expand('%:t:r'), '')) |
-                \ endfor |
-                \ normal! 6gg
-    autocmd BufNewFile *.py 0r ~/code/snippets/recipes/py | normal! Gdd
-    autocmd BufNewFile *.sh 0r ~/code/snippets/recipes/sh | normal! Gdd
-    autocmd BufNewFile *.zsh 0r ~/code/snippets/recipes/zsh | normal! Gdd
-    autocmd BufNewFile *.yml,*.yaml 0r ~/code/snippets/recipes/yaml | normal! Gdd
-    autocmd BufNewFile Makefile* 0r ~/code/snippets/recipes/Makefile | normal! Gddgg
-    autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json | normal! Gddgg
-    autocmd BufRead,BufNewFile *.{diz,DIZ,nfo,NFO} setlocal filetype=nfo
-    autocmd BufNewFile pom.xml 0r ~/code/snippets/recipes/pom.xml | normal! Gdd
+    if isdirectory(expand('~/code/snippets/recipes/'))
+        autocmd BufNewFile *.awk 0r ~/code/snippets/recipes/awk | normal! Gdd
+        autocmd BufNewFile *.java 0r ~/code/snippets/recipes/java |
+                    \ for i in range(1, line('$')) |
+                    \     call setline(i, substitute(getline(i), '%%%', expand('%:t:r'), '')) |
+                    \ endfor |
+                    \ normal! 6gg
+        autocmd BufNewFile *.py 0r ~/code/snippets/recipes/py | normal! Gdd
+        autocmd BufNewFile *.sh 0r ~/code/snippets/recipes/sh | normal! Gdd
+        autocmd BufNewFile *.zsh 0r ~/code/snippets/recipes/zsh | normal! Gdd
+        autocmd BufNewFile *.yml,*.yaml 0r ~/code/snippets/recipes/yaml | normal! Gdd
+        autocmd BufNewFile Makefile* 0r ~/code/snippets/recipes/Makefile | normal! Gddgg
+        autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json | normal! Gddgg
+        autocmd BufRead,BufNewFile *.{diz,DIZ,nfo,NFO} setlocal filetype=nfo
+        autocmd BufNewFile pom.xml 0r ~/code/snippets/recipes/pom.xml | normal! Gdd
+    endif
 
     " Open folds
     autocmd FileType markdown normal! zR

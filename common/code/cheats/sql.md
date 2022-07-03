@@ -4,6 +4,10 @@
 - [Screenshots of our DB Software \- DbVisualizer](https://www.dbvis.com/features/software-screenshots/)
 - [How to create a 1M record table with a single query \| Anton Zhiyanov](https://antonz.org/random-table/)
 
+# extensions
+
+- [SQL CUBE](https://www.sqltutorial.org/sql-cube/): generate 2^n sub-totals for aggregate functions over n columns
+
 # exploratory
 
 ```sql
@@ -699,6 +703,8 @@ https://stackoverflow.com/questions/10589350/oracle-db-equivalent-of-on-duplicat
     - https://stackoverflow.com/questions/2360396/how-can-i-merge-the-columns-from-two-tables-into-one-output
 
 # case studies
+
+- https://blog.acolyer.org/2018/06/28/how-_not_-to-structure-your-database-backed-web-applications-a-study-of-performance-bugs-in-the-wild/
 
 ### length operator loads full blob data
 

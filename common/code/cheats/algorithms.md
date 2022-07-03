@@ -622,16 +622,49 @@ private Expr unary() {
     }
     return primary();
 }
+// visitor: traverse AST
+interface PastryVisitor {
+  void visitBeignet(Beignet beignet);
+  void visitCruller(Cruller cruller);
+}
+class Beignet extends Pastry {
+  @Override
+  void accept(PastryVisitor visitor) {
+    visitor.visitBeignet(this);
+  }
+}
+class AstPrinter implements Expr.Visitor<String> {
+  String print(Expr expr) {
+    return expr.accept(this);
+  }
+}
 ```
 
 - java
     - https://craftinginterpreters.com/contents.html
+        - on errors: 6.3.3 Synchronizing a recursive descent parser
 - rust
     - https://www.huy.rocks/everyday/05-08-2022-parsing-recursive-descent-parser
     - https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html
     - https://github.com/sqlparser-rs/sqlparser-rs
 - precedence
     - https://www.engr.mun.ca/~theo/Misc/exp_parsing.htm
+
+# caching
+
+- avoid recomputation on repeated cache misses: subsequent requests wait for already running computation
+    - https://google.github.io/guava/releases/19.0/api/docs/com/google/common/cache/CacheBuilder.html
+- https://www.thejach.com/view/2017/6/caches_are_evil
+
+# zero-copy
+
+- serialization
+    - https://rkyv.org/zero-copy-deserialization.html
+    - https://capnproto.org/encoding.html
+- pipes
+    - https://mazzo.li/posts/fast-pipes.html
+- syscalls
+    - https://wjwh.eu/posts/2021-10-01-no-syscall-server-iouring.html
 
 # Big-O
 
@@ -732,6 +765,18 @@ O(f(n)) + O(g(n)) → O(max(f(n),g(n)))
 
 # case studies
 
+- improving compression by sorting data
+    - [The sort \-\-key Trick · Gwern\.net](https://www.gwern.net/Sort)
+        ```bash
+        # Sort by first subdirectory (if there’s a bunch of foo.com/wp-content/* & bar.com/wp-content/* files, then the /wp-content/ files will all sort together regardless of “f” and “b” being far from each other; similarly for domain.com/images/, domain.com/css/ etc):
+        cd ~/www/ && find . -type f -print0 \
+            | sort --zero-terminated --key=3 --field-separator="/" \
+            | tar c --to-stdout --no-recursion --null --files-from - \
+            | xz -9 --stdout \
+            | wc --bytes
+        # 23897682908
+        ## 0.2763×
+        ```
 - efficient weighted graph traversal
     - https://github.com/Pusty/writeups/tree/master/pbctf2021#binary-tree
 - API references with time complexity

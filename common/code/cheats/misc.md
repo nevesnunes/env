@@ -77,6 +77,7 @@ msf > set FOO 123
 - https://www.cisa.gov/uscert/mailing-lists-and-feeds
 - https://rss.packetstormsecurity.com/files/
 - https://seclists.org/rss/fulldisclosure.rss
+- https://attackerkb.com/
 
 # racing, race-condition
 

@@ -1,6 +1,8 @@
 # +
 
 - [C\+\+ Cheat Sheets &amp; Infographics \| hacking C\+\+](https://hackingcpp.com/cpp/cheat_sheets.html)
+- [linux/tools/include/nolibc at master · torvalds/linux · GitHub](https://github.com/torvalds/linux/tree/master/tools/include/nolibc)
+- https://vorpus.org/blog/why-does-calloc-exist/
 
 # explain
 
@@ -146,6 +148,13 @@ int main() { puts("Hi!"); return 0; }' \
 # create shared library
 gcc foo.c -o foo -shared -fPIC
 
+# linking shared library
+gcc -L. -lfoo foo.c -o foo
+LD_RUNTIME_PATH=. ./foo
+# ||
+gcc -L. -lfoo -Wl,-rpath,$PWD foo.c -o foo
+./foo
+
 # both c and c++
 ./configure \
     LDFLAGS="-L/foo/usr/lib" \
@@ -172,7 +181,8 @@ LIBS=-l:libfoo.so.123 ./configure
 less ./config.log
 ```
 
-https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
+- https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html
+- https://gcc.gnu.org/onlinedocs/cpp/Environment-Variables.html
 
 #### MinGW GCC support
 

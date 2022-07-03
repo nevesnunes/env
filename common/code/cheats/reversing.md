@@ -258,8 +258,14 @@
         - https://en.wikipedia.org/wiki/Type%E2%80%93length%E2%80%93value
             - invalid size may lead to unchecked memory read/write
 - binary patching, code injection, [fault inducing](./fuzzing.md#fault-injection)
+    - converting calls to jmps to disassemble as subroutine (e.g. un-nest calls, recover params/returned values on atypical calling conventions)
+        - https://ctf.harrisongreen.me/2020/googlectf/exceptional/
+            - use `jz 5 + jmp foo + jmp bar` for multiple targets
     - static instrumentation by taking instructions from another compiled source
         - https://mrt4ntr4.github.io/Noverify-Java-Crackme-3/
+            - adding prints via Recaf
+        - https://ctf.harrisongreen.me/2020/redpwnctf/java_is_ez_2/
+            - adding prints via JByteMod
         - https://ctf.harrisongreen.me/2021/midnightsunfinals/elbrus/
             > Most of my experience with patching at this point relied on either disassemblers like Binary Ninja or programatically modifying certain instructions at the assembly level. However, since there is no existing interactive disassembler for Elbrus and I don’t understand it well enough to program assembly for it, I used the e2k-gcc tool to compile C code and then simply copied the instructions directly into the binary.
             ```c
@@ -323,12 +329,21 @@ clang -emit-llvm -S foo.c -o foo.ll
 llvm-as foo.ll -o foo.bc
 llvm-dis foo.bc -o foo.ll
 
+# lower from mlir
+mlir-opt --convert-std-to-llvm foo.mlir -o foo.llvm.mlir
+mlir-translate --mlir-to-llvmir foo.llvm.mlir -o foo.bc
+
 # run
 lli foo.bc
 
 # compile
 llc -march=x86-64 foo.bc -o foo.s
 clang -S foo.bc -o foo.s -fomit-frame-pointer
+# ||
+llc -march=x86-64 foo.bc -o foo.s
+gcc foo.s externc.c -o foo
+# ||
+llc -march=x86-64 foo.bc -o foo.o -filetype=obj
 ```
 
 # seccomp
@@ -350,6 +365,8 @@ clang -S foo.bc -o foo.s -fomit-frame-pointer
 
 # vm
 
+- https://ctf.harrisongreen.me/2022/tetctf/crackme_pls/
+    - un-flatten control flow by setting user indirect branches
 - https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/
 
 # functional programming

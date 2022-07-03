@@ -93,6 +93,10 @@ docker-machine create -d virtualbox default
 eval "$(docker-machine env default)"
 ```
 
+# optimizations
+
+- [GitHub \- nathants/docker\-trace: analyze and minimize the filesystem of a container](https://github.com/nathants/docker-trace)
+
 # permissions
 
 ```bash

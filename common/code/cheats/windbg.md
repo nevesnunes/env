@@ -15,6 +15,13 @@
 
 # cheatsheet
 
+- `ba`: break on access
+- `dd <address>`: view memory
+- `dt <address> <type>`: view memory as type
+    - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/dt--display-type-
+- `~*, ~<num> f, ~<num> u`: freeze threads (e.g. finding race conditions)
+- `kc`: call stack
+
 - http://sandsprite.com/blogs/index.php?uid=7&pid=51
 - https://dblohm7.ca/pmo/windbgcheatsheet.html
 - https://medium.com/malware-buddy/reverse-engineering-tips-kernel-debugging-on-windows-10-784e43be7353

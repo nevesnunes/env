@@ -16,6 +16,8 @@ gcc -static -nodefaultlibs -m32 -march=i686
 
 LD_DEBUG=all foo
 
+gcc -ftime-report
+
 # Dynamic linking
 
 echo 'int foo(){return 123;}' | gcc -x c - -shared -o libfoo.so
@@ -23,6 +25,10 @@ echo 'int main(){return foo();}' | gcc -x c - -L. -lfoo
 LD_LIBRARY_PATH=. ltrace ./a.out
 # foo(1, 0x7ffd4adc7828, 0x7ffd4adc7838, 0x7f3ee872a598) = 123
 # +++ exited (status 123) +++
+
+# Optimizing compile time
+# https://interrupt.memfault.com/blog/improving-compilation-times-c-cpp-projects
+gcc -ftrack-macro-expansion=0
 
 # Old distro
 # https://wiki.debian.org/DebianSqueeze#FAQ

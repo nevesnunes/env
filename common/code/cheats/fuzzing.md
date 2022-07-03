@@ -1,3 +1,23 @@
+# Methodology
+
+- [CodenomiCON 2010 \- Charlie Miller \- part \#1 \- An Analysis of Fuzzing 4 Products with five lines\.\.\. \- YouTube](https://www.youtube.com/watch?v=Xnwodi2CBws)
+    - use valgrind to find subset of test cases with maximum coverage
+    - catch buffer overflows with jemalloc
+    - take unique eip from crashes, compare exploitable vs. non-exploitable cases
+    - mutation
+        ```python
+        num_writes = random.randrange(math.ceil((float(len(buf)) / fuzz_factor))) + 1
+        for j in range(num_writes):
+            rbyte = random.randrange(256)
+            rn = random.randrange(len(buf))
+            buf[rn] = "%c" % rbyte
+        ```
+- [Fuzzing Like A Caveman \- The Human Machine Interface](https://h0mbre.github.io/Fuzzing-Like-A-Caveman/)
+    - given source code: recompile with asan
+        ```bash
+        cc -fsanitize=address -ggdb -o foo foo.c
+        ```
+
 # Fault injection
 
 - use byte value of surrounding data to bypass input sanitization
@@ -70,6 +90,7 @@ lea rsp, [rsp+98h]
     ```
 - emulation
     - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
+- [GitHub \- google/honggfuzz: Security oriented software fuzzer\. Supports evolutionary, feedback\-driven fuzzing based on code coverage \(SW and HW based\)](https://github.com/google/honggfuzz)
 
 ### Mutation based fuzzing
 

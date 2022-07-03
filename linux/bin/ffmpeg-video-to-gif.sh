@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Usage:
+# ./$0 foo.mkv 00:00:00 00:00:06
+
 gif_file=output.gif
 palette_file=$(mktemp).png
 video_file=$1

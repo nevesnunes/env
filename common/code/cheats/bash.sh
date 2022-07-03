@@ -250,6 +250,12 @@ fi
 #!/usr/bin/env -S -P/usr/local/bin:/usr/bin perl arg1 arg2 arg3
 #!/usr/bin/env PATH=/home/my/loc:${PATH} perl arg1 arg2 arg3
 
+# pipe live updates to remote
+# - https://github.com/nathants/new-gocljs/blob/e1af398c689d22059ff2c83db93e8835f8fe5ebd/bin/relay.sh
+find . -type f \
+  | entr sh -c 'echo $1 $(cat $1 | base64 -w0)' _ /_ \
+  | ssh foo@bar 'while read -r file content; do echo \$content | base64 -d > \$file; done'
+
 # cannot declare a function with same name as alias
 # e.g.
 # bash: foo.sh: line 18: syntax error near unexpected token `('

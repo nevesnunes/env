@@ -42,6 +42,12 @@ remote get _path _local_path
 # handle signals
 handle SIGSEGV nostop nopass
 
+# allow other threads to run when current thread stops
+set target-async 1
+set non-stop on
+attach 1234
+continue -a &
+
 # break on current instruction of running inferior
 # <Ctrl-C>
 
@@ -88,6 +94,10 @@ x/-1i $pc
 set print pretty on
 p (short[16])*foo->bar
 p foo->bar@16
+
+# cpp
+p ('std::vector<char, std::allocator<char> >')*0x7fffffffc8c0
+# $5 = std::vector of length 4, capacity 4 = {97 'a', 98 'b', 99 'c', 0 '\000'}
 
 p/x $rbp - 0xc
 $5 = 0x7fffffffd124

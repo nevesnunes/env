@@ -196,6 +196,8 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
     - => control whether allocations are triggered
 - ! memory manager keeps linked-list of most recently freed address to allocate next objects
 
+- if race-condition: one thread creates and deletes object, another thread uses object asynchronously
+
 ```cpp
 std::string x{"AAAA"}
 printf("%zu\n", sizeof(x));
@@ -409,6 +411,13 @@ if ssl:
             - https://github.com/guywhataguy/DisableDynamicLoadAddress
 
 - [FuzzySecurity \| Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)
+
+### drivers
+
+- `gflags /r +hpa, gflags /k +hpa`: enable page heap verification
+    - https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags-and-pageheap
+- `verifier /flags 0x1 /driver MyDriver.sys`: enable special pool
+    - https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/special-pool
 
 # case studies
 

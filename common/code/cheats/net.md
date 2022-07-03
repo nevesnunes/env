@@ -1023,3 +1023,5 @@ restorecon /foo/bar
     - http + ftp + rsyncd + tftp (netascii) + smb + git smart protocol + dnscat2 + telnet
 - https://nstarke.github.io/netgear/nday/2022/03/13/reverse-engineering-a-netgear-nday.html
     - capture requests from upnp client; on /etc/proxychains4.conf: `http $proxy_host $proxy_port`; run with `proxychains4 python2 miranda.py`
+- https://decoded.avast.io/davidalvarez/linux-threat-hunting-syslogk-a-kernel-rootkit-found-under-development-in-the-wild/
+    - magic packet intercepted with netfilter and checked via key at variable offset in TCP header

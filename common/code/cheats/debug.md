@@ -373,6 +373,11 @@ rr ./foo
         > - UAF, find a new object for the reuser, or maybe a new after-free path.
         > - Add a self-imposed restriction, deal with a mitigation even if its not implemented
         > - Require stability or portability
+- https://sandboxescaper.blogspot.com/2022/06/how-to-get-into-bug-hunting.html
+    1. Find an open source project
+    2. Find an entry point for attacker controlled input
+    3. Try to get a breakpoint for that entry point to hit in windbg
+    4. Modify attacker controlled input to hit different code paths
 
 ### caller not saving volatile register
 
@@ -382,6 +387,10 @@ rr ./foo
 ### inconsistent view of file cache leaves zeros in code section
 
 - [Compiler bug? Linker bug? Windows Kernel bug. \| Random ASCII \- tech blog of Bruce Dawson](https://randomascii.wordpress.com/2018/02/25/compiler-bug-linker-bug-windows-kernel-bug/)
+
+### remote direct memory access marks page used by malloc during fork-exec
+
+- [A Cursed Bug \- Made of Bugs](https://blog.nelhage.com/post/a-cursed-bug/)
 
 ### header prediction logic missing on bulk data receiver
 

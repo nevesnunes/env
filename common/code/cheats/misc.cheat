@@ -752,4 +752,8 @@ printf 'HELLO\xc8\xc5\xd3\xd3\xd6' | LC_ALL=C grep -Poa '[\x00-\x2f\x32-\x3d\x3f
 ; https://twitter.com/ryancdotorg/status/1527345474843590656
 (while sleep 0.01; do egrep '^[a-z]+$' /usr/share/dict/words | shuf | head -n 10 | sed -e 's/^./\U&/' | tr -d '\n'; echo; done) | grep -Po '^[A-Za-z]{48}(?=[A-Z])'
 
+# Read joystick device input
+; ~/code/snippets/kernel_joystick/
+xxd /dev/input/js0
+
 ; vim: filetype=navi
