@@ -83,6 +83,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.vimperatorrc \
   /home/"$USER"/./.xbindkeysrc \
   /home/"$USER"/./.xkb \
+  /home/"$USER"/./.xprofile \
   /home/"$USER"/./.Xresources* \
   /home/"$USER"/./.zshrc \
   /home/"$USER"/./.chocolate-doom/*.cfg \

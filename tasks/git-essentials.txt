@@ -1,0 +1,2 @@
+opt:https://github.com/junegunn/fzf
+opt:https://github.com/rupa/z

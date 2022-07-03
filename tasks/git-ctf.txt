@@ -1,0 +1,2 @@
+opt:https://github.com/DynamoRIO/dynamorio
+opt:https://github.com/pwndbg/pwndbg

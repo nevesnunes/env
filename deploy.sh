@@ -8,12 +8,19 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 role=$1
-[ -d "$role" ]
 target=${2:-/home/$USER/}
 [ -d "$target" ]
 acl=${3:-$USER}
 
 sync_cmd=rsync
 echo "$acl" | grep -qi root && sync_cmd="sudo $sync_cmd"
-"$sync_cmd" -uva --usermap=:"$acl" --groupmap=:"$acl" \
-  ./"$role"/ "$target"
+role_dir=$role
+if ! [ -d "$role_dir" ] && echo "$role" | grep -qi 'linux'; then
+  role_dir=linux
+fi
+[ -d "$role_dir" ]
+"$sync_cmd" -uva --usermap=:"$acl" --groupmap=:"$acl" ./"$role_dir"/ "$target"
+
+if [ -x ./tasks/"$role".sh ]; then
+  ( cd ./tasks && ./"$role".sh )
+fi

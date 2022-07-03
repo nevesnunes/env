@@ -194,7 +194,7 @@ Mod4 + f
 Mod4 + z
 
 # "Browser"
-"user-browser"
+"user-browser.sh"
 Shift + Mod4 + b
 
 # "File Manager"
@@ -202,11 +202,11 @@ Shift + Mod4 + b
 Shift + Mod4 + f
 
 # "Tmux"
-"user-terminal -e tmux"
+"user-terminal.sh -e tmux"
 Shift + Mod4 + Return
 
 # "Terminal"
-"user-terminal"
+"user-terminal.sh"
 Mod1 + Mod4 + Return
 
 # "Gvim"
