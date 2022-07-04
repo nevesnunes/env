@@ -263,6 +263,9 @@ find . -type f \
 unalias ssh
 eval 'ssh() { :; }'
 
+# use working directory relative to script file
+wd=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+
 # jail
 # - Read using history
 export HISTFILE="/home/ctf/flag"; history -r; history

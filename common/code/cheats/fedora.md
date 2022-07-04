@@ -18,7 +18,15 @@ dnf remove $package-$version
 > file `/foo` from install `foo-2` conflicts with file from package `foo-1`
 
 ```bash
-rpm --erase --nodeps foo-1
+# erase with dependencies
+mv /etc/dnf/protected.d/systemd.conf /etc/dnf/protected.d/systemd.conf.0
+dnf --disableplugin=protected_packages erase foo-1
+mv /etc/dnf/protected.d/systemd.conf.0 /etc/dnf/protected.d/systemd.conf
+# || erase without dependencies
+rpm -v --erase --nodeps foo-1
+# || erase from rpm database
+rpm -v --justdb --erase --nodeps foo-1
+
 dnf upgrade -y --allowerasing --best
 ```
 
@@ -35,8 +43,15 @@ grep -R exclude -- /etc/yum.repos.d/ /etc/dnf/dnf.conf
 ```bash
 dnf install -y dnf-plugin-system-upgrade
 
+# Issues:
+# - `foo` does not belong to a distupgrade repository
+#   - fix: `--allowerasing --skip-broken`
+# - package `foo` is filtered out by exclude filtering
+#   - fix: comment out exclude filters in /etc/dnf/dnf.conf, verify
+#     with `dnf config-manager --dump | grep ^exclude` (includes
+#     files under /etc/dnf/ and /etc/yum.repos/*conf)
 dnf upgrade --refresh
-dnf system-upgrade download --releasever=99
+dnf system-upgrade download -y --releasever=99
 dnf system-upgrade reboot
 
 dnf system-upgrade clean
@@ -53,12 +68,13 @@ systemd-tmpfiles --clean
 # containers
 docker system prune -a --volumes
 # journal
-journalctl --vaccum-time 1s
+journalctl --vacuum-time 1s
 
+free_dir=/home
 for i in cache lib; do
-    mkdir -p /home/var/"$i"
-    mv /var/"$i"/dnf /home/var/"$i"
-    ln -s /home/var/"$i"/dnf /var/"$i"/dnf
+    mkdir -p "$free_dir/var/$i"
+    mv "/var/$i/dnf" "$free_dir/var/$i" || break
+    ln -s "$free_dir/var/$i/dnf" "/var/$i/dnf"
 done
 
 # rebuildable files

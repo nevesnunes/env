@@ -3,6 +3,9 @@
 set -eux
 
 if [ "$(id -u)" -eq 0 ]; then
+  echo "WARNING: Running as root, press enter to continue..." >&2
+  read -r _
+
   USER=$(logname)
   [ -d "/home/$USER" ]
 fi

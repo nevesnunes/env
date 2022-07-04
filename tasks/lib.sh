@@ -5,6 +5,11 @@ sync_debian_packages() {
   sudo apt install -y $(paste -sd' ' "$1")
 }
 
+sync_python_packages() {
+  pip install --user --upgrade pip
+  pip install --user $(paste -sd' ' "$1")
+}
+
 sync_git() {
   while read -r i; do
     target=$HOME/$(echo "$i" | cut -d':' -f1)

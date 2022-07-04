@@ -222,7 +222,15 @@ cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.
 
 ```bash
 # Make
-mkisofs -r -N -allow-leading-dots -d -J -T -o target.iso target
+mkisofs -r -J -T \
+  -allow-leading-dots \
+  -omit-version-number \
+  -o foo.iso foo
+# || more permissive
+mkisofs -r -J -T \
+  -allow-lowercase -allow-multidot -allow-leading-dots \
+  -omit-version-number -omit-period \
+  -o foo.iso foo
 
 # Read
 # For wine: Configure "$target-dir" in: winecfg > Drives > d: (Advanced > Type > CD-ROM)
@@ -242,6 +250,11 @@ bsdtar -C DESTINATION -xf foo.iso ISO_DIR
 xorriso -osirrox on -indev foo.iso -extract ISO_DIR DESTINATION
 isoinfo -J -x /ISO_DIR/FILE -i foo.iso > DESTINATION/FILE
 7z x -oDESTINATION -i\!ISO_DIR foo.iso
+
+# Copy and fix permissions from image mounting
+rsync -va --no-owner --no-group --include ".*" ./ "/home/$USER"
+sudo chmod -R ug+rw "/home/$USER" "/home/$USER"/* "/home/$USER"/.*
+sudo chown -R "$USER":"$USER" "/home/$USER" "/home/$USER"/* "/home/$USER"/.*
 ```
 
 - https://wiki.debian.org/ManipulatingISOs
