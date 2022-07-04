@@ -1,7 +1,6 @@
 devilspie2
-dmenu
-dunst
 gimp
+gnome-shell
 graphviz
 ifuse
 imagemagick

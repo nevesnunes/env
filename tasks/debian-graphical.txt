@@ -3,7 +3,6 @@ chromium
 firefox-esr
 fontconfig
 fonts-freefont-ttf
-lightdm
 openbox
 openbox-menu
 remmina
