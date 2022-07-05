@@ -3,7 +3,9 @@ ant
 atool
 autoconf
 automake
+autopoint
 bchunk
+clang
 cmake
 curl
 dos2unix
@@ -15,6 +17,7 @@ gdb
 git
 htop
 inotify-tools
+intltool
 iotop
 jq
 libarchive-tools
@@ -34,6 +37,7 @@ sqlite3
 subversion
 tidy
 tmux
+units
 universal-ctags
 valgrind
 vifm

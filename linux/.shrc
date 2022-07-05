@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ~/.profile
+
 set -- ~/bin/functions/*.sh
 while [ $# -gt 0 ]; do
   . "$1"
@@ -17,14 +19,6 @@ alias pip='python3 -m pip'
 alias pip2='python2 -m pip'
 alias pip3='python3 -m pip'
 alias python=python3
-
-# Package management
-alias dnf='sudo /usr/bin/dnf'
-alias yi='sudo /usr/bin/dnf install -y'
-alias yp='sudo /usr/bin/dnf -C provides'
-alias yr='sudo /usr/bin/dnf remove'
-alias ys='sudo /usr/bin/dnf -C search'
-alias yu='sudo /usr/bin/dnf upgrade -y'
 
 # Workarounds
 alias chocolate-doom='sdl_wrap.sh chocolate-doom'
@@ -95,5 +89,7 @@ pwd | grep -q '^/$' && cd ~
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [ -s "$HOME/.sdkman/bin/sdkman-init.sh" ] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # vim: filetype=sh

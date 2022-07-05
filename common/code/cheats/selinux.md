@@ -13,6 +13,9 @@ sestatus
 
 # type usage
 sudo semanage fcontext -l | grep -i openvpn
+
+# remove acl
+setfacl -bR ./foo/
 ```
 
 # docker

@@ -1,23 +1,23 @@
 # Disable auto-hiding overlay
 export GTK_OVERLAY_SCROLLING=0
-gdbus call --session --dest org.freedesktop.DBus --object-path /org/freedesktop/DBus --method org.freedesktop.DBus.UpdateActivationEnvironment '{"GTK_OVERLAY_SCROLLING": "0"}'
+gdbus call --session --dest org.freedesktop.DBus --object-path /org/freedesktop/DBus --method org.freedesktop.DBus.UpdateActivationEnvironment '{"GTK_OVERLAY_SCROLLING": "0"}' >/dev/null || true
 
 # Workaround PulseAudio crash
 export PULSE_LATENCY_MSEC=90
 
-# Perl
-# Generated with:
-# perl -I$HOME/opt/perl5/lib/perl5 -Mlocal::lib
-PATH="$HOME/opt/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="$HOME/opt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="$HOME/opt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-set -- "--install_base" \""$HOME/opt/perl5"\" 
-PERL_MB_OPT="$*"; export PERL_MB_OPT;
-set --
-PERL_MM_OPT="INSTALL_BASE=$HOME/opt/perl5"; export PERL_MM_OPT;
+## Perl
+## Generated with:
+## perl -I$HOME/opt/perl5/lib/perl5 -Mlocal::lib
+#PATH="$HOME/opt/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PERL5LIB="$HOME/opt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+#PERL_LOCAL_LIB_ROOT="$HOME/opt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+#set -- "--install_base" \""$HOME/opt/perl5"\"
+#PERL_MB_OPT="$*"; export PERL_MB_OPT;
+#set --
+#PERL_MM_OPT="INSTALL_BASE=$HOME/opt/perl5"; export PERL_MM_OPT;
 
 # Java
-# References: 
+# References:
 # - https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Basic_settings
 # - https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true -Dsun.java2d.dpiaware=true -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dswing.plaf.metal.controlFont="Liberation Sans-16" -Dswing.plaf.metal.systemFont="Liberation Sans-16" -Dswing.plaf.metal.userFont="Liberation Sans-16" -Dswing.plaf.metal.smallFont="Liberation Sans-14"'
@@ -28,9 +28,6 @@ export SCALA_HOME="$HOME/opt/scala-2.13.3"
 # Go
 #export GOROOT="$HOME/.local/share/go"
 export GOPATH="$HOME/opt/go"
-
-# Rust
-[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # Android
 export ANDROID_PREFS_ROOT="/run/media/$USER/TOSHIBA\ EXT/FN-NUX/.android"
@@ -60,8 +57,8 @@ export PAGER="less"
 
 export BROWSER='user-browser'
 export FZF_DEFAULT_OPTS='--bind=ctrl-j:accept,ctrl-k:kill-line,ctrl-u:preview-page-down,ctrl-i:preview-page-up,?:toggle-preview --header "ctrl-u:preview-page-down,ctrl-i:preview-page-up" --border=horizontal --color=16,border:7,pointer:2 --preview '"'"'echo {} | sed -e "s/^ *\([0-9]*\) *//" -e "s/.\{$((COLUMNS-4))\}/&\n/g"'"'"' --preview-window down:6:hidden'
-export LC_ALL='en_GB.UTF-8'
-export LC_TIME='en_GB'
+export LC_ALL='en_US.UTF-8'
+export LC_TIME='en_US'
 export NAVI_PATH=~/code/cheats
 export NODE_PATH=~/.local/lib/node_modules
 export PYTHONSTARTUP=~/.config/pythonrc

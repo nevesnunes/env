@@ -2,7 +2,7 @@
 
 set -eu
 
-libretro_dir="$HOME/games/+/libretro-super"
+libretro_dir=${1:-$HOME/games/+/libretro-super}
 if ! [ -d "$libretro_dir" ]; then
   mkdir -p "$libretro_dir"
   git clone https://github.com/libretro/libretro-super.git "$libretro_dir"

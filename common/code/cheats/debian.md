@@ -40,6 +40,12 @@ apt-get source foo
 grep Build-Depends foo-1.dsc \
     | sed 's/Build-Depends: //g; s/\( ([^\)]*)\)\?, / /g; s/ \[[^]]*\] */ /g;' \
     | xargs apt install
+
+# install with dependencies
+dpkg -i ./foo.deb
+apt -f install
+# ||
+apt install ./foo.deb
 ```
 
 ### upgrade distro version
@@ -98,11 +104,25 @@ On /etc/apt/apt.conf.d/00default-release:
 APT::Default-Release "stable";
 ```
 
+On /etc/apt/preferences.d/00default:
+
+```
+Package: *
+Pin: release a=stable
+Pin-Priority: 900
+
+Package: *
+Pin: release o=Debian
+Pin-Priority: -10
+```
+
 Installing packages:
 
 ```bash
 apt -t testing install foo
 ```
+
+- https://debian-handbook.info/browse/stable/sect.apt-get.html#sect.apt.priorities
 
 ### extract deb
 

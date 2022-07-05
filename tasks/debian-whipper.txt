@@ -1,0 +1,6 @@
+flac
+libcdio-dev
+libdiscid-dev
+libiso9660-dev
+libsndfile1-dev
+swig

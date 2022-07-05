@@ -34,6 +34,17 @@ python3 ~/bin/mozlz4a.py -d recovery.jsonlz4 previous.js
 cp previous.js sessionstore.js
 ```
 
+- Open tabs and windows
+    - `sessionstore.jsonlz4` (when Firefox is closed)
+    - `sessionstore-backups/`
+        - `previous.jsonlz4` (cleanBackup: copy of sessionstore.jsonlz4 from previous session that was loaded successfully)
+        - `recovery.jsonlz4` (latest version of sessionstore.jsonlz4 written during runtime)
+        - `recovery.baklz4` (previous version of sessionstore.jsonlz4 written during runtime)
+        - `upgrade.jsonlz4-<build_id>` (backup created during an upgrade of Firefox)
+    > You can copy a file from the sessionstore-backups folder to the main profile and rename the file to sessionstore.jsonlz4 to replace the current file with Firefox closed.
+
+- https://support.mozilla.org/en-US/questions/1371900
+
 # zoom
 
 https://superuser.com/questions/1270927/how-to-set-default-web-page-size-in-firefox
@@ -89,4 +100,27 @@ From `about:memory`:
 
 - [1500150 \- Setting dom\.ipc\.processCount=1 still creates multiple content processes](https://bugzilla.mozilla.org/show_bug.cgi?id=1500150)
 
+# Profiles
 
+- Bookmarks, Downloads and Browsing History
+    - places.sqlite
+    - favicons.sqlite
+- Passwords
+    - key4.db
+    - logins.json
+- Site-specific preferences
+    - permissions.sqlite
+- Search engines
+    - search.json.mozlz4
+- Personal dictionary
+    - persdict.dat
+- Autocomplete history
+    - formhistory.sqlite
+- Cookies
+    - cookies.sqlite
+- Security certificate settings
+    - cert9.db
+- File types and download actions
+    - handlers.json
+
+- https://support.mozilla.org/en-US/kb/recovering-important-data-from-an-old-profile
