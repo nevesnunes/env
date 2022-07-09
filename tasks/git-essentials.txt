@@ -1,2 +1,3 @@
 opt:https://github.com/junegunn/fzf
 opt:https://github.com/rupa/z
+share/opt:https://github.com/brendangregg/perf-tools

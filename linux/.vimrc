@@ -4,6 +4,16 @@ filetype indent on
 
 " {{{ PLUGINS
 
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_follow_anchor = 0
+let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_fenced_languages = ['antlr', 'asm', 'asm68k', 'awk', 'bash', 'basic', 'c', 'cmake', 'conf', 'cpp', 'css', 'diff', 'dot', 'fasm', 'gdb', 'glsl', 'hex', 'html', 'java', 'javascript', 'json', 'log', 'make', 'nasm', 'perl', 'php', 'ps1', 'python', 'r', 'scala', 'sh', 'sql', 'strace', 'svg', 'typescript', 'vim', 'xml', 'xxd', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'js=javascript', 'powershell=ps1']
+let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
+
+" vim-polyglot
+let g:polyglot_disabled = ['md', 'markdown']
+
 set runtimepath+=~/vimfiles
 
 if filereadable(expand('~/.vim/autoload/pathogen.vim'))
@@ -149,12 +159,6 @@ let g:clang_snippets_engine='clang_complete'
 " Jedi
 let g:jedi#auto_close_doc=1
 let g:jedi#popup_on_dot=0
-
-" vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_follow_anchor = 0
-let g:vim_markdown_no_extensions_in_markdown = 1
-let g:vim_markdown_fenced_languages = ['batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'powershell=ps1']
 
 " vimtex
 let g:tex_flavor = 'latex'

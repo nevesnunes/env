@@ -87,9 +87,28 @@ cat /etc/fstab
 # Fixing backup GPT
 sfdisk -d /dev/sda > ./sda.part
 sgdisk -e /dev/sda
+
+# Add to filesystem table
+# take $uuid
+blkid /dev/sdaX
+# if encrypted
+echo "foo UUID=$uuid none" >> /etc/crypttab
+# add
+echo "UUID=$uuid /foo ext4 defaults 0 0 0" >> /etc/fstab
 ```
 
 - https://www.tldp.org/HOWTO/Partition/fdisk_partitioning.html
+
+### LVM
+
+```sh
+# List volume groups, take $vg
+vgdisplay
+# Activate all logical volumes in volume group
+vgchange -ay "$vg
+# Validation
+mount /dev/mapper/foo /mnt
+```
 
 # Format/Flash USB disk
 

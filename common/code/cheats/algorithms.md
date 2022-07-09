@@ -17,6 +17,7 @@
 - [GitHub \- tayllan/awesome\-algorithms: A curated list of awesome places to learn and/or practice algorithms\.](https://github.com/tayllan/awesome-algorithms)
 - [GitHub \- TSiege/Tech\-Interview\-Cheat\-Sheet: Studying for a tech interview sucks\. Here&\#39;s an open source cheat sheet to help](https://github.com/TSiege/Tech-Interview-Cheat-Sheet)
 - [Algorithms and Data Structures Cheatsheet](https://algs4.cs.princeton.edu/cheatsheet/)
+- [Algorithms for Modern Hardware \- Algorithmica](https://en.algorithmica.org/hpc/)
 
 - https://news.ycombinator.com/item?id=7953725
     - https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_Tortoise_and_Hare
@@ -656,6 +657,22 @@ class AstPrinter implements Expr.Visitor<String> {
     - https://google.github.io/guava/releases/19.0/api/docs/com/google/common/cache/CacheBuilder.html
 - https://www.thejach.com/view/2017/6/caches_are_evil
 
+# jit
+
+1. mmap / new / malloc (mprotect)
+2. generate native code
+3. c cast / reinterpret_cast
+4. call (trampoline)
+    - e.g. https://chromium.googlesource.com/external/WebKit_trimmed/+/3b62889d46d3fa3b09e261026068121ac190aa61/Source/JavaScriptCore/jit/JITStubs.cpp#91
+
+- register allocation: linear scan / graph coloring
+- type inference: avoid time on typeof() and converting values for numeric operations
+- tagged pointer: avoid time on sizeof() for structs that represent e.g. small integers
+    - e.g. https://github.com/WebKit/WebKit/blob/a6d202ce15959aa453db000ed31e4be5130e7065/Source/JavaScriptCore/runtime/JSCJSValue.h#L395
+    - [Small objects and pointer tagging \| Max Bernstein](https://bernsteinbear.com/blog/small-objects/)
+
+- https://en.wikipedia.org/wiki/Profile-guided_optimization
+
 # zero-copy
 
 - serialization
@@ -665,6 +682,10 @@ class AstPrinter implements Expr.Visitor<String> {
     - https://mazzo.li/posts/fast-pipes.html
 - syscalls
     - https://wjwh.eu/posts/2021-10-01-no-syscall-server-iouring.html
+
+# Vectorization (SIMD)
+
+- https://www.tinybird.co/blog-posts/simd
 
 # Big-O
 

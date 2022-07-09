@@ -1,0 +1,84 @@
+https://bugzilla.redhat.com/show_bug.cgi?id=1348688#c39
+
+I have reproduced in a VM on a Fedora 25 host with qemu-system-x86 (other non @^minimal-environment packages needed for this process include wget, gdisk, qemu-img, and a desktop environment unless you use SPICE or VNC to view QEMU).
+
+#
+# I used this installer
+#
+wget 'https://mirrors.kernel.org/fedora/development/26/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-26-20170506.n.0.iso'
+
+#
+# Pre-partition an empty disk
+# (using host via qemu-nbd)
+#
+
+# Create disk image
+qemu-img create -f qed fedora.bug.1348688.test.qed 32G
+
+# Open disk image on host
+sudo modprobe nbd max_part=64
+sudo qemu-nbd -c /dev/nbd0 -f qed fedora.bug.1348688.test.qed
+
+# Partition disk
+sudo sgdisk /dev/nbd0 \
+  -Z \
+  -n=1::+1M -t=1:ef02 -c=1:'BIOS boot partition' \
+  -n=2::+64M -t=2:ef00 -c=2:'EFI System Partition' \
+  -n=3::+512M -t=3:8300 -c=3:'boot' \
+  -n=4:: -t=4:8300 -c=4:'' \
+  -p
+
+# Create LUKS
+sudo cryptsetup luksFormat /dev/nbd0p4
+sudo cryptsetup open --type luks /dev/nbd0p4 cryptroot
+
+# Create VG (named after its own UUID)
+sudo lvm pvcreate /dev/mapper/cryptroot
+sudo lvm vgcreate vg00 /dev/mapper/cryptroot
+eval "$(sudo lvm vgs --nameprefixes --no-headings -o uuid vg00)"
+sudo lvm vgrename vg00 "vg_$LVM2_VG_UUID"
+
+# Create root LV
+sudo lvm lvcreate -l 100%FREE -n root "vg_$LVM2_VG_UUID"
+
+# Close everything
+sudo lvm vgchange -an "vg_$LVM2_VG_UUID"
+sudo cryptsetup close cryptroot
+sudo qemu-nbd -d /dev/nbd0
+
+#
+# Start VM with just-partitioned disk
+#
+qemu-system-x86_64 \
+  -nodefaults -nodefconfig -no-user-config \
+  -machine q35,accel=kvm -cpu host -smp cores=$(nproc) -m 2G \
+  -drive file="/usr/share/edk2/ovmf/OVMF_CODE.fd",format=raw,if=pflash,readonly=on \
+  -device virtio-vga \
+  -device virtio-net-pci,netdev=eth0 -netdev user,id=eth0 \
+  -drive file="Fedora-Everything-netinst-x86_64-26-20170506.n.0.iso",format=raw,media=cdrom,if=none,id=cdrom0 \
+  -device virtio-scsi-pci,id=scsi -device scsi-disk,drive=cdrom0,bus=scsi.0 \
+  -drive file="fedora.bug.1348688.test.qed",format=qed,if=virtio \
+  -monitor stdio
+
+
+In installer:
+
+ - Accept fate
+ - Select Installation Destination
+   - Storage Configuration: Custom
+   - Done (Installation Destination)
+      - Expand "Unknown" category
+      - Select "Encryoted (LUKS)", unlock
+
+Notice vg_whatever-root is not an option (was immediately an option in F25).
+
+
+Woraround:
+
+ - Main menu with Done (Manual Partitioning) twice
+    - Select Installation Destination
+       - Click "Refresh..." in bottom right
+          - Rescan Disks
+       - Done (Installation Destination)
+
+Notice vg_whatever-root is now available.

@@ -27,7 +27,7 @@
 - [RFC 768 \- User Datagram Protocol](https://tools.ietf.org/html/rfc768)
 - [RFC 793 \- Transmission Control Protocol](https://tools.ietf.org/html/rfc793)
 - [RFC 791 \- Internet Protocol](https://tools.ietf.org/html/rfc791)
-- [RFC 8200 \- Internet Protocol, Version 6 \(IPv6\) Specification](https://tools.ietf.org/html/rfc8200)
+    - [RFC 8200 \- Internet Protocol, Version 6 \(IPv6\) Specification](https://tools.ietf.org/html/rfc8200)
 - [RFC 792 \- Internet Control Message Protocol](https://tools.ietf.org/html/rfc792)
 - [RFC 826 \- An Ethernet Address Resolution Protocol: Or Converting Network Protocol Addresses to 48\.bit Ethernet Address for Transmission on Ethernet Hardware](https://tools.ietf.org/html/rfc826)
 
@@ -35,10 +35,19 @@
 
 # performance
 
-- https://serverfault.com/questions/189784/java-fat-client-slow-when-connecting-to-localhost-fast-with-remote
-- https://hc.apache.org/httpclient-3.x/performance.html
+- [Optimizing web servers for high throughput and low latency \- Dropbox](https://dropbox.tech/infrastructure/optimizing-web-servers-for-high-throughput-and-low-latency)
+- HTTP
+    - [HttpClient \- HttpClient Performance Optimization Guide](https://hc.apache.org/httpclient-3.x/performance.html)
+    - [High Performance Browser Networking \(O'Reilly\)](https://hpbn.co/)
+        - [Is TLS Fast Yet?](https://istlsfastyet.com/)
+- TCP
+    - [Extreme HTTP Performance Tuning: 1.2M API req/s on a 4 vCPU EC2 Instance](https://talawah.io/blog/extreme-http-performance-tuning-one-point-two-million/)
+    - [Coping with the TCP TIME\-WAIT state on busy Linux servers](https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#summary)
+    - [Linux TCP/IP tuning for scalability](http://web.archive.org/web/20130505094645/http://www.lognormal.com/blog/2012/09/27/linux-tcpip-tuning/)
 - [The C10K problem - handling ten thousand clients simultaneously](http://www.kegel.com/c10k.html)
-- [Coping with the TCP TIME\-WAIT state on busy Linux servers](https://vincent.bernat.ch/en/blog/2014-tcp-time-wait-state-linux#summary)
+    - [Linux Kernel Tuning for C500k \| Urban Airship Blog](https://web.archive.org/web/20101206050315/http://blog.urbanairship.com/blog/2010/09/29/linux-kernel-tuning-for-c500k/)
+- [Case study: Network bottlenecks on a Linux server: Part 1 \- The NIC \| by Oscar Eriksson \| Medium](https://archive.md/WB8wK)
+- [Case study: Network bottlenecks on a Linux server: Part 2 \- The Kernel \| by Oscar Eriksson \| Medium](https://archive.md/pWLl7)
 
 # fingerprinting
 
@@ -718,7 +727,7 @@ nghttp -v -ans https://foo/index.html
 - [The Transport Layer Security (TLS) Protocol Version 1.2](https://datatracker.ietf.org/doc/html/rfc5246)
 - [RFC 2246 \- The TLS Protocol Version 1\.0](https://tools.ietf.org/html/rfc2246)
 
-### Alternatives to certificate dumping 
+### Alternatives to certificate dumping
 
 - replace `https://` by `http://` in URLs
     - may fail on: integrity checks, dynamically constructed URLs, servers that only listen for HTTPS

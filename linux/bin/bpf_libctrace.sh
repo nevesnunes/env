@@ -12,9 +12,10 @@ if ! [ -x "$bin" ]; then
   exit 1
 fi
 
+libc=$(ldd /bin/sh | awk '/libc.so/{print $(NF-1)}')
 uprobes=$(objdump --wide --dynamic-syms "$bin" \
   | awk '/DF.*LIBC/{print $NF}' \
-  | sed 's_\(.*\)_uprobe:/usr/lib64/libc-2.33.so:\1_g' \
+  | sed 's%\(.*\)%uprobe:'"$libc"':\1%g' \
   | paste -sd',')
 uretprobes=$(echo "$uprobes" | sed 's/uprobe:/uretprobe:/g')
 

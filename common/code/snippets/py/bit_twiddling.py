@@ -11,3 +11,6 @@ def i24(n):
 
 def i32(n):
     return ((n & 0xffffffff) ^ 0x80000000) - 0x80000000
+
+def i64(n):
+    return ((n & 0xffffffffffffffff) ^ 0x8000000000000000) - 0x8000000000000000

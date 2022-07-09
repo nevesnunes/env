@@ -33,3 +33,5 @@
     defaultBranch = master
 [push]
 	default = simple
+[pull]
+	rebase = false

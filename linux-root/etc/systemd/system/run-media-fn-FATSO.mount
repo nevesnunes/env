@@ -1,0 +1,14 @@
+[Unit]
+DefaultDependencies=no
+Conflicts=umount.target
+Before=local-fs.target umount.target
+After=media-fn-FATSO.mount
+
+[Mount]
+What=/media/fn/FATSO
+Where=/run/media/fn/FATSO
+Type=none
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

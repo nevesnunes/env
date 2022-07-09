@@ -1,0 +1,14 @@
+[Unit]
+DefaultDependencies=no
+Conflicts=umount.target
+Before=local-fs.target umount.target
+After=media-fn-TOSHIBA\x2dEXT.mount
+
+[Mount]
+What=/media/fn/TOSHIBA-EXT
+Where=/run/media/fn/TOSHIBA-EXT
+Type=none
+Options=bind
+
+[Install]
+WantedBy=local-fs.target

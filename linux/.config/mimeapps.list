@@ -63,7 +63,7 @@ audio/x-wav=audacity.desktop;audacious.desktop;deadbeef.desktop;
 audio/x-xm=milkytracker.desktop;audacious.desktop;deadbeef.desktop;
 image/bmp=qimgv.desktop;
 image/gif=qimgv.desktop;feh.desktop;gimp.desktop;gthumb.desktop;
-image/jpeg=qimgv.desktop;gimp.desktop;eog.desktop;darktable.desktop;gthumb.desktop;feh.desktop;
+image/jpeg=qimgv.desktop;gimp.desktop;eog.desktop;darktable.desktop;gthumb.desktop;feh.desktop;viewnior.desktop;
 image/jpg=qimgv.desktop;
 image/pjpeg=qimgv.desktop;
 image/png=qimgv.desktop;gimp.desktop;eog.desktop;inkscape.desktop;darktable.desktop;grafx2.desktop;kde4-krita_tga.desktop;viewnior.desktop;
@@ -136,7 +136,7 @@ x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/http=exo-web-browser.desktop;firefox.desktop;userapp-Firefox-9PKSO1.desktop;
 x-scheme-handler/https=exo-web-browser.desktop;firefox.desktop;userapp-Firefox-9PKSO1.desktop;
 x-scheme-handler/mailto=exo-mail-reader.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop;userapp-Telegram Desktop-TKW7O1.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop
 
 [Default Applications]
@@ -190,7 +190,7 @@ audio/x-wav=deadbeef.desktop
 audio/x-xm=milkytracker.desktop
 image/bmp=qimgv.desktop
 image/gif=qimgv.desktop
-image/jpeg=qimgv.desktop
+image/jpeg=viewnior.desktop
 image/jpg=qimgv.desktop
 image/pjpeg=qimgv.desktop
 image/png=viewnior.desktop
@@ -261,7 +261,7 @@ x-scheme-handler/http=userapp-Firefox-9PKSO1.desktop
 x-scheme-handler/https=userapp-Firefox-9PKSO1.desktop
 x-scheme-handler/irc=pidgin.desktop
 x-scheme-handler/mailto=mozilla-thunderbird.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-TKW7O1.desktop
 x-scheme-handler/unknown=firefox.desktop
 x-scheme-handler/eclipse+mpc=_home_fn_opt_eclipse_.desktop
 

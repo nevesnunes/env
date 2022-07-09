@@ -33,6 +33,10 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # version pinning
 rustup install 1.52.0
 cargo +1.52.0 run
+
+# for `#![feature]`
+rustup install nightly
+cargo +nightly build
 ```
 
 # Deploy

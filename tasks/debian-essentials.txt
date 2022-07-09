@@ -1,5 +1,6 @@
 agrep
 ant
+apt-transport-https
 atool
 autoconf
 automake
@@ -9,6 +10,7 @@ clang
 cmake
 curl
 dos2unix
+entr
 expect
 g++
 gcc
@@ -25,6 +27,7 @@ libtool
 linux-headers-generic
 make
 nasm
+ninja-build
 openjdk-11-jdk
 p7zip-full
 pkg-config
@@ -42,4 +45,5 @@ universal-ctags
 valgrind
 vifm
 vim
+zlib1g-dev
 zsh

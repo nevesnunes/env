@@ -86,4 +86,5 @@ x-scheme-handler/eclipse+mpc=_home_fn_opt_eclipse_.desktop;
 x-scheme-handler/http=userapp-Firefox-15MVIY.desktop;
 x-scheme-handler/https=userapp-Firefox-15MVIY.desktop;
 x-scheme-handler/mendeley=mendeleydesktop.desktop;
+x-scheme-handler/tg=appimagekit_4af13add951fce33a95c2b79947a4bea-Telegram_Desktop.desktop;
 x-scheme-handler/unknown=userapp-Firefox-15MVIY.desktop;

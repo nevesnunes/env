@@ -16,6 +16,8 @@
 
 # statistics
 
+- `-c`: count time, calls, and errors
+
 ```bash
 # group by pid
 gawk '

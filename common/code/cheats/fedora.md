@@ -85,3 +85,13 @@ rpm --rebuilddb
 dnf clean all
 dnf makecache
 ```
+
+# kickstart
+
+- reusing existing partitions
+    ```
+    part /home --noformat --onpart=UUID=3c6c53ec-fcc4-43dd-85fe-9b3939ce8f01
+    part / --useexisting --fstype=ext4 --onpart=UUID=2af6e4b0-da29-48e0-a039-9e2bba1876ee
+    ```
+
+- [GitHub \- sinner\-/kickstart\-fedora\-workstation: kickstart file for my personal workstations](https://github.com/sinner-/kickstart-fedora-workstation)

@@ -2,6 +2,13 @@
 
 - [disk-benchmarks](./reports/disk-benchmarks.md)
 
+# performance
+
+- https://github.com/vincentkfu/fio-blog/wiki/Detecting-steady-state-with-fio
+- https://cromwell-intl.com/open-source/performance-tuning/disks.html
+- https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/monitoring_and_managing_system_status_and_performance/factors-affecting-i-o-and-file-system-performance_monitoring-and-managing-system-status-and-performance
+- https://wiki.archlinux.org/title/improving_performance
+
 # force check
 
 ```bash
@@ -123,3 +130,18 @@ for disk in /dev/sd?; do /sbin/hdparm -B 255 "$disk"; done
 
 - `top`: press `f` > select `SWAP`
 - `htop`: press `S` > Columns > Available Columns > select `NSWAP` > press `F5`
+
+# erase
+
+```sh
+# hdd
+sudo shred -v -z /dev/sdX
+
+# ssd
+sudo hdparm -I /dev/sdX
+# If drive frozen, induce sleep (suspend to RAM)
+# - https://www.kernel.org/doc/Documentation/power/states.txt
+sudo echo -n mem > /sys/power/state
+sudo hdparm --user-master u --security-set-pass pass /dev/sdX
+sudo hdparm --user-master u --security-erase pass /dev/sdX
+```

@@ -26,7 +26,7 @@ yi() {
   if os | grep -qi 'centos\|fedora'; then
     sudo /usr/bin/dnf install -y "$@"
   else
-    sudo /usr/bin/apt install -y "$@"
+    sudo DEBIAN_FRONTEND=noninteractive /usr/bin/apt install -y "$@"
   fi
 }
 

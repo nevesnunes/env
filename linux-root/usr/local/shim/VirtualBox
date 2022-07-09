@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+exec env QT_STYLE_OVERRIDE=Adwaita-Dark VirtualBox

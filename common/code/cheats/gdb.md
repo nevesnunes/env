@@ -6,7 +6,7 @@
 - https://stackoverflow.com/questions/5480868/how-to-call-assembly-in-gdb
 - http://bl0rg.krunch.be/segfault-gdb-strace.html
 - [How Does a C Debugger Work? \(2014\) | Hacker News](https://news.ycombinator.com/item?id=24814854)
-- PTRACE_PEEKUSER: access tracee process state
+- `PTRACE_PEEKUSER`: access tracee process state
     - https://code.woboq.org/qt5/include/sys/user.h.html
 
 - https://github.com/taskcluster/react-gdb
@@ -174,7 +174,7 @@ condition 2 *(int*)__errno_location() == 3
    - Cause: Extraneous token "call"
 - `gdb.execute(f'set $child_pid = (int)*{fork}()')`
    - Error: Cannot access memory at address 0x320f4
-   - Cause: Extraneous token "*"
+   - Cause: Extraneous token "\*"
 
 # methodology
 
@@ -337,18 +337,18 @@ c
 end
 ```
 
-```
-(gdb) catch syscall access
-Catchpoint 1 (syscall 'access' [21])
-(gdb) condition 1 $_streq((char *)$rdi, "/etc/ld.so.preload")
-(gdb) ru
-Starting program: /bin/ls
-
-Catchpoint 1 (call to syscall access), 0x00007ffff7df3537 in access ()
-    at ../sysdeps/unix/syscall-template.S:81
-81      ../sysdeps/unix/syscall-template.S: No such file or directory.
-(gdb) p (char *)$rdi
-$1 = 0x7ffff7df9420 <preload_file> "/etc/ld.so.preload"
+```gdb
+catch syscall access
+# Catchpoint 1 (syscall 'access' [21])
+condition 1 $_streq((char *)$rdi, "/etc/ld.so.preload")
+ru
+# Starting program: /bin/ls
+# 
+# Catchpoint 1 (call to syscall access), 0x00007ffff7df3537 in access ()
+#     at ../sysdeps/unix/syscall-template.S:81
+# 81      ../sysdeps/unix/syscall-template.S: No such file or directory.
+p (char *)$rdi
+# $1 = 0x7ffff7df9420 <preload_file> "/etc/ld.so.preload"
 ```
 
 - https://stackoverflow.com/questions/6517423/how-to-do-an-specific-action-when-a-certain-breakpoint-is-hit-in-gdb

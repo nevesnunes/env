@@ -18,9 +18,12 @@ NOCLEAN=1 ./libretro-build.sh
 
 (
   cd retroarch
+  git reset --hard
   git fetch --tags
   git checkout "$(git describe --tags "$(git rev-list --tags --max-count=1)")"
+  git clean -fdx
   ./configure --disable-wayland --disable-qt --disable-materialui --disable-xmb
+  make
   sudo make install
 )
 

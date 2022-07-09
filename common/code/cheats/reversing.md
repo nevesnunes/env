@@ -216,7 +216,7 @@
     - networking
         - https://www.aldeid.com/wiki/FakeNet
         - hw read break on packet buffer, frida hook on winsock calls
-        - [ws2_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
+        - [ws2\_32 recv/send](https://docs.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-recv)
         - [WSARecvFrom/WSASendTo](https://docs.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-wsasendto)
     - registry
         - [Regshot \- take a snapshot of your registry and then compare it with a second one](https://sourceforge.net/projects/regshot/)
@@ -403,7 +403,7 @@ gcc -O0 a.c && echo 'a' \
 
 # bruteforcing chars
 for n in {32..127}; do
-    c=$(awk '{ printf("%c", $0); }' <<< $n)
+    c=$(echo $n | awk '{ printf("%c", $0); }')
     printf '%s ' $c
     ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinscount.so -- ./a.out <(printf '%s' $c) | awk '/Instrumentation results:/{print $3}'
 done 2>/dev/null | vim -
