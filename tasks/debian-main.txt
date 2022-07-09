@@ -48,7 +48,6 @@ w3m-img
 wine
 xdot
 xserver-xephyr
-youtube-dl
 zathura
 zathura-djvu
 zenity

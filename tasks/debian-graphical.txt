@@ -9,6 +9,7 @@ remmina
 remmina-plugin-rdp
 remmina-plugin-vnc
 rxvt-unicode
+suckless-tools
 tint2
 vim-gtk3
 wmctrl
