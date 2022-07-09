@@ -41,6 +41,6 @@ find /home/"$USER" -maxdepth 3 -type d | \
 mkdir -p ~/.local/share/fonts
 ( cd ~/.local/share/fonts && wget 'https://github.com/andreberg/Meslo-Font/raw/master/dist/v1.2.1/Meslo%20LG%20DZ%20v1.2.1.zip' && atool -x 'Meslo LG DZ v1.2.1.zip' && rm -f 'Meslo LG DZ v1.2.1.zip' )
 
-sed -i 's%\(^ExecStart\)=.*%\1=/usr/bin/tint2%g' ~/.config/systemd/user/tint2.service
+sed -i 's%\(^ExecStart\)=.*%\1='$(command -v tint2)'%g' ~/.config/systemd/user/tint2.service
 systemctl --user daemon-reload
 systemctl --user enable tint2

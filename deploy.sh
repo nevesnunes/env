@@ -24,7 +24,7 @@ if echo "$acl" | grep -qi root; then
     # TODO
     exit 1
 else
-    rsync -uva --usermap=":$acl" --groupmap=":$acl" ./"$role_dir"/ "$target" || true
+    rsync -va --usermap=":$acl" --groupmap=":$acl" ./"$role_dir"/ "$target" || true
 fi
 
 if [ -x ./tasks/"$role".sh ]; then

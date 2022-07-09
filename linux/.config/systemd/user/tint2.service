@@ -5,7 +5,7 @@ Requires=dbus.service
 After=dbus.service graphical.target
 
 [Service]
-ExecStart=/usr/local/bin/tint2
+ExecStart=/usr/bin/tint2
 Restart=always
 TimeoutSec=5
 StartLimitInterval=20s
