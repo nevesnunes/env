@@ -396,6 +396,10 @@ dbms_support.stop_trace_in_session(sid, serial#)
 
 explain (verbose true, analyze true)
 
+- [tatiyants\.com Postgres Query Plan Visualization \- tatiyants\.com](http://tatiyants.com/postgres-query-plan-visualization/)
+    - graph where each node's duration is encoded as a bar
+- [GitHub \- simon\-engledew/gocmdpev: A command\-line GO Postgres query visualizer, heavily inspired by pev \(https://github\.com/AlexTatiyants/pev\)](https://github.com/simon-engledew/gocmdpev)
+
 # SQL Server
 
 ```sql

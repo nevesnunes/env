@@ -1,10 +1,13 @@
 # +
 
-~/code/snippets/*.cmake
+- `~/code/snippets/*.cmake`
 
+```sh
 (mkdir -p build && cd build && cmake .. && make)
+```
 
-https://github.com/boostcon/cppnow_presentations_2017/blob/master/05-19-2017_friday/effective_cmake__daniel_pfeifer__cppnow_05-19-2017.pdf
+- [GitHub \- nccgroup/cmakerer: Generates CMakeLists\.txt files from arbitrary C/C\+\+ codebases](https://github.com/nccgroup/cmakerer)
+- https://github.com/boostcon/cppnow_presentations_2017/blob/master/05-19-2017_friday/effective_cmake__daniel_pfeifer__cppnow_05-19-2017.pdf
 
 ExternalProject_Add() + add_subdirectory()
 find_package()

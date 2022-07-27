@@ -6,11 +6,25 @@
 
 - [Map \- Unprotect Project](https://search.unprotect.it/map)
 - [Anti\-Debug Tricks](https://anti-debug.checkpoint.com/)
-- https://github.com/CheckPointSW/Evasions
-    - https://evasions.checkpoint.com/
-- https://github.com/seifreed/awesome-sandbox-evasion
+- [GitHub \- CheckPointSW/Evasions: Evasions encyclopedia gathers methods used by malware to evade detection when run in virtualized environment\. Methods are grouped into categories for ease of searching and understanding\. Also provided are code samples, signature recommendations and countermeasures within each category for the described techniques\.](https://github.com/CheckPointSW/Evasions)
+    - [Evasion techniques](https://evasions.checkpoint.com/)
+- [GitHub \- seifreed/awesome\-sandbox\-evasion: A summary about different projects/presentations/tools to test how to evade malware sandbox systems](https://github.com/seifreed/awesome-sandbox-evasion)
+- [GitHub \- persistence\-info/persistence\-info\.github\.io](https://github.com/persistence-info/persistence-info.github.io)
+    - [persistence\-info\.github\.io](https://persistence-info.github.io/)
 
-# detection
+# methodology
+
+1. Start Process Monitor / Process Explorer / Wireshark / Inetsim
+2. Take 1st Regshot
+3. Take VM snapshot
+4. Run malware
+5. Take 2nd Regshot
+6. End Process Monitor / Process Explorer / Wireshark / Inetsim
+7. Revert VM snapshot
+
+- [Set up your own malware analysis lab with VirtualBox, INetSim and Burp \- Christophe Tafani\-Dereeper](https://blog.christophetd.fr/malware-analysis-lab-with-virtualbox-inetsim-and-burp/)
+
+### detection
 
 - dynamic analysis
     - [Cuckoo Sandbox \- Automated Malware Analysis \- Installation](https://cuckoo.readthedocs.io/en/latest/installation/)
@@ -37,7 +51,19 @@
     - [registry-keys-startup-folder](https://dmcxblue.gitbook.io/red-team-notes/persistence/registry-keys-startup-folder)
     - [Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder, Sub\-technique T1547\.001 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1547/001/)
 
+- [GitHub \- LordNoteworthy/al\-khaser: Public malware techniques used in the wild: Virtual Machine, Emulation, Debuggers, Sandbox detection\.](https://github.com/LordNoteworthy/al-khaser)
+    - https://www.hybrid-analysis.com/sample/4ca52a1ff170690804811145806c4b6ae6b2c81e129e3cc6b967fd88f47b067e/5bb544127ca3e129f82cc2b9
+
 # anti-vm
+
+- vbox
+    - [GitHub \- d4rksystem/VBoxCloak: A PowerShell script that attempts to help malware analysts hide their Windows VirtualBox Windows VM&\#39;s from malware that may be trying to evade analysis\. Guaranteed to bring down your pafish ratings by at least a few points ;\)](https://github.com/d4rksystem/VBoxCloak)
+    - [GitHub \- nsmfoo/antivmdetection: Script to create templates to use with VirtualBox to make vm detection harder](https://github.com/nsmfoo/antivmdetection)
+    - [VirtualBox: How to Setup your Malware Analysis \- Embedded Lab Vienna for IoT &amp; Security](https://wiki.elvis.science/index.php?title=VirtualBox:_How_to_Setup_your_Malware_Analysis)
+- vmware
+    - [GitHub \- d4rksystem/VMwareCloak: A PowerShell script that attempts to help malware analysts hide their VMware Windows VM&\#39;s from malware that may be trying to evade analysis\.](https://github.com/d4rksystem/VMwareCloak)
+- qemu
+    - [GitHub \- hatching/vmcloak: Automated Virtual Machine Generation and Cloaking for Cuckoo Sandbox\.](https://github.com/hatching/vmcloak)
 
 - ~/code/snippets/evasion/SMBiosData.ps1
 
@@ -117,6 +143,8 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 - emulation
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
     > Packers tend not to touch any custom chips or be affected by any kind of timing/irqs, so just functional CPU emulation will do the job to make a depacking tool.
+- https://twitter.com/re_and_more/status/1505091717971775491
+    > memory or hardware breakpoints on write operation set on the allocated block may help intercept the moment when the unpacked code and data of interest will be written there
 
 # anti-debugging
 

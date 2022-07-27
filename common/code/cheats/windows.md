@@ -937,3 +937,5 @@ set include=C:\MSVC20\INC
 .\setvars.bat
 nmake
 ```
+
+- [GitHub \- mstorsjo/llvm\-mingw: An LLVM/Clang/LLD based mingw\-w64 toolchain](https://github.com/mstorsjo/llvm-mingw)

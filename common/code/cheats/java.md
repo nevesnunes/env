@@ -8,6 +8,7 @@
 	- e.g. https://thelastpickle.com/blog/2018/01/16/cassandra-flame-graphs.html
 - [HotSpot Tools](https://wiki.openjdk.java.net/display/HotSpot/HotSpot+Tools)
 - [GitHub \- GraxCode/JByteMod\-Beta: Java bytecode editor](https://github.com/GraxCode/JByteMod-Beta)
+- [GitHub \- java\-deobfuscator/deobfuscator: The real deal](https://github.com/java-deobfuscator/deobfuscator)
 
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()

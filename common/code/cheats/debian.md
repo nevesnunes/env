@@ -135,3 +135,7 @@ ar x _
 > To access rescue mode, select rescue from the boot menu, type rescue at the boot: prompt, or boot with the rescue/enable=true boot parameter
 
 https://www.debian.org/releases/jessie/amd64/ch08s07.html.en
+
+# case studies
+
+- [diziet \| chiark’s skip\-skip\-cross\-up\-grade](https://diziet.dreamwidth.org/11840.html)

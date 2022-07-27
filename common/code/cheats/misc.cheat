@@ -9,10 +9,10 @@ systemctl -i reboot
 # Power Off [shutdown]
 systemctl -i poweroff
 
-# Kernel Messages
-watch -n 5 dmesg | tail -n 15
+# Kernel messages with natural timestamps
+watch -n 5 dmesg -T | tail -n 15
 
-# Network Statistics
+# Network statistics
 watch -n 5 "netstat -at | grep -v LISTEN"
 
 # System journal

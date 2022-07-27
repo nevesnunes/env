@@ -25,6 +25,7 @@
 
 - https://hybrid-analysis.com/
 - https://app.any.run/
+- https://analyze.intezer.com/scan
 - https://www.capesandbox.com/
 - https://www.virustotal.com/gui/home
 
@@ -328,6 +329,11 @@ unrar x foo.part1.rar
 - [QuickBMS generic files extractor and reimporter \- Luigi Auriemma](http://quickbms.aluigi.org/)
 - [GitHub \- Sembiance/dexvert: Decompress EXtract and CONVert old file formats into modern ones](https://github.com/Sembiance/dexvert)
 - [Category:Electronic File Formats \- Just Solve the File Format Problem](http://fileformats.archiveteam.org/wiki/Category:Electronic_File_Formats)
+
+### diff
+
+- [GitHub \- airbus\-seclab/diffware: An extensively configurable tool providing a summary of the changes between two files or directories, ignoring all the fluff you don&\#39;t care about\.](https://github.com/airbus-seclab/diffware)
+- [diffoscope: in\-depth comparison of files, archives, and directories](https://diffoscope.org/)
 
 ### datasets
 

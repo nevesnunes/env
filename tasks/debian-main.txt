@@ -1,4 +1,5 @@
 adwaita-qt
+calibre
 dconf-editor
 devilspie2
 docker.io
@@ -23,14 +24,15 @@ graphviz
 ifuse
 imagemagick
 inkscape
-keepassx
+keepassxc
 libc6-dbg
 libelf-dev
 libimobiledevice6
 libimobiledevice-utils
 libpango1.0-0
 libreoffice
-libsdl1.2debian
+libsdl1.2-dev
+libsdl2-dev
 libx11-xcb-dev
 libxxf86vm-dev
 linux-image-amd64-dbg
@@ -39,6 +41,9 @@ mpv
 mutter
 ncdu
 pcmanfm
+poppler-utils
+qtbase5-dev
+qttools5-dev-tools
 sox
 taskwarrior
 thunderbird

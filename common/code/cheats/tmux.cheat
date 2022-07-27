@@ -19,4 +19,7 @@ tmux new-session 'echo $TERM > /tmp/a && tput colors >> /tmp/a' && cat /tmp/a &&
 ; Reference: https://unix.stackexchange.com/questions/309660/is-it-possible-to-find-which-vim-tmux-has-my-file-open
 FNAME=~/tmp/git.md.swp; tmux switch -t $(tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_tty}' | grep $(ps -o tty= -p $(lsof -t $FNAME))$ | awk '{ print $1 }')
 
+# Change pane color
+tmux select-pane -t:.1 -P 'fg=white,bg=#400000'
+
 ; vim: filetype=navi

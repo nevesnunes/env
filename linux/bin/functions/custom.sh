@@ -3,7 +3,7 @@ diff_img() {
   compare "$2" "$1" png:- \
     | montage -geometry +4+4 "$2" - "$1" png:- \
     | display -title "$1" -
-  }
+}
 
 diff_dirs() {
   tree1=$(mktemp)
@@ -20,31 +20,31 @@ dup_dirs() {
     | sort \
     | uniq -c \
     | grep -v "^[ \t]*1 "
-  }
+}
 
 ssh() {
   # grep -w: match command names such as "tmux-2.1" or "tmux: server"
   if ps -p $$ -o ppid= \
     | xargs -i ps -p {} -o comm= \
     | grep -qw tmux; then
-      # Note: Options without parameter were hardcoded,
-      # in order to distinguish an option's parameter from the destination.
-      #
-      #                   s/[[:space:]]*\(\( | spaces before options
-      #     \(-[46AaCfGgKkMNnqsTtVvXxYy]\)\| | option without parameter
-      #                     \(-[^[:space:]]* | option
-      # \([[:space:]]\+[^[:space:]]*\)\?\)\) | parameter
-      #                      [[:space:]]*\)* | spaces between options
-      #                        [[:space:]]\+ | spaces before destination
-      #                \([^-][^[:space:]]*\) | destination
-      #                                   .* | command
-      #                                 /\6/ | replace with destination
-      tmux rename-window "$(echo "$@" \
-        | sed 's/[[:space:]]*\(\(\(-[46AaCfGgKkMNnqsTtVvXxYy]\)\|\(-[^[:space:]]*\([[:space:]]\+[^[:space:]]*\)\?\)\)[[:space:]]*\)*[[:space:]]\+\([^-][^[:space:]]*\).*/\6/')"
-              command ssh "$@"
-              tmux set-window-option automatic-rename "on" 1> /dev/null
-            else
-              command ssh "$@"
+    # Note: Options without parameter were hardcoded,
+    # in order to distinguish an option's parameter from the destination.
+    #
+    #                   s/[[:space:]]*\(\( | spaces before options
+    #     \(-[46AaCfGgKkMNnqsTtVvXxYy]\)\| | option without parameter
+    #                     \(-[^[:space:]]* | option
+    # \([[:space:]]\+[^[:space:]]*\)\?\)\) | parameter
+    #                      [[:space:]]*\)* | spaces between options
+    #                        [[:space:]]\+ | spaces before destination
+    #                \([^-][^[:space:]]*\) | destination
+    #                                   .* | command
+    #                                 /\6/ | replace with destination
+    tmux rename-window "$(echo "$@" \
+      | sed 's/[[:space:]]*\(\(\(-[46AaCfGgKkMNnqsTtVvXxYy]\)\|\(-[^[:space:]]*\([[:space:]]\+[^[:space:]]*\)\?\)\)[[:space:]]*\)*[[:space:]]\+\([^-][^[:space:]]*\).*/\6/')"
+    command ssh "$@"
+    tmux set-window-option automatic-rename "on" 1> /dev/null
+  else
+    command ssh "$@"
   fi
 }
 
@@ -65,34 +65,34 @@ man_cat() {
     | xargs -0 -i zcat {} \
     | groff -te -mandoc -rHY=0 -Tascii 2> /dev/null \
     | grep -i "$2"
-  }
+}
 
 jar_decompile() {
   while [ $# -gt 0 ]; do
     jar -xf "$1" && find . -iname "*.class" -print0 \
       | xargs -0 -i jad -r {}
-          shift
-        done
-      }
+    shift
+  done
+}
 
-    e() {
-      lines=
-      while IFS= read -r i; do
-        if [ -n "$lines" ]; then
-          lines="$lines\n$i"
-        else
-          lines="$i"
-        fi
-      done
-      while true; do
-        filename=$(printf "%b" "$lines" | fzf -0)
-        if [ -n "$filename" ]; then
-          gvim -v "$filename" < /dev/tty
-        else
-          break
-        fi
-      done
-    }
+e() {
+  lines=
+  while IFS= read -r i; do
+    if [ -n "$lines" ]; then
+      lines="$lines\n$i"
+    else
+      lines="$i"
+    fi
+  done
+  while true; do
+    filename=$(printf "%b" "$lines" | fzf -0)
+    if [ -n "$filename" ]; then
+      gvim -v "$filename" < /dev/tty
+    else
+      break
+    fi
+  done
+}
 
 # Edit pipe.
 # Reference: http://git.ankarstrom.se/xutil/tree/ep
@@ -114,7 +114,7 @@ f() {
     ! -path '*/__pycache__/*' \
     ! -path '*/node_modules/*' \
     -iname '*'"$*"'*'
-  }
+}
 
 # Line-oriented manipulation of JSON files.
 j() {
@@ -170,17 +170,18 @@ g() {
       --glob '!__pycache__/' \
       --glob '!node_modules/' \
       "$@" .
-        else
-          grep -Rin \
-            --binary-files=without-match \
-            --extended-regexp \
-            --exclude-dir='.bzr' \
-            --exclude-dir='.git' \
-            --exclude-dir='.hg' \
-            --exclude-dir='.svn' \
-            --exclude-dir='__pycache__' \
-            --exclude-dir='node_modules' \
-            "$@" .
+  else
+    grep -Rin \
+      --binary-files=without-match \
+      --color=auto \
+      --extended-regexp \
+      --exclude-dir='.bzr' \
+      --exclude-dir='.git' \
+      --exclude-dir='.hg' \
+      --exclude-dir='.svn' \
+      --exclude-dir='__pycache__' \
+      --exclude-dir='node_modules' \
+      "$@" .
   fi
 
   # Handle convertable binary files
@@ -199,13 +200,13 @@ g() {
           --with-filename \
           --line-number \
           "$@" "$i"
-                else
-                  grep -Hin \
-                    --extended-regexp \
-                    "$@" "$i"
+      else
+        grep -Hin \
+          --extended-regexp \
+          "$@" "$i"
       fi
     done
-  }
+}
 
 # `grep` with matches open in text editor.
 ge() {
@@ -223,26 +224,26 @@ gf() {
     --format="%C(green)%C(bold)%cd %C(auto)%h%d %s" \
     --graph \
     | fzf \
-    --ansi --multi --no-sort --reverse \
-    --bind 'ctrl-s:toggle-sort' \
-    --header 'ctrl-s:toggle-sort,ctrl-u:preview-page-down,ctrl-i:preview-page-up' \
-    --preview-window 'right:65%' \
-    --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES \
+      --ansi --multi --no-sort --reverse \
+      --bind 'ctrl-s:toggle-sort' \
+      --header 'ctrl-s:toggle-sort,ctrl-u:preview-page-down,ctrl-i:preview-page-up' \
+      --preview-window 'right:65%' \
+      --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -'$LINES \
     | grep -o "[a-f0-9]\{7,\}"
-  }
+}
 
 # Cross-platform open with default app
 o() {
   local open_cmd
   case "$OSTYPE" in
-    darwin*) open_cmd='open' ;;
-    cygwin*) open_cmd='cygstart' ;;
-    linux*) open_cmd='xdg-open' ;;
-    msys*) open_cmd='start ""' ;;
-    *)
-      echo "Platform $OSTYPE not supported"
-      return 1
-      ;;
+  darwin*) open_cmd='open' ;;
+  cygwin*) open_cmd='cygstart' ;;
+  linux*) open_cmd='xdg-open' ;;
+  msys*) open_cmd='start ""' ;;
+  *)
+    echo "Platform $OSTYPE not supported"
+    return 1
+    ;;
   esac
   while [ $# -gt 0 ]; do
     "$open_cmd" "$1"
@@ -285,31 +286,31 @@ c() {
 
   if [ $# -eq 1 ]; then
     sed '
-    s/\b\('"$1"'\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
-    ' /dev/stdin
-  elif [ $# -eq 2 ]; then
-    sed '
-    s/\b\('"$1"'\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
-    s/\b\('"$2"'\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
-    ' /dev/stdin
-  elif [ $# -eq 3 ]; then
-    sed '
-    s/\b\('"$1"'\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
-    s/\b\('"$2"'\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
-    s/\b\('"$3"'\)\b\(.*\)/'"$fb$f2\1\2$fn"'/g;
-    ' /dev/stdin
-  elif [ $# -eq 4 ]; then
-    sed '
-    s/\b\('"$1"'\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
-    s/\b\('"$2"'\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
-    s/\b\('"$3"'\)\b\(.*\)/'"$fb$f2\1\2$fn"'/g;
-    s/\b\('"$4"'\)\b\(.*\)/'"$fb$f6\1\2$fn"'/g;
+    s/\b\('"$1"'\)\b/'"$fb$f1\1$fn"'/g;
+    ' /dev/stdin                        
+  elif [ $# -eq 2 ]; then               
+    sed '                               
+    s/\b\('"$1"'\)\b/'"$fb$f1\1$fn"'/g;
+    s/\b\('"$2"'\)\b/'"$fb$f5\1$fn"'/g;
+    ' /dev/stdin                        
+  elif [ $# -eq 3 ]; then               
+    sed '                               
+    s/\b\('"$1"'\)\b/'"$fb$f1\1$fn"'/g;
+    s/\b\('"$2"'\)\b/'"$fb$f5\1$fn"'/g;
+    s/\b\('"$3"'\)\b/'"$fb$f2\1$fn"'/g;
+    ' /dev/stdin                        
+  elif [ $# -eq 4 ]; then               
+    sed '                               
+    s/\b\('"$1"'\)\b/'"$fb$f1\1$fn"'/g;
+    s/\b\('"$2"'\)\b/'"$fb$f5\1$fn"'/g;
+    s/\b\('"$3"'\)\b/'"$fb$f2\1$fn"'/g;
+    s/\b\('"$4"'\)\b/'"$fb$f6\1$fn"'/g;
     ' /dev/stdin
   else
     sed '
-    s/\b\(ERR\|ERROR\)\b\(.*\)/'"$fb$f1\1\2$fn"'/g;
-    s/\b\(WARN\|WARNING\)\b\(.*\)/'"$fb$f5\1\2$fn"'/g;
-    s/\b\(INFO\)\b\(.*\)/'"$fb$f2\1\2$fn"'/g;
+    s/\b\(ERR\|ERROR\)\b/'"$fb$f1\1$fn"'/g;
+    s/\b\(WARN\|WARNING\)\b/'"$fb$f5\1$fn"'/g;
+    s/\b\(INFO\)\b/'"$fb$f2\1$fn"'/g;
     ' /dev/stdin
   fi
 }

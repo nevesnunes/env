@@ -24,6 +24,10 @@ cat /proc/789/maps
 echo 0 > /proc/sys/kernel/randomize_va_space
 # ||
 setarch "$(uname -m)" -R /bin/zsh
+# validation
+cat /proc/self/maps
+# restore
+echo 2 > /proc/sys/kernel/randomize_va_space
 
 # disable NX
 execstack -s foo
@@ -94,6 +98,7 @@ x/-1i $pc
 set print pretty on
 p (short[16])*foo->bar
 p foo->bar@16
+ptype/o struct foo
 
 # cpp
 p ('std::vector<char, std::allocator<char> >')*0x7fffffffc8c0
@@ -292,6 +297,9 @@ https://hack3rlab.wordpress.com/gdb-disassemble-instructions-in-hex-format/
 - awatch: on read/write
 
 ```gdb
+# Display via pwndbg
+contextwatch 0xfeedface
+
 # Break on register write
 watch $rax
 
@@ -343,7 +351,7 @@ catch syscall access
 condition 1 $_streq((char *)$rdi, "/etc/ld.so.preload")
 ru
 # Starting program: /bin/ls
-# 
+#
 # Catchpoint 1 (call to syscall access), 0x00007ffff7df3537 in access ()
 #     at ../sysdeps/unix/syscall-template.S:81
 # 81      ../sysdeps/unix/syscall-template.S: No such file or directory.

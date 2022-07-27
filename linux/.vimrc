@@ -713,6 +713,28 @@ function! Match(...)
 endfunction
 command! -nargs=* M :call Match(<f-args>)
 
+hi MyF0 ctermfg=magenta guifg=magenta cterm=bold gui=bold
+hi MyF1 ctermfg=blue    guifg=blue    cterm=bold gui=bold
+hi MyF2 ctermfg=cyan    guifg=cyan    cterm=bold gui=bold
+hi MyF3 ctermfg=green   guifg=green   cterm=bold gui=bold
+hi MyF4 ctermfg=yellow  guifg=yellow  cterm=bold gui=bold
+function! MatchFG(...)
+    if !exists('w:matches_fg')
+        let w:matches_fg = {}
+    endif
+    if empty(a:000)
+        call clearmatches()
+        let w:matches_fg = {}
+    else
+        let l:words = join(a:000)
+        let l:size = len(keys(w:matches_fg))
+        let l:key = 'MyF' . ((l:size + 0) % 5)
+        let l:id = matchadd(l:key, l:words, -1)
+        let w:matches_fg[l:key] = l:id
+    endif
+endfunction
+command! -nargs=* MF :call MatchFG(<f-args>)
+
 " Alternatives:
 " - https://github.com/mortie/lograt
 " - https://glogg.bonnefon.org/

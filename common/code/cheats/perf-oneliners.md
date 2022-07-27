@@ -1,6 +1,7 @@
-# perf-oneliners
+# +
 
 - [Linux perf Examples](https://www.brendangregg.com/perf.html)
+- [GitHub \- KDAB/hotspot: The Linux perf GUI for performance analysis\.](https://github.com/KDAB/hotspot)
 
 ## Listing Events
 

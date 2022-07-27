@@ -400,6 +400,7 @@ return { foo: await x, bar: await y }
 
 # Deobfuscation
 
+- [Javascript DeObfuscator](https://www.seosniffer.com/javascript-deobfuscator)
 - [de4js \| JavaScript Deobfuscator and Unpacker](https://lelinhtinh.github.io/de4js/)
 - [JS NICE: Statistical renaming, Type inference and Deobfuscation](http://jsnice.org/)
 - [bumperworksonline\.js · GitHub](https://gist.github.com/myuen-tw/9c196f8daa6cbedf95a3e77bdcec9651)
@@ -408,6 +409,7 @@ return { foo: await x, bar: await y }
 ```javascript
 // Running:
 // - VM or sandbox - e.g. https://repl.it
+// - "Pause script execution" > drop script in console > hit enter
 
 var _original_unescape = window.unescape;
 window.unescape = function() {

@@ -1,6 +1,10 @@
+# +
+
+- [Reverse Engineering Resources](https://pewpewthespells.com/blog/re.html)
+
 # APIs
 
-https://github.com/phracker/MacOSX-SDKs
+- [GitHub \- phracker/MacOSX\-SDKs: A collection of those pesky SDK folders: MacOSX10\.1\.5\.sdk thru MacOSX11\.3\.sdk](https://github.com/phracker/MacOSX-SDKs)
 
 # shortcuts
 

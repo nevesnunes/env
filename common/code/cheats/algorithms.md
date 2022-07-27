@@ -655,7 +655,11 @@ class AstPrinter implements Expr.Visitor<String> {
 
 - avoid recomputation on repeated cache misses: subsequent requests wait for already running computation
     - https://google.github.io/guava/releases/19.0/api/docs/com/google/common/cache/CacheBuilder.html
-- https://www.thejach.com/view/2017/6/caches_are_evil
+- use value types vs. reference types: looping over references to data may result in more cache misses
+    - [Inline Thinking \| Patricia Aas \- Programmer](https://patricia.no/2020/01/16/inline_thinking_in_java.html)
+    - [Cache-Oblivious Algorithms and Data Structures](https://cs.au.dk/~gerth/MassiveData02/notes/demaine.pdf)
+- [Jach \- Caches are evil](https://www.thejach.com/view/2017/6/caches_are_evil)
+- validation (L1/L2 cache misses, branch mispredictions): `perf stat -d -- ./foo`, `cachegrind`
 
 # jit
 
@@ -682,6 +686,11 @@ class AstPrinter implements Expr.Visitor<String> {
     - https://mazzo.li/posts/fast-pipes.html
 - syscalls
     - https://wjwh.eu/posts/2021-10-01-no-syscall-server-iouring.html
+
+# zero-allocation
+
+- hash tables with fixed number of buckets + open addressing a.k.a. closed hashing
+    - validation: pprof callgraph
 
 # Vectorization (SIMD)
 

@@ -22,6 +22,7 @@
 - https://www.sandpile.org/
 - http://ref.x86asm.net/geek64.html
 - https://cloud.binary.ninja/
+- [Unicorn\.js](https://alexaltea.github.io/unicorn.js/demo.html?arch=x86)
 
 - [GitHub \- airbus\-seclab/cpu\_rec: Recognize cpu instructions in an arbitrary binary file](https://github.com/airbus-seclab/cpu_rec)
 - [Notes on x86\-64 Assembly and Machine Code · GitHub](https://gist.github.com/mikesmullin/6259449)
@@ -49,7 +50,7 @@ for ctx in [["arm", 32], ["aarch64", 64]]:
 
 # emulation
 
-- https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py
+- [unicorn/sample\_x86\.py at master · unicorn\-engine/unicorn · GitHub](https://github.com/unicorn-engine/unicorn/blob/master/bindings/python/sample_x86.py)
 - [ARM Assembly, Emulation, Disassembly using Keystone, Unicorn, and Capstone · GitHub](https://gist.github.com/cspensky/3a5153b29143e6be785a5e1a702bbd9e)
 - [Unicorn Trace还原Ollvm算法！《安卓高级研修班》2022年班开始招生！](https://bbs.pediy.com/thread-267018.htm)
 - [GitHub \- bet4it/udbserver: Unicorn Emulator Debug Server \- Written in Rust, with bindings of C, Go, Java and Python](https://github.com/bet4it/udbserver)
@@ -183,6 +184,17 @@ before=,            *other
 
 - https://github.com/redox-os/binutils-gdb/blob/0860693812fff944ab0602e72b762a4a2078da5b/bfd/syms.c
 - https://github.com/redox-os/binutils-gdb/blob/0860693812fff944ab0602e72b762a4a2078da5b/binutils/objcopy.c#L807
+
+### stripping
+
+```sh
+# only strip defined symbols
+# - https://twitter.com/itszn13/status/1538595227702726656
+clang -o chal.o -c chal.c
+strip -S chal.o
+clang -o chal chal.o --static
+strip -S chal $(nm chal.o --no-demangle --defined-only | awk '{print "-N "$3}')
+```
 
 # section headers
 
@@ -640,8 +652,12 @@ call eax
         - polymorphism: overriden entries in vftable
         - multiple inheritance: multiple ptrs to vftables
     - rtti contains constructor names
-    - [VTable Hooking](https://dimitrifourny.github.io/2014/07/02/vtable-hooking.html)
-    - [GitHub \- Thordin/vtable\-hook: C\+\+ Vtable Hooking Library](https://github.com/Thordin/vtable-hook)
+    - resolving xrefs to dynamic calls / virtual calls
+        - [Tracing local indirect calls · hasherezade/tiny\_tracer Wiki · GitHub](https://github.com/hasherezade/tiny_tracer/wiki/Tracing-local-indirect-calls)
+        - [GitHub \- 0xgalz/Virtuailor: IDAPython tool for creating automatic C\+\+ virtual tables in IDA Pro](https://github.com/0xgalz/Virtuailor)
+    - hooking
+        - [VTable Hooking](https://dimitrifourny.github.io/2014/07/02/vtable-hooking.html)
+        - [GitHub \- Thordin/vtable\-hook: C\+\+ Vtable Hooking Library](https://github.com/Thordin/vtable-hook)
 
 - Ghidra-Cpp-Class-Analyzer
     - Analysis > All Open > Deselect All > Windows (or GCC) C++ Class Analyzer (prototype) > Decompiler timeout

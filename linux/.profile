@@ -28,6 +28,7 @@ export SCALA_HOME="$HOME/opt/scala-2.13.3"
 # Go
 #export GOROOT="$HOME/.local/share/go"
 export GOPATH="$HOME/opt/go"
+export GOINSTALL=/usr/local/go
 
 # Android
 export ANDROID_PREFS_ROOT="/run/media/$USER/TOSHIBA\ EXT/FN-NUX/.android"
@@ -35,7 +36,7 @@ export ANDROID_SDK_HOME="$ANDROID_PREFS_ROOT"
 
 # Paths
 # Comment $HOME/.local/bin:$HOME/bin in global configs (i.e. /etc/...{env|rc|login})
-export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
+export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$GOINSTALL/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
 export MANPATH="$MANPATH:/usr/local/man"
 
 # Editors

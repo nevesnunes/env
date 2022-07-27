@@ -32,4 +32,13 @@ gpg --import-ownertrust < pgp-ownertrust.asc
 # Delete
 gpg --delete-secret-and-public-keys key-ID
 
+# Import
+wget -q -O - https://foo/key.asc | gpg --import
+gpg --keyserver https://foo --recv-key 0123456789ABCDEF
+gpg --fingerprint 0123456789ABCDEF
+
+# Verify
+wget -q https://foo/sum{.gpg,}
+gpg --verify sum.gpg sum
+
 ; vim: filetype=navi

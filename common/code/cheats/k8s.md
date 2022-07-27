@@ -7,6 +7,8 @@ kubectl get services
 kubectl get pods --all-namespaces
 
 kubectl delete pod 'foo' --grace-period=0
+
+kubectl run -i --tty --image busybox foo --restart=Never --rm
 ```
 
 # containers with same pid namespace

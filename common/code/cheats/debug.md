@@ -26,6 +26,8 @@
     - https://eli.thegreenplace.net/2011/01/27/how-debuggers-work-part-2-breakpoints
 - if no debugger attached, then interrupt handler sends SIGTRAP to threads
     - https://stackoverflow.com/questions/22379105/does-executing-an-int-3-interrupt-stop-the-entire-process-on-linux-or-just-the-c
+- distinguishing ptrace trapped syscalls via `PTRACE_O_TRACESYSGOOD`
+    - e.g. https://github.com/rapiz1/catp/blob/main/src/lib.rs
 
 - https://code.woboq.org/linux/linux/arch/x86/include/asm/ptrace.h.html
 

@@ -240,6 +240,8 @@ CPUQuota=10%
 
 # eBPF
 
+- [GitHub \- dylandreimerink/edb: An eBPF program debugger](https://github.com/dylandreimerink/edb)
+
 ```bash
 # top10
 execsnoop  # New processes (via exec(2)); table
@@ -293,6 +295,12 @@ run
 ktrace -p PID
 kdump -l
 ```
+
+# memory allocations
+
+- [GitHub \- KDE/heaptrack: A heap memory profiler for Linux](https://github.com/KDE/heaptrack)
+- [The poor man's way of identifying memory leaks](https://bytepointer.com/resources/old_new_thing/20050815_224_the_poor_mans_way_of_identifying_memory_leaks.htm)
+    - [GitHub \- tialaramex/leakdice: Monte Carlo leak diagnostic for Linux binaries](https://github.com/tialaramex/leakdice)
 
 # detecting multithreading
 

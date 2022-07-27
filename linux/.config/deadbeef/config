@@ -12,7 +12,7 @@ gtkui.color.bar_foreground 19018 37008 55769
 gtkui.color.tabstrip_playing_text 0 0 0
 gtkui.color.tabstrip_selected_text 0 0 0
 gtkui.color.tabstrip_text 0 0 0
-gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"224","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"329","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"96","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"36","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"165","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"241","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"70","align":"0","color_override":"0","color":"#ff313739"}]
 gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 0
@@ -31,7 +31,7 @@ gtkui.statusbar.visible 1
 gtkui.tabscroll 0
 gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF
 gtkui.titlebar_stopped_tf DeaDBeeF-%_deadbeef_version%
-gui_plugin GTK2
+gui_plugin GTK3
 hotkey.key01 "Ctrl f" 0 0 find
 hotkey.key02 "Ctrl o" 0 0 open_files
 hotkey.key03 "q" 0 0 quit
@@ -70,11 +70,11 @@ logwindow.geometry.h 492
 logwindow.geometry.w 670
 logwindow.geometry.x 696
 logwindow.geometry.y 218
-mainwin.geometry.h 514
+mainwin.geometry.h 342
 mainwin.geometry.maximized 0
-mainwin.geometry.w 672
-mainwin.geometry.x 1248
-mainwin.geometry.y 508
+mainwin.geometry.w 478
+mainwin.geometry.x 888
+mainwin.geometry.y 368
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1

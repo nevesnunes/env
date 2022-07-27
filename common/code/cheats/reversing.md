@@ -310,6 +310,10 @@
         - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
         - diff/search for data changes before and after blocks: loops, func calls...
         - hook `memcpy()` + `strcpy()`
+- efficiency
+    - https://blog.perfect.blue/perfect-blue-finishes-top-1-on-CTFtime-2020
+        > So one of the key strategies for us is to stockpile solution templates. For us at least, there’s no excuse for not having a canned solution when encountering a stereotyped problem. From our experience, we would say around 50% of challenges are stereotyped.
+        > Necessity is the mother of invention—we’ve learned a lot of tools in-depth as a result. [...] The importance of tooling is universal: it could mean the difference between 1 month of manual effort or just 1 hour.
 
 - [Tampering and Reverse Engineering - Mobile Security Testing Guide](https://mobile-security.gitbook.io/mobile-security-testing-guide/general-mobile-app-testing-guide/0x04c-tampering-and-reverse-engineering)
 - https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research
@@ -322,6 +326,8 @@
 # llvm
 
 - https://llvm.org/docs/LangRef.html
+- Optimization Pipeline Viewer
+    - e.g. https://godbolt.org/z/xa7q4GToz
 
 ```sh
 # disasm

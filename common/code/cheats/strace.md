@@ -10,6 +10,12 @@
 
 - https://github.com/pgbovine/strace-plus/blob/master/README-linux-ptrace
 
+```sh
+# in qemu-user
+qemu-x86_64 -d strace
+# || QEMU_STRACE
+```
+
 # methodologies
 
 - run with `time` to get diff between syscalls time and library calls time
