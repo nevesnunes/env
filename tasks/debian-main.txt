@@ -14,6 +14,7 @@ fonts-noto-color-emoji
 gettext
 gimp
 gnome-control-center
+gnome-screenshot
 gnome-session
 gnome-shell
 gnome-shell-extensions
@@ -29,6 +30,7 @@ libc6-dbg
 libelf-dev
 libimobiledevice6
 libimobiledevice-utils
+libnotify-bin
 libpango1.0-0
 libreoffice
 libsdl1.2-dev

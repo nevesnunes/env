@@ -92,33 +92,30 @@ w32tm /config /syncfromflags:domhier /update
 Restart-Service w32time
 ```
 
-C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll
-
-https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-member?view=powershell-6
-
-https://github.com/d1pakda5/PowerShell-for-Pentesters/blob/master/20-Remoting-Part-1.md
+- C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-member?view=powershell-6
+- https://github.com/d1pakda5/PowerShell-for-Pentesters/blob/master/20-Remoting-Part-1.md
 
 > PowerShell functions. These are easy, since the function "is" the source code. You can do something like this to open the file up in the ise, if the command is a function: powershell_ise (Get-Command Get-CMSoftwareUpdate).ScriptBlock.File
 > Cmdlets. These are .NET classes, usually written in C#. Unless the source code is open-source, you can't get its original form, but you can decompile back to a somewhat-readable C# file using free tools such as ILSpy or DotPeek. If it's a cmdlet, you can find the file that needs to be decompiled like this: (Get-Command Get-CMSoftwareUpdate).ImplementingType.Assembly.Location
 > CIM commands. These are auto-generated PowerShell wrappers around WMI classes; they're generated from cdxml files in the module directory. I'm not sure if there's an easy way to open an individual command's file, but once you know that's what you're dealing with, you can browse to the module's folder and open up the cdxml files to see what it's doing.
 
-https://stackoverflow.com/questions/54787115/how-to-debug-a-windows-kernel-driver-properly
-https://github.com/Microsoft/Windows-driver-samples/tree/master/filesys/miniFilter/minispy
-
-https://github.com/janosgyerik/cheatsheets/blob/master/Windows-cheat-sheet.mediawiki
+- https://stackoverflow.com/questions/54787115/how-to-debug-a-windows-kernel-driver-properly
+- https://github.com/Microsoft/Windows-driver-samples/tree/master/filesys/miniFilter/minispy
+- https://github.com/janosgyerik/cheatsheets/blob/master/Windows-cheat-sheet.mediawiki
 
 # vms
 
-https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
+- https://developer.microsoft.com/en-us/windows/downloads/virtual-machines
 
 # modify disk partition
 
-diskmgmt.msc
-disable virtual memory
+- diskmgmt.msc
+- disable virtual memory
 
 # network packet sniffer
 
-fiddler
+- fiddler
 
 # debug 
 
@@ -131,7 +128,7 @@ fiddler
 
 # WMI event handlers
 
-https://technet.microsoft.com/en-us/library/ff898417.aspx
+- https://technet.microsoft.com/en-us/library/ff898417.aspx
 
 # Verbatim Path Syntax
 
@@ -141,7 +138,7 @@ https://technet.microsoft.com/en-us/library/ff898417.aspx
 
 # Browse volume over network
 
-Folder Options > View > Uncheck `Use simple file sharing`
+- Folder Options > View > Uncheck `Use simple file sharing`
 
 ```
 \\192.168.1.1\C$
@@ -149,22 +146,22 @@ Folder Options > View > Uncheck `Use simple file sharing`
 
 # Admin privileges
 
-boot repair disk
-    replace `C:\Windows\System32\sethc.exe` with `C:\Windows\System32\cmd.exe`
+- boot repair disk
+    - replace `C:\Windows\System32\sethc.exe` with `C:\Windows\System32\cmd.exe`
 
 # Disabled command prompt
 
-.bat file
-powershell
-https://portableapps.com/apps/utilities/command_prompt_portable
-https://forum.raymond.cc/threads/re-enable-project-ideas-and-suggestions.12672/
-remove HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\System\DisableCMD DWORD 0
+- .bat file
+- powershell
+- https://portableapps.com/apps/utilities/command_prompt_portable
+- https://forum.raymond.cc/threads/re-enable-project-ideas-and-suggestions.12672/
+- remove HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\System\DisableCMD DWORD 0
 
 # reserved names, special devices, metadata
 
-file:///c:/con/con
-c:\con\con
-c:\$MFT\123
+- file:///c:/con/con
+- c:\con\con
+- c:\$MFT\123
 
 # fix NTFS corruption
 
@@ -245,10 +242,10 @@ wusa /uninstall /KB:1234
 
 # demand-paging model
 
-page directory composed of hierarchy of page tables
-    :) efficient handling empty segments of sparse data - only allocates page tables when needed
-follow page tables, extract pte, fetch data from ram || hdsk
-os compresses memory to maximize ram storage
+- page directory composed of hierarchy of page tables
+    - :) efficient handling empty segments of sparse data - only allocates page tables when needed
+- follow page tables, extract pte, fetch data from ram || hdsk
+- os compresses memory to maximize ram storage
 
 # dump non public static functions in asemblies
 
@@ -269,10 +266,9 @@ ForEach ( $assembly in [AppDomain]::CurrentDomain.GetAssemblies() ) {
 
 # File System Redirector
 
-calls to C:\Windows\system32 from 32-bit process redirected to SysWOW64
-calls to C:\Windows\Sysnative from 32-bit process redirected to system32 (64 bit)
-
-https://twitter.com/swiftonsecurity/status/988909127006085123
+- calls to C:\Windows\system32 from 32-bit process redirected to SysWOW64
+- calls to C:\Windows\Sysnative from 32-bit process redirected to system32 (64 bit)
+- https://twitter.com/swiftonsecurity/status/988909127006085123
 
 # profiling
 
@@ -301,107 +297,106 @@ procmon /terminate
 
 # installers
 
-EXE
+- EXE
     ```ps1
     # Extract wrapped MSI file
     setup.exe /a
     setup.exe /x
     setup.exe /extract
     ```
-MSI - COM-structured storage files, including database
-    https://stackoverflow.com/questions/48482545/how-can-i-compare-the-content-of-two-or-more-msi-files/48482546#48482546
+- MSI - COM-structured storage files, including database
+    - https://stackoverflow.com/questions/48482545/how-can-i-compare-the-content-of-two-or-more-msi-files/48482546#48482546
     ```ps1
     # Convert to wxs xml
     $OutputFolder=
     dark.exe -x $OutputFolder MySetup.msi
     ```
-NSIS (Nullsoft Scriptable Install System)
-    /S - run silently
-    /D - default installation directory
-    https://www.exemsi.com/documentation/installer-frameworks/nsis-nullsoft-scriptable-install-system/
+- NSIS (Nullsoft Scriptable Install System)
+    - `/S`: run silently
+    - `/D`: default installation directory
+    - https://www.exemsi.com/documentation/installer-frameworks/nsis-nullsoft-scriptable-install-system/
 
 parsing
-orca
-    Tables > Property
-    => Values for public properties
-    ||
-    Transform > New Transform
-    [ Apply Modifications... ]
-    Transform > Generate Transform
-    => MST file
+- orca
+    - Tables > Property => Values for public properties
+    - || Transform > New Transform > [ Apply Modifications... ]; Transform > Generate Transform => MST file
     ```ps1
     cscript WiUseXfm.vbs $OriginalDatabase $TransformFile $Options
     ```
-automating widget manipulation
-https://pywinauto.readthedocs.io/en/latest/
-https://www.autohotkey.com/docs/commands/ControlGet.htm
-    :( Some applications store their ListView text privately, which prevents their text from being retrieved
-    e.g. https://autohotkey.com/board/topic/48481-selecting-item-in-combobox/
+- automating widget manipulation
+- https://pywinauto.readthedocs.io/en/latest/
+- https://www.autohotkey.com/docs/commands/ControlGet.htm
+    - :( Some applications store their ListView text privately, which prevents their text from being retrieved
+    - e.g. https://autohotkey.com/board/topic/48481-selecting-item-in-combobox/
 
-automating silent install parameters
-https://stackoverflow.com/questions/46221983/how-can-i-use-powershell-to-run-through-an-installer
-    msiexec.exe /I "C:\Your.msi" /QN /L*V "C:\msilog.log" TRANSFORMS="C:\1031.mst;C:\My.mst"
-        https://stackoverflow.com/questions/458857/how-to-make-better-use-of-msi-files/1055861#1055861
-        https://stackoverflow.com/questions/54761131/change-the-value-of-a-msi-property-loaded-from-a-dll-using-a-msi-transform/54769767#54769767
-        https://docs.microsoft.com/en-us/windows/win32/msi/transforms
-    || public properties
-    msiexec.exe /I "C:\Your.msi" /QN /L*V "C:\msilog.log" PARAM1="VALUE1" PARAM2="VALUE2"
-https://docs.microsoft.com/en-us/windows/win32/msi/standard-installer-command-line-options
-https://docs.microsoft.com/en-us/windows/win32/msi/command-line-options
+- automating silent install parameters
+    - https://stackoverflow.com/questions/46221983/how-can-i-use-powershell-to-run-through-an-installer
+        ```
+        msiexec.exe /I "C:\Your.msi" /QN /L*V "C:\msilog.log" TRANSFORMS="C:\1031.mst;C:\My.mst"
+        ```
+    - https://stackoverflow.com/questions/458857/how-to-make-better-use-of-msi-files/1055861#1055861
+    - https://stackoverflow.com/questions/54761131/change-the-value-of-a-msi-property-loaded-from-a-dll-using-a-msi-transform/54769767#54769767
+    - https://docs.microsoft.com/en-us/windows/win32/msi/transforms
+    - || public properties
+        ```
+        msiexec.exe /I "C:\Your.msi" /QN /L*V "C:\msilog.log" PARAM1="VALUE1" PARAM2="VALUE2"
+        ```
+- https://docs.microsoft.com/en-us/windows/win32/msi/standard-installer-command-line-options
+- https://docs.microsoft.com/en-us/windows/win32/msi/command-line-options
 
-case studies
-    chocolatey
-    https://github.com/microsoft/winget-pkgs
+- case studies
+    - chocolatey
+    - https://github.com/microsoft/winget-pkgs
 
 # libraries, dll
 
-types
-    Visual C++ - Microsoft Foundation Class (MFC) library
-        wraps Win32 API calls
-        On VC:
-        - Configuration Properties > General > Use MFC in static library
-        - C/C++ > Code generation > Runtime Library > Multi Threaded Debug
-    extension DLL
-        derived classes from MFC, built using dynamic-link MFC library
-        https://github.com/Microsoft/VCSamples/tree/master/VC2010Samples/MFC/advanced/dllhusk
-        https://docs.microsoft.com/en-us/cpp/build/extension-dlls-overview?view=vs-2019
-linker pipeline
-    .def -(build)-> .exp, .lib
-    .exp -(build)-> .dll
-exports
-    .dll `__declspec(dllexport)` - by name
-        import section -(contains)-> .def
-    .lib (import library) - by ordinal, assigned automatically, matches function names with ordinals, static library, = stub
-        :) enables cross-platform builds (e.g. 64-bit target on 32-bit environment), build for different version of dll given corresponding sdk
-        https://stackoverflow.com/questions/1297013/why-do-we-still-need-a-lib-stub-file-when-weve-got-the-actual-dll-implementat
-    .def (module-definition) - by ordinal, assigned manually
-        :) maintains same ordinals, .lib still valid, no need for apps to relink with .lib
-        NONAME attribute - export table stores ordinals instead of function names
+- types
+    - Visual C++ - Microsoft Foundation Class (MFC) library
+        - wraps Win32 API calls
+        - On VC:
+            - Configuration Properties > General > Use MFC in static library
+            - C/C++ > Code generation > Runtime Library > Multi Threaded Debug
+    - extension DLL
+        - derived classes from MFC, built using dynamic-link MFC library
+        - https://github.com/Microsoft/VCSamples/tree/master/VC2010Samples/MFC/advanced/dllhusk
+        - https://docs.microsoft.com/en-us/cpp/build/extension-dlls-overview?view=vs-2019
+- linker pipeline
+    - .def -(build)-> .exp, .lib
+    - .exp -(build)-> .dll
+- exports
+    - .dll `__declspec(dllexport)` - by name
+        - import section -(contains)-> .def
+    - .lib (import library) - by ordinal, assigned automatically, matches function names with ordinals, static library, = stub
+        - :) enables cross-platform builds (e.g. 64-bit target on 32-bit environment), build for different version of dll given corresponding sdk
+        - https://stackoverflow.com/questions/1297013/why-do-we-still-need-a-lib-stub-file-when-weve-got-the-actual-dll-implementat
+    - .def (module-definition) - by ordinal, assigned manually
+        - :) maintains same ordinals, .lib still valid, no need for apps to relink with .lib
+        - NONAME attribute - export table stores ordinals instead of function names
+            - https://stackoverflow.com/questions/11412650/calling-afxenablememoryleakdump-for-a-specific-mfc-dll
             ```c
             const WORD AfxEnableMemoryLeakDumpOrdinal = 15902;
             GetProcAddress( GetModuleHandle( ... ), (LPCSTR)AfxEnableMemoryLeakDumpOrdinal );
             ```
-            https://stackoverflow.com/questions/11412650/calling-afxenablememoryleakdump-for-a-specific-mfc-dll
-        generated by - https://docs.microsoft.com/en-us/cpp/mfc/reference/mfc-dll-wizard?view=vs-2019
-        c++ decorated names (aka. name mangling)
-            parsed by - dumpbin, linker /MAP, undname ?func1@a@@AAEXH@Z
-            https://docs.microsoft.com/en-us/cpp/build/reference/decorated-names?view=vs-2019
-            https://stackoverflow.com/questions/27824102/how-do-import-libraries-work-and-why-doesnt-mingw-need-them
-        https://docs.microsoft.com/en-us/cpp/build/exporting-from-a-dll-using-def-files?view=vs-2019
+        - generated by - https://docs.microsoft.com/en-us/cpp/mfc/reference/mfc-dll-wizard?view=vs-2019
+        - c++ decorated names (aka. name mangling)
+            - parsed by - dumpbin, linker /MAP, undname ?func1@a@@AAEXH@Z
+            - https://docs.microsoft.com/en-us/cpp/build/reference/decorated-names?view=vs-2019
+            - https://stackoverflow.com/questions/27824102/how-do-import-libraries-work-and-why-doesnt-mingw-need-them
+        - https://docs.microsoft.com/en-us/cpp/build/exporting-from-a-dll-using-def-files?view=vs-2019
         ```
         # match ordinal with symbol name
         dumpbin /HEADERS ...\vc98\mfc\lib\MFC42.lib
         # dump symbol names
         dumpbin /EXPORTS foo.dll
         ```
-    https://docs.microsoft.com/en-us/cpp/build/exporting-functions-from-a-dll-by-ordinal-rather-than-by-name?view=vs-2019
-    https://stackoverflow.com/questions/49157641/pros-and-cons-of-using-def-files
-    ui. exports generation depends on sequence of parsed ordinals in .dll and .pdb [MFC42D\.DLL Ordinal vs Name Question · Issue \#316 · NationalSecurityAgency/ghidra · GitHub](https://github.com/NationalSecurityAgency/ghidra/issues/316)
-using exported symbols
-    LoadLibrary, GetProcAddress - take function addresses from DLL export section manually
-logging calls
-    proxy dll, dll redirection
-    https://stackoverflow.com/a/32959212
+    - https://docs.microsoft.com/en-us/cpp/build/exporting-functions-from-a-dll-by-ordinal-rather-than-by-name?view=vs-2019
+    - https://stackoverflow.com/questions/49157641/pros-and-cons-of-using-def-files
+    - ui. exports generation depends on sequence of parsed ordinals in .dll and .pdb [MFC42D\.DLL Ordinal vs Name Question · Issue \#316 · NationalSecurityAgency/ghidra · GitHub](https://github.com/NationalSecurityAgency/ghidra/issues/316)
+- using exported symbols
+    - LoadLibrary, GetProcAddress - take function addresses from DLL export section manually
+- logging calls
+    - proxy dll, dll redirection
+    - [c\+\+ \- MFC app and shared libs \- Stack Overflow](https://stackoverflow.com/a/32959212)
 
 # fullscreen vs. windowed
 
@@ -435,35 +430,41 @@ logging calls
 
 # injection, hooks
 
-https://www.codeproject.com/Articles/4610/Three-Ways-to-Inject-Your-Code-into-Another-Proces
-https://www.jitsumibooster.com/blogs/jitsumi/cyber-security/injection-methods/62/
+- https://www.codeproject.com/Articles/4610/Three-Ways-to-Inject-Your-Code-into-Another-Proces
+- https://www.jitsumibooster.com/blogs/jitsumi/cyber-security/injection-methods/62/
 
-mitigations
-    https://www.fortinet.com/blog/industry-trends/a-crash-course-in-dll-hijacking.html
-        registry - SafeDLLSearchMode
-    https://github.com/notepad-plus-plus/notepad-plus-plus/commit/b869163609473f05c4f5d1d72a579b9f6af66ccd
-        api - CryptQueryObject(), CertFindCertificateInStore(), CertGetNameString() ==  "Notepad++"
-    https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-setdefaultdlldirectories
-        api - SetDefaultDllDirectories(), AddDllDirectory(), RemoveDllDirectory()
-    https://docs.microsoft.com/en-us/security-updates/securityadvisories/2010/2269637
+- mitigations
+    - https://www.fortinet.com/blog/industry-trends/a-crash-course-in-dll-hijacking.html
+        - registry - SafeDLLSearchMode
+    - https://github.com/notepad-plus-plus/notepad-plus-plus/commit/b869163609473f05c4f5d1d72a579b9f6af66ccd
+        - api - CryptQueryObject(), CertFindCertificateInStore(), CertGetNameString() ==  "Notepad++"
+    - https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-setdefaultdlldirectories
+        - api - SetDefaultDllDirectories(), AddDllDirectory(), RemoveDllDirectory()
+    - https://docs.microsoft.com/en-us/security-updates/securityadvisories/2010/2269637
+- loading
+    - [LoadLibraryExA function \(libloaderapi\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexa#remarks)
+    - [What is the difference between HINSTANCE and HMODULE? \- The Old New Thing](https://devblogs.microsoft.com/oldnewthing/20040614-00/?p=38903)
+- examples
+    - https://github.com/emily33901/2015-load-library-injector
+    - https://github.com/samyuu/TotallyLegitArcadeController
 
 # kerberos
 
-https://serverfault.com/questions/529448/track-down-which-process-program-is-causing-kerberos-pre-authentication-error-c
-http://stevenhollidge.blogspot.com/2012/05/troubleshooting-kerberos-with-tools.html
+- https://serverfault.com/questions/529448/track-down-which-process-program-is-causing-kerberos-pre-authentication-error-c
+- http://stevenhollidge.blogspot.com/2012/05/troubleshooting-kerberos-with-tools.html
 
 # rsync alternative
 
-robocopy
-! limit bandwidth
-    delay = filesize / 64KB * IPG (Inter Packet Gap)
-    http://www.zeda.nl/index.php/en/copy-files-on-slow-links
-    http://blog.nold.ca/2015/07/limiting-bandwidth-using-robocopy.html
+- robocopy
+- ! limit bandwidth
+    - delay = filesize / 64KB * IPG (Inter Packet Gap)
+    - http://www.zeda.nl/index.php/en/copy-files-on-slow-links
+    - http://blog.nold.ca/2015/07/limiting-bandwidth-using-robocopy.html
 
 # disable features
 
-https://github.com/W4RH4WK/Debloat-Windows-10
-https://github.com/Disassembler0/Win10-Initial-Setup-Script
+- https://github.com/W4RH4WK/Debloat-Windows-10
+- https://github.com/Disassembler0/Win10-Initial-Setup-Script
 
 # break on syscall
 
@@ -474,9 +475,9 @@ https://github.com/Disassembler0/Win10-Initial-Setup-Script
 
 # font settings
 
-Control Panel > Adjust ClearType text
-Settings > Display > Scale and layout
-Settings > Display > Advanced display settings > Advanced sizing of text and other items
+- Control Panel > Adjust ClearType text
+- Settings > Display > Scale and layout
+- Settings > Display > Advanced display settings > Advanced sizing of text and other items
 
 # python executables
 
@@ -516,7 +517,9 @@ chrome://extensions > Load unpacked extension... > hash1/version1,hash2/version2
 
 ### Forbidden names
 
+```
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileAssociation\AddRemoveNames
+```
 
 # Special Folders, URL Monikers
 
@@ -526,17 +529,17 @@ start shell:RecycleBinFolder
 regedit /e C:\folderDescriptions 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\explorer\FolderDescriptions'
 ```
 
-https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775149(v=vs.85)
-https://stackoverflow.com/questions/3605148/where-can-i-learn-about-the-shell-uri
+- https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775149(v=vs.85)
+- https://stackoverflow.com/questions/3605148/where-can-i-learn-about-the-shell-uri
 
 # Restart Shell
 
-taskmgr.exe (Task Manager) > File > Run New Task > explorer.exe
+- taskmgr.exe (Task Manager) > File > Run New Task > explorer.exe
 
 # Task Scheduler
 
-https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2000/bb726974(v=technet.10)
-"C:\WINDOWS\system32\mmc.exe" C:\WINDOWS\system32\taskschd.msc
+- https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2000/bb726974(v=technet.10)
+- "C:\WINDOWS\system32\mmc.exe" C:\WINDOWS\system32\taskschd.msc
 
 # Event Viewer
 
@@ -556,12 +559,12 @@ gpupdate
 
 ### Prevent exe from running
 
-ClickToRunSvc
+- ClickToRunSvc
 
-https://docs.microsoft.com/en-us/previous-versions/technet-magazine/cc510322(v=msdn.10)
+- [Control access to software using Software Restrictions in Group Policy \| Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/technet-magazine/cc510322(v=msdn.10))
 
-User Configuration > Administrative Templates > System > Don't run specified Windows applications
-Software\Policies\Microsoft\Windows\EventLog\Security\System
+- User Configuration > Administrative Templates > System > Don't run specified Windows applications
+- Software\Policies\Microsoft\Windows\EventLog\Security\System
 
 # Process using file
 
@@ -604,7 +607,9 @@ REG ADD HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoLo
 
 # Allow remove/uninstall program
 
+```
 HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall
+```
 
 # DHCP
 
@@ -615,7 +620,7 @@ netsh dhcp server 10.254.64.188 show clients 1
 netsh -r 10.254.64.188 dhcp server dump
 ```
 
-https://www.microsoft.com/en-us/download/details.aspx?id=45520
+- https://www.microsoft.com/en-us/download/details.aspx?id=45520
 
 # Routing and Remote Access
 
@@ -688,11 +693,11 @@ tracerpt winsocktracelog.etl –o winsocktracelog.txt
 netstat -t
 ```
 
-https://blogs.technet.microsoft.com/nettracer/2010/08/02/have-you-ever-wanted-to-see-which-windows-process-sends-a-certain-packet-out-to-network/
-https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview
+- https://blogs.technet.microsoft.com/nettracer/2010/08/02/have-you-ever-wanted-to-see-which-windows-process-sends-a-certain-packet-out-to-network/
+- https://docs.microsoft.com/en-us/sysinternals/downloads/tcpview
 
-https://community.microstrategy.com/s/article/KB16328-How-to-enable-and-configure-Keep-Alive-options-for
-HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+- https://community.microstrategy.com/s/article/KB16328-How-to-enable-and-configure-Keep-Alive-options-for
+- HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 
 # dns
 
@@ -729,12 +734,12 @@ net user USERNAME /domain
 
 # file handlers
 
-https://blogs.technet.microsoft.com/markrussinovich/2009/09/29/pushing-the-limits-of-windows-handles/
-https://stackoverflow.com/questions/31108693/increasing-no-of-file-handles-in-windows-7-64-bit
+- https://blogs.technet.microsoft.com/markrussinovich/2009/09/29/pushing-the-limits-of-windows-handles/
+- https://stackoverflow.com/questions/31108693/increasing-no-of-file-handles-in-windows-7-64-bit
 
 # Environment Variables
 
-https://en.wikipedia.org/wiki/Environment_variable#Windows
+- https://en.wikipedia.org/wiki/Environment_variable#Windows
 
 # Windows Defender Firewall with Advanced Security
 
@@ -781,10 +786,10 @@ dumpbin /disasm foo.exe
 link.exe /dump /linenumbers /disasm foo.exe
 ```
 
-https://stackoverflow.com/questions/2451369/how-to-create-a-map-file-from-a-pdb-file
-    https://ecs.syr.edu/faculty/fawcett/Handouts/TestingSeminar/Chapter12And14_CodeAndDocs/PDB2MAP.cpp
+- https://stackoverflow.com/questions/2451369/how-to-create-a-map-file-from-a-pdb-file
+    - https://ecs.syr.edu/faculty/fawcett/Handouts/TestingSeminar/Chapter12And14_CodeAndDocs/PDB2MAP.cpp
 
-http://www.geoffchappell.com/studies/msvc/link/dump/options/map.htm?tx=12,27,35,37,46,50&ts=0,3852
+- http://www.geoffchappell.com/studies/msvc/link/dump/options/map.htm?tx=12,27,35,37,46,50&ts=0,3852
 
 # UAC
 
@@ -818,17 +823,17 @@ Disable Windows Security prompt:
 
 # isolation, sandboxing
 
-https://superuser.com/questions/975912/how-can-i-disable-network-access-for-specific-user
-https://4sysops.com/archives/windows-10-sandbox-running-applications-in-an-isolated-environment/
+- https://superuser.com/questions/975912/how-can-i-disable-network-access-for-specific-user
+- https://4sysops.com/archives/windows-10-sandbox-running-applications-in-an-isolated-environment/
 
 # conhost vs csrss
 
-https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
-    http://blogs.technet.com/b/askperf/archive/2009/10/05/windows-7-windows-server-2008-r2-console-host.aspx
+- https://stackoverflow.com/questions/1313195/why-is-conhost-exe-being-launched
+    - http://blogs.technet.com/b/askperf/archive/2009/10/05/windows-7-windows-server-2008-r2-console-host.aspx
 
 # MS Office macros
 
-[GitHub \- decalage2/oletools: oletools \- python tools to analyze MS OLE2 files \(Structured Storage, Compound File Binary Format\) and MS Office documents, for malware analysis, forensics and debugging\.](https://github.com/decalage2/oletools)
+- [GitHub \- decalage2/oletools: oletools \- python tools to analyze MS OLE2 files \(Structured Storage, Compound File Binary Format\) and MS Office documents, for malware analysis, forensics and debugging\.](https://github.com/decalage2/oletools)
 
 # Disable ASLR
 

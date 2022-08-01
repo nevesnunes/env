@@ -32,7 +32,9 @@ apt list --installed
 
 # downgrade
 apt-cache showpkg foo
-apt-get install foo=123
+# ||
+apt policy foo
+apt install foo=123
 apt-mark hold foo
 
 # dependencies

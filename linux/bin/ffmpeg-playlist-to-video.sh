@@ -10,10 +10,18 @@
 
 set -eu
 
+url=$1
+shift
+if [ $# -gt 0 ]; then
+  headers=$(printf '%s\n' "$@" | paste -sd $'\x1f' | sed 's/\x1f/\r\n/g')
+else
+  headers="User-Agent: Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0"
+fi
+
 exec ffmpeg \
-  -headers "User-Agent: Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:97.0) Gecko/20100101 Firefox/97.0" \
+  -headers "$headers" \
   -hide_banner \
   -protocol_whitelist file,http,https,tcp,tls,crypto \
-  -i "$1" \
+  -i "$url" \
   -c copy \
   ~/Videos/"$(date +%s)".mp4
