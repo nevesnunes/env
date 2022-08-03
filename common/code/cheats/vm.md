@@ -81,6 +81,13 @@ Get-WmiObject Win32_Processor | % { $total = 0 } { $total += $_.NumberOfLogicalP
 dmidecode  | grep -i product
 ```
 
+# Repair VM
+
+```bash
+vmware-vdiskmanager -R _
+VBoxManage internalcommands repairhd _ -format VDI
+```
+
 # mount shared folder
 
 ```bash
@@ -104,6 +111,13 @@ VBoxManage setextradata VM_NAME VBoxInternal2/SharedFoldersEnableSymlinksCreate/
 - Windows 95: PCem
 - Windows XP: [virtualbox\.org &bull; View topic \- Direct3D Acceleration not working on Guest Windows XP](https://forums.virtualbox.org/viewtopic.php?t=98113)
 - Windows 7: VirtualBox
+
+# vbox install extension pack
+
+```bash
+sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'; \
+sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.1.30-148432.vbox-extpack
+```
 
 # vbox to vmware
 
@@ -134,10 +148,6 @@ qemu-img convert -O vmdk myvm.raw myvm.vmdk
 ```bash
 ovftool source.vmx export.ovf
 ```
-
-# reading
-
-- 7zip can open VDI, VHD, and VMDK hard disk images
 
 # guest additions
 

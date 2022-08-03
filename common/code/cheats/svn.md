@@ -1,3 +1,10 @@
+# Checkout tag
+
+```bash
+svn ls "$(svn info --show-item repos-root-url)"/tags/
+svn switch "$(svn info --show-item repos-root-url)"/tags/foo
+```
+
 # Debug requests
 
 ```

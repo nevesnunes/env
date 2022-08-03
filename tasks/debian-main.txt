@@ -2,14 +2,15 @@ adwaita-qt
 calibre
 dconf-editor
 devilspie2
-docker.io
 docker-compose
+docker.io
 evince
+ffmpegthumbnailer
+ffmpegthumbs
 firmware-iwlwifi
 firmware-misc-nonfree
 firmware-realtek
-ffmpegthumbnailer
-ffmpegthumbs
+fluidsynth
 fonts-noto-color-emoji
 gettext
 gimp
@@ -49,6 +50,7 @@ qttools5-dev-tools
 sox
 taskwarrior
 thunderbird
+timidity
 viewnior
 w3m
 w3m-img

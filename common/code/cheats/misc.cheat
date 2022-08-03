@@ -126,10 +126,6 @@ sed -i "$(($lineno + 1))foo" /etc/foo.conf
 ; - https://www.imagemagick.org/Usage/color_mods/#levels
 convert image.jpg -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB -level '10%,85%,1.5' image_converted.jpg
 
-# Repair VM
-vmware-vdiskmanager -R _
-VBoxManage internalcommands repairhd _ -format VDI
-
 # Split flac
 shnsplit -f file.cue -t '%n. %t' -o flac file.flac
 ; ||
@@ -613,10 +609,6 @@ ps aux | grep <str> | grep -v grep | awk "{print $2}" | xargs <cmd>
 
 # X all window information from root window
 xwininfo -root -all
-
-# VirtualBox - Install extension pack (VBoxManage)
-sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'; \
-sudo VBoxManage extpack install <file>
 
 # Word diff 
 git diff --no-index --color-words <old> <new>

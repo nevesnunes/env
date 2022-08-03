@@ -455,6 +455,12 @@ nm -gC _.so
 objdump -b binary -m i386:x64-32:intel -D shellcode.bin
 ```
 
+- implementation
+    > 1. Use recursive descent and when you hit any jumps just append the new location as a new root to analyze, then iterate them all. This is how a lot of web crawlers work and solve the same issue nearly.
+    > 2. Build a grammar for it like you would for a language and treat it like parsing a language. You'll tokenize everything and semantically interpret it. This is a LOT more work, but it's way easier to maintain and is super reliable. This is essentially how every advanced disassembler works AFAIK.
+    > 3. Combine recursive descent and forward interpretation with semantic validation. If anything doesn't align with both sets of interpretation, then validate which makes sense to discard any misinterpreted data as instructions. This is useful because it is also a cheap way to detect code in data for later heuristics.
+    > - mooseous#1234
+
 # 16-bit
 
 ```bash

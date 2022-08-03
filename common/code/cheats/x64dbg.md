@@ -20,18 +20,6 @@
 2. File > Change Command Line > `"C:\Windows\System32\rundll32.exe" "C:\foo.dll", #1`
 3. Option > Preferences > Check: "DLL Entry Point"
 
-Alternatives: 
-- `regsvr32.exe` 
-    - runs entry point but fails if no `DllRegisterServer` export
-    - with `/i` for `DllInstall` export
-- https://www.hexacorn.com/blog/2013/08/08/da-lil-world-of-dll-exports-and-entry-points-part-1/
-
-Signatures:
-```
-void CALLBACK MyEntryPoint(HWND hwnd, HINSTANCE hinst, LPSTR pszCmdLine, int nCmdShow);
-void CALLBACK MyEntryPointW(HWND hwnd, HINSTANCE hinst, LPWSTR pszCmdLine, int nCmdShow);
-```
-
 # Scripting
 
 1. On `Command` input field:

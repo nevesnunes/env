@@ -349,12 +349,6 @@ ecm d input.img.ecm output.img
             - https://forum.videohelp.com/threads/63493-800-mb-on-a-700-mb-cd
     - https://retrocomputing.stackexchange.com/questions/13733/what-was-the-purpose-of-exotic-modes-and-sectors-for-cd-rom
 
-# VHD
-
-- `7z`
-- `qemu-nbd`
-    - [virtualbox \- How can i Extract Files From VDI \- Stack Overflow](https://stackoverflow.com/a/45280201/8020917)
-
 # qcow
 
 ```bash
@@ -365,6 +359,24 @@ sudo mount /dev/nbd0p1 ~/media/disk/
 
 # teardown
 sudo qemu-nbd -d /dev/nbd0
+```
+
+# vmdk / vhd / vdi
+
+- `7z`
+- `qemu-nbd`
+
+```bash
+sudo modprobe nbd
+sudo qemu-nbd -c /dev/nbd1 ./foo.vdi
+sudo qemu-nbd -r -c /dev/nbd1 ./foo.vmdk
+```
+
+# ova
+
+```bash
+tar -tf foo.ova
+tar -xvf foo.ova
 ```
 
 # raw images

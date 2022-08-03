@@ -16,6 +16,13 @@
 
 - https://reversing.technology/2021/06/16/ghidra_DWARF_gdt.html
 
+# symbols
+
+- File > Load PDB File...
+    - Config > Add https://msdl.microsoft.com/download/symbols/
+    - For ntoskrnl: ntkrnlmp.pdb
+    - On linux: createPdbXmlFiles.bat
+
 # extension build
 
 ```bash

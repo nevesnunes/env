@@ -126,6 +126,29 @@ Restart-Service w32time
     - https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps
     - https://channel9.msdn.com/Shows/Defrag-Tools/Defrag-Tools-15-WinDbg-Bugchecks
 
+# DLL
+
+- running
+    - `rundll32.exe foo.dll ExportFoo ArgFoo`
+    - `rundll32.exe foo.dll #1`
+    - `regsvr32.exe foo.dll`
+        - runs entry point but fails if no `DllRegisterServer` export
+        - with `/i` for `DllInstall` export
+- entry function signatures
+    - https://www.hexacorn.com/blog/2013/08/08/da-lil-world-of-dll-exports-and-entry-points-part-1/
+    ```
+    void CALLBACK MyEntryPoint(HWND hwnd, HINSTANCE hinst, LPSTR pszCmdLine, int nCmdShow);
+    void CALLBACK MyEntryPointW(HWND hwnd, HINSTANCE hinst, LPWSTR pszCmdLine, int nCmdShow);
+    ```
+- resolving exports at runtime
+    - e.g. Flare-On 4: Challenge 6: payload.dll
+        ```
+        lm # take $base_address
+        dt $base_address nt!_IMAGE_DOS_HEADER e_lfanew # take $e_lfanew
+        dt $base_address+$e_lfanew nt!_IMAGE_NT_HEADERS64 -a16 # take $virtual_address
+        dt $base_address+$virtual_address
+        ```
+
 # WMI event handlers
 
 - https://technet.microsoft.com/en-us/library/ff898417.aspx

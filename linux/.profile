@@ -36,7 +36,7 @@ export ANDROID_SDK_HOME="$ANDROID_PREFS_ROOT"
 
 # Paths
 # Comment $HOME/.local/bin:$HOME/bin in global configs (i.e. /etc/...{env|rc|login})
-export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$GOINSTALL/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
+export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/.local/games:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$GOINSTALL/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
 export MANPATH="$MANPATH:/usr/local/man"
 
 # Editors
@@ -57,6 +57,7 @@ export MOST_SWITCHES="-s"
 export PAGER="less"
 
 export BROWSER='user-browser'
+export DEBIAN_FRONTEND=noninteractive
 export FZF_DEFAULT_OPTS='--bind=ctrl-j:accept,ctrl-k:kill-line,ctrl-u:preview-page-down,ctrl-i:preview-page-up,?:toggle-preview --header "ctrl-u:preview-page-down,ctrl-i:preview-page-up" --border=horizontal --color=16,border:7,pointer:2 --preview '"'"'echo {} | sed -e "s/^ *\([0-9]*\) *//" -e "s/.\{$((COLUMNS-4))\}/&\n/g"'"'"' --preview-window down:6:hidden'
 export LC_ALL='en_US.UTF-8'
 export LC_TIME='en_US'

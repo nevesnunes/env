@@ -336,6 +336,8 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
 
 # return-oriented programming (rop)
 
+- [GitHub \- Ben\-Lichtman/ropr: A blazing fast™ multithreaded ROP Gadget finder\. ropper / ropgadget alternative](https://github.com/Ben-Lichtman/ropr)
+
 1. leak stack canary: Given multiple requests for same process, blast (i.e. bruteforce) bytes from boolean-based response
     - repeat for $rbp, then $rip
     - https://ctf-wiki.github.io/ctf-wiki/pwn/linux/mitigation/canary/#one-by-one-crack-canary
