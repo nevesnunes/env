@@ -21,6 +21,11 @@ def i64(n):
     return ((n & 0xFFFFFFFFFFFFFFFF) ^ 0x8000000000000000) - 0x8000000000000000
 
 
+def sub(n, c, max_bits=64):
+    mask = (1 << max_bits) - 1
+    return (n - c) & mask
+
+
 def ror(x, r, max_bits=64):
     mask = (1 << max_bits) - 1
     return ((x >> r % max_bits) | (x << (max_bits - r % max_bits))) & mask

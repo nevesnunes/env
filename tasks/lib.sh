@@ -21,7 +21,9 @@ Pin: release a=*
 Pin-Priority: -10
 EOF'
     if command -v snap >/dev/null 2>&1; then
-      sudo snap remove $(snap list | awk '!/^Name|^core/ {print $1}')
+      if [ "$(snap list | wc -l)" -gt 0 ]; then
+        sudo snap remove $(snap list | awk '!/^Name|^core/ {print $1}')
+      fi
       sudo apt remove --purge -y snapd gnome-software-plugin-snap
     fi
 
