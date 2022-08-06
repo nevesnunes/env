@@ -6,6 +6,7 @@ set -eux
 
 sudo sed -i 's/^\(deb\(-src\)\? .* main.*\)/\1 contrib non-free/g' /etc/apt/sources.list
 
+debloat
 sync_debian_packages ./debian-ctf.txt
 sync_debian_packages ./debian-essentials.txt
 sync_debian_packages ./debian-graphical.txt

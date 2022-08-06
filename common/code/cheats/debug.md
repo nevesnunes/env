@@ -62,6 +62,7 @@
         git bisect bad # i.e., the fix has been introduced in the latest version.
         git bisect good v1.7.0.4 # i.e., the bug still existed at this tag.
         ```
+    - e.g. [GitHub \- mozilla/mozregression: Regression range finder for Mozilla nightly builds](https://github.com/mozilla/mozregression)
 - git blame - reasons behind changes
 - issues, pull requests - relate with source code
 

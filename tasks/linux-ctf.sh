@@ -4,6 +4,7 @@ set -eux
 
 . ./lib.sh
 
+debloat
 sync_debian_packages ./debian-ctf.txt
 sync_debian_packages ./debian-essentials.txt
 sync_debian_packages ./debian-graphical.txt
