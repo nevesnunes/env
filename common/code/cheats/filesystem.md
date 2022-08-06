@@ -105,9 +105,16 @@ echo "UUID=$uuid /foo ext4 defaults 0 0 0" >> /etc/fstab
 # List volume groups, take $vg
 vgdisplay
 # Activate all logical volumes in volume group
-vgchange -ay "$vg
+vgchange -ay $vg
 # Validation
 mount /dev/mapper/foo /mnt
+
+# Resize
+lvextend -l +100%FREE /dev/vg/foo
+e2fsck -f /dev/vg/foo
+resize2fs /dev/vg/foo
+# Validation
+lvscan
 ```
 
 # Format/Flash USB disk

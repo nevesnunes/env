@@ -233,6 +233,8 @@
     - https://twitter.com/babbageboole/status/1323442671730397184
 - heating dispersal like air pockets in butterfly wings
     - [Publications on butterfly thin films as solar collectors](http://web.archive.org/web/20080720234650/http://it.stlawu.edu/~koon/lep_ref.html)
+- solar panel folding like insect wings
+    - [A Review of Bionic Design in Satellite Solar Wing Structures \- IOPscience](https://iopscience.iop.org/article/10.1088/1742-6596/1549/4/042099)
 
 ### APIs
 
