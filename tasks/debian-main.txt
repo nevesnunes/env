@@ -1,5 +1,6 @@
 adwaita-qt
 calibre
+cups
 dconf-editor
 devilspie2
 docker-compose

@@ -12,6 +12,9 @@ sync_python_packages ./python3-site-packages-ctf.txt
 sync_git ./git-ctf.txt
 sync_git ./git-essentials.txt
 
+sudo locale-gen en_US.UTF-8
+sudo update-locale
+
 sudo sysctl -w kernel.sysrq=1
 
 sudo sed -i '

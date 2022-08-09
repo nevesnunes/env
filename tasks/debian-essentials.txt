@@ -25,6 +25,7 @@ jq
 libarchive-tools
 libtool
 linux-headers-generic
+locales
 make
 nasm
 ninja-build

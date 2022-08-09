@@ -50,6 +50,7 @@ sync_python_packages() {
 }
 
 sync_git() {
+  old_pwd=$PWD
   while read -r i; do
     target=$HOME/$(echo "$i" | cut -d':' -f1)
     url=$(echo "$i" | sed 's/[ \t\/]*$//g')
@@ -63,4 +64,5 @@ sync_git() {
       cd "$name" && git pull && git fetch --tags
     fi
   done < "$1"
+  cd "$old_pwd"
 }

@@ -1014,6 +1014,62 @@ restorecon /foo/bar
 
 - https://www.tldp.org/HOWTO/SMB-HOWTO-8.html
 
+# ethernet
+
+- Connection 'foo' is not available on device enp2s0 because device is strictly unmanaged
+    1. Check override in `/etc/NetworkManager/NetworkManager.conf`
+        ```
+        [ifupdown]
+        managed=true
+        ```
+    2. Set managed
+        ```
+        nmcli device status
+        nmcli device set enp2s0 managed yes
+        systemctl restart NetworkManager
+        ```
+    3. Debug as per `man NetworkManager.conf`
+        ```
+        nmcli general logging level trace
+        ```
+
+# wireless
+
+- pick channel 1 (e.g. channel 13 may lead to "Network 'foo' excluded because of invalid channel in current GEO")
+    - https://github.com/intel/mOS/blob/890456f8a51627ab695750d4934dac31f11a31e7/drivers/net/wireless/intel/ipw2x00/libipw_geo.c#L31
+- disable later modes (if incompatible), else disable earlier modes (slower)
+    - standards: a, b/g (channels in 2.4GHz band), n (only WPA2, channels in 2.4/5GHz band, channel width min. 40MHz), ac (channel width min. 80MHz), ax
+    - [Recommended Settings for 802\.11n Connectivity](https://www.intel.com/content/www/us/en/support/articles/000005544/network-and-i-o/wireless.html)
+- disable ipv6
+- disable power save
+    ```bash
+    /sbin/iwconfig wlp3s0 power off
+
+    # Validation
+    /sbin/iwconfig wlp3s0
+    iw dev wlp3s0 get power_save
+    ```
+- deny rekeys
+    - https://forums.gentoo.org/viewtopic-t-1109866-start-0.html
+- debug
+    - distance and walls are your enemy (line of site good)
+    - find empty channel (competition bad)
+    - 2.4GHz use 1,6,11 and 20MHz only
+    - test your backhaul (it's not always wifi's fault)
+    - rssi of -40 to -50 is pretty good
+    ```
+    cat /sys/kernel/debug/ieee80211/phy*/netdev:*/stations/*/rc_stats
+    ```
+- strength
+    ```
+    iwconfig
+    watch -n1 "awk 'NR==3 {printf(\"WiFi Signal Strength = %.0f%%\\n\",\$3*10/7)}' /proc/net/wireless"
+    ```
+    - -50dBm: Excellent signal strength. You’ll rarely see better than this unless your device is directly next to the source of the Wi-Fi network. Anything you can do over Wi-Fi will work well.
+    - -55 to -60dBm: High quality signal. Devices should work well, video should stream with no issues.
+    - -70dBm: Low quality: Not really good enough for video at any quality, but ok for emails and web browsing
+    - -80dBm: Minimum signal strength needed for basic connection. Essentially unusable.
+
 # case studies
 
 ### performance

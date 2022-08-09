@@ -51,6 +51,7 @@
     - [registry-keys-startup-folder](https://dmcxblue.gitbook.io/red-team-notes/persistence/registry-keys-startup-folder)
     - [Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder, Sub\-technique T1547\.001 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/techniques/T1547/001/)
 
+- [GitHub \- last\-byte/PersistenceSniper: Powershell script that can be used by Blue Teams, Incident Responders and System Administrators to hunt persistences implanted in Windows machines\.](https://github.com/last-byte/PersistenceSniper)
 - [GitHub \- LordNoteworthy/al\-khaser: Public malware techniques used in the wild: Virtual Machine, Emulation, Debuggers, Sandbox detection\.](https://github.com/LordNoteworthy/al-khaser)
     - https://www.hybrid-analysis.com/sample/4ca52a1ff170690804811145806c4b6ae6b2c81e129e3cc6b967fd88f47b067e/5bb544127ca3e129f82cc2b9
 
