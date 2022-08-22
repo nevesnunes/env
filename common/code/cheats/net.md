@@ -1060,15 +1060,20 @@ restorecon /foo/bar
     ```
     cat /sys/kernel/debug/ieee80211/phy*/netdev:*/stations/*/rc_stats
     ```
+- latency
+    - avg = 1..2ms
+    ```
+    ping 192.168.1.1
+    ```
 - strength
-    ```
-    iwconfig
-    watch -n1 "awk 'NR==3 {printf(\"WiFi Signal Strength = %.0f%%\\n\",\$3*10/7)}' /proc/net/wireless"
-    ```
     - -50dBm: Excellent signal strength. You’ll rarely see better than this unless your device is directly next to the source of the Wi-Fi network. Anything you can do over Wi-Fi will work well.
     - -55 to -60dBm: High quality signal. Devices should work well, video should stream with no issues.
     - -70dBm: Low quality: Not really good enough for video at any quality, but ok for emails and web browsing
     - -80dBm: Minimum signal strength needed for basic connection. Essentially unusable.
+    ```
+    iwconfig
+    watch -n1 "awk 'NR==3 {printf(\"WiFi Signal Strength = %.0f%%\\n\",\$3*10/7)}' /proc/net/wireless"
+    ```
 
 # case studies
 

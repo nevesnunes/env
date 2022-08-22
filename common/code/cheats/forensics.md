@@ -267,6 +267,7 @@ Biham and Kocher's known plaintext attack:
 - [ZIP Attacks with Reduced Known Plaintext](~/code/doc/zip/zipattacks.pdf)
     - [A known plaintext attack on the PKZIP stream cipher](~/code/doc/zip/CS0842.pdf)
     - https://www.cs.auckland.ac.nz/~mike/zipattacks.pdf
+    - https://programmingwithstyle.com/posts/howihackedmycar/
 
 - https://russtone.io/2018/06/24/google-2018-better-zip/
 

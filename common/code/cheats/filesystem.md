@@ -448,3 +448,7 @@ ls */new_file
 # benchmarking
 
 - [File system performance benchmarking \| GitLab](https://docs.gitlab.com/ee/administration/operations/filesystem_benchmarking.html)
+
+# case studies
+
+- [How does tup use fuse exactly?](https://groups.google.com/g/tup-users/c/LckKoIJFN7k)

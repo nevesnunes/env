@@ -1,7 +1,7 @@
 [Added Associations]
 application/epub+zip=calibre-ebook-viewer.desktop;org.pwmt.zathura-pdf-mupdf.desktop;FBReader.desktop;com.github.johnfactotum.Foliate.desktop;
 application/javascript=gvim.desktop;
-application/msword=gvim.desktop;
+application/msword=gvim.desktop;libreoffice-writer.desktop;
 application/octet-stream=gvim.desktop;transmission-gtk.desktop;milkytracker.desktop;nfoview.desktop;libreoffice-calc.desktop;
 application/pdf=org.gnome.Evince.desktop;calibre-ebook-viewer.desktop;okularApplication_pdf.desktop;zathura.desktop;evince.desktop;inkscape.desktop;mupdf.desktop;zathura-djvu.desktop;
 application/pgp-keys=gvim.desktop;
@@ -136,7 +136,7 @@ x-scheme-handler/ftp=firefox.desktop;
 x-scheme-handler/http=exo-web-browser.desktop;firefox.desktop;userapp-Firefox-9PKSO1.desktop;
 x-scheme-handler/https=exo-web-browser.desktop;firefox.desktop;userapp-Firefox-9PKSO1.desktop;
 x-scheme-handler/mailto=exo-mail-reader.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop;userapp-Telegram Desktop-TKW7O1.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop;userapp-Telegram Desktop-TKW7O1.desktop;userapp-Telegram Desktop-8VVKQ1.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop
 
 [Default Applications]
@@ -261,9 +261,10 @@ x-scheme-handler/http=userapp-Firefox-9PKSO1.desktop
 x-scheme-handler/https=userapp-Firefox-9PKSO1.desktop
 x-scheme-handler/irc=pidgin.desktop
 x-scheme-handler/mailto=mozilla-thunderbird.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-TKW7O1.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-8VVKQ1.desktop
 x-scheme-handler/unknown=firefox.desktop
 x-scheme-handler/eclipse+mpc=_home_fn_opt_eclipse_.desktop
+application/msword=libreoffice-writer.desktop
 
 [Removed Associations]
 application/x-gzpostscript=zathura-ps.desktop;
