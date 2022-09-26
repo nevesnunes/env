@@ -19,11 +19,12 @@ gdb_bin=$(realpath "$1")
 [ -f "$gdb_bin" ]
 shift
 
-while [ $# -gt 0 ]; do
+if [ $# -gt 0 ]; then
   plugin_file=$(realpath "$1")
-  [ -f "$plugin_file" ]
-  echo "source $plugin_file" >> "$HOME"/.gdbinit
-  shift
-done
+  if [ -f "$plugin_file" ]; then
+    echo "source $plugin_file" >> "$HOME"/.gdbinit
+    shift
+  fi
+fi
 
 "$gdb_bin" -q "$@"

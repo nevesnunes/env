@@ -1,4 +1,5 @@
 agrep
+aria2
 ant
 apt-transport-https
 atool
@@ -16,6 +17,7 @@ g++
 gcc
 gcc-multilib
 gdb
+gdbserver
 git
 htop
 inotify-tools
@@ -38,6 +40,7 @@ python3-venv
 qemu-utils
 rlwrap
 rsync
+ruby-dev
 sqlite3
 subversion
 tidy

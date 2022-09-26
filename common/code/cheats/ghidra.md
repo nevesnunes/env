@@ -18,6 +18,17 @@
 
 # symbols
 
+### export
+
+- Window > Symbol Table > [Select lines and open context menu] > Export to CSV...
+
+### import
+
+- Window > Script Manager > ImportSymbolScript.py
+    - [Import labels from text file · Issue \#170 · NationalSecurityAgency/ghidra · GitHub](https://github.com/NationalSecurityAgency/ghidra/issues/170)
+
+### PDB
+
 - File > Load PDB File...
     - Config > Add https://msdl.microsoft.com/download/symbols/
     - For ntoskrnl: ntkrnlmp.pdb

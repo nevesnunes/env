@@ -356,9 +356,9 @@ rr ./foo
         - [Project Zero: This shouldn't have happened: A vulnerability postmortem](https://googleprojectzero.blogspot.com/2021/12/this-shouldnt-have-happened.html)
     - look at different codebases to better understand a feature, see if one makes the mistake that the other carefully avoided
 - [35C3 \-  The Layman&\#39;s Guide to Zero\-Day Engineering \- YouTube](https://www.youtube.com/watch?v=WbuGMs2OcbE)
-    - understand architecture; security track record
+    - understand architecture (build project, identify components from docs, then correlate with source code to reduce search space); security track record (CVEs); related work (PoCs)
         > exploit writeup, exploiting javascript engines, javascriptcore cve, javascriptcore vulnerability, webkit architecture, safari exploitdb, compile webkit, debugging webkit
-    - identify sources of user input, and follow the data, dumb fuzzing by bit-flipping that data
+    - identify sources of user input and follow the data through code paths; dumb fuzzing by bit-flipping that data
     - less coverage correlates with edge-cases
 - [Keynote Day 2 | Hunting Evasive Vulnerabilities: Finding Flaws That Others Miss by James Kettle - YouTube](-https://www.youtube.com/watch?v=skbKjO8ahCI)
     - attention trap when picking techniques: look for behaviour, not technology

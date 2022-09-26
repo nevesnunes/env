@@ -192,6 +192,7 @@ inurl:gitlab "company"
 ```
 
 - [Google Hacking Database \(GHDB\) \- Google Dorks, OSINT, Recon](https://www.exploit-db.com/google-hacking-database)
+- [DorkSearch \- Speed up your Dorking](https://dorksearch.com/)
 
 # blog
 

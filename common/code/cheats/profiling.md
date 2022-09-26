@@ -180,6 +180,12 @@ ulimit -Hn
 sudo su user1 -c "ulimit -Hn"
 ```
 
+# flamegraphs
+
+- [speedscope](https://www.speedscope.app/)
+    - [Format Support: Trace Event Format · Issue \#77 · jlfwong/speedscope · GitHub](https://github.com/jlfwong/speedscope/issues/77)
+- [Perfetto UI](https://ui.perfetto.dev/)
+
 # resources
 
 ```bash
@@ -317,3 +323,4 @@ strace -f -e trace=clone grep -rI --exclude=.git 'class TestDefaultNameNodePort'
 # case studies
 
 - [A Kernel Dev&\#39;s Approach to Improving Mutt&\#39;s Performance \- Part 1](https://www.codeblueprint.co.uk/2016/12/19/a-kernel-devs-approach-to-improving.html)
+- [Windows Performance Toolkit \- why git for windows so slow? – shellbombs – windows and linux kernel development](https://shellbombs.github.io/Windows-Performance-Toolkit/)

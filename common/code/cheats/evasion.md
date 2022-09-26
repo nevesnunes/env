@@ -11,6 +11,7 @@
 - [GitHub \- seifreed/awesome\-sandbox\-evasion: A summary about different projects/presentations/tools to test how to evade malware sandbox systems](https://github.com/seifreed/awesome-sandbox-evasion)
 - [GitHub \- persistence\-info/persistence\-info\.github\.io](https://github.com/persistence-info/persistence-info.github.io)
     - [persistence\-info\.github\.io](https://persistence-info.github.io/)
+- [Defense Evasion, Tactic TA0005 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/tactics/TA0005/)
 
 # methodology
 
@@ -39,6 +40,12 @@
 - process injection
     - [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
     - [AddressOfEntryPoint Code Injection without VirtualAllocEx RWX \- Red Teaming Techniques & Experiments](https://www.ired.team/offensive-security/code-injection-process-injection/addressofentrypoint-code-injection-without-virtualallocex-rwx)
+    - ELF format: `ptrace()` + `_dl_open()` || `pthread_create()`
+        - [Ars\-Informatica &middot; by Daniele Gasperini\.](https://web.archive.org/web/20150717110958/http://www.ars-informatica.com/Root/Code/2010_04_18/LinuxPTrace.aspx)
+        - [System Programming: Linux Threads Through a Magnifier: Remote Threads](http://syprog.blogspot.com/2012/03/linux-threads-through-magnifier-remote.html)
+        - [shared libraries \- \.so injection under linux: how to locate address of dlopen\(\)? \- Stack Overflow](https://stackoverflow.com/questions/21651761/so-injection-under-linux-how-to-locate-address-of-dlopen)
+        - [GitHub \- gaffe23/linux\-inject: Tool for injecting a shared object into a Linux process](https://github.com/gaffe23/linux-inject)
+        - [GitHub \- ilammy/linux\-crt: CreateRemoteThread for Linux](https://github.com/ilammy/linux-crt)
 - registry keys
     ```
     {HKCU,HKLM}\Software\Microsoft\Windows\CurrentVersion\{Run,RunOnce,RunOnceEx,RunServices,RunServicesOnce}
@@ -97,6 +104,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 ```
 
 - https://shanetully.com/2013/12/writing-a-self-mutating-x86_64-c-program/
+- http://web.archive.org/web/20170501105431im_/http://www.pinkstyle.org/elfcrypt.html
 - https://redcanary.com/blog/process-memory-integrity-linux/
 
 ### .NET

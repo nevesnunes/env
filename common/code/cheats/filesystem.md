@@ -145,7 +145,7 @@ iat -i input.img --iso -o output.iso
 
 - Detection: ./reports/cdrom-detection.md
 - Structure: physical sectors
-- Take from: block device node (aka. block special file) (e.g. /dev/disk*)
+- Take from: block device node (aka. block special file) (e.g. `/dev/disk*`)
 - Yellow Book
     - Mode 1 - Chunks of data area (2352 bytes, defined in Red Book), with fields:
         - Capacity: 650 MB = 74 minutes (4440 seconds) contained in 333000 blocks / sectors
@@ -202,10 +202,15 @@ iat -i input.img --iso -o output.iso
 cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.toc
 ```
 
+# GD-ROM
+
+1. Convert `.bin/.cue` to `.gdi`: [GitHub \- sirconan/gdi\-conversion: Convert Dreamcast Game images \(cue and bin files\) to GDI images in order to run on GDEMU\.](https://github.com/sirconan/gdi-conversion)
+2. Mount `.gdi`: [GitHub \- snickerbockers/gdisofs: FUSE module for mounting Sega Dreamcast GD\-ROM images \(\.gdi format\)](https://github.com/snickerbockers/gdisofs)
+
 # ISO
 
 - Structure: logical sectors
-- Take from: character device node (aka. character special file) (e.g. /dev/rdisk*)
+- Take from: character device node (aka. character special file) (e.g. `/dev/rdisk*`)
     - https://linux-kernel-labs.github.io/refs/heads/master/labs/device_drivers.html
     - https://stackoverflow.com/questions/39613825/how-to-read-plain-data-sectors-mode1-from-a-cd-on-os-x
         - https://superuser.com/questions/631592/why-is-dev-rdisk-about-20-times-faster-than-dev-disk-in-mac-os-x/892768

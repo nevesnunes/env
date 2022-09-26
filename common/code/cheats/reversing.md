@@ -35,6 +35,7 @@
     - PE format:
         - `procmon`
         - [GitHub \- fireeye/capa: The FLARE team&\#39;s open\-source tool to identify capabilities in executable files\.](https://github.com/fireeye/capa)
+        - [GitHub \- CobaltFusion/DebugViewPP: DebugView\+\+, collects, views, filters your application logs, and highlights information that is important to you!](https://github.com/CobaltFusion/DebugViewPP)
     - signatures detection with parameter names on pushed registers
         - [ghidra](./ghidra.md#FID)
         - [IDA](./ida.md#FLIRT)
@@ -424,6 +425,10 @@ done 2>/dev/null | vim -
 ~/code/snippets/gdb/cov.py
 ~/opt/dynamorio/build/bin64/drrun -t drcov -dump_text -- ./a.out
 diff -Nauw drcov.a.out.2575073.0000.proc.log drcov.a.out.2575098.0000.proc.log | vim -
+# - source code highlighting
+drcov2lcov -dir . -output cov.info -src_filter foo
+genhtml cov.info --output-directory out
+
 # - diff alternative: `lighthouse` plugin
 # - https://stackoverflow.com/questions/53218160/how-can-i-do-code-path-analysis-in-a-debugger
 # - https://stackoverflow.com/questions/22507169/how-to-run-record-instruction-history-and-function-call-history-in-gdb

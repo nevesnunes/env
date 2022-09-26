@@ -16,6 +16,7 @@
     - https://cheatsheetseries.owasp.org/Glossary.html
 - https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html
 - https://pentester.land/list-of-bug-bounty-writeups.html
+- https://littlemaninmyhead.wordpress.com/2019/11/03/some-useful-appsec-resources/
 - The Web Application Hacker's Handbook
 
 # docs
@@ -271,6 +272,7 @@ Clone:
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
 - https://elongl.github.io/exploitation/2021/05/30/pwning-home-router.html
+- [Bitbucket Server CVE\-2022\-36804 漏洞分析\-安全客 \- 安全资讯平台](https://www.anquanke.com/post/id/280193)
 
 ### Server-Side Template Injection (SSTI)
 

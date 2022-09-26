@@ -17,6 +17,10 @@
         ```bash
         cc -fsanitize=address -ggdb -o foo foo.c
         ```
+- [Intro to Rust Fuzzing \| anthok](https://www.anthok.com/posts/intro-to-rust-fuzzing/)
+- [GitHub \- mykter/afl\-training: Exercises to learn how to fuzz with American Fuzzy Lop](https://github.com/mykter/afl-training)
+- [fuzzing/good\-fuzz\-target\.md at master · google/fuzzing · GitHub](https://github.com/google/fuzzing/blob/master/docs/good-fuzz-target.md)
+- [Picking a Target \| nedwill’s security blog](https://nedwill.github.io/blog/jekyll/update/2019/04/08/picking-a-target.html)
 
 # Fault injection
 
@@ -91,10 +95,16 @@ lea rsp, [rsp+98h]
 - emulation
     - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
 - [GitHub \- google/honggfuzz: Security oriented software fuzzer\. Supports evolutionary, feedback\-driven fuzzing based on code coverage \(SW and HW based\)](https://github.com/google/honggfuzz)
+- [libFuzzer – a library for coverage\-guided fuzz testing\. &\#8212; LLVM 16\.0\.0git documentation](https://llvm.org/docs/LibFuzzer.html)
+    - [fuzzing/libFuzzerTutorial\.md at master · google/fuzzing · GitHub](https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md)
 
 ### Mutation based fuzzing
 
 - [Aki Helin / radamsa · GitLab](https://gitlab.com/akihe/radamsa)
+
+### System fuzzing
+
+- [oss\-fuzz/infra/experimental/SystemSan at master · google/oss\-fuzz · GitHub](https://github.com/google/oss-fuzz/tree/master/infra/experimental/SystemSan)
 
 # Directory busting
 
@@ -147,3 +157,4 @@ ffuf -c -w ~/code/guides/ctf/SecLists/Passwords/Leaked-Databases/rockyou-75.txt 
 - https://github.com/danielmiessler/SecLists
 - https://github.com/allyshka/dirbustlist/tree/master/dirbuster
 - https://github.com/zaproxy/zap-extensions/tree/master/addOns/directorylistv2_3/src/main/zapHomeFiles/fuzzers/dirbuster
+- https://github.com/fuzzdb-project/fuzzdb

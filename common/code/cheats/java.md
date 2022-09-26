@@ -1415,3 +1415,7 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 
 - [Vanilla Java](http://vanillajava.blogspot.com/)
 - [Mechanical Sympathy](https://mechanical-sympathy.blogspot.com/)
+
+### jdk
+
+- [8292983: ModuleReferenceImpl\.computeHash should record algorithm for cache checks by shipilev · Pull Request \#10044 · openjdk/jdk · GitHub](https://github.com/openjdk/jdk/pull/10044)

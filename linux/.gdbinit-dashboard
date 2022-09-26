@@ -114,7 +114,8 @@ which `{pid}` is expanded with the process identifier of the target program.""",
                 'default': '32'
             },
             'style_low': {
-                'default': '1;30'
+                #'default': '1;30'
+                'default': '33'
             },
             'style_high': {
                 'default': '1;37'

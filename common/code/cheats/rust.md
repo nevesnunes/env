@@ -9,6 +9,17 @@
 - https://doc.rust-lang.org/src/core/fmt/mod.rs.html
     - https://github.com/rust-lang/rust/tree/master/library/core/src
 
+# Debug
+
+```rust
+#![feature(backtrace)]
+use std::backtrace::Backtrace;
+
+fn main() {
+    println!("Custom backtrace: {}", Backtrace::force_capture());
+}
+```
+
 # Build
 
 ```bash

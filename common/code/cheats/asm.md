@@ -143,9 +143,11 @@ r2 -c 'iae' -qq foo.exe
 7z x foo.exe # => .rsrc/VERSION/1
 env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/peres -v foo.exe
 env LD_PRELOAD=$HOME/share/forensics/pev/lib/libpe/libpe.so ~/share/forensics/pev/src/build/readpe foo.exe
-# [PEdump \- dump your PE!](http://pedump.me/)
-# [pestudio](http://www.winitor.com/)
-# [pecheck.py](https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py)
+# Alternatives:
+# - [PEdump \- dump your PE!](http://pedump.me/)
+# - [pestudio](http://www.winitor.com/)
+# - [pecheck.py](https://github.com/DidierStevens/DidierStevensSuite/blob/master/pecheck.py)
+# - [GitHub \- blackberry/pe\_tree: Python module for viewing Portable Executable \(PE\) files in a tree\-view using pefile and PyQt5\. Can also be used with IDA Pro and Rekall to dump in\-memory PE files and reconstruct imports\.](https://github.com/blackberry/pe_tree)
 
 # Add symbols: function `main` at `.text base address - offset = 0x12` and variable `mem` at `.bss base address - offset = 0x34`
 # FIXME: .bss vs .data
@@ -707,6 +709,13 @@ call eax
 
 ### arm, aarch64
 
+```sh
+# T32
+while true; do read -r i; rasm2 -a arm -b 16 -d "$i"; done
+# A32
+while true; do read -r i; rasm2 -a arm -b 32 -d "$i"; done
+```
+
 - loop
     - https://stackoverflow.com/questions/21649289/what-bytes-to-emit-for-an-arm64-equivalent-of-ebfe
     ```
@@ -742,6 +751,27 @@ call eax
 - https://azeria-labs.com/writing-arm-assembly-part-1/
 - https://thinkingeek.com/arm-assembler-raspberry-pi/
 - https://opensecuritytraining.info/IntroARM.html
+
+### inter-working stubs
+
+- [assembly \- ARM\-C Inter\-working \- Stack Overflow](https://stackoverflow.com/questions/16132084/arm-c-inter-working)
+    - https://developer.arm.com/documentation/dui0489/i/directives-reference/import-and-extern
+    ```
+    00001028 <two>:
+        1028:   b508        push    {r3, lr}
+        102a:   f000 f80b   bl  1044 <__three_from_thumb>
+        102e:   3005        adds    r0, #5
+        1030:   bc08        pop {r3}
+        1032:   bc02        pop {r1}
+        1034:   4708        bx  r1
+        1036:   46c0        nop         ; (mov r8, r8)
+    ...
+    00001044 <__three_from_thumb>:
+        1044:   4778        bx  pc
+        1046:   46c0        nop         ; (mov r8, r8)
+        1048:   eafffff4    b   1020 <three>
+        104c:   00000000    andeq   r0, r0, r0
+    ```
 
 ### infinite loop
 

@@ -136,7 +136,7 @@ compare i1.png i2.png -metric RMSE o.png
 composite i1.png i2.png -compose difference o.png
 ```
 
-# combine
+# combine, tile
 
 ```python
 import numpy as np
@@ -157,6 +157,9 @@ img.save('flag.png')
 
 ```bash
 montage -mode concatenate -tile 1x in-*.jpg out.jpg
+
+# With padding
+montage -tile 4x2 -geometry +2+2 -background none in-*.jpg out.jpg
 ```
 
 https://superuser.com/questions/290656/combine-multiple-images-using-imagemagick
@@ -168,6 +171,8 @@ https://superuser.com/questions/290656/combine-multiple-images-using-imagemagick
 convert in.png -crop "$((1366-$((1366-752+2))))x$((768-$((768-464+26))))+1+26" out.png
 # 1/3 of 1366x768
 convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
+# multiple tiles
+convert in.png -crop 32x32 %04d.png
 ```
 
 # scale
