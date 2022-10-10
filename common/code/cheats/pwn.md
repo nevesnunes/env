@@ -4,10 +4,10 @@
 - [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
 - [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
 
-- memfd_create dropper to download/execute files in memory
-    - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
-    > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
+- [GitHub \- Gallopsled/pwntools\-tutorial: Tutorials for getting started with Pwntools](https://github.com/Gallopsled/pwntools-tutorial)
+- [GitHub \- libpwntools/libpwntools: pwntools library implementation in c\+\+](https://github.com/libpwntools/libpwntools)
 
+- [CWE-659 \- Weaknesses in Software Written in C++](https://cwe.mitre.org/data/definitions/659.html)
 - https://bitvijays.github.io/LFC-BinaryExploitation.html
 - [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
 - [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
@@ -16,8 +16,9 @@
     - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
     - https://www.corelan.be/
 
-- [GitHub \- Gallopsled/pwntools\-tutorial: Tutorials for getting started with Pwntools](https://github.com/Gallopsled/pwntools-tutorial)
-- [GitHub \- libpwntools/libpwntools: pwntools library implementation in c\+\+](https://github.com/libpwntools/libpwntools)
+- memfd_create dropper to download/execute files in memory
+    - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
+    > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
 
 - [GitHub \- nccgroup/exploit\_mitigations: Knowledge base of exploit mitigations available across numerous  operating systems, architectures and applications and versions\.](https://github.com/nccgroup/exploit_mitigations)
 
@@ -177,6 +178,8 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
 - if: leaked libc base address + can leak arbitrary address
     - dereference libc base + offset of symbol `environ`
     - https://github.com/Naetw/CTF-pwn-tips#leak-stack-address
+
+- https://book.hacktricks.xyz/reversing-and-exploiting/linux-exploiting-basic-esp/bypassing-canary-and-pie
 
 # One-Gadget RCE
 

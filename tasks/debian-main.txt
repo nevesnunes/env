@@ -40,6 +40,7 @@ libpango1.0-0
 libreoffice
 libsdl1.2-dev
 libsdl2-dev
+libsox-fmt-all
 libsqlite3-dev
 libx11-xcb-dev
 libxxf86vm-dev

@@ -168,11 +168,11 @@ https://superuser.com/questions/290656/combine-multiple-images-using-imagemagick
 
 ```bash
 # 1366x768
-convert in.png -crop "$((1366-$((1366-752+2))))x$((768-$((768-464+26))))+1+26" out.png
+convert in.png +repage -crop "$((1366-$((1366-752+2))))x$((768-$((768-464+26))))+1+26" out.png
 # 1/3 of 1366x768
-convert in.png -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
+convert in.png +repage -crop "$((490-20-2))x$((736-10-34))+11+34" out.png
 # multiple tiles
-convert in.png -crop 32x32 %04d.png
+convert in.png +repage -crop 32x32 %04d.png
 ```
 
 # scale
@@ -188,6 +188,28 @@ for i in *.png; do convert -strip -quality 92% -resize x2600\>  "$i" "$i".jpg; d
   - [Hugin tutorial &\#8212; Stitching flat scanned images](http://hugin.sourceforge.net/tutorials/scans/en.shtml)
 - control points
   - [How to stitch photos together on Linux](https://www.xmodulo.com/stitch-photos-together-linux.html)
+
+# metadata
+
+- if distinct colors across apps, then check:
+    - app color management enabled vs. disabled;
+    - system default ICC profile vs. app built-in ICC profile vs. embedded ICC profile;
+
+```sh
+identify -verbose in.png
+
+# Remove ICC profile
+convert -strip in.png out.png
+# ||
+ect -strip --strict in.png
+
+# Add ICC profile
+icc=$HOME/.local/share/icc/edid-01230123012301230123012301230123.icc; pngcrush -iccp $(wc -c "$icc" | awk '{print $1}') "Profile" "$icc" foo.png && mv pngout.png foo.png
+
+# Edit ICC v2
+dcamprof dcp2json foo.dcp foo.json
+dcamprof make-icc -p matrix foo.json foo.icc
+```
 
 # visual regression testing
 

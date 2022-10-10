@@ -372,9 +372,14 @@ llc -march=x86-64 foo.bc -o foo.o -filetype=obj
 
 # vm
 
-- https://ctf.harrisongreen.me/2022/tetctf/crackme_pls/
+- [TetCTF 2022 \- crackme pls \(964 pt / 7 solves\)](https://ctf.harrisongreen.me/2022/tetctf/crackme_pls/)
     - un-flatten control flow by setting user indirect branches
-- https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/
+- [Automated Detection of Control-flow Flattening \- synthesis.io](https://synthesis.to/2021/03/03/flattening_detection.html)
+- [FinFisher exposed: A researcher’s tale of defeating traps, tricks, and complex virtual machines \- Microsoft Security Blog](https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/)
+
+# bios
+
+- [Reverse Engineering MenuetOS 64 \- Primary Boot Loader \| StarkeBlog](https://nstarke.github.io/bios/menuetos/2022/09/22/reverse-engineering-menuetos.html)
 
 # functional programming
 

