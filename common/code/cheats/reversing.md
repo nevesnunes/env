@@ -381,15 +381,19 @@ llc -march=x86-64 foo.bc -o foo.o -filetype=obj
 - [Automated Detection of Control-flow Flattening \- synthesis.io](https://synthesis.to/2021/03/03/flattening_detection.html)
 - [FinFisher exposed: A researcher’s tale of defeating traps, tricks, and complex virtual machines \- Microsoft Security Blog](https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/)
 
-# bios
-
-- [Reverse Engineering MenuetOS 64 \- Primary Boot Loader \| StarkeBlog](https://nstarke.github.io/bios/menuetos/2022/09/22/reverse-engineering-menuetos.html)
-
 # functional programming
 
 - [GitHub \- sjsyrek/malc: Make a lambda calculus\.](https://github.com/sjsyrek/malc)
 - [Beta reduction \- HaskellWiki](https://wiki.haskell.org/Beta_reduction)
 - [David Beazley \- Lambda Calculus from the Ground Up \- PyCon 2019 \- YouTube](https://www.youtube.com/watch?v=pkCLMl0e_0k)
+
+# taint analysis
+
+- [DNN\-decompiler/trace\_filter\.py at master · monkbai/DNN\-decompiler · GitHub](https://github.com/monkbai/DNN-decompiler/blob/master/trace_filter.py)
+
+# bios
+
+- [Reverse Engineering MenuetOS 64 \- Primary Boot Loader \| StarkeBlog](https://nstarke.github.io/bios/menuetos/2022/09/22/reverse-engineering-menuetos.html)
 
 # scripting dissassembly
 
