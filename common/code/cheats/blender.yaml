@@ -6,6 +6,8 @@ z: wireframe
 a: select all
 C-LMB: select elements
 A: add
+g: move
+r: rotate
 
 moving:
     F: fly mode

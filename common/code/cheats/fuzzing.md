@@ -21,6 +21,13 @@
 - [GitHub \- mykter/afl\-training: Exercises to learn how to fuzz with American Fuzzy Lop](https://github.com/mykter/afl-training)
 - [fuzzing/good\-fuzz\-target\.md at master · google/fuzzing · GitHub](https://github.com/google/fuzzing/blob/master/docs/good-fuzz-target.md)
 - [Picking a Target \| nedwill’s security blog](https://nedwill.github.io/blog/jekyll/update/2019/04/08/picking-a-target.html)
+- [2022 CWE Top 25 Most Dangerous Software Weaknesses](https://cwe.mitre.org/top25/archive/2022/2022_cwe_top25.html)
+
+# Case studies
+
+- [Hacking TMNF: Part 1 \- Fuzzing the game server \| bricked\.tech](https://blog.bricked.tech/posts/tmnf/part1/)
+- [The search for animal 0\-day: From fuzzing Apache httpd server to CVE\-2017\-7668 and a $1500 bounty](https://animal0day.blogspot.com/2017/07/from-fuzzing-apache-httpd-server-to-cve.html)
+- [Root Cause Analysis \– Integer Overflows \| Corelan Cybersecurity Research](https://www.corelan.be/index.php/2013/07/02/root-cause-analysis-integer-overflows/)
 
 # Fault injection
 

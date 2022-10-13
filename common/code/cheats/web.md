@@ -8,6 +8,7 @@
 - [HTML Codes \- Table of ascii characters and symbols](https://ascii.cl/htmlcodes.htm)
 - [Unicode/UTF\-8\-character table](https://utf8-chartable.de/unicode-utf8-table.pl)
 
+- https://www.bugbountyhunting.com/
 - https://book.hacktricks.xyz/pentesting/pentesting-web
 - https://github.com/swisskyrepo/PayloadsAllTheThings
 - http://pentestmonkey.net/category/cheat-sheet
