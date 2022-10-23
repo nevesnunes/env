@@ -132,6 +132,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.local/share/crispy-doom/*.cfg \
   /home/"$USER"/./.local/share/file-manager \
   /home/"$USER"/./.local/share/functions \
+  /home/"$USER"/./.local/share/icc \
   /home/"$USER"/./.local/share/icons/hicolor \
   /home/"$USER"/./.local/share/icons/Uhita \
   /home/"$USER"/./.local/share/nautilus \

@@ -135,6 +135,7 @@ Restart-Service w32time
         - runs entry point but fails if no `DllRegisterServer` export
         - with `/i` for `DllInstall` export
 - entry function signatures
+    - https://learn.microsoft.com/en-us/windows/win32/dlls/dllmain
     - https://www.hexacorn.com/blog/2013/08/08/da-lil-world-of-dll-exports-and-entry-points-part-1/
     ```
     void CALLBACK MyEntryPoint(HWND hwnd, HINSTANCE hinst, LPSTR pszCmdLine, int nCmdShow);
@@ -338,6 +339,8 @@ procmon /terminate
     - `/S`: run silently
     - `/D`: default installation directory
     - https://www.exemsi.com/documentation/installer-frameworks/nsis-nullsoft-scriptable-install-system/
+- InstallShield
+    - [GitHub \- tylerapplebaum/setupinxhacking: Hacking old InstallShield Setup\.inx files](https://github.com/tylerapplebaum/setupinxhacking)
 
 parsing
 - orca
@@ -370,6 +373,7 @@ parsing
 - case studies
     - chocolatey
     - https://github.com/microsoft/winget-pkgs
+    - [Heroes of Might and Magic V &\#8211; Hammers of Bait and Switch? &\#8211; Made Up Explorations](https://madeupexplorations.wordpress.com/2021/10/25/heroes-of-might-and-magic-v-hammers-of-bait-and-switch/)
 
 # libraries, dll
 
@@ -868,9 +872,10 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
 editbin /DYNAMICBASE:NO foo.exe
 :: || Windows 10
 Set-Processmitigation -Name foo.exe -Disable ForceRelocateImages
-:: || File Header > Characteristics |= 1 (Relocation info stripped)
-:: || Optional Header > DLLCHARACTERISTICS = 0x8100 (DYNAMIC_BASE = 0)
-:: || Optional Header > DataDirectory[Base Relocation Table a.k.a. IMAGE_DIRECTORY_ENTRY_BASERELOC] = 0
+:: || PE-Bear
+::    * File Header > Characteristics |= 1 (Relocation info stripped)
+::    * Optional Header > DLLCHARACTERISTICS = 0x8100 (DYNAMIC_BASE = 0)
+::    * Optional Header > DataDirectory[Base Relocation Table a.k.a. IMAGE_DIRECTORY_ENTRY_BASERELOC] = 0
 
 :: Validation
 dumpbin /headers foo.exe

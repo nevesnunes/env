@@ -182,7 +182,7 @@
     - lifecycle
         - before OEP
             - ELF format: init_array
-            - PE format: TLS callback (IMAGE_DIRECTORY_ENTRY_TLS)
+            - PE format: TLS callback (IMAGE_DIRECTORY_ENTRY_TLS), `_initterm()`
         - debugger: break on thread exit, dll unload, process exit, then check stack
         - [Intercepting Program Startup on Windows and Trying to Not Mess Things Up / Habr](https://habr.com/en/post/544456/)
     - finding `main()` function

@@ -117,6 +117,10 @@ node --require './tracing.js' app.js
     > - The worst thing is when the MFA notifications don't tell you what it's for or when the attempt was generated.
     > - Yep! Some do, though it’s relatively easy to miss. A relatively easy improvement would be to ask the user what app they are expecting it to come from. (Select from 9 tiles, etc) Obviously still flawed, but better.
 
+# Reproducible builds
+
+- [disorderfs \- FUSE filesystem that introduces non-determinism](https://manpages.ubuntu.com/manpages/bionic/man1/disorderfs.1.html)
+
 # Hot-Swapping
 
 ### Executables

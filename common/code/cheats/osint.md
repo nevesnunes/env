@@ -308,11 +308,14 @@ shodan host 1.2.3.4
 
 - https://web.archive.org
     - e.g.
-    - https://web.archive.org/web/*/https://github.com/HMBSbige/JetBrains-License-Server/*
-        - https://hub.docker.com/r/hmbsbige/jetbrains-license-server/dockerfile
-    - https://web.archive.org/web/20200810173036if_/https://github.com/jaffarahmed/CREST-Exam-Prep
-    - https://web.archive.org/web/*/https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/*
-        - https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/master/Breakout%201%20%2B%20UNIX1.pdf
+        - https://web.archive.org/web/*/https://github.com/HMBSbige/JetBrains-License-Server/*
+            - https://hub.docker.com/r/hmbsbige/jetbrains-license-server/dockerfile
+        - https://web.archive.org/web/20200810173036if_/https://github.com/jaffarahmed/CREST-Exam-Prep
+        - https://web.archive.org/web/*/https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/*
+            - https://raw.githubusercontent.com/jaffarahmed/CREST-Exam-Prep/master/Breakout%201%20%2B%20UNIX1.pdf
+    ```sh
+    <1 xargs -I{} waybackpy --url {} --user_agent 'Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0' --oldest | xargs -I{} wget {}
+    ```
 - https://archive.is
 - https://outline.com
 - hybrid analysis

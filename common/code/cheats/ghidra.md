@@ -41,6 +41,20 @@ gradle -PGHIDRA_INSTALL_DIR="$HOME/opt/ghidra_9.2.3_PUBLIC" buildExtension
 cp dist/*.zip "$HOME/opt/ghidra_9.2.3_PUBLIC/Extensions/Ghidra/"
 ```
 
+# import project
+
+1. File > Import... > Existing project
+2. GhidraDev > Link Ghidra...
+
+# debug project
+
+1. If "Multiple modules collided with same name", then remove installed extension || temporarily move from ~/.ghidra/
+2. Run > Debug Configrations... > Classpath 
+    - Bootstrap Entries || User Entries > Add project...
+3. Debug (Ghidra instance is launched from Eclipse)
+
+- https://reverseengineering.stackexchange.com/questions/24951/how-to-launch-and-debug-ghidra-from-eclipse-with-two-modules-im-developing-at-t/
+
 # configuration
 
 - Script Manager

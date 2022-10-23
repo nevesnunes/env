@@ -1,0 +1,6 @@
+-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-11-openjdk-11.0.15.0.10-1.fc34.x86_64">
+-		<attributes>
+-			<attribute name="module" value="true"/>
+-		</attributes>
+-	</classpathentry>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-11-openjdk-amd64"/>

@@ -216,6 +216,10 @@ env LD_PRELOAD=ptrace.so ./foo
 
 - [r2\-pay: anti\-debug, anti\-root & anti\-frida \(part 1\) \| Romain Thomas](https://www.romainthomas.fr/post/20-09-r2con-obfuscated-whitebox-part1/)
 
+# syscalls
+
+- [Hiding Your Syscalls \| PassTheHashBrowns](https://passthehashbrowns.github.io/hiding-your-syscalls)
+
 # copy protection
 
 - Detection

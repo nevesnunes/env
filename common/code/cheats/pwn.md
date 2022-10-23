@@ -6,19 +6,22 @@
 
 - [GitHub \- Gallopsled/pwntools\-tutorial: Tutorials for getting started with Pwntools](https://github.com/Gallopsled/pwntools-tutorial)
 - [GitHub \- libpwntools/libpwntools: pwntools library implementation in c\+\+](https://github.com/libpwntools/libpwntools)
+- [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
 
 - [CWE-659 \- Weaknesses in Software Written in C++](https://cwe.mitre.org/data/definitions/659.html)
 - https://bitvijays.github.io/LFC-BinaryExploitation.html
 - [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
-- [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
+- Linux
+    - [GitHub \- xairy/linux\-kernel\-exploitation: A collection of links related to Linux kernel security and exploitation](https://github.com/xairy/linux-kernel-exploitation)
+    - memfd_create dropper to download/execute files in memory
+        - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
+        > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
 - Windows
     - [GitHub \- hacksysteam/HackSysExtremeVulnerableDriver: HackSys Extreme Vulnerable Windows Driver](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver)
     - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
+    - [GitHub \- ByteHackr/WindowsExploitation: A curated list of awesome Windows Exploitation resources, and shiny things\.](https://github.com/ByteHackr/WindowsExploitation)
+    - https://www.fuzzysecurity.com/tutorials.html
     - https://www.corelan.be/
-
-- memfd_create dropper to download/execute files in memory
-    - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
-    > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
 
 - [GitHub \- nccgroup/exploit\_mitigations: Knowledge base of exploit mitigations available across numerous  operating systems, architectures and applications and versions\.](https://github.com/nccgroup/exploit_mitigations)
 
