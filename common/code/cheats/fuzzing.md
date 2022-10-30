@@ -19,9 +19,14 @@
         ```
 - [Intro to Rust Fuzzing \| anthok](https://www.anthok.com/posts/intro-to-rust-fuzzing/)
 - [GitHub \- mykter/afl\-training: Exercises to learn how to fuzz with American Fuzzy Lop](https://github.com/mykter/afl-training)
+
+### Targets
+
 - [fuzzing/good\-fuzz\-target\.md at master · google/fuzzing · GitHub](https://github.com/google/fuzzing/blob/master/docs/good-fuzz-target.md)
 - [Picking a Target \| nedwill’s security blog](https://nedwill.github.io/blog/jekyll/update/2019/04/08/picking-a-target.html)
 - [2022 CWE Top 25 Most Dangerous Software Weaknesses](https://cwe.mitre.org/top25/archive/2022/2022_cwe_top25.html)
+- [List of codecs \- Wikipedia](https://en.wikipedia.org/wiki/List_of_codecs)
+- [Comparison of file systems \- Wikipedia](https://en.wikipedia.org/wiki/Comparison_of_file_systems)
 
 # Case studies
 

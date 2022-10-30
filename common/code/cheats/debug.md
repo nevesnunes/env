@@ -384,6 +384,10 @@ rr ./foo
     3. Try to get a breakpoint for that entry point to hit in windbg
     4. Modify attacker controlled input to hit different code paths
 
+### tracing miscompiled driver with kernel probes
+
+- [Multi\-Kernel Drifting](https://luqman.ca/blog/multi-kernel-drifting/)
+
 ### caller not saving volatile register
 
 - [Sometimes it \*is\* a compiler bug](https://quick-lint-js.com/blog/bug-journey/)

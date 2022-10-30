@@ -70,3 +70,5 @@ PUSH EAX >> Your password
 PUSH ECX >> The correct password
 CALL 10005680
 ```
+
+- [Recovery of function prototypes in Visual Basic 6 executables \- Avast Threat Labs](https://decoded.avast.io/davidzimmer/recovery-of-function-prototypes-in-visual-basic-6-executables/)

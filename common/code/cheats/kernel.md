@@ -201,6 +201,9 @@ coredumpctl gdb "$(coredumpctl list | \
     grep -o '[0-9]*')"
 ```
 
+- if only backtrace, then lookup address in disassembly
+    - [How to debug kernel crashes](https://www.benzedrine.ch/crashreport.html)
+
 # kill
 
 - http://www.noah.org/wiki/Kill_-9_does_not_work

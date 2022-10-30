@@ -262,6 +262,12 @@ ftp://ftp.informatik.uni-stuttgart.de/pub/library/medoc.ustuttgart_fi/FACH-0184/
 
 https://stackoverflow.com/questions/6846049/profiling-a-running-java-application-in-command-line
 
+# Coverage
+
+```sh
+java -javaagent:jacocoagent.jar,destfile=./coverage/test001.exec,includes=com.mycompany.* -jar MyJarFile.jar <Jar arguments>
+```
+
 # Testing
 
 https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#spring-mvc-test-framework
