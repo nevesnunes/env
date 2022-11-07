@@ -114,6 +114,12 @@ typedef unsigned short word;
 
 # add cpu architecture / processor module
 
+```sh
+# Compile SLEIGH specifications
+cd ~/code/ghidra_workspace/foo/data
+ant -f buildLanguage.xml
+```
+
 - https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/
 - https://spinsel.dev/2020/06/17/ghidra-brainfuck-processor-1.html
 - ~/code/doc/reversing/Implementing\ a\ New\ CPU\ Architecture\ for\ Ghidra.pdf

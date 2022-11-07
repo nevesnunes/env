@@ -639,7 +639,7 @@ call eax
 - ! segment starts at next page-aligned virtual address due to mmap behaviour
     - https://stackoverflow.com/questions/42599558/elf-program-header-virtual-address-and-file-offset
 
-# object-oriented code
+# object-oriented code (oop)
 
 - init
     1. `new()`
@@ -673,6 +673,7 @@ call eax
 - ~/code/doc/reversing/bh-dc-07-Sabanal_Yason-WP.pdf
 - [Getting Started Reversing C\+\+ Objects with Ghidra \- YouTube](https://www.youtube.com/watch?v=ir2B1trR0fE)
 - [Reversing Basic C\+\+ Objects with Ghidra: Inheritance and Polymorphism \(Part 2\) \- YouTube](https://www.youtube.com/watch?v=MiX4p2l_IE0)
+- [Reversing C\+\+, Qt based applications using Ghidra](https://ktln2.org/reversing-casm.md2Basm.md2B-qt-applications-using-ghidra/)
 
 # optimizations
 

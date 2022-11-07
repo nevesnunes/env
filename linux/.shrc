@@ -47,6 +47,7 @@ alias nxargs='xargs -d"\n" -i -n1 -r'
 alias p='python'
 alias r='ranger'
 alias rm='rm --one-file-system -I'
+alias v="gvim -v -u $HOME/code/config/large-files.vimrc"
 alias vim='gvim -v'
 
 # Force help to be output instead of error due to small terminal size
