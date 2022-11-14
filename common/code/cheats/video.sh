@@ -118,6 +118,15 @@ ffmpeg -i foo.mkv -c:v libtheora -qscale:v 10 foo.ogg
 # :( slow
 ffmpeg -i foo.mkv -c:v libaom-av1 -crf 17 -b:v 0 foo.webm
 
+# ||
+# Transcode with neighbor scaling
+ffmpeg -i input.avi -c:a aac -b:a 256k -c:v libx264 -preset veryslow \
+       -crf 17 -vf format=yuv420p,scale=1920:1440:flags=neighbor,fps=50 \
+       output.mp4
+
+# References:
+# - https://susam.net/blog/good-quality-dosbox-video-capture.html
+
 # Crop
 # - Parameter: crop=$w:$h:$x:$y
 # - Variables: in_w,in_h

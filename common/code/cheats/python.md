@@ -342,6 +342,13 @@ pytest --cov=dir/
 
 # Profiling, Benchmarking
 
+- cpu
+    - https://github.com/benfred/py-spy
+    - https://pypi.org/project/scalene/
+- memory
+    - https://github.com/bloomberg/memray
+    - https://pypi.org/project/memory-profiler/
+
 ```bash
 tracemalloc
 

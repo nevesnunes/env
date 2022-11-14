@@ -5,6 +5,7 @@ dconf-editor
 devilspie2
 docker-compose
 docker.io
+dwarves
 evince
 ffmpegthumbnailer
 ffmpegthumbs
@@ -41,6 +42,7 @@ libreoffice
 libsdl1.2-dev
 libsdl2-dev
 libsox-fmt-all
+libssl-dev
 libsqlite3-dev
 libx11-xcb-dev
 libxxf86vm-dev

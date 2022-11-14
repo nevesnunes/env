@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 
+# Bootstrap from existing config (e.g. /boot/config*):
+# - make oldconfig
+# Bootstrap from currently loaded modules:
+# - make localmodconfig
+# References:
+# - https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/README.rst#configuring-the-kernel
+
 set -eux
 
 [ -f .config ]

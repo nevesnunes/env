@@ -1,5 +1,18 @@
 # +
 
+```sh
+# Reload one profile
+apparmor_parser -r /etc/apparmor.d/profile.name
+
+# Disable one profile
+ln -s /etc/apparmor.d/profile.name /etc/apparmor.d/disable/
+apparmor_parser -R /etc/apparmor.d/profile.name
+
+# Enable one profile
+rm -f /etc/apparmor.d/disable/profile.name
+apparmor_parser -r /etc/apparmor.d/profile.name
+```
+
 ```conf
 profile nonetwork /path/to/exec {
   capability,

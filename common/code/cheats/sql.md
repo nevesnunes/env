@@ -708,7 +708,8 @@ https://stackoverflow.com/questions/10589350/oracle-db-equivalent-of-on-duplicat
 
 # case studies
 
-- https://blog.acolyer.org/2018/06/28/how-_not_-to-structure-your-database-backed-web-applications-a-study-of-performance-bugs-in-the-wild/
+- [A Tale of Query Optimization](https://parallelthoughts.xyz/2019/05/a-tale-of-query-optimization/)
+- [How not to structure your database\-backed web applications: a study of performance bugs in the wild \| the morning paper](https://blog.acolyer.org/2018/06/28/how-_not_-to-structure-your-database-backed-web-applications-a-study-of-performance-bugs-in-the-wild/)
 
 ### length operator loads full blob data
 

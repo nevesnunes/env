@@ -325,6 +325,7 @@
     - [UIUCTF 2021 Ropfuscated Writeup \- HackMD](https://hackmd.io/@M30W/UIUCTF2021-Ropfuscated-Writeup)
     - [ia32rtools/saveasm\.cpp at master · notaz/ia32rtools · GitHub](https://github.com/notaz/ia32rtools/blob/master/ida/saveasm/saveasm.cpp)
     - [ia32rtools/translate\.c at master · notaz/ia32rtools · GitHub](https://github.com/notaz/ia32rtools/blob/master/tools/translate.c)
+    - [alpha\_waves\_loader/original\_port\.cpp at main · LowLevelMahn/alpha\_waves\_loader · GitHub](https://github.com/LowLevelMahn/alpha_waves_loader/blob/main/read_some_file_sub_4/original_port.cpp)
 - [GitHub \- lifting\-bits/mcsema: Framework for lifting x86, amd64, aarch64, sparc32, and sparc64 program binaries to LLVM bitcode](https://github.com/lifting-bits/mcsema)
     - [GitHub \- lifting\-bits/remill: Library for lifting of x86, amd64, and aarch64 machine code to LLVM bitcode](https://github.com/lifting-bits/remill)
 

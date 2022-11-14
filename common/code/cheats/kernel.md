@@ -160,7 +160,7 @@ systemctl enable snap-core-current-etc-ssl-certs.mount
 
 # swap
 
-https://wiki.archlinux.org/index.php/zswap
+- https://wiki.archlinux.org/index.php/zswap
 
 # miscellaneous binary format interpreters
 
@@ -248,17 +248,17 @@ sudo sh -c 'free && sync && echo 3 > /proc/sys/vm/drop_caches && free'
 
 # capabilities
 
-https://lwn.net/Articles/486306/
+- [CAP\_SYS\_ADMIN: the new root \(LWN\.net\)](https://lwn.net/Articles/486306/)
 
 # exec
 
-https://wiki.archlinux.org/index.php/Binfmt_misc_for_Java
-https://stackoverflow.com/questions/3009192/how-does-the-shebang-work
-https://stackoverflow.com/questions/1667830/running-a-jar-file-without-directly-calling-java
-https://www.kernel.org/doc/html/v4.12/admin-guide/binfmt-misc.html
-https://www.kernel.org/doc/html/v4.12/admin-guide/java.html
-https://www.in-ulm.de/~mascheck/various/shebang/
-https://lwn.net/Articles/630727/
+- https://wiki.archlinux.org/index.php/Binfmt_misc_for_Java
+- https://stackoverflow.com/questions/3009192/how-does-the-shebang-work
+- https://stackoverflow.com/questions/1667830/running-a-jar-file-without-directly-calling-java
+- https://www.kernel.org/doc/html/v4.12/admin-guide/binfmt-misc.html
+- https://www.kernel.org/doc/html/v4.12/admin-guide/java.html
+- https://www.in-ulm.de/~mascheck/various/shebang/
+- https://lwn.net/Articles/630727/
 
 # grub
 
@@ -410,18 +410,35 @@ gdb /boot/vmlinux /proc/kcore
 
 - interactive debugging
     - gdb server implementation: kgdb
-        - on target (boot parameters): `kgdboc=ttymxc0,115200 kgdbwait`
-        - on target (runtime):
-            ```bash
-            echo ttymxc0 > /sys/module/kgdboc/parameters/kgdboc
-            echo g > /proc/sysrq-trigger
-            ```
+        - on target:
+            - .config:
+                ```
+                CONFIG_FRAME_POINTER=y
+                CONFIG_GDB_SCRIPTS=y
+                CONFIG_KGDB=y
+                CONFIG_KGDB_SERIAL_CONSOLE=y
+                CONFIG_STRICT_KERNEL_RWX=n
+                ```
+            - boot parameters: `kgdboc=ttyS0,115200 kgdbwait nokaslr`
+            - || runtime config:
+                ```bash
+                echo ttyS0,115200 > /sys/module/kgdboc/parameters/kgdboc
+                echo g > /proc/sysrq-trigger
+                ```
         - on host:
-            ```gdb
-            add-auto-load-safe-path /usr/src/kernels/$kernel/
-            set serial baud 115200
-            target remote /dev/ttyUSB0
-            ```
+            - VirtualBox: VM Settings > Serial Ports
+                - Port Mode = Host Pipe
+                - Path = /tmp/vboxS0
+            - gdb client:
+                ```sh
+                gdb -ex 'set serial baud 115200' -ex 'target remote /tmp/vboxS0' -x /usr/src/linux-source-5.10/vmlinux-gdb.py /usr/src/linux-source-5.10/vmlinux
+                ```
+            - gdb session:
+                ```gdb
+                add-auto-load-safe-path /usr/src/kernels/$kernel/
+                set serial baud 115200
+                target remote /dev/ttyUSB0
+                ```
         - if using serial port for both console and kgdb:
             ```bash
             git clone https://kernel.googlesource.com/pub/scm/utils/kernel/kgdb/agent-proxy
@@ -434,9 +451,11 @@ gdb /boot/vmlinux /proc/kcore
             gdb vmlinux
             # target remote localhost:5551
             ```
-        - https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html
-        - https://github.com/alesax/gdb-kdump
-        - https://github.com/ptesarik/libkdumpfile
+        - [Setup kgdboc for kernel debugging \– Aditya Basu](https://www.adityabasu.me/blog/2020/03/kgdboc-setup/)
+        - [Using Serial kdb / kgdb to Debug the Linux Kernel \- eLinux](https://elinux.org/images/1/1b/ELC19_Serial_kdb_kgdb.pdf)
+        - [Debugging kernel and modules via gdb \- The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/dev-tools/gdb-kernel-debugging.html)
+        - [GitHub \- alesax/gdb\-kdump](https://github.com/alesax/gdb-kdump)
+        - [GitHub \- ptesarik/libkdumpfile: Kernel coredump file access](https://github.com/ptesarik/libkdumpfile)
     - qemu running kernel
         ```bash
         qemu-system-arm -M vexpress-a9 -cpu cortex-a9 -m 256M -nographic -kernel ./zImage -append 'console=ttyAMA0,115200 rw nfsroot=10.0.2.2:/opt/debian/wheezy-armel-rootfs,v3 ip=dhcp' -dtb ./vexpress-v2p-ca9.dtb -s

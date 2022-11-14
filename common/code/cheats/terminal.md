@@ -144,7 +144,11 @@ echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 ```bash
 stty -icanon && nc 127.0.0.1 4501 # sender side
 stdbuf -i0 -o0 nc 127.0.0.1 4501 -lk -I 1 # receiver side
+
+unbuffer # creates a pty and attaches it to stdout
 ```
+
+- https://hmarr.com/blog/how-stdbuf-works/
 
 # limits
 
