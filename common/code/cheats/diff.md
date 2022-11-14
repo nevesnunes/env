@@ -11,8 +11,11 @@ f=foo; find . -type f -exec sh -c 'diff -q '{}' '"$f"' >/dev/null && echo '{} \;
 diff-img foo.png <(git show HEAD^:foo.png)
 
 # binary diff
+biodiff 1 2
+dhex 1 2
 cmp -l 1 2
-diff -Nauwq <(xxd 1) <(xxd 2)
+binwalk -W 1 2
+diff -u <(xxd 1) <(xxd 2)
 ```
 
 # types

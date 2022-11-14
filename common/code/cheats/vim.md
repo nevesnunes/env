@@ -98,6 +98,9 @@ vim 'scp://user@host//absolute/path'
 
 ```vim
 :help c_<C-R>
+
+" Replace only inside selection
+:%s/\%VSEARCH/REPLACE/g
 ```
 
 # Executed processes

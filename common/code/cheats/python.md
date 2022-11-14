@@ -354,13 +354,14 @@ tracemalloc
 
 psutils.virtual_memory().used
 
-# https://stackoverflow.com/questions/449560/how-do-i-determine-the-size-of-an-object-in-python
-# ~/code/snippets/py/getsize.py
-pprint.pprint({k: getsize(v) for k, v in locals().items() if not isinstance(v, type(__builtins__)) and not isinstance(v, types.Fun
-ctionType) and not isinstance(v, type)})
-
 # e.g. 100000 loops, best of 3: 4.86 usec per loop
 python -mtimeit -s 'xs=range(10)' 'map(hex, xs)'
+```
+
+```python
+# https://stackoverflow.com/questions/449560/how-do-i-determine-the-size-of-an-object-in-python
+# ~/code/snippets/py/getsize.py
+pprint.pprint({k: getsize(v) for k, v in locals().items() if not isinstance(v, type(__builtins__)) and not isinstance(v, types.FunctionType) and not isinstance(v, type)})
 ```
 
 # Disassembly, Decompilation
