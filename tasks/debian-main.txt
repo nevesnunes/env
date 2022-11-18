@@ -51,6 +51,7 @@ linux-source
 mpv
 mutter
 ncdu
+openvpn
 pcmanfm
 poppler-utils
 qtbase5-dev

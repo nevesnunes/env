@@ -256,18 +256,22 @@ gdb.events.stop.connect(stop)
 
 # dump memory
 
-```bash
-grep rw-p /proc/$1/maps \
-    | sed -n 's/^\([0-9a-f]*\)-\([0-9a-f]*\) .*$/\1 \2/p' \
-    | while read -r start stop; do \
-        gdb --batch --pid $1 -ex \
-            "dump memory $1-$start-$stop.dump 0x$start 0x$stop"; \
-    done
-```
-
-https://serverfault.com/questions/173999/dump-a-linux-processs-memory-to-file/486304
-
-Alternatives: `gcore -a $pid`
+- process memory
+    - https://serverfault.com/questions/173999/dump-a-linux-processs-memory-to-file/486304
+    - alternatives: `gcore -a $pid`
+    ```bash
+    grep rw-p /proc/$1/maps \
+        | sed -n 's/^\([0-9a-f]*\)-\([0-9a-f]*\) .*$/\1 \2/p' \
+        | while read -r start stop; do \
+            gdb --batch --pid $1 -ex \
+                "dump memory $1-$start-$stop.dump 0x$start 0x$stop"; \
+        done
+    ```
+- variables
+    - https://mcuoneclipse.com/2020/04/13/dumping-variables-and-arrays-with-gdb-in-eclipse/
+    ```gdb
+    dump value foo.dump foo
+    ```
 
 # shellcode
 
