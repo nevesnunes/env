@@ -326,6 +326,8 @@
     - [ia32rtools/saveasm\.cpp at master · notaz/ia32rtools · GitHub](https://github.com/notaz/ia32rtools/blob/master/ida/saveasm/saveasm.cpp)
     - [ia32rtools/translate\.c at master · notaz/ia32rtools · GitHub](https://github.com/notaz/ia32rtools/blob/master/tools/translate.c)
     - [alpha\_waves\_loader/original\_port\.cpp at main · LowLevelMahn/alpha\_waves\_loader · GitHub](https://github.com/LowLevelMahn/alpha_waves_loader/blob/main/read_some_file_sub_4/original_port.cpp)
+- [GitHub \- vtil\-project/VTIL\-Utils: VTIL command line utility](https://github.com/vtil-project/VTIL-Utils)
+    - e.g. lift single function with NoVmp, then: `vtil dump 1234.optimized.vtil`
 - [GitHub \- lifting\-bits/mcsema: Framework for lifting x86, amd64, aarch64, sparc32, and sparc64 program binaries to LLVM bitcode](https://github.com/lifting-bits/mcsema)
     - [GitHub \- lifting\-bits/remill: Library for lifting of x86, amd64, and aarch64 machine code to LLVM bitcode](https://github.com/lifting-bits/remill)
 
@@ -377,10 +379,93 @@ llc -march=x86-64 foo.bc -o foo.o -filetype=obj
 
 # vm
 
-- [TetCTF 2022 \- crackme pls \(964 pt / 7 solves\)](https://ctf.harrisongreen.me/2022/tetctf/crackme_pls/)
-    - un-flatten control flow by setting user indirect branches
-- [Automated Detection of Control-flow Flattening \- synthesis.io](https://synthesis.to/2021/03/03/flattening_detection.html)
+```asm
+; foo
+push vm_bytecode
+call vm_entry
+
+; vmentry: context switch w/ function prologue + epilogue
+push 12345678h ; vmkey
+call sub_14001234 ; vminit: decrypts bytecode using vmkey
+
+; vm handlers: tbl that maps bytecode to semantics, looked up by vm dispatcher (fetch-decode-execute loop)
+00 ; vadd
+01 ; vmul
+; ...
+
+; vm dispatcher
+mov bl, [rsi]
+inc rsi ; if many handlers add instruction size to this var, then likely is virtual pc
+movzx rax, bl
+jmp __handler_tbl[rax*8]
+
+; vpush
+mov eax, dword [rdx + 1]
+mov dword [rcx + 8], eax
+add rcx, 8 ; virtual sp
+add rdx, 5 ; virtual pc (1 + 4 bytes for operand)
+jmp 0x1234
+
+; register-based vm
+; x = x + y + 1
+mov rax, x
+mov rbx, y
+add rax, rbx
+inc rax
+
+; stack-based vm
+; x = x + y + 1
+vpush x
+vpush y
+
+add rdx, 1
+
+mov eax, dword [rcx] ; load y
+add dword [rcx - 8], eax ; store x + y
+sub rcx, 8
+
+vpush 1
+
+mov eax, dword [rcx] ; load 1
+add dword [rcx - 8], eax ; store x + y + 1
+sub rcx, 8
+
+jmp 0x1234
+```
+
+- finding all vmentry subroutines: trace jumps across sections (e.g. tiny_tracer)
+    - [SpeakEasy writeup\. 1\. Overview \| by kishou yusa \| Medium](https://medium.com/@acheron2302/speakeasy-writeup-3af3375ab63)
+- remove dead code: identify using static single assignment form, patch with nops
+    - [Cracking BattlEye packet encryption \| secret club](https://secret.club/2020/06/19/battleye-packet-encryption.html)
+    - [Quick blog: Remove unnecessary call with static single assignment form \| by kishou yusa \| Medium](https://medium.com/@acheron2302/quick-blog-remove-unnecessary-call-with-static-single-assignment-form-88d50a78a80)
+    - https://github.com/acheron2302/Binary-ninja-plugin-collection/blob/main/snippet/Deobfuscate_OutputDebug.py
+- un-flatten control flow by setting user indirect branches
+    - [TetCTF 2022 \- crackme pls \(964 pt / 7 solves\)](https://ctf.harrisongreen.me/2022/tetctf/crackme_pls/)
+    - [Automated Detection of Control-flow Flattening \- synthesis.io](https://synthesis.to/2021/03/03/flattening_detection.html)
+- automating deofbuscation: use dfs over basic-blocks, follow control-flow from vmentry to vmexit, adding concrete values when stopping at conditional branches (e.g. constraint memory; set known register value); if vmexit is reached, then output can be concrete; take instruction trace to figure out how handlers are composed and extract higher-level instructions
+    - [Writing Disassemblers for VM-based Obfuscators](https://synthesis.to/2021/10/21/vm_based_obfuscation.html)
+    ```
+    bb_stack = [vmentry]
+    while bb_stack is not empty:
+        bb = bb_stack.pop()
+        next_bb = symex_bb(bb)
+        if next_bb is address:
+            bb_stack.push(next_bb)
+        else:
+            print(next_bb)
+    ```
 - [FinFisher exposed: A researcher’s tale of defeating traps, tricks, and complex virtual machines \- Microsoft Security Blog](https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/)
+- Bruce Dang, Alexandre Gazet, Elias Bachaalany - Practical Reverse Engineering 
+    - Chapter 5 - Obfuscation
+
+### VMProtect
+
+- section headers:
+    - runtime section (e.g. .vmp0)
+    - loader section (e.g. .vmp1): raw address = 0x400
+    - .text, .data, .rdata sections' raw size / address zeroed
+- [GitHub \- can1357/NoVmp: A static devirtualizer for VMProtect x64 3\.x\. powered by VTIL\.](https://github.com/can1357/NoVmp)
+- [Extracting VMProtect handlers with Binary Ninja](https://www.lodsb.com/extracting-vmprotect-handlers-with-binary-ninja)
 
 # functional programming
 
@@ -531,6 +616,7 @@ perf script --insn-trace --xed -F+srcline,+srccode
         3-byte counter, starting with a random value.
             incrementing...
         ```
+    - https://www.timdbg.com/posts/recognizing-patterns/
 - [FwordCTF 2020 - XO](https://github.com/quintuplecs/writeups/blob/master/FwordCTF/xo.md)
     - strlen side-channel on flag xor - use dummy values as previous chars while guessing next char, since a right char generates a null byte, making strlen ignore next chars after the right char
 - [America Online Exploits Bug In Own Software](https://www.geoffchappell.com/notes/security/aim/index.htm)

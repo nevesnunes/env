@@ -373,6 +373,14 @@ rr ./foo
         - [HTTP Request Smuggling](https://www.cgisecurity.com/lib/HTTP-Request-Smuggling.pdf): desync vs. waf bypass
     - make asking questions cheap
         - https://portswigger.net/research/backslash-powered-scanning-hunting-unknown-vulnerability-classes
+- [MARCO IVALDI: The INFILTRATE Effect: 6 Bugs in 6 Months](https://vimeo.com/474793702)
+    - read docs, but don't believe
+        ```sh
+        umask 0; xscreensaver -log /etc/foo
+        ln -s /etc/shadow .Xdefaults; Xorg :1 &; xlock -name user -display
+        ```
+- [Ned Williamson \- Attacking Chrome IPC \- 35c3](https://media.ccc.de/v/35c3-9579-attacking_chrome_ipc)
+    - audit training: pick a report, try to find bug without looking at description, if you fail to spot the bug, ask what's missing in your process
 - [From CTFs to Real\-Exploitation \(Part 3\)](https://dayzerosec.com/blog/2021/05/22/from-ctfs-to-real-exploitation-part-3.html)
     - sudoku approach: spot new gadgets and primitives you can chain with the vulnerability
         > - If you’ve got an info-leak, try leaking something else, try coercing the heap/stack into leaking something else, or reading another segment of memory. Then build an exploit off something else that you can leak.

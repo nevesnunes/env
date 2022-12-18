@@ -496,7 +496,7 @@ qemu-arm -L /usr/arm-linux-gnueabihf/ crackme
 
 # debug
 qemu-aarch64 -singlestep -g 1234 -L /usr/aarch64-linux-gnu/ foo
-gdb-multiarch -ex 'target remote localhost:1234'
+gdb-multiarch -ex 'set sysroot /usr/aarch64-linux-gnu' -ex 'target remote localhost:1234'
 
 # GDB server with qemu-user
 qemu-arm -g 1337 ./foo

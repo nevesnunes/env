@@ -58,6 +58,7 @@ export PAGER="less"
 
 export BROWSER='user-browser'
 export DEBIAN_FRONTEND=noninteractive
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export FZF_DEFAULT_OPTS='--bind=ctrl-j:accept,ctrl-k:kill-line,ctrl-u:preview-page-down,ctrl-i:preview-page-up,?:toggle-preview --header "ctrl-u:preview-page-down,ctrl-i:preview-page-up" --border=horizontal --color=16,border:7,pointer:2 --preview '"'"'echo {} | sed -e "s/^ *\([0-9]*\) *//" -e "s/.\{$((COLUMNS-4))\}/&\n/g"'"'"' --preview-window down:6:hidden'
 export LC_ALL='en_US.UTF-8'
 export LC_TIME='en_US'

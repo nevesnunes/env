@@ -9,15 +9,24 @@
 - https://doc.rust-lang.org/src/core/fmt/mod.rs.html
     - https://github.com/rust-lang/rust/tree/master/library/core/src
 
-# Debug
+# Bootstrap
 
-```rust
-#![feature(backtrace)]
-use std::backtrace::Backtrace;
+```sh
+cargo new --bin foo
+cargo build
+cargo run
+```
 
-fn main() {
-    println!("Custom backtrace: {}", Backtrace::force_capture());
-}
+```toml
+# The development profile, used for `cargo build`
+[profile.dev]
+opt-level = 0  # Controls the --opt-level the compiler builds with
+debug = true   # Controls whether the compiler passes `-g`
+
+# The release profile, used for `cargo build --release`
+[profile.release]
+opt-level = 3
+debug = false
 ```
 
 # Build
@@ -59,12 +68,135 @@ rustc -C opt-level=3
 cargo web deploy --release
 ```
 
-# Unsafe
+# Debug
+
+```sh
+rustc -g
+
+# Backtrace on panics
+RUST_BACKTRACE=1 ./foo
+
+# Pretty-printing for rust types
+rust-gdb
+```
+
+```rust
+#![feature(backtrace)]
+use std::backtrace::Backtrace;
+
+fn main() {
+    println!("Custom backtrace: {}", Backtrace::force_capture());
+}
+```
+
+- symbols outside current crate
+    - https://sourceware.org/gdb/onlinedocs/gdb/Rust.html
+    ```gdb
+    print extern x::y
+    ```
+
+# Design
+
+```rust
+fn print_all(all: Vec<i32>) {
+    for (i, a) in all.iter().enumerate() {
+        println!("{}: {}", i, a);
+    }
+}
+fn double_all(all: &mut Vec<i32>) {
+    for a in all.iter_mut() {
+        *a += *a;
+    }
+}
+
+fn pointer_ops() {
+    // owning (aka unique) pointer (move semantics)
+    let x = 3;
+    let mut y = Box::new(x);
+    *y = 45;
+    println!("x is still {}", x);
+
+    // borrowed pointer
+    let mut x = 5;            // type: i32
+    {
+        let y = &x;           // type: &i32
+        //x = 4;              // Error - x has been borrowed
+        println!("{}", x);    // Ok - x can be read
+    }
+    x = 4;                    // OK - y no longer exists
+}
+
+struct Node {
+    parent: Option<Rc<Node>>,
+    value: i32
+}
+fn is_root(node: Node) -> bool {
+    match node.parent {
+        Some(_) => false,
+        None => true
+    }
+    // node.parent.is_none()
+}
+
+fn mut_field_in_immut_obj(x: Rc<RefCell<S>>) {
+    {
+        let s = x.borrow();
+        println!("the field, twice {} {}", s.field, x.borrow().field);
+        // let s = x.borrow_mut(); // Error - we've already borrowed the contents of x
+    }
+
+    let mut s = x.borrow_mut(); // OK, the earlier borrows are out of scope
+    s.field = 45;
+    // println!("The field {}", x.borrow().field); // Error - can't mut and immut borrow
+    println!("The field {}", s.field);
+}
+
+let a: [i32; 4] = [1, 2, 3, 4];
+let b: &[i32] = &a;   // Slice of the whole array.
+let c = &a[1..3];     // The middle two elements, &[i32].
+let v = vec![1, 2, 3, 4];      // A Vec<i32> with length 4.
+let v: Vec<i32> = Vec::new();  // An empty vector of i32s.
+```
+
+### Unsafe
+
+```rust
+// raw pointer
+let mut x = 5;
+let x_p: *mut i32 = &mut x;
+println!("x+5={}", add_5(x_p));
+
+fn add_5(p: *mut i32) -> i32 {
+    unsafe {
+        if !p.is_null() { // Note that *-pointers do not auto-deref, so this is
+                          // a method implemented on *i32, not i32.
+            *p + 5
+        } else {
+            -1            // Not a recommended error handling strategy.
+        }
+    }
+}
+```
 
 - https://github.com/rust-lang/unsafe-code-guidelines/
 - https://doc.rust-lang.org/nomicon/intro.html
 - https://crates.io/crates/bytemuck
     - `pub fn foo<T: Pod>(data: &T) -> Result<&[u8], Error>`
+
+### Pattern Matching
+
+```rust
+enum Op {
+    Double(x),
+    Multiply(x, y),
+}
+fn double_or_multiply(input: Op) {
+    match input {
+        Double(x) => x * 2,
+        Multiply(x, y) => x * y,
+    }
+}
+```
 
 # Assembly
 

@@ -150,6 +150,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
             - `pe-sieve32.exe /imp 3 /shellc /pid 1234`
         - https://github.com/EquiFox/KsDumper
 - emulation
+    - [GitHub \- mandiant/speakeasy: Windows kernel and user mode emulation\.](https://github.com/mandiant/speakeasy)
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
     > Packers tend not to touch any custom chips or be affected by any kind of timing/irqs, so just functional CPU emulation will do the job to make a depacking tool.
 - https://twitter.com/re_and_more/status/1505091717971775491
@@ -163,6 +164,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
     - [GitHub \- x64dbg/ScyllaHide: Advanced usermode anti\-anti\-debugger\. Forked from https://bitbucket\.org/NtQuery/scyllahide](https://github.com/x64dbg/ScyllaHide)
 - kernel mode (ring 0)
     - [GitHub \- mrexodia/TitanHide: Hiding kernel\-driver for x86/x64\.](https://github.com/mrexodia/TitanHide)
+    - [GitHub \- Air14/HyperHide: Hypervisor based anti anti debug plugin for x64dbg](https://github.com/Air14/HyperHide)
 - use kernel debugger to bypass user mode evasion
 
 - [NtQueryInformationProcess function \(winternl\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess?redirectedfrom=MSDN)
@@ -173,15 +175,17 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
     cmp [eax+10h], ecx  ; 0xABABABAB
     jz short debugger_detected
     ```
-- raise exception => hardware breakpoint addresses present in ContextRecord structure passed to exception handler
-    ```fasm
-    mov eax, [esp+0xc]  ; ContextRecord
-    mov ecx, [eax+0x4]  ; DR0
-    or ecx, [eax+0x8]  ; DR1
-    or ecx, [eax+0xc]  ; DR2
-    or ecx, [eax+0x10]  ; DR3
-    jne debugger_detected
-    ```
+- detecting hardware breakpoints
+    - GetThreadContext() can be hooked: https://momo5502.com/posts/2022-11-17-reverse-engineering-integrity-checks-in-black-ops-3/
+    - raise exception => hardware breakpoint addresses present in ContextRecord structure passed to exception handler
+        ```fasm
+        mov eax, [esp+0xc]  ; ContextRecord
+        mov ecx, [eax+0x4]  ; DR0
+        or ecx, [eax+0x8]  ; DR1
+        or ecx, [eax+0xc]  ; DR2
+        or ecx, [eax+0x10]  ; DR3
+        jne debugger_detected
+        ```
 
 ### LD_PRELOAD
 
@@ -241,6 +245,7 @@ env LD_PRELOAD=ptrace.so ./foo
 
 # case studies
 
+- https://www.fortinet.com/blog/threat-research/deep-analysis-of-driver-based-mitm-malware-itranslator
 - https://tccontre.blogspot.com/2020/11/interesting-formbook-crypter.html
 - https://www.rezilion.com/blog/the-race-to-limit-ptrace/
 - https://katyscode.wordpress.com/2021/01/24/reverse-engineering-adventures-brute-force-function-search-or-how-to-crack-genshin-impact-with-powershell/

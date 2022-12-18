@@ -11,7 +11,6 @@ xdg-screensaver suspend "$(xwininfo -root | grep 'Window id:' | grep -o '0x[0-9]
 #nohup strike-alert.sh &
 
 nohup devilspie2 &
-#nohup pyls --tcp --port=10777 &
 nohup udisksctl mount --block-device /dev/disk/by-label/FATSO &
 nohup xbindkeys &
 

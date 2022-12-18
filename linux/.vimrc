@@ -8,7 +8,7 @@ filetype indent on
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_follow_anchor = 0
 let g:vim_markdown_no_extensions_in_markdown = 1
-let g:vim_markdown_fenced_languages = ['antlr', 'asm', 'asm68k', 'awk', 'bash', 'basic', 'c', 'cmake', 'conf', 'cpp', 'css', 'diff', 'dot', 'fasm', 'gdb', 'glsl', 'hex', 'html', 'java', 'javascript', 'json', 'log', 'make', 'nasm', 'perl', 'php', 'ps1', 'python', 'r', 'rust', 'scala', 'sh', 'sql', 'strace', 'svg', 'typescript', 'vim', 'xml', 'xxd', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'js=javascript', 'powershell=ps1']
+let g:vim_markdown_fenced_languages = ['antlr', 'asm', 'asm68k', 'awk', 'bash', 'basic', 'c', 'cmake', 'conf', 'cpp', 'css', 'diff', 'dot', 'fasm', 'gdb', 'glsl', 'hex', 'html', 'java', 'javascript', 'json', 'log', 'make', 'nasm', 'perl', 'php', 'ps1', 'python', 'r', 'rust', 'scala', 'sh', 'sql', 'strace', 'svg', 'toml', 'typescript', 'vim', 'xml', 'xxd', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'js=javascript', 'powershell=ps1']
 let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
 
 " vim-polyglot
@@ -92,7 +92,8 @@ let g:ale_linters = {
             \ 'go': ['gopls'],
             \ 'java': ['javac'],
             \ 'javascript': ['tsserver', 'eslint'],
-            \ 'python': ['pyls'],
+            \ 'python': ['pylsp'],
+            \ 'rust': ['analyzer'],
             \ 'sh': ['shellcheck'],
             \ }
 let g:ale_linter_alias = {
@@ -176,14 +177,7 @@ endfunction
 
 function! VimEnterPluginBehaviour()
     if exists('*ale#linter#Define')
-        call ale#linter#Define('python', {
-                    \   'name': 'pyls',
-                    \   'lsp': 'socket',
-                    \   'address': '127.0.0.1:10777',
-                    \   'language': 'python',
-                    \   'project_root': 'ale#python#FindProjectRoot',
-                    \   'completion_filter': 'ale#completion#python#CompletionItemFilter',
-                    \ })
+        set omnifunc=ale#completion#OmniFunc
     endif
 
     if exists(':GundoToggle')

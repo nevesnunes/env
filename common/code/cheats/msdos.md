@@ -3,6 +3,7 @@
 - [dosbox](./dosbox.md)
 
 - Dissassembler with annotated interrupts: Sourcer
+- Built-in debugger: [Editing Binaries in DOS \- Susam Pal](https://susam.net/blog/editing-binaries-in-dos.html)
 
 # Methodology
 

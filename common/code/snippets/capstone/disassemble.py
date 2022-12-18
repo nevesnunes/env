@@ -40,7 +40,13 @@ def is_pe(file_name):
 
 
 def get_elf_segment_load_address(elffile):
-    text_addr = elffile.get_section_by_name(".text").header["sh_addr"]
+    print("Found sections:")
+    for s in elffile.iter_sections():
+        if s.name:
+            print(f"  {s.name}")
+
+    text_section = elffile.get_section_by_name(".text:hexdump")
+    text_addr = text_section.header["sh_addr"]
     for i in range(elffile.num_segments()):
         seg = elffile.get_segment(i)
         if seg.header["p_type"] == "PT_LOAD":

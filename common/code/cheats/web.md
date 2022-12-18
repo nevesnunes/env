@@ -273,6 +273,10 @@ Clone:
 - [#863956 \[extra-asciinema\] Command Injection via insecure command formatting](https://hackerone.com/reports/863956)
     - [Avoid\-Command\-Injection\-Node\.md · GitHub](https://gist.github.com/evilpacket/5a9655c752982faf7c4ec6450c1cbf1b)
 - https://elongl.github.io/exploitation/2021/05/30/pwning-home-router.html
+    - grep `system()`
+- https://flattsecurity.medium.com/finding-bugs-to-trigger-unauthenticated-command-injection-in-a-netgear-router-psv-2022-0044-2b394fb9edc
+    - `strstr(filename,".xml")` bypass with dir named `test.xml` 
+    - `/bin/echo admin:styexp>/etc/htpasswd|>>/tmp/itunes/apple.remote`
 - [Bitbucket Server CVE\-2022\-36804 漏洞分析\-安全客 \- 安全资讯平台](https://www.anquanke.com/post/id/280193)
 
 ### Server-Side Template Injection (SSTI)
@@ -400,6 +404,7 @@ Clone:
     }
     ?>
     ```
+- bypass appended suffix: `?foo=`
 - https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery
 - [PHP :: Sec Bug \#79329 :: get\_headers\(\) silently truncates after a null byte](https://bugs.php.net/bug.php?id=79329)
 - https://github.com/jmdx/TLS-poison/

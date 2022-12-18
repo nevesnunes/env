@@ -12,7 +12,7 @@ gtkui.color.bar_foreground 19018 37008 55769
 gtkui.color.tabstrip_playing_text 0 0 0
 gtkui.color.tabstrip_selected_text 0 0 0
 gtkui.color.tabstrip_text 0 0 0
-gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"46","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"130","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"261","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"86","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"49","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"168","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"215","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"68","align":"0","color_override":"0","color":"#ff313739"}]
 gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 0
@@ -69,12 +69,12 @@ junk.enable_cp1251_detection 1
 logwindow.geometry.h 492
 logwindow.geometry.w 670
 logwindow.geometry.x 696
-logwindow.geometry.y 218
+logwindow.geometry.y 215
 mainwin.geometry.h 342
 mainwin.geometry.maximized 0
 mainwin.geometry.w 478
 mainwin.geometry.x 888
-mainwin.geometry.y 363
+mainwin.geometry.y 368
 mp3.id3v1_encoding iso8859-1
 mp3.id3v2_version 3
 mp3.write_id3v1 1
@@ -86,7 +86,7 @@ output_plugin pulseaudio
 playback.loop 1
 playback.order 0
 playback.volume -6.400000
-playback.volume.normalized 0.6110144
+playback.volume.normalized 0.6308436
 playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0

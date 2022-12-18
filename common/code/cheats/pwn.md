@@ -385,7 +385,7 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
 
 # sigreturn-oriented programming (srop)
 
-TODO
+- https://bananamafia.dev/post/srop/
 
 Debug:
 
