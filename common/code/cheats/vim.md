@@ -101,6 +101,9 @@ vim 'scp://user@host//absolute/path'
 
 " Replace only inside selection
 :%s/\%VSEARCH/REPLACE/g
+
+" Replace searched word
+:%s/<c-r>//REPLACE/g
 ```
 
 # Executed processes

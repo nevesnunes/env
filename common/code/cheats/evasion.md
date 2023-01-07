@@ -44,6 +44,7 @@
         - [Ars\-Informatica &middot; by Daniele Gasperini\.](https://web.archive.org/web/20150717110958/http://www.ars-informatica.com/Root/Code/2010_04_18/LinuxPTrace.aspx)
         - [System Programming: Linux Threads Through a Magnifier: Remote Threads](http://syprog.blogspot.com/2012/03/linux-threads-through-magnifier-remote.html)
         - [shared libraries \- \.so injection under linux: how to locate address of dlopen\(\)? \- Stack Overflow](https://stackoverflow.com/questions/21651761/so-injection-under-linux-how-to-locate-address-of-dlopen)
+        - [GitHub \- namazso/linux\_injector: A simple ptrace\-less shared library injector for x64 Linux](https://github.com/namazso/linux_injector)
         - [GitHub \- gaffe23/linux\-inject: Tool for injecting a shared object into a Linux process](https://github.com/gaffe23/linux-inject)
         - [GitHub \- ilammy/linux\-crt: CreateRemoteThread for Linux](https://github.com/ilammy/linux-crt)
 - registry keys

@@ -231,9 +231,6 @@ pv -cN source < foo | bzcat | pv -cN bzcat
   | awk '{gsub(/\[.*\]|\(.*\)|^[:space:]*|[:space:]*$/, "", $0); printf("%s%c", $0, 0)}' \
   | xargs -0 -I{} find foo/ -iname '*'{}'*'
 
-# remove all exif metadata
-exiftool image.jpg -all=
-
 # Audio downmix surround 5.1 channels to stereo
 mpv --ad-lavc-downmix=no --audio-channels=stereo
 

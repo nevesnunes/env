@@ -1,4 +1,5 @@
 adwaita-qt
+cabextract
 calibre
 cups
 dconf-editor

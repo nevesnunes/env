@@ -211,6 +211,12 @@ icc=$HOME/.local/share/icc/edid-01230123012301230123012301230123.icc; pngcrush -
 # Edit ICC v2
 dcamprof dcp2json foo.dcp foo.json
 dcamprof make-icc -p matrix foo.json foo.icc
+
+# Remove all exif metadata
+exiftool -all= foo.jpg
+
+# Remove all exif metadata except orientation
+exiftool -all= -tagsfromfile @ -Orientation foo.jpg
 ```
 
 # visual regression testing
@@ -284,6 +290,7 @@ Details > Sharpening
 # References:
 # - https://exiftool.org/TagNames/EXIF.html
 exiftool -n -Orientation=8 -o output.jpg input.jpg
+exiftool -n -Orientation="Rotate 270 CW" -o output.jpg input.jpg
 ```
 
 # aligning rotations

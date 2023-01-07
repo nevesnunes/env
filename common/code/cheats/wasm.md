@@ -1,6 +1,7 @@
-# +
+# online shell
 
-- Online shell: [WebAssembly\.sh](https://webassembly.sh/)
+- [WebAssembly\.sh](https://webassembly.sh/)
+- [WasmFiddle](https://wasdk.github.io/WasmFiddle/)
 
 # documentation, specification
 

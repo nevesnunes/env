@@ -9,6 +9,7 @@ automake
 autopoint
 bchunk
 clang
+clangd
 cmake
 curl
 dos2unix
@@ -33,6 +34,7 @@ make
 nasm
 ninja-build
 openjdk-11-jdk
+openjdk-17-jdk
 p7zip-full
 pkg-config
 python3

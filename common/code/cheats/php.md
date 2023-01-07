@@ -60,6 +60,10 @@ strcasecmp($_GET['secret'], "0x1337") == 0
 // => ["1"]
 ```
 
+# execute after redirect (EAR)
+
+- https://0xdf.gitlab.io/2022/08/13/htb-retired.html
+
 # deserialization
 
 - https://dpalbd.wordpress.com/ctf-writeup-serial-1/

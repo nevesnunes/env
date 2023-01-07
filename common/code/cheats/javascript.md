@@ -41,6 +41,10 @@ l.push("2");
 
 eval('console.log((function() { return !this; })());')
 eval('"use strict"; console.log((function() { return !this; })());')
+
+Object.defineProperty(navigator, 'webdriver', {
+  get: () => {debugger; return false},
+});
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/API/Console/count
