@@ -539,24 +539,31 @@ genhtml cov.info --output-directory out
 # 2. make gdb script with temporary breakpoint (`tbreak`) foreach address
 # - [On why my tbreak tracing trick did not work \- gynvael\.coldwind//vx\.log](https://gynvael.coldwind.pl/?id=638)
 
-# execution trace
-# :) stable inscount
+# execution trace / instruction trace
+# qemu
+# - :) stable inscount
+# - :( partial trace
+# - alternative: https://github.com/MarginResearch/cannoli
 qemu-x86_64 -d in_asm a.out
-# ||
+# pintool
+# - Handbook for CTFers - Pintool Basic Framework
+# - https://github.com/s3team/VMHunt/blob/master/tracer/instracelog.cpp
+# - https://github.com/wuyongzheng/pin-instat
 pin.sh -t obj-intel64/instat.so ./a.out
-# || :( variable inscount
+# dynamorio
+# - :( variable inscount
 ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinstrace_x86_text.so -- ./a.out
-# || frida stalker
+# frida stalker
 # - https://github.com/bmax121/sktrace
 python3 sktrace/sktrace.py -m attach -l libnative-lib.so -i Java_com_kanxue_ollvm_1ndk_MainActivity_UUIDCheckSum com.kanxue.ollvm_ndk_9
-# || perf
+# perf
 # - https://man7.org/linux/man-pages/man1/perf-intel-pt.1.html
 # - https://perf.wiki.kernel.org/index.php/Tutorial#Source_level_analysis_with_perf_annotate
 # - https://lore.kernel.org/lkml/20180914031038.4160-4-andi@firstfloor.org/
 perf trace record -- ./foo
 perf script --call-trace
 perf script --insn-trace --xed -F+srcline,+srccode
-# || debugger
+# debugger
 # - ~/code/snippets/instrace.gdb
 # - x64dbg - https://help.x64dbg.com/en/latest/gui/views/Trace.html#start-run-trace
 #     - Trace view > Start Run Trace

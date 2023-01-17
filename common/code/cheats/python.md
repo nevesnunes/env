@@ -131,6 +131,8 @@ print(type(foo))
 print(foo.__dict__)
 
 traceback.print_stack()
+
+rich.inspect(foo)
 ```
 
 - ~/.pdbrc
@@ -634,6 +636,43 @@ print(df.to_markdown())
 # deobfuscation
 
 - [GitHub \- landaire/unfuck: Python 2\.7 bytecode d̶e̶o̶b̶f̶u̶s̶c̶a̶t̶o̶r unfucker](https://github.com/landaire/unfuck)
+
+### pyarmor
+
+- https://github.com/Svenskithesource/PyArmor-Unpacker
+- Flare-On 9 Challenge 11
+    - https://twitter.com/0xdf_/status/1591649045021433861
+        1. Dump decrypted code object from PyMarshal_ReadObjectFromString when it is called from PyArmor. At this point all the strings are in clear text including the flag.
+        2. Pyarmor individually encrypts all instructions (co_code) in each code object. It is decrypted only before execution and re-encrypted after. So I modified CPython such that it calls all encrypted functions one by one without and also without giving it a chance to reencrypt back
+        3. Now with all co_code decrypted it is a matter of replacing the encrypted co_code with the decrypted ones in the dumped code object
+        4. Pyarmor also does opcode remapping. There's a function in pytransform which constructs the opcode map and it can be recovered from there. Now with the opcode map known the original opcodes can be restored.
+        5. Decompile the reconstructed pyc.
+    - https://github.com/levanvn/FLARE-ON9-Chal11_Unpacking-Pyarmor/ : This discusses about patching PyEval_EvalFrameDefault and also restoring the mapped opcodes.
+    - https://nesrak1.github.io/2022/11/13/flareon09-11 : The author did a fantastic job about reversing the "JIT protection". Pyarmor does use GNU lightning to calculate the decryption keys from license data. Extending this approach it is possible to develop a static unpacker for pyarmor. The downside is this needs to be redone if pyarmor dev change the algorithm. In this regard a better solution can be to emulate the JIT code to calculate the decryption keys.
+    - https://re-dojo.github.io/post/2022-11-13-FlareOn-9-part-4/#challenge-11---the-challenge-that-shall-not-be-named : This discusses about pyarmor internals a bit.
+    - https://github.com/binref/refinery/blob/master/tutorials/tbr-files.v0x05.flare.on.9.ipynb  (Scroll down to challenge 11) : Again a nice read. The author discusses about the ciphers used to encrypt the code object and instructions. Pyarmor changes the cipher across versions as I'm aware of. Older versions used Triple DES. Now it's using AES in CTR mode. Combined with the information in (1) developing a static unpacker is possible.
+- https://forum.tuts4you.com/topic/41945-python-pyarmor-my-protector/#comments
+    1. Use pyinstxtractor.py to extract the executable in Python 3.7
+    2. Using the extracted files, create the following directory structure
+        ```
+        .
+        |-- martisor.pyc
+        `-- pytransform
+            |-- __init__.py
+            |-- _pytransform.dll
+            |-- license.lic
+            `-- pytransform.key
+
+        1 directory, 5 files
+
+        For running on Linux, you need `_pytransform.so` downloadable from https://pyarmor.dashingsoft.com/platforms.html
+        ```
+    3. Install psutil using pip (Required for pyarmor). From now on, you can just run python3.7 martisor.pyc instead of the unpackme executable.
+    4. pyarmor encrypts the code objects on disk and they are only decrypted at runtime just before they are executed. The entire logic is implemented in `_pytransform.dll`. There are anti-debugging/timing checks to prevent us from using a debugger to dump code objects from memory. But there's no need to use a debugger at all when CPython itself is open source. :)
+    5. Compile Python 3.7 from source. Modify the `_PyEval_EvalFrameDefault` function such that it dumps the code object to disk. By doing so we do not need to bother about all the anti-debugging and encrypted stuff. This is because pyarmor decrypts the code object in memory before it hands it to the Python VM for execution.
+    6. Run strings on the dumped code object. We get many base64 strings. Like this one: `CkdFTkVSQVRFLUtFWS0wWDcyR09ELVVOUEFDS01FCg==`
+    7. Base64 decode and profit!
+- https://www.unknowncheats.me/forum/general-programming-and-reversing/395695-reversing-pyarmor.html
 
 # deserialization
 

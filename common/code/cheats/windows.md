@@ -10,11 +10,7 @@
 - [Winbindex \- The Windows Binaries Index](https://winbindex.m417z.com)
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
-
 - [OSR Developer Community](https://community.osr.com/)
-- [theForger's Win32 API Tutorial](http://www.winprog.org/tutorial/)
-- [Programming reference for the Win32 API \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/)
-- [The Portable Executable File Format from Top to Bottom](http://web.archive.org/web/20200806080448im_/http://www.csn.ul.ie/windows.md7Ecaolan/pub/winresdump/winresdump/doc/pefile2.html)
 
 ```
 get-command notepad.exe | select Source
@@ -103,6 +99,15 @@ Restart-Service w32time
 - https://stackoverflow.com/questions/54787115/how-to-debug-a-windows-kernel-driver-properly
 - https://github.com/Microsoft/Windows-driver-samples/tree/master/filesys/miniFilter/minispy
 - https://github.com/janosgyerik/cheatsheets/blob/master/Windows-cheat-sheet.mediawiki
+
+# docs
+
+- [theForger's Win32 API Tutorial](http://www.winprog.org/tutorial/)
+- [Programming reference for the Win32 API \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/)
+
+- [The Portable Executable File Format from Top to Bottom](http://web.archive.org/web/20200806080448im_/http://www.csn.ul.ie/windows.md7Ecaolan/pub/winresdump/winresdump/doc/pefile2.html)
+- [Inside Windows: Win32 Portable Executable File Format in Detail \| Microsoft Learn](https://learn.microsoft.com/en-us/archive/msdn-magazine/2002/february/inside-windows-win32-portable-executable-file-format-in-detail)
+- [Inside Windows: An In\-Depth Look into the Win32 Portable Executable File Format, Part 2 \| Microsoft Learn](https://learn.microsoft.com/en-us/archive/msdn-magazine/2002/march/inside-windows-an-in-depth-look-into-the-win32-portable-executable-file-format-part-2)
 
 # vms
 

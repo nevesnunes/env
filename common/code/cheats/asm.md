@@ -29,6 +29,7 @@
 - [Single Byte or Small x86 Opcodes \| Dru Nelson](http://xxeo.com/single-byte-or-small-x86-opcodes)
 - [GitHub \- michalmalik/linux\-re\-101: A collection of resources for linux reverse engineering](https://github.com/michalmalik/linux-re-101)
 - [NASM Tutorial](https://cs.lmu.edu/~ray/notes/nasmtutorial/)
+- [Understanding Windows x64 Assembly](https://sonictk.github.io/asm_tutorial/)
 - https://stackoverflow.com/tags/x86/info
 
 ```bash

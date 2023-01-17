@@ -29,6 +29,8 @@
 
 - dynamic analysis
     - [Cuckoo Sandbox \- Automated Malware Analysis \- Installation](https://cuckoo.readthedocs.io/en/latest/installation/)
+        - [Hardening Cuckoo Sandbox against VM aware malware \| AT&T Alien Labs](https://cybersecurity.att.com/blogs/labs-research/hardening-cuckoo-sandbox-against-vm-aware-malware)
+        - [Creating Hooks \- Cuckoo Monitor 1\.3 documentation](https://cuckoo-monitor.readthedocs.io/en/latest/hooks.html)
     - [INetSim: Internet Services Simulation Suite \- Features](https://www.inetsim.org/features.html)
     - APIs
         - Memory allocation/map: VirtualAllocEx, NtCreateSection
@@ -62,6 +64,7 @@
 - [GitHub \- last\-byte/PersistenceSniper: Powershell script that can be used by Blue Teams, Incident Responders and System Administrators to hunt persistences implanted in Windows machines\.](https://github.com/last-byte/PersistenceSniper)
 - [GitHub \- LordNoteworthy/al\-khaser: Public malware techniques used in the wild: Virtual Machine, Emulation, Debuggers, Sandbox detection\.](https://github.com/LordNoteworthy/al-khaser)
     - https://www.hybrid-analysis.com/sample/4ca52a1ff170690804811145806c4b6ae6b2c81e129e3cc6b967fd88f47b067e/5bb544127ca3e129f82cc2b9
+- [GitHub \- a0rtega/pafish: Pafish is a testing tool that uses different techniques to detect virtual machines and malware analysis environments in the same way that malware families do](https://github.com/a0rtega/pafish)
 
 # anti-vm
 
@@ -152,6 +155,8 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
         - https://github.com/EquiFox/KsDumper
 - emulation
     - [GitHub \- mandiant/speakeasy: Windows kernel and user mode emulation\.](https://github.com/mandiant/speakeasy)
+    - [GitHub \- OALabs/BlobRunner: Quickly debug shellcode extracted during malware analysis](https://github.com/OALabs/BlobRunner)
+    - [GitHub \- mrexodia/dumpulator: An easy\-to\-use library for emulating code in minidump files\.](https://github.com/mrexodia/dumpulator)
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
     > Packers tend not to touch any custom chips or be affected by any kind of timing/irqs, so just functional CPU emulation will do the job to make a depacking tool.
 - https://twitter.com/re_and_more/status/1505091717971775491

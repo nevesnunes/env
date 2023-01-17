@@ -89,11 +89,13 @@ fn main() {
 }
 ```
 
+- [Debug \- Rust By Example](https://doc.rust-lang.org/beta/rust-by-example/hello/print/print_debug.html)
 - symbols outside current crate
     - https://sourceware.org/gdb/onlinedocs/gdb/Rust.html
     ```gdb
     print extern x::y
     ```
+- [GitHub \- h311d1n3r/Cerberus: A Python tool to unstrip Rust binaries on Linux](https://github.com/h311d1n3r/Cerberus)
 
 # Design
 
