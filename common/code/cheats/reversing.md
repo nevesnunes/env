@@ -550,6 +550,7 @@ qemu-x86_64 -d in_asm a.out
 # - https://github.com/s3team/VMHunt/blob/master/tracer/instracelog.cpp
 # - https://github.com/wuyongzheng/pin-instat
 pin.sh -t obj-intel64/instat.so ./a.out
+~/code/snippets/pin/instrace.cpp
 # dynamorio
 # - :( variable inscount
 ~/opt/dynamorio/build/bin64/drrun -c ~/opt/dynamorio/build/api/bin/libinstrace_x86_text.so -- ./a.out
