@@ -155,6 +155,8 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
         - https://github.com/EquiFox/KsDumper
 - emulation
     - [GitHub \- mandiant/speakeasy: Windows kernel and user mode emulation\.](https://github.com/mandiant/speakeasy)
+    - [GitHub \- mrexodia/driver\_unpacking: Ghetto user mode emulation of Windows kernel drivers\.](https://github.com/mrexodia/driver_unpacking)
+        - [kernel-driver-unpacking](https://x64dbg.com/blog/2017/06/08/kernel-driver-unpacking.html)
     - [GitHub \- OALabs/BlobRunner: Quickly debug shellcode extracted during malware analysis](https://github.com/OALabs/BlobRunner)
     - [GitHub \- mrexodia/dumpulator: An easy\-to\-use library for emulating code in minidump files\.](https://github.com/mrexodia/dumpulator)
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)

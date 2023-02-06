@@ -32,6 +32,7 @@ awk '
 ' app.dcmp > app.js
 
 # c
+w2c2 app.wasm app.c
 wasm2c app.wasm -o app.c
 gcc -m32 -fno-PIC -Os -c -fno-reorder-functions -fno-inline-functions-called-once -fno-inline-small-functions app.c
 ```

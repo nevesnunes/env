@@ -292,7 +292,32 @@ Dump of assembler code for function shellcode:
    0x0804a01c :	add    %al,(%eax)
 ```
 
-https://hack3rlab.wordpress.com/gdb-disassemble-instructions-in-hex-format/
+- https://hack3rlab.wordpress.com/gdb-disassemble-instructions-in-hex-format/
+
+# Debug protocol
+
+- https://r2wiki.readthedocs.io/en/latest/home/misc/usage-examples/
+    ```
+    Supported Packets:
+    - g : Reads the whole register Profile at once
+    - G : Writes the whole register Profile at once
+    - m : Reads memory
+    - M : Writes memory
+    - vCont,v : continues execution of the binary
+    - P : Write one register
+
+    There are two ways of writing registers. The first one is through the P packet.
+    It works like this: `P<register_index>=<register_value>`
+    The second one is the G packet, that writes the whole register Profile at once.
+    The implementation first tries to use the newer P packet and if it receives a $00# packet (that says not implemented), it tries to write through the G packet.
+    ```
+
+- [CTFtime\.org / SECCON 2015 Online CTF / GDB Remote Debugging](https://ctftime.org/task/1944)
+    - http://web.archive.org/web/20201129221936if_/https://pony7.fr/doku.php?id=ctf:public:seccon:gdb-remote-debugging
+    - https://github.com/blukat29/blukat29.github.io/blob/1f04b5f19315eed6bbdb476876dac7185cee053c/_posts/2015-12-10-seccon-ctf-2015-remote-gdb.md
+- [CTFtime\.org / SECCON 2016 Online CTF / microcomputer](https://ctftime.org/task/3181)
+    - https://github.com/q3k/ctf/tree/master/SECCON2016Quals/microcomputer
+    - http://kozos.jp/seccon/seccon2016.html
 
 # Watchpoints
 

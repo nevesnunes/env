@@ -9,6 +9,7 @@
 - [HotSpot Tools](https://wiki.openjdk.java.net/display/HotSpot/HotSpot+Tools)
 - [GitHub \- GraxCode/JByteMod\-Beta: Java bytecode editor](https://github.com/GraxCode/JByteMod-Beta)
 - [GitHub \- java\-deobfuscator/deobfuscator: The real deal](https://github.com/java-deobfuscator/deobfuscator)
+- [GitHub \- LLVM\-but\-worse/maple\-ir: Industrial IR\-based static analysis framework for Java bytecode](https://github.com/LLVM-but-worse/maple-ir)
 
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()

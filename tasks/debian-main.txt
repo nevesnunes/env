@@ -14,6 +14,8 @@ firmware-iwlwifi
 firmware-misc-nonfree
 firmware-realtek
 fluidsynth
+fontforge
+fonttools
 fonts-noto-color-emoji
 gettext
 gimp
@@ -40,6 +42,7 @@ libimobiledevice-utils
 libnotify-bin
 libpango1.0-0
 libreoffice
+libreoffice-gtk3
 libsdl1.2-dev
 libsdl2-dev
 libsox-fmt-all
@@ -55,6 +58,7 @@ ncdu
 openvpn
 pcmanfm
 poppler-utils
+potrace
 qtbase5-dev
 qtmultimedia5-dev
 qttools5-dev-tools
@@ -67,6 +71,7 @@ viewnior
 w3m
 w3m-img
 wine
+woff-tools
 xdot
 xserver-xephyr
 zathura

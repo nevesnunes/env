@@ -350,6 +350,9 @@ Detection / Parsing:
 file -k _
 binwalk --dd='.*' _
 binwalk -Me _
+# alternatives:
+# - [unblob](https://unblob.org/formats/): splits unknown chunks from archive / fs
+# - [OFRAK](https://ofrak.com/): allows manipulates / repacks
 
 # graphics images
 exiftool -v _

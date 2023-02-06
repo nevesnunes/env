@@ -138,6 +138,7 @@ x-scheme-handler/https=exo-web-browser.desktop;firefox.desktop;userapp-Firefox-9
 x-scheme-handler/mailto=exo-mail-reader.desktop
 x-scheme-handler/tg=userapp-Telegram Desktop-F9VEX0.desktop;userapp-Telegram Desktop-TKW7O1.desktop;userapp-Telegram Desktop-8VVKQ1.desktop;userapp-Telegram Desktop-I09EX1.desktop;
 x-scheme-handler/trash=exo-file-manager.desktop
+image/jp2=viewnior.desktop;
 
 [Default Applications]
 application/epub+zip=com.github.johnfactotum.Foliate.desktop
