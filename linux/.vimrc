@@ -558,13 +558,13 @@ augroup filetype_group
     autocmd BufEnter *
                 \ if &filetype !=# 'markdown' && line('$') < 100 |
                 \     for i in range(1, line('$')) |
-                \         if strlen(getline(i)) >= 800 |
+                \         if strlen(getline(i)) >= 1200 |
                 \             setlocal syntax=off |
                 \             break |
                 \         endif |
                 \     endfor |
                 \ endif
-    set synmaxcol=800
+    set synmaxcol=1200
 
     autocmd BufWritePost *
                 \ if getline(1) =~ "^#!" |

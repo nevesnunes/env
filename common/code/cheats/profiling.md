@@ -113,9 +113,10 @@ awk '{print "r:"($3 / 2 / 1024)" w:"($7 / 2 / 1024)}' /sys/block/sda/stat
 perf stat -e sched:sched_stat_iowait ./foo
 # ||
 perf record -e sched:sched_stat_iowait:r -f -R -c 1 ./foo
-perf trace
-# ||
+perf report -i ./perf.data
 perf report -g fractal --no-children
+# ||
+perf trace
 
 # identify candidate functions to optimize
 # - https://perf.wiki.kernel.org/index.php/Perf_examples

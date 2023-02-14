@@ -442,20 +442,25 @@ jmp 0x1234
 - un-flatten control flow by setting user indirect branches
     - [TetCTF 2022 \- crackme pls \(964 pt / 7 solves\)](https://ctf.harrisongreen.me/2022/tetctf/crackme_pls/)
     - [Automated Detection of Control-flow Flattening \- synthesis.io](https://synthesis.to/2021/03/03/flattening_detection.html)
-- automating deofbuscation: use dfs over basic-blocks, follow control-flow from vmentry to vmexit, adding concrete values when stopping at conditional branches (e.g. constraint memory; set known register value); if vmexit is reached, then output can be concrete; take instruction trace to figure out how handlers are composed and extract higher-level instructions
+- automating deofbuscation
+    - use dfs over basic-blocks, follow control-flow from vmentry to vmexit, adding concrete values when stopping at conditional branches (e.g. constraint memory with bytecode value that will take a jump; set known parameter value passed in register);
+        - if vmexit is reached, then output can be concrete;
+        - take instruction trace to figure out how handlers are composed and extract higher-level instructions;
     - [Writing Disassemblers for VM-based Obfuscators](https://synthesis.to/2021/10/21/vm_based_obfuscation.html)
-    ```
-    bb_stack = [vmentry]
-    while bb_stack is not empty:
-        bb = bb_stack.pop()
-        next_bb = symex_bb(bb)
-        if next_bb is address:
-            bb_stack.push(next_bb)
-        else:
-            print(next_bb)
-    ```
+        ```
+        bb_stack = [vmentry]
+        while bb_stack is not empty:
+            bb = bb_stack.pop()
+            next_bb = symex_bb(bb)
+            if next_bb is address:
+                bb_stack.push(next_bb)
+            else:
+                print(next_bb)
+        ```
+    - [Analysis of Virtualization\-based Obfuscation \(r2con2021workshop\) \- YouTube](https://www.youtube.com/watch?v=b6udPT79itk)
+        - [follow\_execution\_flow\.py at main · mrphrazer/r2con2021\_deobfuscation · GitHub](https://github.com/mrphrazer/r2con2021_deobfuscation/blob/main/follow_execution_flow.py)
 - [FinFisher exposed: A researcher’s tale of defeating traps, tricks, and complex virtual machines \- Microsoft Security Blog](https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/)
-- Bruce Dang, Alexandre Gazet, Elias Bachaalany - Practical Reverse Engineering 
+- Bruce Dang, Alexandre Gazet, Elias Bachaalany - Practical Reverse Engineering
     - Chapter 5 - Obfuscation
 
 ### VMProtect

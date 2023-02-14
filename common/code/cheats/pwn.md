@@ -20,10 +20,14 @@
     - [GitHub \- hacksysteam/HackSysExtremeVulnerableDriver: HackSys Extreme Vulnerable Windows Driver](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver)
     - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
     - [GitHub \- ByteHackr/WindowsExploitation: A curated list of awesome Windows Exploitation resources, and shiny things\.](https://github.com/ByteHackr/WindowsExploitation)
+    - [GitHub \- r3p3r/nixawk\-awesome\-windows\-exploitation](https://github.com/r3p3r/nixawk-awesome-windows-exploitation)
     - https://www.fuzzysecurity.com/tutorials.html
     - https://www.corelan.be/
 
 - [GitHub \- nccgroup/exploit\_mitigations: Knowledge base of exploit mitigations available across numerous  operating systems, architectures and applications and versions\.](https://github.com/nccgroup/exploit_mitigations)
+
+- [Binary exploitation learning path \- Learn AppSec](https://learnappsec.com/blog/binary-exploitation-learning-path/)
+- [How to Learn Binary Exploitation Roadmap \- Roppers Academy](https://www.hoppersroppers.org/roadmap/training/pwning.html)
 
 # methodology
 
@@ -184,7 +188,13 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
 
 - https://book.hacktricks.xyz/reversing-and-exploiting/linux-exploiting-basic-esp/bypassing-canary-and-pie
 
-# One-Gadget RCE
+# return-into-libc (ret2libc)
+
+- leak `.got` address, compute libc base address, take `system()` address, fix stack alignment: [\(Pwn\) Pragyan 2020 \- Hide and Seek \| TeamRocketIST \- Portuguese CTF Team](https://teamrocketist.github.io/2020/02/24/Pwn-Pragyan-2020-Hide-and-Seek/)
+- [Return\-to\-libc / ret2libc \- Red Team Notes](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/return-to-libc-ret2libc)
+- [Bugtraq: Getting around non\-executable stack \(and fix\)](https://seclists.org/bugtraq/1997/Aug/63)
+
+### One-Gadget RCE
 
 - if: leaked libc base address + control $rip
     - overwrite `.got.plt` with address of `execve(["/bin/sh/"])` gadget from libc's `system()`
@@ -263,14 +273,20 @@ Examples:
 
 # tcache poisoning
 
-https://pwn-maher.blogspot.com/2020/11/pwn10-heap-exploitation-for-glibc-232.html
+- https://pwn-maher.blogspot.com/2020/11/pwn10-heap-exploitation-for-glibc-232.html
 
 # write-what-where
 
-- `_hook` functions:
-    - FULL RELRO is enabled/GOT is read-only
-    - https://github.com/OpenToAllCTF/Tips#_hooks
-
+- https://systemoverlord.com/2017/03/19/got-and-plt-for-pwning.html
+    - Partial RELRO (enabled with `-Wl,-z,relro`):
+        - Maps the `.got` section as read-only (but not `.got.plt`)
+        - Rearranges sections to reduce the likelihood of global variables overflowing into control structures.
+    - Full RELRO (enabled with `-Wl,-z,relro,-z,now`):
+        - Does the steps of Partial RELRO, plus:
+        - Causes the linker to resolve all symbols at link time (before starting execution) and then remove write permissions from `.got`.
+        - `.got.plt` is merged into `.got` with full RELRO, so you won’t see this section name.
+        - Bypass: `_hook` functions:
+            - https://github.com/OpenToAllCTF/Tips#_hooks
 - eBPF
     - https://www.zerodayinitiative.com/blog/2020/4/8/cve-2020-8835-linux-kernel-privilege-escalation-via-improper-ebpf-program-verification
     - https://www.graplsecurity.com/post/kernel-pwning-with-ebpf-a-love-story
@@ -380,6 +396,7 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
     - https://clang.llvm.org/docs/ControlFlowIntegrity.html
     - https://github.com/preames/public-notes/blob/master/unintended-instructions.rst
 
+- ~/code/snippets/rop/dice2021-babyrop.py
 - [HackTheBox \- Rope](https://www.youtube.com/watch?v=GTQxZlr5yvE)
 - [The Geometry of Innocent Flesh on the Bone: Return-into-libc without Function Calls (on the x86)](https://hovav.net/ucsd/dist/geometry.pdf)
 
@@ -419,8 +436,9 @@ if ssl:
         - disable with `setdllcharacteristics -d foo.exe`
             - https://blog.didierstevens.com/2010/10/17/setdllcharacteristics/amp/
             - https://github.com/guywhataguy/DisableDynamicLoadAddress
-
-- [FuzzySecurity \| Windows ExploitDev: Part 11](https://fuzzysecurity.com/tutorials/expDev/15.html)
+- attacks
+    - [SEH Based Buffer Overflow \- Red Team Notes](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/seh-based-buffer-overflow)
+    - [FuzzySecurity \| Windows ExploitDev: Part 11: Kernel Exploitation \-\> Write-What-Where](https://fuzzysecurity.com/tutorials/expDev/15.html)
 
 ### drivers
 

@@ -29,6 +29,7 @@ jq
 libarchive-tools
 libtool
 linux-headers-generic
+linux-perf
 locales
 make
 nasm
