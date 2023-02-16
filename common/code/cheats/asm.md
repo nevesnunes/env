@@ -676,6 +676,8 @@ call eax
 - [Reversing Basic C\+\+ Objects with Ghidra: Inheritance and Polymorphism \(Part 2\) \- YouTube](https://www.youtube.com/watch?v=MiX4p2l_IE0)
 - [Reversing C\+\+, Qt based applications using Ghidra](https://ktln2.org/reversing-casm.md2Basm.md2B-qt-applications-using-ghidra/)
 
+- [GitHub \- medigateio/ida\_medigate: Medigate plugin for c\+\+ reverse engineering and other utils](https://github.com/medigateio/ida_medigate)
+
 # optimizations
 
 - [GitHub \- foo123/code\-optimization\-methods: A summary of code optimization methods](https://github.com/foo123/code-optimization-methods)

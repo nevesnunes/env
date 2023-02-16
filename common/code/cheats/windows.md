@@ -8,6 +8,8 @@
 - [WADComs](https://wadcoms.github.io/)
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
 - [Winbindex \- The Windows Binaries Index](https://winbindex.m417z.com)
+	- :) bindiff with pre/post patch binaries, check symbols in previous vuln writeups, xref. new/deleted bb address with decompiled address, create structs with known fields and filler fields as char\*
+		- https://securityintelligence.com/posts/dissecting-exploiting-tcp-ip-rce-vulnerability-evilesp/
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 - [OSR Developer Community](https://community.osr.com/)

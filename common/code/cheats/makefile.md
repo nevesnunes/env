@@ -1,6 +1,13 @@
+# includes
+
+```make
+# dynamic flags
+CFLAGS += $(shell pkg-config --cflags gtk+-3.0)
+```
+
 # debug
 
-```bash
+```sh
 # trace command line invocations
 make SHELL='sh -x'
 

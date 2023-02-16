@@ -2,6 +2,7 @@
 
 - [libc database search](https://libc.blukat.me/)
 - [GitHub \- niklasb/libc\-database: Build a database of libc offsets to simplify exploitation](https://github.com/niklasb/libc-database)
+- [GitHub \- matrix1001/glibc\-all\-in\-one: A convenient glibc binary and debug file downloader and source code auto builder](https://github.com/matrix1001/glibc-all-in-one)
 - [GitHub \- 0xb0bb/karkinos: A thorough library database to assist with binary exploitation tasks\.](https://github.com/0xb0bb/karkinos)
 
 - [GitHub \- Gallopsled/pwntools\-tutorial: Tutorials for getting started with Pwntools](https://github.com/Gallopsled/pwntools-tutorial)
@@ -146,6 +147,12 @@ eu-unstrip "$stripped_libc" "$symbol_file"
 
 # dynamic loading
 
+```sh
+# use given libc
+patchelf --set-interpreter /path/to/ld-2.27.so foo
+LD_PRELOAD=./libc-2.27.so ./foo
+```
+
 - Including current directory in `LD_LIBRARY_PATH`
     - Mitigation: `${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}`
         - [shell \- What does $\{PATH:\+:$\{PATH\}\} mean? \- Unix &amp; Linux Stack Exchange](https://unix.stackexchange.com/questions/267506/what-does-pathpath-mean/267548)
@@ -201,7 +208,12 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
     - https://github.com/david942j/one_gadget
     - http://j00ru.vexillium.org/blog/24_03_15/dragons_ctf.pdf
 
-# use-after-free (UAF)
+# heap exploitation
+
+- [SensePost \| Painless intro to the linux userland heap](https://sensepost.com/blog/2017/painless-intro-to-the-linux-userland-heap/)
+- [malloc\.c source code \(glibc/malloc/malloc\.c\) \- Codebrowser ](https://codebrowser.dev/glibc/glibc/malloc/malloc.c.html#malloc_chunk)
+
+### use-after-free (UAF)
 
 1. allocate `object foo1` with reference to address `bar1`, `array foo` points to object
 2. deallocate `object foo1`, `array foo` preserves pointer to object's address
@@ -271,9 +283,13 @@ Examples:
 + rockusb_func = NULL;
 ```
 
-# tcache poisoning
+### tcache poisoning
 
 - https://pwn-maher.blogspot.com/2020/11/pwn10-heap-exploitation-for-glibc-232.html
+
+### double free
+
+- `_free_hook` override: https://www.hackiit.cf/write-up-c0r0n4con-fwhibbit-ctf-prison-heap/
 
 # write-what-where
 

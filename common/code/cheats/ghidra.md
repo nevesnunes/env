@@ -98,6 +98,8 @@ typedef unsigned short ushort;
 typedef unsigned short word;
 ```
 
+- [Ghidra CONCAT Implementations · GitHub](https://gist.github.com/SeanPesce/57200f694674d73cac4704f11a8eb90b)
+
 # scripting
 
 - https://ghidra.re/ghidra_docs/api/ghidra/program/flatapi/FlatProgramAPI.html
@@ -148,9 +150,10 @@ ant -f buildLanguage.xml
 
 # bindiff
 
+1. Load PDB symbols (if available)
 1. Export... > Binary BinExport (v2) for BinDiff
-2. bindiff primary.BinExport secondary.BinExport, take primary_vs_secondary.BinDiff
-3. bindiff --ui
-4. Diffs > Add Existing Diff...
+1. bindiff primary.BinExport secondary.BinExport, take primary_vs_secondary.BinDiff
+1. bindiff --ui
+1. Diffs > Add Existing Diff...
 
 - https://reverseengineering.stackexchange.com/questions/22372/do-i-need-to-have-ida-pro-to-use-the-bindiff-tool

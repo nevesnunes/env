@@ -53,6 +53,13 @@
 - find the call stack in procmon and set a breakpoint on one of the functions
     - https://reverseengineering.stackexchange.com/questions/15823/how-can-windbg-be-used-to-troubleshoot-program-loading
 
+# time travel debugging
+
+```
+# trace reads in address range
+dx @$cursession.TTD.Memory(0x[start_address], 0x[end_address], "r")
+```
+
 # heap dump on crash
 
 ```
@@ -105,6 +112,10 @@ _NT_SYMBOL_PATH = C:\Windows\SYMBOLS*https://msdl.microsoft.com/download/symbols
 
 # session buffers
 !wmitrace.logdump
+
+# function calls
+# - https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/wt--trace-and-watch-data-
+wt
 ```
 
 - https://community.osr.com/discussion/157565/wpp-trace-output-in-kernel-debug-or-debugview

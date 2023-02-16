@@ -127,6 +127,11 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 # References: https://github.com/rizsotto/Bear
 bear make
 
+# vscode
+bear -a -o .vscode/compile_commands.json make
+# c_cpp_properties.json
+# "compileCommands": "${workspaceFolder}/.vscode/compile_commands.json"
+
 # Validation
 test -f compile_commands.json
 ```

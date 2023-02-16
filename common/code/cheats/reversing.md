@@ -82,6 +82,8 @@
         '88da6b62'
         ```
     - [The Magic Number Database \| MagnumDB](https://www.magnumdb.com/)
+    - [The On\-Line Encyclopedia of Integer Sequences&reg; \(OEIS&reg;\)](https://oeis.org/)
+    - [FindCrypt \- Hex Rays](https://hex-rays.com/blog/findcrypt/)
     - https://hiddencodes.wordpress.com/2011/12/23/string-manipulation-functions-in-glibc-ms-visual-studio-and-0x7efefeff-0x81010100-0x81010101/
 - data structures
     - find addresses pointing to lists of names + other fields
@@ -477,6 +479,13 @@ jmp 0x1234
 - [GitHub \- sjsyrek/malc: Make a lambda calculus\.](https://github.com/sjsyrek/malc)
 - [Beta reduction \- HaskellWiki](https://wiki.haskell.org/Beta_reduction)
 - [David Beazley \- Lambda Calculus from the Ground Up \- PyCon 2019 \- YouTube](https://www.youtube.com/watch?v=pkCLMl0e_0k)
+
+# AST parsing
+
+- tree-sitter
+- semgrep
+    - [semgrep/bridge\_design\.txt at 650422c2002007b98517bdc6c688b7f760a057bc · returntocorp/semgrep · GitHub](https://github.com/returntocorp/semgrep/blob/650422c2002007b98517bdc6c688b7f760a057bc/semgrep-core/src/cli-bridge/bridge_design.txt)
+    - [semgrep/core\_runner\.py at 3e6d1dc320c79c52b258d908d57956d68d26730a · returntocorp/semgrep · GitHub](https://github.com/returntocorp/semgrep/blob/3e6d1dc320c79c52b258d908d57956d68d26730a/cli/src/semgrep/core_runner.py#L324)
 
 # taint analysis
 

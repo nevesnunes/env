@@ -6,6 +6,8 @@
 - [IDA F\.L\.I\.R\.T\. Technology: In\-Depth &\#8211; Hex Rays](https://www.hex-rays.com/products/ida/tech/flirt/in_depth/)
 - https://reverseengineering.stackexchange.com/questions/175/what-is-a-flirt-signature
 
+### parsing
+
 ```bash
 # Generate FLIRT signatures
 # References: https://www.ccso.com/faq.html
@@ -13,6 +15,9 @@
 plb foo.lib foo.pat
 sigmake foo.pat foo.sig
 ```
+
+- [GitHub \- mandiant/flare\-ida: IDA Pro utilities from FLARE team](https://github.com/mandiant/flare-ida#idb2pat)
+	> generate function patterns from an existing IDB database that can then be turned into FLIRT signatures
 
 # Binary search
 

@@ -1,0 +1,61 @@
+
+digraph G {
+    // Define layout
+    graph [pad=".75", ranksep="0.95", nodesep="0.05"];
+    rankdir=LR;
+    node [shape="record"];
+    rank=same;
+
+    // Define pointers
+    rsp [
+        label="<p> $rdi \l", height="0.1",
+        color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white
+    ];
+
+    // rbp [
+    // 	label="<p> $rbp \l", height="0.1",
+    // 	color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white
+    // ];
+
+    rsp_4 [
+        label="<p> $rsi \l", height="0.01",
+        color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white
+    ];
+
+
+    rsp_8 [
+        label="<p> $rdx \l", height="0.01",
+        color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white,
+    ];
+
+    rsp_12 [
+        label="<p> $rcx \l", height="0.01",
+        color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white,
+    ];
+
+    rsp_16 [
+        label="<p> $r8 \l", height="0.01",
+        color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white,
+    ];
+
+    rsp_20 [
+        label="<p> $r9 \l", height="0.01",
+        color=white, fontcolor=black,fontsize=9,style=filled, fillcolor=white,
+    ];
+
+    // Define stack
+    stack [
+        width="3",
+        label="<p>\nArguments\n\n | <bp>\n...\n\n | <20>0x7ffff7de9900 (_dl_fini) \l| <16>0x00400840 (sym.__libc_csu_fini) \l| <12>0x4007d0 (sym.__libc_csu_init)  \l | <8>(char **ubp_av = $rsp) \l | <4>(int argc = pop)  \l | <0>0x400660 (sym.main) \l"
+    ];
+
+
+    // Pointer -> Stack edges
+    //rbp:p -> stack:bp [style=invis];
+    rsp:p -> stack:0 [style=invis];
+    rsp_4:p -> stack:4 [style=invis];
+    rsp_8:p -> stack:8 [style=invis];
+    rsp_12:p -> stack:12 [style=invis];
+    rsp_16:p -> stack:16 [style=invis];
+    rsp_20:p -> stack:20 [style=invis];
+}

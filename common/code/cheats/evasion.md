@@ -65,6 +65,7 @@
 - [GitHub \- LordNoteworthy/al\-khaser: Public malware techniques used in the wild: Virtual Machine, Emulation, Debuggers, Sandbox detection\.](https://github.com/LordNoteworthy/al-khaser)
     - https://www.hybrid-analysis.com/sample/4ca52a1ff170690804811145806c4b6ae6b2c81e129e3cc6b967fd88f47b067e/5bb544127ca3e129f82cc2b9
 - [GitHub \- a0rtega/pafish: Pafish is a testing tool that uses different techniques to detect virtual machines and malware analysis environments in the same way that malware families do](https://github.com/a0rtega/pafish)
+- [GitHub \- secrary/makin: makin \- reveal anti\-debugging and anti\-VM tricks \(This project is not maintained anymore\)](https://github.com/secrary/makin)
 
 # anti-vm
 
