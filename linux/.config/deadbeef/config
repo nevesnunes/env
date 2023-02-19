@@ -90,7 +90,7 @@ playback.volume.normalized 0.6308436
 playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0
-playlist.scroll.0 -6
+playlist.scroll.0 0
 playlist.scroll.1 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default

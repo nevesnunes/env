@@ -160,6 +160,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
         - [kernel-driver-unpacking](https://x64dbg.com/blog/2017/06/08/kernel-driver-unpacking.html)
     - [GitHub \- OALabs/BlobRunner: Quickly debug shellcode extracted during malware analysis](https://github.com/OALabs/BlobRunner)
     - [GitHub \- mrexodia/dumpulator: An easy\-to\-use library for emulating code in minidump files\.](https://github.com/mrexodia/dumpulator)
+    - [GitHub \- zcutlip/nvram\-faker: A simple library to intercept calls to libnvram when running embedded linux applications in emulated environments\.](https://github.com/zcutlip/nvram-faker)
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
     > Packers tend not to touch any custom chips or be affected by any kind of timing/irqs, so just functional CPU emulation will do the job to make a depacking tool.
 - https://twitter.com/re_and_more/status/1505091717971775491

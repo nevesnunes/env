@@ -105,6 +105,8 @@ lea rsp, [rsp+98h]
     LD_PRELOAD=preeny/Linux_x86_64/desock.so afl-fuzz -i testcases -o findings ./nginx
     ```
 - emulation
+    - https://github.com/AFLplusplus/AFLplusplus/blob/stable/unicorn_mode/samples/python_simple/simple_test_harness.py
+    - https://github.com/qilingframework/qiling/blob/master/examples/fuzzing/linux_x8664/fuzz_x8664_linux.py
     - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
 - [GitHub \- google/honggfuzz: Security oriented software fuzzer\. Supports evolutionary, feedback\-driven fuzzing based on code coverage \(SW and HW based\)](https://github.com/google/honggfuzz)
 - [libFuzzer – a library for coverage\-guided fuzz testing\. &\#8212; LLVM 16\.0\.0git documentation](https://llvm.org/docs/LibFuzzer.html)
