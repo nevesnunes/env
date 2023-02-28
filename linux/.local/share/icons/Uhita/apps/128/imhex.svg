@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   preserveAspectRatio="xMidYMid meet"
+   viewBox="0 0 640 640"
+   width="640"
+   height="640"
+   id="svg173"
+   sodipodi:docname="imhex0.svg"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+  <metadata
+     id="metadata177">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1022"
+     id="namedview175"
+     showgrid="false"
+     inkscape:zoom="1.3296875"
+     inkscape:cx="320"
+     inkscape:cy="320"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg173" />
+  <defs
+     id="defs23">
+    <path
+       d="M134.34 76.37C141.22 76.37 146.81 81.96 146.81 88.84C146.81 186.97 146.81 468.88 146.81 567C146.81 573.89 141.22 579.47 134.34 579.47C118.95 579.47 85.27 579.47 69.89 579.47C63 579.47 57.42 573.89 57.42 567C57.42 468.88 57.42 186.97 57.42 88.84C57.42 81.96 63 76.37 69.89 76.37C85.27 76.37 118.95 76.37 134.34 76.37Z"
+       id="fxlTWQKjO" />
+    <radialGradient
+       id="gradiente9fzxXDJP"
+       gradientUnits="userSpaceOnUse"
+       cx="102.11"
+       cy="76.37"
+       dx="102.11"
+       dy="579.47"
+       r="503.1">
+      <stop
+         style="stop-color: #4274e9;stop-opacity: 1"
+         offset="0%"
+         id="stop3" />
+      <stop
+         style="stop-color: #254692;stop-opacity: 1"
+         offset="100%"
+         id="stop5" />
+    </radialGradient>
+    <path
+       d="M322.91 76.37C329.8 76.37 335.38 81.96 335.38 88.84C335.38 186.97 335.38 468.88 335.38 567C335.38 573.89 329.8 579.47 322.91 579.47C307.53 579.47 273.84 579.47 258.46 579.47C251.57 579.47 245.99 573.89 245.99 567C245.99 468.88 245.99 186.97 245.99 88.84C245.99 81.96 251.57 76.37 258.46 76.37C273.84 76.37 307.53 76.37 322.91 76.37Z"
+       id="czVry975B" />
+    <radialGradient
+       id="gradientbr4NjIt2c"
+       gradientUnits="userSpaceOnUse"
+       cx="290.69"
+       cy="76.37"
+       dx="290.69"
+       dy="579.47"
+       r="503.1">
+      <stop
+         style="stop-color: #4274e9;stop-opacity: 1"
+         offset="0%"
+         id="stop9" />
+      <stop
+         style="stop-color: #254692;stop-opacity: 1"
+         offset="100%"
+         id="stop11" />
+    </radialGradient>
+    <path
+       d="M57.42 78.81C57.42 75.01 60.5 71.92 64.31 71.92C118.52 71.92 274.28 71.92 328.49 71.92C332.3 71.92 335.38 75.01 335.38 78.81C335.38 94.9 335.38 136.3 335.38 152.39C335.38 156.2 332.3 159.28 328.49 159.28C274.28 159.28 118.52 159.28 64.31 159.28C60.5 159.28 57.42 156.2 57.42 152.39C57.42 136.3 57.42 94.9 57.42 78.81Z"
+       id="dq8sOBiuL" />
+    <path
+       d="M57.42 503.45C57.42 499.65 60.5 496.56 64.31 496.56C118.52 496.56 274.28 496.56 328.49 496.56C332.3 496.56 335.38 499.65 335.38 503.45C335.38 519.55 335.38 560.94 335.38 577.03C335.38 580.84 332.3 583.92 328.49 583.92C274.28 583.92 118.52 583.92 64.31 583.92C60.5 583.92 57.42 580.84 57.42 577.03C57.42 560.94 57.42 519.55 57.42 503.45Z"
+       id="k3tHvstIzi" />
+    <path
+       d="M578.91 80.83C585.8 80.83 591.38 86.41 591.38 93.29C591.38 191.42 591.38 473.33 591.38 571.46C591.38 578.34 585.8 583.92 578.91 583.92C563.53 583.92 529.84 583.92 514.46 583.92C507.57 583.92 501.99 578.34 501.99 571.46C501.99 473.33 501.99 191.42 501.99 93.29C501.99 86.41 507.57 80.83 514.46 80.83C529.84 80.83 563.53 80.83 578.91 80.83Z"
+       id="a3S0TPLjzh" />
+    <radialGradient
+       id="gradientig068ulQf"
+       gradientUnits="userSpaceOnUse"
+       cx="546.69"
+       cy="80.83"
+       dx="546.69"
+       dy="583.92"
+       r="503.1">
+      <stop
+         style="stop-color: #4274e9;stop-opacity: 1"
+         offset="0%"
+         id="stop17" />
+      <stop
+         style="stop-color: #254692;stop-opacity: 1"
+         offset="100%"
+         id="stop19" />
+    </radialGradient>
+    <path
+       d="M382.42 77.1C382.42 74.24 384.74 71.92 387.6 71.92C428.35 71.92 545.45 71.92 586.2 71.92C589.06 71.92 591.38 74.24 591.38 77.1C591.38 93.54 591.38 137.67 591.38 154.1C591.38 156.96 589.06 159.28 586.2 159.28C545.45 159.28 428.35 159.28 387.6 159.28C384.74 159.28 382.42 156.96 382.42 154.1C382.42 137.67 382.42 93.54 382.42 77.1Z"
+       id="d1dF7njLQE" />
+  </defs>
+  <g
+     id="g171">
+    <g
+       id="g169">
+      <g
+         id="g47">
+        <g
+           id="g43">
+          <filter
+             id="shadow10560140"
+             x="31.42"
+             y="50.37"
+             width="142.39"
+             height="556.1"
+             filterUnits="userSpaceOnUse"
+             primitiveUnits="userSpaceOnUse">
+            <feFlood
+               id="feFlood25" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="in"
+               id="feComposite27" />
+            <feGaussianBlur
+               stdDeviation="3.16"
+               id="feGaussianBlur29" />
+            <feOffset
+               dx="1"
+               dy="1"
+               result="afterOffset"
+               id="feOffset31" />
+            <feFlood
+               flood-color="#000000"
+               flood-opacity="0.5"
+               id="feFlood33" />
+            <feComposite
+               in2="afterOffset"
+               operator="in"
+               id="feComposite35" />
+            <feMorphology
+               operator="dilate"
+               radius="0"
+               id="feMorphology37" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="out"
+               id="feComposite39" />
+          </filter>
+          <path
+             d="M134.34 76.37C141.22 76.37 146.81 81.96 146.81 88.84C146.81 186.97 146.81 468.88 146.81 567C146.81 573.89 141.22 579.47 134.34 579.47C118.95 579.47 85.27 579.47 69.89 579.47C63 579.47 57.42 573.89 57.42 567C57.42 468.88 57.42 186.97 57.42 88.84C57.42 81.96 63 76.37 69.89 76.37C85.27 76.37 118.95 76.37 134.34 76.37Z"
+             id="d17Khkc6TC"
+             fill="white"
+             fill-opacity="1"
+             filter="url(#shadow10560140)" />
+        </g>
+        <use
+           xlink:href="#fxlTWQKjO"
+           opacity="1"
+           fill="url(#gradiente9fzxXDJP)"
+           id="use45" />
+      </g>
+      <g
+         id="g71">
+        <g
+           id="g67">
+          <filter
+             id="shadow966009"
+             x="219.99"
+             y="50.37"
+             width="142.39"
+             height="556.1"
+             filterUnits="userSpaceOnUse"
+             primitiveUnits="userSpaceOnUse">
+            <feFlood
+               id="feFlood49" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="in"
+               id="feComposite51" />
+            <feGaussianBlur
+               stdDeviation="3.16"
+               id="feGaussianBlur53" />
+            <feOffset
+               dx="1"
+               dy="1"
+               result="afterOffset"
+               id="feOffset55" />
+            <feFlood
+               flood-color="#000000"
+               flood-opacity="0.5"
+               id="feFlood57" />
+            <feComposite
+               in2="afterOffset"
+               operator="in"
+               id="feComposite59" />
+            <feMorphology
+               operator="dilate"
+               radius="0"
+               id="feMorphology61" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="out"
+               id="feComposite63" />
+          </filter>
+          <path
+             d="M322.91 76.37C329.8 76.37 335.38 81.96 335.38 88.84C335.38 186.97 335.38 468.88 335.38 567C335.38 573.89 329.8 579.47 322.91 579.47C307.53 579.47 273.84 579.47 258.46 579.47C251.57 579.47 245.99 573.89 245.99 567C245.99 468.88 245.99 186.97 245.99 88.84C245.99 81.96 251.57 76.37 258.46 76.37C273.84 76.37 307.53 76.37 322.91 76.37Z"
+             id="c9eNlqtMnJ"
+             fill="white"
+             fill-opacity="1"
+             filter="url(#shadow966009)" />
+        </g>
+        <use
+           xlink:href="#czVry975B"
+           opacity="1"
+           fill="url(#gradientbr4NjIt2c)"
+           id="use69" />
+      </g>
+      <g
+         id="g95">
+        <g
+           id="g91">
+          <filter
+             id="shadow15972322"
+             x="5.42"
+             y="19.92"
+             width="381.96"
+             height="193.36"
+             filterUnits="userSpaceOnUse"
+             primitiveUnits="userSpaceOnUse">
+            <feFlood
+               id="feFlood73" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="in"
+               id="feComposite75" />
+            <feGaussianBlur
+               stdDeviation="4.58"
+               id="feGaussianBlur77" />
+            <feOffset
+               dx="0"
+               dy="2"
+               result="afterOffset"
+               id="feOffset79" />
+            <feFlood
+               flood-color="#000000"
+               flood-opacity="0.39"
+               id="feFlood81" />
+            <feComposite
+               in2="afterOffset"
+               operator="in"
+               id="feComposite83" />
+            <feMorphology
+               operator="dilate"
+               radius="3"
+               id="feMorphology85" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="out"
+               id="feComposite87" />
+          </filter>
+          <path
+             d="M57.42 78.81C57.42 75.01 60.5 71.92 64.31 71.92C118.52 71.92 274.28 71.92 328.49 71.92C332.3 71.92 335.38 75.01 335.38 78.81C335.38 94.9 335.38 136.3 335.38 152.39C335.38 156.2 332.3 159.28 328.49 159.28C274.28 159.28 118.52 159.28 64.31 159.28C60.5 159.28 57.42 156.2 57.42 152.39C57.42 136.3 57.42 94.9 57.42 78.81Z"
+             id="aTdsyF8oG"
+             fill="white"
+             fill-opacity="1"
+             filter="url(#shadow15972322)" />
+        </g>
+        <use
+           xlink:href="#dq8sOBiuL"
+           opacity="1"
+           fill="#3a6be0"
+           fill-opacity="1"
+           id="use93" />
+      </g>
+      <g
+         id="g119">
+        <g
+           id="g115">
+          <filter
+             id="shadow1286496"
+             x="6.42"
+             y="445.56"
+             width="379.96"
+             height="190.36"
+             filterUnits="userSpaceOnUse"
+             primitiveUnits="userSpaceOnUse">
+            <feFlood
+               id="feFlood97" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="in"
+               id="feComposite99" />
+            <feGaussianBlur
+               stdDeviation="4.58"
+               id="feGaussianBlur101" />
+            <feOffset
+               dx="0"
+               dy="1"
+               result="afterOffset"
+               id="feOffset103" />
+            <feFlood
+               flood-color="#000000"
+               flood-opacity="0.39"
+               id="feFlood105" />
+            <feComposite
+               in2="afterOffset"
+               operator="in"
+               id="feComposite107" />
+            <feMorphology
+               operator="dilate"
+               radius="3"
+               id="feMorphology109" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="out"
+               id="feComposite111" />
+          </filter>
+          <path
+             d="M57.42 503.45C57.42 499.65 60.5 496.56 64.31 496.56C118.52 496.56 274.28 496.56 328.49 496.56C332.3 496.56 335.38 499.65 335.38 503.45C335.38 519.55 335.38 560.94 335.38 577.03C335.38 580.84 332.3 583.92 328.49 583.92C274.28 583.92 118.52 583.92 64.31 583.92C60.5 583.92 57.42 580.84 57.42 577.03C57.42 560.94 57.42 519.55 57.42 503.45Z"
+             id="as6JrMU6z"
+             fill="white"
+             fill-opacity="1"
+             filter="url(#shadow1286496)" />
+        </g>
+        <use
+           xlink:href="#k3tHvstIzi"
+           opacity="1"
+           fill="#2a50a8"
+           fill-opacity="1"
+           id="use117" />
+      </g>
+      <g
+         id="g143">
+        <g
+           id="g139">
+          <filter
+             id="shadow6904901"
+             x="475.99"
+             y="54.83"
+             width="142.39"
+             height="556.1"
+             filterUnits="userSpaceOnUse"
+             primitiveUnits="userSpaceOnUse">
+            <feFlood
+               id="feFlood121" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="in"
+               id="feComposite123" />
+            <feGaussianBlur
+               stdDeviation="3.16"
+               id="feGaussianBlur125" />
+            <feOffset
+               dx="1"
+               dy="1"
+               result="afterOffset"
+               id="feOffset127" />
+            <feFlood
+               flood-color="#000000"
+               flood-opacity="0.5"
+               id="feFlood129" />
+            <feComposite
+               in2="afterOffset"
+               operator="in"
+               id="feComposite131" />
+            <feMorphology
+               operator="dilate"
+               radius="0"
+               id="feMorphology133" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="out"
+               id="feComposite135" />
+          </filter>
+          <path
+             d="M578.91 80.83C585.8 80.83 591.38 86.41 591.38 93.29C591.38 191.42 591.38 473.33 591.38 571.46C591.38 578.34 585.8 583.92 578.91 583.92C563.53 583.92 529.84 583.92 514.46 583.92C507.57 583.92 501.99 578.34 501.99 571.46C501.99 473.33 501.99 191.42 501.99 93.29C501.99 86.41 507.57 80.83 514.46 80.83C529.84 80.83 563.53 80.83 578.91 80.83Z"
+             id="f9DViVOFo"
+             fill="white"
+             fill-opacity="1"
+             filter="url(#shadow6904901)" />
+        </g>
+        <use
+           xlink:href="#a3S0TPLjzh"
+           opacity="1"
+           fill="url(#gradientig068ulQf)"
+           id="use141" />
+      </g>
+      <g
+         id="g167">
+        <g
+           id="g163">
+          <filter
+             id="shadow5972698"
+             x="330.42"
+             y="19.92"
+             width="312.96"
+             height="193.36"
+             filterUnits="userSpaceOnUse"
+             primitiveUnits="userSpaceOnUse">
+            <feFlood
+               id="feFlood145" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="in"
+               id="feComposite147" />
+            <feGaussianBlur
+               stdDeviation="4.58"
+               id="feGaussianBlur149" />
+            <feOffset
+               dx="0"
+               dy="2"
+               result="afterOffset"
+               id="feOffset151" />
+            <feFlood
+               flood-color="#000000"
+               flood-opacity="0.39"
+               id="feFlood153" />
+            <feComposite
+               in2="afterOffset"
+               operator="in"
+               id="feComposite155" />
+            <feMorphology
+               operator="dilate"
+               radius="3"
+               id="feMorphology157" />
+            <feComposite
+               in2="SourceAlpha"
+               operator="out"
+               id="feComposite159" />
+          </filter>
+          <path
+             d="M382.42 77.1C382.42 74.24 384.74 71.92 387.6 71.92C428.35 71.92 545.45 71.92 586.2 71.92C589.06 71.92 591.38 74.24 591.38 77.1C591.38 93.54 591.38 137.67 591.38 154.1C591.38 156.96 589.06 159.28 586.2 159.28C545.45 159.28 428.35 159.28 387.6 159.28C384.74 159.28 382.42 156.96 382.42 154.1C382.42 137.67 382.42 93.54 382.42 77.1Z"
+             id="a4CccHh5dY"
+             fill="black"
+             fill-opacity="1"
+             filter="url(#shadow5972698)" />
+        </g>
+        <use
+           xlink:href="#d1dF7njLQE"
+           opacity="1"
+           fill="#3a6be0"
+           fill-opacity="1"
+           id="use165" />
+      </g>
+    </g>
+  </g>
+</svg>

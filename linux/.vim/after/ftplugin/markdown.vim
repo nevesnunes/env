@@ -6,4 +6,6 @@ normal! zR
 " ~/.vim/bundle/mdnav/ftplugin/markdown
 " silent! nunmap <buffer> <CR>
 
+set expandtab
+
 runtime markdown_folding.vim

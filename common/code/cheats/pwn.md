@@ -16,7 +16,10 @@
     - [GitHub \- xairy/linux\-kernel\-exploitation: A collection of links related to Linux kernel security and exploitation](https://github.com/xairy/linux-kernel-exploitation)
     - memfd_create dropper to download/execute files in memory
         - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
-        > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
+            > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
+        ```sh
+        python3 -c "from os import*;fork()or(setsid(),print(f'/proc/{getpid()}/fd/{memfd_create(sep)}'),kill(0,19))"
+        ```
 - Windows
     - [GitHub \- hacksysteam/HackSysExtremeVulnerableDriver: HackSys Extreme Vulnerable Windows Driver](https://github.com/hacksysteam/HackSysExtremeVulnerableDriver)
     - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
@@ -208,6 +211,25 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
     - https://github.com/david942j/one_gadget
     - http://j00ru.vexillium.org/blog/24_03_15/dragons_ctf.pdf
 
+# write-what-where
+
+- https://systemoverlord.com/2017/03/19/got-and-plt-for-pwning.html
+    - Partial RELRO (enabled with `-Wl,-z,relro`):
+        - Maps the `.got` section as read-only (but not `.got.plt`)
+        - Rearranges sections to reduce the likelihood of global variables overflowing into control structures.
+    - Full RELRO (enabled with `-Wl,-z,relro,-z,now`):
+        - Does the steps of Partial RELRO, plus:
+        - Causes the linker to resolve all symbols at link time (before starting execution) and then remove write permissions from `.got`.
+        - `.got.plt` is merged into `.got` with full RELRO, so you won’t see this section name.
+        - Bypass: `_hook` functions:
+            - https://github.com/OpenToAllCTF/Tips#_hooks
+- eBPF
+    - https://www.zerodayinitiative.com/blog/2020/4/8/cve-2020-8835-linux-kernel-privilege-escalation-via-improper-ebpf-program-verification
+    - https://www.graplsecurity.com/post/kernel-pwning-with-ebpf-a-love-story
+        - using maps to leak addresses, bypass verifier pointer checks to make OOB read/writes
+- Windows CTF
+    - https://googleprojectzero.blogspot.com/2019/08/down-rabbit-hole.html
+
 # heap exploitation
 
 - [SensePost \| Painless intro to the linux userland heap](https://sensepost.com/blog/2017/painless-intro-to-the-linux-userland-heap/)
@@ -291,24 +313,10 @@ Examples:
 
 - `_free_hook` override: https://www.hackiit.cf/write-up-c0r0n4con-fwhibbit-ctf-prison-heap/
 
-# write-what-where
+# jit exploitation
 
-- https://systemoverlord.com/2017/03/19/got-and-plt-for-pwning.html
-    - Partial RELRO (enabled with `-Wl,-z,relro`):
-        - Maps the `.got` section as read-only (but not `.got.plt`)
-        - Rearranges sections to reduce the likelihood of global variables overflowing into control structures.
-    - Full RELRO (enabled with `-Wl,-z,relro,-z,now`):
-        - Does the steps of Partial RELRO, plus:
-        - Causes the linker to resolve all symbols at link time (before starting execution) and then remove write permissions from `.got`.
-        - `.got.plt` is merged into `.got` with full RELRO, so you won’t see this section name.
-        - Bypass: `_hook` functions:
-            - https://github.com/OpenToAllCTF/Tips#_hooks
-- eBPF
-    - https://www.zerodayinitiative.com/blog/2020/4/8/cve-2020-8835-linux-kernel-privilege-escalation-via-improper-ebpf-program-verification
-    - https://www.graplsecurity.com/post/kernel-pwning-with-ebpf-a-love-story
-        - using maps to leak addresses, bypass verifier pointer checks to make OOB read/writes
-- Windows CTF
-    - https://googleprojectzero.blogspot.com/2019/08/down-rabbit-hole.html
+- [LuaJIT Internals](https://0xbigshaq.github.io/2022/08/22/lua-jit-intro/)
+- [Exploit Development: Browser Exploitation on Windows \- CVE\-2019\-0567, A Microsoft Edge Type Confusion Vulnerability \(Part 1\) \| Home](https://connormcgarr.github.io/type-confusion-part-1/)
 
 # format string
 
