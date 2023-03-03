@@ -177,6 +177,13 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
     - [GitHub \- Air14/HyperHide: Hypervisor based anti anti debug plugin for x64dbg](https://github.com/Air14/HyperHide)
 - use kernel debugger to bypass user mode evasion
 
+- readonly pages
+    - `NtProtectVirtualMemory` with `Protect = PAGE_READONLY`
+    - `NtMapViewOfSection` with `AllocationType = SEC_NO_CHANGE`
+        - solution: kernel drive that tampers `AllocationType`
+        - solution: remap (alloc new memory, copy, suspend, resume exec)
+    - `NtQueryVirtualMemory` tarpit with `MEM_RESERVE`: [Preventing memory inspection on Windows \| secret club](https://secret.club/2021/05/23/big-memory.html)
+
 - [NtQueryInformationProcess function \(winternl\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess?redirectedfrom=MSDN)
     - ProcessDebugPort != 0
 - heap tail checking enabled => 0xABABABAB signature appended at end of allocated blocks

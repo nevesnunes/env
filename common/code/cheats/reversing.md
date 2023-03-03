@@ -23,6 +23,7 @@
 - syscalls, dynamic library calls
     - any format: [GitHub \- maroueneboubakri/lscan: lscan is a library identification tool on statically linked/stripped binaries](https://github.com/maroueneboubakri/lscan)
         - [GitHub \- push0ebp/ALLirt: Tool that converts  All of libc to signatures for IDA Pro FLIRT Plugin\. and utility make sig with FLAIR easily](https://github.com/push0ebp/ALLirt)
+        - [GitHub \- CheckPointSW/Karta: Karta \- source code assisted fast binary matching plugin for IDA](https://github.com/CheckPointSW/Karta)
     - ELF format:
         - static
             - `ldd -iv` (validates shared libraries initialization)

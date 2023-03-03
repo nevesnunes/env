@@ -781,6 +781,7 @@ print(df.to_markdown())
 - https://kmh.zone/blog/2021/02/07/ti1337-plus-ce/
 - https://org.anize.rs/GCTF-2022/sandbox/treebox
 - https://pythonmana.com/2022/04/202204150127547799.html
+- [idek 2022\* CTF Pyjail &amp;&amp; Pyjail Revenge Writeup \- HackMD](https://hackmd.io/@crazyman/H1s0b1Hii)
 
 ### type coercion
 
