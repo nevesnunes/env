@@ -180,8 +180,15 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
 - readonly pages
     - `NtProtectVirtualMemory` with `Protect = PAGE_READONLY`
     - `NtMapViewOfSection` with `AllocationType = SEC_NO_CHANGE`
-        - solution: kernel drive that tampers `AllocationType`
-        - solution: remap (alloc new memory, copy, suspend, resume exec)
+        - bypass: Direct Kernel Object Manipulation (DKOM): https://www.unknowncheats.me/forum/anti-cheat-bypass/354089-unprotect-sec_no_change.html
+            ```
+            # Validating on windbg: dt _MMVAD_FLAGS
+            # https://doxygen.reactos.org/d7/d14/struct__MMVAD__FLAGS.html
+            vadshort->u.VadFlags.NoChange = 0;
+            vadshort->u.VadFlags.Protection = 7;
+            ```
+        - bypass: kernel driver that tampers `AllocationType`
+        - bypass: remap (alloc new memory, copy, suspend, resume exec)
     - `NtQueryVirtualMemory` tarpit with `MEM_RESERVE`: [Preventing memory inspection on Windows \| secret club](https://secret.club/2021/05/23/big-memory.html)
 
 - [NtQueryInformationProcess function \(winternl\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntqueryinformationprocess?redirectedfrom=MSDN)
