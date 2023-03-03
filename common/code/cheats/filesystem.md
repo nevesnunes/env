@@ -333,7 +333,14 @@ fusermount -u ./mnt
 # Alternative: Using physical drive
 # 1. Using Nero Linux, burn NRG image to CD
 # 2. Load and mount CD, then create BIN/CUE image
+# References:
+# - https://www.emaculation.com/forum/viewtopic.php?t=10220&start=25
+# - https://github.com/denisleroy/cdrdao/blob/master/README
+cdrdao scanbus # take device name
+cdrdao read-cd --read-raw --datafile out.bin --device /dev/cdrom out.toc
+# If audio data is not big endian samples
 cdrdao read-cd --read-raw --datafile out.bin --driver generic-mmc:0x20000 --device /dev/cdrom out.toc
+
 toc2cue out.toc out.cue
 
 # Alternative: nrg2iso, ultraiso
