@@ -10,6 +10,7 @@
 - [Winbindex \- The Windows Binaries Index](https://winbindex.m417z.com)
 	- :) bindiff with pre/post patch binaries, check symbols in previous vuln writeups, xref. new/deleted bb address with decompiled address, create structs with known fields and filler fields as char\*
 		- https://securityintelligence.com/posts/dissecting-exploiting-tcp-ip-rce-vulnerability-evilesp/
+- [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/)
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 - [OSR Developer Community](https://community.osr.com/)
@@ -979,3 +980,13 @@ nmake
 ```
 
 - [GitHub \- mstorsjo/llvm\-mingw: An LLVM/Clang/LLD based mingw\-w64 toolchain](https://github.com/mstorsjo/llvm-mingw)
+
+# reproducible builds
+
+- https://www.reddit.com/r/ReverseEngineering/comments/ennxes/battleye_anticheat_analysis_2020/fe2x1kk/
+    > I've had to track down modules by timestamp before to understand what some security software was trying to do. If you convert the timestamp into the right format, you can look them up in VT Intelligence with a metadata query, here is an example:
+    > $ TZ="UTC-2" date --date @$((0xFC9B9325)) +"%Y:%m:%d %H:%M:%S%:z"
+    > 2104:04:19 15:16:21+02:00
+    > Now you can search for that in VT, just format it like this: metadata:"2104:04:19 15:16:21+02:00".
+    > Using that you can see 0xFC9B9325 is probably System.Management.Automation.dll.
+    > If you use the /Brepro linker option then the TimeStamp field is used for a build hash (repro = reproducible build). Exiftool doesn't know that, and tries to interpret it as a UNIX timestamp, which means you get a crazy date like April 2104.
