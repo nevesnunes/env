@@ -31,6 +31,10 @@ internal static extern int ldap_connect(IntPtr ldapHandle, IntPtr timeout);
 - https://github.com/HoLLy-HaCKeR/EazFixer
     - deobfuscator for Eazfuscator
 
+# patching
+
+- [GitHub \- 0xd4d/dnlib: Reads and writes \.NET assemblies and modules](https://github.com/0xd4d/dnlib)
+
 # dynamic analysis
 
 - [GitHub \- WithSecureLabs/GarbageMan: GarbageMan is a set of tools for analyzing \.NET binaries through heap analysis\.](https://github.com/WithSecureLabs/GarbageMan)

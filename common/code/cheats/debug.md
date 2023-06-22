@@ -350,6 +350,9 @@ rr ./foo
 - [Software Folklore ― Andreas Zwinkau](http://beza1e1.tuxen.de/lore/index.html)
 - [GitHub \- danluu/debugging\-stories: A collection of debugging stories\. PRs welcome \(sorry for the backlog\) :\-\\)](https://github.com/danluu/debugging-stories)
 - [Category:Games with debugging functions \- The Cutting Room Floor](https://tcrf.net/Category:Games_with_debugging_functions)
+- [Lessons learned from 15 years of SumatraPDF, an open source Windows app](https://blog.kowalczyk.info/article/2f72237a4230410a888acbfce3dc0864/lessons-learned-from-15-years-of-sumatrapdf-an-open-source-windows-app.html)
+
+### security
 
 - [OffensiveCon22 \- Mark Dowd\- Keynote \-How Do You Actually Find Bugs? \- YouTube](https://www.youtube.com/watch?v=7Ysy6iA2sqA)
     - in-depth understanding of codebase leads to noticing idiosyncrasies that are exploitable when combined

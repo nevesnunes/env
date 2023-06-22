@@ -119,4 +119,6 @@ window.setTimeout = new Proxy(window.setTimeout, {
 
 - [How an anti ad\-blocker works: Reverse\-engineering BlockAdBlock](https://xy2.dev/article/re-bab/)
 
+## Related work
 
+- [GitHub \- Sec\-ant/anti\-anti\-debugging\-debugger\-firefox: The Firefox build that evades JavaScript anti\-debugging debugger mechanisms](https://github.com/Sec-ant/anti-anti-debugging-debugger-firefox)

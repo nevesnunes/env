@@ -251,6 +251,7 @@
                 - [GitHub \- KirillOsenkov/Dia2Dump: Taken from C:\\Program Files \(x86\)\\Microsoft Visual Studio\\2017\\Enterprise\\DIA SDK\\Samples\\DIA2Dump](https://github.com/KirillOsenkov/Dia2Dump)
                 - [PDB Downloader](https://github.com/rajkumar-rangaraj/PDB-Downloader)
                 - https://docs.microsoft.com/en-us/visualstudio/debugger/debug-interface-access/querying-the-dot-pdb-file?view=vs-2019
+        - [GitHub \- binsync/binsync: A collaborative reversing plugin for cross\-decompiler collaboration, built on git\.](https://github.com/binsync/binsync)
     - id functions without debug symbols
         - take old version introducing specific logic in changelog, then bindiff with current version
     - headers
@@ -333,6 +334,8 @@
     - e.g. lift single function with NoVmp, then: `vtil dump 1234.optimized.vtil`
 - [GitHub \- lifting\-bits/mcsema: Framework for lifting x86, amd64, aarch64, sparc32, and sparc64 program binaries to LLVM bitcode](https://github.com/lifting-bits/mcsema)
     - [GitHub \- lifting\-bits/remill: Library for lifting of x86, amd64, and aarch64 machine code to LLVM bitcode](https://github.com/lifting-bits/remill)
+    - [Rewriting Functions in Compiled Binaries \| Trail of Bits Blog](https://blog.trailofbits.com/2019/09/02/rewriting-functions-in-compiled-binaries/)
+        - alternative: append a section and redirect the function to your rewritten function
 
 # llvm
 
@@ -462,6 +465,8 @@ jmp 0x1234
         ```
     - [Analysis of Virtualization\-based Obfuscation \(r2con2021workshop\) \- YouTube](https://www.youtube.com/watch?v=b6udPT79itk)
         - [follow\_execution\_flow\.py at main · mrphrazer/r2con2021\_deobfuscation · GitHub](https://github.com/mrphrazer/r2con2021_deobfuscation/blob/main/follow_execution_flow.py)
+- [ZeusVM analysis &mdash; Miasm&\#39;s blog](https://miasm.re/blog/2016/09/03/zeusvm_analysis.html)
+- [An Abstract Interpretation\-Based Deobfuscation Plugin for Ghidra \- Möbius Strip Reverse Engineering](https://www.msreverseengineering.com/blog/2019/4/17/an-abstract-interpretation-based-deobfuscation-plugin-for-ghidra)
 - [FinFisher exposed: A researcher’s tale of defeating traps, tricks, and complex virtual machines \- Microsoft Security Blog](https://www.microsoft.com/security/blog/2018/03/01/finfisher-exposed-a-researchers-tale-of-defeating-traps-tricks-and-complex-virtual-machines/)
 - Bruce Dang, Alexandre Gazet, Elias Bachaalany - Practical Reverse Engineering
     - Chapter 5 - Obfuscation
@@ -605,6 +610,8 @@ perf script --insn-trace --xed -F+srcline,+srccode
 - [GitHub \- dyninst/dyninst: DyninstAPI: Tools for binary instrumentation, analysis, and modification\.](https://github.com/dyninst/dyninst)
 - [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
     - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
+
+Alternative: 
 
 # clean room design
 

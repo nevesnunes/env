@@ -1,7 +1,8 @@
-# FLIRT
+# Function signatures
+
+- [ida/plugins/rizzo at master · tacnetsol/ida · GitHub](https://github.com/tacnetsol/ida/tree/master/plugins/rizzo)
 
 - [GitHub \- Maktm/FLIRTDB: A community driven collection of IDA FLIRT signature files](https://github.com/Maktm/FLIRTDB)
-
 - [Investigating IDA Lumina feature ](https://www.synacktiv.com/en/publications/investigating-ida-lumina-feature.html)
 - [IDA F\.L\.I\.R\.T\. Technology: In\-Depth &\#8211; Hex Rays](https://www.hex-rays.com/products/ida/tech/flirt/in_depth/)
 - https://reverseengineering.stackexchange.com/questions/175/what-is-a-flirt-signature

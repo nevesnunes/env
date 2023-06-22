@@ -3,6 +3,12 @@
 - [Linux perf Examples](https://www.brendangregg.com/perf.html)
 - [GitHub \- KDAB/hotspot: The Linux perf GUI for performance analysis\.](https://github.com/KDAB/hotspot)
 
+## Compare
+
+```sh
+perf diff perf.[1-3].data
+```
+
 ## Listing Events
 
 ```sh

@@ -265,7 +265,8 @@ env LD_PRELOAD=ptrace.so ./foo
     ```
 - decrypting instruction opcodes with exception handler
     - https://en.wikipedia.org/wiki/Trace_vector_decoder
-- https://www.cdmediaworld.com/hardware/cdrom/cd_protections.shtml
+- [CD Media World \- CD/DVD Protections \- CD/DVD/Game Copy Protections & Tools](https://www.cdmediaworld.com/hardware/cdrom/cd_protections.shtml)
+- [Pinball Construction Set \- A 4am and san inc crack](https://ia804700.us.archive.org/13/items/PinballConstructionSet4amCrack/Pinball%20Construction%20Set%20%284am%20and%20san%20inc%20crack%29.txt)
 
 # case studies
 

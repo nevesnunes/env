@@ -154,6 +154,14 @@ p *(long*)$mem = (int*)func_that_returns_addr()
 p *(long*)0x5591420469b0 = (int*)func_that_returns_addr()
 watch **(long*)$mem
 
+# Allocate string
+(gdb) call malloc(sizeof(std::string))
+$1 = (void *) 0x91a6a0
+(gdb) call ((std::string*)0x91a6a0)->basic_string()
+(gdb) call ((std::string*)0x91a6a0)->assign("Hello, World")
+$2 = (std::basic_string<char, std::char_traits<char>, std::allocator<char> > &) @0x91a6a0: {static npos = <optimized out>, _M_dataplus = {<std::allocator<char>> = {<__gnu_cxx::new_allocator<char>> = {<No data fields>}, <No data fields>}, _M_p = 0x91a6f8 "Hello, World"}}
+(gdb) call SomeFunctionThatTakesAConstStringRef(*(const std::string*)0x91a6a0)
+
 # errno
 # - [Interface Definitions for libc - __errno_location](http://refspecs.linux-foundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/baselib---errno-location.html)
 # - [What is errno really defined as](https://sourceware.org/legacy-ml/libc-help/2014-10/msg00022.html)
@@ -637,6 +645,7 @@ set print pretty 1
 - https://projects.kde.org/projects/kde/kdesdk/kde-dev-scripts
 - https://github.com/KDE/kdevelop/blob/master/plugins/gdb/printers/qt.py
 - https://www.qt.io/blog/2010/10/15/peek-and-poke-vol-4
+- https://github.com/llvm/llvm-project/blob/main/libcxx/utils/gdb/libcxx/printers.py
 
 ### manual
 

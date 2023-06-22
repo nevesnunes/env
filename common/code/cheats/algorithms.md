@@ -347,7 +347,7 @@ public int getHeight(TreeNode root) {
 - Breadth-First Search (BFS)
     - use case - path between two nodes (quicker for less deep paths)
     - => bidirectional search (BFS started from both nodes)
-        - O(k^d) vs. O(2*k^(d/2)), k = count_adjacent_nodes, d = path_length
+        - `O(k^d) vs. O(2*k^(d/2))`, k = count_adjacent_nodes, d = path_length
     ```cpp
     void search(Node root, int current_time = 0) {
         Queue q = new Queue();

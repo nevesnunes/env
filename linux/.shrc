@@ -86,6 +86,9 @@ if [ -n "$TERM" ]; then
     fi
 fi
 
+# Disable flow control
+stty -ixon
+
 pwd | grep -q '^/$' && cd ~
 
 export SDKMAN_DIR="$HOME/.sdkman"

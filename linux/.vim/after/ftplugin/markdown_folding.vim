@@ -1,7 +1,9 @@
 function! s:NotCodeBlock(lnum) abort
   let id = synID(v:lnum, 1, 1)
   let attr = synIDattr(id, 'name')
-  return attr !=# 'markdownCode' && attr !=# 'mkdCode' && attr !~# '.*Comment'
+  " https://github.com/tpope/vim-markdown/pull/199
+  return attr !=# 'markdownCodeBlock'
+  " return attr !=# 'markdownCode' && attr !=# 'mkdCode' && attr !~# '.*Comment'
 endfunction
 
 function! MarkdownFoldOverride() abort

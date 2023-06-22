@@ -18,6 +18,16 @@
 - python: allows `inf` and `nan`
     - https://docs.python.org/3/library/json.html#infinite-and-nan-number-values
 
+# Diff
+
+- line-oriented
+    ```sh
+    diff -u \
+        <(jq -M --sort-keys . foo.json | gron -) \
+        <(jq -M --sort-keys . bar.json | gron -)
+    ```
+- [GitHub \- trailofbits/graphtage: A semantic diff utility and library for tree\-like files such as JSON, JSON5, XML, HTML, YAML, and CSV\.](https://github.com/trailofbits/graphtage)
+
 # Flatten
 
 https://sqlite.org/json1.html#jtree

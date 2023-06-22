@@ -15,6 +15,7 @@ curl
 dos2unix
 entr
 expect
+fuseiso
 g++
 gcc
 gcc-multilib
@@ -37,14 +38,17 @@ ninja-build
 openjdk-11-jdk
 openjdk-17-jdk
 p7zip-full
+picocom
 pkg-config
 python3
 python3-pip
 python3-venv
 qemu-utils
+qemu-system
 rlwrap
 rsync
 ruby-dev
+shellcheck
 sqlite3
 subversion
 tidy

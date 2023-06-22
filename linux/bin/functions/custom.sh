@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Reference: https://akikoskinen.info/image-diffs-with-git/
 diff_img() {
   compare "$2" "$1" png:- \
@@ -12,6 +14,46 @@ diff_dirs() {
   tree -d -L 3 "$2" > "$tree2"
   vim -d "$tree1" "$tree2"
   rm -f "$tree1" "$tree2"
+}
+
+fzf_diff_dirs() {
+  base_dir=$1
+  base_target_dir=$2
+  dir=$base_dir
+  target_dir=$base_target_dir
+  while true; do
+    next_dir=$(find "$dir" -maxdepth 1 -type d \
+        | env FZF_DIR="$dir" FZF_TARGET_DIR="$target_dir" fzf \
+          --bind='[:preview-page-up,]:preview-page-down,ctrl-o:execute(echo ..)+abort' \
+          --preview='diff --color=always -u <(ls -1 "$FZF_DIR") <(ls -1 "$FZF_TARGET_DIR")' \
+          --preview-window 'down:65%:default')
+    test -n "$next_dir" || break
+    if echo "$next_dir" | grep -q '^..$'; then
+      dir=$(realpath "$dir/..")
+    else
+      dir=$next_dir
+    fi
+
+    target_dir=${dir#"$base_dir"}
+    target_dir=$base_target_dir/${target_dir##*/}
+  done
+}
+
+fzf_dirs() {
+  dir=$PWD
+  while true; do
+    next_dir=$(find "$dir" -maxdepth 1 -type d \
+        | env FZF_DIR="$dir" fzf \
+          --bind='ctrl-o:execute(echo ..)+abort' \
+          --preview='ls -1 {}' \
+          --preview-window 'down:65%:default')
+    test -n "$next_dir" || break
+    if echo "$next_dir" | grep -q '^..$'; then
+      dir=$(realpath "$dir/..")
+    else
+      dir=$next_dir
+    fi
+  done
 }
 
 dup_dirs() {
@@ -329,4 +371,18 @@ lsl() {
   else
     ls -1 -t | head -n1
   fi
+}
+
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "Opening $file" &&
+	xdg-open "$file"
 }

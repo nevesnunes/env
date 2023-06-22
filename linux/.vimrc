@@ -8,7 +8,10 @@ filetype indent on
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_follow_anchor = 0
 let g:vim_markdown_no_extensions_in_markdown = 1
-let g:vim_markdown_fenced_languages = ['antlr', 'asm', 'asm68k', 'awk', 'bash', 'basic', 'c', 'cmake', 'conf', 'cpp', 'css', 'diff', 'dot', 'fasm', 'gdb', 'glsl', 'hex', 'html', 'java', 'javascript', 'json', 'log', 'make', 'nasm', 'perl', 'php', 'ps1', 'python', 'r', 'rust', 'scala', 'sh', 'sql', 'strace', 'svg', 'toml', 'typescript', 'vim', 'xml', 'xxd', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'js=javascript', 'powershell=ps1']
+let g:vim_markdown_fenced_languages = ['bash', 'c', 'cpp', 'diff', 'html', 'java', 'javascript', 'json', 'ps1', 'python', 'rust', 'sh', 'toml', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'js=javascript', 'powershell=ps1']
+" TODO: Parse buffer and conditional load additional languages
+" - https://thoughtbot.com/blog/profiling-vim
+"let g:vim_markdown_fenced_languages = ['asm', 'asm68k', 'awk', 'bash', 'basic', 'c', 'cmake', 'conf', 'cpp', 'css', 'diff', 'dot', 'fasm', 'gdb', 'glsl', 'hex', 'html', 'java', 'javascript', 'json', 'log', 'make', 'nasm', 'perl', 'php', 'ps1', 'python', 'r', 'rust', 'scala', 'sh', 'sql', 'strace', 'svg', 'toml', 'typescript', 'vim', 'xml', 'xxd', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'js=javascript', 'powershell=ps1']
 let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
 
 " vim-polyglot
@@ -81,6 +84,7 @@ let g:ale_list_window_size = 6
 let b:ale_warn_about_trailing_whitespace = 0
 
 " TODO: add linters
+" - asm (uses `gcc -x assembler` but too slow on large listings)
 " - typescript-language-server
 " - 'java': ['eclipselsp', 'javac'],
 let g:ale_fixers = {
@@ -89,6 +93,7 @@ let g:ale_fixers = {
             \ 'javascript': ['eslint'],
             \ }
 let g:ale_linters = {
+            \ 'asm': [],
             \ 'go': ['gopls'],
             \ 'java': ['javac'],
             \ 'javascript': ['tsserver', 'eslint'],

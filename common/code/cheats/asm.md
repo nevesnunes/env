@@ -57,6 +57,12 @@ for ctx in [["arm", 32], ["aarch64", 64]]:
 - [GitHub \- bet4it/udbserver: Unicorn Emulator Debug Server \- Written in Rust, with bindings of C, Go, Java and Python](https://github.com/bet4it/udbserver)
 - [Zero Day Initiative \- MindShaRE: How to "Just Emulate It With QEMU"](https://www.zerodayinitiative.com/blog/2020/5/27/mindshare-how-to-just-emulate-it-with-qemu)
 
+### handling interrupts
+
+- [ARM emulation of interrupts · Issue \#825 · unicorn\-engine/unicorn · GitHub](https://github.com/unicorn-engine/unicorn/issues/825#issuecomment-300812162)
+    - [qemu/helper\.c at stable\-2\.2 · qemu/qemu · GitHub](https://github.com/qemu/qemu/blob/stable-2.2/target-arm/helper.c#L3961)
+- [GitHub \- macmade/unicorn\-bios: Basic BIOS emulator for Unicorn Engine\.](https://github.com/macmade/unicorn-bios)
+
 # mnemonics
 
 ```nasm
