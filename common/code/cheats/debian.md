@@ -59,11 +59,25 @@ deb http://deb.debian.org/debian buster main contrib
 ```
 
 ```bash
-# Optional: Setup external temporary cache
+# Optional: Free up space
+# - Rotate logs
+/etc/cron.daily/logrotate
+find /var/log -type f -iname *.gz -delete
+journalctl --rotate
+journalctl --vacuum-time=1s
+# - Cleanup system files
+systemd-tmpfiles --clean
+docker system prune -a --volumes
+find / -type f -size +50M -exec du -h {} \; | sort -n
+# - Purge large packages
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+dpkg --list | awk '/linux-(image|headers|source)/{ print $2 }'
+# - Setup external temporary cache
 apt clean
 cp -ax /var/cache/apt/archives /media/foo/archives
 mount --bind /media/foo/archives /var/cache/apt/archives
 
+# Upgrade
 apt update -y
 apt upgrade -y
 apt full-upgrade

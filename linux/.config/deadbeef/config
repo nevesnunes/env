@@ -70,7 +70,7 @@ logwindow.geometry.h 200
 logwindow.geometry.w 400
 logwindow.geometry.x 960
 logwindow.geometry.y 0
-mainwin.geometry.h 514
+mainwin.geometry.h 513
 mainwin.geometry.maximized 0
 mainwin.geometry.w 672
 mainwin.geometry.x 1248
