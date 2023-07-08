@@ -185,11 +185,17 @@ for i in *.png; do convert -strip -quality 92% -resize x2600\>  "$i" "$i".jpg; d
 
 # stitch, panorama
 
-- if scanned images, then use 5 degrees
-  - [Autostiching scan with Hugin \- David Revoy](https://www.davidrevoy.com/article314/autostiching-scan-with-hugin)
-  - [Hugin tutorial &\#8212; Stitching flat scanned images](http://hugin.sourceforge.net/tutorials/scans/en.shtml)
-- control points
-  - [How to stitch photos together on Linux](https://www.xmodulo.com/stitch-photos-together-linux.html)
+- if scanned images, then use 2..5 degrees
+    - [Autostiching scan with Hugin \- David Revoy](https://www.davidrevoy.com/article314/autostiching-scan-with-hugin)
+    - [Hugin tutorial &\#8212; Stitching flat scanned images](http://hugin.sourceforge.net/tutorials/scans/en.shtml)
+- add control points
+    - preserving horizontal / vertical lines: same image on each side, 1st control point on one side, 2nd control point on other side, then optimize
+    - [Hugin tutorial \- Perspective correction](https://hugin.sourceforge.io/tutorials/perspective/en.shtml)
+    - [How to stitch photos together on Linux](https://www.xmodulo.com/stitch-photos-together-linux.html)
+- preserve elements
+    - [Hugin tutorial \- Blend masks](https://hugin.sourceforge.io/tutorials/Blend-masks/en.shtml)
+- debugging
+    - [Hugin FAQ \- PanoTools\.org Wiki](https://wiki.panotools.org/Hugin_FAQ)
 
 # metadata
 

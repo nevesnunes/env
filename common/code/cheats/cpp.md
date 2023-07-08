@@ -430,6 +430,20 @@ std::string(foo);
 unique_lock<mutex> g(m_mutex);
 ```
 
+# RAII
+
+```cpp
+// Second argument is a pointer to the type of std::fclose, we could also have
+// written it out explicitly as std::unique_ptr<FILE, int (*)(FILE*)>.
+using FilePtr = std::unique_ptr<FILE, decltype(std::fclose) *>;
+
+// Instantiate the FILE* with the destructor we want.
+FilePtr file(std::fopen(filename, "rbe"), std::fclose);
+
+// Do stuff with the file
+std::fread(buf_.data(), 1, buf_.size(), file.get());
+```
+
 ---
 
 # Dependencies

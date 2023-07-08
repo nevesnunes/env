@@ -1,9 +1,9 @@
 # decompiler
 
 - [GitHub \- JesusFreke/smali: smali/baksmali](https://github.com/JesusFreke/smali)
+- [GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
 - [GitHub \- pxb1988/dex2jar: Tools to work with android \.dex and java \.class files](https://github.com/pxb1988/dex2jar)
     - https://github.com/DexPatcher/dex2jar/releases/
-- [GitHub \- skylot/jadx: Dex to Java decompiler](https://github.com/skylot/jadx)
 - [GitHub \- Storyyeller/enjarify](https://github.com/Storyyeller/enjarify)
 - http://www.javadecompilers.com/apk
 - http://www.decompileandroid.com/
@@ -12,7 +12,6 @@
 - [GitHub \- androguard/androguard: Reverse engineering, Malware and goodware analysis of Android applications \.\.\. and more \(ninja !\)](https://github.com/androguard/androguard)
     - https://code.google.com/archive/p/elsim/wikis/Similarity.wiki#Android
     - https://www.phrack.org/issues.html?issue=68&id=15#article
--[GitHub \- enovella/fridroid\-unpacker: Defeat Java packers via Frida instrumentation](https://github.com/enovella/fridroid-unpacker)
 
 - [0x05j-testing-resiliency-against-reverse-engineering](https://mobile-security.gitbook.io/mobile-security-testing-guide/android-testing-guide/0x05j-testing-resiliency-against-reverse-engineering)
 - [Decompiling Google Safety Net \- Jared Rummler](https://jaredrummler.com/2017/03/07/decompiling-google-safety-net/)
@@ -60,9 +59,14 @@ apt -y install snapd \
 
 ### container
 
-- https://github.com/aind-containers/aind
+- [GitHub \- budtmo/docker\-android: Android in docker solution with noVNC supported and video recording](https://github.com/budtmo/docker-android)
+- [GitHub \- aind\-containers/aind: AinD: Android in Docker\. Ain&\#39;t an emulator\.](https://github.com/aind-containers/aind)
 
 # extracting / unpacking
+
+- [GitHub \- Ch0pin/medusa: Binary instrumentation framework based on FRIDA](https://github.com/Ch0pin/medusa)
+    - `code_loading/dump_dyndex`
+- [GitHub \- enovella/fridroid\-unpacker: Defeat Java packers via Frida instrumentation](https://github.com/enovella/fridroid-unpacker)
 
 ```bash
 apktool d -r -s foo.apk

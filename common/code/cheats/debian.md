@@ -59,6 +59,11 @@ deb http://deb.debian.org/debian buster main contrib
 ```
 
 ```bash
+# Optional: Setup external temporary cache
+apt clean
+cp -ax /var/cache/apt/archives /media/foo/archives
+mount --bind /media/foo/archives /var/cache/apt/archives
+
 apt update -y
 apt upgrade -y
 apt full-upgrade
@@ -73,7 +78,7 @@ dpkg --configure foo
 dpkg --configure -a
 ```
 
-- [Chapter 4\. Upgrades from Debian 9 \(stretch\)](https://www.debian.org/releases/buster/amd64/release-notes/ch-upgrading.en.html)
+- [Chapter 4\. Upgrades from Debian 11 \(bullseye\)](https://www.debian.org/releases/stable/amd64/release-notes/ch-upgrading.en.html)
 
 ### 11
 
