@@ -2,6 +2,8 @@ scriptencoding utf-8
 set nocompatible
 filetype indent on
 
+"call ch_logfile(expand('/tmp/ch.log'), 'w')
+
 " {{{ PLUGINS
 
 " vim-markdown
@@ -73,6 +75,7 @@ augroup ale_group
     autocmd CursorMoved,CursorHold * if &filetype !=# 'java' && exists('*ale#engine#Cleanup') && mode() == 'n' | ALEHover | endif
 augroup END
 let g:ale_hover_to_preview = 1
+let g:ale_virtualtext_cursor = 'disabled'
 
 let g:ale_cache_executable_check_failures = 1
 let g:ale_completion_enabled = 1

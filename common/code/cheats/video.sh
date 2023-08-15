@@ -114,9 +114,11 @@ ffmpeg -i foo.mkv -c:v ffv1 bar.mkv
 # https://trac.ffmpeg.org/wiki/TheoraVorbisEncodingGuide
 # :( huge
 ffmpeg -i foo.mkv -c:v libtheora -qscale:v 10 foo.ogg
+ffmpeg -i foo.mkv -c:v libvpx-vp9 -lossless 1 -strict -2 foo.webm
 # https://trac.ffmpeg.org/wiki/Encode/AV1
 # :( slow
-ffmpeg -i foo.mkv -c:v libaom-av1 -crf 17 -b:v 0 foo.webm
+ffmpeg -i foo.mkv -c:v libaom-av1 -crf 17 -b:v 0 -strict -2 foo.webm
+ffmpeg -i foo.mkv -c:v libvpx-vp9 -crf 17 -b:v 0 -strict -2 foo.webm
 
 # ||
 # Transcode with neighbor scaling

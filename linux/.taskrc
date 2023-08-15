@@ -35,7 +35,8 @@ include /usr/share/task/dark-16.theme
 
 color.alternate=
 color.recurring=cyan
-color.due.today=on red
-color.overdue=on red
+color.due.today=bold white on red
+color.overdue=bold white on red
 
 defaultwidth=54
+news.version=2.6.0

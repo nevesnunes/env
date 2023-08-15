@@ -64,6 +64,11 @@ dup_dirs() {
     | grep -v "^[ \t]*1 "
 }
 
+noise() {
+  vol=${1:-1}
+  play -n -c2 synth pinknoise band -n 2500 6000 reverb 2 vol "$vol"
+}
+
 ssh() {
   # grep -w: match command names such as "tmux-2.1" or "tmux: server"
   if ps -p $$ -o ppid= \

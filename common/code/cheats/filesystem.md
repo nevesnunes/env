@@ -133,7 +133,12 @@ vcdgear -cue2raw input.cue output.iso
 bchunk -w input.bin input.cue output
 ```
 
-- `.bin` and `.wav` filenames must match case-sensitive entries in `.cue`
+- PS1 has subchannel data on sidecar file .sbi
+    - [GitHub \- Kippykip/SBITools: Conversion between Sony PlayStation \.SBI LibCrypt files](https://github.com/Kippykip/SBITools)
+    - [PSXSPX Specifications \- CDROM Protection \- LibCrypt](http://problemkaputt.de/psx-spx.htm#cdromprotectionlibcrypt)
+    - [Subchannel data reading and CD copy protection Libcrypt\. · Issue \#21 · simias/rustation · GitHub](https://github.com/simias/rustation/issues/21)
+        > So the actual contents of the Q subchannel data doesn't matter too much, you just need to single out the invalid sectors (using an sbi file or similar) and return the previous sector's info in GetLocP.
+- .bin and .wav filenames must match case-sensitive entries in .cue
     - http://syndicate.lubiki.pl/swars/html/swars_sounds_adding_cdaudio.php
 
 # CD-ROM
@@ -204,8 +209,8 @@ cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.
 
 # GD-ROM
 
-1. Convert `.bin/.cue` to `.gdi`: [GitHub \- sirconan/gdi\-conversion: Convert Dreamcast Game images \(cue and bin files\) to GDI images in order to run on GDEMU\.](https://github.com/sirconan/gdi-conversion)
-2. Mount `.gdi`: [GitHub \- snickerbockers/gdisofs: FUSE module for mounting Sega Dreamcast GD\-ROM images \(\.gdi format\)](https://github.com/snickerbockers/gdisofs)
+1. Convert .bin/.cue to .gdi: [GitHub \- sirconan/gdi\-conversion: Convert Dreamcast Game images \(cue and bin files\) to GDI images in order to run on GDEMU\.](https://github.com/sirconan/gdi-conversion)
+2. Mount .gdi: [GitHub \- snickerbockers/gdisofs: FUSE module for mounting Sega Dreamcast GD\-ROM images \(\.gdi format\)](https://github.com/snickerbockers/gdisofs)
 
 # ISO
 
@@ -249,7 +254,7 @@ cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.
 - Bootable ISO
     - https://wiki.osdev.org/El-Torito
 - [!] Does not store Red Book audio
-    - Alternatives: `.bin/.cue`, `.ccd/.img`, `.mds/.mdf`, `.nrg`
+    - Alternatives: .bin/.cue, .ccd/.img, .mds/.mdf, .nrg
 
 ```bash
 # Make
@@ -298,17 +303,26 @@ sudo chown -R "$USER":"$USER" "/home/$USER" "/home/$USER"/* "/home/$USER"/.*
 
 # CCD
 
+- .img == .bin without subchannel data
+
 ```bash
-# Alternative: Take [SBITools](https://github.com/Kippykip/SBITools) `-cue2ccd` code and adapt to produce `.cue`
+# Alternative: Take [SBITools](https://github.com/Kippykip/SBITools) `-cue2ccd` code and adapt to produce .cue
 ccd2cue input.ccd > input.cue
 # || Only data tracks, converted
 ccd2iso input.img input.iso
+iat -i input.img --iso -o output.iso
 # || Only data tracks, mounted
 mount -o loop input.img /foo
 mkisofs -o output.iso /foo
 ```
 
 # NRG / Other disk image formats
+
+- [WINUAE \- blkdev_cdimage](https://github.com/tonioni/WinUAE/blob/1e31b33f83e84436a42531969ec411c7b63e5c48/blkdev_cdimage.cpp#L1870)
+- [BizHawk \- NRG_format](https://github.com/TASEmulators/BizHawk/blob/ee182499535062473e3abd0854285df7f3cd12e4/src/BizHawk.Emulation.DiscSystem/DiscFormats/NRG_format.cs)
+- [GitHub \- aaru\-dps/Aaru: Aaru Data Preservation Suite](https://github.com/aaru-dps/Aaru)
+- [Joe Balough / nerorip · GitLab](https://gitlab.com/scallopedllama/nerorip)
+- [NRG \(file format\) \- Wikipedia](https://en.wikipedia.org/wiki/NRG_(file_format))
 
 ```bash
 # Using virtual drive
@@ -340,6 +354,8 @@ cdrdao scanbus # take device name
 cdrdao read-cd --read-raw --datafile out.bin --device /dev/cdrom out.toc
 # If audio data is not big endian samples
 cdrdao read-cd --read-raw --datafile out.bin --driver generic-mmc:0x20000 --device /dev/cdrom out.toc
+# If subchannel data should be included in .bin
+cdrdao read-cd --read-raw --read-subchan rw_raw --datafile out.bin --device /dev/cdrom out.toc
 
 toc2cue out.toc out.cue
 

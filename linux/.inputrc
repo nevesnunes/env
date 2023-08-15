@@ -28,6 +28,7 @@ $include /etc/inputrc
 TAB: menu-complete
 
 set colored-stats on
+set colored-completion-prefix on
 
 # Perform file completion in a case insensitive fashion
 set completion-ignore-case on

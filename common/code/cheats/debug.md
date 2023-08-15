@@ -17,8 +17,9 @@
     - https://github.com/riscv/riscv-debug-spec
         - https://github.com/pulp-platform/riscv-dbg/blob/master/doc/debug-system.md
 
-- [Tenet: A Trace Explorer for Reverse Engineers \| RET2 Systems Blog](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
+- [GitHub \- mahaloz/decomp2dbg: A plugin to introduce interactive symbols into your debugger from your decompiler](https://github.com/mahaloz/decomp2dbg)
 - [GitHub \- bootleg/ret\-sync: ret\-sync is a set of plugins that helps to synchronize a debugging session \(WinDbg/GDB/LLDB/OllyDbg2/x64dbg\) with IDA/Ghidra/Binary Ninja disassemblers\.](https://github.com/bootleg/ret-sync)
+- [Tenet: A Trace Explorer for Reverse Engineers \| RET2 Systems Blog](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
 
 # implementation
 

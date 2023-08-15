@@ -156,8 +156,8 @@ select schema_to_xmlschema('public', 't', 't', 'text');
 # performance
 
 - ! use exclusion criteria in `where` clause along with intended inclusion criteria
-
 - using functions ignores index and does full table scan
+- offload heavy read-only queries to a replica db
 
 ```diff
   SELECT NAME

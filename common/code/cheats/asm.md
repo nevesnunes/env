@@ -1,8 +1,9 @@
 # +
 
 - https://syscalls.w3challs.com/
-    - http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
+    - https://syscalls.mebeim.net/?table=x86/64/x64/v6.4
     - https://filippo.io/linux-syscall-table/
+    - http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
     - ~/code/src/systems/execute-syscall
 - https://man7.org/linux/man-pages/man2/syscall.2.html
     - register conventions

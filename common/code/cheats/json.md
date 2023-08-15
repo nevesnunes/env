@@ -18,6 +18,12 @@
 - python: allows `inf` and `nan`
     - https://docs.python.org/3/library/json.html#infinite-and-nan-number-values
 
+# Prettify
+
+```sh
+echo '{"foo": "bar", "baz": [1, 2, 3]}' | python -m json.tool
+```
+
 # Diff
 
 - line-oriented
