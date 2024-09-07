@@ -64,7 +64,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.npmrc \
   /home/"$USER"/./.pdbrc \
   /home/"$USER"/./.pentadactylrc \
-  /home/"$USER"/./.profile \
+  /home/"$USER"/./.profile* \
   /home/"$USER"/./.pryrc \
   /home/"$USER"/./.pwn.conf \
   /home/"$USER"/./.pylintrc \

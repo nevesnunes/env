@@ -6,6 +6,12 @@
 
 - [The Graphics File Format Page](http://www.martinreddy.net/gfx/index-hi.html)
 
+# entropy
+
+```sh
+(echo "P5 512 4096 255"; cat ./foo.bin) > foo.pgm
+```
+
 # graphs
 
 - https://dreampuf.github.io/GraphvizOnline

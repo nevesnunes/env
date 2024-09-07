@@ -4,7 +4,6 @@ firefox-esr
 fontconfig
 fonts-freefont-ttf
 openbox
-openbox-menu
 remmina
 remmina-plugin-rdp
 remmina-plugin-vnc

@@ -35,7 +35,6 @@ locales
 make
 nasm
 ninja-build
-openjdk-11-jdk
 openjdk-17-jdk
 p7zip-full
 picocom
@@ -55,6 +54,7 @@ tidy
 tmux
 units
 universal-ctags
+unrar
 valgrind
 vifm
 vim

@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# convert
+# - https://r12a.github.io/uniview/
+# - https://r12a.github.io/app-conversion/
+
 # normalize unicode
 python3 -c "import re, sys, unicodedata; print(unicodedata.normalize('NFKD', re.sub(r'[^\w]', '_', sys.argv[1])).encode( 'ASCII', 'ignore').decode('utf-8'))"
 

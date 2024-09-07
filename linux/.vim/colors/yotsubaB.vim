@@ -136,12 +136,13 @@ hi WarningMsg   guifg=#ffffff guibg=#117742 gui=NONE ctermbg=5     ctermfg=white
 hi Scrollbar    guifg=#d3d3d3 guibg=#a9a7a9 gui=NONE ctermbg=NONE  ctermfg=white
 hi Tooltip      guifg=#000000 guibg=#d3d3d3 gui=NONE ctermbg=NONE  ctermfg=white
 
-hi StatusLine   guifg=#000000 guibg=#ffffff gui=bold ctermbg=7    ctermfg=0     cterm=NONE
+"hi StatusLine   guifg=#000000 guibg=#ffffff gui=bold ctermbg=7    ctermfg=0     cterm=NONE
+hi StatusLine   guifg=#d6daf0 guibg=#8993cd gui=bold ctermbg=8    ctermfg=black cterm=bold
 hi StatusLineNC guifg=#d6daf0 guibg=#8993cd gui=bold ctermbg=8    ctermfg=3     cterm=bold
 hi TabLineFill  guifg=#d6daf0 guibg=#8993cd gui=bold ctermbg=4    ctermfg=white cterm=bold
 hi TabLine      guifg=#d6daf0 guibg=#8993cd gui=bold ctermbg=4    ctermfg=white cterm=bold
 hi TabLineSel   guifg=#000000 guibg=#d6daf0 gui=bold ctermbg=NONE ctermfg=white cterm=bold
-hi WildMenu     guifg=#ffffff guibg=#e03f00 gui=bold ctermbg=1    ctermfg=white cterm=bold
+hi WildMenu     guifg=#ffffff guibg=#e03f00 gui=bold ctermbg=1    ctermfg=black cterm=bold
 
 hi Menu       guifg=#ffffff guibg=#e03f00 gui=italic ctermbg=3    ctermfg=0     cterm=NONE
 hi PMenuSbar  guifg=#000000 guibg=#8993cd gui=NONE   ctermbg=8    ctermfg=white

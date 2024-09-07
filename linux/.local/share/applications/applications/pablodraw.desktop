@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PabloDraw
+Exec=/home/fn/bin/pablodraw.sh
+Terminal=false
+Type=Application
+Icon=pablodraw
+Categories=Application;
+Keywords=ansi;ascii

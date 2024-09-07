@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Starcraft - Brood War
+Exec=env WINEPREFIX="/home/fn/.wine" /usr/bin/wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/fn/.wine/dosdevices/c:/users/fn/Start\\ Menu/Programs/Starcraft/Starcraft\\ -\\ Brood\\ War.lnk
+Type=Application
+StartupNotify=true
+Path=/home/fn/.wine/dosdevices/c:/Program Files (x86)/Starcraft
+Icon=AF33_Starcraft.0

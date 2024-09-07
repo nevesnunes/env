@@ -7,7 +7,6 @@
 
 - [GitHub \- Gallopsled/pwntools\-tutorial: Tutorials for getting started with Pwntools](https://github.com/Gallopsled/pwntools-tutorial)
 - [GitHub \- libpwntools/libpwntools: pwntools library implementation in c\+\+](https://github.com/libpwntools/libpwntools)
-- [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
 
 - [CWE-659 \- Weaknesses in Software Written in C++](https://cwe.mitre.org/data/definitions/659.html)
 - https://bitvijays.github.io/LFC-BinaryExploitation.html
@@ -27,11 +26,17 @@
     - [GitHub \- r3p3r/nixawk\-awesome\-windows\-exploitation](https://github.com/r3p3r/nixawk-awesome-windows-exploitation)
     - https://www.fuzzysecurity.com/tutorials.html
     - https://www.corelan.be/
+    - https://www.alex-ionescu.com/
+    - https://connormcgarr.github.io/
+    - https://csandker.io/
+    - https://billdemirkapi.me/
+    - https://alice.climent-pommeret.red/posts/
 
 - [GitHub \- nccgroup/exploit\_mitigations: Knowledge base of exploit mitigations available across numerous  operating systems, architectures and applications and versions\.](https://github.com/nccgroup/exploit_mitigations)
 
 - [Binary exploitation learning path \- Learn AppSec](https://learnappsec.com/blog/binary-exploitation-learning-path/)
 - [How to Learn Binary Exploitation Roadmap \- Roppers Academy](https://www.hoppersroppers.org/roadmap/training/pwning.html)
+- [Low\-Level Software Security for Compiler Developers](https://llsoftsec.github.io/llsoftsecbook/)
 
 # methodology
 
@@ -232,8 +237,17 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
 
 # heap exploitation
 
+- chunk highlight
+    - [vis\_heap\_chunks\-like display of heap like in pwndbg · Issue \#30 · hugsy/gef\-extras · GitHub](https://github.com/hugsy/gef-extras/issues/30)
+- graph viz
+    - [GitHub \- wapiflapi/villoc: Visualization of heap operations\.](https://github.com/wapiflapi/villoc)
+    - [GitHub \- wes4m/vheap: Extendable Visualization &amp; Exploitation tool for glibc heap](https://github.com/wes4m/vheap)
+
 - [SensePost \| Painless intro to the linux userland heap](https://sensepost.com/blog/2017/painless-intro-to-the-linux-userland-heap/)
+- [The toddler’s introduction to Heap exploitation \(Part 1\) \| by \+Ch0pin🕷️ \| InfoSec Write\-ups](https://infosecwriteups.com/the-toddlers-introduction-to-heap-exploitation-part-1-515b3621e0e8?gi=467e297c86ef)
+- [2021-05-12-Heap-Exploit-Intro](https://tyeyeah.github.io/2021/05/12/2021-05-12-Heap-Exploit-Intro/)
 - [malloc\.c source code \(glibc/malloc/malloc\.c\) \- Codebrowser ](https://codebrowser.dev/glibc/glibc/malloc/malloc.c.html#malloc_chunk)
+- [GitHub \- Arinerron/heaptrace: helps visualize heap operations for pwn and debugging](https://github.com/Arinerron/heaptrace)
 
 ### use-after-free (UAF)
 
@@ -385,6 +399,7 @@ https://ctf-wiki.github.io/ctf-wiki/pwn/linux/fmtstr/fmtstr_example/
 # return-oriented programming (rop)
 
 - [GitHub \- Ben\-Lichtman/ropr: A blazing fast™ multithreaded ROP Gadget finder\. ropper / ropgadget alternative](https://github.com/Ben-Lichtman/ropr)
+- [GitHub \- 0vercl0k/rp\-bf\.rs: rp\-bf: A library to bruteforce ROP gadgets by emulating a Windows user\-mode crash\-dump](https://github.com/0vercl0k/rp-bf.rs)
 
 1. leak stack canary: Given multiple requests for same process, blast (i.e. bruteforce) bytes from boolean-based response
     - repeat for $rbp, then $rip

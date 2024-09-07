@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wine Internet Explorer
+MimeType=image/gif;
+Exec=env WINEPREFIX="/home/fn/share/wine32" /usr/bin/wine start /ProgIDOpen giffile %f
+NoDisplay=true
+StartupNotify=true
+Icon=FB4C_iexplore.0

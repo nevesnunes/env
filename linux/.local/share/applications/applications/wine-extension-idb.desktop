@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=The Interactive Disassembler
+MimeType=application/x-wine-extension-idb;
+Exec=env WINEPREFIX="/home/fn/share/wine32" wine start /ProgIDOpen IDApro.Database32 %f
+NoDisplay=true
+StartupNotify=true
+Icon=DF30_idag.0

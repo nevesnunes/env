@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Program Files
+MimeType=text/x-scheme;
+Exec=env WINEPREFIX="/home/fn/.wine" /usr/bin/wine start /ProgIDOpen StarEdit.Scenario %f
+NoDisplay=true
+StartupNotify=true
+Icon=CCAD_Program Files.0

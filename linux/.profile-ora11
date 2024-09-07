@@ -1,0 +1,8 @@
+JAVA_DIR=$HOME/opt/jdk-11.0.21/
+if ! echo "$JAVA_HOME" | grep -q "$JAVA_DIR"; then
+    export JAVA_HOME=$JAVA_DIR
+    export PATH=$JAVA_HOME/bin:$PATH
+    PS1="${PS1#\(jdk*\) }"
+    PS1="${PS1#\(ora*\) }"
+    export PS1="(ora11) $PS1"
+fi

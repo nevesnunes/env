@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Uninstall Starcraft
+Exec=env WINEPREFIX="/home/fn/.wine" /usr/bin/wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/fn/.wine/dosdevices/c:/users/fn/Start\\ Menu/Programs/Starcraft/Uninstall\\ Starcraft.lnk
+Type=Application
+StartupNotify=true
+Path=/home/fn/.wine/dosdevices/c:/windows
+Icon=0EDA_SCunin.0

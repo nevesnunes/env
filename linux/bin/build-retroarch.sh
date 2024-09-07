@@ -2,7 +2,7 @@
 
 set -eu
 
-libretro_dir=${1:-$HOME/games/+/libretro-super}
+libretro_dir=${1:-$HOME/share/emus/libretro-super}
 if ! [ -d "$libretro_dir" ]; then
   mkdir -p "$libretro_dir"
   git clone https://github.com/libretro/libretro-super.git "$libretro_dir"
@@ -27,6 +27,6 @@ NOCLEAN=1 ./libretro-build.sh
   sudo make install
 )
 
-ra_dir="$HOME/games/emus/ra"
+ra_dir="$HOME/share/emus/ra"
 mkdir -p "$ra_dir/cores"
 ./libretro-install.sh "$ra_dir/cores"

@@ -27,7 +27,7 @@ rofi.modi: window,run
 rofi.terminal: urxvt
 
 rofi.bw: 15
-rofi.font: mono 14
+rofi.font: mono 16
 rofi.line-margin: 5
 rofi.lines: 10
 rofi.padding: 15

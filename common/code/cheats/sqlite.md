@@ -1,6 +1,7 @@
 # +
 
 - [sqlite3 fiddle](https://sqlite.org/fiddle/)
+- [Measuring and Reducing CPU Usage in SQLite](https://sqlite.org/cpu.html)
 
 ```bash
 sqlite3 foo.db .dump | vim -

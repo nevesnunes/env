@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Starcraft Campaign Editor
+Exec=env WINEPREFIX="/home/fn/.wine" /usr/bin/wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/fn/.wine/dosdevices/c:/users/fn/Start\\ Menu/Programs/Starcraft/Starcraft\\ Campaign\\ Editor.lnk
+Type=Application
+StartupNotify=true
+Path=/home/fn/.wine/dosdevices/c:/Program Files (x86)/Starcraft
+Icon=1D16_StarEdit.0

@@ -391,3 +391,13 @@ rga-fzf() {
 	echo "Opening $file" &&
 	xdg-open "$file"
 }
+
+wine32() {
+  wine_dir=$(realpath ~/share/wine32)
+  mkdir -p "$wine_dir"
+  env \
+    WINEDLLOVERRIDES="ddraw=n,b" \
+    WINEARCH=win32 \
+    WINEPREFIX="$wine_dir" \
+    wine "$@"
+}

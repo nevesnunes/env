@@ -5,6 +5,10 @@
 
 # Scalability
 
+- [Numbers Everyone Should Know \- High Scalability](https://highscalability.com/numbers-everyone-should-know/)
+- [System Design Cheatsheet \- GitHub](https://gist.github.com/vasanthk/485d1c25737e8e72759f)
+- [GitHub \- donnemartin/system\-design\-primer: Learn how to design large\-scale systems\. Prep for the system design interview\.  Includes Anki flashcards\.](https://github.com/donnemartin/system-design-primer)
+
 - pageviews per minute
     - upper bounds - most visited sites - e.g. wikipedia
 - database server in separate host

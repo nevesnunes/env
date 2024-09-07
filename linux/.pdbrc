@@ -10,13 +10,13 @@ def save_history(history_path=history_path): import readline; readline.set_histo
 if os.path.exists(history_path): readline.read_history_file(history_path)
 atexit.register(save_history)
 
-del pdb
-del rlcompleter
-del atexit
-del os
-del readline
-del save_history
-del history_path
+#del pdb
+#del rlcompleter
+#del atexit
+#del os
+#del readline
+#del save_history
+#del history_path
 
 # https://stackoverflow.com/questions/21961693/how-to-print-all-variables-values-when-debugging-python-with-pdb-without-specif
 alias . __import__('pprint', fromlist=['pprint']).pprint({k: v for k, v in locals().items() if not isinstance(v, type(__builtins__))})

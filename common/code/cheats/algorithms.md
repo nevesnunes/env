@@ -564,6 +564,8 @@ def bitrev_u8_fast(n):
         - xunitpatterns humble object (i.e. avoid sleeps due to expensive boilerplate we don't want to test)
     - run in single thread
         - assert async operation didn't run: turn into sync using ThreadScheduler that runs task immediately instead of spawning a new thread
+            - java: `MoreExecutors.directExecutor()`
+            - https://github.com/dhelper/ConcurrentUnitTesting/blob/master/TestForAsync/AsyncVerifyTests.cs
         - mock object called by thread to fire event immediately
             - https://www.typemock.com/docs/?book=Isolator&page=Documentation%2FHtmlDocs%2Ffiringevents.htm
     - synchronize test

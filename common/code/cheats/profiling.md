@@ -3,9 +3,18 @@
 - [benchmarking](./benchmarking.md)
 - [perf-oneliners](./perf-oneliners.md)
 - ~/code/snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md
+
+- [GitHub \- josefbacik/kernelscope: A daemon and webapp for collecting kernel trace data and visualizing it\.](https://github.com/josefbacik/kernelscope)
+    - bpf flamegraph
+- [GitHub \- epickrram/grav: Performance visualisation tools](https://github.com/epickrram/grav)
+    - thread scheduling states
+- [GitHub \- intel/PerfSpect: System performance characterization tool based on linux perf](https://github.com/intel/PerfSpect)
+- [GitHub \- intel/processwatch](https://github.com/intel/processwatch)
 - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
 - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
 - http://web.archive.org/web/20130726055137/http://devo.ps/blog/2013/03/06/troubleshooting-5minutes-on-a-yet-unknown-box.html
+- https://uops.info/table_overview.html
+- http://redplait.blogspot.com/2024/03/profiling-shared-libraries-on-linux.html
 
 ```bash
 # top10
@@ -183,9 +192,11 @@ sudo su user1 -c "ulimit -Hn"
 
 # flamegraphs
 
+- [Firefox Profiler](https://profiler.firefox.com/)
 - [speedscope](https://www.speedscope.app/)
     - [Format Support: Trace Event Format · Issue \#77 · jlfwong/speedscope · GitHub](https://github.com/jlfwong/speedscope/issues/77)
 - [Perfetto UI](https://ui.perfetto.dev/)
+- [GitHub \- corpaul/flamegraphdiff: flamegraphdiff](https://github.com/corpaul/flamegraphdiff)
 
 # resources
 

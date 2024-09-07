@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Windows XP
+Comment=Run XP VM
+Exec=vboxmanage startvm XP
+Terminal=false
+Type=Application
+Icon=w2002
+Categories=Application;Emulator;

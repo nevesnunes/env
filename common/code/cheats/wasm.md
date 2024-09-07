@@ -12,6 +12,7 @@
 
 - [WasmExplorer - convert c / wat / firefox asm](https://mbebenita.github.io/WasmExplorer/)
 - [GitHub \- WebAssembly/wabt: The WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
+- [GitHub \- wwwg/wasmdec: WebAssembly to C decompiler](https://github.com/wwwg/wasmdec)
 
 - Firefox: F12 > Debugger > Sources = `wasm://`
 

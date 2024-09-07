@@ -16,6 +16,9 @@ git rebase origin master
 
 # up to root
 git rebase -i --root master
+
+# using branches
+git rebase --update-refs
 ```
 
 ### Changing author

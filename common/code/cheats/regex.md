@@ -154,13 +154,13 @@ printf '%s' 'abc' | grep -o '\B\w\+'
 # lookaround
 
 |Type|General Expression|Vim Dialect|
-|---|---|
-Positive Lookahead | `(?=...)` | `\(...\)\@=`
-Negative Lookahead | `(?!...)` | `\(...\)\@!`
-Positive Lookbehind | `(?<=...)` | `\(...\)\@<=`
-Negative Lookbehind | `(?<!...)` | `\(...\)\@<!`
-Lookahead Conditional | `(?(?=...)yes|no)` | `\(\%(condition\)\@=then\|\%(condition\)\@!else\)`
-Lookbehind Conditional | `(?(?<=...)yes|no)` | `\(\%(condition\)\@<=then\|\%(condition\)\@<!else\)`
+|---|---|---|
+| Positive Lookahead | `(?=...)` | `\(...\)\@=` |
+| Negative Lookahead | `(?!...)` | `\(...\)\@!` |
+| Positive Lookbehind | `(?<=...)` | `\(...\)\@<=` |
+| Negative Lookbehind | `(?<!...)` | `\(...\)\@<!` |
+| Lookahead Conditional | `(?(?=...)yes|no)` | `\(\%(condition\)\@=then\|\%(condition\)\@!else\)` |
+| Lookbehind Conditional | `(?(?<=...)yes|no)` | `\(\%(condition\)\@<=then\|\%(condition\)\@<!else\)` |
 
 - https://www.regular-expressions.info/lookaround.html
 - https://www.regular-expressions.info/conditional.html

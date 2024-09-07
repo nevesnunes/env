@@ -1,0 +1,22 @@
+[Desktop Entry]
+Name=Telegram Desktop
+Comment=Official desktop version of Telegram messaging app
+TryExec=/home/fn/opt/tsetup.5.2.3.tar/Telegram/Telegram
+Exec=/home/fn/opt/tsetup.5.2.3.tar/Telegram/Telegram -- %u
+Icon=telegram
+Terminal=false
+StartupWMClass=TelegramDesktop
+Type=Application
+Categories=Chat;Network;InstantMessaging;Qt;
+MimeType=x-scheme-handler/tg;
+Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
+Actions=quit;
+DBusActivatable=true
+SingleMainWindow=true
+X-GNOME-UsesNotifications=true
+X-GNOME-SingleWindow=true
+
+[Desktop Action quit]
+Exec=/home/fn/opt/tsetup.5.2.3.tar/Telegram/Telegram -quit
+Name=Quit Telegram
+Icon=application-exit

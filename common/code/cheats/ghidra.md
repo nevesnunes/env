@@ -1,6 +1,7 @@
 # +
 
 - [disassembly \- Python Script to get disassembled output of an EXE file \- Reverse Engineering Stack Exchange](https://reverseengineering.stackexchange.com/questions/22377/python-script-to-get-disassembled-output-of-an-exe-file)
+- [GitHub \- VDOO\-Connected\-Trust/ghidra\-pyi\-generator: Generates \`\.pyi\` type stubs for the entire Ghidra API](https://github.com/VDOO-Connected-Trust/ghidra-pyi-generator)
 - [GitHub \- TorgoTorgo/ghidra\-findcrypt: Ghidra analysis plugin to locate cryptographic constants](https://github.com/TorgoTorgo/ghidra-findcrypt)
 
 # function ID (FID)
@@ -117,6 +118,13 @@ typedef unsigned short word;
 
 ### pcode
 
+```
+0x41
+  ||
+  |+-> bits 3..0
+  +--> bits 7..4
+```
+
 - https://www.riverloopsecurity.com/blog/2019/05/pcode/
 - https://swarm.ptsecurity.com/guide-to-p-code-injection/
 
@@ -134,10 +142,10 @@ cd ~/code/ghidra_workspace/foo/data
 ant -f buildLanguage.xml
 ```
 
-- https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/
-- https://spinsel.dev/2020/06/17/ghidra-brainfuck-processor-1.html
+- [Creating a Ghidra processor module in SLEIGH using V8 bytecode as an example \- PT SWARM](https://swarm.ptsecurity.com/creating-a-ghidra-processor-module-in-sleigh-using-v8-bytecode-as-an-example/)
+- [Implementing a brainfuck CPU in Ghidra \- part 1: Setup and disassembly \| Spinsel](https://spinsel.dev/2020/06/17/ghidra-brainfuck-processor-1.html)
+- [My experience writing processor modules \- mumbel @ Reddit](https://www.reddit.com/r/ghidra/comments/f5lk42/my_experience_writing_processor_modules/)
 - ~/code/doc/reversing/Implementing\ a\ New\ CPU\ Architecture\ for\ Ghidra.pdf
-- [GitHub \- oberoisecurity/ghidra\-processor\-module\-generator: A step towards automating the creation of Ghidra processor modules](https://github.com/oberoisecurity/ghidra-processor-module-generator)
 
 - https://htmlpreview.github.io/?https://github.com/NationalSecurityAgency/ghidra/blob/master/GhidraDocs/languages/index.html
 - https://ghidra.re/courses/languages/html/sleigh.html
@@ -145,6 +153,11 @@ ant -f buildLanguage.xml
 - https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Framework/SoftwareModeling/data/languages
 - https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Features/Decompiler/src/main/doc
 - https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Processors
+
+### generating
+
+- [GitHub \- oberoisecurity/ghidra\-processor\-module\-generator: A step towards automating the creation of Ghidra processor modules](https://github.com/oberoisecurity/ghidra-processor-module-generator)
+- [ghidra_i960 \- scrape.py](https://github.com/mumbel/ghidra_i960/blob/master/scripts/scrape.py)
 
 ### testing
 

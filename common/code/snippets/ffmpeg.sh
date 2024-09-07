@@ -67,6 +67,12 @@ copy stream
 # -t 10 = 10 second
 # scale=1920:-2:flags=lanczos <= yuv420p
 
+# Github compatible
+ffmpeg ... -crf 1 -profile:v high ...
+
+# Faster
+ffmpeg ... -vf "setpts=0.75*PTS,fps=50" output.mp4
+
 i=foo && ext="${i##*.}" && ffmpeg -i "$i" -vf scale=1920:-1 -c:v libx264 -crf 18 -preset slow -c:a copy -map 0 "${i%.*}.1080p.$ext"
 
 ffmpeg -y -i input4K.m2ts -c:v libx264 -pix_fmt yuv420p -preset slow -crf 18 -x264-params me=umh:merange=24:trellis=1:level=4.1:ref=5 -filter:v "crop=3840:1600:0:280, scale=1920:800" -an "1080_"$output.mkv

@@ -444,6 +444,21 @@ FilePtr file(std::fopen(filename, "rbe"), std::fclose);
 std::fread(buf_.data(), 1, buf_.size(), file.get());
 ```
 
+# auto
+
+```c
+int i = 0;
+auto p = &i; // int*
+auto* p = &i; // still int*
+```
+
+> In C, &x types at T* for some T, where T is the decayed type of the lvalue x. therefore, T = int, so T* = int*. therefore p must have type int*.
+> The type inference "flows" from the value on the right to the type. If auto is there alone, everything is inferred. If you add a *, it ensures the value is a pointer to an inferred type. & creates a pointer, auto* constrains the possible values.
+> changes auto to infer the rest of type of the value on the right side of assignment after it's established that the value is a pointer. The same way * in `int* a = b;` requires b to be a pointer and requires it to be a pointer to int. auto is not a type, it's a constraint.
+> let p : Pointer<int> = &i // int*
+> let p : Pointer = &i      // auto*
+> let p = &i                // auto
+
 ---
 
 # Dependencies

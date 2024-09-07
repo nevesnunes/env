@@ -109,6 +109,10 @@ vgchange -ay $vg
 # Validation
 mount /dev/mapper/foo /mnt
 
+# Recover from "can't read superblock"
+vgchange -an $vg
+vgchange -ay $vg
+
 # Resize
 lvextend -l +100%FREE /dev/vg/foo
 e2fsck -f /dev/vg/foo

@@ -183,3 +183,19 @@ modinfo hfs hfsplus
 
 - [p7zip / Bugs / \#113 zip extraction loss execute bit in applications](https://sourceforge.net/p/p7zip/bugs/113/)
 - [How to work with DMG files on Linux](https://eastmanreference.com/how-to-work-with-dmg-files-on-linux)
+
+# case studies
+
+- [Help identifying a file format \-\- starts out in plain text, has binary data interposed : AskReverseEngineering](https://old.reddit.com/r/AskReverseEngineering/comments/1at5ke4/help_identifying_a_file_format_starts_out_in/)
+    > Using the beginning of the file as an example:
+        ```
+        00000000 7b 22 6d 61 70 22 3a 7b 22 77 69 64 74 68 22 3a |{"map":{"width":| 
+        00000010 32 32 2c 22 68 65 69 67 68 74 22 3a 31 35 2c 22 |22,"height":15,"| 
+        00000020 70 6c 75 67 69 6e 73 22 3a 5b 5d 2c 22 6c 65 76 |plugins":[],"lev| 
+        00000030 65 6c 49 64 22 3a 22 6c 2d 74 61 6b 69 6b 6f 22 |elId":"l-takiko"| 
+        00000040 7d 2c 22 76 65 72 73 69 6f 6e 22 3a 37 2c 22 72 |},"version":7,"r| 
+        00000050 65 67 69 6f c5 2f 7b 22 69 64 22 3a 33 2c 22 6e |egio./{"id":3,"n|
+        ```
+    > At offset 0x4e we see the string regio./{", which should be regions":[{". The characters starting at offset 0x54 are replaced with 0xc5 0x2f.
+    > If we assume the 0xc is a control bit and remove it, we're left with 0x052f, which when represented in binary is 0101 0010 1111.
+    > If I look 0x2f characters back in the buffer, I see...ns":[, which is a part of "plugins":[. So it looks like we can assume that the first 2-4 bits are control bits, the next ~4 bits are the length of the sequence, and then the next 8 bits are the distance back for the sequence. 

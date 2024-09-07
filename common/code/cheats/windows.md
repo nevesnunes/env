@@ -5,6 +5,7 @@
 - [rdp](./rdp.md)
 - [wmi](./wmi.md)
 
+- [NtDoc \- The native NT API online documentation](https://ntdoc.m417z.com/)
 - [WADComs](https://wadcoms.github.io/)
 - [xCyclopedia - The Encyclopedia for Executables - STRONTIC](https://strontic.github.io/xcyclopedia/#index)
 - [Winbindex \- The Windows Binaries Index](https://winbindex.m417z.com)
@@ -13,7 +14,9 @@
 - [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/)
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
+- [GitHub \- paulveillard/cybersecurity\-windows\-exploitation: A collection of awesome software, libraries, learning tutorials, documents and books, awesome resources and cool stuff about ARM and Windows Exploitation\.](https://github.com/paulveillard/cybersecurity-windows-exploitation)
 - [OSR Developer Community](https://community.osr.com/)
+- [The Old New Thing](https://devblogs.microsoft.com/oldnewthing/)
 
 ```
 get-command notepad.exe | select Source
@@ -480,6 +483,7 @@ parsing
     - [LoadLibraryExA function \(libloaderapi\.h\) \- Win32 apps \| Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexa#remarks)
     - [What is the difference between HINSTANCE and HMODULE? \- The Old New Thing](https://devblogs.microsoft.com/oldnewthing/20040614-00/?p=38903)
 - examples
+    - https://github.com/TsudaKageyu/minhook
     - https://github.com/emily33901/2015-load-library-injector
     - https://github.com/samyuu/TotallyLegitArcadeController
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=notepad
+MimeType=text/plain;
+Exec=env WINEPREFIX="/home/fn/share/wine32" /usr/bin/wine start /ProgIDOpen inifile %f
+NoDisplay=true
+StartupNotify=true
+Icon=1E64_notepad.0

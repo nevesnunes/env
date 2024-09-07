@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=rundll32
+MimeType=application/x-wine-extension-crd;
+Exec=env WINEPREFIX="/home/fn/z/wine32" /usr/bin/wine start /ProgIDOpen Microsoft.InformationCard %f
+NoDisplay=true
+StartupNotify=true
+Icon=1CD8_rundll32.0

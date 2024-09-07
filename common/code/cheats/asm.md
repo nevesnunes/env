@@ -1,7 +1,7 @@
 # +
 
 - https://syscalls.w3challs.com/
-    - https://syscalls.mebeim.net/?table=x86/64/x64/v6.4
+    - https://syscalls.mebeim.net/?table=x86/64/x64/latest
     - https://filippo.io/linux-syscall-table/
     - http://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/
     - ~/code/src/systems/execute-syscall
@@ -22,8 +22,10 @@
 - http://unixwiz.net/techtips/x86-jumps.html
 - https://www.sandpile.org/
 - http://ref.x86asm.net/geek64.html
+- https://dougallj.github.io/asil/
 - https://cloud.binary.ninja/
 - [Unicorn\.js](https://alexaltea.github.io/unicorn.js/demo.html?arch=x86)
+- [Ground truth of binary disassembly](https://zenodo.org/records/6566082)
 
 - [GitHub \- airbus\-seclab/cpu\_rec: Recognize cpu instructions in an arbitrary binary file](https://github.com/airbus-seclab/cpu_rec)
 - [Notes on x86\-64 Assembly and Machine Code · GitHub](https://gist.github.com/mikesmullin/6259449)
@@ -32,6 +34,18 @@
 - [NASM Tutorial](https://cs.lmu.edu/~ray/notes/nasmtutorial/)
 - [Understanding Windows x64 Assembly](https://sonictk.github.io/asm_tutorial/)
 - https://stackoverflow.com/tags/x86/info
+- [GitHub \- LordNoteworthy/cpu\-internals: Intel / AMD CPU Internals](https://github.com/LordNoteworthy/cpu-internals)
+
+```
+loop
+m68k: 60 fe
+arm:  e7 fe
+sh2:  00 09
+
+nop
+m68k: 4e 71
+arm:  00 bf / c0 46
+```
 
 ```bash
 # Assembler source listing, includes symbols
@@ -86,6 +100,7 @@ je foo      ; taken, -1 + -(-1) = 0 (checks ZF = 1)
 
 - [Intel&reg; Intrinsics Guide](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#)
 - [cheat sheet containing most x86 intrinsics, like SSE and AVX intrinsics](https://db.in.tum.de/~finis/x86-intrin-cheatsheet-v2.2.pdf?lang=en)
+- https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#
 
 # portable executable (PE)
 

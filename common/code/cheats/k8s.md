@@ -1,3 +1,7 @@
+# +
+
+- On OOMKilled check dmesg on container host
+
 # lifecycle
 
 ```bash

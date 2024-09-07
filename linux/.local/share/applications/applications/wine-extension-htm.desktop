@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=winebrowser
+MimeType=application/x-extension-htm;
+Exec=env WINEPREFIX="/home/fn/share/wine32" /usr/bin/wine start /ProgIDOpen htmlfile %f
+NoDisplay=true
+StartupNotify=true
+Icon=7765_winebrowser.0

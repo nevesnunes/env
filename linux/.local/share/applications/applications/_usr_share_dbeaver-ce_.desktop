@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=DBeaver
+Exec=/usr/share/dbeaver-ce/dbeaver %u
+NoDisplay=true
+Type=Application
+MimeType=x-scheme-handler/eclipse+command;

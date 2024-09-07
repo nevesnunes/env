@@ -3,6 +3,8 @@
 - [GitHub \- zardus/preeny: Some helpful preload libraries for pwning stuff\.](https://github.com/zardus/preeny)
 - [GitHub \- jonatan1024/CpuidSpoofer: x64dbg plugin for simple spoofing of CPUID instruction behavior](https://github.com/jonatan1024/CpuidSpoofer)
 - [GitHub \- mgeeky/ShellcodeFluctuation: An advanced in\-memory evasion technique fluctuating shellcode&\#39;s memory protection between RW/NoAccess &amp; RX and then encrypting/decrypting its contents](https://github.com/mgeeky/ShellcodeFluctuation)
+- [GitHub \- myzxcg/RealBlindingEDR: Remove AV/EDR Kernel ObRegisterCallbacks、CmRegisterCallback、MiniFilter Callback、PsSetCreateProcessNotifyRoutine Callback、PsSetCreateThreadNotifyRoutine Callback、PsSetLoadImageNotifyRoutine Callback\.\.\.](https://github.com/myzxcg/RealBlindingEDR)
+- [GitHub \- wavestone\-cdt/EDRSandblast](https://github.com/wavestone-cdt/EDRSandblast)
 
 - [Map \- Unprotect Project](https://search.unprotect.it/map)
 - [Anti\-Debug Tricks](https://anti-debug.checkpoint.com/)
@@ -12,6 +14,7 @@
 - [GitHub \- persistence\-info/persistence\-info\.github\.io](https://github.com/persistence-info/persistence-info.github.io)
     - [persistence\-info\.github\.io](https://persistence-info.github.io/)
 - [Defense Evasion, Tactic TA0005 \- Enterprise \| MITRE ATT&CK&reg;](https://attack.mitre.org/tactics/TA0005/)
+- [MalSearch](https://malsearch.com/)
 
 # methodology
 
@@ -46,6 +49,7 @@
         - [Ars\-Informatica &middot; by Daniele Gasperini\.](https://web.archive.org/web/20150717110958/http://www.ars-informatica.com/Root/Code/2010_04_18/LinuxPTrace.aspx)
         - [System Programming: Linux Threads Through a Magnifier: Remote Threads](http://syprog.blogspot.com/2012/03/linux-threads-through-magnifier-remote.html)
         - [shared libraries \- \.so injection under linux: how to locate address of dlopen\(\)? \- Stack Overflow](https://stackoverflow.com/questions/21651761/so-injection-under-linux-how-to-locate-address-of-dlopen)
+        - [GitHub \- kubo/injector: Library for injecting a shared library into a Linux or Windows process](https://github.com/kubo/injector)
         - [GitHub \- namazso/linux\_injector: A simple ptrace\-less shared library injector for x64 Linux](https://github.com/namazso/linux_injector)
         - [GitHub \- gaffe23/linux\-inject: Tool for injecting a shared object into a Linux process](https://github.com/gaffe23/linux-inject)
         - [GitHub \- ilammy/linux\-crt: CreateRemoteThread for Linux](https://github.com/ilammy/linux-crt)
@@ -160,6 +164,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
         - [kernel-driver-unpacking](https://x64dbg.com/blog/2017/06/08/kernel-driver-unpacking.html)
     - [GitHub \- OALabs/BlobRunner: Quickly debug shellcode extracted during malware analysis](https://github.com/OALabs/BlobRunner)
     - [GitHub \- mrexodia/dumpulator: An easy\-to\-use library for emulating code in minidump files\.](https://github.com/mrexodia/dumpulator)
+    - [GitHub \- Phat3/PINdemonium: A pintool in order to unpack malware](https://github.com/Phat3/PINdemonium)
     - [GitHub \- zcutlip/nvram\-faker: A simple library to intercept calls to libnvram when running embedded linux applications in emulated environments\.](https://github.com/zcutlip/nvram-faker)
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
     > Packers tend not to touch any custom chips or be affected by any kind of timing/irqs, so just functional CPU emulation will do the job to make a depacking tool.

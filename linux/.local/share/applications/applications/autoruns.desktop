@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Auto-Runs
+Exec=autoruns.sh
+Terminal=false
+Type=Application
+Icon=autoruns
+Categories=Application;

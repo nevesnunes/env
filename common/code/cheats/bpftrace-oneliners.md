@@ -8,6 +8,17 @@ BEGIN { @start = nsecs; }
 uprobe:/usr/lib64/libc-2.33.so:* /@start != 0 && pid == cpid/ { 
     printf("%-08d %-04d %s\n", tid, (nsecs - @start) / 1000000, func); 
 }' -c '/bin/sleep 2'
+
+# Trace user functions
+sudo bpftrace -e 'uprobe:/bin/bash:readline {
+    printf("%s\n", ustack(perf, 10));
+}'
+
+# C++
+readelf -Ws /foo | grep methodName
+#69: 00000000004007ee    30 FUNC    WEAK   DEFAULT   14 _ZN6BigApp10methodNameEv
+bpftrace -e 'uprobe:/foo:_ZN6BigApp10methodNameEv { printf("1"); }'
+bpftrace -e 'uprobe:/foo:"function signature" { printf("1"); }'
 ```
 
 ```sh

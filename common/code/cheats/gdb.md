@@ -94,6 +94,8 @@ x/i $pc
 x/-1i $pc
 # 0x7fffff6681d9 <_pselect+89>: syscall
 
+dprintf <loc>, <fmtstr>, <args...> # pwndbg: $rebase(0x1234) for <loc>
+
 # structs
 set print pretty on
 p (short[16])*foo->bar
@@ -622,6 +624,35 @@ call (int)syscall(16, 0, 0x5412, "\x03")
 # Evaluation of the expression containing the function
 # (syscall) will be abandoned.
 # When the function is done executing, GDB will silently stop.
+```
+
+# pid1
+
+- https://linus.schreibt.jetzt/posts/debugging-pid1.html
+
+```sh
+#!/bin/sh
+export PATH=/bin
+mkdir -p /dev /proc
+mount -t devtmpfs devtmpfs /dev
+mount -t proc proc /proc
+gdbserver --attach /dev/ttyS1 $$ &
+sleep 1
+exec /lib/systemd/systemd
+```
+
+QEMU:
+
+```
+-chardev socket,id=debugsock,path=./debug.sock,server=on
+-serial chardev:debugsock.
+```
+
+gdb client:
+
+```
+(gdb) target remote ./debug.sock
+(gdb) catch syscall execve
 ```
 
 # Qt

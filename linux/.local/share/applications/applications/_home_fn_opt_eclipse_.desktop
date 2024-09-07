@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Eclipse IDE
+Exec=/home/fn/opt/eclipse/eclipse %u
+NoDisplay=true
+Type=Application
+MimeType=x-scheme-handler/eclipse+mpc;

@@ -4,7 +4,8 @@
 
 set -eux
 
-sudo apt install \
+sudo apt install -y \
+  libcjson-dev \
 	libcurl4-nss-dev \
 	libnsspem \
 	libopenjp2-7-dev \
@@ -36,9 +37,10 @@ sudo apt install \
 if [ ! -d ~/opt/autenticacao.gov ]; then
   git clone https://github.com/amagovpt/autenticacao.gov ~/opt/autenticacao.gov
 fi
+export OPENSSL_NO_DEPRECATED_3_0=1
 cd ~/opt/autenticacao.gov/pteid-mw-pt/_src/eidmw \
   && qmake pteid-mw.pro \
-  && make \
+  && env make OPENSSL_NO_DEPRECATED_3_0=1 \
   && sudo make install \
   && sudo ldconfig
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Windows Presentation Foundation Host
+MimeType=application/x-ms-xbap;
+Exec=env WINEPREFIX="/home/fn/z/wine32" /usr/bin/wine start /ProgIDOpen Windows.Xbap %f
+NoDisplay=true
+StartupNotify=true
+Icon=E86F_PresentationHost.0

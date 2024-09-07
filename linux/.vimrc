@@ -70,10 +70,10 @@ nmap <F3>h :ALEHover<CR>
 nmap <F3>r :ALEFindReferences<CR>
 nmap <F3>t :ALEGoToTypeDefinition<CR>
 
-augroup ale_group
-    autocmd!
-    autocmd CursorMoved,CursorHold * if &filetype !=# 'java' && exists('*ale#engine#Cleanup') && mode() == 'n' | ALEHover | endif
-augroup END
+"augroup ale_group
+"    autocmd!
+"    autocmd CursorMoved,CursorHold * if &filetype !=# 'java' && exists('*ale#engine#Cleanup') && mode() == 'n' | ALEHover | endif
+"augroup END
 let g:ale_hover_to_preview = 1
 let g:ale_virtualtext_cursor = 'disabled'
 
@@ -205,7 +205,8 @@ function! VimEnterPluginBehaviour()
         set statusline+=%{SyntasticStatuslineFlag()}
     endif
     set statusline+=%*
-    set statusline+=%=\ \ %b(0x%B)\ \ %o(0x%O)-1,%l,%c\ %P
+    "set statusline+=%=\ \ %b(0x%B)\ \ %o(0x%O)-1,%l,%c\ %P
+    set statusline+=%=\ \ %b(0x%B)\ \ %l,%c\ %P
 
     " Display keystrokes in statusline
     set showcmd
@@ -626,12 +627,22 @@ augroup filetype_group
                 \ setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.jsx
                 \ setlocal filetype=javascript.jsx
+    autocmd BufNewFile,BufRead,BufEnter *.ttx 
+                \ :syntax off<CR>
 
     " Make
     autocmd FileType make set noexpandtab
     autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in runtime! indent/cmake.vim
     autocmd BufRead,BufNewFile *.cmake,CMakeLists.txt,*.cmake.in setf cmake
     autocmd BufRead,BufNewFile *.ctest,*.ctest.in setf cmake
+
+    " Poor man's version of https://github.com/vim/vim/pull/12131
+    autocmd FileType xxd
+                \ syntax match MyF1 /\(\( \)\@<=\([0-1][0-9a-f]\)\)\|\([0-1][0-9a-f]\( \)\@=\)/ |
+                \ syntax match MyF3 /\(\( \)\@<=\([2-7][0-9a-f]\)\)\|\([2-7][0-9a-f]\( \)\@=\)/ |
+                \ syntax match MyF2 /\(\( \)\@<=\([8-9a-f][0-9a-f]\)\)\|\([8-9a-f][0-9a-f]\( \)\@=\)/ |
+                \ syntax match My0 /\(\( \)\@<=00\)\|\(00\( \)\@=\)/ |
+                \ syntax match My4 /\(\( \)\@<=ff\)\|\(ff\( \)\@=\)/
 augroup END
 
 " Previewed files are present in the current directory

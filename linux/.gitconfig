@@ -35,3 +35,6 @@
 	default = simple
 [pull]
 	rebase = false
+[http]
+	postBuffer = 524288000
+	maxRequestBuffer = 524288000

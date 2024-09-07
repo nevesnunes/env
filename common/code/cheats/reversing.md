@@ -383,6 +383,11 @@ llc -march=x86-64 foo.bc -o foo.o -filetype=obj
     0x00000074  0x00000008  0x00000054  0x000000ff
     ```
 
+# mba
+
+- [Mixed Boolean\-Arithmetic Obfuscation - WASM Sandbox](https://plzin.github.io/mba-wasm/)
+- [Mixed Boolean\-Arithmetic \(Part 1\): Introduction](https://plzin.github.io/posts/mba)
+
 # vm
 
 ```asm
@@ -597,6 +602,7 @@ perf script --insn-trace --xed -F+srcline,+srccode
 
 # recompilation
 
+- [Hunting for the Right Compiler, Part 1 \| neuviemeporte’s journal](https://neuviemeporte.github.io/f15-se2/2023/05/17/compiler.html)
 - [Education/2021/CicoParser at master · gabonator/Education · GitHub](https://github.com/gabonator/Education/tree/master/2021/CicoParser)
 - [GitHub \- notaz/ia32rtools](https://github.com/notaz/ia32rtools)
     - [Starcraft on Open Pandora: How the Port Came to Be &\#8211; Giant Pockets](https://www.giantpockets.com/starcraft-pandora-port-came/)
@@ -655,6 +661,9 @@ Alternative:
 
 ### binary patching
 
+- [GitHub \- ret2jazzy/ELFPatch: A library for patching ELFs](https://github.com/ret2jazzy/ELFpatch)
+    > Instead of inline patching, it adds new segments, jmps there and jmp back. And since you're not adding new instructions inline, you can skip all the complicated re-assembly
+    > lol I had to single step kernel ELF loader inside qemu for days before I got it working properly
 - coreutils
     ```bash
     # Generate

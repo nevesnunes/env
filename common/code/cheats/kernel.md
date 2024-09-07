@@ -366,10 +366,48 @@ grep '' /proc/acpi/wakeup | sort
 echo EHC1 > /proc/acpi/wakeup
 echo EHC2 > /proc/acpi/wakeup
 echo XHCI > /proc/acpi/wakeup
+
+# detect
+acpi_listen
+find /sys -iname wakeup_count -exec grep -H . {} \; | grep -v wakeup_count:0
+find /sys -iname wakeup -type f -exec grep -H . {} \; | grep -v disabled
+journalctl --since '30 minutes ago' | grep suspend
+
+# /etc/systemd/logind.conf
+# InhibitorsMax=0
+
+# udev
+find /sys -xdev -name '0000:00:14.0' -type d
+udevadm info /sys/devices/pci0000:00/0000:00:14.0
+# /etc/udev/rules.d/99-wakeup.rules
+# ACTION=="add", SUBSYSTEM=="pci", DRIVERS=="xhci_hcd", ATTR{power/wakeup}="disabled"
+
+# > if /proc/acpi/fan is empty and /proc/acpi/thermal_zone/*/trip_points has no active trip points (those starting with "AC") then there is no ACPI-based fan control on your system.
+# > include/acpi/acoutput.h shows which flags can be enabled for level and layer, and cat /sys/module/acpi/parameters/debug_{level,layer} also shows you the flags.
+echo 0x1F >/sys/module/acpi/parameters/debug_{level,layer}
 ```
 
+Case study: NFS mounts cause suspend to fail
+
+- No `wakeup_count` incrementing for devices
+- https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2076576
+
+```sh
+echo 1 > /sys/power/pm_trace
+# [suspend]
+dmesg -T
+# [ 92.242978] Freezing of tasks failed after 20.008 seconds (1 tasks refusing to freeze, wq_busy=0):
+# [ 92.243079] task:NFSv4 callback state:I stack: 0 pid: 1696 ppid: 2 flags:0x00004000
+```
+
+References:
+
+- https://unix.stackexchange.com/questions/417956/make-changes-to-proc-acpi-wakeup-permanent
 - https://www.kernel.org/doc/html/latest/firmware-guide/acpi/namespace.html
-- https://01.org/linux-acpi/documentation/debug-how-isolate-linux-acpi-issues
+- https://wiki.ubuntu.com/DebuggingACPI
+- https://wiki.ubuntu.com/Kernel/Reference/ACPITricksAndTips
+- http://alexhungdmz.blogspot.com/2018/05/acpi-debugging-1-acpi-aml-debugger-in.html
+- https://web.archive.org/web/20200924061451/https://01.org/linux-acpi/documentation/debug-how-isolate-linux-acpi-issues
     - https://bugzilla.kernel.org/show_bug.cgi?id=204251
 
 # interrupts

@@ -1,3 +1,34 @@
+# +
+
+- [Android App Reverse Engineering 101 \| Learn to reverse engineer Android applications!](https://www.ragingrock.com/AndroidAppRE/)
+- [GitHub \- Peter\-Easton/android\-debug\-cable\-howto: This is a simple how\-to to create your own android kernel debugging cable using commercially available parts\.](https://github.com/Peter-Easton/android-debug-cable-howto)
+
+### dynamically linked dependencies
+
+```
+pi@rpi:~ $ bin=`which strace`; adb push $bin $(ldd $bin | sed -nre 's/^[^/]*(\/.*) \(0x.*\)$/\1/p') /data/local/tmp/
+/usr/bin/strace: 1 file pushed, 0 skipped. 19.4 MB/s (1640712 bytes in 0.081s)
+/lib/aarch64-linux-gnu/libc.so.6: 1 file pushed, 0 skipped. 23.7 MB/s (1651472 bytes in 0.067s)
+/lib/ld-linux-aarch64.so.1: 1 file pushed, 0 skipped. 18.6 MB/s (202904 bytes in 0.010s)
+3 files pushed, 0 skipped. 19.0 MB/s (3495088 bytes in 0.176s)
+pi@rpi:~ $ adb exec-out /data/local/tmp/ld-linux-aarch64.so.1 --library-path /data/local/tmp/ /data/local/tmp/strace -ttewrite /bin/echo X
+10:36:27.842717 write(1, "X\n", 2X
+```
+
+```
+kali@kali:~/android_test$ adb exec-out 'bindeps() { echo "$1" $(ldd "$1" | sed -nre "s/^[^/]*(\/.*) \(0x.*\)$/\1/p"); }; bindeps `which dexdump`' | xargs -n1 adb pull
+/apex/com.android.art/bin/dexdump: 1 file pulled, 0 skipped. 11.6 MB/s (108744 bytes in 0.009s)
+...
+kali@kali:~/android_test$ adb pull /system/bin/linker64
+/system/bin/linker64: 1 file pulled, 0 skipped. 13.1 MB/s (1802728 bytes in 0.131s)
+kali@kali:~/android_test$ qemu-arm64 -E LD_LIBRARY_PATH=$PWD ./linker64 $PWD/dexdump
+linker: Warning: failed to find generated linker configuration from "/linkerconfig/ld.config.txt"
+WARNING: linker: Warning: failed to find generated linker configuration from "/linkerconfig/ld.config.txt"
+dexdump E 05-02 13:14:39 1728592 1728592 dexdump_main.cc:126] No file specified
+```
+
+- https://research.nccgroup.com/2024/06/05/cross-execute-your-linux-binaries-dont-cross-compile-them/
+
 # decompiler
 
 - [GitHub \- JesusFreke/smali: smali/baksmali](https://github.com/JesusFreke/smali)

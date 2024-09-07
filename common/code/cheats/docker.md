@@ -1,5 +1,7 @@
 # +
 
+- https://docs.docker.com/reference/cli/docker/debug/
+
 - https://docs.docker.com/toolbox/toolbox_install_windows/
 - docker swarm - automatic rollback
     - [Can&\#39;t rollback service automatically after update  · Issue \#33427 · moby/moby · GitHub](https://github.com/moby/moby/issues/33427)

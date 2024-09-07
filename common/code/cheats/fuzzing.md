@@ -1,5 +1,13 @@
+# +
+
+- [Roadmap to learn fuzzing · GitHub](https://gist.github.com/tin-z/23f00e5bafacc7cd3676ac82b1dab8b0)
+- [Modern Vulnerability Research Techniques on Embedded Systems \| Breaking Bits](https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research)
+- [Fuzzing with AFL \| Breaking Bits](https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/fuzzing-with-afl)
+- [GitHub \- fuzzdb\-project/fuzzdb: Dictionary of attack patterns and primitives for black\-box application fault injection and resource discovery\.](https://github.com/fuzzdb-project/fuzzdb/tree/master)
+
 # Methodology
 
+- [syzkaller/docs/internals\.md at master · google/syzkaller · GitHub](https://github.com/google/syzkaller/blob/master/docs/internals.md)
 - [CodenomiCON 2010 \- Charlie Miller \- part \#1 \- An Analysis of Fuzzing 4 Products with five lines\.\.\. \- YouTube](https://www.youtube.com/watch?v=Xnwodi2CBws)
     - use valgrind to find subset of test cases with maximum coverage
     - catch buffer overflows with jemalloc

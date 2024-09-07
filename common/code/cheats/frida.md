@@ -32,6 +32,24 @@ Interceptor.attach(Module.findExportByName(null, "open"), {
 
 - [JavaScript API \| Frida • A world\-class dynamic instrumentation framework](https://www.frida.re/docs/javascript-api/)
 
+# Java
+
+- https://github.com/synacktiv/CaptainHook
+
+```javascript
+Java.perform(() => {
+    var runtimeClass = Java.use("java.lang.Runtime");
+    runtimeClass.exec.overload("java.lang.String").implementation = function () {
+        send("java.lang.Runtime exec called!");
+        this.execute();
+    };
+});
+
+Java.perform(() => {
+    console.log(Java.use("android.util.Log").getStackTraceString(Java.use("java.lang.Exception").$new()))
+});
+```
+
 # Build
 
 ```bash

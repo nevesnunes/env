@@ -72,7 +72,7 @@ apt update
 
 # chroot
 # https://jblevins.org/log/ubuntu-chroot
-apt-get install debootstrap schroot
+apt install debootstrap schroot
 debootstrap --variant=buildd --arch i386 focal /var/chroot/i386 http://archive.ubuntu.com/ubuntu/
 ### validate
 schroot -l
@@ -82,6 +82,15 @@ schroot --list --all-sessions
 schroot -e -c $id
 grep '/var/chroot/i386' /etc/mtab | awk '{print $1}' | xargs -I{} umount {}
 rm -rf /var/chroot/i386
+### multiarch
+apt install debootstrap qemu-user-static schroot
+debootstrap --arch=arm64 bookworm /var/chroot/arm64
+echo "[arm64]
+directory=/var/chroot/arm64
+users=$(whoami)
+root-users=$(whoami)
+type=directory" | sudo tee /etc/schroot/chroot.d/arm64
+schroot -c arm64 -u root
 
 # container
 docker pull i386/ubuntu:focal

@@ -95,4 +95,16 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/fn/.sdkman"
+[[ -s "/home/fn/.sdkman/bin/sdkman-init.sh" ]] && source "/home/fn/.sdkman/bin/sdkman-init.sh"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm use v22.2.0 >/dev/null
+
+. ~/.rvm/scripts/rvm
+rvm use 2.7 >/dev/null
+
 # vim: filetype=sh

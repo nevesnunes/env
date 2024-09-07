@@ -5,6 +5,9 @@
     - http://qira.me/
     - https://github.com/rr-debugger/rr
     - http://man7.org/linux/man-pages/man1/nsenter.1.html
+- mac
+    - [lldbinit/lldbinit\.py at master · gdbinit/lldbinit · GitHub](https://github.com/gdbinit/lldbinit/blob/master/lldbinit.py)
+    - https://alexomara.com/blog/defeating-anti-debug-techniques-macos-ptrace-variants/
 - windows
     - [x64dbg](./x64dbg.md)
     - [windbg](./windbg.md)
@@ -202,6 +205,27 @@
         > - In WinDbg, dps on import tables or import table entries to show where indirect calls will go. This is useful when something else is trying to hijack your code.
         > - Keep an in memory circular log of interesting cases in your code. This log often doesn’t need to be big, and doesn’t need to allocate on insert, but if something bad happens in your code you can dump the interesting cases that were hit recently.
         - https://lobste.rs/s/h7f6qk/what_debugging_technique_did_it_take_you
+    - applying stack traces to general data
+        - e.g. parsed tokens before error
+            - https://discourse.elm-lang.org/t/techniques-for-debugging-parsers/3977
+            ```
+            (0,4) ExpectingDoubleQuote
+            ---- with context stack ----
+            (0,0) InString
+            (0,0) InLiteral
+            (0,0) InExpr
+            ```
+    - alternatives to breakpoints
+        - infinite loop, optionally wrapped in trampoline with conditional logic
+            - https://www.quanttec.com/fparsec/users-guide/debugging-a-parser.html
+            ```
+            let BP (p: Parser<_,_>) (stream: CharStream<_>) =
+            // this will execute much faster than a
+            // conditional breakpoint set in the debugger
+            if stream.Line >= 100L then
+                System.Diagnostics.Debugger.Break()
+            p stream
+            ```
     - alternatives to reverse debugging
         - vm snapshots
     - complementing static analysis
@@ -397,6 +421,11 @@ rr ./foo
     2. Find an entry point for attacker controlled input
     3. Try to get a breakpoint for that entry point to hit in windbg
     4. Modify attacker controlled input to hit different code paths
+
+### Using TTD for an ASAN deadlock
+
+- [Ken Sykes on LinkedIn: We love hearing from people who use Time Travel Debugging \(TTD\) to…](https://www.linkedin.com/posts/ken-sykes-10ba9a3a_we-love-hearing-from-people-who-use-time-activity-7189613990388379648-YULH)
+    > I threw the program into TTD and the problem reproduced immediately. From the trace, I could see all threads were blocked on a lock. From there, I rewound the trace to the start, setting a breakpoint on the locking functions, conditional on my specific blocking lock, then executed forward. Very quickly I could see that one location locked the lock, but its epilog ended up calling unlock with a different point.
 
 ### tracing miscompiled driver with kernel probes
 
