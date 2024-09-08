@@ -5,6 +5,8 @@
     - http://qira.me/
     - https://github.com/rr-debugger/rr
     - http://man7.org/linux/man-pages/man1/nsenter.1.html
+    - https://github.com/panda-re/panda
+    - [GitHub \- brainsmoke/ptrace\-burrito: a friendly wrapper around ptrace](https://github.com/brainsmoke/ptrace-burrito)
 - mac
     - [lldbinit/lldbinit\.py at master · gdbinit/lldbinit · GitHub](https://github.com/gdbinit/lldbinit/blob/master/lldbinit.py)
     - https://alexomara.com/blog/defeating-anti-debug-techniques-macos-ptrace-variants/
@@ -23,6 +25,8 @@
 - [GitHub \- mahaloz/decomp2dbg: A plugin to introduce interactive symbols into your debugger from your decompiler](https://github.com/mahaloz/decomp2dbg)
 - [GitHub \- bootleg/ret\-sync: ret\-sync is a set of plugins that helps to synchronize a debugging session \(WinDbg/GDB/LLDB/OllyDbg2/x64dbg\) with IDA/Ghidra/Binary Ninja disassemblers\.](https://github.com/bootleg/ret-sync)
 - [Tenet: A Trace Explorer for Reverse Engineers \| RET2 Systems Blog](https://blog.ret2.io/2021/04/20/tenet-trace-explorer/)
+- [GitHub \- EpicGamesExt/raddebugger: A native, user\-mode, multi\-process, graphical debugger\.](https://github.com/EpicGamesExt/raddebugger)
+- [GitHub \- Wenzel/pyvmidbg: LibVMI\-based debug server, implemented in Python\. Building a guest aware, stealth and agentless full\-system debugger](https://github.com/Wenzel/pyvmidbg)
 
 # implementation
 

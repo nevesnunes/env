@@ -22,6 +22,7 @@
 - http://unixwiz.net/techtips/x86-jumps.html
 - https://www.sandpile.org/
 - http://ref.x86asm.net/geek64.html
+- https://github.com/ia32-doc/ia32-doc
 - https://dougallj.github.io/asil/
 - https://cloud.binary.ninja/
 - [Unicorn\.js](https://alexaltea.github.io/unicorn.js/demo.html?arch=x86)

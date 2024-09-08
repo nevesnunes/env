@@ -169,6 +169,7 @@ iat -i input.img --iso -o output.iso
     - http://willcodeforfood.co.uk/Content/Notes/ISO9660.htm
     - http://www.cdfs.com/cdfs-color-books.html
     - https://www.ecma-international.org/publications/files/ECMA-ST/Ecma-130.pdf
+    - [GitHub \- carrotIndustries/redbook: Reading the Red Book – decoding Compact Disc Digital Audio](https://github.com/carrotIndustries/redbook)
 - Virtual emulation compatibility with Red Book
     - Running: Virtual drive in position 0 (== `D:`)
     - Detection: Load CD in audio player
@@ -484,3 +485,4 @@ ls */new_file
 # case studies
 
 - [How does tup use fuse exactly?](https://groups.google.com/g/tup-users/c/LckKoIJFN7k)
+- [GitHub \- elfshaker/elfshaker: elfshaker stores binary objects efficiently](https://github.com/elfshaker/elfshaker)

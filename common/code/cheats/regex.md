@@ -3,6 +3,7 @@
 - [Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript](https://regex101.com)
 - [Debuggex: Online visual regex tester. JavaScript, Python, and PCRE.](https://www.debuggex.com/r/h3WCCQv-ek1K5VTJ)
 - [Show HN: Regex Cheatsheet | Hacker News](https://news.ycombinator.com/item?id=22200584)
+- [GitHub \- pemistahl/grex: A command\-line tool and Rust library with Python bindings for generating regular expressions from user\-provided test cases](https://github.com/pemistahl/grex)
 
 # approximate / fuzzy matching
 

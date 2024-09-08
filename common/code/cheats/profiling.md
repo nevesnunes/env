@@ -4,12 +4,17 @@
 - [perf-oneliners](./perf-oneliners.md)
 - ~/code/snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md
 
+- [GitHub \- wolfpld/tracy: Frame profiler](https://github.com/wolfpld/tracy)
+- [GitHub \- google/orbit: C/C\+\+ Performance Profiler](https://github.com/google/orbit)
+    - dyninst for func entry/exit
 - [GitHub \- josefbacik/kernelscope: A daemon and webapp for collecting kernel trace data and visualizing it\.](https://github.com/josefbacik/kernelscope)
     - bpf flamegraph
 - [GitHub \- epickrram/grav: Performance visualisation tools](https://github.com/epickrram/grav)
     - thread scheduling states
+- [GitHub \- andikleen/pmu\-tools: Intel PMU profiling tools](https://github.com/andikleen/pmu-tools)
 - [GitHub \- intel/PerfSpect: System performance characterization tool based on linux perf](https://github.com/intel/PerfSpect)
 - [GitHub \- intel/processwatch](https://github.com/intel/processwatch)
+- [GitHub \- intel/pcm: Intel® Performance Counter Monitor \(Intel® PCM\)](https://github.com/intel/pcm)
 - https://medium.com/netflix-techblog/linux-performance-analysis-in-60-000-milliseconds-accc10403c55
 - https://medium.com/netflix-techblog/netflix-at-velocity-2015-linux-performance-tools-51964ddb81cf
 - http://web.archive.org/web/20130726055137/http://devo.ps/blog/2013/03/06/troubleshooting-5minutes-on-a-yet-unknown-box.html
@@ -317,6 +322,7 @@ kdump -l
 # memory allocations
 
 - [GitHub \- KDE/heaptrack: A heap memory profiler for Linux](https://github.com/KDE/heaptrack)
+- [GitHub \- koute/bytehound: A memory profiler for Linux\.](https://github.com/koute/bytehound)
 - [The poor man's way of identifying memory leaks](https://bytepointer.com/resources/old_new_thing/20050815_224_the_poor_mans_way_of_identifying_memory_leaks.htm)
     - [GitHub \- tialaramex/leakdice: Monte Carlo leak diagnostic for Linux binaries](https://github.com/tialaramex/leakdice)
 

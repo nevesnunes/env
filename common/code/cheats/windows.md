@@ -15,6 +15,8 @@
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 - [GitHub \- paulveillard/cybersecurity\-windows\-exploitation: A collection of awesome software, libraries, learning tutorials, documents and books, awesome resources and cool stuff about ARM and Windows Exploitation\.](https://github.com/paulveillard/cybersecurity-windows-exploitation)
+- [GitHub \- yeyintminthuhtut/Awesome\-Advanced\-Windows\-Exploitation\-References: List of Awesome Advanced Windows Exploitation References](https://github.com/yeyintminthuhtut/Awesome-Advanced-Windows-Exploitation-References)
+- [GitHub \- DebugPrivilege/InsightEngineering: Hardcore Debugging](https://github.com/DebugPrivilege/InsightEngineering)
 - [OSR Developer Community](https://community.osr.com/)
 - [The Old New Thing](https://devblogs.microsoft.com/oldnewthing/)
 

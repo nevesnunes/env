@@ -4,6 +4,8 @@
 - [Modern Vulnerability Research Techniques on Embedded Systems \| Breaking Bits](https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/reverse-engineering/modern-approaches-toward-embedded-research)
 - [Fuzzing with AFL \| Breaking Bits](https://breaking-bits.gitbook.io/breaking-bits/vulnerability-discovery/fuzzing-with-afl)
 - [GitHub \- fuzzdb\-project/fuzzdb: Dictionary of attack patterns and primitives for black\-box application fault injection and resource discovery\.](https://github.com/fuzzdb-project/fuzzdb/tree/master)
+- [GitHub \- trailofbits/ebpfault: A BPF\-based syscall fault injector](https://github.com/trailofbits/ebpfault)
+- [GitHub \- fkie\-cad/libdesock: A de\-socketing library for fuzzing\.](https://github.com/fkie-cad/libdesock)
 
 # Methodology
 

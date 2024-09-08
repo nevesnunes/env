@@ -8,10 +8,10 @@
 - [How Does a C Debugger Work? \(2014\) | Hacker News](https://news.ycombinator.com/item?id=24814854)
 - `PTRACE_PEEKUSER`: access tracee process state
     - https://code.woboq.org/qt5/include/sys/user.h.html
+- [Pentesting Remote GdbServer \| HackTricks](https://book.hacktricks.xyz/pentesting/pentesting-remote-gdbserver)
 
-- https://github.com/taskcluster/react-gdb
-
-- https://book.hacktricks.xyz/pentesting/pentesting-remote-gdbserver
+- [GitHub \- RinHizakura/mini\-gdbstub: An implementation of the GDB Remote Serial Protocol to help you adding debug mode on emulator](https://github.com/RinHizakura/mini-gdbstub)
+- [GitHub \- taskcluster/react\-gdb](https://github.com/taskcluster/react-gdb)
 
 ```bash
 # gdb-multiarch

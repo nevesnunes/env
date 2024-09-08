@@ -1,5 +1,6 @@
 # +
 
+- [GitHub \- AnthonyCalandra/modern\-cpp\-features: A cheatsheet of modern C\+\+ language and library features\.](https://github.com/AnthonyCalandra/modern-cpp-features)
 - [C\+\+ Cheat Sheets &amp; Infographics \| hacking C\+\+](https://hackingcpp.com/cpp/cheat_sheets.html)
 - [linux/tools/include/nolibc at master · torvalds/linux · GitHub](https://github.com/torvalds/linux/tree/master/tools/include/nolibc)
 - https://vorpus.org/blog/why-does-calloc-exist/
@@ -685,3 +686,9 @@ void debugRequest(QNetworkRequest request, QByteArray data = QByteArray()) {
   qDebug() << data;
 }
 ```
+
+# format
+
+- generating .clang-format file: pick config permutation with least changes
+    - [GitHub \- alandefreitas/clang\-unformat: A simple tool to infer a \.clang\-format file from existing code](https://github.com/alandefreitas/clang-unformat)
+    - [GitHub \- johnmcfarlane/unformat: generates \.clang\-format file from example codebase](https://github.com/johnmcfarlane/unformat)

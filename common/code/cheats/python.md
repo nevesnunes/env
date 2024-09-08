@@ -345,11 +345,13 @@ pytest --cov=dir/
 # Profiling, Benchmarking
 
 - cpu
-    - https://github.com/benfred/py-spy
-    - https://pypi.org/project/scalene/
+    - [GitHub \- benfred/py\-spy: Sampling profiler for Python programs](https://github.com/benfred/py-spy)
+    - [GitHub \- nschloe/tuna: :fish: Python profile viewer](https://github.com/nschloe/tuna)
+    - [GitHub \- ROCm/omnitrace: Omnitrace: Application Profiling, Tracing, and Analysis](https://github.com/ROCm/omnitrace)
+    - [scalene · PyPI](https://pypi.org/project/scalene/)
 - memory
-    - https://github.com/bloomberg/memray
-    - https://pypi.org/project/memory-profiler/
+    - [GitHub \- bloomberg/memray: Memray is a memory profiler for Python](https://github.com/bloomberg/memray)
+    - [memory\-profiler · PyPI](https://pypi.org/project/memory-profiler/)
 
 ```bash
 tracemalloc
@@ -466,6 +468,10 @@ foo.func_code.co_consts
 - [GitHub \- simonpercivall/astunparse: An AST unparser for Python](https://github.com/simonpercivall/astunparse)
     - [cpython: 4243df51fe43 Tools/parser/unparse\.py](https://hg.python.org/cpython/file/tip/Tools/parser/unparse.py)
 - [GitHub \- berkerpeksag/astor: Python AST read/write](https://github.com/berkerpeksag/astor)
+
+# Patching
+
+- [GitHub \- snoack/python\-goto: A function decorator, that rewrites the bytecode, to enable goto in Python](https://github.com/snoack/python-goto)
 
 # Memory Allocation / Storage
 

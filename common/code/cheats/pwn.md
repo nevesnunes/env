@@ -11,6 +11,7 @@
 - [CWE-659 \- Weaknesses in Software Written in C++](https://cwe.mitre.org/data/definitions/659.html)
 - https://bitvijays.github.io/LFC-BinaryExploitation.html
 - [GitHub \- Naetw/CTF\-pwn\-tips: Here record some tips about pwn\. Something is obsoleted and won&\#39;t be updated\. Sorry about that\.](https://github.com/Naetw/CTF-pwn-tips)
+- [GitHub \- stong/how\-to\-exploit\-a\-double\-free: How to exploit a double free vulnerability in 2021\. Use After Free for Dummies](https://github.com/stong/how-to-exploit-a-double-free)
 - Linux
     - [GitHub \- xairy/linux\-kernel\-exploitation: A collection of links related to Linux kernel security and exploitation](https://github.com/xairy/linux-kernel-exploitation)
     - memfd_create dropper to download/execute files in memory

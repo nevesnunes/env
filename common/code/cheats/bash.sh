@@ -4,6 +4,9 @@
 # - https://github.com/dylanaraps/pure-sh-bible
 # - https://github.com/dylanaraps/pure-bash-bible
 
+# Caching
+# - [GitHub \- dimo414/bash\-cache: Transparent caching layer for bash functions; particularly useful for functions invoked as part of your prompt\.](https://github.com/dimo414/bash-cache)
+
 # Provisioning
 # - [How to write idempotent Bash scripts &middot; Fatih Arslan](https://arslan.io/2019/07/03/how-to-write-idempotent-bash-scripts/)
 

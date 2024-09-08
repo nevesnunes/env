@@ -15,6 +15,7 @@
 - [GitHub \- SecureAuthCorp/impacket: Impacket is a collection of Python classes for working with network protocols\.](https://github.com/SecureAuthCorp/impacket)
 - [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
 - [GitHub \- gabriel\-sztejnworcel/pipe\-intercept: Intercept Windows Named Pipes communication using Burp or similar HTTP proxy tools](https://github.com/gabriel-sztejnworcel/pipe-intercept)
+- [GitHub \- vi/websocat: Command\-line client for WebSockets, like netcat \(or curl\) for ws:// with advanced socat\-like functions](https://github.com/vi/websocat)
 
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)
@@ -282,7 +283,9 @@ curl --head vulnerable --header 'Connection: close' --header 'User-Agent: () { :
 
 - https://repo.or.cz/w/socat.git/blob/HEAD:/EXAMPLES
 - https://linux.die.net/man/1/mini-inetd
-- https://github.com/fijimunkii/bash-dev-tcp
+- [GitHub \- fijimunkii/bash\-dev\-tcp: collection of scripts using /dev/tcp](https://github.com/fijimunkii/bash-dev-tcp)
+- [GitHub \- jpillora/chisel: A fast TCP/UDP tunnel over HTTP](https://github.com/jpillora/chisel)
+- [GitHub \- Fahrj/reverse\-ssh: Statically\-linked ssh server with reverse shell functionality for CTFs and such](https://github.com/Fahrj/reverse-ssh)
 
 - https://docs.microsoft.com/en-us/windows/win32/rpc/remote-procedure-calls-using-rpc-over-http
 

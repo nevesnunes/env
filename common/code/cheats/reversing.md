@@ -36,6 +36,7 @@
     - PE format:
         - `procmon`
         - [GitHub \- fireeye/capa: The FLARE team&\#39;s open\-source tool to identify capabilities in executable files\.](https://github.com/fireeye/capa)
+        - [GitHub \- microsoft/ApplicationInspector: A source code analyzer built for surfacing features of interest and other characteristics to answer the question &\#39;What&\#39;s in the code?&\#39; quickly using static analysis with a json based rules engine\. Ideal for scanning components before use or detecting feature level changes\.](https://github.com/microsoft/ApplicationInspector)
         - [GitHub \- CobaltFusion/DebugViewPP: DebugView\+\+, collects, views, filters your application logs, and highlights information that is important to you!](https://github.com/CobaltFusion/DebugViewPP)
     - signatures detection with parameter names on pushed registers
         - [ghidra](./ghidra.md#FID)
@@ -50,6 +51,8 @@
         - [GitHub \- david47k/neresex: Resource extractor for Windows 3\.xx 16\-bit New Executable \(NE\) files](https://github.com/david47k/neresex)
         - Borland Resource Workshop
         - eXeScope
+- types
+    - [GitHub \- ampotos/dynStruct: Reverse engineering tool for automatic structure recovering and memory use analysis based on DynamoRIO and Capstone](https://github.com/ampotos/dynStruct)
 - linkers
     - https://github.com/RolfRolles/Miscellaneous/blob/master/MSVC-CRT.md
     - [GitHub \- horsicq/Nauz\-File\-Detector: Linker/Compiler/Tool detector  for Windows, Linux and MacOS\.](https://github.com/horsicq/Nauz-File-Detector)
@@ -72,6 +75,10 @@
     - [SRecord \- Tools for manipulating EPROM load files](http://srecord.sourceforge.net/)
 - drivers
     - windows in VM, plug USB adapter, run vendor software in the vm, run usbmon + wireshark on the host
+- debuginfo
+    - [GitHub \- wbenny/pdbex: pdbex is a utility for reconstructing structures and unions from the PDB into compilable C headers](https://github.com/wbenny/pdbex)
+    - [GitHub \- camden\-smallwood/pdb\-decompiler: A tool to decompile MSVC PDB files to C\+\+ source code\.](https://github.com/camden-smallwood/pdb-decompiler)
+    - [GitHub \- seilweiss/dwarf2cpp: Converts DWARF v1 debug data into C/C\+\+ definitions\.](https://github.com/seilweiss/dwarf2cpp)
 - constants
     - e.g.
         ```python
@@ -123,6 +130,7 @@
 - hex diff
     - [GitHub \- 8051Enthusiast/biodiff: Hex diff viewer using alignment algorithms from biology](https://github.com/8051Enthusiast/biodiff)
         - e.g. [Test Point Break: Analysis of Huawei’s OTA Fix For BootROM Vulnerabilities \- taszk\.io labs](https://labs.taszk.io/articles/post/huawei_kirin990_bootrom_patch/)
+    - [GitHub \- juhakivekas/multidiff: Binary data diffing for multiple objects or streams of data](https://github.com/juhakivekas/multidiff)
 - binary diff
     - [GitHub \- joxeankoret/pigaios: A tool for matching and diffing source codes directly against binaries\.](https://github.com/joxeankoret/pigaios)
     - [GitHub \- joxeankoret/diaphora: Diaphora, the most advanced Free and Open Source program diffing tool\.](https://github.com/joxeankoret/diaphora)
@@ -164,6 +172,7 @@
     ```
 
 - [Program Analysis Reading List &mdash; Möbius Strip Reverse Engineering](https://www.msreverseengineering.com/program-analysis-reading-list)
+- [GitHub \- alphaSeclab/obfuscation\-stuff: Source Code Obfuscation And Binary Obfuscation, Multiple Languages And Multiple Platforms\. Including 250\+ Tools and 600\+ Posts](https://github.com/alphaSeclab/obfuscation-stuff)
 
 # methodologies
 
@@ -237,6 +246,7 @@
         - [GitHub \- tyranid/oleviewdotnet: A \.net OLE/COM viewer and inspector to merge functionality of OleView and Test Container](https://github.com/tyranid/oleviewdotnet)
         - [oledump\.py \| Didier Stevens](https://blog.didierstevens.com/programs/oledump-py/)
         - [RpcView](http://rpcview.org)
+        - [GitHub \- mrexodia/phnt\-single\-header: Single header version of System Informer&\#39;s phnt library\.](https://github.com/mrexodia/phnt-single-header)
     - debug symbols
         - take old versions, patches, API examples, API clients
             - e.g. https://lock.cmpxchg8b.com/lotus123.html
@@ -606,6 +616,7 @@ perf script --insn-trace --xed -F+srcline,+srccode
 - [Education/2021/CicoParser at master · gabonator/Education · GitHub](https://github.com/gabonator/Education/tree/master/2021/CicoParser)
 - [GitHub \- notaz/ia32rtools](https://github.com/notaz/ia32rtools)
     - [Starcraft on Open Pandora: How the Port Came to Be &\#8211; Giant Pockets](https://www.giantpockets.com/starcraft-pandora-port-came/)
+- [GitHub \- simonlindholm/decomp\-permuter: Randomly permute C files to better match a target binary](https://github.com/simonlindholm/decomp-permuter)
 
 # binary rewriting
 
@@ -664,6 +675,7 @@ Alternative:
 - [GitHub \- ret2jazzy/ELFPatch: A library for patching ELFs](https://github.com/ret2jazzy/ELFpatch)
     > Instead of inline patching, it adds new segments, jmps there and jmp back. And since you're not adding new instructions inline, you can skip all the complicated re-assembly
     > lol I had to single step kernel ELF loader inside qemu for days before I got it working properly
+- [GitHub \- liyansong2018/elfspirit: ELF static analysis and injection framework that parse, manipulate, patch and camouflage ELF files\.](https://github.com/liyansong2018/elfspirit)
 - coreutils
     ```bash
     # Generate

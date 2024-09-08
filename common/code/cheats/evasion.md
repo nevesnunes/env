@@ -45,6 +45,7 @@
 - process injection
     - [Implement Image Coherency by jxy\-s · Pull Request \#751 · processhacker/processhacker · GitHub](https://github.com/processhacker/processhacker/pull/751)
     - [AddressOfEntryPoint Code Injection without VirtualAllocEx RWX \- Red Teaming Techniques & Experiments](https://www.ired.team/offensive-security/code-injection-process-injection/addressofentrypoint-code-injection-without-virtualallocex-rwx)
+    - [GitHub \- wbenny/injdrv: proof\-of\-concept Windows Driver for injecting DLL into user\-mode processes using APC](https://github.com/wbenny/injdrv)
     - ELF format: `ptrace()` + `_dl_open()` || `pthread_create()`
         - [Ars\-Informatica &middot; by Daniele Gasperini\.](https://web.archive.org/web/20150717110958/http://www.ars-informatica.com/Root/Code/2010_04_18/LinuxPTrace.aspx)
         - [System Programming: Linux Threads Through a Magnifier: Remote Threads](http://syprog.blogspot.com/2012/03/linux-threads-through-magnifier-remote.html)
@@ -53,6 +54,9 @@
         - [GitHub \- namazso/linux\_injector: A simple ptrace\-less shared library injector for x64 Linux](https://github.com/namazso/linux_injector)
         - [GitHub \- gaffe23/linux\-inject: Tool for injecting a shared object into a Linux process](https://github.com/gaffe23/linux-inject)
         - [GitHub \- ilammy/linux\-crt: CreateRemoteThread for Linux](https://github.com/ilammy/linux-crt)
+        - [GitHub \- DavidBuchanan314/dlinject: Inject a shared library \(i\.e\. arbitrary code\) into a live linux process, without ptrace](https://github.com/DavidBuchanan314/dlinject)
+        - [GitHub \- vfsfitvnm/intruducer: A Rust crate to load a shared library into a Linux process without using ptrace\.](https://github.com/vfsfitvnm/intruducer)
+        - [GitHub \- zznop/drow: Injects code into ELF executables post\-build](https://github.com/zznop/drow)
 - registry keys
     ```
     {HKCU,HKLM}\Software\Microsoft\Windows\CurrentVersion\{Run,RunOnce,RunOnceEx,RunServices,RunServicesOnce}
@@ -81,6 +85,7 @@
     - [GitHub \- d4rksystem/VMwareCloak: A PowerShell script that attempts to help malware analysts hide their VMware Windows VM&\#39;s from malware that may be trying to evade analysis\.](https://github.com/d4rksystem/VMwareCloak)
 - qemu
     - [GitHub \- hatching/vmcloak: Automated Virtual Machine Generation and Cloaking for Cuckoo Sandbox\.](https://github.com/hatching/vmcloak)
+    - [GitHub \- zhaodice/qemu\-anti\-detection: A patch to hide qemu itself, bypass mhyprot,EAC,nProtect / VMProtect,VProtect, Themida, Enigma Protector,Safegine Shielden](https://github.com/zhaodice/qemu-anti-detection)
 
 - ~/code/snippets/evasion/SMBiosData.ps1
 
@@ -164,6 +169,7 @@ sha1sum <(python -c 'import sys;f=open(sys.argv[1],"rb");s=int(sys.argv[2]);e=in
         - [kernel-driver-unpacking](https://x64dbg.com/blog/2017/06/08/kernel-driver-unpacking.html)
     - [GitHub \- OALabs/BlobRunner: Quickly debug shellcode extracted during malware analysis](https://github.com/OALabs/BlobRunner)
     - [GitHub \- mrexodia/dumpulator: An easy\-to\-use library for emulating code in minidump files\.](https://github.com/mrexodia/dumpulator)
+    - [GitHub \- hzqst/unicorn\_pe: Unicorn PE is an unicorn based instrumentation project designed to emulate code execution for windows PE files\.](https://github.com/hzqst/unicorn_pe)
     - [GitHub \- Phat3/PINdemonium: A pintool in order to unpack malware](https://github.com/Phat3/PINdemonium)
     - [GitHub \- zcutlip/nvram\-faker: A simple library to intercept calls to libnvram when running embedded linux applications in emulated environments\.](https://github.com/zcutlip/nvram-faker)
     > rip the depacker code in the emulator debugger, note what it requires (which registers must be set to point to src/dest, etc.) and 'borrow' an R5900-cpu core from some emulator github :)
@@ -272,6 +278,7 @@ env LD_PRELOAD=ptrace.so ./foo
     - https://en.wikipedia.org/wiki/Trace_vector_decoder
 - [CD Media World \- CD/DVD Protections \- CD/DVD/Game Copy Protections & Tools](https://www.cdmediaworld.com/hardware/cdrom/cd_protections.shtml)
 - [Pinball Construction Set \- A 4am and san inc crack](https://ia804700.us.archive.org/13/items/PinballConstructionSet4amCrack/Pinball%20Construction%20Set%20%284am%20and%20san%20inc%20crack%29.txt)
+- [GitHub \- RibShark/SafeDiscShim: SafeDiscShim is a compatibility tool that allows for SafeDisc protected games which utilize the insecure Macrovision Security Driver \(&quot;secdrv\.sys&quot;\) to run on modern versions of Windows \.](https://github.com/RibShark/SafeDiscShim)
 
 # case studies
 

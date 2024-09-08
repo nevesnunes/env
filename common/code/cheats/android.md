@@ -1,7 +1,9 @@
 # +
 
 - [Android App Reverse Engineering 101 \| Learn to reverse engineer Android applications!](https://www.ragingrock.com/AndroidAppRE/)
+- [GitHub \- randorisec/MobileHackingCheatSheet: Basics on commands/tools/info on how to assess the security of mobile applications](https://github.com/randorisec/MobileHackingCheatSheet)
 - [GitHub \- Peter\-Easton/android\-debug\-cable\-howto: This is a simple how\-to to create your own android kernel debugging cable using commercially available parts\.](https://github.com/Peter-Easton/android-debug-cable-howto)
+- [GitHub \- rednaga/APKiD: Android Application Identifier for Packers, Protectors, Obfuscators and Oddities \- PEiD for Android](https://github.com/rednaga/APKiD)
 
 ### dynamically linked dependencies
 
@@ -67,6 +69,7 @@ dexdump E 05-02 13:14:39 1728592 1728592 dexdump_main.cc:126] No file specified
 - https://github.com/aind-containers/aind
     - :) exposes VNC
 - https://android.googlesource.com/platform/external/qemu/+/emu-master-dev/android/docs/ANDROID-QEMU-PIPE.TXT
+- https://github.com/AeonLucid/AndroidNativeEmu
 
 ### anbox
 
