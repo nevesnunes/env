@@ -117,7 +117,7 @@ hi Underlined guifg=#117742 guibg=NONE gui=bold,underline ctermbg=NONE ctermfg=6
 hi NonText    guifg=#8993cd guibg=NONE gui=NONE ctermbg=NONE ctermfg=4
 hi SpecialKey guifg=#e03f00 guibg=NONE gui=NONE ctermbg=NONE ctermfg=6
 
-hi Visual    guifg=#ffffff guibg=#e03f00 gui=NONE ctermbg=1 ctermfg=white cterm=bold
+hi Visual    guifg=#ffffff guibg=#e03f00 gui=NONE ctermbg=1 ctermfg=black cterm=bold
 hi VisualNOS guifg=#ffffff guibg=#8993cd gui=NONE ctermbg=4 ctermfg=white
 
 hi Cursor       guifg=#000000 guibg=#8993cd gui=NONE ctermbg=4     ctermfg=white
@@ -130,7 +130,7 @@ hi FoldColumn   guifg=#a0a8b0 guibg=#404048 gui=NONE ctermbg=NONE  ctermfg=white
 hi IncSearch    guifg=#ffffff guibg=#e03f00 gui=NONE ctermbg=white ctermfg=0     cterm=bold
 hi LineNr       guifg=#8993cd guibg=#d6daf0 gui=bold ctermbg=NONE  ctermfg=8     cterm=NONE
 hi Question     guifg=#ffffff guibg=#117742 gui=NONE ctermbg=5     ctermfg=white
-hi Search       guifg=#ffffff guibg=#e03f00 gui=NONE ctermbg=1     ctermfg=white cterm=bold
+hi Search       guifg=#ffffff guibg=#e03f00 gui=NONE ctermbg=1     ctermfg=black cterm=bold
 hi Title        guifg=#000000 guibg=NONE    gui=bold ctermbg=NONE  ctermfg=white cterm=bold
 hi WarningMsg   guifg=#ffffff guibg=#117742 gui=NONE ctermbg=5     ctermfg=white
 hi Scrollbar    guifg=#d3d3d3 guibg=#a9a7a9 gui=NONE ctermbg=NONE  ctermfg=white
@@ -146,7 +146,7 @@ hi WildMenu     guifg=#ffffff guibg=#e03f00 gui=bold ctermbg=1    ctermfg=black 
 
 hi Menu       guifg=#ffffff guibg=#e03f00 gui=italic ctermbg=3    ctermfg=0     cterm=NONE
 hi PMenuSbar  guifg=#000000 guibg=#8993cd gui=NONE   ctermbg=8    ctermfg=white
-hi PMenuSel   guifg=#ffffff guibg=#e03f00 gui=bold   ctermbg=1    ctermfg=white
+hi PMenuSel   guifg=#ffffff guibg=#e03f00 gui=bold   ctermbg=1    ctermfg=black
 hi PMenu      guifg=#000000 guibg=#8993cd gui=NONE   ctermbg=0    ctermfg=3
 hi PMenuThumb guifg=#ffffff guibg=#55567a gui=NONE   ctermbg=NONE ctermfg=white
 

@@ -91,7 +91,7 @@ playlist.current 0
 playlist.cursor.0 -1
 playlist.cursor.1 0
 playlist.cursor.2 0
-playlist.scroll.0 0
+playlist.scroll.0 -12
 playlist.scroll.1 0
 playlist.scroll.2 0
 playlist.scroll.cursorfollowplayback 1
@@ -103,9 +103,9 @@ prefwin.geometry.y 142
 replaygain_mode 0
 replaygain_scale 1
 resume.paused 0
-resume.playlist -1
-resume.position -1.000000
-resume.track -1
+resume.playlist 0
+resume.position 0.0928798
+resume.track 12
 streamer.8_to_16 1
 streamer.bit_override 0
 streamer.samplerate 44100

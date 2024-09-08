@@ -1,12 +1,20 @@
 #!/usr/bin/env sh
 
-term=xterm-16color
-term_found=$(find /usr/share/terminfo/ -type f | grep "$term")
-if [ -z "$term_found" ]; then
-  term_found=$(find /lib/terminfo/ -type f | grep "$term")
-fi
-if [ -z "$term_found" ]; then
-  term=xterm-color
+find_term() {
+  term=$1
+  term_found=$(find /usr/share/terminfo/ -type f | grep "$term")
+  if [ -z "$term_found" ]; then
+    term_found=$(find /lib/terminfo/ -type f | grep "$term")
+  fi
+  echo "$term_found"
+}
+
+term=xterm-256color
+if [ -z "$(find_term $term)" ]; then
+  term=xterm-16color
+  if [ -z "$(find_term $term)" ]; then
+    term=xterm-color
+  fi
 fi
 tmux set -g default-terminal "$term"
 
