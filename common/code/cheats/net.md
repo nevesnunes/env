@@ -1077,6 +1077,11 @@ restorecon /foo/bar
     iwconfig
     watch -n1 "awk 'NR==3 {printf(\"WiFi Signal Strength = %.0f%%\\n\",\$3*10/7)}' /proc/net/wireless"
     ```
+- [GitHub \- SpacehuhnTech/esp8266\_deauther: Affordable WiFi hacking platform for testing and learning](https://github.com/SpacehuhnTech/esp8266_deauther)
+
+# dpi
+
+- [GitHub \- ValdikSS/GoodbyeDPI: GoodbyeDPI — Deep Packet Inspection circumvention utility \(for Windows\)](https://github.com/ValdikSS/GoodbyeDPI)
 
 # case studies
 

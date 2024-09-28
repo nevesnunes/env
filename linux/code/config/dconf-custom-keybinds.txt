@@ -1,0 +1,188 @@
+[/]
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom16/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom17/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom13/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom15/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom22/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom23/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom24/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom25/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom26/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom32/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom28/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom18/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom29/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom30/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom31/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom34/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom35/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom38/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom37/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom39/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom40/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom19/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom21/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+
+[custom-keybindings/custom0]
+binding='<Shift><Super>Return'
+command='user-terminal -e tmux'
+name='Tmux'
+
+[custom-keybindings/custom1]
+binding='<Super>v'
+command='xapp.sh gvim'
+name='Run || Raise GVim'
+
+[custom-keybindings/custom10]
+binding='<Alt><Super>n'
+command='xsize.sh -n'
+name='Tile (Bottom Left)'
+
+[custom-keybindings/custom11]
+binding='<Alt><Super>m'
+command='xsize.sh -m'
+name='Tile (Bottom Right)'
+
+[custom-keybindings/custom12]
+binding='<Alt><Super>k'
+command='xsize.sh -k'
+name='Tile (Top)'
+
+[custom-keybindings/custom13]
+binding='<Alt><Super>j'
+command='xsize.sh -j'
+name='Tile (Bottom)'
+
+[custom-keybindings/custom14]
+binding='<Alt><Super>h'
+command='xsize.sh -h'
+name='Tile (Left Master)'
+
+[custom-keybindings/custom15]
+binding='<Alt><Super>l'
+command='xsize.sh -l'
+name='Tile (Right Slave)'
+
+[custom-keybindings/custom16]
+binding=''
+command='clip-saver.sh'
+name='Save Clipboard'
+
+[custom-keybindings/custom17]
+binding='<Shift><Super>s'
+command='y-dl-save-link.sh'
+name='Save Video'
+
+[custom-keybindings/custom18]
+binding=''
+command='xfocus.sh -h'
+name='Focus Left'
+
+[custom-keybindings/custom19]
+binding='<Super>Return'
+command='xapp.sh term'
+name='Run || Raise Term'
+
+[custom-keybindings/custom2]
+binding=''
+command='valid-screenshot.sh -w'
+name='Screenshot Window Contents'
+
+[custom-keybindings/custom21]
+command='xworkspace.sh -I'
+name='Move window to previous workspace'
+
+[custom-keybindings/custom22]
+binding='<Super>b'
+command='xapp.sh browser'
+name='Run || Raise Browser'
+
+[custom-keybindings/custom23]
+binding='<Super>f'
+command='xapp.sh pcmanfm'
+name='Run || Raise File Manager'
+
+[custom-keybindings/custom24]
+binding='<Super>z'
+command='xapp.sh zathura'
+name='Run || Raise Zathura'
+
+[custom-keybindings/custom25]
+binding='<Shift><Super>m'
+command='xapp.sh set-mark'
+name='Set Mark'
+
+[custom-keybindings/custom26]
+binding=''
+command='xapp.sh get-mark'
+name='Get Mark'
+
+[custom-keybindings/custom28]
+binding='<Alt><Super>y'
+command='xlayouts.sh Split'
+name='Layouts (Split)'
+
+[custom-keybindings/custom29]
+binding=''
+command='xfocus.sh -l'
+name='Focus Right'
+
+[custom-keybindings/custom3]
+binding='<Super>0'
+command='xworkspace.sh -g'
+name='Switch to last workspace'
+
+[custom-keybindings/custom30]
+binding='<Super>k'
+command='xfocus.sh -k'
+name='Focus Up'
+
+[custom-keybindings/custom31]
+binding='<Super>j'
+command='xfocus.sh -j'
+name='Focus Down'
+
+[custom-keybindings/custom32]
+binding='<Super>y'
+command='xlayouts-interactive.sh'
+name='Layouts (Digits)'
+
+[custom-keybindings/custom33]
+binding='<Super>BackSpace'
+command='um-requester.sh uf.sh'
+name='uf'
+
+[custom-keybindings/custom34]
+binding='<Shift><Super>h'
+command='xsize.sh --half-left'
+name='Tile (Left Half)'
+
+[custom-keybindings/custom35]
+binding='<Shift><Super>l'
+command='xsize.sh --half-right'
+name='Tile (Right Half)'
+
+[custom-keybindings/custom37]
+command='xworkspace.sh -u'
+name='Switch to next workspace'
+
+[custom-keybindings/custom38]
+binding='<Super>F12'
+command='xworkspace.sh -c'
+name='Send window and switch to last workspace'
+
+[custom-keybindings/custom39]
+command='xworkspace.sh -i'
+name='Switch to previous workspace'
+
+[custom-keybindings/custom4]
+binding=''
+command='valid-screenshot.sh'
+name='Screenshot to Pictures'
+
+[custom-keybindings/custom40]
+binding='<Primary><Shift>w'
+command="keybind-guard.sh '(chrome|firefox)' 'Ctrl+W'"
+name='Keybind Guard C+S+w'
+
+[custom-keybindings/custom5]
+binding=''
+command='valid-screenshot.sh -a'
+name='Screenshot of Area to Pictures'
+
+[custom-keybindings/custom6]
+binding='<Alt><Super>u'
+command='xsize.sh -u'
+name='Tile (Top Left)'
+
+[custom-keybindings/custom7]
+binding='<Alt><Super>i'
+command='xsize.sh -i'
+name='Tile (Top Right)'
+
+[custom-keybindings/custom8]
+binding='<Alt><Super>Return'
+command='user-terminal'
+name='Terminal'
+
+[custom-keybindings/custom9]
+command='xworkspace.sh -U'
+name='Move window to next workspace'

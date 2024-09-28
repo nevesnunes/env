@@ -545,7 +545,7 @@ set splitbelow
 set splitright
 
 try
-    colorscheme yotsubaB
+    colorscheme paper
 catch /^Vim\%((\a\+)\)\=:E/
     colorscheme koehler
 endtry
@@ -557,6 +557,7 @@ if has('gui_running')
     endtry
 
     set guioptions=aci
+    set guicursor=a:blinkwait750-blinkon750-blinkoff750
     set lines=40 columns=60
 endif
 

@@ -211,6 +211,10 @@ jstat –gc $java_pid
 ```
 
 - http://www.eclipse.org/mat/
+- https://github.com/agourlay/hprof-slurp
+- https://github.com/openjdk/jol/
+    - https://twitter.com/shipilev/status/1691743284689838179
+        > streaming heap dump parser, which can be used for quick stats. It does a single pass read, takes little memory, and knows Hotspot layout to boot!
 
 - Run > Debug Configurations
     - `-XX:MaxPermSize=512m`

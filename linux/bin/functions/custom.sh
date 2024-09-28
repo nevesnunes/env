@@ -201,7 +201,7 @@ s() {
 }
 
 # `grep` with intermediate binary files conversion to plaintext.
-g() {
+gc() {
   if command -v rg > /dev/null 2>&1; then
     rg --smart-case \
       --follow \
@@ -256,11 +256,47 @@ g() {
 }
 
 # `grep` with matches open in text editor.
-ge() {
+g() {
+  if command -v rg > /dev/null 2>&1; then
+    entry=$(rg --smart-case \
+      --follow \
+      --max-columns 500 \
+      --max-columns-preview \
+      --no-heading \
+      --with-filename \
+      --line-number \
+      --glob '!.bzr/' \
+      --glob '!.git/' \
+      --glob '!.hg/' \
+      --glob '!.svn/' \
+      --glob '!__pycache__/' \
+      --glob '!node_modules/' \
+      "$@" . | fzf -0 -1 --ansi --color --preview-window 'down:6:nohidden')
+  else
+    entry=$(grep -Rin \
+      --binary-files=without-match \
+      --color=auto \
+      --extended-regexp \
+      --exclude-dir='.bzr' \
+      --exclude-dir='.git' \
+      --exclude-dir='.hg' \
+      --exclude-dir='.svn' \
+      --exclude-dir='__pycache__' \
+      --exclude-dir='node_modules' \
+      "$@" . | fzf -0 -1 --ansi --color --preview-window 'down:6:nohidden')
+  fi
+  [ -z "$entry" ] && return
+  filename=$(echo "$entry" | cut -d':' -f1)
+  lineno=$(echo "$entry" | cut -d':' -f2)
+  gvim -v "$filename" +"$lineno"
+}
+
+# `git grep` with matches open in text editor.
+gg() {
   entry=$(git-grep-detached.sh "$*")
   [ -z "$entry" ] && return
-  filename=${entry//:*/}
-  lineno=${entry#$filename:}
+  filename=$(echo "$entry" | cut -d':' -f1)
+  lineno=$(echo "$entry" | cut -d':' -f2)
   gvim -v "$filename" +"$lineno"
 }
 
@@ -378,7 +414,7 @@ lsl() {
   fi
 }
 
-rga-fzf() {
+rga_fzf() {
 	RG_PREFIX="rga --files-with-matches"
 	local file
 	file="$(

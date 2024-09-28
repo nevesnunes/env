@@ -11,8 +11,9 @@ if ! command -v user-terminal; then
 fi
 
 [ $# -eq 0 ] && exec user-terminal
+# Interactive shell is required for 256 colors
 if readlink "$(command -v user-terminal)" | grep -qi gnome-terminal; then
-  exec user-terminal -- "${@}"
+  exec user-terminal -- "$SHELL" -ci -- "${@}"
 else
-  exec user-terminal -e "${@}"
+  exec user-terminal -e "$SHELL" -ci -- "${@}"
 fi

@@ -1,5 +1,8 @@
 # +
 
+- [GitHub \- Wilfred/difftastic: a structural diff that understands syntax 🟥🟩](https://github.com/Wilfred/difftastic/)
+- [GitHub \- dandavison/delta: A syntax\-highlighting pager for git, diff, grep, and blame output](https://github.com/dandavison/delta)
+
 ```bash
 # multiple files
 diff --from-file source1 target2 target3

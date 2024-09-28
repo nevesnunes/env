@@ -88,6 +88,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.zshrc \
   /home/"$USER"/./.chocolate-doom/*.cfg \
   /home/"$USER"/./.config/awesome \
+  /home/"$USER"/./.config/atuin \
   /home/"$USER"/./.config/compton.conf \
   /home/"$USER"/./.config/darktable \
   /home/"$USER"/./.config/dconf \
@@ -136,6 +137,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.local/share/icons/hicolor \
   /home/"$USER"/./.local/share/icons/Uhita \
   /home/"$USER"/./.local/share/nautilus \
+  /home/"$USER"/./.local/share/systemd \
   /home/"$USER"/./.local/share/terminfo \
   /home/"$USER"/./.local/share/themes \
   /home/"$USER"/./.local/share/w3m.conf \
@@ -154,3 +156,12 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --filter='dir-merge,- .gitignore' \
   /usr/share/themes/Uhita \
   ./linux-root/
+
+mkdir -p ./linux/code/config/
+# dconf dump / > ./linux/code/config/dconf.txt
+dconf dump /org/gnome/desktop/wm/keybindings/ \
+  > ./linux/code/config/dconf-wm-keybindings.txt
+dconf dump /org/gnome/settings-daemon/plugins/media-keys/ \
+  > ./linux/code/config/dconf-custom-keybinds.txt
+dconf dump /org/gnome/terminal/legacy/ \
+  > ./linux/code/config/dconf-gnome-terminal-legacy.txt

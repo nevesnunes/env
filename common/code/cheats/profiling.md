@@ -2,7 +2,9 @@
 
 - [benchmarking](./benchmarking.md)
 - [perf-oneliners](./perf-oneliners.md)
-- ~/code/snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md
+- [bpftrace-oneliners](./bpftrace-oneliners.md)
+- [bcc/docs/tutorial](https://github.com/iovisor/bcc/blob/master/docs/tutorial.md)
+- [linux-trouble-shooting-cheat-sheet](../snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md)
 
 - [GitHub \- wolfpld/tracy: Frame profiler](https://github.com/wolfpld/tracy)
 - [GitHub \- google/orbit: C/C\+\+ Performance Profiler](https://github.com/google/orbit)

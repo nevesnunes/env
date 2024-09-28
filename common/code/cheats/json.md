@@ -4,6 +4,7 @@
 - [GitHub \- antonmedv/fx: Command\-line tool and terminal JSON viewer 🔥](https://github.com/antonmedv/fx)
 - [GitHub \- kellyjonbrazil/jc: CLI tool and python library that converts the output of popular command\-line tools, file\-types, and common strings to JSON, YAML, or Dictionaries\. This allows piping of output to tools like jq and simplifying automation scripts\.](https://github.com/kellyjonbrazil/jc)
 - [JSON command\-line toolbox \(jq, gron, jc, etc\)](https://racum.blog/articles/json-toolbox/)
+- [GitHub \- josephburnett/jd: JSON diff and patch](https://github.com/josephburnett/jd)
 
 # Inconsistent parser behaviour
 

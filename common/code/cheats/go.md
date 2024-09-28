@@ -64,3 +64,4 @@ func main() {
     - https://github.com/getCUJO/ThreatIntel/tree/master/Scripts/Ghidra
 - [Reversing GO binaries like a pro \| RedNaga Security](https://rednaga.io/2016/09/21/reversing_go_binaries_like_a_pro/)
 - [Reversing Golang Binaries \| x0r19x91](https://suvaditya.one/blog/2021/reversing-go/)
+- [Let’s Go into the rabbit hole \(part 1\) — the challenges of dynamically hooking Golang programs \- Quarkslab's blog](https://blog.quarkslab.com/lets-go-into-the-rabbit-hole-part-1-the-challenges-of-dynamically-hooking-golang-program.html)

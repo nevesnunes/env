@@ -5,6 +5,7 @@
 - https://www.fuzzysecurity.com/tutorials/29.html
 - https://sensepost.com/blog/2019/recreating-known-universal-windows-password-backdoors-with-frida/
 - https://github.com/apkunpacker/unrasp_guard
+- https://github.com/FrenchYeti/interruptor
 
 - ! requires dynamically linked target
 

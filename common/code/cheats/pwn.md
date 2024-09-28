@@ -249,6 +249,7 @@ printf 'main(){char a[]="\x48\x31\xd2\x48\x31\xf6\x48\xb8\x2f\x62\x69\x6e\x2f\x7
 - [2021-05-12-Heap-Exploit-Intro](https://tyeyeah.github.io/2021/05/12/2021-05-12-Heap-Exploit-Intro/)
 - [malloc\.c source code \(glibc/malloc/malloc\.c\) \- Codebrowser ](https://codebrowser.dev/glibc/glibc/malloc/malloc.c.html#malloc_chunk)
 - [GitHub \- Arinerron/heaptrace: helps visualize heap operations for pwn and debugging](https://github.com/Arinerron/heaptrace)
+- [GitHub \- rogerhu/gdb\-heap: Heap Analyzer for Python](https://github.com/rogerhu/gdb-heap)
 
 ### use-after-free (UAF)
 

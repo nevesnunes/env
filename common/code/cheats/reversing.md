@@ -127,6 +127,9 @@
     - https://justine.storage.googleapis.com/memzoom/index.html
     - [GitHub \- katjahahn/PortEx: Java library to analyse Portable Executable files with a special focus on malware analysis and PE malformation robustness](https://github.com/katjahahn/PortEx)
     - [Hex viewers and editors](https://twitter.com/i/events/841916822014332930)
+- memory scanner
+    - [GitHub \- scanmem/scanmem: memory scanner for Linux](https://github.com/scanmem/scanmem)
+    - [GitHub \- gamozolabs/mempeek: A command line tool that resembles a debugger as well as Cheat Engine, to search for values in memory](https://github.com/gamozolabs/mempeek)
 - hex diff
     - [GitHub \- 8051Enthusiast/biodiff: Hex diff viewer using alignment algorithms from biology](https://github.com/8051Enthusiast/biodiff)
         - e.g. [Test Point Break: Analysis of Huawei’s OTA Fix For BootROM Vulnerabilities \- taszk\.io labs](https://labs.taszk.io/articles/post/huawei_kirin990_bootrom_patch/)
@@ -242,6 +245,7 @@
         - [GitHub \- hasherezade/tiny\_tracer: A Pin Tool for tracing API calls etc](https://github.com/hasherezade/tiny_tracer)
         - [GitHub \- microsoft/Detours: Detours is a software package for monitoring and instrumenting API calls on Windows\.  It is distributed in source code form\.](https://github.com/microsoft/Detours)
             - e.g. http://web.archive.org/web/20070222031635/http://www.matasano.com/log/620/hand-detouring-windows-function-calls-with-ht/
+            - e.g. https://wheybags.com/blog/emperor.html
         - [GitHub \- CodeCracker\-Tools/MegaDumper: Dump native and \.NET assemblies](https://github.com/CodeCracker-Tools/MegaDumper)
         - [GitHub \- tyranid/oleviewdotnet: A \.net OLE/COM viewer and inspector to merge functionality of OleView and Test Container](https://github.com/tyranid/oleviewdotnet)
         - [oledump\.py \| Didier Stevens](https://blog.didierstevens.com/programs/oledump-py/)
@@ -627,6 +631,9 @@ perf script --insn-trace --xed -F+srcline,+srccode
 - [GitHub \- dyninst/dyninst: DyninstAPI: Tools for binary instrumentation, analysis, and modification\.](https://github.com/dyninst/dyninst)
 - [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
     - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
+- [GitHub \- boricj/ghidra\-delinker\-extension: Ghidra extension for exporting relocatable object files](https://github.com/boricj/ghidra-delinker-extension)
+- [GitHub \- jnider/delinker: Unlinks a binary executable to get back a set of \.o object files for further transformation and re\-linking\.](https://github.com/jnider/delinker)
+- [GitHub \- advanced\-microcode\-patching/shiva: A custom ELF linker/loader for installing ET\_REL binary patches at runtime](https://github.com/advanced-microcode-patching/shiva)
 
 Alternative: 
 

@@ -15,6 +15,11 @@ if [ -z "$(find_term $term)" ]; then
   if [ -z "$(find_term $term)" ]; then
     term=xterm-color
   fi
+else
+  # Requires: `tmux kill-server`
+  tmux set -ga terminal-overrides ",*256col*:Tc"
+  tmux set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+  tmux set-environment -g COLORTERM "truecolor"
 fi
 tmux set -g default-terminal "$term"
 

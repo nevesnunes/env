@@ -70,7 +70,7 @@ URxvt.clipboard.pastecmd: xclip -selection clipboard -o
 !! xterm
 !!
 
-xterm*termName: xterm-16color
+xterm*termName: xterm-256color
 
 ! Bitmap font
 ! Validation:
@@ -107,7 +107,7 @@ UXTerm*locale: true
 UXTerm*multiScroll: true
 UXTerm*scrollBar: false
 UXTerm*showBlinkAsBold: true
-UXTerm*termName: xterm-16color
+UXTerm*termName: xterm-256color
 
 UXTerm*VT100.eightBitInput: false
 UXTerm*VT100.internalBorder: 0

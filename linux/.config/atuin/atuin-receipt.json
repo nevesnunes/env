@@ -1,0 +1,1 @@
+{"binaries":["atuin"],"binary_aliases":{},"install_prefix":"/home/fn/.atuin/bin","provider":{"source":"cargo-dist","version":"0.15.0"},"source":{"app_name":"atuin","name":"atuin","owner":"atuinsh","release_type":"github"},"version":"18.3.0"}

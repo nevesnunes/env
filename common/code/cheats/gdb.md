@@ -12,6 +12,8 @@
 
 - [GitHub \- RinHizakura/mini\-gdbstub: An implementation of the GDB Remote Serial Protocol to help you adding debug mode on emulator](https://github.com/RinHizakura/mini-gdbstub)
 - [GitHub \- taskcluster/react\-gdb](https://github.com/taskcluster/react-gdb)
+- [GitHub \- tin\-z/GDBleed: Dynamic\-Static binary instrumentation framework on top of GDB](https://github.com/tin-z/GDBleed)
+- [GitHub \- stef/pyrsp: python implementation of the GDB Remote Serial Protocol](https://github.com/stef/pyrsp)
 
 ```bash
 # gdb-multiarch

@@ -1,0 +1,8 @@
+lightdm
+xfce4-battery-plugin
+xfce4-genmon-plugin
+xfce4-power-manager
+xfce4-session
+xfce4-settings
+xfce4-whiskermenu-plugin
+xfwm4

@@ -1,0 +1,34 @@
+[/]
+confirm-close=false
+dark-theme=true
+default-show-menubar=false
+headerbar=@mb false
+mnemonics-enabled=true
+schema-version=uint32 3
+theme-variant='system'
+
+[keybindings]
+zoom-in='<Primary>plus'
+zoom-out='<Primary>minus'
+
+[profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+allow-bold=true
+audible-bell=true
+background-color='rgb(221,221,221)'
+background-transparency-percent=0
+bold-is-bright=false
+cell-height-scale=1.0
+cjk-utf8-ambiguous-width='narrow'
+custom-command="env TERM=\"xterm-16color\" /bin/sh -c \"exec $(awk -F: -v u=$USER '$1 == u {print $NF}' /etc/passwd)\""
+default-size-columns=84
+default-size-rows=40
+font='Liberation Mono 12'
+foreground-color='rgb(0,0,0)'
+palette=['#dddddd', '#d22d48', '#37730d', '#622e04', '#4e6cd0', '#8854ab', '#285055', '#222222', '#808080', '#d22d48', '#37730d', '#622e04', '#4e6cd0', '#8854ab', '#285055', '#000000']
+rewrap-on-resize=true
+scrollbar-policy='never'
+text-blink-mode='never'
+use-custom-command=false
+use-system-font=true
+use-theme-colors=false
+use-transparent-background=false

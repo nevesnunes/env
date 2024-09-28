@@ -23,6 +23,26 @@ fi
 if echo "$acl" | grep -qi root; then
     # TODO
     exit 1
+elif echo "$role" | grep -qi 'linux-dev'; then
+    rsync -va --relative --usermap=":$acl" --groupmap=":$acl" \
+      ./common/./code/cheats \
+      ./"$role_dir"/./.bash* \
+      ./"$role_dir"/./.dircolors* \
+      ./"$role_dir"/./.less* \
+      ./"$role_dir"/./.infokey \
+      ./"$role_dir"/./.inputrc \
+      ./"$role_dir"/./.lscolors \
+      ./"$role_dir"/./.profile* \
+      ./"$role_dir"/./.shrc \
+      ./"$role_dir"/./.vim \
+      ./"$role_dir"/./.vimrc \
+      ./"$role_dir"/./.Xresources* \
+      ./"$role_dir"/./.zshrc \
+      ./"$role_dir"/./.local/share/functions \
+      ./"$role_dir"/./.local/share/terminfo \
+      ./"$role_dir"/./.local/share/Xresources \
+      ./"$role_dir"/./bin \
+      "$target" || true
 else
     rsync -va --usermap=":$acl" --groupmap=":$acl" ./"$role_dir"/ "$target" || true
 fi

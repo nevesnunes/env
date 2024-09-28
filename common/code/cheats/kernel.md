@@ -1,6 +1,7 @@
 # +
 
 - [code search](https://livegrep.com/search/linux)
+- [kernelconfig\.io \- search config information for linux kernel modules](https://www.kernelconfig.io/index.html)
 - [Linux Device Drivers, 3rd Edition](http://www.makelinux.net/ldd3/)
 
 # headers

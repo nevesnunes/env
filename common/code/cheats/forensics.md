@@ -353,6 +353,7 @@ binwalk -Me _
 # alternatives:
 # - [unblob](https://unblob.org/formats/): splits unknown chunks from archive / fs
 # - [OFRAK](https://ofrak.com/): allows manipulates / repacks
+# - [GitHub \- fkie\-cad/FACT\_core: Firmware Analysis and Comparison Tool](https://github.com/fkie-cad/FACT_core)
 
 # graphics images
 exiftool -v _

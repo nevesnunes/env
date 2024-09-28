@@ -1,6 +1,8 @@
 # +
 
 - [GraphQL Playground](https://www.graphqlbin.com/v2/new)
+- [GitHub \- eerimoq/gqt: Build and execute GraphQL queries in the terminal\.](https://github.com/eerimoq/gqt)
+
 - [GitHub \- swisskyrepo/GraphQLmap: GraphQLmap is a scripting engine to interact with a graphql endpoint for pentesting purposes\.](https://github.com/swisskyrepo/GraphQLmap)
 - [PayloadsAllTheThings/GraphQL Injection at master \- swisskyrepo/PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/GraphQL%20Injection#enumerate-database-schema-via-introspection)
 

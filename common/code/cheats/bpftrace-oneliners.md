@@ -1,5 +1,10 @@
 # +
 
+- [GitHub \- brendangregg/bpf\-perf\-workshop](https://github.com/brendangregg/bpf-perf-workshop)
+- [proctrace \- a high level profiler for process lifecycle events &middot; Tinkering](https://tinkering.xyz/proctrace/)
+    - filtering threads vs. processes
+- [Uprobe\-tracer: Uprobe\-based Event Tracing &mdash; The Linux Kernel  documentation](https://www.kernel.org/doc/html/v5.0/trace/uprobetracer.html)
+
 ```sh
 # Trace libc calls 
 # - /!\ need to scope glob, use dynamic syms: ~/bin/libctrace.sh

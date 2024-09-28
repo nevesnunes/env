@@ -1,0 +1,7 @@
+bundler 
+github-pages 
+jekyll 
+jekyll-feed 
+pry-byebug 
+rubocop 
+seccomp-tools

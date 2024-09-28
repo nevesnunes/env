@@ -4,3 +4,4 @@ opt:https://github.com/WebAssembly/wabt
 opt:https://github.com/WebAssembly/binaryen
 opt:https://github.com/allyshka/dirbustlist
 opt:https://github.com/zaproxy/zap-extensions
+share/opt:https://github.com/brendangregg/perf-tools

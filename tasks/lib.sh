@@ -29,6 +29,38 @@ EOF'
 
     # mask services
     sudo systemctl mask apt-daily avahi-daemon hddtemp irqbalance lm-sensors ModemManager ondemand sys-kernel-debug.mount
+
+    # can't remove gnome bloat without uninstalling gnome...
+    for i in /etc/xdg/autostart/org.gnome.Software.desktop /usr/bin/gnome-software; do
+      sudo sh -c 'echo > "'$i'" && chattr +i "'$i'"'
+    done
+  elif os | grep -qi 'fedora'; then
+    sudo dnf -y remove \
+      bijiben \
+      cups \
+      empathy \
+      evolution \
+      evolution-ews \
+      evolution-help \
+      geoclue \
+      gfbgraph \
+      gnome-boxes \
+      gnome-calendar \
+      gnome-contacts \
+      gnome-dictionary \
+      gnome-documents \
+      gnome-getting-started-docs \
+      gnome-initial-setup \
+      gnome-maps \
+      gnome-online-miners \
+      gnome-photos \
+      gnome-user-docs \
+      gnome-user-share \
+      gnome-weather \
+      rhythmbox \
+      shotwell \
+      simple-scan \
+      tracker-miners
   fi
 }
 
@@ -42,6 +74,23 @@ sync_debian_packages() {
   fi
   sudo apt update
   sudo apt install -y $packages
+}
+
+sync_gem_packages() {
+  packages=$(paste -sd' ' "$1")
+  gem install --user-install $packages
+}
+
+sync_npm_packages() {
+  packages=$(paste -sd' ' "$1")
+  npm install -g npm
+  npm install -g $packages
+}
+
+sync_rpm_packages() {
+  packages=$(paste -sd' ' "$1")
+  sudo dnf -y update
+  sudo dnf -y install $packages
 }
 
 sync_python_packages() {
