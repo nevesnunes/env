@@ -24,6 +24,10 @@ cd ~/.local/share/fonts && wget 'https://github.com/andreberg/Meslo-Font/raw/mas
 
 cd ~/opt/fzf/ && yes | ./install
 
-cd ~/opt/pwndbg/ && sudo ./setup.sh
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+pipx install poetry
+
+cd ~/opt/pwndbg/ && sudo sh -c 'yes | ./setup.sh'
 
 cd ~

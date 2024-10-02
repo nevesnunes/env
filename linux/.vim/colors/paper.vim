@@ -177,3 +177,7 @@ hi ALEWarning     guifg=#7f63b5 guibg=NONE gui=bold,underline,nocombine ctermbg=
 hi ALEError       guifg=#a62835 guibg=NONE gui=bold,underline,nocombine ctermbg=black ctermfg=red  cterm=bold,underline,nocombine
 hi ALEWarningSign guifg=#7f63b5 guibg=NONE gui=bold,nocombine           ctermbg=black ctermfg=blue cterm=bold,nocombine
 hi ALEErrorSign   guifg=#a62835 guibg=NONE gui=bold,nocombine           ctermbg=black ctermfg=red  cterm=bold,nocombine
+
+hi markdownId            guifg=#7f63b5 guibg=NONE gui=bold ctermbg=NONE ctermfg=6 cterm=bold
+hi markdownIdDeclaration guifg=#7f63b5 guibg=NONE gui=NONE ctermbg=NONE ctermfg=6
+hi markdownUrl           guifg=#115c5a guibg=NONE gui=bold,underline ctermbg=NONE ctermfg=6 cterm=bold,underline

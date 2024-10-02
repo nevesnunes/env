@@ -23,6 +23,7 @@ python3-venv
 rlwrap
 rsync
 shellcheck
+software-properties-common
 sqlite3
 tmux
 unrar

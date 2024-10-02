@@ -1,3 +1,7 @@
+# HPC
+
+- [jeffhammond/HPCInfo](https://github.com/jeffhammond/HPCInfo/tree/master/docs)
+
 # Methodology
 
 - [The Twelve\-Factor App ](https://12factor.net/)

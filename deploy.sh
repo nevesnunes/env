@@ -38,11 +38,22 @@ elif echo "$role" | grep -qi 'linux-dev'; then
       ./"$role_dir"/./.vimrc \
       ./"$role_dir"/./.Xresources* \
       ./"$role_dir"/./.zshrc \
+      ./"$role_dir"/./.config/atuin \
+      ./"$role_dir"/./.config/fontconfig \
+      ./"$role_dir"/./.config/htop \
+      ./"$role_dir"/./.config/vifm \
+      ./"$role_dir"/./.local/bin/functions \
       ./"$role_dir"/./.local/share/functions \
       ./"$role_dir"/./.local/share/terminfo \
       ./"$role_dir"/./.local/share/Xresources \
-      ./"$role_dir"/./bin \
+      ./"$role_dir"/./bin/bpf* \
+      ./"$role_dir"/./bin/fzf* \
+      ./"$role_dir"/./bin/gdb* \
+      ./"$role_dir"/./bin/git* \
+      ./"$role_dir"/./bin/tmux* \
+      ./"$role_dir"/./bin/zsh \
       "$target" || true
+    ln -s ~/.local/bin/functions ~/bin/functions
 else
     rsync -va --usermap=":$acl" --groupmap=":$acl" ./"$role_dir"/ "$target" || true
 fi

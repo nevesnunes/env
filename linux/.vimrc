@@ -544,11 +544,14 @@ set shortmess=a
 set splitbelow
 set splitright
 
-try
-    colorscheme paper
-catch /^Vim\%((\a\+)\)\=:E/
-    colorscheme koehler
-endtry
+function! InitColorScheme()
+    try
+        colorscheme paper
+    catch /^Vim\%((\a\+)\)\=:E/
+        colorscheme koehler
+    endtry
+endfunction
+call InitColorScheme()
 
 if has('gui_running')
     try
@@ -558,7 +561,7 @@ if has('gui_running')
 
     set guioptions=aci
     set guicursor=a:blinkwait750-blinkon750-blinkoff750
-    set lines=40 columns=60
+    set lines=40 columns=84
 endif
 
 command! -range FormatShellCmd <line1>!format_shell_cmd.py
@@ -587,6 +590,8 @@ augroup filetype_group
     " Alternative:
     " redir @">|silent echo '# ' . expand('%:t:r')|redir END|put
     autocmd BufNewFile *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown} put = '# ' . expand('%:t:r') | normal! ggdd2o
+    " Override MkdInlineURL overriding previously set highlight
+    autocmd BufReadPost *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown} call InitColorScheme()
 
     if isdirectory(expand('~/code/snippets/recipes/'))
         autocmd BufNewFile *.awk 0r ~/code/snippets/recipes/awk | normal! Gdd
