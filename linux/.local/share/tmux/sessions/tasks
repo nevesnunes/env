@@ -1,0 +1,2 @@
+new-session -s tasks2
+send-keys "t" C-m

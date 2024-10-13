@@ -100,6 +100,7 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion";
 (nvm use v22.2.0 >/dev/null &)
 
+export PATH="$PATH:$HOME/.rvm/bin"
 . ~/.rvm/scripts/rvm
 (rvm use 2.7 >/dev/null &)
 

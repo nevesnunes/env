@@ -157,6 +157,29 @@ ar x _
 
 https://www.debian.org/releases/jessie/amd64/ch08s07.html.en
 
+# debug symbols
+
+/etc/apt/sources.list
+```
+deb http://deb.debian.org/debian-debug/ stable-debug main
+```
+
+```sh
+apt install foo-dbgsym
+```
+
+https://wiki.debian.org/AutomaticDebugPackages
+
+### debuginfod
+
+```sh
+apt install debuginfod elfutils
+
+export DEBUGINFOD_URLS="https://debuginfod.debian.net"
+```
+
+https://wiki.debian.org/Debuginfod
+
 # case studies
 
 - [diziet \| chiark’s skip\-skip\-cross\-up\-grade](https://diziet.dreamwidth.org/11840.html)

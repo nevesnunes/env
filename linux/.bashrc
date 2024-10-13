@@ -59,11 +59,9 @@ fi
     . ~/opt/bash-complete-partial-path/bash_completion && \
     _bcpp --defaults
 
+[ -f ~/.bash-preexec.sh ] && source ~/.bash-preexec.sh
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init bash --disable-up-arrow)"
+
 # Reset exit status for first prompt
 :
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash --disable-up-arrow)"

@@ -29,6 +29,7 @@ if has('gui_running')
     map <silent> <S-Insert> "*p
     imap <silent> <S-Insert> <Esc>"*pa
     set guifont=Monospace\ 10
+    set linespace=0
 endif
 
 " Refresh title on buffer change
