@@ -203,6 +203,7 @@ sudo su user1 -c "ulimit -Hn"
 - [speedscope](https://www.speedscope.app/)
     - [Format Support: Trace Event Format · Issue \#77 · jlfwong/speedscope · GitHub](https://github.com/jlfwong/speedscope/issues/77)
 - [Perfetto UI](https://ui.perfetto.dev/)
+- [GitHub \- 4rtzel/tfg: Terminal flame graph](https://github.com/4rtzel/tfg)
 - [GitHub \- corpaul/flamegraphdiff: flamegraphdiff](https://github.com/corpaul/flamegraphdiff)
 
 # resources

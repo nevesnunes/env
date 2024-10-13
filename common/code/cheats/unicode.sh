@@ -70,5 +70,9 @@ echo 👏🏿 | sed 's/../A/' | xxd
 # - https://github.com/AdoptOpenJDK/openjdk-jdk11/blob/master/src/jdk.scripting.nashorn/share/classes/jdk/nashorn/internal/runtime/regexp/RegExpScanner.java
 # - https://github.com/AdoptOpenJDK/openjdk-jdk9u/blob/master/jdk/src/java.base/share/classes/java/util/regex/CharPredicates.java
 
+# Mojibake
+echo "’" | iconv -f cp1252 -t utf8
+# â€™
+
 # Fixing bad encodings:
 # - [Home \- ftfy: fixes text for you](https://ftfy.readthedocs.io/en/latest/)

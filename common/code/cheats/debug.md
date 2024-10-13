@@ -435,6 +435,19 @@ rr ./foo
 
 - [Multi\-Kernel Drifting](https://luqman.ca/blog/multi-kernel-drifting/)
 
+### how to catch pointer errors
+
+- Use fenceposts around allocated blocks of memory
+    - Check for unchanged fenceposts to detect over-writes
+    - Check for fenceposts before a delete to detect attempts to delete addresses other than the start of an allocated block
+- Add tracking info to allocated blocks indicating location of the allocation call
+    - Scan heap at end of program for unrecovered blocks of memory
+    - Report on locations from which those were allocated
+- Add a freed bit to allocated blocks that is cleared when first allocated and set when the block is freed
+    - Detect when a block is freed twice
+
+- https://www.cs.odu.edu/~zeil/cs350/s21/Public/analysis/index.html
+
 ### caller not saving volatile register
 
 - [Sometimes it \*is\* a compiler bug](https://quick-lint-js.com/blog/bug-journey/)

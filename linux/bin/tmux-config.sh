@@ -23,22 +23,21 @@ else
 fi
 tmux set -g default-terminal "$term"
 
-TMUX_VERSION=$(tmux -V | \
-  gawk '/^\s*$/{next}; match($0, /tmux\s*([0-9\.]*)/, e) {print e[1]}')
+TMUX_VERSION=$(tmux -V \
+  | gawk '/^\s*$/{next}; match($0, /tmux\s*([0-9\.]*)/, e) {print e[1]}')
 
 # UTF8 is autodetected in 2.2 onwards, but errors if explicitly set
 if [ "$(echo "$TMUX_VERSION < 2.2" | bc)" = 1 ]; then
-    tmux set -g utf8 on \; set -g status-utf8 on \; set -g mouse-utf8 on
+  tmux set -g utf8 on \; set -g status-utf8 on \; set -g mouse-utf8 on
 fi
 
 if [ "$(echo "$TMUX_VERSION >= 2.4" | bc)" = 1 ]; then
-    tmux bind -T copy-mode-vi y send-keys -X copy-pipe "xclip -in -selection clipboard"
-    tmux bind y copy-mode \\\; send-keys '$' 'Space' '0' 'y' 'q'
+  tmux bind -T copy-mode-vi y send-keys -X copy-pipe "xclip -in -selection clipboard"
+  tmux bind y copy-mode \\\; send-keys '$' 'Space' '0' 'y' 'q'
 else
-    tmux bind -t vi-copy y copy-pipe "xclip -in -selection clipboard"
-    tmux bind y copy-mode \\\; send-keys '$' 'Space' '0' 'y'
+  tmux bind -t vi-copy y copy-pipe "xclip -in -selection clipboard"
+  tmux bind y copy-mode \\\; send-keys '$' 'Space' '0' 'y'
 fi
-
 
 if [ "$(echo "$TMUX_VERSION < 2.8" | bc)" = 1 ]; then
   # Colors

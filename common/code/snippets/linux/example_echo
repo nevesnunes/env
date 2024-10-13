@@ -1,0 +1,4 @@
+#!/bin/echo
+
+echo hello
+echo goodbye

@@ -1,3 +1,9 @@
+# Find first commit of given code snippet
+
+```bash
+git log --reverse -S foo
+```
+
 # Deleting commits
 
 ```bash
