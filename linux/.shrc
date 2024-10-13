@@ -4,8 +4,8 @@
 
 set -- ~/bin/functions/*.sh
 while [ $# -gt 0 ]; do
-  . "$1"
-  shift
+    . "$1"
+    shift
 done
 [ -f ~/opt/z/z.sh ] && . ~/opt/z/z.sh
 
@@ -50,19 +50,19 @@ alias v="gvim -v -u $HOME/code/config/large-files.vimrc"
 alias vim='gvim -v'
 
 # Force help to be output instead of error due to small terminal size
-env COLS=80 hexedit -h </dev/null 2>&1 | \
-    grep -qa -- '\[-s | --sector\] \[-m | --maximize\] \[--color\]' && \
-    alias hexedit="hexedit --color --maximize --sector"
-diff --color / / >/dev/null 2>&1 && \
-    alias diff='diff --color'
-if command -v nproc >/dev/null 2>&1; then
+env COLS=80 hexedit -h < /dev/null 2>&1 \
+    | grep -qa -- '\[-s | --sector\] \[-m | --maximize\] \[--color\]' \
+    && alias hexedit="hexedit --color --maximize --sector"
+diff --color / / > /dev/null 2>&1 \
+    && alias diff='diff --color'
+if command -v nproc > /dev/null 2>&1; then
     alias make='make -j $(nproc)'
-elif command -v getconf >/dev/null 2>&1; then
+elif command -v getconf > /dev/null 2>&1; then
     alias make='make -j $(getconf _NPROCESSORS_ONLN)'
 fi
-command -v rlwrap >/dev/null 2>&1 && \
-    alias sqlite="rlwrap -a -N -c -i -f ~/.rlwrap/sqlite3_completions sqlite3" && \
-    alias winedbg="rlwrap -a -N -c -i -z ~/.rlwrap/filters/winedbg_fzf.pl winedbg"
+command -v rlwrap > /dev/null 2>&1 \
+    && alias sqlite="rlwrap -a -N -c -i -f ~/.rlwrap/sqlite3_completions sqlite3" \
+    && alias winedbg="rlwrap -a -N -c -i -z ~/.rlwrap/filters/winedbg_fzf.pl winedbg"
 
 if [ -n "$TERM" ]; then
     if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -96,11 +96,12 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && . "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh";
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion";
-(nvm use v22.2.0 >/dev/null &)
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# (nvm use v22.2.0 >/dev/null &)
 
-. ~/.rvm/scripts/rvm
-(rvm use 2.7 >/dev/null &)
+export PATH="$PATH:$HOME/.rvm/bin"
+# . ~/.rvm/scripts/rvm
+# (rvm use 2.7 >/dev/null &)
 
 # vim: filetype=sh

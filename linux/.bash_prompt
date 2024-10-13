@@ -67,6 +67,9 @@ prompt_main() {
         fi
     fi
 
+    # Update saved history
+    history -a
+
     local prompt_jobs=
     count_jobs=$(jobs -l | wc -l)
     if [ "$count_jobs" -gt 0 ]; then

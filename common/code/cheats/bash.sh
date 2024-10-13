@@ -57,6 +57,9 @@ paste <(
 IFS= read -rs SECRET < /dev/tty
 foo < <(printf '%s\n' "$SECRET")
 
+# find lines only in file "1" in-order
+grep -E "$(comm -23 <(sort 1) <(sort 2) | paste -sd '|')" 1
+
 # Sum times skipping builtins
 seq 2 | \
   xargs -i env TIME="%e" time sh -c 'sleep 2' 2>&1 | \
@@ -316,3 +319,9 @@ find -L /dev -xtype l -exec ls -l1 {} \; 2>/dev/null | awk '!/-> ([^\/]|\/dev)/{
 # /dev/initctl -> /run/initctl
 # /proc/self/cwd -> ...
 # /proc/self/exe -> ...
+
+# Unbuffered
+exec {fh}<> <(cat)
+echo hello >&$fh
+echo world >&$fh
+while read -t1; do echo "recv:$REPLY"; done <&$fh

@@ -2,7 +2,7 @@
 application/epub+zip=calibre-ebook-viewer.desktop;org.pwmt.zathura-pdf-mupdf.desktop;FBReader.desktop;com.github.johnfactotum.Foliate.desktop;
 application/javascript=gvim.desktop;
 application/msword=gvim.desktop;libreoffice-writer.desktop;
-application/octet-stream=gvim.desktop;transmission-gtk.desktop;milkytracker.desktop;nfoview.desktop;libreoffice-calc.desktop;
+application/octet-stream=deadbeef.desktop;gvim.desktop;transmission-gtk.desktop;milkytracker.desktop;nfoview.desktop;libreoffice-calc.desktop;
 application/pdf=libreoffice-writer.desktop;org.gnome.Evince.desktop;calibre-ebook-viewer.desktop;okularApplication_pdf.desktop;zathura.desktop;evince.desktop;inkscape.desktop;mupdf.desktop;zathura-djvu.desktop;
 application/pgp-keys=gvim.desktop;
 application/pkix-cert=gvim.desktop;
@@ -365,6 +365,7 @@ audio/x-adpcm=mpv.desktop
 audio/m3u=mpv.desktop
 text/x-patch=gvim.desktop
 x-scheme-handler/tonsite=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop
+application/octet-stream=deadbeef.desktop
 
 [Removed Associations]
 application/x-gzpostscript=zathura-ps.desktop;

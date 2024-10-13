@@ -12,6 +12,7 @@
     askpass = ""
 	editor = vim
 	excludesfile = ~/.gitignore_global
+	fileMode = false
 [credential]
 	helper = libsecret
 [diff]

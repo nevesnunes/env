@@ -179,7 +179,12 @@ awk -v start_pattern="$start_pattern" '
         print $0
     }
 ' catalina* localhost*
-
-# Alternatives:
-# - https://unix.stackexchange.com/questions/195604/matching-and-merging-lines-with-awk-printing-with-solaris
 ```
+
+Alternatives:
+
+- https://unix.stackexchange.com/questions/195604/matching-and-merging-lines-with-awk-printing-with-solaris
+- https://docs.lnav.org/en/stable/formats.html 
+    ```sh
+    lnav -m regex101 import <regex101-url> <format-name> [<regex-name>]
+    ```

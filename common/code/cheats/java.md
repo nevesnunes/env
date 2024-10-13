@@ -265,9 +265,9 @@ jconsole
 - In the Test tab check the box 'Keep JUnit running after test when debugging'
 - Rerun the test (with Debug). This will run the tests, but importantly, leave the JVM around, so that you can attach to it using JVisualVM.
 
-ftp://ftp.informatik.uni-stuttgart.de/pub/library/medoc.ustuttgart_fi/FACH-0184/FACH-0184.pdf
-
-https://stackoverflow.com/questions/6846049/profiling-a-running-java-application-in-command-line
+- ftp://ftp.informatik.uni-stuttgart.de/pub/library/medoc.ustuttgart_fi/FACH-0184/FACH-0184.pdf
+- https://stackoverflow.com/questions/6846049/profiling-a-running-java-application-in-command-line
+- https://www.intel.com/content/www/us/en/docs/vtune-profiler/user-guide/2023-0/java-code-analysis.html
 
 # Coverage
 

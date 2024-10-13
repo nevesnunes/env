@@ -13,18 +13,19 @@ zoom-out='<Primary>minus'
 
 [profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 allow-bold=true
-audible-bell=true
+audible-bell=false
 background-color='rgb(221,221,221)'
 background-transparency-percent=0
+bold-color-same-as-fg=true
 bold-is-bright=false
 cell-height-scale=1.0
 cjk-utf8-ambiguous-width='narrow'
 custom-command="env TERM=\"xterm-16color\" /bin/sh -c \"exec $(awk -F: -v u=$USER '$1 == u {print $NF}' /etc/passwd)\""
 default-size-columns=84
 default-size-rows=40
-font='Liberation Mono 12'
+font='Codelia 11'
 foreground-color='rgb(0,0,0)'
-palette=['#dddddd', '#d22d48', '#37730d', '#622e04', '#4e6cd0', '#8854ab', '#285055', '#222222', '#808080', '#d22d48', '#37730d', '#622e04', '#4e6cd0', '#8854ab', '#285055', '#000000']
+palette=['rgb(221,221,221)', 'rgb(210,45,72)', 'rgb(55,115,13)', 'rgb(98,46,4)', 'rgb(78,108,208)', 'rgb(136,84,171)', 'rgb(40,80,85)', 'rgb(34,34,34)', 'rgb(128,126,146)', 'rgb(210,45,72)', 'rgb(55,115,13)', 'rgb(98,46,4)', 'rgb(78,108,208)', 'rgb(136,84,171)', 'rgb(40,80,85)', 'rgb(0,0,0)']
 rewrap-on-resize=true
 scrollbar-policy='never'
 text-blink-mode='never'

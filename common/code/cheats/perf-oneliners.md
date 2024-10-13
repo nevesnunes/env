@@ -1,6 +1,7 @@
 # +
 
 - [Linux perf Examples](https://www.brendangregg.com/perf.html)
+- [Linux Perf: Measuring Specific Code Sections with Pause/Resume APIs \- Performance Engineering](https://pramodkumbhar.com/2024/04/linux-perf-measuring-specific-code-sections-with-pause-resume-apis/)
 - [GitHub \- KDAB/hotspot: The Linux perf GUI for performance analysis\.](https://github.com/KDAB/hotspot)
 
 ## Compare

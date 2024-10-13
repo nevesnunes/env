@@ -1,6 +1,8 @@
 #include ".local/share/Xresources/paper"
 #include ".local/share/Xresources/urxvt/paper"
 
+!! Apply: xrdb -remove && xrdb -merge ~/.Xresources
+
 Xcursor.size: 24
 Xcursor.theme: Adwaita
 
@@ -72,6 +74,10 @@ URxvt.clipboard.pastecmd: xclip -selection clipboard -o
 
 xterm*termName: xterm-256color
 
+! Sixel
+xterm*decTerminalID: 340
+xterm*numColorRegisters: 256
+
 ! Bitmap font
 ! Validation:
 ! $ fc-list
@@ -87,11 +93,15 @@ xterm*termName: xterm-256color
 !         RESOLUTION_Y 96
 ! References:
 ! - https://wiki.archlinux.org/index.php/X_Logical_Font_Description
+! - https://superuser.com/questions/15226/how-do-i-make-xterm-not-use-bold
 ! UXTerm*boldMode: false
 ! UXTerm.VT100.renderFont: false
 ! UXTerm.VT100.font: -*-fixed-bold-r-normal-*-14-*-*-*-*-*-iso10646-1
 ! UXTerm.VT100.font: -*-terminus-bold-r-normal-*-14-*-*-*-*-*-iso10646-1
 
+UXTerm*allowBoldFonts: true
+UXTerm*boldColors: false
+UXTerm*boldMode: true
 UXTerm*faceNameDoublesize: Source Han Sans CN
 ! UXTerm*faceName: Iosevka Custom
 ! UXTerm*faceName: Nixedsys
@@ -99,7 +109,8 @@ UXTerm*faceNameDoublesize: Source Han Sans CN
 ! UXTerm*faceName: Xnu Iso
 ! UXTerm*faceName: Bm437 IBM VGA 8x14 OTB
 ! UXTerm*faceName: Bm437 ToshibaSat 8x14 OTB
-UXTerm*faceName: PxPlus IBM VGA 8x16
+! UXTerm*faceName: PxPlus IBM VGA 8x16
+UXTerm*faceName: Monospace
 UXTerm*faceSize: 10
 UXTerm*geometry: 84x24
 UXTerm*jumpScroll: true
@@ -107,7 +118,6 @@ UXTerm*locale: true
 UXTerm*multiScroll: true
 UXTerm*scrollBar: false
 UXTerm*showBlinkAsBold: true
-UXTerm*termName: xterm-256color
 
 UXTerm*VT100.eightBitInput: false
 UXTerm*VT100.internalBorder: 0

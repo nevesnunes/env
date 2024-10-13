@@ -27,7 +27,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   --exclude='.config/ranger/history' \
   --exclude='.dosbox/capture' \
   --exclude='.local/share/applications/wine*' \
-  --exclude='.tmux/resurrect' \
+  --exclude='.tmux/' \
   --exclude='.vim/bundle*' \
   --exclude='.vim/.netrwhist' \
   --exclude='.vim/.VimballRecord' \
@@ -140,6 +140,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.local/share/systemd \
   /home/"$USER"/./.local/share/terminfo \
   /home/"$USER"/./.local/share/themes \
+  /home/"$USER"/./.local/share/tmux \
   /home/"$USER"/./.local/share/w3m.conf \
   /home/"$USER"/./.local/share/Xresources \
   /home/"$USER"/./.prboom-plus/prboom-plus.cfg \

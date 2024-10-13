@@ -1,0 +1,5 @@
+send-keys "cd \"$HOME/Dropbox/doc/goals\" && gvim -v ctf2.md" C-m
+new-window
+send-keys "cd \"$HOME/code/cheats\" && find . -type f  -iname \\*.md -exec gvim -v -c e\\ reversing.md {} \\+" C-m
+new-window
+select-window -t :1

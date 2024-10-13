@@ -550,6 +550,7 @@ function! InitColorScheme()
     catch /^Vim\%((\a\+)\)\=:E/
         colorscheme koehler
     endtry
+    syntax on
 endfunction
 call InitColorScheme()
 
@@ -607,6 +608,7 @@ augroup filetype_group
         autocmd BufNewFile Makefile* 0r ~/code/snippets/recipes/Makefile | normal! Gddgg
         autocmd BufNewFile package.json 0r ~/code/snippets/recipes/package.json | normal! Gddgg
         autocmd BufRead,BufNewFile *.{diz,DIZ,nfo,NFO} setlocal filetype=nfo
+        autocmd BufRead,BufNewFile fonts.conf setlocal filetype=xml
         autocmd BufNewFile pom.xml 0r ~/code/snippets/recipes/pom.xml | normal! Gdd
     endif
 
@@ -633,7 +635,7 @@ augroup filetype_group
                 \ setlocal tabstop=2 softtabstop=2 shiftwidth=2
     autocmd BufNewFile,BufRead *.jsx
                 \ setlocal filetype=javascript.jsx
-    autocmd BufNewFile,BufRead,BufEnter *.ttx 
+    autocmd BufNewFile,BufRead,BufEnter *.ttx
                 \ :syntax off<CR>
 
     " Make
@@ -708,13 +710,20 @@ command! HighlightedSynGroup call HighlightedSynGroup()
 " References:
 " - https://superuser.com/questions/211916/setting-up-multiple-highlight-rules-in-vim
 " - https://vim.fandom.com/wiki/Highlight_long_lines
+" - https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 " Alternatives:
 " - https://github.com/MattesGroeger/vim-bookmarks
-hi My0 ctermbg=magenta guibg=magenta ctermfg=black guifg=black
-hi My1 ctermbg=blue    guibg=blue    ctermfg=black guifg=black
-hi My2 ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
-hi My3 ctermbg=green   guibg=green   ctermfg=black guifg=black
-hi My4 ctermbg=yellow  guibg=yellow  ctermfg=black guifg=black
+function! MyHighlights() abort
+    hi My0 ctermbg=magenta guibg=magenta ctermfg=black guifg=black
+    hi My1 ctermbg=blue    guibg=blue    ctermfg=black guifg=black
+    hi My2 ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
+    hi My3 ctermbg=green   guibg=green   ctermfg=black guifg=black
+    hi My4 ctermbg=yellow  guibg=yellow  ctermfg=black guifg=black
+endfunction
+augroup MyColors
+    autocmd!
+    autocmd BufEnter * call MyHighlights()
+augroup END
 function! Match(...)
     if !exists('w:matches')
         let w:matches = {}

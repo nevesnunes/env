@@ -1,0 +1,3 @@
+send-keys "cd \"$HOME/Dropbox/doc/goals\" && find . -type f  -iname \\*.md -exec gvim -v -c e\\ next.md {} \\+" C-m
+new-window
+select-window -t :-

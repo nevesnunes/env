@@ -1,6 +1,7 @@
 # debug
 
 ```bash
+# ~/code/snippets/wine/channels.txt
 env WINEDEBUG=+all wine
 # relay ~= syscalls
 env WINEDEBUG=+loaddll,+relay,+seh wine

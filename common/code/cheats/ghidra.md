@@ -3,6 +3,7 @@
 - [disassembly \- Python Script to get disassembled output of an EXE file \- Reverse Engineering Stack Exchange](https://reverseengineering.stackexchange.com/questions/22377/python-script-to-get-disassembled-output-of-an-exe-file)
 - [GitHub \- VDOO\-Connected\-Trust/ghidra\-pyi\-generator: Generates \`\.pyi\` type stubs for the entire Ghidra API](https://github.com/VDOO-Connected-Trust/ghidra-pyi-generator)
 - [GitHub \- TorgoTorgo/ghidra\-findcrypt: Ghidra analysis plugin to locate cryptographic constants](https://github.com/TorgoTorgo/ghidra-findcrypt)
+- [GitHub \- garyttierney/intellij\-ghidra: An IntelliJ IDEA plugin for working on Ghidra Extensions\.](https://github.com/garyttierney/intellij-ghidra)
 
 # function ID (FID)
 

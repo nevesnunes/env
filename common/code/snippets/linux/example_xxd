@@ -1,0 +1,4 @@
+#!/bin/xxd
+
+echo hello
+echo goodbye

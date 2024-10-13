@@ -201,7 +201,7 @@ s() {
 }
 
 # `grep` with intermediate binary files conversion to plaintext.
-gc() {
+g() {
   if command -v rg > /dev/null 2>&1; then
     rg --smart-case \
       --follow \
@@ -256,7 +256,7 @@ gc() {
 }
 
 # `grep` with matches open in text editor.
-g() {
+ge() {
   if command -v rg > /dev/null 2>&1; then
     entry=$(rg --smart-case \
       --follow \
