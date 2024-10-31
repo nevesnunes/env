@@ -26,12 +26,20 @@ syn match markdownBlockquote /^\s*>\s*.*$/
 
 syn match mkdTodo "\<\(TODO\|FIXME\)\>" containedin=ALLBUT,mkdCode,markdownCode,markdownCodeBlock
 
-hi! mkdInlineURL ctermfg=6 guifg=cyan cterm=underline,bold gui=underline,bold
-hi! mkdTodo ctermfg=1 guifg=red cterm=bold gui=bold
-hi! mkdHeading ctermfg=6 guifg=red cterm=bold gui=bold
+if !exists("g:terminal_ansi_colors")
+    let g:terminal_ansi_colors = []
+endif
+
+execute printf("hi! mkdHeading ctermfg=6 guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 6, 'cyan'))
+execute printf("hi! mkdInlineURL ctermfg=6 guifg=%s cterm=underline,bold gui=underline,bold", get(g:terminal_ansi_colors, 6, 'cyan'))
+execute printf("hi! mkdTodo ctermfg=1 guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 1, 'red'))
+execute printf("hi markdownId guifg=%s guibg=NONE gui=bold ctermbg=NONE ctermfg=5 cterm=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
+execute printf("hi markdownIdDeclaration guifg=%s guibg=NONE gui=NONE ctermbg=NONE ctermfg=5 cterm=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
 
 hi! def link markdownCode String
 hi! def link markdownLinkText Title
 hi! def link markdownUrl mkdInlineURL
 hi! def link mkdURL mkdInlineURL
 hi! def link Underlined mkdInlineURL
+
+syntax sync fromstart

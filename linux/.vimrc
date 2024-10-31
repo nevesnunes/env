@@ -46,23 +46,6 @@ let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'yoffset': 1, 'borde
 
 set runtimepath+=~/opt/fzf
 
-" UltiSnips
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-set runtimepath+=~/code/snippets
-let g:UltiSnipsSnippetsDir='~/code/snippets/ultisnips'
-let g:UltiSnipsSnippetDirectories=['ultisnips']
-let g:UltiSnipsExpandTrigger='<c-o>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit='vertical'
-
-" Compatibility with other plugins (e.g. `clang_complete`)
-" let g:UltiSnipsUsePythonVersion = 2
-let g:UltiSnipsUsePythonVersion = 3
-
 " Ale
 nmap <F3>] :ALEGoToDefinition<CR>
 nmap <F3>f :ALEFix<CR>
@@ -266,25 +249,6 @@ endfunction
 command! DiffSaved call s:DiffSaved()
 command! CompareSaved call s:DiffSaved()
 
-function! s:ToJavaString()
-    for i in range(1, line('$'))
-        call setline(i, substitute(getline(i), '"', '\\"', 'g'))
-        call setline(i, substitute(getline(i), '^', '+ "', 'g'))
-        call setline(i, substitute(getline(i), '$', '"', 'g'))
-    endfor
-    normal! zR
-endfunction
-command! ToJavaString call s:ToJavaString()
-
-function! s:ToJavaStringFromJsonValues()
-    for i in range(1, line('$'))
-        call setline(i, substitute(getline(i), '^[^:]*:\s*', '', 'g'))
-        call setline(i, substitute(getline(i), '"\s*,', '" +', 'g'))
-    endfor
-    normal! zR
-endfunction
-command! ToJavaStringFromJsonValues call s:ToJavaStringFromJsonValues()
-
 " https://github.com/frioux/vim-lost
 " https://git.savannah.gnu.org/cgit/diffutils.git/tree/src/diff.c?id=eaa2a24#n464
 function! s:LineContext()
@@ -465,16 +429,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 set autochdir
 set autoread
-set wildignore+=.hg,.git,.svn
-set wildignore+=*.aux,*.out,*.toc
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-set wildignore+=*.o,*.lo,*.obj,*.exe,*.dll,*.manifest
-set wildignore+=*.spl
-set wildignore+=*.luac
-set wildignore+=*.pyc
-set wildignore+=*.class,*.jar
-set wildignore+=*.DS_Store
-set wildignore+=*.sw?
 set tags=tags;
 if isdirectory($HOME . '/tmp')
     set backupdir=~/tmp directory=~/tmp
@@ -591,8 +545,6 @@ augroup filetype_group
     " Alternative:
     " redir @">|silent echo '# ' . expand('%:t:r')|redir END|put
     autocmd BufNewFile *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown} put = '# ' . expand('%:t:r') | normal! ggdd2o
-    " Override MkdInlineURL overriding previously set highlight
-    autocmd BufReadPost *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown} call InitColorScheme()
 
     if isdirectory(expand('~/code/snippets/recipes/'))
         autocmd BufNewFile *.awk 0r ~/code/snippets/recipes/awk | normal! Gdd
@@ -653,34 +605,6 @@ augroup filetype_group
                 \ syntax match My4 /\(\( \)\@<=ff\)\|\(ff\( \)\@=\)/
 augroup END
 
-" Previewed files are present in the current directory
-let g:netrw_keepdir = 0
-
-function! PreviewFile(...)
-    let l:uri = a:1
-    if !empty(glob(l:uri))
-        let l:type = system('file -ib ' . shellescape(l:uri))
-        if l:type =~# '^text/plain'
-            silent! execute 'pedit!' l:uri
-        elseif l:type =~# '^inode/directory'
-            let l:name = tempname()
-            set noautochdir
-            silent! execute 'pedit! ' . l:name
-            wincmd P
-            normal! ggdG
-            silent! execute 'r !ls ' . l:uri
-            normal! ggdd
-            wincmd w
-        endif
-    endif
-endfunction
-augroup netrw_group
-    autocmd!
-    autocmd FileType netrw
-                \ nnoremap j j:call PreviewFile(expand("<cWORD>"))<CR> |
-                \ nnoremap k k:call PreviewFile(expand("<cWORD>"))<CR>
-augroup END
-
 " Reference: https://github.com/travisjeffery/vim-auto-mkdir
 augroup auto_mkdir
     autocmd!
@@ -714,16 +638,27 @@ command! HighlightedSynGroup call HighlightedSynGroup()
 " Alternatives:
 " - https://github.com/MattesGroeger/vim-bookmarks
 function! MyHighlights() abort
-    hi My0 ctermbg=magenta guibg=magenta ctermfg=black guifg=black
-    hi My1 ctermbg=blue    guibg=blue    ctermfg=black guifg=black
-    hi My2 ctermbg=cyan    guibg=cyan    ctermfg=black guifg=black
-    hi My3 ctermbg=green   guibg=green   ctermfg=black guifg=black
-    hi My4 ctermbg=yellow  guibg=yellow  ctermfg=black guifg=black
+    if !exists("g:terminal_ansi_colors")
+        let g:terminal_ansi_colors = []
+    endif
+
+    execute printf("hi My0 ctermbg=magenta guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 5, 'magenta'))
+    execute printf("hi My1 ctermbg=red     guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 1, 'red'))
+    execute printf("hi My2 ctermbg=cyan    guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 6, 'cyan'))
+    execute printf("hi My3 ctermbg=green   guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 2, 'green'))
+    execute printf("hi My4 ctermbg=yellow  guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 3, 'yellow'))
+
+    execute printf("hi MyF0 ctermfg=magenta guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
+    execute printf("hi MyF1 ctermfg=red     guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 1, 'red'))
+    execute printf("hi MyF2 ctermfg=cyan    guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 6, 'cyan'))
+    execute printf("hi MyF3 ctermfg=green   guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 2, 'green'))
+    execute printf("hi MyF4 ctermfg=yellow  guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 3, 'yellow'))
 endfunction
 augroup MyColors
     autocmd!
     autocmd BufEnter * call MyHighlights()
 augroup END
+
 function! Match(...)
     if !exists('w:matches')
         let w:matches = {}
@@ -741,11 +676,6 @@ function! Match(...)
 endfunction
 command! -nargs=* M :call Match(<f-args>)
 
-hi MyF0 ctermfg=magenta guifg=magenta cterm=bold gui=bold
-hi MyF1 ctermfg=blue    guifg=blue    cterm=bold gui=bold
-hi MyF2 ctermfg=cyan    guifg=cyan    cterm=bold gui=bold
-hi MyF3 ctermfg=green   guifg=green   cterm=bold gui=bold
-hi MyF4 ctermfg=yellow  guifg=yellow  cterm=bold gui=bold
 function! MatchFG(...)
     if !exists('w:matches_fg')
         let w:matches_fg = {}
