@@ -32,6 +32,6 @@ UXTerm*color14: #285055
 
 ! white
 UXTerm*color7: #dddddd
-UXTerm*color15: #807e92
+UXTerm*color15: #807c98
 
 UXTerm*reverseVideo: true

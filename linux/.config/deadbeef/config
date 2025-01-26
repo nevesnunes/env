@@ -13,7 +13,7 @@ gtkui.color.bar_foreground 19018 37008 55769
 gtkui.color.tabstrip_playing_text 0 0 0
 gtkui.color.tabstrip_selected_text 0 0 0
 gtkui.color.tabstrip_text 0 0 0
-gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"45","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"252","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"293","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"81","align":"0","color_override":"0","color":"#ff313739"}]
+gtkui.columns.playlist [{"title":"#","id":"-1","format":"%tracknumber%","sort_format":"","size":"48","align":"0","color_override":"0","color":"#ff313739"},{"title":"Artist - Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"265","align":"0","color_override":"0","color":"#ff313739"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"262","align":"0","color_override":"0","color":"#ff313739"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"77","align":"0","color_override":"0","color":"#ff313739"}]
 gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 0
@@ -88,19 +88,20 @@ output_plugin pulseaudio
 playback.loop 1
 playback.order 0
 playback.volume -6.400000
-playback.volume.normalized 0.7363176
-playlist.current 0
+playback.volume.normalized 0.7834148
+playlist.current 2
 playlist.cursor.0 0
-playlist.cursor.1 0
+playlist.cursor.1 4
 playlist.cursor.2 0
-playlist.cursor.3 0
+playlist.cursor.3 5
 playlist.scroll.0 0
-playlist.scroll.1 0
+playlist.scroll.1 -4
 playlist.scroll.2 0
-playlist.scroll.3 0
+playlist.scroll.3 50
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default
 playlist.tab.00001 New Playlist
+playlist.tab.00002 New Playlist (1)
 prefwin.geometry.h 596
 prefwin.geometry.w 789
 prefwin.geometry.x 655
@@ -108,9 +109,9 @@ prefwin.geometry.y 142
 replaygain_mode 0
 replaygain_scale 1
 resume.paused 0
-resume.playlist -1
-resume.position -1.000000
-resume.track -1
+resume.playlist 2
+resume.position 0.0853333
+resume.track 4
 streamer.8_to_16 1
 streamer.bit_override 0
 streamer.samplerate 44100

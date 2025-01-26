@@ -199,6 +199,12 @@ augroup vim_enter
     autocmd VimEnter * call VimEnterPluginBehaviour()
 augroup END
 
+augroup file_changed_shell
+    " Ignore warnings
+    autocmd!
+    autocmd FileChangedShell * :
+augroup END
+
 " }}}
 " {{{ FUNCTIONS
 
