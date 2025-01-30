@@ -6,7 +6,12 @@
 # We wrap in a local function instead of exporting the variable directly in
 # order to avoid interfering with manually-run git commands by the user.
 function __git_prompt_git() {
-  GIT_OPTIONAL_LOCKS=0 command git "$@"
+  if [ -n "$__GIT_TIMEOUT" ]; then
+    unset "$__GIT_TIMEOUT"
+    GIT_OPTIONAL_LOCKS=0 command timeout 1 git "$@" || echo "?"
+  else
+    GIT_OPTIONAL_LOCKS=0 command git "$@"
+  fi
 }
 
 # Outputs current branch info in prompt format
@@ -38,9 +43,11 @@ function parse_git_dirty() {
         FLAGS+="--ignore-submodules=${GIT_STATUS_IGNORE_SUBMODULES:-dirty}"
         ;;
     esac
-    STATUS=$(__git_prompt_git status ${FLAGS} 2> /dev/null | tail -n1)
+    STATUS=$(__GIT_TIMEOUT=1 __git_prompt_git status ${FLAGS} 2> /dev/null | tail -n1)
   fi
-  if [[ -n $STATUS ]]; then
+  if echo "$STATUS" | grep -q "?$"; then
+    echo "?"
+  elif [[ -n $STATUS ]]; then
     echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
   else
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"

@@ -150,6 +150,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.w3m/keymap \
   /home/"$USER"/./bin/*.sh \
   /home/"$USER"/./bin/functions \
+  /home/"$USER"/./bin/zsh \
   ./linux/
 
 rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \

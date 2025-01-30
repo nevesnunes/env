@@ -18,11 +18,11 @@ _jobs_info() {
     fi
 }
 
-local user_color='green'; [ $UID -eq 0 ] && user_color='red'
+local user_color='cyan'; [ $UID -eq 0 ] && user_color='red'
 local return_status="%{$fg_bold[red]%}%(?..%? )%{$reset_color%}"
 
 # Note: if reset is not followed by a printable character, terminals with column length matching prompt length have invalid line wrapping
-PROMPT='%{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}$(git_prompt_info)$(_jobs_info) $return_status%{$reset_color%}%{$fg_bold[green]%}####%{$reset_color%} '
+PROMPT='%{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}$(git_prompt_info)$(_jobs_info) $return_status%{$reset_color%}%{$fg_bold[$user_color]%}####%{$reset_color%} '
 PROMPT2='%{$fg[red]%} %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" ("
