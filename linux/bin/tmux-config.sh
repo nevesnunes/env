@@ -44,7 +44,7 @@ if [ "$(echo "$TMUX_VERSION < 2.8" | bc)" = 1 ]; then
   tmux set -g status-fg white
 
   # Active window title colors
-  tmux setw -g window-status-current-fg cyan
+  tmux setw -g window-status-current-fg blue
   tmux setw -g window-status-current-bg default
   tmux setw -g window-status-current-attr bright
 else
@@ -54,5 +54,5 @@ else
   tmux set -g status-style fg=white,bg=default
 
   # Active window title colors
-  tmux setw -g window-status-current-style fg=cyan,bg=default,bright
+  tmux setw -g window-status-current-style fg=blue,bg=default,bright
 fi

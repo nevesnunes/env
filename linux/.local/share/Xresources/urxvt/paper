@@ -30,7 +30,7 @@ URxvt*color6: #285055
 URxvt*color14: #285055
 
 ! white
-URxvt*color7: #222222
+URxvt*color7: #3b2e44
 URxvt*color15: #000000
 
 URxvt*reverseVideo: true

@@ -3,7 +3,7 @@ UXTerm*foreground: #dddddd
 UXTerm*background: #000000
 
 ! black
-UXTerm*color0: #222222
+UXTerm*color0: #3b2e44
 UXTerm*color8: #000000
 
 ! red
