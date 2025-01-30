@@ -1,4 +1,4 @@
-prompt_fg="\[$(tput setaf 2)\]"
+prompt_fg="\[$(tput setaf 6)\]"
 prompt_red_fg="\[$(tput setaf 1)\]"
 prompt_bold="\[$(tput bold)\]"
 prompt_reset="\[$(tput sgr0)\]"
