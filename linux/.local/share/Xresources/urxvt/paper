@@ -26,8 +26,8 @@ URxvt*color5: #804fa1
 URxvt*color13: #804fa1
 
 ! cyan
-URxvt*color6: #285055
-URxvt*color14: #285055
+URxvt*color6: #05505d
+URxvt*color14: #05505d
 
 ! white
 URxvt*color7: #3b2e44

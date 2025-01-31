@@ -27,8 +27,8 @@ UXTerm*color5: #8854ab
 UXTerm*color13: #8854ab
 
 ! cyan
-UXTerm*color6: #285055
-UXTerm*color14: #285055
+UXTerm*color6: #05505d
+UXTerm*color14: #05505d
 
 ! white
 UXTerm*color7: #dddddd
