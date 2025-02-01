@@ -50,6 +50,7 @@ URxvt*font: xft:Monospace-10,xft:Source Han Sans CN:pixelsize=10:antialias=true
 URxvt*letterSpace: -1
 
 URxvt*geometry: 84x24
+URxvt*intensityStyles: false
 URxvt*internalBorder: 1
 URxvt*jumpScroll: true
 URxvt*loginShell: true

@@ -110,8 +110,8 @@ replaygain_mode 0
 replaygain_scale 1
 resume.paused 0
 resume.playlist 1
-resume.position 0.0619048
-resume.track 3
+resume.position 0.0000000
+resume.track 4
 streamer.8_to_16 1
 streamer.bit_override 0
 streamer.samplerate 44100

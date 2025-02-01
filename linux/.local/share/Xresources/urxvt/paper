@@ -33,4 +33,5 @@ URxvt*color14: #05505d
 URxvt*color7: #3b2e44
 URxvt*color15: #000000
 
+URxvt*cursorColor: #4e6cd0
 URxvt*reverseVideo: true

@@ -34,4 +34,5 @@ UXTerm*color14: #05505d
 UXTerm*color7: #dddddd
 UXTerm*color15: #807c98
 
+UXTerm*cursorColor: #4e6cd0
 UXTerm*reverseVideo: true
