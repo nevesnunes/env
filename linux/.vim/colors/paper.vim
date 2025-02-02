@@ -48,13 +48,13 @@ let g:terminal_ansi_colors = [
 " b84c54 = Orange
 " 7254a0 = Violet
 " 467642 = Light Green
-" d7e0ec = Light Blue
+" d8e4ec = Light Blue
 
 "
 " Basic
 "
 
-hi Normal guifg=#000000 guibg=#d7e0ec gui=NONE ctermbg=NONE ctermfg=white
+hi Normal guifg=#000000 guibg=#d8e4ec gui=NONE ctermbg=NONE ctermfg=white
 
 hi Boolean   guifg=#7254a0 guibg=NONE gui=bold ctermbg=NONE ctermfg=5 cterm=bold
 hi Character guifg=#7254a0 guibg=NONE gui=bold ctermbg=NONE ctermfg=5 cterm=bold
@@ -114,10 +114,10 @@ hi CursorColumn guifg=NONE    guibg=#ffffff gui=NONE ctermbg=NONE  ctermfg=white
 hi CursorLine   guifg=NONE    guibg=#ffffff gui=NONE ctermbg=NONE  ctermfg=white
 hi Directory    guifg=#14544d guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=6
 hi VertSplit    guifg=#3b708a guibg=#3b708a gui=bold ctermbg=8     ctermfg=8     cterm=bold
-hi Folded       guifg=#3b708a guibg=#d7e0ec gui=NONE ctermbg=NONE  ctermfg=white
-hi FoldColumn   guifg=#3b708a guibg=#d7e0ec gui=NONE ctermbg=NONE  ctermfg=white
+hi Folded       guifg=#3b708a guibg=#d8e4ec gui=NONE ctermbg=NONE  ctermfg=white
+hi FoldColumn   guifg=#3b708a guibg=#d8e4ec gui=NONE ctermbg=NONE  ctermfg=white
 hi IncSearch    guifg=#ffffff guibg=#b84c54 gui=NONE ctermbg=white ctermfg=0     cterm=bold
-hi LineNr       guifg=#3b708a guibg=#d7e0ec gui=NONE ctermbg=NONE  ctermfg=8     cterm=NONE
+hi LineNr       guifg=#3b708a guibg=#d8e4ec gui=NONE ctermbg=NONE  ctermfg=8     cterm=NONE
 hi Question     guifg=#ffffff guibg=#14544d gui=NONE ctermbg=5     ctermfg=black
 hi Search       guifg=#ffffff guibg=#b84c54 gui=NONE ctermbg=4     ctermfg=black cterm=bold
 hi Title        guifg=#000000 guibg=NONE    gui=bold ctermbg=NONE  ctermfg=white cterm=bold
@@ -126,17 +126,17 @@ hi WarningMsg   guifg=#ffffff guibg=#14544d gui=NONE ctermbg=5     ctermfg=black
 hi Scrollbar    guifg=#d3d3d3 guibg=#a9a7a9 gui=NONE ctermbg=NONE  ctermfg=white
 hi Tooltip      guifg=#000000 guibg=#d3d3d3 gui=NONE ctermbg=NONE  ctermfg=white
 
-hi StatusLine   guifg=#d7e0ec guibg=#3b708a gui=bold ctermbg=8    ctermfg=black cterm=bold
+hi StatusLine   guifg=#d8e4ec guibg=#3b708a gui=bold ctermbg=8    ctermfg=black cterm=bold
 hi StatusLineNC guifg=#8cc3ca guibg=#3b708a gui=bold ctermbg=8    ctermfg=3     cterm=bold
-hi TabLineFill  guifg=#d7e0ec guibg=#3b708a gui=bold ctermbg=4    ctermfg=black cterm=bold
-hi TabLine      guifg=#d7e0ec guibg=#3b708a gui=bold ctermbg=4    ctermfg=black cterm=bold
-hi TabLineSel   guifg=#000000 guibg=#d7e0ec gui=bold ctermbg=NONE ctermfg=white cterm=bold
+hi TabLineFill  guifg=#d8e4ec guibg=#3b708a gui=bold ctermbg=4    ctermfg=black cterm=bold
+hi TabLine      guifg=#d8e4ec guibg=#3b708a gui=bold ctermbg=4    ctermfg=black cterm=bold
+hi TabLineSel   guifg=#000000 guibg=#d8e4ec gui=bold ctermbg=NONE ctermfg=white cterm=bold
 hi WildMenu     guifg=#ffffff guibg=#b84c54 gui=bold ctermbg=4    ctermfg=black cterm=bold
 
 hi Menu       guifg=#ffffff guibg=#b84c54 gui=italic ctermbg=3    ctermfg=0     cterm=NONE
-hi PMenuSbar  guifg=#d7e0ec guibg=#3b708a gui=NONE   ctermbg=8    ctermfg=white
+hi PMenuSbar  guifg=#d8e4ec guibg=#3b708a gui=NONE   ctermbg=8    ctermfg=white
 hi PMenuSel   guifg=#ffffff guibg=#b84c54 gui=bold   ctermbg=4    ctermfg=black
-hi PMenu      guifg=#d7e0ec guibg=#3b708a gui=bold   ctermbg=0    ctermfg=3
+hi PMenu      guifg=#d8e4ec guibg=#3b708a gui=bold   ctermbg=0    ctermfg=3
 hi PMenuThumb guifg=#3b708a guibg=#8cc3ca gui=NONE   ctermbg=NONE ctermfg=white
 
 hi cformat           guifg=#b84c54 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=6
@@ -144,14 +144,14 @@ hi cspecialcharacter guifg=#b84c54 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=
 hi MatchParen        guifg=#ffffff guibg=#b84c54 gui=bold ctermbg=white ctermfg=blue cterm=bold,reverse term=bold,reverse
 hi preproc           guifg=#7254a0 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=5
 
-hi SignColumn guifg=#3b708a guibg=#d7e0ec gui=bold ctermbg=NONE ctermfg=3 cterm=bold
+hi SignColumn guifg=#3b708a guibg=#d8e4ec gui=bold ctermbg=NONE ctermfg=3 cterm=bold
 
 "
 " TeX
 "
 
-hi texSubscript   guifg=#000000 guibg=#d7e0ec gui=NONE ctermbg=NONE ctermfg=white cterm=NONE
-hi texSuperscript guifg=#000000 guibg=#d7e0ec gui=NONE ctermbg=NONE ctermfg=white cterm=NONE
+hi texSubscript   guifg=#000000 guibg=#d8e4ec gui=NONE ctermbg=NONE ctermfg=white cterm=NONE
+hi texSuperscript guifg=#000000 guibg=#d8e4ec gui=NONE ctermbg=NONE ctermfg=white cterm=NONE
 
 "
 " Diff

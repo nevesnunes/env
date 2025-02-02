@@ -1,8 +1,8 @@
-URxvt*foreground: #dddddd
-URxvt*background: #000000
+URxvt*foreground: #dddde8
+URxvt*background: #281830
 
 ! black
-URxvt*color0: #dddddd
+URxvt*color0: #dddde8
 URxvt*color8: #807c98
 
 ! red
@@ -30,8 +30,8 @@ URxvt*color6: #05505d
 URxvt*color14: #05505d
 
 ! white
-URxvt*color7: #3b2e44
-URxvt*color15: #000000
+URxvt*color7: #403448
+URxvt*color15: #281830
 
 URxvt*cursorColor: #4e6cd0
 URxvt*reverseVideo: true

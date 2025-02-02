@@ -460,6 +460,15 @@ auto* p = &i; // still int*
 > let p : Pointer = &i      // auto*
 > let p = &i                // auto
 
+# unpack
+
+```c
+// struct.pack('>f', 225.22).hex()
+int i = 0x43613852;
+float f = *((float*)&i);
+printf("225.22 = %.2f\n", f);
+```
+
 ---
 
 # Dependencies
