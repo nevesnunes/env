@@ -137,6 +137,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.local/share/icons/hicolor \
   /home/"$USER"/./.local/share/icons/Uhita \
   /home/"$USER"/./.local/share/nautilus \
+  /home/"$USER"/./.local/share/pygments* \
   /home/"$USER"/./.local/share/systemd \
   /home/"$USER"/./.local/share/terminfo \
   /home/"$USER"/./.local/share/themes \

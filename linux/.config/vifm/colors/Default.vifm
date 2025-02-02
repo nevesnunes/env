@@ -43,23 +43,12 @@
 
 " highlight group cterm=attrs ctermfg=foreground_color ctermbg=background_color
 
-highlight clear
+" https://github.com/vifm/vifm/blob/6735a258310ab5591d7f195e89fbae6c32fa07c6/data/colors/Default-256.vifm
 
-highlight Win cterm=none ctermfg=white ctermbg=black
-highlight Directory cterm=bold ctermfg=cyan ctermbg=default
-highlight Link cterm=bold ctermfg=yellow ctermbg=default
-highlight BrokenLink cterm=bold ctermfg=red ctermbg=default
-highlight Socket cterm=bold ctermfg=magenta ctermbg=default
-highlight Device cterm=bold ctermfg=red ctermbg=default
-highlight Fifo cterm=bold ctermfg=cyan ctermbg=default
-highlight Executable cterm=bold ctermfg=green ctermbg=default
-highlight Selected cterm=bold ctermfg=magenta ctermbg=default
-highlight CurrLine cterm=bold ctermfg=default ctermbg=blue
-highlight TopLine cterm=none ctermfg=black ctermbg=white
-highlight TopLineSel cterm=bold ctermfg=black ctermbg=default
-highlight StatusLine cterm=bold ctermfg=black ctermbg=white
-highlight WildMenu cterm=underline,reverse ctermfg=white ctermbg=black
-highlight CmdLine cterm=none ctermfg=white ctermbg=black
-highlight ErrorMsg cterm=none ctermfg=red ctermbg=black
-highlight Border cterm=none ctermfg=black ctermbg=white
-highlight JobLine cterm=bold,reverse ctermfg=black ctermbg=white
+" highlight clear
+
+highlight Border cterm=none ctermfg=black ctermbg=8
+highlight CurrLine cterm=bold ctermfg=black ctermbg=blue
+highlight StatusLine cterm=bold ctermfg=black ctermbg=8
+highlight TopLine cterm=bold ctermfg=yellow ctermbg=8
+highlight TopLineSel cterm=bold ctermfg=black ctermbg=8

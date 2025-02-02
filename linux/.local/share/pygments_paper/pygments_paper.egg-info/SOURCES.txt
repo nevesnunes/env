@@ -1,0 +1,6 @@
+setup.py
+pygments_paper.egg-info/PKG-INFO
+pygments_paper.egg-info/SOURCES.txt
+pygments_paper.egg-info/dependency_links.txt
+pygments_paper.egg-info/entry_points.txt
+pygments_paper.egg-info/top_level.txt

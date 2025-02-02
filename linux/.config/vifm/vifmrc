@@ -5,355 +5,357 @@ view
 map <Tab> <C-w><C-w>
 map q :q<CR>
 
-"fileviewer *[^/] pygmentize
-fileviewer *.[1234567],*.man pygmentize -l groff
-fileviewer *.abap,*.ABAP pygmentize -l abap
-fileviewer *.abnf pygmentize -l abnf
-fileviewer *.adb,*.ads,*.ada pygmentize -l ada
-fileviewer *.adl,*.adls,*.adlf,*.adlx pygmentize -l adl
-fileviewer *.agda pygmentize -l agda
-fileviewer *.aheui pygmentize -l aheui
-fileviewer *.ahk,*.ahkl pygmentize -l ahk
-fileviewer *.aj pygmentize -l aspectj
-fileviewer *.als pygmentize -l alloy
-fileviewer *.apl pygmentize -l apl
-fileviewer *.applescript pygmentize -l applescript
-fileviewer *.as pygmentize -l as
-fileviewer *.asm,*.ASM pygmentize -l nasm
-fileviewer *.tasm pygmentize -l tasm
-fileviewer *.aspx,*.asax,*.ascx,*.ashx,*.asmx,*.axd pygmentize -l aspx-cs
-fileviewer *.aspx,*.asax,*.ascx,*.ashx,*.asmx,*.axd pygmentize -l aspx-vb
-fileviewer *.asy pygmentize -l asy
-fileviewer *.at pygmentize -l at
-fileviewer *.au3 pygmentize -l autoit
-fileviewer *.awk pygmentize -l awk
-fileviewer *.b pygmentize -l limbo
-fileviewer *.bas pygmentize -l cbmbas
-fileviewer *.BAS,*.bas pygmentize -l qbasic
-fileviewer *.bat,*.cmd pygmentize -l bat
-fileviewer *.bb,*.decls pygmentize -l blitzbasic
-fileviewer *.bc pygmentize -l bc
-fileviewer *.befunge pygmentize -l befunge
-fileviewer *.bf,*.b pygmentize -l brainfuck
-fileviewer *.bib pygmentize -l bib
-fileviewer *.bmx pygmentize -l blitzmax
-fileviewer *.bnf pygmentize -l bnf
-fileviewer *.boo pygmentize -l boo
-fileviewer *.bpl pygmentize -l boogie
-fileviewer *.bro pygmentize -l bro
-fileviewer *.bst pygmentize -l bst
-fileviewer *.bug pygmentize -l bugs
-fileviewer *.c,*.h,*.idc pygmentize -l c
-fileviewer *.cadl pygmentize -l cadl
-fileviewer *.camkes,*.idl4 pygmentize -l camkes
-fileviewer *.capnp pygmentize -l capnp
-fileviewer *.cbl,*.CBL pygmentize -l cobolfree
-fileviewer *.cdl pygmentize -l capdl
-fileviewer *.ceylon pygmentize -l ceylon
-fileviewer *.cf pygmentize -l cfengine3
-fileviewer *.cfc pygmentize -l cfc
-fileviewer *.cfm,*.cfml pygmentize -l cfm
-fileviewer *.chai pygmentize -l chai
-fileviewer *.chpl pygmentize -l chapel
-fileviewer *.cirru pygmentize -l cirru
-fileviewer *.cl,*.lisp pygmentize -l common-lisp
-fileviewer *.clay pygmentize -l clay
-fileviewer *.clj pygmentize -l clojure
-fileviewer *.cljs pygmentize -l clojurescript
-fileviewer *.cmake,CMakeLists.txt pygmentize -l cmake
-fileviewer *.cob,*.COB,*.cpy,*.CPY pygmentize -l cobol
-fileviewer *.c-objdump pygmentize -l c-objdump
-fileviewer *.coffee pygmentize -l coffee-script
-fileviewer *.cp,*.cps pygmentize -l componentpascal
-fileviewer *.cpp,*.hpp,*.c++,*.h++,*.cc,*.hh,*.cxx,*.hxx,*.C,*.H,*.cp,*.CPP pygmentize -l cpp
-fileviewer *.cpp-objdump,*.c++-objdump,*.cxx-objdump pygmentize -l cpp-objdump
-fileviewer *.cpsa pygmentize -l cpsa
-fileviewer *.cr pygmentize -l cr
-fileviewer *.crmsh,*.pcmk pygmentize -l crmsh
-fileviewer *.croc pygmentize -l croc
-fileviewer *.cry pygmentize -l cryptol
-fileviewer *.cs pygmentize -l csharp
-fileviewer *.csd pygmentize -l csound-document
-fileviewer *.css pygmentize -l css
-fileviewer *.css.in pygmentize -l css+mozpreproc
-fileviewer *.cu,*.cuh pygmentize -l cuda
-fileviewer *.cw pygmentize -l redcode
-fileviewer *.cyp,*.cypher pygmentize -l cypher
-fileviewer *.d,*.di pygmentize -l d
-fileviewer *.dart pygmentize -l dart
-fileviewer *.def,*.mod pygmentize -l modula2
-fileviewer *.dg pygmentize -l dg
-fileviewer *.diff,*.patch pygmentize -l diff
-fileviewer *.do,*.ado pygmentize -l stata
-fileviewer *.d-objdump pygmentize -l d-objdump
-fileviewer *.dpatch,*.darcspatch pygmentize -l dpatch
-fileviewer *.dtd pygmentize -l dtd
-fileviewer *.duel,*.jbst pygmentize -l duel
-fileviewer *.dylan,*.dyl,*.intr pygmentize -l dylan
-fileviewer *.dylan-console pygmentize -l dylan-console
-fileviewer *.e pygmentize -l eiffel
-fileviewer *.ebnf pygmentize -l ebnf
-fileviewer *.ec,*.eh pygmentize -l ec
-fileviewer *.ecl pygmentize -l ecl
-fileviewer *.ecl,*.prolog,*.pro,*.pl pygmentize -l prolog
-fileviewer *.eg pygmentize -l earl-grey
-fileviewer *.el pygmentize -l emacs
-fileviewer *.elm pygmentize -l elm
-fileviewer *.erl,*.hrl,*.es,*.escript pygmentize -l erlang
-fileviewer *.erl-sh pygmentize -l erl
-fileviewer *.evoque pygmentize -l evoque
-fileviewer *.ex,*.exs pygmentize -l elixir
-fileviewer *.ezt,*.mac pygmentize -l easytrieve
-fileviewer *.f,*.F pygmentize -l fortranfixed
-fileviewer *.f03,*.f90,*.F03,*.F90 pygmentize -l fortran
-fileviewer *.factor pygmentize -l factor
-fileviewer *.fan pygmentize -l fan
-fileviewer *.feature pygmentize -l cucumber
-fileviewer *.fish,*.load pygmentize -l fish
-fileviewer *.flx,*.flxh pygmentize -l felix
-fileviewer *.frt,*.fs pygmentize -l forth
-fileviewer *.fs,*.fsi pygmentize -l fsharp
-fileviewer *.fy,*.fancypack pygmentize -l fancy
-fileviewer *.G,*.g pygmentize -l antlr-as
-fileviewer *.G,*.g pygmentize -l antlr-cpp
-fileviewer *.G,*.g pygmentize -l antlr-csharp
-fileviewer *.G,*.g pygmentize -l antlr-java
-fileviewer *.G,*.g pygmentize -l antlr-objc
-fileviewer *.G,*.g pygmentize -l antlr-perl
-fileviewer *.G,*.g pygmentize -l antlr-python
-fileviewer *.G,*.g pygmentize -l antlr-ruby
-fileviewer *.g,*.gd,*.gi,*.gap pygmentize -l gap
-fileviewer *.gdc pygmentize -l gooddata-cl
-fileviewer *.go pygmentize -l go
-fileviewer *.golo pygmentize -l golo
-fileviewer *.graph pygmentize -l roboconf-graph
-fileviewer *.groovy,*.gradle pygmentize -l groovy
-fileviewer *.gs,*.gsx,*.gsp,*.vark pygmentize -l gosu
-fileviewer *.gst pygmentize -l gst
-fileviewer *.haml pygmentize -l haml
-fileviewer *.handlebars,*.hbs pygmentize -l html+handlebars
-fileviewer *.hs pygmentize -l haskell
-fileviewer *.hsail pygmentize -l hsail
-fileviewer *.html pygmentize -l html+evoque
-fileviewer *.html,*.htm,*.xhtml,*.xslt pygmentize -l html
-fileviewer *.hx,*.hxsl pygmentize -l hx
-fileviewer *.hxml pygmentize -l haxeml
-fileviewer *.hy pygmentize -l hylang
-fileviewer *.hy,*.hyb pygmentize -l hybris
-fileviewer *.i6t pygmentize -l i6t
-fileviewer *.icl,*.dcl pygmentize -l clean
-fileviewer *.idr pygmentize -l idris
-fileviewer *.ijs pygmentize -l j
-fileviewer *.ik pygmentize -l ioke
-fileviewer *.inf pygmentize -l inform6
-fileviewer *.ini,*.cfg,*.inf pygmentize -l ini
-fileviewer *.ino pygmentize -l arduino
-fileviewer *.instances pygmentize -l roboconf-instances
-fileviewer *.io pygmentize -l io
-fileviewer *.ipf pygmentize -l igor
-fileviewer *.j pygmentize -l jasmin
-fileviewer *.j pygmentize -l objective-j
-fileviewer *.jag,*.bug pygmentize -l jags
-fileviewer *.java pygmentize -l java
-fileviewer *.jcl pygmentize -l jcl
-fileviewer *.jl pygmentize -l julia
-fileviewer *.js,*.jsm pygmentize -l js
-fileviewer *.js.in pygmentize -l javascript+mozpreproc
-fileviewer *.jsgf pygmentize -l jsgf
-fileviewer *.json pygmentize -l json
-fileviewer *.jsonld pygmentize -l jsonld
-fileviewer *.jsp pygmentize -l jsp
-fileviewer *.juttle pygmentize -l juttle
-fileviewer *.kal pygmentize -l kal
-fileviewer *.kid pygmentize -l genshi
-fileviewer *.kk,*.kki pygmentize -l koka
-fileviewer *.kt pygmentize -l kotlin
-fileviewer *.lagda pygmentize -l lagda
-fileviewer *.lasso,*.lasso[89] pygmentize -l lasso
-fileviewer *.lcry pygmentize -l lcry
-fileviewer *.lean pygmentize -l lean
-fileviewer *.less pygmentize -l less
-fileviewer *.lgt,*.logtalk pygmentize -l logtalk
-fileviewer *.lhs pygmentize -l lhs
-fileviewer *.lid,*.hdp pygmentize -l dylan-lid
-fileviewer *.lidr pygmentize -l lidr
-fileviewer *.liquid pygmentize -l liquid
-fileviewer *.ll pygmentize -l llvm
-fileviewer *.ls pygmentize -l live-script
-fileviewer *.lsl pygmentize -l lsl
-fileviewer *.lsp,*.nl,*.kif pygmentize -l newlisp
-fileviewer *.lua,*.wlua pygmentize -l lua
-fileviewer *.m pygmentize -l matlab
-fileviewer *.m pygmentize -l octave
-fileviewer *.m,*.h pygmentize -l objective-c
-fileviewer *.m,*.mhtml,*.mc,*.mi,autohandler,dhandler pygmentize -l mason
-fileviewer *.mak,*.mk,Makefile,makefile,Makefile.*,GNUmakefile pygmentize -l make
-fileviewer *.mao pygmentize -l mako
-fileviewer *.maql pygmentize -l maql
-fileviewer *.mask pygmentize -l mask
-fileviewer *.md pygmentize -l md
-fileviewer *.ml,*.mli,*.mll,*.mly pygmentize -l ocaml
-fileviewer *.mm,*.hh pygmentize -l objective-c++
-fileviewer *.mo pygmentize -l modelica
-fileviewer *.monkey pygmentize -l monkey
-fileviewer *.moo pygmentize -l moocode
-fileviewer *.moon pygmentize -l moon
-fileviewer *.mq4,*.mq5,*.mqh pygmentize -l mql
-fileviewer *.msc pygmentize -l mscgen
-fileviewer *.mt pygmentize -l monte
-fileviewer *.mu pygmentize -l mupad
-fileviewer *.mxml pygmentize -l mxml
-fileviewer *.myt,autodelegate pygmentize -l myghty
-fileviewer *.n pygmentize -l ezhil
-fileviewer *.n pygmentize -l nemerle
-fileviewer *.nb,*.cdf,*.nbp,*.ma pygmentize -l mathematica
-fileviewer *.nc pygmentize -l nesc
-fileviewer *.ncl pygmentize -l ncl
-fileviewer *.ng2 pygmentize -l html+ng2
-fileviewer *.ni,*.i7x pygmentize -l inform7
-fileviewer *.nim,*.nimrod pygmentize -l nim
-fileviewer *.nit pygmentize -l nit
-fileviewer *.nix pygmentize -l nixos
-fileviewer *.ns2 pygmentize -l newspeak
-fileviewer *.nsi,*.nsh pygmentize -l nsis
-fileviewer *.objdump pygmentize -l objdump
-fileviewer *.objdump-intel pygmentize -l objdump-nasm
-fileviewer *.odin pygmentize -l odin
-fileviewer *.ooc pygmentize -l ooc
-fileviewer *.opa pygmentize -l opa
-fileviewer *.orc pygmentize -l csound
-fileviewer *.p,*.cls pygmentize -l openedge
-fileviewer *.p,*.pwn,*.inc pygmentize -l pawn
-fileviewer *.pan pygmentize -l pan
-fileviewer *.pas,*.dpr pygmentize -l delphi
-fileviewer *.pc pygmentize -l pkgconfig
-fileviewer *.php,*.php[345],*.inc pygmentize -l php
-fileviewer *.phtml pygmentize -l html+php
-fileviewer *.pig pygmentize -l pig
-fileviewer *.pike,*.pmod pygmentize -l pike
-fileviewer *.pl,*.pm,*.nqp,*.p6,*.6pl,*.p6l,*.pl6,*.6pm,*.p6m,*.pm6,*.t pygmentize -l perl6
-fileviewer *.pl,*.pm,*.t pygmentize -l perl
-fileviewer *.plot,*.plt pygmentize -l gnuplot
-fileviewer *.pot,*.po pygmentize -l pot
-fileviewer *.pov,*.inc pygmentize -l pov
-fileviewer *.pp pygmentize -l puppet
-fileviewer *.praat,*.proc,*.psc pygmentize -l praat
-fileviewer *.PRG,*.prg pygmentize -l foxpro
-fileviewer *.pro pygmentize -l idl
-fileviewer *.properties pygmentize -l properties
-fileviewer *.proto pygmentize -l protobuf
-fileviewer *.ps,*.eps pygmentize -l postscript
-fileviewer *.ps1,*.psm1 pygmentize -l powershell
-fileviewer *.psi,*.psl pygmentize -l parasail
-fileviewer *.pug,*.jade pygmentize -l pug
-fileviewer *.py,*.pyw,*.sc,SConstruct,SConscript,*.tac,*.sage pygmentize -l python
-fileviewer *.py3tb pygmentize -l py3tb
-fileviewer *.pypylog pygmentize -l pypylog
-fileviewer *.pytb pygmentize -l pytb
-fileviewer *.pyx,*.pxd,*.pxi pygmentize -l cython
-fileviewer *.qml,*.qbs pygmentize -l qml
-fileviewer *.qvto pygmentize -l qvto
-fileviewer *.r,*.r3,*.reb pygmentize -l rebol
-fileviewer *.rb,*.rbw,Rakefile,*.rake,*.gemspec,*.rbx,*.duby,Gemfile pygmentize -l rb
-fileviewer *.Rd pygmentize -l rd
-fileviewer *.red,*.reds pygmentize -l red
-fileviewer *.reg pygmentize -l registry
-fileviewer *.rexx,*.rex,*.rx,*.arexx pygmentize -l rexx
-fileviewer *.rhtml pygmentize -l rhtml
-fileviewer *.rkt,*.rktd,*.rktl pygmentize -l racket
-fileviewer *.rnc pygmentize -l rnc
-fileviewer *.robot pygmentize -l robotframework
-fileviewer *.Rout pygmentize -l rconsole
-fileviewer *.rpf pygmentize -l vgl
-fileviewer *.rq,*.sparql pygmentize -l sparql
-fileviewer *.rql pygmentize -l rql
-fileviewer *.rs,*.rs.in pygmentize -l rust
-fileviewer *.rsl pygmentize -l rsl
-fileviewer *.rst,*.rest pygmentize -l rst
-fileviewer *.rts pygmentize -l rts
-fileviewer *.run pygmentize -l ampl
-fileviewer *.s pygmentize -l ca65
-fileviewer *.S,*.R,.Rhistory,.Rprofile,.Renviron pygmentize -l splus
-fileviewer *.s,*.S pygmentize -l gas
-fileviewer *.SAS,*.sas pygmentize -l sas
-fileviewer *.sass pygmentize -l sass
-fileviewer *.sbl pygmentize -l snowball
-fileviewer *.sc,*.scd pygmentize -l sc
-fileviewer *.scala pygmentize -l scala
-fileviewer *.scaml pygmentize -l scaml
-fileviewer *.sci,*.sce,*.tst pygmentize -l scilab
-fileviewer *.scm,*.ss pygmentize -l scheme
-fileviewer *.sco pygmentize -l csound-score
-fileviewer *.scss pygmentize -l scss
-fileviewer *.sh,*.ksh,*.bash,*.ebuild,*.eclass,*.exheres-0,*.exlib,*.zsh,.bashrc,bashrc,.bash_*,bash_*,zshrc,.zshrc,PKGBUILD pygmentize -l bash
-fileviewer *.shen pygmentize -l shen
-fileviewer *.sh-session,*.shell-session pygmentize -l console
-fileviewer *.sil,*.vpr pygmentize -l silver
-fileviewer *.slim pygmentize -l slim
-fileviewer *.sls pygmentize -l yaml+jinja
-fileviewer *.smali pygmentize -l smali
-fileviewer *.sml,*.sig,*.fun pygmentize -l sml
-fileviewer *.smv pygmentize -l nusmv
-fileviewer *.snobol pygmentize -l snobol
-fileviewer *.sp pygmentize -l sp
-fileviewer *.spec pygmentize -l spec
-fileviewer *.sql pygmentize -l sql
-fileviewer *.sqlite3-console pygmentize -l sqlite3
-fileviewer *.ssp pygmentize -l ssp
-fileviewer *.st pygmentize -l smalltalk
-fileviewer *.stan pygmentize -l stan
-fileviewer *.sv,*.svh pygmentize -l systemverilog
-fileviewer *.swg,*.i pygmentize -l swig
-fileviewer *.swift pygmentize -l swift
-fileviewer *.t pygmentize -l tads3
-fileviewer *.tap pygmentize -l tap
-fileviewer *.tcl,*.rvt pygmentize -l tcl
-fileviewer *.tcsh,*.csh pygmentize -l tcsh
-fileviewer *.tea pygmentize -l tea
-fileviewer *.tex,*.aux,*.toc pygmentize -l tex
-fileviewer *.tf pygmentize -l terraform
-fileviewer *.thrift pygmentize -l thrift
-fileviewer *.thy pygmentize -l isabelle
-fileviewer *.tmpl,*.spt pygmentize -l cheetah
-fileviewer *.tpl pygmentize -l smarty
-fileviewer *.treetop,*.tt pygmentize -l treetop
-fileviewer *.ts pygmentize -l ts
-fileviewer *.ts,*.txt pygmentize -l typoscript
-fileviewer *.ttl pygmentize -l turtle
-fileviewer *.twig pygmentize -l html+twig
-fileviewer *.txt pygmentize -l text
-fileviewer *.u pygmentize -l urbiscript
-fileviewer *.v pygmentize -l coq
-fileviewer *.v pygmentize -l verilog
-fileviewer *.vala,*.vapi pygmentize -l vala
-fileviewer *.vb,*.bas pygmentize -l vb.net
-fileviewer *.vcl pygmentize -l vcl
-fileviewer *.vert,*.frag,*.geo pygmentize -l glsl
-fileviewer *.vhdl,*.vhd pygmentize -l vhdl
-fileviewer *.vim,.vimrc,.exrc,.gvimrc,_vimrc,_exrc,_gvimrc,vimrc,gvimrc pygmentize -l vim
-fileviewer *.vm,*.fhtml pygmentize -l velocity
-fileviewer *.wdiff pygmentize -l wdiff
-fileviewer *.weechatlog pygmentize -l irc
-fileviewer *.whiley pygmentize -l whiley
-fileviewer *.x,*.xi,*.xm,*.xmi pygmentize -l logos
-fileviewer *.x10 pygmentize -l x10
-fileviewer *.xml pygmentize -l xml+evoque
-fileviewer *.xml,*.xsl,*.rss,*.xslt,*.xsd,*.wsdl,*.wsf pygmentize -l xml
-fileviewer *.xqy,*.xquery,*.xq,*.xql,*.xqm pygmentize -l xquery
-fileviewer *.xsl,*.xslt,*.xpl pygmentize -l xslt
-fileviewer *.xtend pygmentize -l xtend
-fileviewer *.xtm pygmentize -l extempore
-fileviewer *.xul.in pygmentize -l xul+mozpreproc
-fileviewer *.yaml,*.yml pygmentize -l yaml
-fileviewer *.zep pygmentize -l zephir
-fileviewer .htaccess,apache.conf,apache2.conf pygmentize -l apacheconf
-fileviewer control pygmentize -l control
-fileviewer Dockerfile,*.docker pygmentize -l docker
-fileviewer Kconfig,*Config.in*,external.in*,standard-modules.in pygmentize -l kconfig
-fileviewer nginx.conf pygmentize -l nginx
-fileviewer pacman.conf pygmentize -l pacmanconf
-fileviewer sources.list pygmentize -l sourceslist
-fileviewer squid.conf pygmentize -l squidconf
-fileviewer termcap,termcap.src pygmentize -l termcap
-fileviewer terminfo,terminfo.src pygmentize -l terminfo
-fileviewer todo.txt,*.todotxt pygmentize -l todotxt
+colorscheme Default
+
+"fileviewer *[^/] pygmentize -f terminal
+fileviewer *.[1234567],*.man pygmentize -f terminal -l groff
+fileviewer *.abap,*.ABAP pygmentize -f terminal -l abap
+fileviewer *.abnf pygmentize -f terminal -l abnf
+fileviewer *.adb,*.ads,*.ada pygmentize -f terminal -l ada
+fileviewer *.adl,*.adls,*.adlf,*.adlx pygmentize -f terminal -l adl
+fileviewer *.agda pygmentize -f terminal -l agda
+fileviewer *.aheui pygmentize -f terminal -l aheui
+fileviewer *.ahk,*.ahkl pygmentize -f terminal -l ahk
+fileviewer *.aj pygmentize -f terminal -l aspectj
+fileviewer *.als pygmentize -f terminal -l alloy
+fileviewer *.apl pygmentize -f terminal -l apl
+fileviewer *.applescript pygmentize -f terminal -l applescript
+fileviewer *.as pygmentize -f terminal -l as
+fileviewer *.asm,*.ASM pygmentize -f terminal -l nasm
+fileviewer *.tasm pygmentize -f terminal -l tasm
+fileviewer *.aspx,*.asax,*.ascx,*.ashx,*.asmx,*.axd pygmentize -f terminal -l aspx-cs
+fileviewer *.aspx,*.asax,*.ascx,*.ashx,*.asmx,*.axd pygmentize -f terminal -l aspx-vb
+fileviewer *.asy pygmentize -f terminal -l asy
+fileviewer *.at pygmentize -f terminal -l at
+fileviewer *.au3 pygmentize -f terminal -l autoit
+fileviewer *.awk pygmentize -f terminal -l awk
+fileviewer *.b pygmentize -f terminal -l limbo
+fileviewer *.bas pygmentize -f terminal -l cbmbas
+fileviewer *.BAS,*.bas pygmentize -f terminal -l qbasic
+fileviewer *.bat,*.cmd pygmentize -f terminal -l bat
+fileviewer *.bb,*.decls pygmentize -f terminal -l blitzbasic
+fileviewer *.bc pygmentize -f terminal -l bc
+fileviewer *.befunge pygmentize -f terminal -l befunge
+fileviewer *.bf,*.b pygmentize -f terminal -l brainfuck
+fileviewer *.bib pygmentize -f terminal -l bib
+fileviewer *.bmx pygmentize -f terminal -l blitzmax
+fileviewer *.bnf pygmentize -f terminal -l bnf
+fileviewer *.boo pygmentize -f terminal -l boo
+fileviewer *.bpl pygmentize -f terminal -l boogie
+fileviewer *.bro pygmentize -f terminal -l bro
+fileviewer *.bst pygmentize -f terminal -l bst
+fileviewer *.bug pygmentize -f terminal -l bugs
+fileviewer *.c,*.h,*.idc pygmentize -f terminal -l c
+fileviewer *.cadl pygmentize -f terminal -l cadl
+fileviewer *.camkes,*.idl4 pygmentize -f terminal -l camkes
+fileviewer *.capnp pygmentize -f terminal -l capnp
+fileviewer *.cbl,*.CBL pygmentize -f terminal -l cobolfree
+fileviewer *.cdl pygmentize -f terminal -l capdl
+fileviewer *.ceylon pygmentize -f terminal -l ceylon
+fileviewer *.cf pygmentize -f terminal -l cfengine3
+fileviewer *.cfc pygmentize -f terminal -l cfc
+fileviewer *.cfm,*.cfml pygmentize -f terminal -l cfm
+fileviewer *.chai pygmentize -f terminal -l chai
+fileviewer *.chpl pygmentize -f terminal -l chapel
+fileviewer *.cirru pygmentize -f terminal -l cirru
+fileviewer *.cl,*.lisp pygmentize -f terminal -l common-lisp
+fileviewer *.clay pygmentize -f terminal -l clay
+fileviewer *.clj pygmentize -f terminal -l clojure
+fileviewer *.cljs pygmentize -f terminal -l clojurescript
+fileviewer *.cmake,CMakeLists.txt pygmentize -f terminal -l cmake
+fileviewer *.cob,*.COB,*.cpy,*.CPY pygmentize -f terminal -l cobol
+fileviewer *.c-objdump pygmentize -f terminal -l c-objdump
+fileviewer *.coffee pygmentize -f terminal -l coffee-script
+fileviewer *.cp,*.cps pygmentize -f terminal -l componentpascal
+fileviewer *.cpp,*.hpp,*.c++,*.h++,*.cc,*.hh,*.cxx,*.hxx,*.C,*.H,*.cp,*.CPP pygmentize -f terminal -l cpp
+fileviewer *.cpp-objdump,*.c++-objdump,*.cxx-objdump pygmentize -f terminal -l cpp-objdump
+fileviewer *.cpsa pygmentize -f terminal -l cpsa
+fileviewer *.cr pygmentize -f terminal -l cr
+fileviewer *.crmsh,*.pcmk pygmentize -f terminal -l crmsh
+fileviewer *.croc pygmentize -f terminal -l croc
+fileviewer *.cry pygmentize -f terminal -l cryptol
+fileviewer *.cs pygmentize -f terminal -l csharp
+fileviewer *.csd pygmentize -f terminal -l csound-document
+fileviewer *.css pygmentize -f terminal -l css
+fileviewer *.css.in pygmentize -f terminal -l css+mozpreproc
+fileviewer *.cu,*.cuh pygmentize -f terminal -l cuda
+fileviewer *.cw pygmentize -f terminal -l redcode
+fileviewer *.cyp,*.cypher pygmentize -f terminal -l cypher
+fileviewer *.d,*.di pygmentize -f terminal -l d
+fileviewer *.dart pygmentize -f terminal -l dart
+fileviewer *.def,*.mod pygmentize -f terminal -l modula2
+fileviewer *.dg pygmentize -f terminal -l dg
+fileviewer *.diff,*.patch pygmentize -f terminal -l diff
+fileviewer *.do,*.ado pygmentize -f terminal -l stata
+fileviewer *.d-objdump pygmentize -f terminal -l d-objdump
+fileviewer *.dpatch,*.darcspatch pygmentize -f terminal -l dpatch
+fileviewer *.dtd pygmentize -f terminal -l dtd
+fileviewer *.duel,*.jbst pygmentize -f terminal -l duel
+fileviewer *.dylan,*.dyl,*.intr pygmentize -f terminal -l dylan
+fileviewer *.dylan-console pygmentize -f terminal -l dylan-console
+fileviewer *.e pygmentize -f terminal -l eiffel
+fileviewer *.ebnf pygmentize -f terminal -l ebnf
+fileviewer *.ec,*.eh pygmentize -f terminal -l ec
+fileviewer *.ecl pygmentize -f terminal -l ecl
+fileviewer *.ecl,*.prolog,*.pro,*.pl pygmentize -f terminal -l prolog
+fileviewer *.eg pygmentize -f terminal -l earl-grey
+fileviewer *.el pygmentize -f terminal -l emacs
+fileviewer *.elm pygmentize -f terminal -l elm
+fileviewer *.erl,*.hrl,*.es,*.escript pygmentize -f terminal -l erlang
+fileviewer *.erl-sh pygmentize -f terminal -l erl
+fileviewer *.evoque pygmentize -f terminal -l evoque
+fileviewer *.ex,*.exs pygmentize -f terminal -l elixir
+fileviewer *.ezt,*.mac pygmentize -f terminal -l easytrieve
+fileviewer *.f,*.F pygmentize -f terminal -l fortranfixed
+fileviewer *.f03,*.f90,*.F03,*.F90 pygmentize -f terminal -l fortran
+fileviewer *.factor pygmentize -f terminal -l factor
+fileviewer *.fan pygmentize -f terminal -l fan
+fileviewer *.feature pygmentize -f terminal -l cucumber
+fileviewer *.fish,*.load pygmentize -f terminal -l fish
+fileviewer *.flx,*.flxh pygmentize -f terminal -l felix
+fileviewer *.frt,*.fs pygmentize -f terminal -l forth
+fileviewer *.fs,*.fsi pygmentize -f terminal -l fsharp
+fileviewer *.fy,*.fancypack pygmentize -f terminal -l fancy
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-as
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-cpp
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-csharp
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-java
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-objc
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-perl
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-python
+fileviewer *.G,*.g pygmentize -f terminal -l antlr-ruby
+fileviewer *.g,*.gd,*.gi,*.gap pygmentize -f terminal -l gap
+fileviewer *.gdc pygmentize -f terminal -l gooddata-cl
+fileviewer *.go pygmentize -f terminal -l go
+fileviewer *.golo pygmentize -f terminal -l golo
+fileviewer *.graph pygmentize -f terminal -l roboconf-graph
+fileviewer *.groovy,*.gradle pygmentize -f terminal -l groovy
+fileviewer *.gs,*.gsx,*.gsp,*.vark pygmentize -f terminal -l gosu
+fileviewer *.gst pygmentize -f terminal -l gst
+fileviewer *.haml pygmentize -f terminal -l haml
+fileviewer *.handlebars,*.hbs pygmentize -f terminal -l html+handlebars
+fileviewer *.hs pygmentize -f terminal -l haskell
+fileviewer *.hsail pygmentize -f terminal -l hsail
+fileviewer *.html pygmentize -f terminal -l html+evoque
+fileviewer *.html,*.htm,*.xhtml,*.xslt pygmentize -f terminal -l html
+fileviewer *.hx,*.hxsl pygmentize -f terminal -l hx
+fileviewer *.hxml pygmentize -f terminal -l haxeml
+fileviewer *.hy pygmentize -f terminal -l hylang
+fileviewer *.hy,*.hyb pygmentize -f terminal -l hybris
+fileviewer *.i6t pygmentize -f terminal -l i6t
+fileviewer *.icl,*.dcl pygmentize -f terminal -l clean
+fileviewer *.idr pygmentize -f terminal -l idris
+fileviewer *.ijs pygmentize -f terminal -l j
+fileviewer *.ik pygmentize -f terminal -l ioke
+fileviewer *.inf pygmentize -f terminal -l inform6
+fileviewer *.ini,*.cfg,*.inf pygmentize -f terminal -l ini
+fileviewer *.ino pygmentize -f terminal -l arduino
+fileviewer *.instances pygmentize -f terminal -l roboconf-instances
+fileviewer *.io pygmentize -f terminal -l io
+fileviewer *.ipf pygmentize -f terminal -l igor
+fileviewer *.j pygmentize -f terminal -l jasmin
+fileviewer *.j pygmentize -f terminal -l objective-j
+fileviewer *.jag,*.bug pygmentize -f terminal -l jags
+fileviewer *.java pygmentize -f terminal -l java
+fileviewer *.jcl pygmentize -f terminal -l jcl
+fileviewer *.jl pygmentize -f terminal -l julia
+fileviewer *.js,*.jsm pygmentize -f terminal -l js
+fileviewer *.js.in pygmentize -f terminal -l javascript+mozpreproc
+fileviewer *.jsgf pygmentize -f terminal -l jsgf
+fileviewer *.json pygmentize -f terminal -l json
+fileviewer *.jsonld pygmentize -f terminal -l jsonld
+fileviewer *.jsp pygmentize -f terminal -l jsp
+fileviewer *.juttle pygmentize -f terminal -l juttle
+fileviewer *.kal pygmentize -f terminal -l kal
+fileviewer *.kid pygmentize -f terminal -l genshi
+fileviewer *.kk,*.kki pygmentize -f terminal -l koka
+fileviewer *.kt pygmentize -f terminal -l kotlin
+fileviewer *.lagda pygmentize -f terminal -l lagda
+fileviewer *.lasso,*.lasso[89] pygmentize -f terminal -l lasso
+fileviewer *.lcry pygmentize -f terminal -l lcry
+fileviewer *.lean pygmentize -f terminal -l lean
+fileviewer *.less pygmentize -f terminal -l less
+fileviewer *.lgt,*.logtalk pygmentize -f terminal -l logtalk
+fileviewer *.lhs pygmentize -f terminal -l lhs
+fileviewer *.lid,*.hdp pygmentize -f terminal -l dylan-lid
+fileviewer *.lidr pygmentize -f terminal -l lidr
+fileviewer *.liquid pygmentize -f terminal -l liquid
+fileviewer *.ll pygmentize -f terminal -l llvm
+fileviewer *.ls pygmentize -f terminal -l live-script
+fileviewer *.lsl pygmentize -f terminal -l lsl
+fileviewer *.lsp,*.nl,*.kif pygmentize -f terminal -l newlisp
+fileviewer *.lua,*.wlua pygmentize -f terminal -l lua
+fileviewer *.m pygmentize -f terminal -l matlab
+fileviewer *.m pygmentize -f terminal -l octave
+fileviewer *.m,*.h pygmentize -f terminal -l objective-c
+fileviewer *.m,*.mhtml,*.mc,*.mi,autohandler,dhandler pygmentize -f terminal -l mason
+fileviewer *.mak,*.mk,Makefile,makefile,Makefile.*,GNUmakefile pygmentize -f terminal -l make
+fileviewer *.mao pygmentize -f terminal -l mako
+fileviewer *.maql pygmentize -f terminal -l maql
+fileviewer *.mask pygmentize -f terminal -l mask
+fileviewer *.md pygmentize -f terminal -l md
+fileviewer *.ml,*.mli,*.mll,*.mly pygmentize -f terminal -l ocaml
+fileviewer *.mm,*.hh pygmentize -f terminal -l objective-c++
+fileviewer *.mo pygmentize -f terminal -l modelica
+fileviewer *.monkey pygmentize -f terminal -l monkey
+fileviewer *.moo pygmentize -f terminal -l moocode
+fileviewer *.moon pygmentize -f terminal -l moon
+fileviewer *.mq4,*.mq5,*.mqh pygmentize -f terminal -l mql
+fileviewer *.msc pygmentize -f terminal -l mscgen
+fileviewer *.mt pygmentize -f terminal -l monte
+fileviewer *.mu pygmentize -f terminal -l mupad
+fileviewer *.mxml pygmentize -f terminal -l mxml
+fileviewer *.myt,autodelegate pygmentize -f terminal -l myghty
+fileviewer *.n pygmentize -f terminal -l ezhil
+fileviewer *.n pygmentize -f terminal -l nemerle
+fileviewer *.nb,*.cdf,*.nbp,*.ma pygmentize -f terminal -l mathematica
+fileviewer *.nc pygmentize -f terminal -l nesc
+fileviewer *.ncl pygmentize -f terminal -l ncl
+fileviewer *.ng2 pygmentize -f terminal -l html+ng2
+fileviewer *.ni,*.i7x pygmentize -f terminal -l inform7
+fileviewer *.nim,*.nimrod pygmentize -f terminal -l nim
+fileviewer *.nit pygmentize -f terminal -l nit
+fileviewer *.nix pygmentize -f terminal -l nixos
+fileviewer *.ns2 pygmentize -f terminal -l newspeak
+fileviewer *.nsi,*.nsh pygmentize -f terminal -l nsis
+fileviewer *.objdump pygmentize -f terminal -l objdump
+fileviewer *.objdump-intel pygmentize -f terminal -l objdump-nasm
+fileviewer *.odin pygmentize -f terminal -l odin
+fileviewer *.ooc pygmentize -f terminal -l ooc
+fileviewer *.opa pygmentize -f terminal -l opa
+fileviewer *.orc pygmentize -f terminal -l csound
+fileviewer *.p,*.cls pygmentize -f terminal -l openedge
+fileviewer *.p,*.pwn,*.inc pygmentize -f terminal -l pawn
+fileviewer *.pan pygmentize -f terminal -l pan
+fileviewer *.pas,*.dpr pygmentize -f terminal -l delphi
+fileviewer *.pc pygmentize -f terminal -l pkgconfig
+fileviewer *.php,*.php[345],*.inc pygmentize -f terminal -l php
+fileviewer *.phtml pygmentize -f terminal -l html+php
+fileviewer *.pig pygmentize -f terminal -l pig
+fileviewer *.pike,*.pmod pygmentize -f terminal -l pike
+fileviewer *.pl,*.pm,*.nqp,*.p6,*.6pl,*.p6l,*.pl6,*.6pm,*.p6m,*.pm6,*.t pygmentize -f terminal -l perl6
+fileviewer *.pl,*.pm,*.t pygmentize -f terminal -l perl
+fileviewer *.plot,*.plt pygmentize -f terminal -l gnuplot
+fileviewer *.pot,*.po pygmentize -f terminal -l pot
+fileviewer *.pov,*.inc pygmentize -f terminal -l pov
+fileviewer *.pp pygmentize -f terminal -l puppet
+fileviewer *.praat,*.proc,*.psc pygmentize -f terminal -l praat
+fileviewer *.PRG,*.prg pygmentize -f terminal -l foxpro
+fileviewer *.pro pygmentize -f terminal -l idl
+fileviewer *.properties pygmentize -f terminal -l properties
+fileviewer *.proto pygmentize -f terminal -l protobuf
+fileviewer *.ps,*.eps pygmentize -f terminal -l postscript
+fileviewer *.ps1,*.psm1 pygmentize -f terminal -l powershell
+fileviewer *.psi,*.psl pygmentize -f terminal -l parasail
+fileviewer *.pug,*.jade pygmentize -f terminal -l pug
+fileviewer *.py,*.pyw,*.sc,SConstruct,SConscript,*.tac,*.sage pygmentize -f terminal -l python
+fileviewer *.py3tb pygmentize -f terminal -l py3tb
+fileviewer *.pypylog pygmentize -f terminal -l pypylog
+fileviewer *.pytb pygmentize -f terminal -l pytb
+fileviewer *.pyx,*.pxd,*.pxi pygmentize -f terminal -l cython
+fileviewer *.qml,*.qbs pygmentize -f terminal -l qml
+fileviewer *.qvto pygmentize -f terminal -l qvto
+fileviewer *.r,*.r3,*.reb pygmentize -f terminal -l rebol
+fileviewer *.rb,*.rbw,Rakefile,*.rake,*.gemspec,*.rbx,*.duby,Gemfile pygmentize -f terminal -l rb
+fileviewer *.Rd pygmentize -f terminal -l rd
+fileviewer *.red,*.reds pygmentize -f terminal -l red
+fileviewer *.reg pygmentize -f terminal -l registry
+fileviewer *.rexx,*.rex,*.rx,*.arexx pygmentize -f terminal -l rexx
+fileviewer *.rhtml pygmentize -f terminal -l rhtml
+fileviewer *.rkt,*.rktd,*.rktl pygmentize -f terminal -l racket
+fileviewer *.rnc pygmentize -f terminal -l rnc
+fileviewer *.robot pygmentize -f terminal -l robotframework
+fileviewer *.Rout pygmentize -f terminal -l rconsole
+fileviewer *.rpf pygmentize -f terminal -l vgl
+fileviewer *.rq,*.sparql pygmentize -f terminal -l sparql
+fileviewer *.rql pygmentize -f terminal -l rql
+fileviewer *.rs,*.rs.in pygmentize -f terminal -l rust
+fileviewer *.rsl pygmentize -f terminal -l rsl
+fileviewer *.rst,*.rest pygmentize -f terminal -l rst
+fileviewer *.rts pygmentize -f terminal -l rts
+fileviewer *.run pygmentize -f terminal -l ampl
+fileviewer *.s pygmentize -f terminal -l ca65
+fileviewer *.S,*.R,.Rhistory,.Rprofile,.Renviron pygmentize -f terminal -l splus
+fileviewer *.s,*.S pygmentize -f terminal -l gas
+fileviewer *.SAS,*.sas pygmentize -f terminal -l sas
+fileviewer *.sass pygmentize -f terminal -l sass
+fileviewer *.sbl pygmentize -f terminal -l snowball
+fileviewer *.sc,*.scd pygmentize -f terminal -l sc
+fileviewer *.scala pygmentize -f terminal -l scala
+fileviewer *.scaml pygmentize -f terminal -l scaml
+fileviewer *.sci,*.sce,*.tst pygmentize -f terminal -l scilab
+fileviewer *.scm,*.ss pygmentize -f terminal -l scheme
+fileviewer *.sco pygmentize -f terminal -l csound-score
+fileviewer *.scss pygmentize -f terminal -l scss
+fileviewer *.sh,*.ksh,*.bash,*.ebuild,*.eclass,*.exheres-0,*.exlib,*.zsh,.bashrc,bashrc,.bash_*,bash_*,zshrc,.zshrc,PKGBUILD pygmentize -f terminal -l bash
+fileviewer *.shen pygmentize -f terminal -l shen
+fileviewer *.sh-session,*.shell-session pygmentize -f terminal -l console
+fileviewer *.sil,*.vpr pygmentize -f terminal -l silver
+fileviewer *.slim pygmentize -f terminal -l slim
+fileviewer *.sls pygmentize -f terminal -l yaml+jinja
+fileviewer *.smali pygmentize -f terminal -l smali
+fileviewer *.sml,*.sig,*.fun pygmentize -f terminal -l sml
+fileviewer *.smv pygmentize -f terminal -l nusmv
+fileviewer *.snobol pygmentize -f terminal -l snobol
+fileviewer *.sp pygmentize -f terminal -l sp
+fileviewer *.spec pygmentize -f terminal -l spec
+fileviewer *.sql pygmentize -f terminal -l sql
+fileviewer *.sqlite3-console pygmentize -f terminal -l sqlite3
+fileviewer *.ssp pygmentize -f terminal -l ssp
+fileviewer *.st pygmentize -f terminal -l smalltalk
+fileviewer *.stan pygmentize -f terminal -l stan
+fileviewer *.sv,*.svh pygmentize -f terminal -l systemverilog
+fileviewer *.swg,*.i pygmentize -f terminal -l swig
+fileviewer *.swift pygmentize -f terminal -l swift
+fileviewer *.t pygmentize -f terminal -l tads3
+fileviewer *.tap pygmentize -f terminal -l tap
+fileviewer *.tcl,*.rvt pygmentize -f terminal -l tcl
+fileviewer *.tcsh,*.csh pygmentize -f terminal -l tcsh
+fileviewer *.tea pygmentize -f terminal -l tea
+fileviewer *.tex,*.aux,*.toc pygmentize -f terminal -l tex
+fileviewer *.tf pygmentize -f terminal -l terraform
+fileviewer *.thrift pygmentize -f terminal -l thrift
+fileviewer *.thy pygmentize -f terminal -l isabelle
+fileviewer *.tmpl,*.spt pygmentize -f terminal -l cheetah
+fileviewer *.tpl pygmentize -f terminal -l smarty
+fileviewer *.treetop,*.tt pygmentize -f terminal -l treetop
+fileviewer *.ts pygmentize -f terminal -l ts
+fileviewer *.ts,*.txt pygmentize -f terminal -l typoscript
+fileviewer *.ttl pygmentize -f terminal -l turtle
+fileviewer *.twig pygmentize -f terminal -l html+twig
+fileviewer *.txt pygmentize -f terminal -l text
+fileviewer *.u pygmentize -f terminal -l urbiscript
+fileviewer *.v pygmentize -f terminal -l coq
+fileviewer *.v pygmentize -f terminal -l verilog
+fileviewer *.vala,*.vapi pygmentize -f terminal -l vala
+fileviewer *.vb,*.bas pygmentize -f terminal -l vb.net
+fileviewer *.vcl pygmentize -f terminal -l vcl
+fileviewer *.vert,*.frag,*.geo pygmentize -f terminal -l glsl
+fileviewer *.vhdl,*.vhd pygmentize -f terminal -l vhdl
+fileviewer *.vim,.vimrc,.exrc,.gvimrc,_vimrc,_exrc,_gvimrc,vimrc,gvimrc pygmentize -f terminal -l vim
+fileviewer *.vm,*.fhtml pygmentize -f terminal -l velocity
+fileviewer *.wdiff pygmentize -f terminal -l wdiff
+fileviewer *.weechatlog pygmentize -f terminal -l irc
+fileviewer *.whiley pygmentize -f terminal -l whiley
+fileviewer *.x,*.xi,*.xm,*.xmi pygmentize -f terminal -l logos
+fileviewer *.x10 pygmentize -f terminal -l x10
+fileviewer *.xml pygmentize -f terminal -l xml+evoque
+fileviewer *.xml,*.xsl,*.rss,*.xslt,*.xsd,*.wsdl,*.wsf pygmentize -f terminal -l xml
+fileviewer *.xqy,*.xquery,*.xq,*.xql,*.xqm pygmentize -f terminal -l xquery
+fileviewer *.xsl,*.xslt,*.xpl pygmentize -f terminal -l xslt
+fileviewer *.xtend pygmentize -f terminal -l xtend
+fileviewer *.xtm pygmentize -f terminal -l extempore
+fileviewer *.xul.in pygmentize -f terminal -l xul+mozpreproc
+fileviewer *.yaml,*.yml pygmentize -f terminal -l yaml
+fileviewer *.zep pygmentize -f terminal -l zephir
+fileviewer .htaccess,apache.conf,apache2.conf pygmentize -f terminal -l apacheconf
+fileviewer control pygmentize -f terminal -l control
+fileviewer Dockerfile,*.docker pygmentize -f terminal -l docker
+fileviewer Kconfig,*Config.in*,external.in*,standard-modules.in pygmentize -f terminal -l kconfig
+fileviewer nginx.conf pygmentize -f terminal -l nginx
+fileviewer pacman.conf pygmentize -f terminal -l pacmanconf
+fileviewer sources.list pygmentize -f terminal -l sourceslist
+fileviewer squid.conf pygmentize -f terminal -l squidconf
+fileviewer termcap,termcap.src pygmentize -f terminal -l termcap
+fileviewer terminfo,terminfo.src pygmentize -f terminal -l terminfo
+fileviewer todo.txt,*.todotxt pygmentize -f terminal -l todotxt
