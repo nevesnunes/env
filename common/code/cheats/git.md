@@ -4,6 +4,12 @@
 git log --reverse -S foo
 ```
 
+# Change history for file
+
+```bash
+git log -P -- ./foo
+```
+
 # Deleting commits
 
 ```bash

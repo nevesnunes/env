@@ -37,7 +37,6 @@ GenericName=Terminal
 Comment=standard terminal emulator for the X window system
 Keywords=shell;prompt;command;commandline;cmd;term;tmux
 Exec=uxterm
-Exec=uxterm -e "tmux"
 Terminal=false
 Type=Application
 Encoding=UTF-8

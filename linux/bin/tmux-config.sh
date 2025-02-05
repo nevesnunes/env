@@ -49,9 +49,17 @@ if [ "$(echo "$TMUX_VERSION < 2.8" | bc)" = 1 ]; then
   tmux setw -g window-status-current-attr bright
 else
   # Colors
-  tmux set -g pane-border-style fg=white,bg=default
-  tmux set -g pane-active-border-style fg=white,bg=white
-  tmux set -g status-style fg=white,bg=default
+  if echo "$term" | grep -q 256 \
+    && [ "$(echo "$TMUX_VERSION > 3.2" | bc)" = 1 ]; then
+    tmux set -g pane-border-lines heavy
+    tmux set -g pane-border-style fg=colour238,bg=default
+    tmux set -g pane-active-border-style fg=cyan,bg=default
+    tmux set -g status-style fg=white,bg=default
+  else
+    tmux set -g pane-border-style fg=white,bg=default
+    tmux set -g pane-active-border-style fg=white,bg=white
+    tmux set -g status-style fg=white,bg=default
+  fi
 
   # Active window title colors
   tmux setw -g window-status-current-style fg=blue,bg=default,bright

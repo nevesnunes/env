@@ -29,3 +29,5 @@
         # viz
         uxterm -rv -fa 'M+ 1m' -fs 2 -e vim -c 'set nonumber nolinebreak nobreakindent showbreak=' -c 'M 1' -c 'M 2' -c 'M 3' <(fold -b512 1024bits)
         ```
+
+- https://en.wikipedia.org/wiki/User:Cmglee
