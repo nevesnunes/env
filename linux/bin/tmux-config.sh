@@ -18,8 +18,7 @@ if echo "$term" | grep -q 256; then
 fi
 tmux set -g default-terminal "$term"
 
-TMUX_VERSION=$(tmux -V \
-  | gawk '/^\s*$/{next}; match($0, /tmux\s*([0-9\.]*)/, e) {print e[1]}')
+TMUX_VERSION=$(tmux -V | grep -m1 -o '[0-9\.]*')
 
 # UTF8 is autodetected in 2.2 onwards, but errors if explicitly set
 if [ "$(echo "$TMUX_VERSION < 2.2" | bc)" = 1 ]; then
@@ -50,10 +49,10 @@ if [ "$(echo "$TMUX_VERSION < 2.8" | bc)" = 1 ]; then
 else
   # Colors
   if echo "$term" | grep -q 256 \
-    && [ "$(echo "$TMUX_VERSION > 3.2" | bc)" = 1 ]; then
+    && [ "$(echo "$TMUX_VERSION > 3.1" | bc)" = 1 ]; then
     tmux set -g pane-border-lines heavy
     tmux set -g pane-border-style fg=colour238,bg=default
-    tmux set -g pane-active-border-style fg=cyan,bg=default
+    tmux set -g pane-active-border-style fg=white,bg=default
     tmux set -g status-style fg=white,bg=default
   else
     tmux set -g pane-border-style fg=white,bg=default

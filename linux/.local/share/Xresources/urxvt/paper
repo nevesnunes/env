@@ -1,9 +1,9 @@
-URxvt*foreground: #dddde8
+URxvt*foreground: #deddea
 URxvt*background: #281830
 
 ! black
-URxvt*color0: #dddde8
-URxvt*color8: #847c98
+URxvt*color0: #deddea
+URxvt*color8: #867d9d
 
 ! red
 URxvt*color1: #d22d48
@@ -14,8 +14,8 @@ URxvt*color2: #37730d
 URxvt*color10: #37730d
 
 ! yellow / orange
-URxvt*color3: #622e04
-URxvt*color11: #622e04
+URxvt*color3: #642604
+URxvt*color11: #642604
 
 ! blue
 URxvt*color4: #4e6cd0

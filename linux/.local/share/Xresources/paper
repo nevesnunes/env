@@ -1,5 +1,5 @@
 ! TODO: Parse into dconf format: awk -F '[ :\*]*' '/#/{print $2 " " $3}' ~/.local/share/Xresources/paper
-UXTerm*foreground: #dddde8
+UXTerm*foreground: #deddea
 UXTerm*background: #281830
 
 ! black
@@ -15,8 +15,8 @@ UXTerm*color2: #37730d
 UXTerm*color10: #37730d
 
 ! yellow / orange
-UXTerm*color3: #622e04
-UXTerm*color11: #622e04
+UXTerm*color3: #642604
+UXTerm*color11: #642604
 
 ! blue
 UXTerm*color4: #4e6cd0
@@ -31,8 +31,8 @@ UXTerm*color6: #05505d
 UXTerm*color14: #05505d
 
 ! white
-UXTerm*color7: #dddde8
-UXTerm*color15: #847c98
+UXTerm*color7: #deddea
+UXTerm*color15: #867d9d
 
 UXTerm*cursorColor: #4e6cd0
 UXTerm*reverseVideo: true

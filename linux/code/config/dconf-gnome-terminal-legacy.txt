@@ -14,7 +14,7 @@ zoom-out='<Primary>minus'
 [profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 allow-bold=true
 audible-bell=false
-background-color='rgb(221,221,232)'
+background-color='rgb(222,221,234)'
 background-transparency-percent=0
 bold-color-same-as-fg=true
 bold-is-bright=false
@@ -27,7 +27,7 @@ default-size-columns=84
 default-size-rows=40
 font='Codelia 11'
 foreground-color='rgb(40,24,48)'
-palette=['rgb(221,221,232)', 'rgb(210,45,72)', 'rgb(55,115,13)', 'rgb(98,46,4)', 'rgb(78,108,208)', 'rgb(136,84,171)', 'rgb(5,80,93)', 'rgb(64,52,72)', 'rgb(132,124,152)', 'rgb(210,45,72)', 'rgb(55,115,13)', 'rgb(98,46,4)', 'rgb(78,108,208)', 'rgb(136,84,171)', 'rgb(5,80,93)', 'rgb(40,24,48)']
+palette=['rgb(222,221,234)', 'rgb(210,45,72)', 'rgb(55,115,13)', 'rgb(100,38,4)', 'rgb(78,108,208)', 'rgb(136,84,171)', 'rgb(5,80,93)', 'rgb(64,52,72)', 'rgb(136,122,164)', 'rgb(210,45,72)', 'rgb(55,115,13)', 'rgb(100,38,4)', 'rgb(78,108,208)', 'rgb(136,84,171)', 'rgb(5,80,93)', 'rgb(40,24,48)']
 rewrap-on-resize=true
 scrollbar-policy='never'
 text-blink-mode='never'

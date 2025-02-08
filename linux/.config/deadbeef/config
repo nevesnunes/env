@@ -89,7 +89,7 @@ playback.loop 0
 playback.order 0
 playback.volume -6.400000
 playback.volume.normalized 0.7834148
-playlist.current 1
+playlist.current 0
 playlist.cursor.0 35
 playlist.cursor.1 4
 playlist.cursor.2 0
