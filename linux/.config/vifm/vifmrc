@@ -1,4 +1,7 @@
-" Show hidden files
+" Natural sort of (version) numbers within text.
+set sortnumbers
+
+" Show hidden files.
 windo normal zo
 
 view
@@ -6,6 +9,17 @@ map <Tab> <C-w><C-w>
 map q :q<CR>
 
 colorscheme Default
+
+fileviewer <application/octet-stream>,*.bin pygmentize.sh
+fileviewer <audio/*>,<video/*>,*.3gp,*.ac3,*.ape,*.as[fx],*.avi,*.dat,*.divx,*.flac,*.fl[icv],*.m2v,*.m4a,*.m4v,*.mkv,*.mov,*.mp3,*.mp4,*.mpeg,*.mpg,*.mts,*.og[agx],*.ogv,*.opus*.qt,*.r[am],*.spx,*.ts,*.vob,*.wav,*.webm,*.wma,*.wmv ffprobe -hide_banner -loglevel error -pretty %c
+fileviewer <image/*>,*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm exiftool
+fileviewer *.7z 7z l %c
+fileviewer *.dsl,*.ear,*.jar,*.oxt,*.war,*.zip unzip -l
+fileviewer *.json,*.jsonld jq --color-output < %f
+fileviewer *.o nm
+fileviewer *.pdf pdftotext -nopgbrk %c -
+fileviewer *.rar unrar v
+fileviewer *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz tar -tf
 
 "fileviewer *[^/] pygmentize.sh
 fileviewer *.[1234567],*.man pygmentize.sh -l groff
@@ -162,8 +176,6 @@ fileviewer *.jl pygmentize.sh -l julia
 fileviewer *.js,*.jsm pygmentize.sh -l js
 fileviewer *.js.in pygmentize.sh -l javascript+mozpreproc
 fileviewer *.jsgf pygmentize.sh -l jsgf
-fileviewer *.json pygmentize.sh -l json
-fileviewer *.jsonld pygmentize.sh -l jsonld
 fileviewer *.jsp pygmentize.sh -l jsp
 fileviewer *.juttle pygmentize.sh -l juttle
 fileviewer *.kal pygmentize.sh -l kal
@@ -248,7 +260,7 @@ fileviewer *.ps,*.eps pygmentize.sh -l postscript
 fileviewer *.ps1,*.psm1 pygmentize.sh -l powershell
 fileviewer *.psi,*.psl pygmentize.sh -l parasail
 fileviewer *.pug,*.jade pygmentize.sh -l pug
-fileviewer *.py,*.pyw,*.sc,SConstruct,SConscript,*.tac,*.sage pygmentize.sh -l python
+fileviewer *.py,*.pyw,.*.py,.*.pyw,*.sc,SConstruct,SConscript,*.tac,*.sage pygmentize.sh -l python
 fileviewer *.py3tb pygmentize.sh -l py3tb
 fileviewer *.pypylog pygmentize.sh -l pypylog
 fileviewer *.pytb pygmentize.sh -l pytb
@@ -287,7 +299,7 @@ fileviewer *.sci,*.sce,*.tst pygmentize.sh -l scilab
 fileviewer *.scm,*.ss pygmentize.sh -l scheme
 fileviewer *.sco pygmentize.sh -l csound-score
 fileviewer *.scss pygmentize.sh -l scss
-fileviewer *.sh,*.ksh,*.bash,*.ebuild,*.eclass,*.exheres-0,*.exlib,*.zsh,.bashrc,bashrc,.bash_*,bash_*,zshrc,.zshrc,PKGBUILD pygmentize.sh -l bash
+fileviewer *.sh,.*.sh,*.ksh,*.bash,*.ebuild,*.eclass,*.exheres-0,*.exlib,.profile,.shrc,shrc,.bashrc,bashrc,.bash_*,bash_*,*.zsh,zshrc,.zshrc,zshenv,.zshenv,.zsh_*,zsh_*,PKGBUILD pygmentize.sh -l bash
 fileviewer *.shen pygmentize.sh -l shen
 fileviewer *.sh-session,*.shell-session pygmentize.sh -l console
 fileviewer *.sil,*.vpr pygmentize.sh -l silver
