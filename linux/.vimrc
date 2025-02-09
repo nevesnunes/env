@@ -605,8 +605,8 @@ augroup filetype_group
     " Poor man's version of https://github.com/vim/vim/pull/12131
     autocmd FileType xxd
                 \ syntax match MyF1 /\(\( \)\@<=\([0-1][0-9a-f]\)\)\|\([0-1][0-9a-f]\( \)\@=\)/ |
-                \ syntax match MyF3 /\(\( \)\@<=\([2-7][0-9a-f]\)\)\|\([2-7][0-9a-f]\( \)\@=\)/ |
                 \ syntax match MyF2 /\(\( \)\@<=\([8-9a-f][0-9a-f]\)\)\|\([8-9a-f][0-9a-f]\( \)\@=\)/ |
+                \ syntax match MyF3 /\(\( \)\@<=\([2-7][0-9a-f]\)\)\|\([2-7][0-9a-f]\( \)\@=\)/ |
                 \ syntax match My0 /\(\( \)\@<=00\)\|\(00\( \)\@=\)/ |
                 \ syntax match My4 /\(\( \)\@<=ff\)\|\(ff\( \)\@=\)/
 augroup END
@@ -650,13 +650,13 @@ function! MyHighlights() abort
 
     execute printf("hi My0 ctermbg=magenta guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 5, 'magenta'))
     execute printf("hi My1 ctermbg=red     guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 1, 'red'))
-    execute printf("hi My2 ctermbg=cyan    guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 6, 'cyan'))
+    execute printf("hi My2 ctermbg=blue    guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 4, 'blue'))
     execute printf("hi My3 ctermbg=green   guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 2, 'green'))
     execute printf("hi My4 ctermbg=yellow  guibg=%s ctermfg=black guifg=white", get(g:terminal_ansi_colors, 3, 'yellow'))
 
     execute printf("hi MyF0 ctermfg=magenta guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
     execute printf("hi MyF1 ctermfg=red     guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 1, 'red'))
-    execute printf("hi MyF2 ctermfg=cyan    guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 6, 'cyan'))
+    execute printf("hi MyF2 ctermfg=blue    guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 4, 'blue'))
     execute printf("hi MyF3 ctermfg=green   guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 2, 'green'))
     execute printf("hi MyF4 ctermfg=yellow  guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 3, 'yellow'))
 endfunction

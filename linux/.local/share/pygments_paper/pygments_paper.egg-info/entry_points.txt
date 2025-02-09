@@ -1,2 +1,5 @@
+[pygments.formatters]
+paper = pygments_paper.formatter:PaperTerminalFormatter
+
 [pygments.styles]
 paper = pygments_paper.style:PaperLightStyle

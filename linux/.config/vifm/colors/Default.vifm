@@ -48,7 +48,7 @@
 " highlight clear
 
 highlight Border cterm=none ctermfg=black ctermbg=8
-highlight CurrLine cterm=bold ctermfg=black ctermbg=blue
+highlight CurrLine cterm=bold ctermfg=black ctermbg=cyan
 highlight StatusLine cterm=bold ctermfg=black ctermbg=8
 highlight TopLine cterm=bold ctermfg=yellow ctermbg=8
 highlight TopLineSel cterm=bold ctermfg=black ctermbg=8

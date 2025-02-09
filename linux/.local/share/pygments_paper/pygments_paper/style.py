@@ -1,6 +1,6 @@
 """
     pygments.styles.paper
-    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~
 
     Paper style adapted from Solarized by Camil Staps
     See: https://github.com/altercation/solarized

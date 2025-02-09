@@ -9,6 +9,9 @@ setup(
     name="pygments_paper",
     version="1.0",
     entry_points={
+        'pygments.formatters': [
+            'paper = pygments_paper.formatter:PaperTerminalFormatter',
+        ],
         'pygments.styles': [
             'paper = pygments_paper.style:PaperLightStyle',
         ]
