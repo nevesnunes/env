@@ -202,7 +202,7 @@ Shift + Mod4 + b
 Shift + Mod4 + f
 
 # "Tmux"
-"user-terminal.sh -e tmux"
+"user-terminal.sh tmux"
 Shift + Mod4 + Return
 
 # "Terminal"
