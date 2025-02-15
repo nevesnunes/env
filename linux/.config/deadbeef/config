@@ -85,24 +85,27 @@ network.http_user_agent deadbeef
 network.proxy.port 8080
 network.proxy.type HTTP
 output_plugin pulseaudio
-playback.loop 1
+playback.loop 0
 playback.order 0
 playback.volume -6.400000
 playback.volume.normalized 0.7834148
-playlist.current 0
-playlist.cursor.0 0
-playlist.cursor.1 3
-playlist.cursor.2 2
-playlist.cursor.3 0
+playlist.current 1
+playlist.cursor.0 17
+playlist.cursor.1 4
+playlist.cursor.2 0
+playlist.cursor.3 10
+playlist.cursor.4 0
 playlist.scroll.0 0
 playlist.scroll.1 -3
-playlist.scroll.2 217
-playlist.scroll.3 0
+playlist.scroll.2 0
+playlist.scroll.3 223
+playlist.scroll.4 0
 playlist.scroll.cursorfollowplayback 1
 playlist.tab.00000 Default
 playlist.tab.00001 New Playlist
 playlist.tab.00002 New Playlist (1)
-playlist.tab.00003 Jazz
+playlist.tab.00003 New Playlist (2)
+playlist.tab.00004 Jazz
 prefwin.geometry.h 596
 prefwin.geometry.w 789
 prefwin.geometry.x 655

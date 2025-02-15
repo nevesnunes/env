@@ -245,9 +245,10 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     # - https://unix.stackexchange.com/questions/496755/how-to-get-the-source-code-used-to-build-the-packages-of-the-base-alpine-linux-d
     # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
     # - https://wiki.alpinelinux.org/wiki/APKBUILD_Reference
-    apk add --no-cache alpine-sdk binutils-dev elfutils-dev libunwind-dev libunwind-static musl-dev linux-headers autoconf automake gawk gcc sudo
+    apk update
+    apk add --no-cache alpine-sdk binutils-dev elfutils-dev libunwind-dev libunwind-static musl-dev linux-headers autoconf automake binutils gawk gcc gettext sudo
     cd /opt
-    git clone --depth 1 --branch v3.15.0 git://git.alpinelinux.org/aports
+    git clone --depth 1 --branch v3.21.0 git://git.alpinelinux.org/aports
     # Build
     app=
     cd /opt/aports/main/"$app"
@@ -255,15 +256,16 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     # References: [Static compilation errors \- tmux 2\.9, ncurses 6\.1, libevent 2\.1\.8 · Issue \#1729 · tmux/tmux · GitHub](https://github.com/tmux/tmux/issues/1729)
     export PKG_CONFIG=/bin/true
     # [Edit APKBUILD to include `-static` in CFLAGS]
-    # [For strace: ~/code/config/alpine/static.sh]
+    # [For strace: ~/share/alpine/static/strace.sh]
     echo | abuild-keygen -a -i
     abuild -F fetch verify
-    abuild -F -r
+    abuild -Fcr
     # Unpack
     tar -xzvf /root/packages/main/x86_64/"$app".apk
     cp "$app" /share/
     # ||
     cp ./pkg/strace/usr/bin/"$app" /share/
+    strip /share/"$app"
     ```
 - Unsupported in `libtool`
     - [\#11064 \- CRITICAL: libtool makes static linking impossible \- GNU bug report logs](https://debbugs.gnu.org/cgi/bugreport.cgi?bug=11064)

@@ -22,4 +22,10 @@ FNAME=~/tmp/git.md.swp; tmux switch -t $(tmux list-panes -a -F '#{session_name}:
 # Change pane color
 tmux select-pane -t:.1 -P 'fg=white,bg=#400000'
 
+# Send command to all panes
+setw synchronize-panes on
+
+# Send command to all windows
+tmux list-windows -t $session | cut -d: -f1 | xargs -I{} tmux send-keys -t $session:{} $message
+
 ; vim: filetype=navi

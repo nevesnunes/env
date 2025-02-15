@@ -29,7 +29,7 @@ WARNING: linker: Warning: failed to find generated linker configuration from "/l
 dexdump E 05-02 13:14:39 1728592 1728592 dexdump_main.cc:126] No file specified
 ```
 
-- https://research.nccgroup.com/2024/06/05/cross-execute-your-linux-binaries-dont-cross-compile-them/
+- https://www.nccgroup.com/us/research-blog/cross-execute-your-linux-binaries-don-t-cross-compile-them/
 
 # decompiler
 

@@ -21,6 +21,7 @@ bold-is-bright=false
 cell-height-scale=1.0
 cjk-utf8-ambiguous-width='narrow'
 cursor-background-color='rgb(78,108,208)'
+cursor-blink-mode='system'
 cursor-colors-set=true
 custom-command="env TERM=\"xterm-16color\" /bin/sh -c \"exec $(awk -F: -v u=$USER '$1 == u {print $NF}' /etc/passwd)\""
 default-size-columns=84

@@ -12,15 +12,15 @@ index c625b8de..5e1d205b 100644
  }
 
 diff --git a/main/strace/APKBUILD b/main/strace/APKBUILD
-index d10d0d12..62843438 100644
+index b14b6a42..c6f91df7 100644
 --- a/main/strace/APKBUILD
 +++ b/main/strace/APKBUILD
-@@ -21,13 +21,15 @@ build() {
-        musl) export CFLAGS="$CFLAGS -Dsigcontext_struct=sigcontext" ;;
-        esac
-
--       ./configure \
-+       LIBS="-l:liblzma.a -l:libucontext.a" ./configure \
+@@ -21,12 +21,15 @@ source="https://github.com/strace/strace/releases/download/v$pk
+gver/strace-$pkgv
+ build() {
+        CFLAGS="$CFLAGS -flto=auto" \
+        ./configure \
++               LIBS="-l:liblzma.a -l:libucontext.a" ./configure \
 +               LDFLAGS=-static \
                 --build=$CBUILD \
                 --host=$CHOST \
@@ -30,8 +30,9 @@ index d10d0d12..62843438 100644
                 --localstatedir=/var \
 +               --with-libunwind \
                 --enable-mpers=no
-        make
- }
+        # FIXME don't use bundled kernel headers
+        #       --enable-bundled=no
+
 diff --git a/main/xz/APKBUILD b/main/xz/APKBUILD
 index a8022f59..0355238a 100644
 --- a/main/xz/APKBUILD
