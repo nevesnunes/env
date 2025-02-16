@@ -246,7 +246,7 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
     # - https://wiki.alpinelinux.org/wiki/APKBUILD_Reference
     apk update
-    apk add --no-cache alpine-sdk binutils-dev elfutils-dev libunwind-dev libunwind-static musl-dev linux-headers autoconf automake binutils gawk gcc gettext sudo
+    apk add --no-cache alpine-sdk autoconf automake binutils binutils-dev elfutils-dev gawk gcc gettext gettext-dev libtool libunwind-dev libunwind-static linux-headers musl-dev sudo
     cd /opt
     git clone --depth 1 --branch v3.21.0 git://git.alpinelinux.org/aports
     # Build
