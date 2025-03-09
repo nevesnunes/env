@@ -788,3 +788,7 @@ packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
 silent! helptags ALL
+
+if filereadable(expand('~/.local/share/vim/matches.vim'))
+    source ~/.local/share/vim/matches.vim
+endif

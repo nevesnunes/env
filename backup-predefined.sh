@@ -152,6 +152,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./bin/*.sh \
   /home/"$USER"/./bin/functions \
   /home/"$USER"/./bin/zsh \
+  /home/"$USER"/./code/config/vim \
   /home/"$USER"/./share/alpine \
   ./linux/
 
