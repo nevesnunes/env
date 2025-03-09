@@ -2,6 +2,7 @@
 
 - https://play.rust-lang.org/
 - [GitHub \- immunant/c2rust: Migrate C code to Rust](https://github.com/immunant/c2rust)
+- [GitHub \- cordx56/rustowl: Visualize Ownership and Lifetimes in Rust](https://github.com/cordx56/rustowl)
 
 # Docs
 

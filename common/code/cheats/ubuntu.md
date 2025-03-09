@@ -108,3 +108,16 @@ linux32 foo
 APT::Periodic::Update-Package-Lists "0";
 APT::Periodic::Unattended-Upgrade "0";
 ```
+
+# remove snaps
+
+```sh
+snap list | awk '!/^Name|^bare|^core|^snapd/{print $1}' | xargs -I{} sudo snap remove {}
+snap list | awk '/^bare|^core/{print $1}' | xargs -I{} sudo snap remove {}
+sudo snap remove snapd
+sudo apt purge snapd
+rm -rf ~/snap
+sudo rm -rf /snap
+sudo rm -rf /var/snap
+sudo rm -rf /var/lib/snapd
+```

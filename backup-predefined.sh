@@ -92,7 +92,6 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/compton.conf \
   /home/"$USER"/./.config/darktable \
   /home/"$USER"/./.config/dconf \
-  /home/"$USER"/./.config/deadbeef/config \
   /home/"$USER"/./.config/devilspie2 \
   /home/"$USER"/./.config/dunst \
   /home/"$USER"/./.config/flake8 \

@@ -1,7 +1,6 @@
 hand_shutdown "key 290 mod1" 
 hand_capmouse "key 291 mod1" 
 hand_fullscr "key 13 mod2" 
-hand_pause "key 19 mod2" 
 hand_mapper "key 282 mod1" 
 hand_speedlock "key 293 mod2" 
 hand_recwave "key 287 mod1" 
@@ -12,6 +11,7 @@ hand_decfskip "key 288 mod1"
 hand_incfskip "key 289 mod1" 
 hand_cycledown "key 292 mod1" 
 hand_cycleup "key 293 mod1" 
+hand_debugger 
 hand_caprawopl "key 288 mod1 mod2" 
 hand_swapimg "key 285 mod1" 
 key_esc "key 27" 
@@ -103,43 +103,43 @@ key_numlock "key 300"
 key_kp_divide "key 267" 
 key_kp_multiply "key 268" 
 key_kp_minus "key 269" 
-key_kp_7 "key 263" "key 316" 
-key_kp_8 "key 264" "key 302" 
-key_kp_9 "key 265" "key 19" 
+key_kp_7 "key 316" "key 263" 
+key_kp_8 "key 302" "key 264" 
+key_kp_9 "key 19" "key 265" 
 key_kp_plus "key 270" 
-key_kp_4 "key 260" "key 277" 
+key_kp_4 "key 277" "key 260" 
 key_kp_5 "key 261" 
-key_kp_6 "key 262" "key 280" 
-key_kp_1 "key 257" "key 127" 
-key_kp_2 "key 258" "key 279" "key 278" 
-key_kp_3 "key 259" "key 281" 
+key_kp_6 "key 280" "key 262" 
+key_kp_1 "key 127" "key 257" 
+key_kp_2 "key 278" "key 279" "key 258" 
+key_kp_3 "key 281" "key 259" 
 key_kp_enter "key 271" 
 key_kp_0 "key 256" 
 key_kp_period "key 266" 
-jbutton_0_0 "stick_0 button 0" 
-jbutton_0_1 "stick_0 button 1" 
-jaxis_0_1- "stick_0 axis 1 0" 
-jaxis_0_1+ "stick_0 axis 1 1" 
-jaxis_0_0- "stick_0 axis 0 0" 
-jaxis_0_0+ "stick_0 axis 0 1" 
-jbutton_0_2 "stick_0 button 2" 
-jbutton_0_3 "stick_0 button 3" 
+jbutton_0_0 
+jbutton_0_1 
+jaxis_0_1- 
+jaxis_0_1+ 
+jaxis_0_0- 
+jaxis_0_0+ 
+jbutton_0_2 
+jbutton_0_3 
 jbutton_1_0 
 jbutton_1_1 
-jaxis_0_2- "stick_0 axis 2 0" 
-jaxis_0_2+ "stick_0 axis 2 1" 
-jaxis_0_3- "stick_0 axis 3 0" 
-jaxis_0_3+ "stick_0 axis 3 1" 
+jaxis_0_2- 
+jaxis_0_2+ 
+jaxis_0_3- 
+jaxis_0_3+ 
 jaxis_1_0- 
 jaxis_1_0+ 
 jaxis_1_1- 
 jaxis_1_1+ 
-jbutton_0_4 "stick_0 button 4" 
-jbutton_0_5 "stick_0 button 5" 
-jhat_0_0_0 "stick_0 hat 0 1" 
-jhat_0_0_3 "stick_0 hat 0 8" 
-jhat_0_0_2 "stick_0 hat 0 4" 
-jhat_0_0_1 "stick_0 hat 0 2" 
-mod_1 "key 305" "key 306" 
-mod_2 "key 307" "key 308" 
+jbutton_0_4 
+jbutton_0_5 
+jhat_0_0_0 
+jhat_0_0_3 
+jhat_0_0_2 
+jhat_0_0_1 
+mod_1 "key 306" "key 305" 
+mod_2 "key 308" "key 307" 
 mod_3 

@@ -1,10 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-file="${HOME}/.local/share/applications/${1}.desktop" 
+set -e
+
+app=$1
+name=${2:-$app}
+cmd=${3:-$app}
+
+file="${HOME}/.local/share/applications/$app.desktop"
 cat >"$file" <<EOL
 [Desktop Entry]
-Name=${1}
-Exec=${1}
+Name=$name
+Exec=$cmd
 Terminal=false
 Type=Application
 Categories=Application;
