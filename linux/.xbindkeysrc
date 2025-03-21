@@ -29,7 +29,7 @@ Control + q
 # Mod4 + space
 
 "blank-screen.sh"
-Mod4 + underscore
+Mod4 + c:20
 
 "scratchpad-terminal.sh fzf-run.sh"
 Mod4 + x

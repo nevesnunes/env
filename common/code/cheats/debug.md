@@ -170,6 +170,7 @@
         - https://jvns.ca/blog/2022/03/23/a-toy-version-of-tls/
         - https://jvns.ca/blog/2022/11/06/making-a-dns-query-in-ruby-from-scratch/
             - use request from wireshark and dump response, then make our own request
+        - [GitHub \- DRMacIver/shrinkray: Shrinkray is a modern multi\-format test\-case reducer](https://github.com/DRMacIver/shrinkray)
     - interactive examples
         - script for processing a chunk of bytes at a given step
             - e.g. [Server Handshake Keys Calc \- The Illustrated TLS 1\.3 Connection: Every Byte Explained](https://tls13.ulfheim.net/)

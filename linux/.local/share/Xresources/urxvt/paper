@@ -3,7 +3,7 @@ URxvt*background: #281830
 
 ! black
 URxvt*color0: #dedde8
-URxvt*color8: #867d9d
+URxvt*color8: #887da4
 
 ! red
 URxvt*color1: #d22d48
@@ -22,8 +22,8 @@ URxvt*color4: #4e6cd0
 URxvt*color12: #4e6cd0
 
 ! magenta
-URxvt*color5: #9050a0
-URxvt*color13: #9050a0
+URxvt*color5: #9550a0
+URxvt*color13: #9550a0
 
 ! cyan
 URxvt*color6: #05505d

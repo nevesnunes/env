@@ -23,8 +23,8 @@ UXTerm*color4: #4e6cd0
 UXTerm*color12: #4e6cd0
 
 ! magenta
-UXTerm*color5: #9050a0
-UXTerm*color13: #9050a0
+UXTerm*color5: #9550a0
+UXTerm*color13: #9550a0
 
 ! cyan
 UXTerm*color6: #05505d
@@ -32,7 +32,7 @@ UXTerm*color14: #05505d
 
 ! white
 UXTerm*color7: #dedde8
-UXTerm*color15: #867d9d
+UXTerm*color15: #887da4
 
 UXTerm*cursorColor: #4e6cd0
 UXTerm*reverseVideo: true

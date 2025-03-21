@@ -9,6 +9,7 @@
 - [GitHub \- openjdk/jmh\-jdk\-microbenchmarks: https://openjdk\.org/projects/code\-tools/jmh\-jdk\-microbenchmarks](https://github.com/openjdk/jmh-jdk-microbenchmarks)
 - [HotSpot Tools](https://wiki.openjdk.java.net/display/HotSpot/HotSpot+Tools)
 - [Notes on debugging HotSpot’s JIT compilation \| Jorn Vernee](https://jornvernee.github.io/hotspot/jit/2023/08/18/debugging-jit.html)
+- [GitHub \- mageddo\-projects/jvm\-attach: Load Java Agents at any running JVM process and more, no JDK needed](https://github.com/mageddo-projects/jvm-attach)
 - [GitHub \- GraxCode/JByteMod\-Beta: Java bytecode editor](https://github.com/GraxCode/JByteMod-Beta)
 - [GitHub \- java\-deobfuscator/deobfuscator: The real deal](https://github.com/java-deobfuscator/deobfuscator)
 - [GitHub \- LLVM\-but\-worse/maple\-ir: Industrial IR\-based static analysis framework for Java bytecode](https://github.com/LLVM-but-worse/maple-ir)
