@@ -2,6 +2,7 @@
 
 - On OOMKilled check dmesg on container host
 - https://github.com/kubeshark/kubeshark
+- https://kubenomicon.com/
 
 # lifecycle
 

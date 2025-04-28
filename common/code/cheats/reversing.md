@@ -175,6 +175,7 @@
     ```
 
 - [Program Analysis Reading List &mdash; Möbius Strip Reverse Engineering](https://www.msreverseengineering.com/program-analysis-reading-list)
+- [RecStudio Decompiler Design \- Introduction](https://www.backerstreet.com/decompiler/introduction.php)
 - [GitHub \- alphaSeclab/obfuscation\-stuff: Source Code Obfuscation And Binary Obfuscation, Multiple Languages And Multiple Platforms\. Including 250\+ Tools and 600\+ Posts](https://github.com/alphaSeclab/obfuscation-stuff)
 
 # methodologies

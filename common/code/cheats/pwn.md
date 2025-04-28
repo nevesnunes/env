@@ -25,6 +25,7 @@
     - [GitHub \- leesh3288/WinPwn: Windows Pwnable Study](https://github.com/leesh3288/WinPwn)
     - [GitHub \- ByteHackr/WindowsExploitation: A curated list of awesome Windows Exploitation resources, and shiny things\.](https://github.com/ByteHackr/WindowsExploitation)
     - [GitHub \- r3p3r/nixawk\-awesome\-windows\-exploitation](https://github.com/r3p3r/nixawk-awesome-windows-exploitation)
+    - [0x00 \- Introduction to Windows Kernel Exploitation // ](https://wetw0rk.github.io/posts/0x00-introduction-to-windows-kernel-exploitation/?ref=blog.exploits.club)
     - https://www.fuzzysecurity.com/tutorials.html
     - https://www.corelan.be/
     - https://www.alex-ionescu.com/

@@ -242,16 +242,16 @@ Shift + Mod4 + s
 Mod4 + s
 
 # "Screenshot to Pictures"
-"valid-screenshot.sh"
-Print
-
+# "valid-screenshot.sh"
+# Print
+# 
 # "Screenshot Area"
-"valid-screenshot.sh -a"
-Shift + Print
-
+# "valid-screenshot.sh -a"
+# Shift + Print
+# 
 # "Screenshot Window Contents"
-"valid-screenshot.sh shutter -w"
-Mod1 + Print
+# "valid-screenshot.sh shutter -w"
+# Mod1 + Print
 
 # "OCR Screenshot Text"
 "ocr-screenshot.sh"

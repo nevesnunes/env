@@ -3,8 +3,9 @@
 - [GitHub \- lcatro/Angr\-CTF\-Learn\-Note: The learn note of Angr\-CTF \.\.](https://github.com/lcatro/Angr-CTF-Learn-Note)
 - [GitHub \- jakespringer/angr\_ctf](https://github.com/jakespringer/angr_ctf)
 - [GitHub \- andreafioraldi/angrgdb: Use angr inside GDB\. Create an angr state from the current debugger state\.](https://github.com/andreafioraldi/angrgdb)
-- https://flagbot.ch/material/#lesson-5-constraint-solving-and-symbolic-execution-13-april-2020
-- https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md
+- [Material :: flagbot](https://flagbot.ch/material/#lesson-5-constraint-solving-and-symbolic-execution-13-april-2020)
+- [angr\-doc/CHEATSHEET\.md at master · angr/angr\-doc · GitHub](https://github.com/angr/angr-doc/blob/master/CHEATSHEET.md)
+- [angr for real\-world use cases \| volodya](https://plowsec.github.io/angr-introspection-2024.html)
 
 # init state
 

@@ -297,6 +297,7 @@
         - [An Introduction to Pool Tags \- Microsoft Tech Community](https://techcommunity.microsoft.com/t5/ask-the-performance-team/an-introduction-to-pool-tags/ba-p/372983)
         - [Windows NT Kernel memory pool tags](http://alter.org.ua/en/docs/win/pooltag/index1.php)
         - https://github.com/kodybrown/rktools2k3/blob/master/pooltag.txt
+- [Memory corruption from outside the process looks like space aliens \- The Old New Thing](https://devblogs.microsoft.com/oldnewthing/20250123-00/?p=110800)
 
 ### concurrency
 

@@ -9,6 +9,8 @@ env WINEDEBUG=+loaddll,+relay,+seh wine
 
 - [Wine Developer's Guide/Debug Logging \- WineHQ Wiki](https://wiki.winehq.org/Wine_Developerwine.md27s_Guide/Debug_Logging)
 - [Debug Channels \- WineHQ Wiki](https://wiki.winehq.org/Debug_Channels)
+- [GitHub \- JuliaComputing/gdb\-solib\-wine: GDB enhanced to debug wine processes](https://github.com/JuliaComputing/gdb-solib-wine)
+- [Debugging Wine with LLDB and VSCode \| Andy Hippo](https://werat.dev/blog/debugging-wine-with-lldb-and-vscode/)
 
 ### kill process
 

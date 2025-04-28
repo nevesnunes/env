@@ -112,3 +112,4 @@ extern "C" void test_store_point() {
 - [&quot;Benchmarking: You&\#39;re Doing It Wrong&quot; by Aysylu Greenberg \- YouTube](https://www.youtube.com/watch?v=XmImGiVuJno)
 - [&quot;How NOT to Measure Latency&quot; by Gil Tene \- YouTube](https://www.youtube.com/watch?v=lJ8ydIuPFeU)
     - https://bravenewgeek.com/everything-you-know-about-latency-is-wrong/
+- [Does Artillery prevent coordinated omission? · artilleryio/artillery · Discussion \#1472 · GitHub](https://github.com/artilleryio/artillery/discussions/1472)

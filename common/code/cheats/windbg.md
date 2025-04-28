@@ -1,5 +1,6 @@
 # +
 
+- [WinDbg for Linux Users · GitHub](https://gist.github.com/muzlightbeer/a968ee9d35a2e15ef6147e24d455e585)
 - [Introduction to Windbg and debugging windows \- YouTube](https://www.youtube.com/playlist?list=PLhx7-txsG6t6n_E2LgDGqgvJtCHPL7UFu)
 - [Win32 Mutex, HANDLEs and WinDbg !handle extension\. \- kiewic best coding practices](https://kiewic.com/2014-07-26/win32-mutex-handles-and-windbg-handle-extension)
 - [pykd \- automate debugging and crash dump analysis using Python](https://githomelab.ru/pykd)
