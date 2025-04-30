@@ -3,7 +3,7 @@ URxvt*background: #281830
 
 ! black
 URxvt*color0: #e0dde8
-URxvt*color8: #887da4
+URxvt*color8: #847d9d
 
 ! red
 URxvt*color1: #d22d48
