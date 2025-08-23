@@ -65,6 +65,7 @@ elseif (((string.match(name, "firefox") or
             string.match(class, "firefox")) and not 
             string.match(role, "about")) or
         string.find(class, "calibre") or
+        string.find(class, "foliate") or
         string.find(name, "e%-bookviewer") or
         string.find(name, "fbreader") or
         string.match(name, "zathura")) then
@@ -73,10 +74,8 @@ elseif (((string.match(name, "firefox") or
 elseif (string.match(name, "thunderbird")) then
     size_window(xid, "-h")
     move_window(xid, "1")
-elseif (string.match(name, "keepassx")) then
-    size_window(xid, "-l")
-    move_window(xid, "1")
-elseif (string.match(name, "keepassxc")) then
+elseif (string.match(name, "keepassx") or
+        string.match(name, "keepassxc")) then
     size_window(xid, "-l")
     move_window(xid, "1")
 elseif (string.match(name, "terminal") or

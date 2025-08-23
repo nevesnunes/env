@@ -1,3 +1,9 @@
+# Most commonly edited files
+
+```bash
+git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
+```
+
 # Find first commit of given code snippet
 
 ```bash

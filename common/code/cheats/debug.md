@@ -99,13 +99,25 @@
         > you may think of other things you can do with that exploit (ex: instead of RCE just leaking application secrets that can forge a cookie).  Or even just simplifying the exploit and instead of using it to get code execution, try putting in a sleep, DNS request, echo, etc to verify at least a piece of the exploit works. [...] you’ll see me do a bunch of enumeration from the exploit such as leaking java/OS version and environment variables which would have confirmed why the Remote Class Loading wasn’t working. The enumeration is simple, its just putting ${java:version} in the URL
         - https://thesecuritynoob.com/interviews/interview-with-ippsec-of-youtube-and-hackthebox/
     - visualizing internal structures
-        > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
         - https://news.ycombinator.com/item?id=11383999
+            > Browse data structures in Firefox. While my Lisp is running, a web browser runs in another thread, and every symbol has its own URL. Data structures are displayed as HTML tables. I can click on a field within an object in Firefox, and it goes to the object contained in that field, and displays that.
+        - https://news.ycombinator.com/item?id=11385071
+            > I also output my code to .dot format to visualize the flow of data quite a bit. This is extremely useful in statemachine like stuff - I basically can create animated gifs (well, not really, it's more of me pressing right on my image viewer) to watch how my programs execute.
+        - https://x.com/thingskatedid/status/1386077306381242371
+            > See I don't show how they're stored, just what they contain? This is just the content, not about the implementation for these particular data structures.
+            > Output graphviz, json, simple TSV, anything that seems most natural for your data.
     - visualizing layout
         - https://raymii.org/s/articles/Rectangle_debugging_in_QML_just_like_printf.html
     - graphics diagnostics - flush screen with color
         > I tried to set the screen color to the value it reads when it exits the loop and then hard-lock so the color doesn’t get changed.
         - https://mgba.io/2020/01/25/infinite-loop-holy-grail/
+    - graphics unit testing - assert serialized / IR of layout state / render tree / DOM structure
+        - e.g. Adobe WebKit
+            - https://www.w3.org/Style/CSS/Test/guidelines.html
+            - https://trac.webkit.org/wiki/Writing%20Layout%20Tests%20for%20DumpRenderTree#Couldntyoudoaref-test
+            - https://github.com/adobe/webkit/blob/master/LayoutTests/css3/filters/add-filter-rendering.html
+            - https://github.com/adobe/webkit/blob/master/LayoutTests/css3/filters/add-filter-rendering-expected.txt
+            - https://github.com/adobe/webkit/blob/master/LayoutTests/css3/filters/add-filter-rendering-expected.png
     - checksum for replay
         > found a bunch of bugs waiting to happen (uninitalized variables / dangling pointer sort of stuff) that would trigger an error when replaying from a file didn't produce the same results as the original play (we had a checksum of game state that we could check)
         - https://news.ycombinator.com/item?id=27517391
@@ -118,6 +130,9 @@
         - https://florian.github.io/count-min-sketch/
     - logging variable values at each algorithm iteration
         - https://en.wikipedia.org/wiki/Trace_table
+    - logging on interrupt handler
+        - https://news.ycombinator.com/item?id=11385572
+            > a critical error handler that can save information off to a no init section of memory and then reset, recover and then log the error via the serial port on startup and via the radio. This is useful because for instance I have that hooked into the bus fault interrupt, so I can pull the offending instructions address off the call stack. The binutils program addr2line.exe rats out the offending line of code about 99% of the time.
     - masks vs levels
         - [ACPI debug output: `/sys/module/acpi/parameters/debug_layer`](https://www.kernel.org/doc/Documentation/acpi/debug.txt)
     - structured logging
@@ -171,11 +186,18 @@
         - https://jvns.ca/blog/2022/11/06/making-a-dns-query-in-ruby-from-scratch/
             - use request from wireshark and dump response, then make our own request
         - [GitHub \- DRMacIver/shrinkray: Shrinkray is a modern multi\-format test\-case reducer](https://github.com/DRMacIver/shrinkray)
+        - [GitHub \- googleprojectzero/halfempty: A fast, parallel test case minimization tool\.](https://github.com/googleprojectzero/halfempty)
+        - [GitHub \- mvdan/goreduce: Reduce Go programs](https://github.com/mvdan/goreduce)
+        - [GitHub \- trailofbits/necessist: A mutation\-based tool for finding bugs in tests](https://github.com/trailofbits/necessist)
     - interactive examples
         - script for processing a chunk of bytes at a given step
             - e.g. [Server Handshake Keys Calc \- The Illustrated TLS 1\.3 Connection: Every Byte Explained](https://tls13.ulfheim.net/)
         - [New tool: Mess with DNS!](https://jvns.ca/blog/2021/12/15/mess-with-dns/)
         - [GitHub \- corkami/mitra: A generator of weird files \(binary polyglots, near polyglots\.\.\.\)](https://github.com/corkami/mitra)
+    - telescope
+        - [GitHub \- danigargu/deREferencing: IDA Pro plugin that implements more user\-friendly register and stack views](https://github.com/danigargu/deREferencing)
+    - dead code
+        - [GitHub \- albertas/deadcode: Find and fix unused Python code using command line\.](https://github.com/albertas/deadcode)
 - reshape: manipulate data to be consumed by format-specific tools
     - e.g. sqlite for sql queries on csv data
     - e.g. coreutils for line-oriented data
@@ -237,6 +259,13 @@
         > You’re going to have to stare at a code listing eventually. The problem is that you want to do it with as much information as possible so as to increase your accuracy. When you normally analyze a code listing for a defect you have some evidence of its existing behaviour: it works when you start with x but not with y, for example. In other words, you have something tangible to work from. Furthermore, those tangible inputs probably came from a system that affects you in some way, giving you a reason to care.
         - [Book review: The puzzling empathy of debugging](https://wozniak.ca/blog/2018/05/07/1/index.html)
 - general guidelines
+    - follow shape of data
+        > 1. Find key data structures, guess at their purpose, and examine frequently-called functions that operate upon them
+        > 2. Outline program entry points: command line, API calls, RPC, etc.
+        > Following one feature through the code base can be one interesting way - especially if that feature is something you understand from previous experience. e.g. follow the life of a packet or a block read sya in a kernel; or one particular library call somewhere and just follow the path it takes.
+        - https://news.ycombinator.com/item?id=20372917
+        - https://remyhax.xyz/posts/the-shape-of-data/
+        - https://www.scattered-thoughts.net/writing/the-shape-of-data/
     - solving related problem
         > If you cannot solve the proposed problem try to solve first some related problem. Could you imagine a more accessible related problem? A more general problem? A more special problem? An analogous problem? Could you solve a part of the problem? Keep only a part of the condition, drop the other part; how far is the unknown then determined, how can it vary? Could you derive something useful from the data? Could you think of other data appropriate to determine the unknown? Could you change the unknown or the data, or both if necessary, so that the new unknown and the new data are nearer to each other?
         - [George Polya's Problem\-solving Tips](http://www.toroidalsnark.net/howto.html)
@@ -337,6 +366,9 @@
     - https://news.ycombinator.com/item?id=27647340
 - Record before and after states in local vars, then log them after failure / event of interest, check they are consistent with expectations
     - :) avoids timing issues vs. adding logging to code block
+- [GitHub \- cmu\-pasta/fray: A controlled concurrency testing framework for the JVM](https://github.com/cmu-pasta/fray)
+- [GitHub \- sasha\-s/go\-deadlock: Online deadlock detection in go \(golang\)](https://github.com/sasha-s/go-deadlock)
+- [GitHub \- system\-pclub/GCatch: Statically Detecting Go Concurrency Bugs](https://github.com/system-pclub/GCatch)
 
 ### reverse debugging / time travel debugging
 
@@ -463,6 +495,13 @@ rr ./foo
 
 - [A Cursed Bug \- Made of Bugs](https://blog.nelhage.com/post/a-cursed-bug/)
 
+### memory usage spike due to zeroed regions
+
+- [How we tracked down a Go 1\.24 memory regression across hundreds of pods \| Datadog](https://www.datadoghq.com/blog/engineering/go-memory-regression/)
+    > /proc/[pid]/smaps
+    > Unnecessary zeroing caused Go to commit more virtual memory pages to physical RAM, increasing RSS without changing Go's internal memory accounting.
+    > Since this particular memory region is mapped relatively early in the address space—close to the executable—and it's a read/write mapping with ~1.2 GiB virtual memory allocated, we can assume it's the Go heap.
+
 ### header prediction logic missing on bulk data receiver
 
 - [Uncovering a 24\-year\-old bug in the Linux Kernel &\#8211; Skroutz Engineering](https://engineering.skroutz.gr/blog/uncovering-a-24-year-old-bug-in-the-linux-kernel/)
@@ -535,6 +574,18 @@ site:https://github.com AND inurl:issues AND -inurl:foo "foo"
 ### reproducing dangling pointer in game engine
 
 - [prevent appearance of dangling pointers in corpse queue · coelckers/gzdoom@a9ad3d1 · GitHub](https://github.com/coelckers/gzdoom/commit/a9ad3d1fc3c97a0dbf8cbe55bf8b3f9d329c98ea)
+
+### event recording / circular buffer trace
+
+- [Quake 3 Source Code Review: Architecture](https://fabiensanglard.net/quake3/)
+- [Ask HN: How do you debug your code? \| Hacker News](https://news.ycombinator.com/item?id=11383079)
+    > /everything/ was reproducible from a "recording" of timestamped input that was automatically generated.
+    > if debug/log/print statements were detailed enough, one could actually take a log file and write some code to parse that and transform into test cases
+
+### incremental compilation
+
+- [Ask HN: How do you debug your code? \| Hacker News](https://news.ycombinator.com/item?id=11383079)
+    > narrowing down execution to just before and just after your error, then taking snapshots of the runtime memory and diffing the objects. Or a conditional breakpoint that changes the class of a particular instance to a special debug class.
 
 ### resource leaks
 

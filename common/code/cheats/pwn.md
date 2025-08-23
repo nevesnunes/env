@@ -15,6 +15,7 @@
 - Linux
     - [GitHub \- xairy/linux\-kernel\-exploitation: A collection of links related to Linux kernel security and exploitation](https://github.com/xairy/linux-kernel-exploitation)
     - memfd_create dropper to download/execute files in memory
+        - https://github.com/wetw0rk/Sickle/blob/f3e1ab7260e0760851a58c94e542bfd669ad5bfa/src/sickle/payloads/linux/x64/memfd_reflective_elf_tcp.py
         - https://github.com/netspooky/golfclub/blob/master/linux/dl_memfd_219.asm
             > header overlay in the fully assembled bin only works up to kernel 5.6, but you can just take all the elf header bits out and rebuild with nasm -f elf64
         ```sh

@@ -6,6 +6,7 @@
 - [GitHub \- myzxcg/RealBlindingEDR: Remove AV/EDR Kernel ObRegisterCallbacks、CmRegisterCallback、MiniFilter Callback、PsSetCreateProcessNotifyRoutine Callback、PsSetCreateThreadNotifyRoutine Callback、PsSetLoadImageNotifyRoutine Callback\.\.\.](https://github.com/myzxcg/RealBlindingEDR)
 - [GitHub \- wavestone\-cdt/EDRSandblast](https://github.com/wavestone-cdt/EDRSandblast)
 - [GitHub \- JustasMasiulis/lazy\_importer: library for importing functions from dlls in a hidden, reverse engineer unfriendly way](https://github.com/JustasMasiulis/lazy_importer)
+- [GitHub \- NtDallas/MemLoader: Run native PE or \.NET executables entirely in\-memory\. Build the loader as an \.exe or \.dll—DllMain is Cobalt Strike UDRL\-compatible](https://github.com/NtDallas/MemLoader)
 
 - [Map \- Unprotect Project](https://search.unprotect.it/map)
 - [Anti\-Debug Tricks](https://anti-debug.checkpoint.com/)

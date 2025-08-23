@@ -1,10 +1,12 @@
 #!/bin/sh
 
+set -eu
+
 # Usage:
 # xdotool getactivewindow windowminimize; sleep 2; capture-window-gif.sh 'PrBoom' 10
 
 title=$1
-countdown=${2:-0}
+countdown=${2:-5}
 screen=$DISPLAY
 if ! echo "$screen" | grep -qE '\.'; then
   screen="${screen}.0"

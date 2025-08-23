@@ -120,6 +120,12 @@
             mov     dword ptr [eax+4], 2
             mov     dword ptr [eax+8], 3
             ```
+    - finding missed references
+        - https://github.com/awgil/sc2rtwp/blob/master/doc/story.md
+        > iterate over every byte in code segment of the main executable image, try decoding instruction starting at it, and checking whether any of the operands is a memory reference to one of the interesting strings.
+    - finding hot vtables
+        - https://old.reddit.com/r/ReverseEngineering/comments/1mndr6n/bypassing_starcraft_2_antidebugging_measures/
+        > read all the writable memory of the game, and look for vtables. That is, pointer to a list of pointers pointing to executable regions of memory. That allowed me to find all instances of classes which I could classify based on vtables. Then I grouped them and found the "entity" set of classes which had the most instances created. 
 - visual structure
     - https://binvis.io/
         - https://github.com/binvis/binvis.io
@@ -330,6 +336,9 @@
         - snapshot at `entry()`, then check if executable section became writable and modified at later snapshot
         - diff/search for data changes before and after blocks: loops, func calls...
         - hook `memcpy()` + `strcpy()`
+    - replay in external process
+        - https://old.reddit.com/r/ReverseEngineering/comments/1mndr6n/bypassing_starcraft_2_antidebugging_measures/
+        > I read the machine code, and execute it in my own process instruction by instruction in a dedicated thread. Each instruction goes through a disassembler and if I find that it’s a memory reference, I read that part of the memory from the game, rewrite the machine code to reference the address mapped to my own process memory and continue execution.
 - efficiency
     - https://blog.perfect.blue/perfect-blue-finishes-top-1-on-CTFtime-2020
         > So one of the key strategies for us is to stockpile solution templates. For us at least, there’s no excuse for not having a canned solution when encountering a stereotyped problem. From our experience, we would say around 50% of challenges are stereotyped.
@@ -397,6 +406,10 @@ llc -march=x86-64 foo.bc -o foo.o -filetype=obj
     0x00c70035  0x00000080  0x00000020  0x00000010
     0x00000074  0x00000008  0x00000054  0x000000ff
     ```
+
+# opaque predicates
+
+- [GitHub \- ScriptWare\-Software/native\-predicate\-solver: Native opaque predicate cleaner plugin for Binary Ninja](https://github.com/ScriptWare-Software/native-predicate-solver)
 
 # mba
 

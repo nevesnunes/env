@@ -17,7 +17,6 @@
         # viz
         uxterm -rv -fa 'M+ 1m' -fs 2 -e vim -c 'set nonumber nolinebreak nobreakindent showbreak=' -c 'M 1' -c 'M 2' -c 'M 3' 1024asc
         ```
-
 - [GitHub \- mist64/visualize\_1541: A tool that creates visualizations of the data layout on Commodore 1541 disk images](https://github.com/mist64/visualize_1541)
 - https://www.robertxiao.ca/hacking/dsctf-2019-cpu-adventure-unknown-cpu-reversing/
     > resizing a text window until the line-wrap length matches the file alignment
@@ -29,5 +28,5 @@
         # viz
         uxterm -rv -fa 'M+ 1m' -fs 2 -e vim -c 'set nonumber nolinebreak nobreakindent showbreak=' -c 'M 1' -c 'M 2' -c 'M 3' <(fold -b512 1024bits)
         ```
-
+- [GitHub \- brandtbucher/specialist: Visualize CPython&\#39;s specializing, adaptive interpreter\. :fire:](https://github.com/brandtbucher/specialist)
 - https://en.wikipedia.org/wiki/User:Cmglee

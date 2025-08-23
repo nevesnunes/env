@@ -6,6 +6,8 @@
 - [GitHub \- rm\-hull/sql\_graphviz: Generates graphviz commands to graphically display tables and show foreign key links\.](https://github.com/rm-hull/sql_graphviz)
 - [How to create a 1M record table with a single query \| Anton Zhiyanov](https://antonz.org/random-table/)
 - [GitHub \- ept/hermitage: What are the differences between the transaction isolation levels in databases? This is a suite of test cases which differentiate isolation levels\.](https://github.com/ept/hermitage)
+- [SQL Scope](https://sqlscope.netlify.app)
+    - [GitHub \- tobymao/sqlglot: Python SQL Parser and Transpiler](https://github.com/tobymao/sqlglot)
 
 # extensions
 

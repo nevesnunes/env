@@ -10,6 +10,7 @@ autopoint
 bchunk
 clang
 clangd
+clang-format
 cmake
 curl
 dos2unix

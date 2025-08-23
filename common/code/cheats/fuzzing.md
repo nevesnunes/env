@@ -6,6 +6,11 @@
 - [GitHub \- fuzzdb\-project/fuzzdb: Dictionary of attack patterns and primitives for black\-box application fault injection and resource discovery\.](https://github.com/fuzzdb-project/fuzzdb/tree/master)
 - [GitHub \- trailofbits/ebpfault: A BPF\-based syscall fault injector](https://github.com/trailofbits/ebpfault)
 - [GitHub \- fkie\-cad/libdesock: A de\-socketing library for fuzzing\.](https://github.com/fkie-cad/libdesock)
+- [GitHub \- intel/yarpgen: Yet Another Random Program Generator](https://github.com/intel/yarpgen)
+- [GitHub \- silentbicycle/theft: property\-based testing for C: generate input to find obscure bugs, then reduce to minimal failing input](https://github.com/silentbicycle/theft)
+- [GitHub \- rohanpadhye/JQF: JQF \+ Zest: Coverage\-guided semantic fuzzing for Java\.](https://github.com/rohanpadhye/JQF)
+- [GitHub \- blitz/baresifter: A bare\-metal x86 instruction set fuzzer a la Sandsifter](https://github.com/blitz/baresifter)
+- [GitHub \- addisoncrump/parking\-game\-fuzzer: Learn to LibAFL with parking\-game puzzles\.](https://github.com/addisoncrump/parking-game-fuzzer)
 
 # Methodology
 
@@ -119,6 +124,7 @@ lea rsp, [rsp+98h]
     - https://github.com/qilingframework/qiling/blob/master/examples/fuzzing/linux_x8664/fuzz_x8664_linux.py
     - https://hackernoon.com/afl-unicorn-part-2-fuzzing-the-unfuzzable-bea8de3540a5
 - [GitHub \- google/honggfuzz: Security oriented software fuzzer\. Supports evolutionary, feedback\-driven fuzzing based on code coverage \(SW and HW based\)](https://github.com/google/honggfuzz)
+- [GitHub \- trailofbits/ruzzy: A coverage\-guided fuzzer for pure Ruby code and Ruby C extensions](https://github.com/trailofbits/ruzzy)
 - [libFuzzer – a library for coverage\-guided fuzz testing\. &\#8212; LLVM 16\.0\.0git documentation](https://llvm.org/docs/LibFuzzer.html)
     - [fuzzing/libFuzzerTutorial\.md at master · google/fuzzing · GitHub](https://github.com/google/fuzzing/blob/master/tutorial/libFuzzerTutorial.md)
 

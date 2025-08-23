@@ -4,11 +4,16 @@
 - [GitHub \- immunant/c2rust: Migrate C code to Rust](https://github.com/immunant/c2rust)
 - [GitHub \- cordx56/rustowl: Visualize Ownership and Lifetimes in Rust](https://github.com/cordx56/rustowl)
 
-# Docs
+# Documentation
 
 - https://doc.rust-lang.org/stable/std/?search=
 - https://doc.rust-lang.org/src/core/fmt/mod.rs.html
     - https://github.com/rust-lang/rust/tree/master/library/core/src
+
+```sh
+cargo doc --open
+rustc --explain E1234
+```
 
 # Bootstrap
 
@@ -78,7 +83,8 @@ rustc -g
 RUST_BACKTRACE=1 ./foo
 
 # Pretty-printing for rust types
-rust-gdb
+cargo build
+rust-gdb target/debug/foo
 ```
 
 ```rust
@@ -97,6 +103,16 @@ fn main() {
     print extern x::y
     ```
 - [GitHub \- h311d1n3r/Cerberus: A Python tool to unstrip Rust binaries on Linux](https://github.com/h311d1n3r/Cerberus)
+
+# Update
+
+```sh
+rustup update stable
+cargo fix --edition
+# Add edition = "2024" to Cargo.toml
+```
+
+- Iterative: [rust-2024-upgrade](https://codeandbitters.com/rust-2024-upgrade/)
 
 # Design
 

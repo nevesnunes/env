@@ -151,6 +151,10 @@ node --require './tracing.js' app.js
 - [ext4 and data loss \(LWN\.net\)](https://lwn.net/Articles/322823/)
     - https://git.kernel.org/pub/scm/linux/kernel/git/tytso/ext4.git/commit/?id=8750c6d5fcbd3342b3d908d157f81d345c5325a7
 
+# Databases
+
+- [Torn Write Detection and Protection](https://transactional.blog/blog/2025-torn-writes)
+
 # Documentation
 
 - [sqlite/os\_unix\.c at 3245f3be67907a31431a4506908d981ab1354523 · sqlite/sqlite · GitHub](https://github.com/sqlite/sqlite/blob/3245f3be67907a31431a4506908d981ab1354523/src/os_unix.c#L1027)

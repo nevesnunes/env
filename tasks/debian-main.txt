@@ -19,6 +19,8 @@ fluidsynth
 fontforge
 fonts-noto-color-emoji
 fonttools
+g++-aarch64-linux-gnu
+g++-arm-linux-gnueabihf
 gettext
 gimp
 gnome-control-center

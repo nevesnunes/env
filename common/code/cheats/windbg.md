@@ -6,6 +6,7 @@
 - [pykd \- automate debugging and crash dump analysis using Python](https://githomelab.ru/pykd)
 - [python-scripting-for-windbg-a-quick-introduction-to-pykd](https://hshrzd.wordpress.com/2022/01/06/python-scripting-for-windbg-a-quick-introduction-to-pykd/)
 - [starting-with-windows-kernel-exploitation-part-1-setting-up-the-lab](https://hshrzd.wordpress.com/2017/05/28/starting-with-windows-kernel-exploitation-part-1-setting-up-the-lab/)
+- [GitHub \- microsoft/WinDbg\-Samples: Sample extensions, scripts, and API uses for WinDbg\.](https://github.com/microsoft/WinDbg-Samples)
 
 # preview
 

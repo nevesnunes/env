@@ -4,6 +4,8 @@
 - [kernelconfig\.io \- search config information for linux kernel modules](https://www.kernelconfig.io/index.html)
 - [Linux Device Drivers, 3rd Edition](http://www.makelinux.net/ldd3/)
 
+- [GitHub \- phip1611/linux\-libc\-auxv: A parser and builder for the Linux process initial stack layout \- use it to decode or construct argc, argv, envp, and auxv \(auxiliary vector\)\.](https://github.com/phip1611/linux-libc-auxv)
+
 # headers
 
 - For custom kernel, Location: `$custom_kernel_root/include`

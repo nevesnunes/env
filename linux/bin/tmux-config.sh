@@ -52,7 +52,7 @@ else
     && [ "$(echo "$TMUX_VERSION > 3.1" | bc)" = 1 ]; then
     tmux set -g pane-border-lines heavy
     tmux set -g pane-border-style fg=colour238,bg=default
-    tmux set -g pane-active-border-style fg=colour7,bg=default
+    tmux set -g pane-active-border-style fg=cyan,bg=default
     tmux set -g status-style fg=white,bg=default
   else
     tmux set -g pane-border-style fg=white,bg=default

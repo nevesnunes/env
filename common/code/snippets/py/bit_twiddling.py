@@ -1,6 +1,34 @@
 #!/usr/bin/env python3
 
 
+def bcd(val):
+    acc = 0
+    while val > 0:
+        acc <<= 4
+        acc |= val % 10
+        val = val // 10
+    return acc
+
+
+def bcd(val):
+    acc = 0
+    base = 0
+    while val > 0:
+        acc |= (val % 10) << base
+        base += 4
+        val //= 10
+    return acc
+
+
+def bcd_le(val):
+    acc = 0
+    while val > 0:
+        acc <<= 4
+        acc |= val % 10
+        val //= 10
+    return acc
+
+
 def twos(val, bits):
     if (val & (1 << (bits - 1))) != 0:
         val = val - (1 << bits)

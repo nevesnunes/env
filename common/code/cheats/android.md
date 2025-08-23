@@ -4,6 +4,8 @@
 - [GitHub \- randorisec/MobileHackingCheatSheet: Basics on commands/tools/info on how to assess the security of mobile applications](https://github.com/randorisec/MobileHackingCheatSheet)
 - [GitHub \- Peter\-Easton/android\-debug\-cable\-howto: This is a simple how\-to to create your own android kernel debugging cable using commercially available parts\.](https://github.com/Peter-Easton/android-debug-cable-howto)
 - [GitHub \- rednaga/APKiD: Android Application Identifier for Packers, Protectors, Obfuscators and Oddities \- PEiD for Android](https://github.com/rednaga/APKiD)
+- [GitHub \- niklashigi/apk\-mitm: 🤖 A CLI application that automatically prepares Android APK files for HTTPS inspection](https://github.com/niklashigi/apk-mitm)
+- [GitHub \- cryptax/droidlysis: Property extractor for Android apps](https://github.com/cryptax/droidlysis)
 
 ### dynamically linked dependencies
 

@@ -530,6 +530,7 @@ command! -range FormatShellCmd <line1>!format_shell_cmd.py
 augroup filetype_group
     autocmd!
     autocmd BufEnter *
+                \ syntax sync minlines=500 |
                 \ if &filetype !=# 'markdown' && line('$') < 100 |
                 \     for i in range(1, line('$')) |
                 \         if strlen(getline(i)) >= 1200 |

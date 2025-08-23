@@ -18,8 +18,8 @@
 
 "keybind-guard.sh '(chrome|firefox)' 'Ctrl+W'"
 Control + Shift + w
-"keybind-guard.sh '(chrome|firefox)' 'Ctrl+q'"
-Control + q
+# "keybind-guard.sh '(chrome|firefox)' 'Ctrl+q'"
+# Control + q
 
 # "rofi -show run"
 # Mod4 + x

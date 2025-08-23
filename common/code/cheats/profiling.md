@@ -7,6 +7,7 @@
 - [linux-trouble-shooting-cheat-sheet](../snippets/sysadmin/linux-trouble-shooting-cheat-sheet.md)
 
 - [GitHub \- wolfpld/tracy: Frame profiler](https://github.com/wolfpld/tracy)
+- [GitHub \- mstange/samply: Command\-line sampling profiler for macOS, Linux, and Windows](https://github.com/mstange/samply)
 - [GitHub \- google/orbit: C/C\+\+ Performance Profiler](https://github.com/google/orbit)
     - dyninst for func entry/exit
 - [GitHub \- josefbacik/kernelscope: A daemon and webapp for collecting kernel trace data and visualizing it\.](https://github.com/josefbacik/kernelscope)

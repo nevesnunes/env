@@ -3,19 +3,29 @@
 - [GitHub \- brendangregg/bpf\-perf\-workshop](https://github.com/brendangregg/bpf-perf-workshop)
 - [proctrace \- a high level profiler for process lifecycle events &middot; Tinkering](https://tinkering.xyz/proctrace/)
     - filtering threads vs. processes
+- [GitHub \- mechpen/sockdump: Dump unix domain socket traffic with bpf](https://github.com/mechpen/sockdump)
 - [Uprobe\-tracer: Uprobe\-based Event Tracing &mdash; The Linux Kernel  documentation](https://www.kernel.org/doc/html/v5.0/trace/uprobetracer.html)
+- [support override uretprobe  · Issue \#1604 · bpftrace/bpftrace · GitHub](https://github.com/bpftrace/bpftrace/issues/1604)
 
 ```sh
+# args
+sudo cat /sys/kernel/tracing/events/syscalls/sys_enter_write/format
+bpftrace -lv 'kfunc:foo'
+
+# exposed headers
+# /usr/src/linux-headers-6.1.0-35-common/include/linux/sched.h 
+# => #include <linux/sched.h>
+
 # Trace libc calls 
 # - /!\ need to scope glob, use dynamic syms: ~/bin/libctrace.sh
-sudo bpftrace -e '
+bpftrace -e '
 BEGIN { @start = nsecs; } 
 uprobe:/usr/lib64/libc-2.33.so:* /@start != 0 && pid == cpid/ { 
     printf("%-08d %-04d %s\n", tid, (nsecs - @start) / 1000000, func); 
 }' -c '/bin/sleep 2'
 
 # Trace user functions
-sudo bpftrace -e 'uprobe:/bin/bash:readline {
+bpftrace -e 'uprobe:/bin/bash:readline {
     printf("%s\n", ustack(perf, 10));
 }'
 

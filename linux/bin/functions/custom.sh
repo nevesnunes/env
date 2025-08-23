@@ -389,6 +389,23 @@ c() {
     s/\b\('"$3"'\)\b/'"$fb$f2\1$fn"'/g;
     s/\b\('"$4"'\)\b/'"$fb$f6\1$fn"'/g;
     ' /dev/stdin
+  elif [ $# -eq 5 ]; then               
+    sed '                               
+    s/\b\('"$1"'\)\b/'"$fb$f1\1$fn"'/g;
+    s/\b\('"$2"'\)\b/'"$fb$f5\1$fn"'/g;
+    s/\b\('"$3"'\)\b/'"$fb$f2\1$fn"'/g;
+    s/\b\('"$4"'\)\b/'"$fb$f6\1$fn"'/g;
+    s/\b\('"$5"'\)\b/'"$fb$f4\1$fn"'/g;
+    ' /dev/stdin
+  elif [ $# -eq 6 ]; then               
+    sed '                               
+    s/\b\('"$1"'\)\b/'"$fb$f1\1$fn"'/g;
+    s/\b\('"$2"'\)\b/'"$fb$f5\1$fn"'/g;
+    s/\b\('"$3"'\)\b/'"$fb$f2\1$fn"'/g;
+    s/\b\('"$4"'\)\b/'"$fb$f6\1$fn"'/g;
+    s/\b\('"$5"'\)\b/'"$fb$f4\1$fn"'/g;
+    s/\b\('"$6"'\)\b/'"$fb$f3\1$fn"'/g;
+    ' /dev/stdin
   else
     sed '
     s/\b\(ERR\|ERROR\)\b/'"$fb$f1\1$fn"'/g;

@@ -16,6 +16,8 @@
 - [GitHub \- 0x90/miranda-upnp: Miranda is a Python-based Universal Plug-N-Play client application designed to discover, query and interact with UPNP devices, particularly Internet Gateway Devices\.](https://github.com/0x90/miranda-upnp)
 - [GitHub \- gabriel\-sztejnworcel/pipe\-intercept: Intercept Windows Named Pipes communication using Burp or similar HTTP proxy tools](https://github.com/gabriel-sztejnworcel/pipe-intercept)
 - [GitHub \- vi/websocat: Command\-line client for WebSockets, like netcat \(or curl\) for ws:// with advanced socat\-like functions](https://github.com/vi/websocat)
+- [GitHub \- nccgroup/SocksOverRDP: Socks5/4/4a Proxy support for Remote Desktop Protocol / Terminal Services / Citrix / XenApp / XenDesktop](https://github.com/nccgroup/SocksOverRDP)
+- [GitHub \- GrrrDog/weird\_proxies: Reverse proxies cheatsheet](https://github.com/GrrrDog/weird_proxies)
 
 - [Expired Domains \| Daily Updated Domain Lists for 477 TLDs](https://www.expireddomains.net/)
 - [Capturing damaged frames  \|  Packet\-Foo \| Network Packet Capture and Analysis](https://blog.packet-foo.com/2013/05/capturing-damaged-frames/)

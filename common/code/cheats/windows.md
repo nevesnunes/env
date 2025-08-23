@@ -12,11 +12,14 @@
 	- :) bindiff with pre/post patch binaries, check symbols in previous vuln writeups, xref. new/deleted bb address with decompiled address, create structs with known fields and filler fields as char\*
 		- https://securityintelligence.com/posts/dissecting-exploiting-tcp-ip-rce-vulnerability-evilesp/
 - [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/)
+- [wtrace\.net \| Tools and materials for software and system troubleshooting](https://wtrace.net/)
+
 - [GitHub \- harryanon/r0ak \-  read, write, and execute kernel-mode code from the command prompt](https://github.com/harryanon/r0ak)
 - [GitHub \- Ondrik8/exploit \- Advanced Windows exploit development resources](https://github.com/Ondrik8/exploit)
 - [GitHub \- paulveillard/cybersecurity\-windows\-exploitation: A collection of awesome software, libraries, learning tutorials, documents and books, awesome resources and cool stuff about ARM and Windows Exploitation\.](https://github.com/paulveillard/cybersecurity-windows-exploitation)
 - [GitHub \- yeyintminthuhtut/Awesome\-Advanced\-Windows\-Exploitation\-References: List of Awesome Advanced Windows Exploitation References](https://github.com/yeyintminthuhtut/Awesome-Advanced-Windows-Exploitation-References)
 - [GitHub \- DebugPrivilege/InsightEngineering: Hardcore Debugging](https://github.com/DebugPrivilege/InsightEngineering)
+
 - [OSR Developer Community](https://community.osr.com/)
 - [The Old New Thing](https://devblogs.microsoft.com/oldnewthing/)
 

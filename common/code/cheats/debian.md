@@ -165,7 +165,7 @@ deb http://deb.debian.org/debian-debug/ stable-debug main
 ```
 
 ```sh
-apt install foo-dbgsym
+apt install -t stable-debug foo-dbgsym
 ```
 
 https://wiki.debian.org/AutomaticDebugPackages

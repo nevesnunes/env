@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eu
+
 # Usage:
 # xdotool getactivewindow windowminimize; sleep 2; echo 'y' | capture-window.sh 'PrBoom'
 
