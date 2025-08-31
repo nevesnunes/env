@@ -180,6 +180,17 @@ export DEBUGINFOD_URLS="https://debuginfod.debian.net"
 
 https://wiki.debian.org/Debuginfod
 
+# tmp
+
+```sh
+# limits
+systemctl edit tmp.mount
+# opt out
+systemctl mask tmp.mount
+# validation
+df -h /tmp
+```
+
 # case studies
 
 - [diziet \| chiark’s skip\-skip\-cross\-up\-grade](https://diziet.dreamwidth.org/11840.html)

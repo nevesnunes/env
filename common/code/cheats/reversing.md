@@ -79,6 +79,8 @@
     - [GitHub \- wbenny/pdbex: pdbex is a utility for reconstructing structures and unions from the PDB into compilable C headers](https://github.com/wbenny/pdbex)
     - [GitHub \- camden\-smallwood/pdb\-decompiler: A tool to decompile MSVC PDB files to C\+\+ source code\.](https://github.com/camden-smallwood/pdb-decompiler)
     - [GitHub \- seilweiss/dwarf2cpp: Converts DWARF v1 debug data into C/C\+\+ definitions\.](https://github.com/seilweiss/dwarf2cpp)
+    - [GitHub \- intel/fffc: Easy\-to\-use tool which autogenerates a type\-aware fuzzer from a debuggable executable\.](https://github.com/intel/fffc)
+    - [GitHub \- acmel/dwarves: Pahole and the dwarves](https://github.com/acmel/dwarves)
 - constants
     - e.g.
         ```python
@@ -635,6 +637,15 @@ perf script --insn-trace --xed -F+srcline,+srccode
 - [GitHub \- notaz/ia32rtools](https://github.com/notaz/ia32rtools)
     - [Starcraft on Open Pandora: How the Port Came to Be &\#8211; Giant Pockets](https://www.giantpockets.com/starcraft-pandora-port-came/)
 - [GitHub \- simonlindholm/decomp\-permuter: Randomly permute C files to better match a target binary](https://github.com/simonlindholm/decomp-permuter)
+- [GitHub \- encounter/objdiff: A local diffing tool for decompilation projects](https://github.com/encounter/objdiff)
+- [GitHub \- ethteck/splat: A binary splitting tool to assist with decompilation and modding projects](https://github.com/ethteck/splat)
+
+# delinking
+
+- [GitHub \- boricj/ghidra\-delinker\-extension: Ghidra extension for exporting relocatable object files](https://github.com/boricj/ghidra-delinker-extension)
+- [GitHub \- endrazine/wcc: The Witchcraft Compiler Collection](https://github.com/endrazine/wcc)
+- [GitHub \- jonwil/unlinkerida](https://github.com/jonwil/unlinkerida)
+- [GitHub \- jnider/delinker: Unlinks a binary executable to get back a set of \.o object files for further transformation and re\-linking\.](https://github.com/jnider/delinker)
 
 # binary rewriting
 
@@ -645,8 +656,6 @@ perf script --insn-trace --xed -F+srcline,+srccode
 - [GitHub \- dyninst/dyninst: DyninstAPI: Tools for binary instrumentation, analysis, and modification\.](https://github.com/dyninst/dyninst)
 - [GitHub \- iu\-parfunc/liteinst: Runtime application probing with lightweight binary instrumentation\.  Related to PLDI17\.](https://github.com/iu-parfunc/liteinst)
     - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
-- [GitHub \- boricj/ghidra\-delinker\-extension: Ghidra extension for exporting relocatable object files](https://github.com/boricj/ghidra-delinker-extension)
-- [GitHub \- jnider/delinker: Unlinks a binary executable to get back a set of \.o object files for further transformation and re\-linking\.](https://github.com/jnider/delinker)
 - [GitHub \- advanced\-microcode\-patching/shiva: A custom ELF linker/loader for installing ET\_REL binary patches at runtime](https://github.com/advanced-microcode-patching/shiva)
 
 Alternative: 

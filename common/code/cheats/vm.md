@@ -305,3 +305,13 @@ cd \blah
 Alternatives:
 
 - bochs
+
+# qemu windows 95
+
+[GitHub \- JHRobotics/vmdisp9x: Virtual Display driver for Windows 95/98/Me\.](https://github.com/JHRobotics/vmdisp9x)
+
+```
+-audiodev id=pipewire,driver=pipewire
+-device sb16,audiodev=pipewire
+-device adlib,audiodev=pipewire
+```
