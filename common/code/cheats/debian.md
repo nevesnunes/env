@@ -1,6 +1,6 @@
 # +
 
-```bash
+```sh
 # Updates over http
 # - ! Switch ports must be in same VLAN
 # - ! Wireless protocols must match
@@ -11,7 +11,7 @@ wget --recursive --no-parent --no-host-directories 192.168.1.5:8123
 
 # distribution version
 
-```bash
+```sh
 lsb_release -a
 hostnamectl
 cat /proc/version
@@ -20,7 +20,7 @@ cat /etc/*-release
 
 # package manager
 
-```bash
+```sh
 # find packages that provides file
 apt-file find /foo
 
@@ -58,7 +58,7 @@ On /etc/apt/sources.list:
 deb http://deb.debian.org/debian buster main contrib
 ```
 
-```bash
+```sh
 # Optional: Free up space
 # - Rotate logs
 /etc/cron.daily/logrotate
@@ -139,7 +139,7 @@ Pin-Priority: -10
 
 Installing packages:
 
-```bash
+```sh
 apt -t testing install foo
 ```
 
@@ -147,15 +147,18 @@ apt -t testing install foo
 
 ### extract deb
 
-```bash
+```sh
 ar x _
 ```
 
-# repair mode
+# repair
 
-> To access rescue mode, select rescue from the boot menu, type rescue at the boot: prompt, or boot with the rescue/enable=true boot parameter
+```sh
+strace -f -s 9999 apt --fix-broken install 3>&1 1>&2 2>&3 | vim -
+```
 
-https://www.debian.org/releases/jessie/amd64/ch08s07.html.en
+- [Recovering a Broken System](https://d-i.debian.org/manual/en.amd64/ch08s06.html)
+    > To access rescue mode, select rescue from the boot menu, type rescue at the boot: prompt, or boot with the rescue/enable=true boot parameter
 
 # debug symbols
 

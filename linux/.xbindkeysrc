@@ -186,7 +186,7 @@ Mod4 + v
 Mod4 + Return
 
 # "Run || Raise File Manager"
-"xapp.sh pcmanfm"
+"xapp.sh user-file-manager.sh"
 Mod4 + f
 
 # "Run || Raise Zathura"
@@ -198,7 +198,7 @@ Mod4 + z
 Shift + Mod4 + b
 
 # "File Manager"
-"pcmanfm"
+"user-file-manager.sh"
 Shift + Mod4 + f
 
 # "Tmux"

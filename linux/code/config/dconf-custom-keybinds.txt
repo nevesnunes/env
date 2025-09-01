@@ -77,7 +77,7 @@ name='Run || Raise Browser'
 
 [custom-keybindings/custom23]
 binding='<Super>f'
-command='xapp.sh pcmanfm'
+command='xapp.sh nautilus'
 name='Run || Raise File Manager'
 
 [custom-keybindings/custom24]

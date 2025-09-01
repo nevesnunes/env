@@ -1,0 +1,59 @@
+Types: deb
+URIs: https://deb.debian.org/debian
+Suites: trixie trixie-updates
+Components: main non-free-firmware non-free contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: https://security.debian.org/debian-security
+Suites: trixie-security
+Components: main non-free-firmware non-free contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: https://deb.debian.org/debian-debug
+Suites: trixie-debug
+Components: main
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb-src
+URIs: https://deb.debian.org/debian
+Suites: trixie trixie-updates
+Components: main non-free-firmware non-free contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb-src
+URIs: https://security.debian.org/debian-security
+Suites: trixie-security
+Components: main non-free-firmware non-free contrib
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+# Third-Party
+
+Types: deb
+URIs: http://linux.dropbox.com/debian
+Suites: trixie
+Components: main
+Architectures: amd64
+Signed-By: /etc/apt/keyrings/dropbox.asc
+
+Types: deb
+URIs: http://apt.llvm.org/trixie
+Suites: llvm-toolchain-trixie-21
+Components: main
+Architectures: amd64
+Signed-By: /usr/share/keyrings/llvm-snapshot.gpg
+
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64
+Signed-By: /usr/share/keyrings/microsoft.gpg
+
+Types: deb
+URIs: https://download.virtualbox.org/virtualbox/debian
+Suites: trixie
+Components: contrib
+Architectures: amd64
+Signed-By: /usr/share/keyrings/oracle-virtualbox-2016.gpg
