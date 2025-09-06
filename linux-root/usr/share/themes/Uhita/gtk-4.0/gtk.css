@@ -40,34 +40,6 @@ tooltip * {
  * Buttons
  */
 
-window,
-window.csd,
-window.solid-csd,
-window.ssd {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-color: #4a5050;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .375);
-    outline-color: #4a5050;
-    outline-width: 1px;
-}
-
-window:backdrop,
-window.csd:backdrop,
-window.solid-csd:backdrop,
-window.ssd:backdrop {
-    outline-color: #788484;
-}
-
-.titlebar windowcontrols button image {
-    background-color: transparent;
-}
-
-.titlebar windowhandle,
-.titlebar windowhandle box {
-    padding: 0;
-}
-
 .titlebar entry,
 .titlebar spinbutton:not(.vertical) {
     min-height: 24px;
@@ -222,6 +194,32 @@ window.ssd:backdrop {
 /*
  * Header bars
  */
+
+window,
+window.csd,
+window.solid-csd,
+window.ssd {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 4px 12px 1px rgba(0, 0, 0, .3), 0 1px 0 1px rgba(0, 0, 0, .15);
+    outline-style: none;
+}
+
+window:backdrop,
+window.csd:backdrop,
+window.solid-csd:backdrop,
+window.ssd:backdrop {
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .10), 0 1px 0 1px rgba(0, 0, 0, .15);
+}
+
+.titlebar windowcontrols button image {
+    background-color: transparent;
+}
+
+.titlebar windowhandle,
+.titlebar windowhandle box {
+    padding: 0;
+}
 
 .titlebar:not(headerbar),
 .titlebar.default-decoration:not(headerbar),

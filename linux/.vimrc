@@ -14,7 +14,12 @@ let g:vim_markdown_fenced_languages = ['bash', 'c', 'cpp', 'diff', 'html', 'java
 " TODO: Parse buffer and conditional load additional languages
 " - https://thoughtbot.com/blog/profiling-vim
 "let g:vim_markdown_fenced_languages = ['asm', 'asm68k', 'awk', 'bash', 'basic', 'c', 'cmake', 'conf', 'cpp', 'css', 'diff', 'dot', 'fasm', 'gdb', 'glsl', 'hex', 'html', 'java', 'javascript', 'json', 'log', 'make', 'nasm', 'perl', 'php', 'ps1', 'python', 'r', 'rust', 'scala', 'sh', 'sql', 'strace', 'svg', 'toml', 'typescript', 'vim', 'xml', 'xxd', 'yaml', 'batch=dosbatch', 'bat=dosbatch', 'csharp=cs', 'js=javascript', 'powershell=ps1']
-let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
+let g:markdown_fenced_languages = []
+augroup markdown_fenced_languages_group
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdx,mdown,mkd,mkdn,mkdown,markdown}
+                \ let g:markdown_fenced_languages = g:vim_markdown_fenced_languages
+augroup END
 
 " vim-polyglot
 let g:polyglot_disabled = ['md', 'markdown']

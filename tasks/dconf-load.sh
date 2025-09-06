@@ -11,6 +11,7 @@ dconf write /org/gnome/desktop/interface/font-name "Sans 12"
 dconf write /org/gnome/desktop/privacy/report-technical-problems false
 dconf write /org/gnome/desktop/search-providers/disable-external true
 dconf write /org/gnome/desktop/wm/preferences/audible-bell false
+dconf write /org/gnome/nautilus/preferences/click-policy "double"
 dconf write /org/gnome/settings-daemon/plugins/xsettings/overrides "{'Gtk/ShellShowsAppMenu': <1>, 'Gtk/MenuImages': <1>}"
 dconf write /org/gnome/software/download-updates false
 dconf write /org/gnome/terminal/legacy/default-show-menubar false
