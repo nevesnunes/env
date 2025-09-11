@@ -325,10 +325,29 @@ kdump -l
 
 # memory allocations
 
+```sh
+# heap expansions
+stackcount -f PU t:syscalls:sys_enter_brk > out.stacks 
+bpftrace -e 'tracepoint:syscalls:sys_enter_brk { @[ustack, comm] = count(); }' > out.stacks
+./stackcollapse-bpftrace.pl < out.stacks | ./flamegraph.pl --color=mem --title="Heap Expansion Flame Graph" --countname="calls" > out.svg
+
+# large allocations (more efficient to call mmap than malloc)
+stackcount -f -PU t:syscalls:sys_enter_mmap > out.stacks
+bpftrace -e 'tracepoint:syscalls:sys_enter_mmap { @[ustack, comm] = count(); }'
+./stackcollapse-bpftrace.pl < out.stacks | ./flamegraph.pl --color=mem --title="mmap() Flame Graph" --countname="calls" > out.svg
+
+# page faults (cheaper to trace than malloc)
+stackcount -f -PU t:exceptions:page_fault_user > out.stacks
+bpftrace -e 'tracepoint:exceptions:page_fault_user { @[ustack, comm] = count(); }' > out.stacks
+./stackcollapse-bpftrace.pl < out.stacks | ./flamegraph.pl --color=mem --title="Page Faults" --countname="pages" > out.svg
+```
+
 - [GitHub \- KDE/heaptrack: A heap memory profiler for Linux](https://github.com/KDE/heaptrack)
 - [GitHub \- koute/bytehound: A memory profiler for Linux\.](https://github.com/koute/bytehound)
 - [The poor man's way of identifying memory leaks](https://bytepointer.com/resources/old_new_thing/20050815_224_the_poor_mans_way_of_identifying_memory_leaks.htm)
     - [GitHub \- tialaramex/leakdice: Monte Carlo leak diagnostic for Linux binaries](https://github.com/tialaramex/leakdice)
+- [Tracing and Analysis Framework](https://dynamorio.org/page_drcachesim.html)
+- [Examining Problematic Memory in C/C++ Applications with BPF, perf, and Memcheck](https://careersatdoordash.com/blog/examining-problematic-memory-with-bpf-perf-and-memcheck/)
 
 # detecting multithreading
 

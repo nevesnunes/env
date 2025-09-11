@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-keyboard-shortcuts" version="1.0">
   <property name="commands" type="empty">
@@ -11,16 +11,27 @@
         <property name="startup-notify" type="empty"/>
       </property>
       <property name="&lt;Primary&gt;&lt;Alt&gt;Delete" type="empty"/>
-      <property name="&lt;Control&gt;&lt;Alt&gt;Escape" type="empty"/>
       <property name="&lt;Primary&gt;&lt;Alt&gt;l" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="empty"/>
       <property name="XF86Display" type="empty"/>
       <property name="&lt;Super&gt;p" type="empty"/>
       <property name="&lt;Primary&gt;Escape" type="empty"/>
-      <property name="XF86LogOff" type="empty"/>
+      <property name="XF86WWW" type="empty"/>
+      <property name="HomePage" type="empty"/>
+      <property name="XF86Mail" type="empty"/>
       <property name="Print" type="empty"/>
       <property name="&lt;Alt&gt;Print" type="empty"/>
-      <property name="XF86WWW" type="empty"/>
-      <property name="XF86Mail" type="empty"/>
+      <property name="&lt;Shift&gt;Print" type="empty"/>
+      <property name="&lt;Super&gt;e" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;f" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="empty"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;Escape" type="empty"/>
+      <property name="&lt;Super&gt;r" type="empty">
+        <property name="startup-notify" type="empty"/>
+      </property>
+      <property name="&lt;Alt&gt;&lt;Super&gt;s" type="empty"/>
+      <property name="&lt;Control&gt;&lt;Alt&gt;Escape" type="empty"/>
+      <property name="XF86LogOff" type="empty"/>
       <property name="XF86Calendar" type="empty"/>
       <property name="XF86Memo" type="empty"/>
       <property name="XF86Terminal" type="empty"/>
@@ -31,15 +42,11 @@
       <property name="XF86AudioNext" type="empty"/>
       <property name="XF86Calculator" type="empty"/>
       <property name="&lt;Control&gt;&lt;Alt&gt;L" type="empty"/>
-      <property name="&lt;Primary&gt;&lt;Alt&gt;Escape" type="empty"/>
       <property name="XF86HomePage" type="empty"/>
       <property name="&lt;Super&gt;w" type="empty"/>
       <property name="&lt;Super&gt;m" type="empty"/>
       <property name="&lt;Super&gt;f" type="empty"/>
-      <property name="&lt;Primary&gt;&lt;Alt&gt;t" type="empty"/>
       <property name="&lt;Super&gt;t" type="empty"/>
-      <property name="&lt;Super&gt;r" type="empty"/>
-      <property name="&lt;Super&gt;e" type="empty"/>
       <property name="XF86Music" type="empty"/>
       <property name="&lt;Super&gt;1" type="empty"/>
       <property name="XF86Messenger" type="empty"/>
@@ -74,14 +81,10 @@
       <property name="XF86WWW" type="string" value="exo-open --launch WebBrowser"/>
       <property name="XF86Calendar" type="string" value="orage"/>
       <property name="override" type="bool" value="true"/>
-      <property name="&lt;Super&gt;comma" type="string" value="switchlayout.sh"/>
       <property name="&lt;Super&gt;m" type="string" value="xapp.sh get-mark"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;m" type="string" value="xapp.sh set-mark"/>
-      <property name="&lt;Alt&gt;&lt;Super&gt;v" type="string" value="gvim -c &quot;cd ~/Documents/my/journal&quot;"/>
       <property name="&lt;Super&gt;z" type="string" value="xapp.sh zathura"/>
-      <property name="&lt;Shift&gt;&lt;Super&gt;f" type="string" value="nautilus"/>
       <property name="&lt;Super&gt;f" type="string" value="xapp.sh nautilus"/>
-      <property name="&lt;Super&gt;Return" type="string" value="xapp.sh xterm"/>
       <property name="&lt;Super&gt;v" type="string" value="xapp.sh gvim"/>
       <property name="&lt;Super&gt;b" type="string" value="xapp.sh browser"/>
       <property name="&lt;Alt&gt;&lt;Super&gt;y" type="string" value="xlayouts.sh Master-Slave"/>
@@ -101,24 +104,19 @@
       <property name="&lt;Shift&gt;Print" type="string" value="valid-screenshot.sh -a"/>
       <property name="&lt;Primary&gt;Print" type="string" value="valid-screenshot.sh -wB"/>
       <property name="&lt;Super&gt;k" type="string" value="wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"/>
-      <property name="&lt;Shift&gt;&lt;Super&gt;v" type="string" value="gvim"/>
       <property name="&lt;Super&gt;Up" type="string" value="xsize.sh -d"/>
       <property name="&lt;Super&gt;Down" type="string" value="xsize.sh -e"/>
       <property name="&lt;Super&gt;Left" type="string" value="xsize.sh -f"/>
       <property name="&lt;Super&gt;Right" type="string" value="xsize.sh -g"/>
       <property name="&lt;Super&gt;c" type="string" value="xsize.sh -z"/>
-      <property name="&lt;Super&gt;x" type="string" value="rofi -show run"/>
-      <property name="&lt;Super&gt;space" type="string" value="rofi -show window"/>
-      <property name="&lt;Super&gt;s" type="string" value="clip-saver.sh"/>
       <property name="&lt;Super&gt;BackSpace" type="string" value="uxterm -e zsh -ci uf"/>
       <property name="&lt;Super&gt;period" type="string" value="xdotool mousemove 9999 9999"/>
       <property name="&lt;Super&gt;l" type="string" value="xsize.sh --half-right"/>
       <property name="&lt;Super&gt;h" type="string" value="xsize.sh --half-left"/>
-      <property name="&lt;Super&gt;Delete" type="string" value="slock /opt/screen-off.sh"/>
-      <property name="&lt;Super&gt;n" type="string" value="scratchpad-terminal.sh status.sh"/>
       <property name="&lt;Shift&gt;&lt;Super&gt;n" type="string" value="uxterm -e &quot;less $XDG_RUNTIME_DIR/notify.log&quot;"/>
       <property name="&lt;Super&gt;1" type="string" value="xworkspace.sh --next"/>
       <property name="&lt;Super&gt;2" type="string" value="xworkspace.sh --previous"/>
+      <property name="&lt;Super&gt;Return" type="string" value="xapp.sh term"/>
     </property>
   </property>
   <property name="xfwm4" type="empty">
@@ -175,6 +173,14 @@
       <property name="&lt;Primary&gt;F10" type="empty"/>
       <property name="&lt;Primary&gt;F11" type="empty"/>
       <property name="&lt;Primary&gt;F12" type="empty"/>
+      <property name="&lt;Super&gt;KP_Left" type="empty"/>
+      <property name="&lt;Super&gt;KP_Right" type="empty"/>
+      <property name="&lt;Super&gt;KP_Down" type="empty"/>
+      <property name="&lt;Super&gt;KP_Up" type="empty"/>
+      <property name="&lt;Super&gt;KP_Page_Up" type="empty"/>
+      <property name="&lt;Super&gt;KP_Home" type="empty"/>
+      <property name="&lt;Super&gt;KP_End" type="empty"/>
+      <property name="&lt;Super&gt;KP_Next" type="empty"/>
       <property name="&lt;Control&gt;&lt;Alt&gt;Down" type="empty"/>
       <property name="&lt;Control&gt;&lt;Alt&gt;Left" type="empty"/>
       <property name="&lt;Alt&gt;F5" type="empty"/>

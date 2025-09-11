@@ -7,6 +7,7 @@ dconf load /org/gnome/terminal/legacy/ \
 
 dconf write /org/gnome/desktop/interface/clock-show-date true
 dconf write /org/gnome/desktop/interface/clock-format "24h"
+dconf write /org/gnome/desktop/interface/enable-animations false
 dconf write /org/gnome/desktop/interface/font-name "Sans 12"
 dconf write /org/gnome/desktop/privacy/report-technical-problems false
 dconf write /org/gnome/desktop/search-providers/disable-external true

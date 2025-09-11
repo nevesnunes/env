@@ -224,31 +224,41 @@ https://stackoverflow.com/questions/10613126/what-are-the-differences-between-st
 
 ```bash
 # With configure
-./configure "LDFLAGS=--static"
+./configure LDFLAGS=-static
 env CXXFLAGS=-static --enable-static --disable-shared -fPIC --prefix="$(pwd)" make
 
-# With Makefile
+# With pkg_config
+LDFLAGS="-static" PKG_CONFIG="pkg-config --static" ./configure --disable-shared --enable-static
+make -j4 V=1 LDFLAGS="-static -all-static"
+
+# With configure (cross-compile)
+CC=$HOME/share/toolchains/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc ./configure --host=aarch64-linux-musl LDFLAGS=-static
+
+# With Makefile (cross-compile)
 make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
 ./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc -O -Wall -std=c90 -c hello.c
 ./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc -static -o hello hello.o
+
+# With QEMU (cross-compile)
+docker run --platform linux/arm64 -it -v "$HOME/share:/share:z" arm64v8/alpine:3.22.0
 ```
 
 - musl
     - stdenv, REALGCC
         - [Musl dynamic linked binary use glibc dynamic linker \(not musl\) · Issue \#25178 · NixOS/nixpkgs · GitHub](https://github.com/NixOS/nixpkgs/issues/25178)
     ```bash
-    docker pull alpine
-    docker run -it -v "$HOME/share:/share:z" alpine
+    docker run -it -v "$HOME/share:/share:z" alpine:3.22.0
 
     # From package sources
     # References:
     # - https://unix.stackexchange.com/questions/496755/how-to-get-the-source-code-used-to-build-the-packages-of-the-base-alpine-linux-d
     # - https://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
     # - https://wiki.alpinelinux.org/wiki/APKBUILD_Reference
+    # - https://moebuta.org/posts/compiling-static-binaries-with-alpine/
     apk update
-    apk add --no-cache alpine-sdk autoconf automake binutils binutils-dev byacc elfutils-dev flex gawk gcc gettext gettext-dev libtool libnl3-dev libunwind-dev libunwind-static linux-headers musl-dev sudo
+    apk add --no-cache alpine-sdk autoconf automake binutils binutils-dev byacc elfutils-dev flex gawk gcc gettext gettext-dev libtool libnl3-dev linux-headers musl-dev sudo
     cd /opt
-    git clone --depth 1 --branch v3.21.0 git://git.alpinelinux.org/aports
+    git clone --depth 1 --branch v3.22.0 git://git.alpinelinux.org/aports
     # Build
     app=
     cd /opt/aports/main/"$app"
@@ -256,9 +266,8 @@ make CC=./mips64-linux-musl-cross/bin/mips64-linux-musl-gcc LDFLAGS=-static
     # References: [Static compilation errors \- tmux 2\.9, ncurses 6\.1, libevent 2\.1\.8 · Issue \#1729 · tmux/tmux · GitHub](https://github.com/tmux/tmux/issues/1729)
     export PKG_CONFIG=/bin/true
     # [Edit APKBUILD to include `-static` in CFLAGS]
-    # [For strace: ~/share/alpine/static/strace.sh]
+    # [For strace: ~/share/alpine/static/strace613.sh]
     echo | abuild-keygen -a -i
-    abuild -F fetch verify
     abuild -Fcr
     # Unpack
     tar -xzvf /root/packages/main/x86_64/"$app".apk

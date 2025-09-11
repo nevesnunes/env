@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfwm4" version="1.0">
   <property name="general" type="empty">
@@ -87,5 +87,11 @@
       <value type="string" value="7"/>
       <value type="string" value="8"/>
     </property>
+    <property name="cycle_raise" type="bool" value="false"/>
+    <property name="cycle_minimized" type="bool" value="false"/>
+    <property name="frame_border_top" type="int" value="0"/>
+    <property name="vblank_mode" type="string" value="auto"/>
+    <property name="zoom_pointer" type="bool" value="true"/>
+    <property name="margin_bottom" type="int" value="0"/>
   </property>
 </channel>

@@ -1,0 +1,24 @@
+diff --git a/main/strace/APKBUILD b/main/strace/APKBUILD
+index 607157d0..53382d01 100644
+--- a/main/strace/APKBUILD
++++ b/main/strace/APKBUILD
+@@ -17,6 +17,11 @@ source="https://github.com/strace/strace/releases/download/v$pkgver/strace-$pkgv
+ 	"
+ 
+ build() {
++	CFLAGS="$CFLAGS -g -O0" \
++	CPPFLAGS=-DDEBUG \
++	LDFLAGS=-static \
++	LIBS="-l:liblzma.a -l:libucontext.a" \
++	PKG_CONFIG="pkg-config --static" \
+ 	./configure \
+ 		--build=$CBUILD \
+ 		--host=$CHOST \
+@@ -24,6 +29,7 @@ build() {
+ 		--sysconfdir=/etc \
+ 		--mandir=/usr/share/man \
+ 		--localstatedir=/var \
++		--with-libunwind \
+ 		--enable-mpers=no
+ 	make
+ }
