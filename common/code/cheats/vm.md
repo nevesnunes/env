@@ -164,6 +164,20 @@ sudo /mnt/foo/VBoxLinuxAdditions.run
 
 - if vm image on external disk => Machine > Settings > USB > Set: USB 3.0 (xHCI) Controller
 
+# debug kvm
+
+```bash
+sudo rmmod kvm_intel
+sudo rmmod kvm
+
+# /etc/modprobe.d/blacklist-kvm.conf
+# blacklist kvm_intel
+# blacklist kvm
+
+# sudo update-initramfs -u
+# sudo reboot
+```
+
 # Hyper-V Compatibility
 
 ```ps1

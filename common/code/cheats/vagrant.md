@@ -35,6 +35,8 @@ https://github.com/rankinjl/vagrant-docker-ubuntu
 https://github.com/webdevops/vagrant-docker-vm
 
 ```bash
+vagrant box add boxen/debian-13 --provider virtualbox
+# ||
 vagrant box add alpine2docker-1.8.0 file://"$(cygpath -w "$(realpath ./alpine2docker-1.8.0.box)")"
 vagrant init alpine2docker-1.8.0
 vagrant up

@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Ghidra
-Exec=env JAVA_HOME=/usr/lib/jvm/java-11 PATH=$JAVA_HOME/bin:$PATH ghidra
+Exec=ghidra
 Terminal=false
 Type=Application
 Icon=ghidra

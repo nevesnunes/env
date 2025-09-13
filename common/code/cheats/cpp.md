@@ -154,12 +154,18 @@ int main() { puts("Hi!"); return 0; }' \
 # create shared library
 gcc foo.c -o foo -shared -fPIC
 
+# validate paths
+ld "-L$HOME/opt/libunwind/src/.libs" -lunwind --verbose 2>&1 | grep succeeded
+
 # linking shared library
 gcc -L. -lfoo foo.c -o foo
 LD_RUNTIME_PATH=. ./foo
 # ||
 gcc -L. -lfoo -Wl,-rpath,$PWD foo.c -o foo
 ./foo
+
+# override system shared libraries
+./configure LDFLAGS="-Wl,-rpath,$HOME/opt/libunwind/src/.libs -L$HOME/opt/libunwind/src/.libs"
 
 # both c and c++
 ./configure \
