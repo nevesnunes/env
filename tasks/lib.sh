@@ -65,7 +65,7 @@ EOF'
 }
 
 sync_debian_packages() {
-  packages=$(paste -sd' ' "$1")
+  packages=$(grep -v '^#' "$1" | paste -sd' ' "$1")
   if os | grep -qi 'ubuntu'; then
     packages=$(echo "$packages" | sed '
       s/chromium//g;
@@ -77,25 +77,25 @@ sync_debian_packages() {
 }
 
 sync_gem_packages() {
-  packages=$(paste -sd' ' "$1")
+  packages=$(grep -v '^#' "$1" | paste -sd' ')
   gem install --user-install $packages
 }
 
 sync_npm_packages() {
-  packages=$(paste -sd' ' "$1")
+  packages=$(grep -v '^#' "$1" | paste -sd' ')
   npm install -g npm
   npm install -g $packages
 }
 
 sync_rpm_packages() {
-  packages=$(paste -sd' ' "$1")
+  packages=$(grep -v '^#' "$1" | paste -sd' ')
   sudo dnf -y update
   sudo dnf -y install $packages
 }
 
 sync_python_packages() {
   pip install --user --upgrade pip
-  pip install --user $(paste -sd' ' "$1")
+  pip install --user $(grep -v '^#' "$1" | paste -sd' ')
 }
 
 sync_git() {

@@ -1,4 +1,3 @@
-2to3
 agrep
 aria2
 ant
@@ -36,7 +35,7 @@ locales
 make
 nasm
 ninja-build
-openjdk-17-jdk
+openjdk-21-jdk
 p7zip-full
 picocom
 pkg-config
@@ -55,7 +54,6 @@ tidy
 tmux
 units
 universal-ctags
-unrar
 valgrind
 vifm
 vim

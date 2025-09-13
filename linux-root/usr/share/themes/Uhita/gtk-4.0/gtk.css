@@ -201,7 +201,7 @@ window.solid-csd,
 window.ssd {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    box-shadow: 0 4px 12px 1px rgba(0, 0, 0, .3), 0 1px 0 1px rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 12px 1px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .15);
     outline-style: none;
 }
 
@@ -209,7 +209,7 @@ window:backdrop,
 window.csd:backdrop,
 window.solid-csd:backdrop,
 window.ssd:backdrop {
-    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .10), 0 1px 0 1px rgba(0, 0, 0, .15);
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .10), 0 0 0 1px rgba(0, 0, 0, .15);
 }
 
 .titlebar windowcontrols button image {

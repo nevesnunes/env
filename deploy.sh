@@ -20,44 +20,53 @@ if ! [ -d "$role_dir" ] && echo "$role" | grep -qi 'linux'; then
   role_dir=linux
 fi
 [ -d "$role_dir" ]
-if echo "$acl" | grep -qi root; then
-    # TODO
-    exit 1
-elif echo "$role" | grep -qi 'linux-dev'; then
-    rsync -va --relative --usermap=":$acl" --groupmap=":$acl" \
-      ./common/./code/cheats \
-      ./"$role_dir"/./.bash* \
-      ./"$role_dir"/./.dircolors* \
-      ./"$role_dir"/./.less* \
-      ./"$role_dir"/./.infokey \
-      ./"$role_dir"/./.inputrc \
-      ./"$role_dir"/./.lscolors \
-      ./"$role_dir"/./.profile* \
-      ./"$role_dir"/./.shrc \
-      ./"$role_dir"/./.vim \
-      ./"$role_dir"/./.vimrc \
-      ./"$role_dir"/./.Xresources* \
-      ./"$role_dir"/./.zshrc \
-      ./"$role_dir"/./.config/atuin \
-      ./"$role_dir"/./.config/fontconfig \
-      ./"$role_dir"/./.config/htop \
-      ./"$role_dir"/./.config/vifm \
-      ./"$role_dir"/./.local/bin/functions \
-      ./"$role_dir"/./.local/share/functions \
-      ./"$role_dir"/./.local/share/terminfo \
-      ./"$role_dir"/./.local/share/Xresources \
-      ./"$role_dir"/./bin/bpf* \
-      ./"$role_dir"/./bin/fzf* \
-      ./"$role_dir"/./bin/gdb* \
-      ./"$role_dir"/./bin/git* \
-      ./"$role_dir"/./bin/tmux* \
-      ./"$role_dir"/./bin/zsh \
-      "$target" || true
-    ln -s ~/.local/bin/functions ~/bin/functions
+
+if echo "$role" | grep -qiE 'linux-(ctf|dev|main|ubuntu)'; then
+  sudo apt install rsync
 else
-    rsync -va --usermap=":$acl" --groupmap=":$acl" ./"$role_dir"/ "$target" || true
+  # TODO
+  exit 1
+fi
+
+if echo "$acl" | grep -qi root; then
+  # TODO
+  exit 1
+elif echo "$role" | grep -qi 'linux-dev'; then
+  rsync -va --relative --usermap=":$acl" --groupmap=":$acl" \
+    ./common/./code/cheats \
+    ./"$role_dir"/./.bash* \
+    ./"$role_dir"/./.dircolors* \
+    ./"$role_dir"/./.less* \
+    ./"$role_dir"/./.infokey \
+    ./"$role_dir"/./.inputrc \
+    ./"$role_dir"/./.lscolors \
+    ./"$role_dir"/./.profile* \
+    ./"$role_dir"/./.shrc \
+    ./"$role_dir"/./.vim \
+    ./"$role_dir"/./.vimrc \
+    ./"$role_dir"/./.Xresources* \
+    ./"$role_dir"/./.zshrc \
+    ./"$role_dir"/./.config/atuin \
+    ./"$role_dir"/./.config/fontconfig \
+    ./"$role_dir"/./.config/htop \
+    ./"$role_dir"/./.config/vifm \
+    ./"$role_dir"/./.local/bin/functions \
+    ./"$role_dir"/./.local/share/functions \
+    ./"$role_dir"/./.local/share/terminfo \
+    ./"$role_dir"/./.local/share/Xresources \
+    ./"$role_dir"/./bin/bpf* \
+    ./"$role_dir"/./bin/fzf* \
+    ./"$role_dir"/./bin/gdb* \
+    ./"$role_dir"/./bin/git* \
+    ./"$role_dir"/./bin/tmux* \
+    ./"$role_dir"/./bin/zsh \
+    "$target" || true
+  ln -s ~/.local/bin/functions ~/bin/functions
+else
+  rsync -va --usermap=":$acl" --groupmap=":$acl" ./"$role_dir"/ "$target" || true
+  sudo cp -r ./linux-root/usr/share/themes/Uhita /usr/share/themes/
 fi
 
 if [ -x ./tasks/"$role".sh ]; then
-  ( cd ./tasks && ./"$role".sh )
+  (cd ./tasks && ./"$role".sh)
 fi

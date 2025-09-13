@@ -3,7 +3,7 @@
 set -eux
 
 sudo chsh -s /usr/bin/zsh "$USER"
-tmux source-file ~/.tmux.conf
+[ -n "${TMUX:-}" ] && tmux source-file ~/.tmux.conf
 xrdb -merge ~/.Xresources
 xset r rate 300 25
 
@@ -26,8 +26,9 @@ cd ~/opt/fzf/ && yes | ./install
 
 python3 -m pip install --user pipx
 python3 -m pipx ensurepath
-pipx install poetry
+python3 -m pipx install poetry
 
 cd ~/opt/pwndbg/ && sudo sh -c 'yes | ./setup.sh'
+sudo chown "$USER:$USER" ~/opt/pwndbg/
 
 cd ~

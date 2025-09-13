@@ -3,7 +3,7 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
     <menu id="root-menu" label="Openbox 3">
         <separator label="Openbox"/>
-        <menu execute="openbox-menu lxde-applications.menu" id="apps" label="Applications"/>
+        <menu execute="obamenu" id="apps" label="Applications"/>
         <separator/>
         <item label="File Manager">
             <action name="Execute">
