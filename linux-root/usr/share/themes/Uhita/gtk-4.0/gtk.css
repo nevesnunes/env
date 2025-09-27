@@ -1,6 +1,7 @@
 /*
  * References:
  * - https://github.com/ronny-rentner/adwaita-gtk3-gtk4-theme/blob/main/gtk4.md
+ * - libadwaita/_build/src/stylesheet/base.css
  */
 
 * {
@@ -195,30 +196,34 @@ tooltip * {
  * Header bars
  */
 
-.background { 
-    background-color: #4a5050;
-    color: #eeeeec;
-}
+/*
+ * FIXME: Window round borders will match titlebars, but other elements are also affected...
+ *
+ * .background { 
+ *     background-color: #4a5050;
+ *     color: #eeeeec;
+ * }
+ * 
+ * .background:backdrop { 
+ *     background-color: #788484;
+ *     color: #cccccc;
+ * }
+ *
+ */
 
-.background:backdrop { 
-    background-color: #788484;
-    color: #cccccc;
-}
-
-window,
-window.csd,
-window.solid-csd,
-window.ssd {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+window:not(.dialog),
+window.csd:not(.dialog),
+window.solid-csd:not(.dialog),
+window.ssd:not(.dialog) {
+    border-radius: 0;
     box-shadow: 0 4px 12px 1px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .15);
     outline-style: none;
 }
 
-window:backdrop,
-window.csd:backdrop,
-window.solid-csd:backdrop,
-window.ssd:backdrop {
+window:not(.dialog):backdrop,
+window.csd:not(.dialog):backdrop,
+window.solid-csd:not(.dialog):backdrop,
+window.ssd:not(.dialog):backdrop {
     box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .10), 0 0 0 1px rgba(0, 0, 0, .15);
 }
 
