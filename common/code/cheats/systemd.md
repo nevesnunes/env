@@ -1,3 +1,9 @@
+# limits
+
+```sh
+systemd-run --user -S -p 'MemoryMax=8G'
+```
+
 # overrides
 
 ```sh

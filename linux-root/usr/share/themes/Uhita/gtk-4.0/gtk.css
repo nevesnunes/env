@@ -195,6 +195,16 @@ tooltip * {
  * Header bars
  */
 
+.background { 
+    background-color: #4a5050;
+    color: #eeeeec;
+}
+
+.background:backdrop { 
+    background-color: #788484;
+    color: #cccccc;
+}
+
 window,
 window.csd,
 window.solid-csd,
@@ -243,14 +253,14 @@ paned.titlebar headerbar {
     border: 0 solid transparent;
     background-color: #4a5050;
     background-image: none;
-    box-shadow: inset 0 1px rgba(0, 0, 0, .10);
+    box-shadow: none;
 }
 
 .titlebar:backdrop,
 paned.titlebar headerbar:backdrop {
     background-color: #788484;
     background-image: none;
-    box-shadow: inset 0 1px rgba(0, 0, 0, .10);
+    box-shadow: none;
 }
 
 :not(messagedialog) .titlebar label,

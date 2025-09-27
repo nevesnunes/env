@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Soulseek
-Exec=soulseek
+Exec=SoulseekQt
 Terminal=false
 Type=Application
 Icon=soulseek
