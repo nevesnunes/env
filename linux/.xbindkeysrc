@@ -269,7 +269,7 @@ Mod4 + Insert
 Mod4 + equal
 
 # "ratpoison tribute"
-"sh -c 'xdotool mousemove 9999 9999 mousemove_relative --sync 0 -80'"
+"sh -c 'xdotool mousemove 9999 9999 mousemove_relative --sync -- -10 -80'"
 Mod4 + period
 
 # "Type from selection clipboard"
