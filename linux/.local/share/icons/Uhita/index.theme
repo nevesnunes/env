@@ -1,7 +1,10 @@
+# gtk-update-icon-cache -f .
+
 [Icon Theme]
 Name=Uhita
 Comment=Additional application icons for Adwaita
 Inherits=Adwaita
+#Inherits=elementary-xfce
 
 Example=folder
 
@@ -22,7 +25,65 @@ PanelDefault=32
 PanelSizes=16,22,32,48,64,72,96,128
 
 #Directory list
-Directories=apps/16,apps/22,apps/24,apps/32,apps/48,apps/64,apps/96,apps/128,apps/symbolic,places/16,places/22,places/24,places/32,places/48,places/64,places/96,places/256,places/512,places/symbolic
+Directories=actions/16,actions/22,actions/24,actions/32,actions/48,actions/64,actions/96,actions/256,actions/512,actions/symbolic,apps/16,apps/22,apps/24,apps/32,apps/48,apps/64,apps/96,apps/128,apps/symbolic,places/16,places/22,places/24,places/32,places/48,places/64,places/96,places/256,places/512,places/symbolic
+
+[actions/16]
+Size=16
+Context=Actions
+Type=Fixed
+
+[actions/22]
+Size=22
+Context=Actions
+Type=Fixed
+
+[actions/24]
+Size=24
+Context=Actions
+Type=Fixed
+
+[actions/32]
+Size=32
+Context=Actions
+Type=Fixed
+
+[actions/48]
+Size=48
+Context=Actions
+Type=Fixed
+
+[actions/64]
+Size=64
+Context=Actions
+Type=Fixed
+
+[actions/96]
+Size=96
+Context=Actions
+Type=Fixed
+
+[actions/256]
+Size=256
+Context=Actions
+MinSize=48
+MaxSize=512
+Type=Scalable
+Threshold=512
+
+[actions/512]
+Size=512
+Context=Actions
+MinSize=48
+MaxSize=512
+Type=Scalable
+Threshold=512
+
+[actions/symbolic]
+Size=16
+Context=Actions
+MinSize=8
+MaxSize=512
+Type=Scalable
 
 [apps/16]
 Size=16
@@ -145,3 +206,5 @@ Context=Places
 MinSize=8
 MaxSize=512
 Type=Scalable
+
+# vim: filetype=dosini

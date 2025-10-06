@@ -122,6 +122,7 @@ if [ -n "$iterate" ]; then
 fi
 
 # Window not present, therefore launch app
+cd "$HOME"
 if echo "$input" | grep -qi "browser"; then
   nohup user-browser &
 elif echo "$app_class" | grep -qi "term"; then

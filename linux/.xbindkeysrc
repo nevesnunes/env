@@ -186,7 +186,7 @@ Mod4 + v
 Mod4 + Return
 
 # "Run || Raise File Manager"
-"xapp.sh user-file-manager.sh"
+"xapp.sh pcmanfm"
 Mod4 + f
 
 # "Run || Raise Zathura"
