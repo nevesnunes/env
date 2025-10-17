@@ -62,7 +62,8 @@ elseif (string.find(class, "pidgin") or
     size_window(xid, "-l")
     move_window(xid, "0")
 elseif (((string.match(name, "firefox") or
-            string.match(class, "firefox")) and not 
+            string.match(class, "firefox") or
+            string.match(role, "browser")) and not
             string.match(role, "about")) or
         string.find(class, "calibre") or
         string.find(class, "foliate") or
@@ -78,7 +79,7 @@ elseif (string.match(name, "keepassx") or
         string.match(name, "keepassxc")) then
     size_window(xid, "-l")
     move_window(xid, "1")
-elseif ((string.match(name, "terminal") and not 
+elseif ((string.match(name, "terminal") and not
             string.match(n, "scratchpad")) or
         string.match(name, "vim")) then
     -- set_window_geometry(xs*w_major_factor+1,0,xs*w_minor_factor-1,ys)
