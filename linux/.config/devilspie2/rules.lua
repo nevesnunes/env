@@ -77,7 +77,7 @@ elseif (string.match(name, "thunderbird")) then
     move_window(xid, "1")
 elseif (string.match(name, "keepassx") or
         string.match(name, "keepassxc")) then
-    size_window(xid, "-l")
+    size_window(xid, "--half-right")
     move_window(xid, "1")
 elseif ((string.match(name, "terminal") and not
             string.match(n, "scratchpad")) or

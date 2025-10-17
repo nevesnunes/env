@@ -98,7 +98,7 @@ function make_desktop_geometry {
   # wmctrl may omit the second dimensions
   geo=$(wmctrl -d | grep '\*' | grep -Eho '[0-9]{3,4}x[0-9]{3,4}')
   geo_workarea=$(echo -e "$geo" | sed -n 2p)
-  if [ -z $geo_workarea ]; then
+  if [ -z "$geo_workarea" ]; then
     geo_workarea=$geo
   fi
 
@@ -113,8 +113,15 @@ function make_desktop_geometry {
 
   # wmctrl may omit the second dimensions
   geo_workarea_offset=$(echo -e "$geo_offset" | sed -n 2p)
-  if [[ -z $geo_workarea_offset ]]; then
+  if [ -z "$geo_workarea_offset" ]; then
     geo_workarea_offset=$geo_offset
+  fi
+
+  # TODO: Remove hack for Openbox+Tint2
+  if wmctrl -lx | awk '{print $3}' | grep -q tint2.Tint2; then
+    h=$(xrandr --listactivemonitors | awk '/\*/{print $3}' | sed 's#^[0-9]\+/[0-9]\+x\([0-9]\+\)/[0-9]\+.*#\1#g')
+    h_panel=$(xdotool getwindowgeometry "$(wmctrl -lx | awk '/tint2.Tint2/{print $1}' | head -n1)" | awk '/Geometry/{print $2}' | cut -d'x' -f2)
+    h_workarea=$(($h - $h_panel))
   fi
 
   h_workarea_offset=$(echo -e "$geo_workarea_offset" | cut -d',' -f2)
@@ -325,17 +332,18 @@ function put_window_by_id {
   local new_x=$(($3 + $GAP_SIZE))
   local new_y=$(($4 + $GAP_SIZE))
   local new_width=$(($5 - $GAP_SIZE * 2))
-  if [[ $new_width -lt 0 ]]; then
+  if [ $new_width -lt 0 ]; then
       new_width=$PRESERVED_W
   fi
   local new_height=$(($6 - $GAP_SIZE * 2))
-  if [[ $new_height -lt 0 ]]; then
+  if [ $new_height -lt 0 ]; then
       new_height=$PRESERVED_H
   fi
   wmctrl -i -r "$1" -e "$2,$new_x,$new_y,$new_width,$new_height"
   echo "put window cmd: wmctrl -i -r $1 -e $2,$new_x,$new_y,$new_width,$new_height"
 }
 
+# shellcheck disable=SC2317
 function put_other_windows {
   # TODO: class not working for browser windows
   return 1;
@@ -420,42 +428,42 @@ function prorate_other_windows {
             - $current_window_y))
       window_y_from_top_diff=$(( $(($current_window_y + $current_window_h)) + $workarea_factor \
             - $window_y))
-      if [[ $current_window_y -lt $window_y ]]; then
+      if [ $current_window_y -lt $window_y ]; then
         window_y_from_bottom_diff_to_compare=$((- $window_y_from_bottom_diff))
         window_y_from_top_diff_to_compare=$window_y_from_top_diff
       else
         window_y_from_bottom_diff_to_compare=$window_y_from_bottom_diff
         window_y_from_top_diff_to_compare=$((- $window_y_from_top_diff))
       fi
-      if ([[ $window_y_from_top_diff_to_compare -gt 0 ]] || \
-          [[ $window_y_from_bottom_diff_to_compare -gt 0 ]]) && ! ( \
-          [[ $window_y_from_top_diff_to_compare -gt 0 ]] && \
-          [[ $window_y_from_bottom_diff_to_compare -gt 0 ]]); then
+      if { [ $window_y_from_top_diff_to_compare -gt 0 ] || \
+          [ $window_y_from_bottom_diff_to_compare -gt 0 ] ;} && ! { \
+          [ $window_y_from_top_diff_to_compare -gt 0 ] && \
+          [ $window_y_from_bottom_diff_to_compare -gt 0 ] ;} then
         # Is there x-overlap with the target window?
         # Test with a XOR, since only one of the x-directions has an overlap
         window_x_from_right_diff=$(( $(($current_window_x + $current_window_w)) \
               - $window_x))
         window_x_from_left_diff=$(( $(($window_x + $window_w)) \
               - $current_window_x))
-        if [[ $current_window_x -lt $window_x ]]; then
+        if [ $current_window_x -lt $window_x ]; then
           window_x_from_right_diff_to_compare=$((- $window_x_from_right_diff))
           window_x_from_left_diff_to_compare=$window_x_from_left_diff
         else
           window_x_from_right_diff_to_compare=$window_x_from_right_diff
           window_x_from_left_diff_to_compare=$((- $window_x_from_left_diff))
         fi
-        if ([[ $window_x_from_right_diff_to_compare -gt 0 ]] || \
-            [[ $window_x_from_left_diff_to_compare -gt 0 ]]) && ! ( \
-            [[ $window_x_from_right_diff_to_compare -gt 0 ]] && \
-            [[ $window_x_from_left_diff_to_compare -gt 0 ]]); then
+        if { [ $window_x_from_right_diff_to_compare -gt 0 ] || \
+            [ $window_x_from_left_diff_to_compare -gt 0 ] ;} && ! { \
+            [ $window_x_from_right_diff_to_compare -gt 0 ] && \
+            [ $window_x_from_left_diff_to_compare -gt 0 ] ;} then
           # Change in x-direction
           if [[ "$current_window_direction" == "w" ]]; then
             # Extract diff from the direction that caused overlap
             # DIRECTION: ->
-            if ! [[ $window_x_from_right_diff_to_compare -gt 0 ]]; then
+            if ! [ $window_x_from_right_diff_to_compare -gt 0 ]; then
               window_x_diff=$window_x_from_right_diff
               # No more space to move
-              if [[ $(($window_x + $window_w + $window_x_diff)) -gt $w ]]; then
+              if [ $(($window_x + $window_w + $window_x_diff)) -gt $w ]; then
                 put_and_prorate "$current_window_direction" "$id" "1" \
                     "$(($w - $(($window_w - $move_x)) + $window_x_diff + $frame_left + $frame_right + $adjusted_right_move_x))" \
                     "$PRESERVED_Y" \
@@ -469,10 +477,10 @@ function prorate_other_windows {
                     "$PRESERVED_H"
               fi
             # DIRECTION: <-
-            elif ! [[ $window_x_from_left_diff_to_compare -gt 0 ]]; then
+            elif ! [ $window_x_from_left_diff_to_compare -gt 0 ]; then
               window_x_diff=$window_x_from_left_diff
               # No more space to move
-              if [[ $(($window_x - $window_x_diff)) -lt 0 ]]; then
+              if [ $(($window_x - $window_x_diff)) -lt 0 ]; then
                 put_and_prorate "$current_window_direction" "$id" "1" \
                     "$move_x" \
                     "$PRESERVED_Y" \
@@ -490,9 +498,9 @@ function prorate_other_windows {
           else
             # Extract diff from the direction that caused overlap
             # DIRECTION: ^
-            if [[ $window_y_from_bottom_diff_to_compare -gt 0 ]]; then
+            if [ $window_y_from_bottom_diff_to_compare -gt 0 ]; then
               window_y_diff=$window_y_from_bottom_diff
-              if [[ $(($window_y - $window_y_diff)) -lt 0 ]]; then
+              if [ $(($window_y - $window_y_diff)) -lt 0 ]; then
                 put_and_prorate "$current_window_direction" "$id" "1" \
                     "$PRESERVED_X" \
                     "$(($move_y))" \
@@ -506,9 +514,9 @@ function prorate_other_windows {
                     "$PRESERVED_H"
               fi
             # DIRECTION: V
-            elif [[ $window_y_from_top_diff_to_compare -gt 0 ]]; then
+            elif [ $window_y_from_top_diff_to_compare -gt 0 ]; then
               window_y_diff=$window_y_from_top_diff
-              if [[ $(($window_y + $window_base_h + $window_y_diff)) -gt $h ]]; then
+              if [ $(($window_y + $window_base_h + $window_y_diff)) -gt $h ]; then
                 put_and_prorate "$current_window_direction" "$id" "1" \
                     "$PRESERVED_X" \
                     "$(($h - $window_h - $workarea_factor + $frame_bottom + $frame_top + $window_y_diff))" \
@@ -561,7 +569,7 @@ minor_h_factor=$((100 / 2))
 
 if [ "$1" == "--tile-in-grid" ]; then
   shift
-  if [[ "$#" -lt 4 ]]; then
+  if [ "$#" -lt 4 ]; then
     echo "Bad arguments"
     exit 1
   else

@@ -1,4 +1,5 @@
 adwaita-qt
+adwaita-qt6
 cabextract
 calibre
 cups

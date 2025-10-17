@@ -6,6 +6,10 @@ dmesg
 # https://community.jitsi.org/t/old-webcams-in-linux-gspca-drivers/38033
 env LD_PRELOAD=/usr/lib64/libv4l/v4l1compat.so
 
+# slow 60fps workaround
+
+mpv --hwdec=auto --framedrop=decoder --vd-lavc-skipframe=nonref foo.mp4
+
 # change fps
 
 ffmpeg -i input.mp4 -c:v libx265 -crf 17 -preset fast -filter:v fps=30 output.mp4
@@ -38,7 +42,7 @@ apt-get install libdvdcss2
 
 mount -t UDF /dev/dvd /media/
 
-ssh -XC4c arcfour,blowfish-cbc user@example.org mplayer ~/movie.mp4
+ssh -XC4c arcfour,blowfish-cbc user@example.org mplayer ~/foo.mp4
 
 dvd://1-123
 sftp://
@@ -55,7 +59,7 @@ vlc http://server_ip_address:8082/stream.flv
 
 # rip dvd
 
-ffmpeg -i concat:VTS_02_1.VOB\|VTS_02_2.VOB\|VTS_02_3.VOB\|VTS_02_4.VOB\|VTS_02_5.VOB -map 0:v:0 -map 0:a:0 -codec:a libvo_aacenc -ab 128 -codec:v libx264 -vpre libx264-ipod640 movie.mp4
+ffmpeg -i concat:VTS_02_1.VOB\|VTS_02_2.VOB\|VTS_02_3.VOB\|VTS_02_4.VOB\|VTS_02_5.VOB -map 0:v:0 -map 0:a:0 -codec:a libvo_aacenc -ab 128 -codec:v libx264 -vpre libx264-ipod640 foo.mp4
 # ||
 ffmpeg -i your_VOB_file.VOB -c:v copy -c:a copy output.mp4
 # ||

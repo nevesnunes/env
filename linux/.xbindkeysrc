@@ -218,6 +218,7 @@ Shift + Mod4 + v
 Mod4 + r
 
 # Calendar 
+# scratchpad-terminal.sh sh -ci 'cal -3 | less'
 "scratchpad-terminal.sh status.sh"
 Mod4 + n
 
@@ -268,8 +269,8 @@ Mod4 + Insert
 "sh -c 'killall devilspie2; devilspie2 &'"
 Mod4 + equal
 
-# "ratpoison tribute"
-"sh -c 'xdotool mousemove 9999 9999 mousemove_relative --sync -- -10 -80'"
+# "Move mouse to screen corner (a.k.a. ratpoison tribute)"
+"banish_mouse.sh"
 Mod4 + period
 
 # "Type from selection clipboard"

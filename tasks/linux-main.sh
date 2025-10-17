@@ -27,9 +27,14 @@ sync_git ./git-essentials.txt
 
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
+# Dependencies for ghidra
 curl -s 'https://get.sdkman.io' | sh
 sdk install gradle 8.6
 sdk install java 21.0.2-open
+
+# Dependencies for obmenu-generator
+perl -MCPAN -e "CPAN::Shell->notest('install', 'Linux::DesktopFiles')"
+ln -fs ~/opt/obmenu-generator.git/obmenu-generator ~/opt/obmenu-generator
 
 # Allow separate X servers to be run with sound
 sudo usermod -a -G audio "$USER"
