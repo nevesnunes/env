@@ -104,7 +104,7 @@ sync_git() {
     target=$HOME/$(echo "$i" | cut -d':' -f1)
     url=$(echo "$i" | sed 's/[ \t\/]*$//g')
     repo=$(echo "$url" | cut -d':' -f2-)
-    name=$(echo "${url##*/}" | sed 's/\.git$//g')
+    name=${url##*/}
     mkdir -p "$target"
     cd "$target"
     if [ ! -d "$name" ]; then

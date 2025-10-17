@@ -1,8 +1,8 @@
-URxvt*foreground: #e4e0ee
+URxvt*foreground: #e4e0f0
 URxvt*background: #281830
 
 ! black
-URxvt*color0: #e4e0ee
+URxvt*color0: #e4e0f0
 URxvt*color8: #8878a8
 
 ! red

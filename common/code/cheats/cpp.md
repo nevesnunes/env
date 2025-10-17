@@ -191,6 +191,9 @@ LIBS=-l:libfoo.so.123 ./configure
 
 # debug
 less ./config.log
+
+# workaround for "/usr/include/linux/errno.h:1:10: fatal error: 'asm/errno.h' file not found"
+ln -s /usr/include/asm-generic /usr/include/asm
 ```
 
 - https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html

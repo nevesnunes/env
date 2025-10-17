@@ -96,14 +96,17 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/dunst \
   /home/"$USER"/./.config/flake8 \
   /home/"$USER"/./.config/fontconfig \
+  /home/"$USER"/./.config/ghostty \
   /home/"$USER"/./.config/gtkrc-2.0 \
   /home/"$USER"/./.config/gtk-3.0 \
   /home/"$USER"/./.config/htop \
   /home/"$USER"/./.config/i3 \
   /home/"$USER"/./.config/mimeapps.list \
+  /home/"$USER"/./.config/monitors.xml \
   /home/"$USER"/./.config/mpv \
   /home/"$USER"/./.config/nautilus \
   /home/"$USER"/./.config/ncdu \
+  /home/"$USER"/./.config/obmenu-generator \
   /home/"$USER"/./.config/openbox \
   /home/"$USER"/./.config/systemd \
   /home/"$USER"/./.config/pcmanfm \
@@ -150,6 +153,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.ssh/config \
   /home/"$USER"/./.w3m/keymap \
   /home/"$USER"/./bin/*.sh \
+  /home/"$USER"/./bin/blocks \
   /home/"$USER"/./bin/functions \
   /home/"$USER"/./bin/zsh \
   /home/"$USER"/./code/config/vim \

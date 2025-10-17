@@ -21,6 +21,7 @@ libtesseract-dev
 libxext-dev
 lightdm
 ltrace
+mupdf-tools
 nmap
 qemu-user
 qpdf

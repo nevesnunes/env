@@ -9,12 +9,13 @@
 }
 
 scrollbar {
-    padding: 2px;
+    padding: 1px;
 }
 
 scrollbar slider {
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 8px;
+    min-height: 8px;
+    border-width: 4px;
     border-radius: 9999px;
 }
 
@@ -217,7 +218,7 @@ window.csd:not(.dialog),
 window.solid-csd:not(.dialog),
 window.ssd:not(.dialog) {
     border-radius: 0;
-    box-shadow: 0 4px 12px 1px rgba(0, 0, 0, .3), 0 0 0 1px rgba(0, 0, 0, .15);
+    box-shadow: 0 4px 12px 1px rgba(0, 0, 0, .3);
     outline-style: none;
     transition: none;
 }
@@ -226,8 +227,17 @@ window:not(.dialog):backdrop,
 window.csd:not(.dialog):backdrop,
 window.solid-csd:not(.dialog):backdrop,
 window.ssd:not(.dialog):backdrop {
-    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .10), 0 0 0 1px rgba(0, 0, 0, .15);
+    border: 1px solid #788484;
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, .10);
     transition: none;
+}
+
+window.csd:not(.dialog) {
+    border: 1px solid #4a5050;
+}
+
+window.csd:not(.dialog):backdrop {
+    border: 1px solid #788484;
 }
 
 .titlebar windowcontrols button image {
@@ -329,6 +339,17 @@ terminal-window box notebook {
 
 notebook box scrolledwindow {
     background-color: #ffffff;
+}
+
+notebook box scrolledwindow overshoot.left,
+notebook box scrolledwindow undershoot.left,
+notebook box scrolledwindow overshoot.right,
+notebook box scrolledwindow undershoot.right,
+notebook box scrolledwindow overshoot.top,
+notebook box scrolledwindow undershoot.top,
+notebook box scrolledwindow overshoot.bottom,
+notebook box scrolledwindow undershoot.bottom {
+    background-image: none;
 }
 
 

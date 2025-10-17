@@ -1,0 +1,4 @@
+#!/bin/sh
+
+command -v dropbox > /dev/null 2>&1 || exit
+dropbox status | grep -qi 'up to date' || printf ' desync '

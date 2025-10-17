@@ -73,6 +73,7 @@ URxvt.clipboard.pastecmd: xclip -selection clipboard -o
 !! xterm
 !!
 
+xterm*iconHint: /home/fn/.local/share/Xresources/xterm.xpm
 xterm*termName: xterm-256color
 
 ! Sixel

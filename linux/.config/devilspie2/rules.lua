@@ -16,23 +16,8 @@ function move_window (xid, workspace)
     os.execute("wmctrl -i -r "..xid.." -t "..workspace)
 end
 
--- Reference: https://specifications.freedesktop.org/wm-spec/1.3/ar01s05.html
-transient = get_window_property('WM_TRANSIENT_FOR')
 n = string.gsub(string.lower(get_window_name()), "%s+", "")
 t = string.upper(get_window_type())
-if (transient ~= '' or
-        string.match(n, "scratchpad") or
-        string.match(t, "WINDOW_TYPE_DESKTOP") or
-        string.match(t, "WINDOW_TYPE_DIALOG") or
-        string.match(t, "WINDOW_TYPE_DOCK") or
-        string.match(t, "WINDOW_TYPE_MENU") or
-        string.match(t, "WINDOW_TYPE_TOOLBAR") or
-        string.match(t, "WINDOW_TYPE_UTILITY") or
-        string.match(t, "WINDOW_TYPE_SPLASH") or
-        string.match(t, "WINDOW_TYPE_SPLASHSCREEN")) then
-    return
-end
-
 class = string.gsub(string.lower(get_window_class()), "%s+", "")
 xid = get_window_xid()
 x,y,w,h = get_window_geometry()
@@ -48,6 +33,24 @@ debug_print("get_window_name: "..n..
     "\nxs: "..xs..
     "\n---")
 
+-- Reference: https://specifications.freedesktop.org/wm-spec/1.3/ar01s05.html
+transient = get_window_property('WM_TRANSIENT_FOR')
+if (transient ~= '' or
+        string.match(n, "scratchpad") or
+        string.match(t, "WINDOW_TYPE_DESKTOP") or
+        string.match(t, "WINDOW_TYPE_DIALOG") or
+        string.match(t, "WINDOW_TYPE_DOCK") or
+        string.match(t, "WINDOW_TYPE_MENU") or
+        string.match(t, "WINDOW_TYPE_TOOLBAR") or
+        string.match(t, "WINDOW_TYPE_UTILITY") or
+        string.match(t, "WINDOW_TYPE_SPLASH") or
+        string.match(t, "WINDOW_TYPE_SPLASHSCREEN")) then
+    if (x < 0) then
+        set_window_position(0, y)
+    end
+    return
+end
+
 w_major_factor = (xs > 1400) and 0.65 or 1.00
 w_minor_factor = (xs > 1400) and 0.35 or 0.50
 
@@ -62,7 +65,8 @@ elseif (string.find(class, "pidgin") or
     size_window(xid, "-l")
     move_window(xid, "0")
 elseif (((string.match(name, "firefox") or
-            string.match(class, "firefox")) and not 
+                string.match(class, "firefox") or
+                string.match(role, "browser")) and not
             string.match(role, "about")) or
         string.find(class, "calibre") or
         string.find(class, "foliate") or
@@ -76,9 +80,10 @@ elseif (string.match(name, "thunderbird")) then
     move_window(xid, "1")
 elseif (string.match(name, "keepassx") or
         string.match(name, "keepassxc")) then
-    size_window(xid, "-l")
+    size_window(xid, "--half-right")
     move_window(xid, "1")
-elseif ((string.match(name, "terminal") and not 
+elseif ((string.match(name, "terminal") and not
+            string.find(class, "preferences") and not
             string.match(n, "scratchpad")) or
         string.match(name, "vim")) then
     -- set_window_geometry(xs*w_major_factor+1,0,xs*w_minor_factor-1,ys)
@@ -116,4 +121,12 @@ elseif (string.match(name, "mpv") or
         string.find(name, "zdoom")) then
     -- set_window_geometry((xs-w)*0.50,(ys-h)*0.50,w,h)
     size_window(xid, "--move-center")
+elseif (x < 0) then
+    set_window_position(0, y)
+end
+
+if os.execute("command -v xseticon >/dev/null") == 0 then
+    if (string.find(class, "milkytracker")) then
+        os.execute("xseticon -id "..xid.." /usr/share/icons/hicolor/128x128/apps/milkytracker.png >/dev/null 2>/dev/null")
+    end
 end

@@ -6,9 +6,14 @@
 
 decoration,
 .titlebar {
+    border: 1px solid #4a5050;
     border-radius: 0;
     padding: 0;
     margin: 0;
+}
+
+decoration:backdrop {
+    border: 1px solid #788484;
 }
 
 headerbar.titlebar {

@@ -14,7 +14,7 @@ zoom-out='<Primary>minus'
 [profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 allow-bold=true
 audible-bell=false
-background-color='rgb(228,224,238)'
+background-color='rgb(228,224,240)'
 background-transparency-percent=0
 bold-color-same-as-fg=true
 bold-is-bright=false
@@ -28,7 +28,7 @@ default-size-columns=84
 default-size-rows=40
 font='Comic Code 11'
 foreground-color='rgb(40,24,48)'
-palette=['rgb(228,224,238)', 'rgb(210,45,72)', 'rgb(54,112,13)', 'rgb(100,36,4)', 'rgb(78,108,208)', 'rgb(154,80,160)', 'rgb(5,80,93)', 'rgb(72,56,77)', 'rgb(136,120,168)', 'rgb(210,45,72)', 'rgb(54,112,13)', 'rgb(100,36,4)', 'rgb(78,108,208)', 'rgb(154,80,160)', 'rgb(5,80,93)', 'rgb(40,24,48)']
+palette=['rgb(228,224,240)', 'rgb(210,45,72)', 'rgb(54,112,13)', 'rgb(100,36,4)', 'rgb(78,108,208)', 'rgb(154,80,160)', 'rgb(5,80,93)', 'rgb(72,56,77)', 'rgb(136,120,168)', 'rgb(210,45,72)', 'rgb(54,112,13)', 'rgb(100,36,4)', 'rgb(78,108,208)', 'rgb(154,80,160)', 'rgb(5,80,93)', 'rgb(40,24,48)']
 rewrap-on-resize=true
 scrollbar-policy='never'
 text-blink-mode='never'

@@ -2,62 +2,78 @@
 <!-- Dependencies: openbox-menu lxmenu-data -->
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
     <menu id="root-menu" label="Openbox 3">
-        <separator label="Openbox"/>
-        <menu execute="obamenu" id="apps" label="Applications"/>
+        <separator label="Applications"/>
+        <menu execute="obmenu-generator -d -i" id="apps" label="Categories" icon="/home/fn/.config/obmenu-generator/icons/system-software-install-symbolic.png"/>
         <separator/>
-        <item label="File Manager">
+        <item label="File Manager" icon="/home/fn/.config/obmenu-generator/icons/system-file-manager-symbolic.png">
             <action name="Execute">
                 <execute>pcmanfm</execute>
             </action>
         </item>
-        <item label="Web Browser">
+        <item label="Web Browser" icon="/home/fn/.config/obmenu-generator/icons/web-browser-symbolic.png">
             <action name="Execute">
                 <execute>x-www-browser</execute>
             </action>
         </item>
-        <item label="Terminal Emulator">
+        <item label="Terminal Emulator" icon="/home/fn/.config/obmenu-generator/icons/utilities-terminal-symbolic.png">
             <action name="Execute">
                 <execute>x-terminal-emulator</execute>
             </action>
         </item>
-        <separator />
-        <item label="Settings">
+        <separator label="Settings"/>
+        <item label="Openbox">
             <action name="Execute">
                 <execute>obconf</execute>
             </action>
         </item>
-        <item label="Panel Configuration">
+        <item label="Keyboard">
+            <action name="Execute">
+                <execute>ibus-setup</execute>
+            </action>
+        </item>
+        <item label="Panel">
             <action name="Execute">
                 <execute>tint2conf</execute>
             </action>
         </item>
+        <item label="Screen">
+            <action name="Execute">
+                <execute>arandr</execute>
+            </action>
+        </item>
+        <separator/>
         <item label="Reconfigure">
             <action name="Reconfigure" />
         </item>
-        <separator/>
-        <item label="Power Off">
+        <separator label="Actions"/>
+        <item label="Power Off" icon="/home/fn/.config/obmenu-generator/icons/system-shutdown-symbolic.png">
             <action name="Execute">
                 <execute>systemctl poweroff</execute>
             </action>
         </item>
-        <item label="Reboot">
+        <item label="Reboot" icon="/home/fn/.config/obmenu-generator/icons/view-refresh-symbolic.png">
             <action name="Execute">
                 <execute>systemctl reboot</execute>
             </action>
         </item>
         <separator/>
-        <item label="Suspend">
+        <item label="Suspend" icon="/home/fn/.config/obmenu-generator/icons/media-playback-pause-symbolic.png">
             <action name="Execute">
                 <execute>systemctl suspend</execute>
             </action>
         </item>
         <separator/>
-        <item label="Log Out">
+        <item label="Log Out" icon="/home/fn/.config/obmenu-generator/icons/system-log-out-symbolic.png">
             <action name="SessionLogout">
                 <prompt>yes</prompt>
             </action>
         </item>
-        <item label="Exit">
+        <item label="Lock" icon="/home/fn/.config/obmenu-generator/icons/system-lock-screen-symbolic.png">
+            <action name="Execute">
+                <execute>slock</execute>
+            </action>
+        </item>
+        <item label="Exit" icon="/home/fn/.config/obmenu-generator/icons/process-stop-symbolic.png">
             <action name="Exit">
                 <prompt>yes</prompt>
             </action>

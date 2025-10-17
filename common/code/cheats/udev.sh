@@ -16,7 +16,7 @@ udevadm info --attribute-walk "$DEVPATH_OR_NAME"
 udevadm test --action="add" "$DEVPATH"
 
 /usr/bin/udevil mount -o %o %v
-/usr/bin/udisksctl mount --options %o --block-device %v
+/usr/bin/udisksctl mount --options %o --block-device /dev/disk/by-label/%v
 
 pkaction -v --action-id org.freedesktop.udisks2.filesystem-mount 
 pkaction -v --action-id org.freedesktop.udisks2.filesystem-mount-system

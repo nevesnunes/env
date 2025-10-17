@@ -1,4 +1,6 @@
+acpi
 adwaita-qt
+adwaita-qt6
 cabextract
 calibre
 cups
@@ -37,6 +39,7 @@ imagemagick
 inkscape
 iperf3
 keepassxc
+kicad
 libavfilter-dev
 libc6-dbg
 libedit-dev
@@ -60,6 +63,7 @@ mpv
 mutter
 ncdu
 openvpn
+pavucontrol
 pcmanfm
 poppler-utils
 potrace

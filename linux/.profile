@@ -20,7 +20,7 @@ export PULSE_LATENCY_MSEC=90
 # References:
 # - https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Basic_settings
 # - https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true -Dsun.java2d.dpiaware=true -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dswing.plaf.metal.controlFont="Liberation Sans-16" -Dswing.plaf.metal.systemFont="Liberation Sans-16" -Dswing.plaf.metal.userFont="Liberation Sans-16" -Dswing.plaf.metal.smallFont="Liberation Sans-14"'
+#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Dswing.aatext=true -Dsun.java2d.xrender=true -Dsun.java2d.dpiaware=true -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel -Dswing.plaf.metal.controlFont="Liberation Sans-16" -Dswing.plaf.metal.systemFont="Liberation Sans-16" -Dswing.plaf.metal.userFont="Liberation Sans-16" -Dswing.plaf.metal.smallFont="Liberation Sans-14"'
 
 # Scala
 export SCALA_HOME="$HOME/opt/scala-2.13.3"

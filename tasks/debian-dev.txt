@@ -10,6 +10,7 @@ gcc-multilib
 gdb
 gdbserver
 git
+gperf
 htop
 iotop
 jq

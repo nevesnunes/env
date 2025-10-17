@@ -1,0 +1,35 @@
+palette = 0=#e4e0f0
+palette = 8=#8878a8
+palette = 1=#d22d48
+palette = 9=#d22d48
+palette = 2=#36700d
+palette = 10=#36700d
+palette = 3=#642604
+palette = 11=#642604
+palette = 4=#4e6cd0
+palette = 12=#4e6cd0
+palette = 5=#9a50a0
+palette = 13=#9a50a0
+palette = 6=#05505d
+palette = 14=#05505d
+palette = 7=#48384d
+palette = 15=#281830
+
+background = #e4e0f0
+foreground = #281830
+
+adjust-cell-height = 1
+bell-features = no-title
+cursor-color = #4e6cd0
+cursor-text = #ffffff
+cursor-style = block
+font-family = Comic Code
+font-size = 11
+freetype-load-flags = no-autohint
+resize-overlay = never
+selection-background = #05505d
+selection-foreground = #ffffff
+shell-integration-features = no-cursor
+window-decoration = server
+window-padding-x = 1
+window-padding-y = 1

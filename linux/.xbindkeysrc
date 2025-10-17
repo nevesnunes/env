@@ -1,4 +1,4 @@
-# List of keys: 
+# List of keys:
 # - /usr/include/X11/keysym.h
 # - /usr/include/X11/keysymdef.h
 # The XK_ is not needed.
@@ -18,8 +18,6 @@
 
 "keybind-guard.sh '(chrome|firefox)' 'Ctrl+W'"
 Control + Shift + w
-# "keybind-guard.sh '(chrome|firefox)' 'Ctrl+q'"
-# Control + q
 
 # "rofi -show run"
 # Mod4 + x
@@ -217,22 +215,6 @@ Shift + Mod4 + v
 "sh -c 'rfkill block 1; rfkill unblock 1; notify-send -i /usr/share/icons/Adwaita/scalable/devices/network-wireless-symbolic.svg rfkill-ing...'"
 Mod4 + r
 
-# Calendar 
-"scratchpad-terminal.sh status.sh"
-Mod4 + n
-
-# "Notifications Log"
-"scratchpad-terminal.sh less $XDG_RUNTIME_DIR/notify.log"
-Shift + Mod4 + n
-
-# "Set Mark"
-"xapp.sh set-mark"
-Shift + Mod4 + m
-
-# "Get Mark"
-"xapp.sh get-mark"
-Mod4 + m
-
 # "Save Video"
 "y-dl-save-link.sh"
 Shift + Mod4 + s
@@ -244,11 +226,11 @@ Mod4 + s
 # "Screenshot to Pictures"
 # "valid-screenshot.sh"
 # Print
-# 
+#
 # "Screenshot Area"
 # "valid-screenshot.sh -a"
 # Shift + Print
-# 
+#
 # "Screenshot Window Contents"
 # "valid-screenshot.sh shutter -w"
 # Mod1 + Print
@@ -257,19 +239,43 @@ Mod4 + s
 "ocr-screenshot.sh"
 Mod4 + Print
 
-# "uf"
-#"um-requester.sh uf.sh"
-"scratchpad-terminal.sh bash --norc -ci uf.sh"
-Mod4 + BackSpace
-"scratchpad-terminal.sh bash --norc -ci uf.sh"
-Mod4 + Insert
-
 # "Move windows"
 "sh -c 'killall devilspie2; devilspie2 &'"
 Mod4 + equal
 
-# "ratpoison tribute"
-"sh -c 'xdotool mousemove 9999 9999 mousemove_relative --sync -- -10 -80'"
+# "Set Mark"
+# "xapp.sh set-mark"
+# Shift + Mod4 + Insert
+#
+# "Get Mark"
+# "xapp.sh get-mark"
+# Mod4 + Insert
+
+"xapp.sh set-above"
+Mod4 + w
+"xapp.sh set-normal"
+Shift + Mod4 + w
+
+"xworkspace.sh --goto"
+Mod4 + 0
+"xworkspace.sh --move-window"
+Shift + Mod4 + 0
+
+"xworkspace.sh -u"
+Mod4 + 1
+"xworkspace.sh -i"
+Mod4 + 2
+
+"xworkspace.sh -u"
+Mod4 + b:5
+"xworkspace.sh -i"
+Mod4 + b:4
+
+"killall devilspie2; devilspie2 &disown; run-apps.sh --move-only"
+Mod1 + Mod4 + period
+
+# "Move mouse to screen corner (a.k.a. ratpoison tribute)"
+"banish_mouse.sh"
 Mod4 + period
 
 # "Type from selection clipboard"
@@ -282,29 +288,5 @@ Mod1 + Mod4 + p
 # - [GitHub \- arp242/uni: Query the Unicode database from the commandline, with good support for emojis](https://github.com/arp242/uni)
 #
 # "unipicker --command 'rofi -dmenu' --copy"
-"env FZF_DEFAULT_OPTS='--no-border --color=16,pointer:2' SCRATCHPAD_LANG=en_US.UTF-8 scratchpad-terminal.sh unipicker --copy-command 'xsel --clipboard'"
+"env FZF_DEFAULT_OPTS='--no-border --color=16,pointer:2' SCRATCHPAD_LANG=en_US.UTF-8 SCRATCHPAD_TERMINAL_EXE=gnome-terminal SCRATCHPAD_TERMINAL_TITLE=unipicker UNIPICKER_SYMBOLS_FILE=$HOME/opt/unipicker.git/symbols scratchpad-terminal.sh unipicker --copy-command 'xsel --clipboard'"
 Mod4 + comma
-
-"xapp.sh set-above"
-Mod4 + w
-
-"xapp.sh set-normal"
-Shift + Mod4 + w
-
-"xworkspace.sh --goto"
-Mod4 + 0
-"xworkspace.sh --move-window"
-Shift + Mod4 + 0
-
-"xworkspace.sh -u"
-Mod4 + 1 
-"xworkspace.sh -i"
-Mod4 + 2 
-
-"xworkspace.sh -u"
-Mod4 + b:5 
-"xworkspace.sh -i"
-Mod4 + b:4 
-
-"killall devilspie2; devilspie2 &disown; run-apps.sh --move-only"
-Mod1 + Mod4 + period

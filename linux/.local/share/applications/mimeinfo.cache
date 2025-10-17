@@ -70,6 +70,6 @@ x-scheme-handler/eclipse+mpc=_home_fn_opt_eclipse_.desktop;
 x-scheme-handler/http=firefox.desktop;userapp-Firefox-15MVIY.desktop;
 x-scheme-handler/https=firefox.desktop;userapp-Firefox-15MVIY.desktop;
 x-scheme-handler/mendeley=mendeleydesktop.desktop;
-x-scheme-handler/tg=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop;org.telegram.desktop._88154ffea811ebf70599bcfd4db44ff9.desktop;
+x-scheme-handler/tg=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop;
 x-scheme-handler/unknown=userapp-Firefox-15MVIY.desktop;

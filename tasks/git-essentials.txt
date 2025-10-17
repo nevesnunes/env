@@ -1,3 +1,4 @@
 opt:https://github.com/junegunn/fzf
 opt:https://github.com/pwndbg/pwndbg
 opt:https://github.com/rupa/z
+opt:https://github.com/trizen/obmenu-generator.git

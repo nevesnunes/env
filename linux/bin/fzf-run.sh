@@ -64,11 +64,15 @@ if [ -n "$cmd_expanded" ]; then
     && requires_tty=1
   objdump -C -T "$cmd_expanded" 2>/dev/null \
     | awk '
-      /[[:space:]]+(NativeWindow::(.*)|QApplication::(.*)|SDL_CreateWindow|SdlWindow::(.*)|wl_display_connect|wxWindow::(.*)|XCreateWindow|XCreateSimpleWindow|xcb_create_window)$/{t=0; exit !t}
+      /[[:space:]]+(NativeWindow::(.*)|QApplication::(.*)|SDL_CreateWindow|SdlWindow::(.*)|wxWindow::(.*)|wl_display_connect|gdk_wayland|gdk_x11|gtk_window_destroy|XCreateWindow|XCreateSimpleWindow|xcb_create_window)$/{t=0; exit !t}
       /[[:space:]]+stdin$/{t=1}
       END{exit !t}
     ' \
     && requires_tty=1
+  # shellscript wrappers
+  echo "$cmd_expanded" | grep -qi 'chromium' \
+    && requires_tty=
+
   if [ -n "$requires_tty" ]; then
     exec "$cmd_expanded" "$@"
   else
