@@ -38,6 +38,7 @@ imagemagick
 inkscape
 iperf3
 keepassxc
+kicad
 libavfilter-dev
 libc6-dbg
 libedit-dev
