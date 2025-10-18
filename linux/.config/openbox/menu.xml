@@ -67,6 +67,11 @@
                 <prompt>yes</prompt>
             </action>
         </item>
+        <item label="Lock" icon="/home/fn/.config/obmenu-generator/icons/system-lock-screen-symbolic.png">
+            <action name="Execute">
+                <execute>slock</execute>
+            </action>
+        </item>
         <item label="Exit" icon="/home/fn/.config/obmenu-generator/icons/process-stop-symbolic.png">
             <action name="Exit">
                 <prompt>yes</prompt>
