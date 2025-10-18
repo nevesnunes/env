@@ -52,7 +52,7 @@ window.active.button.disabled.image.color: #cccccc
 
 
 # Inactive window
-window.inactive.border.color: #4a5050
+window.inactive.border.color: #657070
 
 window.inactive.title.bg: flat solid
 window.inactive.title.bg.color: #788484
@@ -63,10 +63,10 @@ window.inactive.label.bg: parentrelative
 window.inactive.label.text.color: #cccccc
 
 window.inactive.handle.bg: flat solid
-window.inactive.handle.bg.color: #4a5050
+window.inactive.handle.bg.color: #657070
 
 window.inactive.grip.bg: flat solid
-window.inactive.grip.bg.color: #4a5050
+window.inactive.grip.bg.color: #657070
 
 window.inactive.button.unpressed.bg: flat solid
 window.inactive.button.unpressed.bg.color: #788484
