@@ -26,7 +26,7 @@
                 <execute>obconf</execute>
             </action>
         </item>
-        <item label="Keyboard Layout">
+        <item label="Keyboard">
             <action name="Execute">
                 <execute>ibus-setup</execute>
             </action>
@@ -34,6 +34,11 @@
         <item label="Panel">
             <action name="Execute">
                 <execute>tint2conf</execute>
+            </action>
+        </item>
+        <item label="Screen">
+            <action name="Execute">
+                <execute>arandr</execute>
             </action>
         </item>
         <item label="Reconfigure">
