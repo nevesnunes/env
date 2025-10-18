@@ -7,3 +7,5 @@ run-daemons.sh &
 "$HOME"/.screenlayout/dual.sh
 
 cd "$HOME"
+
+# vim: filetype=sh

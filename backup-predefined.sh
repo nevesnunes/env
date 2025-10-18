@@ -101,6 +101,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/htop \
   /home/"$USER"/./.config/i3 \
   /home/"$USER"/./.config/mimeapps.list \
+  /home/"$USER"/./.config/monitors.xml \
   /home/"$USER"/./.config/mpv \
   /home/"$USER"/./.config/nautilus \
   /home/"$USER"/./.config/ncdu \
