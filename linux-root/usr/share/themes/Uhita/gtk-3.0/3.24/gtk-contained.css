@@ -18,12 +18,13 @@
 }
 
 scrollbar {
-    padding: 2px;
+    padding: 1px;
 }
 
 scrollbar slider {
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 8px;
+    min-height: 8px;
+    border-width: 4px;
     border-radius: 9999px;
 }
 
@@ -284,6 +285,17 @@ terminal-window box notebook {
 
 notebook box scrolledwindow {
     background-color: #ffffff;
+}
+
+notebook box scrolledwindow overshoot.left,
+notebook box scrolledwindow undershoot.left,
+notebook box scrolledwindow overshoot.right,
+notebook box scrolledwindow undershoot.right,
+notebook box scrolledwindow overshoot.top,
+notebook box scrolledwindow undershoot.top,
+notebook box scrolledwindow overshoot.bottom,
+notebook box scrolledwindow undershoot.bottom {
+    background-image: none;
 }
 
 
