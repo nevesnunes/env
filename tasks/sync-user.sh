@@ -31,4 +31,7 @@ python3 -m pipx install poetry
 cd ~/opt/pwndbg/ && sudo sh -c 'yes | ./setup.sh'
 sudo chown "$USER:$USER" ~/opt/pwndbg/
 
+mkdir -p ~/.local/bin/functions
+ln -fs ~/.local/bin/functions ~/bin/functions
+
 cd ~

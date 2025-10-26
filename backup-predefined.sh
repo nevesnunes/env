@@ -23,7 +23,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   ./common/
 
 rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
-  --copy-links \
+  --no-links \
   --exclude='.config/ranger/history' \
   --exclude='.dosbox/capture' \
   --exclude='.local/share/applications/wine*' \
@@ -131,6 +131,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/zathura \
   /home/"$USER"/./.config/zdoom/*.ini \
   /home/"$USER"/./.FBReader/ui.xml \
+  /home/"$USER"/./.local/bin/functions \
   /home/"$USER"/./.local/share/applications \
   /home/"$USER"/./.local/share/completions \
   /home/"$USER"/./.local/share/crispy-doom/*.cfg \
@@ -152,9 +153,9 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.slade3/*.cfg \
   /home/"$USER"/./.ssh/config \
   /home/"$USER"/./.w3m/keymap \
+  /home/"$USER"/./bin/*.py \
   /home/"$USER"/./bin/*.sh \
   /home/"$USER"/./bin/blocks \
-  /home/"$USER"/./bin/functions \
   /home/"$USER"/./bin/zsh \
   /home/"$USER"/./code/config/vim \
   /home/"$USER"/./share/alpine \

@@ -21,6 +21,7 @@
 # TODO:
 # - Add option to approximate colors to fixed 16 color palette: https://python-colormath.readthedocs.io/en/latest/delta_e.html
 #     - Use same lightness levels when comparing LabColor instances
+#     - Alternatives: https://docs.rs/palette/latest/palette/color_difference/index.html
 # - Explore better ways of adjusting perceived lightness: https://www.researchgate.net/post/Are_there_color_spaces_other_then_OSA-UCS_which_explicitly_include_the_Helmholtz-Kohlrausch_effect
 
 import argparse
