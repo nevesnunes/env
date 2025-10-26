@@ -384,7 +384,6 @@ function put_other_windows {
  
     # Don't move a focused window or a window of the same class
     if [[ "$window_hex_id" != "$id" ]] && [[ "$target_class" != "$current_class" ]]; then
-      # Remove maximized state to allow resizing
       put_window_by_id "$id" "$1" "$2" "$3" "$4" "$5"
    fi
   done <<< "$other_apps"
@@ -428,7 +427,7 @@ function prorate_other_windows {
             - $current_window_y))
       window_y_from_top_diff=$(( $(($current_window_y + $current_window_h)) + $workarea_factor \
             - $window_y))
-      if [ $current_window_y -lt $window_y ]; then
+      if [ "$current_window_y" -lt $window_y ]; then
         window_y_from_bottom_diff_to_compare=$((- $window_y_from_bottom_diff))
         window_y_from_top_diff_to_compare=$window_y_from_top_diff
       else
@@ -445,7 +444,7 @@ function prorate_other_windows {
               - $window_x))
         window_x_from_left_diff=$(( $(($window_x + $window_w)) \
               - $current_window_x))
-        if [ $current_window_x -lt $window_x ]; then
+        if [ "$current_window_x" -lt $window_x ]; then
           window_x_from_right_diff_to_compare=$((- $window_x_from_right_diff))
           window_x_from_left_diff_to_compare=$window_x_from_left_diff
         else
@@ -516,7 +515,7 @@ function prorate_other_windows {
             # DIRECTION: V
             elif [ $window_y_from_top_diff_to_compare -gt 0 ]; then
               window_y_diff=$window_y_from_top_diff
-              if [ $(($window_y + $window_base_h + $window_y_diff)) -gt $h ]; then
+              if [ $(($window_y + $window_base_h + $window_y_diff)) -gt "$h" ]; then
                 put_and_prorate "$current_window_direction" "$id" "1" \
                     "$PRESERVED_X" \
                     "$(($h - $window_h - $workarea_factor + $frame_bottom + $frame_top + $window_y_diff))" \
@@ -535,11 +534,11 @@ function prorate_other_windows {
       fi
     fi
   done <<< "$ids"
-  if [[ "$DEBUG" -eq 1 ]]; then
+  if [ "$DEBUG" -eq 1 ]; then
     for (( i=0; i<"${#requested_prorations[@]}"; i++ )); do
       request="${requested_prorations[$i]}"
       request_array=(${request/usr/,/ })
-      echo "req|id:${request_array[5]}|x:$(printf '%4s' ${request_array[0]})|y:$(printf '%4s' ${request_array[1]})|w:$(printf '%4s' ${request_array[2]})|h:$(printf '%4s' ${request_array[3]})|dir:${request_array[4]}"
+      echo "req|id:${request_array[5]}|x:$(printf '%4s' "${request_array[0]}")|y:$(printf '%4s' "${request_array[1]}")|w:$(printf '%4s' "${request_array[2]}")|h:$(printf '%4s' "${request_array[3]}")|dir:${request_array[4]}"
     done
     process_requested_prorations
   fi

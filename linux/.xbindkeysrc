@@ -44,84 +44,96 @@ Mod4 + Delete
 Shift + Mod4 + r
 
 # "Resize (Up)"
-"xsize.sh --decrement-up"
-Mod1 + Mod4 + Down
+"xmat.py decrement_top"
+Mod1 + Mod4 + c:116
 
 # "Resize (Down)"
-"xsize.sh --decrement-down"
-Mod1 + Mod4 + Up
+"xmat.py decrement_bottom"
+Mod1 + Mod4 + c:111
 
 # "Resize (Left)"
-"xsize.sh --decrement-left"
-Mod1 + Mod4 + Right
+"xmat.py decrement_left"
+Mod1 + Mod4 + c:114
 
 # "Resize (Right)"
-"xsize.sh --decrement-right"
-Mod1 + Mod4 + Left
+"xmat.py decrement_right"
+Mod1 + Mod4 + c:113
 
 # "Resize (Up)"
-"xsize.sh --increment-up"
-Shift + Mod4 + Up
+"xmat.py increment_top"
+Shift + Mod4 + c:111
 
 # "Resize (Down)"
-"xsize.sh --increment-down"
-Shift + Mod4 + Down
+"xmat.py increment_bottom"
+Shift + Mod4 + c:116
 
 # "Resize (Left)"
-"xsize.sh --increment-left"
-Shift + Mod4 + Left
+"xmat.py increment_left"
+Shift + Mod4 + c:113
 
 # "Resize (Right)"
-"xsize.sh --increment-right"
-Shift + Mod4 + Right
+"xmat.py increment_right"
+Shift + Mod4 + c:114
 
 # "Move (Center)"
-"xsize.sh -z"
+"xmat.py move_center"
 Mod4 + c
 
 # "Move (Up)"
-"xsize.sh -d"
-Mod4 + Up
+"xmat.py move_top"
+Mod4 + c:111
 
 # "Move (Down)"
-"xsize.sh -e"
-Mod4 + Down
+"xmat.py move_bottom"
+Mod4 + c:116
 
 # "Move (Left)"
-"xsize.sh -f"
-Mod4 + Left
+"xmat.py move_left"
+Mod4 + c:113
 
 # "Move (Right)"
-"xsize.sh -g"
-Mod4 + Right
+"xmat.py move_right"
+Mod4 + c:114
 
 # "Tile (Top Right)"
-"xsize.sh -i"
+"xmat.py minor_right_top"
 Mod1 + Mod4 + i
 
 # "Tile (Bottom Right)"
-"xsize.sh -m"
+"xmat.py minor_right_bottom"
 Mod1 + Mod4 + m
 
 # "Tile (Top Left)"
-"xsize.sh -u"
+"xmat.py major_left_top"
 Mod1 + Mod4 + u
 
 # "Tile (Bottom Left)"
-"xsize.sh -n"
+"xmat.py major_left_bottom"
 Mod1 + Mod4 + n
 
+# "Tile (Top)"
+"xmat.py half_top"
+Mod1 + Mod4 + k
+
 # "Tile (Bottom)"
-"xsize.sh -j"
+"xmat.py half_bottom"
 Mod1 + Mod4 + j
 
 # "Tile (Right Half)"
-"xsize.sh --half-right"
+"xmat.py half_right"
 Shift + Mod4 + l
 
 # "Tile (Left Half)"
-"xsize.sh --half-left"
+"xmat.py half_left"
 Shift + Mod4 + h
+
+# "Tile (Right Minor)"
+"xmat.py minor_right"
+Mod1 + Mod4 + l
+
+# "Tile (Left Major)"
+"xmat.py major_left"
+Mod1 + Mod4 + h
 
 # "Maximize"
 "wmctrl -r :ACTIVE: -b toggle,maximized_vert,maximized_horz"
@@ -130,18 +142,6 @@ Shift + Mod4 + k
 # "Minimize"
 "xdotool getactivewindow windowminimize"
 Shift + Mod4 + j
-
-# "Tile (Top)"
-"xsize.sh -k"
-Mod1 + Mod4 + k
-
-# "Tile (Right Slave)"
-"xsize.sh -l"
-Mod1 + Mod4 + l
-
-# "Tile (Left Master)"
-"xsize.sh -h"
-Mod1 + Mod4 + h
 
 # "Focus (Left)"
 "xfocus.sh -h"
@@ -224,16 +224,16 @@ Shift + Mod4 + s
 Mod4 + s
 
 # "Screenshot to Pictures"
-# "valid-screenshot.sh"
-# Print
-#
+"valid-screenshot.sh"
+Print
+
 # "Screenshot Area"
-# "valid-screenshot.sh -a"
-# Shift + Print
-#
+"valid-screenshot.sh -a"
+Shift + Print
+
 # "Screenshot Window Contents"
-# "valid-screenshot.sh shutter -w"
-# Mod1 + Print
+"valid-screenshot.sh -w"
+Mod1 + Print
 
 # "OCR Screenshot Text"
 "ocr-screenshot.sh"
