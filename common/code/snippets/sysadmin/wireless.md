@@ -10,8 +10,10 @@ iw wlp3s0 info
 
 dhclient -r
 dhclient wlan0
-nmcli dev
 nmcli radio wifi on
+
+nmcli dev wifi list
+nmcli dev wifi connect foo-123456
 ```
 
 I finally got wireless working. It took me 2 days to figure it out, but I think I finally understand Ubuntu networking a little bit better. Let me summarize it for you, so one day it may save someone else some time:

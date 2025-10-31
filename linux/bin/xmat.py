@@ -156,24 +156,50 @@ def relative_move_resize(ewmh, workarea, win, x, y, w, h):
 def step(workarea_width, win_width, factor):
     steps = [0.10, 0.25, 0.35, 0.50, 0.65, 0.75, 0.90, 1.00]
     workarea_steps = list(enumerate(int(x * workarea_width) for x in steps))
-    i, closest_step = min(workarea_steps, key=lambda x: abs(x[1] - win_width))
+
+    # Some programs may override the final window size (e.g.
+    # terminal emulators may fit the width and height to rendered
+    # characters, with fixed spacing around the content and the
+    # window frame). These overrides can lead to edge cases where the
+    # window keeps the same size when picking the closest step,
+    # as the computed amount would be smaller than required for the
+    # next overriden value. To workaround these cases, we adjust the
+    # real window width with an additional amount, to force the
+    # next step to be taken.
+    adjusted_win_width = win_width + 8 * factor
+
+    # When computing target position, we might need to consider the
+    # closest step width instead of the actual window width, so that
+    # each step always results in the same position, regardless of
+    # width overrides applied by programs.
+    ref_width = win_width
+
+    i, closest_step = min(workarea_steps, key=lambda x: abs(x[1] - adjusted_win_width))
     if factor > 0:
-        if closest_step <= win_width:
-            _, closest_step = workarea_steps[min(len(workarea_steps) - 1, i + factor)]
-        return closest_step - win_width
+        if closest_step <= adjusted_win_width:
+            i = min(len(workarea_steps) - 1, i + factor)
+            ref_width = closest_step
     else:
-        if closest_step >= win_width:
-            _, closest_step = workarea_steps[max(0, i + factor)]
-        return win_width - closest_step
+        if closest_step >= adjusted_win_width:
+            i = max(0, i + factor)
+            ref_width = closest_step
+    target_width = workarea_steps[i][1]
+    delta_xy, delta_wh = abs(target_width - ref_width), abs(target_width - win_width)
+
+    # Don't decrement beyond smallest step.
+    if factor < 0 and win_width < target_width:
+        return 0, 0
+
+    return delta_xy, delta_wh
 
 
 if __name__ == "__main__":
     ewmh = EWMH()
 
-    # Assume all desktops have the same workarea
+    # Assume all desktops have the same workarea.
     workarea = Rect(*ewmh.getWorkArea()[0:4])
 
-    # Assume a single Xinerama screen
+    # Assume a single Xinerama screen.
     screen = ewmh.display.screen(0)
 
     # Assume that a panel is present on all crtcs, taking the same
@@ -251,7 +277,7 @@ if __name__ == "__main__":
                 largest_intersection = intersection
 
     if args.workarea:
-        print(f"{workarea.width},{workarea.height}")
+        print(f"{workarea.x},{workarea.y},{workarea.width},{workarea.height}")
     elif args.geo == Geo.HALF_BOTTOM:
         move_resize(
             ewmh,
@@ -393,7 +419,7 @@ if __name__ == "__main__":
             win_rect.height,
         )
     elif args.geo == Geo.DECREMENT_BOTTOM:
-        amount = step(workarea.height, win_rect.height, -1)
+        delta_xy, delta_wh = step(workarea.height, win_rect.height, -1)
         relative_move_resize(
             ewmh,
             workarea,
@@ -401,43 +427,43 @@ if __name__ == "__main__":
             win_rect.x,
             win_rect.y,
             win_rect.width,
-            win_rect.height - amount,
+            win_rect.height - delta_wh,
         )
     elif args.geo == Geo.DECREMENT_TOP:
-        amount = step(workarea.height, win_rect.height, -1)
+        delta_xy, delta_wh = step(workarea.height, win_rect.height, -1)
         relative_move_resize(
             ewmh,
             workarea,
             win,
             win_rect.x,
-            win_rect.y + amount,
+            win_rect.y + delta_xy,
             win_rect.width,
-            win_rect.height - amount,
+            win_rect.height - delta_wh,
         )
     elif args.geo == Geo.DECREMENT_LEFT:
-        amount = step(workarea.width, win_rect.width, -1)
+        delta_xy, delta_wh = step(workarea.width, win_rect.width, -1)
         relative_move_resize(
             ewmh,
             workarea,
             win,
-            win_rect.x + amount,
+            win_rect.x + delta_xy,
             win_rect.y,
-            win_rect.width - amount,
+            win_rect.width - delta_wh,
             win_rect.height,
         )
     elif args.geo == Geo.DECREMENT_RIGHT:
-        amount = step(workarea.width, win_rect.width, -1)
+        delta_xy, delta_wh = step(workarea.width, win_rect.width, -1)
         relative_move_resize(
             ewmh,
             workarea,
             win,
             win_rect.x,
             win_rect.y,
-            win_rect.width - amount,
+            win_rect.width - delta_wh,
             win_rect.height,
         )
     elif args.geo == Geo.INCREMENT_BOTTOM:
-        amount = step(workarea.height, win_rect.height, +1)
+        delta_xy, delta_wh = step(workarea.height, win_rect.height, +1)
         relative_move_resize(
             ewmh,
             workarea,
@@ -445,38 +471,38 @@ if __name__ == "__main__":
             win_rect.x,
             win_rect.y,
             win_rect.width,
-            win_rect.height + amount,
+            win_rect.height + delta_wh,
         )
     elif args.geo == Geo.INCREMENT_TOP:
-        amount = step(workarea.height, win_rect.height, +1)
+        delta_xy, delta_wh = step(workarea.height, win_rect.height, +1)
         relative_move_resize(
             ewmh,
             workarea,
             win,
             win_rect.x,
-            win_rect.y - amount,
+            win_rect.y - delta_xy,
             win_rect.width,
-            win_rect.height + amount,
+            win_rect.height + delta_wh,
         )
     elif args.geo == Geo.INCREMENT_LEFT:
-        amount = step(workarea.width, win_rect.width, +1)
+        delta_xy, delta_wh = step(workarea.width, win_rect.width, +1)
         relative_move_resize(
             ewmh,
             workarea,
             win,
-            win_rect.x - amount,
+            win_rect.x - delta_xy,
             win_rect.y,
-            win_rect.width + amount,
+            win_rect.width + delta_wh,
             win_rect.height,
         )
     elif args.geo == Geo.INCREMENT_RIGHT:
-        amount = step(workarea.width, win_rect.width, +1)
+        delta_xy, delta_wh = step(workarea.width, win_rect.width, +1)
         relative_move_resize(
             ewmh,
             workarea,
             win,
             win_rect.x,
             win_rect.y,
-            win_rect.width + amount,
+            win_rect.width + delta_wh,
             win_rect.height,
         )
