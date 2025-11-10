@@ -1,5 +1,5 @@
-export $(gnome-keyring-daemon --daemonize --replace)
 systemctl --user start tint2
+export $(gnome-keyring-daemon --daemonize --replace)
 
 autoruns.sh &
 run-daemons.sh &

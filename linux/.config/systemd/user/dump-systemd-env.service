@@ -1,5 +1,7 @@
 [Unit]
 Description=Dump Systemd User Environment
+StartLimitBurst=10
+StartLimitIntervalSec=30
 
 [Service]
 # Check exit status of script
@@ -10,8 +12,6 @@ ExecStart=/usr/bin/env bash -c "/home/%u/bin/dump-systemd-env.sh"
 Restart=on-failure
 RestartSec=5
 TimeoutSec=30
-StartLimitInterval=30s
-StartLimitBurst=3
 
 [Install]
 WantedBy=default.target

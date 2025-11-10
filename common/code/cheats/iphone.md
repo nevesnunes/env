@@ -53,10 +53,10 @@ JOIN message ON chat_message_join.message_id = message."ROWID"
 sudo apt-get install libimobiledevice-utils ifuse
 
 # 3. Unlock, connect device and run
-usbmuxd -v --user usbmuxd --systemd
+usbmuxd -v --user usbmux --systemd
 dmesg | grep ipheth
 
-idevicepair unpair && idevicepair pair
+idevicepair unpair; idevicepair pair; idevicepair validate
 mkdir -p ~/media/iphone &>/dev/null
 sudo -u "$(whoami)" ifuse ~/media/iphone -o rw
 

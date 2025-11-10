@@ -2,14 +2,14 @@
 Description=IBus Daemon
 Requires=tint2.service
 After=tint2.service
+StartLimitBurst=10
+StartLimitIntervalSec=30
 
 [Service]
 ExecStartPre=/bin/sleep 1
 ExecStart=/usr/bin/ibus-daemon
 Restart=on-failure
 TimeoutSec=5
-StartLimitInterval=20s
-StartLimitBurst=3
 
 [Install]
 WantedBy=default.target

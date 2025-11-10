@@ -209,7 +209,7 @@ if __name__ == "__main__":
     # greater than zero height difference, which we will consider when computing the effective height of each crtc workarea.
     resources = randr.get_screen_resources(screen.root)
     crtc_geometries = []
-    min_workarea_diff = 99999
+    min_workarea_diff = 0
     for output in resources.outputs:
         params = ewmh.display.xrandr_get_output_info(output, resources.config_timestamp)
         if not params.crtc:
@@ -219,8 +219,8 @@ if __name__ == "__main__":
         )
         crtc_rect = Rect(crtc.x, crtc.y, crtc.width, crtc.height)
         crtc_workarea = intersect(workarea, crtc_rect)
-        workarea_diff = crtc_rect.height - crtc_workarea.height
-        if workarea_diff > 0 and min_workarea_diff > workarea_diff:
+        workarea_diff = abs(crtc_rect.height - crtc_workarea.height)
+        if min_workarea_diff == 0 or min_workarea_diff > workarea_diff:
             min_workarea_diff = workarea_diff
         crtc_geometries.append(
             Rect(

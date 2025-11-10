@@ -2,14 +2,16 @@
 Description=Tint2
 # Workaround for depending on a user session
 Requires=dbus.service
-After=dbus.service graphical.target
+After=dbus.service
+PartOf=graphical-session.target
+StartLimitBurst=10
+StartLimitIntervalSec=30
 
 [Service]
 ExecStart=/usr/bin/tint2
+Type=simple
 Restart=always
 TimeoutSec=5
-StartLimitInterval=20s
-StartLimitBurst=3
 
 [Install]
 WantedBy=default.target

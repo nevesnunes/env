@@ -3,14 +3,16 @@ Description=Continuous silence
 # Workaround for depending on a user session
 Requires=dbus.service
 After=dbus.service
+PartOf=graphical-session.target
+StartLimitBurst=10
+StartLimitIntervalSec=30
 
 [Service]
 ExecStart=/usr/bin/play -qn
+Type=simple
 Restart=always
 RestartSec=2
 TimeoutSec=5
-StartLimitInterval=20s
-StartLimitBurst=5
 
 [Install]
 WantedBy=default.target
