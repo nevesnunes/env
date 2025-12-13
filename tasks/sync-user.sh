@@ -30,6 +30,9 @@ ln -fs ~/.local/bin/functions ~/bin/functions
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && wget 'https://github.com/andreberg/Meslo-Font/raw/master/dist/v1.2.1/Meslo%20LG%20DZ%20v1.2.1.zip' && atool -x 'Meslo LG DZ v1.2.1.zip' && rm -f 'Meslo LG DZ v1.2.1.zip'
 
+ln -fs /usr/share/themes/Uhita/gtk-4.0/gtk.css ~/.config/gtk-4.0/
+ln -fs /usr/share/themes/Uhita/gtk-4.0/settings.ini ~/.config/gtk-4.0/
+
 cd ~/opt/fzf/ && yes | ./install
 
 python3 -m pip install --user pipx
