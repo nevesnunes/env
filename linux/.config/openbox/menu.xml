@@ -3,7 +3,7 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
     <menu id="root-menu" label="Openbox 3">
         <separator label="Applications"/>
-        <menu execute="obmenu-generator -d -i" id="apps" label="Categories" icon="/home/fn/.config/obmenu-generator/icons/system-software-install-symbolic.png"/>
+        <menu execute="obmenu-generator -d -i" id="apps" label="Categories" icon="/home/fn/.config/obmenu-generator/icons/view-list-symbolic.png"/>
         <separator/>
         <item label="File Manager" icon="/home/fn/.config/obmenu-generator/icons/system-file-manager-symbolic.png">
             <action name="Execute">
@@ -21,14 +21,14 @@
             </action>
         </item>
         <separator label="Settings"/>
-        <item label="Openbox">
-            <action name="Execute">
-                <execute>obconf</execute>
-            </action>
-        </item>
         <item label="Keyboard">
             <action name="Execute">
                 <execute>ibus-setup</execute>
+            </action>
+        </item>
+        <item label="Openbox">
+            <action name="Execute">
+                <execute>obconf</execute>
             </action>
         </item>
         <item label="Panel">

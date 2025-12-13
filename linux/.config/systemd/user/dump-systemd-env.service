@@ -10,7 +10,7 @@ Type=forking
 ExecStartPre=/usr/bin/env bash -c "rm -f /home/%u/.local/share/systemd/env"
 ExecStart=/usr/bin/env bash -c "/home/%u/bin/dump-systemd-env.sh"
 Restart=on-failure
-RestartSec=5
+RestartSec=2
 TimeoutSec=30
 
 [Install]

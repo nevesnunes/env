@@ -11,6 +11,7 @@ StartLimitIntervalSec=30
 ExecStart=/usr/bin/tint2
 Type=simple
 Restart=always
+RestartSec=1
 TimeoutSec=5
 
 [Install]

@@ -11,7 +11,7 @@ StartLimitIntervalSec=30
 ExecStart=/usr/bin/play -qn
 Type=simple
 Restart=always
-RestartSec=2
+RestartSec=1
 TimeoutSec=5
 
 [Install]

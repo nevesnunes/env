@@ -20,6 +20,12 @@ dd if=/dev/fd0 of=out.img bs=512 conv=noerror,sync
 #     - [!] 4 passes ~= 25min
 ddrescue -d -r4 /dev/fd0 out.img ddrescue.out.log
 
+# For custom format, e.g. /etc/mediaprm
+floppycontrol --resetnow 2
+fdrawcmd recalibrate 0
+setfdprm /dev/fd0 sect=8 hd ssize=1024 cyl=77
+dd if=/dev/fd0 bs=2048 count=616 of=out.img
+
 # Repair
 dosfsck data.img
 # Alternatives:
@@ -60,6 +66,31 @@ read(0, 0x7f3be0a20000, 131072)         = -1 EIO (Input/output error)
 
 - https://superuser.com/questions/1442751/maxiumum-recovery-of-data-from-old-floppy-discs-with-padded-bad-sectors-and-mult
 
+# flux imaging
+
+- [Greaseweazle \| The Decromancer](https://decromancer.ca/greaseweazle/)
+- [Pauline, universal Floppy Disk Reader / Simulator \- Share Project \- PCBWay](https://www.pcbway.com/project/shareproject/Pauline__universal_Floppy_Disk_Reader___Simulator.html)
+
+# formats
+
+- 1.44MB 3.5in (IBM)
+    - 512 bytes/sector, 1x density, 18 sectors/track, 80 tracks/size
+    - 1024 bytes/sector, 2x density, 9 sectors/track, 80 tracks/size
+    - `512*2*80*18 = 1474560`
+- 1.25MB 3.5in (PC98/X68000)
+    - 1024 bytes/sector
+    - requires 3-Mode floppy-disk drive
+        - http://www.amazon.com/Sony-PCGA-UFD5-VAIO-Floppy-Drive/dp/B00006HNH0
+        - https://gamesx.com/wiki/doku.php?id=x68000:writing_3.5_floppies
+- [Norsk Data](https://www.ndwiki.org/wiki/ND_floppy_disks)
+    - 1024 bytes/sector, 2x density, 8 sectors/track, 77 tracks/side => total capacity 616 pages
+    - `1024*2*8*77 = 1261568`
+- [List of floppy disk formats \- Wikipedia](https://en.wikipedia.org/wiki/List_of_floppy_disk_formats)
+
+```sh
+ufiformat -i /dev/sdb
+```
+
 # connections
 
 - 34-pin 5-connector ribbon cable
@@ -76,4 +107,25 @@ bad reads:
 -             0x13a000: 000000000000000000000000000000000000000000000000000000000000 [...] 00000000000000000000 | b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' [...] b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' [+ 114648 byte(s)]
 +             0x13a000: f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6 [...] f6f6f6f6f6f6f6f6f6f6 | b'\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6' [...] b'\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6' [+ 114648 byte(s)]
               0x156000: f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6f6 [...] f6f6f6f6f6f6f6f6f6f6 | b'\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6' [...] b'\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6\xf6' [+ 73688 byte(s)]
+```
+
+```
+dd: error reading '/dev/fd0': Input/output error
+0+0 records in
+0+0 records out
+0 bytes copied, 4.72931 s, 0.0 kB/s
+
+read(0, 0x55853375d000, 2048)           = -1 EIO (Input/output error)
+
+# getfdprm /dev/fd0
+get geometry parameters: No such device
+
+openat(AT_FDCWD, "/dev/fd0", O_ACCMODE) = 3
+ioctl(3, FDGETPRM, 0x5555abd2f2c0)      = -1 ENODEV (No such device)
+
+# fdrawcmd recalibrate 0
+raw cmd: Operation not supported
+
+openat(AT_FDCWD, "/dev/fd0", O_ACCMODE|O_NONBLOCK) = 3
+ioctl(3, FDRAWCMD, 0x7fff93c2b540)      = -1 EOPNOTSUPP (Operation not supported)
 ```

@@ -2,7 +2,7 @@
 Name=Telegram
 Comment=New era of messaging
 TryExec=/home/fn/opt/Telegram/Telegram
-Exec=/home/fn/opt/Telegram/Telegram -- %u
+Exec=/home/fn/opt/Telegram/Telegram -- %U
 Icon=org.telegram.desktop
 Terminal=false
 StartupWMClass=TelegramDesktop

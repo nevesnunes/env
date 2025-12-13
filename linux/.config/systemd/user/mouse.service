@@ -7,8 +7,8 @@ StartLimitIntervalSec=30
 [Service]
 ExecStart=/opt/mouse.sh
 Restart=on-failure
-RestartSec=2
-TimeoutSec=10
+RestartSec=1
+TimeoutSec=5
 
 [Install]
 WantedBy=suspend.target

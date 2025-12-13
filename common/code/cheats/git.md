@@ -10,6 +10,13 @@ git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10
 git log --reverse -S foo
 ```
 
+# Blobless clone
+
+```bash
+git clone foo --filter=blob:none
+git maintenance start
+```
+
 # Change history for file
 
 ```bash

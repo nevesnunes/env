@@ -21,7 +21,7 @@ ExecStop=/usr/bin/dropbox stop
 PIDFile=/home/%u/.dropbox/dropbox.pid
 KillMode=process
 Restart=on-failure
-RestartSec=10
+RestartSec=2
 TimeoutSec=30
 
 [Install]
