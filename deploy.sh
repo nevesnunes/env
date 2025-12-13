@@ -22,7 +22,7 @@ fi
 [ -d "$role_dir" ]
 
 if echo "$role" | grep -qiE 'linux-(ctf|dev|main|ubuntu)'; then
-  sudo apt install rsync
+  sudo apt install curl gpg rsync
 else
   # TODO
   exit 1

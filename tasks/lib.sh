@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "../linux/bin/functions/packages.sh"
+. "../linux/.local/bin/functions/packages.sh"
 
 debloat() {
   if os | grep -qi 'ubuntu'; then

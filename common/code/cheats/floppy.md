@@ -68,6 +68,7 @@ read(0, 0x7f3be0a20000, 131072)         = -1 EIO (Input/output error)
 
 # flux imaging
 
+- [A Guide to Imaging Obscure Floppy Disk Formats](https://zenodo.org/records/13828372)
 - [Greaseweazle \| The Decromancer](https://decromancer.ca/greaseweazle/)
 - [Pauline, universal Floppy Disk Reader / Simulator \- Share Project \- PCBWay](https://www.pcbway.com/project/shareproject/Pauline__universal_Floppy_Disk_Reader___Simulator.html)
 

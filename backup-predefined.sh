@@ -99,6 +99,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/ghostty \
   /home/"$USER"/./.config/gtkrc-2.0 \
   /home/"$USER"/./.config/gtk-3.0 \
+  /home/"$USER"/./.config/gtk-4.0 \
   /home/"$USER"/./.config/htop \
   /home/"$USER"/./.config/i3 \
   /home/"$USER"/./.config/mimeapps.list \

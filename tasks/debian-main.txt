@@ -4,6 +4,7 @@ adwaita-qt6
 cabextract
 calibre
 cups
+dconf-cli
 dconf-editor
 devilspie2
 devscripts
@@ -12,6 +13,7 @@ docker.io
 dpkg-dev
 dwarves
 evince
+fdutils
 ffmpegthumbnailer
 ffmpegthumbs
 firmware-iwlwifi
@@ -44,10 +46,8 @@ libavfilter-dev
 libc6-dbg
 libedit-dev
 libelf-dev
-libimobiledevice6
-libimobiledevice-utils
+libimobiledevice*
 libnotify-bin
-libpango1.0-0
 libreoffice
 libreoffice-gtk3
 libsdl1.2-dev
@@ -57,8 +57,6 @@ libsqlite3-dev
 libssl-dev
 libx11-xcb-dev
 libxxf86vm-dev
-linux-image-amd64-dbg
-linux-source
 mpv
 mutter
 ncdu

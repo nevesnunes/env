@@ -13,11 +13,17 @@ rm -f microsoft.gpg
 sudo apt update
 sudo apt install -y code
 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.config/nvm"
+. "$NVM_DIR/nvm.sh"
+nvm install v22.9.0 || nvm use --delete-prefix v22.9.0
+
 debloat
 sync_debian_packages ./debian-ctf.txt
 sync_debian_packages ./debian-essentials.txt
 sync_debian_packages ./debian-graphical.txt
 sync_debian_packages ./debian-main.txt
+# sync_debian_packages ./debian-main-dbg.txt
 sync_gem_packages ./gem-packages.txt
 sync_npm_packages ./npm-packages.txt
 sync_python_packages ./python3-site-packages-essentials.txt
@@ -28,9 +34,13 @@ sync_git ./git-essentials.txt
 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 
 # Dependencies for ghidra
-curl -s 'https://get.sdkman.io' | sh
+curl -s 'https://get.sdkman.io' | bash
+bash -c '
+. "/home/$USER/.sdkman/bin/sdkman-init.sh"
+sdk selfupdate force
 sdk install gradle 8.6
 sdk install java 21.0.2-open
+'
 
 # Dependencies for obmenu-generator
 perl -MCPAN -e "CPAN::Shell->notest('install', 'Linux::DesktopFiles')"
@@ -39,8 +49,8 @@ ln -fs ~/opt/obmenu-generator.git/obmenu-generator ~/opt/obmenu-generator
 # Allow separate X servers to be run with sound
 sudo usermod -a -G audio "$USER"
 # VirtualBox
-sudo usermod -a -G wheel "$USER"
-sudo usermod -a -G vboxusers "$USER"
+# sudo usermod -a -G wheel "$USER"
+# sudo usermod -a -G vboxusers "$USER"
 
 sudo sysctl -w kernel.sysrq=1
 
