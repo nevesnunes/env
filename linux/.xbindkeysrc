@@ -240,7 +240,7 @@ Mod1 + Print
 Mod4 + Print
 
 # "Move windows"
-"sh -c 'killall devilspie2; devilspie2 &'"
+"screen-connected.sh"
 Mod4 + equal
 
 # "Set Mark"
