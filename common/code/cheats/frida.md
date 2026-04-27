@@ -16,6 +16,9 @@ frida -l ./foo.js --no-pause ./a.out arg1 arg2
 # https://github.com/lasting-yang/frida_dump
 frida -U com.kanxue.ollvm_ndk_9 -l dump_so.js
 dump_so("libnative-lib.so")
+
+# syscalls without jailbreak (>= 17.8.0)
+frida-strace -U -f com.foo.bar
 ```
 
 ```javascript

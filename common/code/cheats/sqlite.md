@@ -64,3 +64,10 @@ select
 count(distinct ROWID)
 from CalendarItem;
 ```
+
+# expert
+
+- https://sqlite.org/cli.html#index_recommendations_sqlite_expert_
+- https://sqlite.org/src/dir?ci=trunk&name=ext/expert
+> analyses the where and order by clauses of the query, creates indexes based on that, retries the query and checks which indexes have been used
+

@@ -68,6 +68,13 @@ read(0, 0x7f3be0a20000, 131072)         = -1 EIO (Input/output error)
 
 # flux imaging
 
+Setup in the following order:
+
+1. Connect your drive to Greaseweazle before connecting to USB or external power supply.
+2. Connect Greaseweazle to USB power.
+3. Switch on drive power, if drive is not powered via Greaseweazle.
+4. Disconnection order is the opposite of connection order.
+
 ```sh
 # sanity checks
 gw info
@@ -75,6 +82,7 @@ gw reset
 gw seek --drive 0 0
 gw seek --drive 0 79
 gw seek --drive 0 80
+gw rpm
 
 # 2 sides, 80 tracks
 gw read --tracks c=0-80:h=0-1 output.scp

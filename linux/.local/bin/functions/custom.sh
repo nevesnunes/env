@@ -329,7 +329,7 @@ o() {
     ;;
   esac
   while [ $# -gt 0 ]; do
-    "$open_cmd" "$1"
+    "$open_cmd" "$1" & disown
     shift
   done
 }

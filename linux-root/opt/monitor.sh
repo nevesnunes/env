@@ -13,7 +13,6 @@ BASH_XTRACEFD=9
 
 set -ex
 
-# ||
 # See: /etc/acpd/lid.sh
 # display=$(ls /tmp/.X11-unix/* | sed s#/tmp/.X11-unix/X##)
 display=$(ps -aeux --no-header | \

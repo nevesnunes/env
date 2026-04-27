@@ -327,7 +327,7 @@ kdump -l
 
 ```sh
 # heap expansions
-stackcount -f PU t:syscalls:sys_enter_brk > out.stacks 
+stackcount -f PU t:syscalls:sys_enter_brk > out.stacks
 bpftrace -e 'tracepoint:syscalls:sys_enter_brk { @[ustack, comm] = count(); }' > out.stacks
 ./stackcollapse-bpftrace.pl < out.stacks | ./flamegraph.pl --color=mem --title="Heap Expansion Flame Graph" --countname="calls" > out.svg
 
@@ -360,6 +360,33 @@ strace -f -e trace=clone grep -rI --exclude=.git 'class TestDefaultNameNodePort'
 ```
 
 - https://news.ycombinator.com/item?id=7167897
+
+# backtraces / stacktraces
+
+Using perf:
+```sh
+sudo sysctl kernel.perf_event_paranoid=1
+sudo sysctl kernel.kptr_restrict=0
+perf record -F 99 --call-graph lbr ./foo
+perf report -D
+```
+Output:
+```
+... branch callstack: nr:7
+.....  0: 0000000000401050
+.....  1: 000000000040402d
+.....  2: 000000000040244e
+.....  3: 0000000000401a93
+.....  4: 00000000004ab022
+.....  5: 00000000004ad1c8
+.....  6: 0000000000401d5b
+```
+Mapped to function names:
+```sh
+for addr in 0x401050 0x40402d 0x40244e 0x401a93 0x4ab022 0x4ad1c8 0x401d5b; do
+    addr2line -f -e ./foo "$addr" | head -n1
+done
+```
 
 # case studies
 

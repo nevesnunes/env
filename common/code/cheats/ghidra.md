@@ -46,11 +46,14 @@
     - For ntoskrnl: ntkrnlmp.pdb
     - On linux: createPdbXmlFiles.bat
 
-# extension build
+# build
 
-```bash
-gradle -PGHIDRA_INSTALL_DIR="$HOME/opt/ghidra_9.2.3_PUBLIC" buildExtension
-cp dist/*.zip "$HOME/opt/ghidra_9.2.3_PUBLIC/Extensions/Ghidra/"
+```sh
+# extension
+gradle -PGHIDRA_INSTALL_DIR=$HOME/opt/ghidra_12.0.4_PUBLIC buildExtension && mv dist/ghidra_12.0.4_PUBLIC_*.zip ~/opt/ghidra_12.0.4_PUBLIC/Extensions/Ghidra/
+
+# processor
+ant -Dghidra.install.dir=$HOME/opt/ghidra_12.0.4_PUBLIC -f buildLanguage.xml && rsync --delete-excluded --exclude=.git --exclude=.gradle -uva ./foo/ ~/opt/ghidra_12.0.4_PUBLIC/Ghidra/Processors/foo/
 ```
 
 # import project
@@ -82,7 +85,7 @@ cp dist/*.zip "$HOME/opt/ghidra_9.2.3_PUBLIC/Extensions/Ghidra/"
 
 # slow analysis
 
-```bash
+```sh
 ./analyzeHeadless $ghidra_database/ $database_name -process '*' -recursive
 ```
 

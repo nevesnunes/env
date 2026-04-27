@@ -239,8 +239,8 @@ Mod1 + Print
 "ocr-screenshot.sh"
 Mod4 + Print
 
-# "Move windows"
-"screen-connected.sh"
+# "Update screen layout and move windows"
+"drm.sh"
 Mod4 + equal
 
 # "Set Mark"

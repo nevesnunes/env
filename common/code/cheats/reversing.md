@@ -127,7 +127,7 @@
         > iterate over every byte in code segment of the main executable image, try decoding instruction starting at it, and checking whether any of the operands is a memory reference to one of the interesting strings.
     - finding hot vtables
         - https://old.reddit.com/r/ReverseEngineering/comments/1mndr6n/bypassing_starcraft_2_antidebugging_measures/
-        > read all the writable memory of the game, and look for vtables. That is, pointer to a list of pointers pointing to executable regions of memory. That allowed me to find all instances of classes which I could classify based on vtables. Then I grouped them and found the "entity" set of classes which had the most instances created. 
+        > read all the writable memory of the game, and look for vtables. That is, pointer to a list of pointers pointing to executable regions of memory. That allowed me to find all instances of classes which I could classify based on vtables. Then I grouped them and found the "entity" set of classes which had the most instances created.
 - visual structure
     - https://binvis.io/
         - https://github.com/binvis/binvis.io
@@ -658,12 +658,39 @@ perf script --insn-trace --xed -F+srcline,+srccode
     - [Instruction Punning: Lightweight Instrumentation for x86-64](https://doi.org/10.1145/3062341.3062344)
 - [GitHub \- advanced\-microcode\-patching/shiva: A custom ELF linker/loader for installing ET\_REL binary patches at runtime](https://github.com/advanced-microcode-patching/shiva)
 
-Alternative: 
+Alternative:
 
 # clean room design
 
 - [Myths About Samba](https://www.samba.org/samba/docs/myths_about_samba.html)
     - [French Cafe technique - How Samba was written](https://www.samba.org/ftp/tridge/misc/french_cafe.txt)
+
+# architecture identification
+
+If header has interrupt vectors, using MAME's unidasm:
+```sh
+./unidasm -arch foo \
+        | grep -A9999 'Supported architectures' \
+        | tail -n+2 \
+        | sed 's/\W\+/\n/g' \
+        | sort -u \
+        | while read -r arch; do
+    x=$(echo 'c30001ffffff' \
+            | xxd -r -p > /tmp/1 && ./unidasm -arch "$arch" /tmp/1 \
+            | grep -E 'call|jp|jmp|jump')
+    echo "$x" | grep -q '^0' && echo "$arch => $x"
+done
+```
+Output:
+```
+dsp32c => 0: ff0100c3  call $f800c3 (r1)
+i8085 => 0: c3 00 01  jmp  $0100
+lc58 => 0: c300  jmp 300
+lr35902 => 0: c3 00 01  jp   $0100
+tlcs870 => 0: c3  callv ($ffc6)
+z180 => 0: c3 00 01  jp    $0100
+z80 => 0: c3 00 01  jp   $0100
+```
 
 # case studies
 

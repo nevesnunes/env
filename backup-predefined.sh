@@ -90,7 +90,6 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/awesome \
   /home/"$USER"/./.config/atuin \
   /home/"$USER"/./.config/compton.conf \
-  /home/"$USER"/./.config/darktable \
   /home/"$USER"/./.config/dconf \
   /home/"$USER"/./.config/devilspie2 \
   /home/"$USER"/./.config/dunst \

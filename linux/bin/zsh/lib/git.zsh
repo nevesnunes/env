@@ -8,7 +8,7 @@
 function __git_prompt_git() {
   if [ -n "$__GIT_TIMEOUT" ]; then
     unset "$__GIT_TIMEOUT"
-    GIT_OPTIONAL_LOCKS=0 command timeout 1 git "$@" || echo "?"
+    GIT_OPTIONAL_LOCKS=0 command timeout 0.5 git "$@" || echo "?"
   else
     GIT_OPTIONAL_LOCKS=0 command git "$@"
   fi

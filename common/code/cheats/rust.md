@@ -11,6 +11,7 @@
     - https://github.com/rust-lang/rust/tree/master/library/core/src
 
 ```sh
+rustup doc
 cargo doc --open
 rustc --explain E1234
 ```
