@@ -146,6 +146,8 @@ hi preproc           guifg=#7254a0 guibg=NONE    gui=NONE ctermbg=NONE  ctermfg=
 
 hi SignColumn guifg=#487c98 guibg=#d8e4ec gui=bold ctermbg=NONE ctermfg=3 cterm=bold
 
+hi SpellBad guifg=#ffffff guibg=#921050 gui=NONE ctermbg=1 ctermfg=black
+
 "
 " TeX
 "
