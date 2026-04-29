@@ -530,7 +530,19 @@ jmp 0x1234
 
 # taint analysis
 
+- what if we want to know what contributed to a sink write?
+    - see: [reverse taint analysis](https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/)
+    - xref. instruction coverage tracing
+        - diff control-flows visited for distinct values of sink writes;
+        - visualize control-flow pruned graph;
+
+- [GitHub \- sandialabs/ctadl: CTADL is a static taint analysis tool · GitHub](https://github.com/sandialabs/ctadl)
 - [DNN\-decompiler/trace\_filter\.py at master · monkbai/DNN\-decompiler · GitHub](https://github.com/monkbai/DNN-decompiler/blob/master/trace_filter.py)
+- [libdft](https://www.oreilly.com/library/view/practical-binary-analysis/9781492071204/xhtml/ch11.xhtml)
+- angr (taint flows in symex)
+- taintgrind (valgrind)
+- triton
+- codeql
 
 # bios
 
@@ -667,7 +679,10 @@ Alternative:
 
 # architecture identification
 
-If header has interrupt vectors, using MAME's unidasm:
+### MAME unidasm
+
+If header/footer has interrupt vectors, then for each arch, disassemble those bytes, and confirm they modify control-flow:
+
 ```sh
 ./unidasm -arch foo \
         | grep -A9999 'Supported architectures' \
@@ -691,6 +706,25 @@ tlcs870 => 0: c3  callv ($ffc6)
 z180 => 0: c3 00 01  jp    $0100
 z80 => 0: c3 00 01  jp   $0100
 ```
+
+### emulation
+
+Pick a start offset, run e.g. 100 instructions, then for each arch, apply scoring based on instruction heuristics:
+
+- `-5`: Unknown instruction at start (emulation halts);
+- `-1`: Unknown instruction after start (emulation halts);
+- `-1`: Read from unwritten register (maybe some BIOS/bootloader executes before the binary under analysis);
+- `-1`: Dead stores (maybe obfuscated; see also [LLVM passes](https://llvm.org/docs/Passes.html));
+- `-1`: Call/Jump to unmapped address (emulation halts);
+- `+5`: All executed instructions were valid;
+
+### hardware
+
+For systems with external RAMs/ROMs, single core CPUs, and no instruction pre-fetching, we can trace the memory bus with a logic analyzer, then directly correlate sequences of bytes read + chip select / write enable signals to figure out:
+
+- Instruction sizes (gaps between ROM control signals switching);
+- Calls/Jumps (next ROM offsets are not sequential);
+- Reads/Writes (from RAM/ROM control signals enabled);
 
 # case studies
 
