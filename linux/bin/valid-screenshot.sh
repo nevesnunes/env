@@ -4,7 +4,7 @@ set -eu
 
 dir="/home/$USER/Pictures/Screenshots"
 mkdir -p "$dir"
-filename="$dir/Screenshot From $(date +"%Y-%m-%d %H-%M-%S")"
+filename="$dir/Screenshot From $(date +"%Y-%m-%d %H-%M-%S").png"
 
 warn() {
   err=$?

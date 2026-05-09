@@ -713,10 +713,65 @@ Pick a start offset, run e.g. 100 instructions, then for each arch, apply scorin
 
 - `-5`: Unknown instruction at start (emulation halts);
 - `-1`: Unknown instruction after start (emulation halts);
+- `-1`: Comparison instruction ignored (flags are not read / are overwritten by next instructions);
 - `-1`: Read from unwritten register (maybe some BIOS/bootloader executes before the binary under analysis);
 - `-1`: Dead stores (maybe obfuscated; see also [LLVM passes](https://llvm.org/docs/Passes.html));
 - `-1`: Call/Jump to unmapped address (emulation halts);
 - `+5`: All executed instructions were valid;
+
+Using Ghidra's emulator with script [BlindEmu](../snippets/ghidra/BlindEmu.java):
+
+```sh
+# Generate input file with random bytes
+dd if=/dev/random of=/tmp/1 bs=1024 iflag=skip_bytes,count_bytes count=$((0x1000))
+
+./unidasm -arch sh4 /tmp/1
+# 000: bb6a  BSR     $FFFFF6D8
+# 002: 1fe6  MOV.L   R14,@($18,R15)
+# 004: fba8  FMOV.S  @R10, FR11
+# 006: a4c7  BRA     $00000998
+
+./unidasm -arch z80 /tmp/1
+# 000: 6a        ld   l,d
+# 001: bb        cp   e
+# 002: e6 1f     and  $1F
+# 004: a8        xor  b
+# 005: fb        ei
+
+# Generate language IDs file
+find "$GHIDRA_INSTALL_DIR"/Ghidra/Processors/ -iname '*ldefs' -exec xq -r 'if (.language_definitions.language | type) == "array" then .language_definitions.language[].["@id"] else .language_definitions.language.["@id"] end' {} \; | sort -u > /tmp/langs
+
+# Run emulator (processor required but irrelevant for the script)
+"$GHIDRA_INSTALL_DIR"/support/analyzeHeadless ~/code/ghidra/ blind_emu -import /tmp/1 -overwrite -processor 'x86:LE:64:default' -scriptPath ~/ghidra_scripts/ -postScript BlindEmu.java
+```
+
+Output (although disassembly displays as null, stepped addresses match expected instructions):
+
+```
+INFO  BlindEmu.java> Guessing 'SuperH4:LE:32:default'. (GhidraScript)
+WARN  Uninitialized register read at 00000000: r15 (EmulatorHelper)
+WARN  Uninitialized register read at 00000000: r14 (EmulatorHelper)
+INFO  BlindEmu.java> fffff6d8 null                             (GhidraScript)
+ERROR Emulation failure at fffff6d8: blind_SuperH4:LE:32:default (EmulatorHelper) ghidra.pcode.emulate.InstructionDecodeException: Instruction decode failed (invalid memory), PC=fffff6d8
+        at ghidra.pcode.emulate.Emulate.emitPcode(Emulate.java:240)
+        at ghidra.pcode.emulate.Emulate.executeInstruction(Emulate.java:436)
+[...]
+INFO  BlindEmu.java> Guessing 'z80:LE:16:default'. (GhidraScript)
+WARN  Uninitialized register read at ram:0000: D (EmulatorHelper)
+INFO  BlindEmu.java> 00000001 null                             (GhidraScript)
+WARN  Uninitialized register read at ram:0001: A (EmulatorHelper)
+WARN  Uninitialized register read at ram:0001: E (EmulatorHelper)
+WARN  Uninitialized register read at ram:0001: F (EmulatorHelper)
+INFO  BlindEmu.java> 00000002 null                             (GhidraScript)
+INFO  BlindEmu.java> 00000004 null                             (GhidraScript)
+WARN  Uninitialized register read at ram:0004: B (EmulatorHelper)
+INFO  BlindEmu.java> 00000005 null                             (GhidraScript)
+ERROR Emulation failure at ram:0005: blind_z80:LE:16:default (EmulatorHelper) ghidra.pcode.emulate.UnimplementedCallOtherException: Unimplemented CALLOTHER
+ pcodeop (enableMaskableInterrupts), PC=ram:0005
+        at ghidra.pcode.emulate.Emulate.executeCallother(Emulate.java:370)
+        at ghidra.pcode.emulate.Emulate.executeCurrentOp(Emulate.java:559)
+        at ghidra.pcode.emulate.Emulate.executeInstruction(Emulate.java:446)
+```
 
 ### hardware
 

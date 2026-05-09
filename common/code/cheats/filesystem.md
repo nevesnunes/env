@@ -9,7 +9,7 @@
 
 # metadata
 
-```bash
+```sh
 # modify creation time
 inode_number=
 debugfs -w -R "set_inode_field $inode_number crtime 200001010101.11" /dev/sdb1
@@ -32,7 +32,7 @@ timestamp = os.path.getmtime(name)
 
 # memory-mapped temporary files
 
-```bash
+```sh
 shm_dir=$(mktemp -p /dev/shm/)
 dd if=/dev/zero of="$shm_dir" bs=500M count=1
 # xref. `top` - used memory increased by 500M
@@ -51,13 +51,13 @@ mount -t ext2 /dev/ramdisk /mnt/ramdisk
 
 # testing graceful degradation on constrained environment
 
-```bash
+```sh
 mount -t tmpfs -o size=10M,nr_inodes=10,mode=700 tmpfs /mnt/low_nr_inodes_disk
 ```
 
 # partitioning
 
-```bash
+```sh
 sudo parted /dev/hdz
 # print
 # mkpart TYPE linux-swap START END
@@ -123,13 +123,13 @@ lvscan
 
 # Format/Flash USB disk
 
-```bash
+```sh
 cfdisk -z /dev/sdX
 ```
 
 # BIN/CUE
 
-```bash
+```sh
 # Conversion
 bin2iso input.cue
 vcdgear -cue2raw input.cue output.iso
@@ -137,17 +137,23 @@ vcdgear -cue2raw input.cue output.iso
 bchunk -w input.bin input.cue output
 ```
 
-- PS1 has subchannel data on sidecar file .sbi
-    - [GitHub \- Kippykip/SBITools: Conversion between Sony PlayStation \.SBI LibCrypt files](https://github.com/Kippykip/SBITools)
+- Can include subchannel data (2352 + 96 = 2448 bytes per sector), which is used by e.g. PS1 libcrypt copy protection
     - [PSXSPX Specifications \- CDROM Protection \- LibCrypt](http://problemkaputt.de/psx-spx.htm#cdromprotectionlibcrypt)
-    - [Subchannel data reading and CD copy protection Libcrypt\. · Issue \#21 · simias/rustation · GitHub](https://github.com/simias/rustation/issues/21)
-        > So the actual contents of the Q subchannel data doesn't matter too much, you just need to single out the invalid sectors (using an sbi file or similar) and return the previous sector's info in GetLocP.
+        > Modified sectors have wrong CRCs (which means that the PSX cdrom controller will ignore them, and the GetlocP command will keep returning position data from the previous sector).
+    - Patched via custom sidecar .sbi / .lsd files
+        - [GitHub \- Kippykip/SBITools: Conversion between Sony PlayStation \.SBI LibCrypt files](https://github.com/Kippykip/SBITools)
+        - [Subchannel data reading and CD copy protection Libcrypt\. · Issue \#21 · simias/rustation · GitHub](https://github.com/simias/rustation/issues/21)
+            > So the actual contents of the Q subchannel data doesn't matter too much, you just need to single out the invalid sectors (using an sbi file or similar) and return the previous sector's info in GetLocP.
+    - cdrdao --read-subchan rw_raw preserves interleaved channel bit order
+        - ~/code/snippets/cdrom/bin_split_sub.py
+    - [Optical Disc Drives: CD Compatibility Technical Details \- Redump Wiki](http://wiki.redump.org/index.php?title=Optical_Disc_Drives:_CD_Compatibility_Technical_Details)
+    - [Compact Disc subcode \- Wikipedia](https://en.wikipedia.org/wiki/Compact_Disc_subcode)
 - .bin and .wav filenames must match case-sensitive entries in .cue
     - http://syndicate.lubiki.pl/swars/html/swars_sounds_adding_cdaudio.php
 
 # CD-ROM
 
-```bash
+```sh
 # Conversion
 iat -i input.img --iso -o output.iso
 ```
@@ -195,6 +201,8 @@ iat -i input.img --iso -o output.iso
 - Given swappable drive: Place CD with fake TOC, read TOC, stop drive motor, replace with target CD, start drive motor, resume rip
     - http://wiki.redump.org/index.php?title=GD-Rom_Dumping_Guide_(Old)#Method_B
     - http://wiki.redump.org/index.php?title=GD-Rom_Dumping_Guide
+- TODO: try redumper --lba-end=333000
+    - Computed from 2353 bytes chunks? `(333000*(2448-96))/1000/1000 ~= 783M`
 - TODO: patch cdrdao
     - ? overburn data
     > Copying data track 1 (MODE1_RAW): start 00:00:00, length 03:21:53 to "out.bin"...
@@ -207,7 +215,7 @@ iat -i input.img --iso -o output.iso
 
 ### Swapped bit-order
 
-```bash
+```sh
 # Reference: [Rip my Tekken 2 Disc with Linux? \(CD Audio Noise\) \- Cybdyn Systems](https://www.cybdyn-systems.com.au/forum/viewtopic.php?t=2042)
 cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.toc
 ```
@@ -261,7 +269,7 @@ cdrdao read-cd --read-raw --datafile data.bin --driver generic-mmc:0x20070 data.
 - [!] Does not store Red Book audio
     - Alternatives: .bin/.cue, .ccd/.img, .mds/.mdf, .nrg
 
-```bash
+```sh
 # Make
 mkisofs -r -J -T \
   -allow-leading-dots \
@@ -309,8 +317,10 @@ sudo chown -R "$USER":"$USER" "/home/$USER" "/home/$USER"/* "/home/$USER"/.*
 # CCD
 
 - .img == .bin without subchannel data
+- .sub packs each channel together (e.g. first 12 bytes are packed channel P bits, next 12 bytes are packed channel Q bits...);
+    - [PSXSPX CDROM Disk Images CCD/IMG/SUB \(CloneCD\)](https://problemkaputt.de/psxspx-cdrom-disk-images-ccd-img-sub-clonecd.htm)
 
-```bash
+```sh
 # Alternative: Take [SBITools](https://github.com/Kippykip/SBITools) `-cue2ccd` code and adapt to produce .cue
 ccd2cue input.ccd > input.cue
 # || Only data tracks, converted
@@ -329,7 +339,7 @@ mkisofs -o output.iso /foo
 - [Joe Balough / nerorip · GitLab](https://gitlab.com/scallopedllama/nerorip)
 - [NRG \(file format\) \- Wikipedia](https://en.wikipedia.org/wiki/NRG_(file_format))
 
-```bash
+```sh
 # Using virtual drive
 # - git clone https://git.code.sf.net/p/cdemu/code cdemu-code
 # Ubuntu
@@ -367,9 +377,16 @@ toc2cue out.toc out.cue
 # Alternative: nrg2iso, ultraiso
 ```
 
+# CHD
+
+```sh
+chdman createcd -hs 2448 -i out.toc -o out.chd
+chdman extractcd -i out.chd -o out2.toc -ob out2.bin
+```
+
 # ECM
 
-```bash
+```sh
 ecm d input.img.ecm output.img
 ```
 
@@ -391,7 +408,7 @@ ecm d input.img.ecm output.img
 
 # qcow
 
-```bash
+```sh
 sudo modprobe nbd
 sudo qemu-nbd -c /dev/nbd0 foo.qcow
 sudo partx -l /dev/nbd0
@@ -406,7 +423,7 @@ sudo qemu-nbd -d /dev/nbd0
 - `7z`
 - `qemu-nbd`
 
-```bash
+```sh
 sudo modprobe nbd
 sudo qemu-nbd -c /dev/nbd1 ./foo.vdi
 sudo qemu-nbd -r -c /dev/nbd1 ./foo.vmdk
@@ -414,7 +431,7 @@ sudo qemu-nbd -r -c /dev/nbd1 ./foo.vmdk
 
 # ova
 
-```bash
+```sh
 tar -tf foo.ova
 tar -xvf foo.ova
 ```
@@ -424,7 +441,7 @@ tar -xvf foo.ova
 - `7z`
 - `loop` block devices
 
-```bash
+```sh
 sudo losetup /dev/loop0 foo.disk
 sudo partprobe /dev/loop0
 sudo mount -o rw /dev/loop0p1 /mnt/foo
@@ -440,7 +457,7 @@ sudo losetup -a  # no entry for /dev/loop0
 
 # initial ramdisk (initrd)
 
-```bash
+```sh
 # extract
 gzip -dc initrd | cpio -idv --no-absolute-filenames
 ```

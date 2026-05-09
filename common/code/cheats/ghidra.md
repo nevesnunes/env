@@ -54,6 +54,11 @@ gradle -PGHIDRA_INSTALL_DIR=$HOME/opt/ghidra_12.0.4_PUBLIC buildExtension && mv 
 
 # processor
 ant -Dghidra.install.dir=$HOME/opt/ghidra_12.0.4_PUBLIC -f buildLanguage.xml && rsync --delete-excluded --exclude=.git --exclude=.gradle -uva ./foo/ ~/opt/ghidra_12.0.4_PUBLIC/Ghidra/Processors/foo/
+
+# parser/decompiler
+gradle generateGrammarSource Decompiler:buildNatives
+
+:Emulation:test --tests "ghidra.pcode.exec.SleighProgramCompilerTest.testGoto64BitOffset"
 ```
 
 # import project
@@ -69,6 +74,26 @@ ant -Dghidra.install.dir=$HOME/opt/ghidra_12.0.4_PUBLIC -f buildLanguage.xml && 
 3. Debug (Ghidra instance is launched from Eclipse)
 
 - https://reverseengineering.stackexchange.com/questions/24951/how-to-launch-and-debug-ghidra-from-eclipse-with-two-modules-im-developing-at-t/
+
+# debug tests
+
+If attaching from IDE:
+
+```diff
+diff --git a/gradle/javaTestProject.gradle b/gradle/javaTestProject.gradle
+index 5e3614963e..c9ab46999d 100644
+--- a/gradle/javaTestProject.gradle
++++ b/gradle/javaTestProject.gradle
+@@ -198,7 +198,7 @@ def initTestJVM(Task task, String rootDirName) {
+                        '-Duser.language=en',
+                        '-Djdk.attach.allowAttachSelf',
+                        '-XX:TieredStopAtLevel=1',
+-                       '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=' + debugPort,
++                       //'-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=' + debugPort,
+
+                        // Allow illegal reflective accesses
+                        '--add-opens=java.base/java.util.concurrent=ALL-UNNAMED',
+```
 
 # configuration
 
