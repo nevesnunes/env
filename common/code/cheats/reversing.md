@@ -39,6 +39,7 @@
         - [GitHub \- microsoft/ApplicationInspector: A source code analyzer built for surfacing features of interest and other characteristics to answer the question &\#39;What&\#39;s in the code?&\#39; quickly using static analysis with a json based rules engine\. Ideal for scanning components before use or detecting feature level changes\.](https://github.com/microsoft/ApplicationInspector)
         - [GitHub \- CobaltFusion/DebugViewPP: DebugView\+\+, collects, views, filters your application logs, and highlights information that is important to you!](https://github.com/CobaltFusion/DebugViewPP)
     - signatures detection with parameter names on pushed registers
+        - TODO: Apply LLVM optimization passes before making signatures (could circumvent some randomizing obfuscation)
         - [ghidra](./ghidra.md#FID)
         - [IDA](./ida.md#FLIRT)
 - branches
