@@ -533,6 +533,7 @@ jmp 0x1234
 
 - what if we want to know what contributed to a sink write?
     - see: [reverse taint analysis](https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/)
+        - wip: Ghidra script [BackTaint](../snippets/ghidra/BackTaint.java):
     - xref. instruction coverage tracing
         - diff control-flows visited for distinct values of sink writes;
         - visualize control-flow pruned graph;
