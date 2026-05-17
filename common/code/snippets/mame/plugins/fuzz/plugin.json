@@ -1,0 +1,10 @@
+{
+	"plugin": {
+		"name": "fuzz",
+		"description": "Coverage-guided fuzzer for i286",
+		"version": "0.0.1",
+		"author": "flib",
+		"type": "plugin",
+		"start": "false"
+	}
+}
