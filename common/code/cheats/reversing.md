@@ -43,7 +43,7 @@
         - [ghidra](./ghidra.md#FID)
         - [IDA](./ida.md#FLIRT)
     - signatures from pointer tracking
-        - if mem address r/w is used for auto-naming functions, it might deviate between builds => taint address and make signature based on all xrefs + their next load/store operands, e.g.:
+        - if [mem address r/w is used for auto-naming functions](../snippets/ghidra/AutoRenameFuncs.java), it might deviate between builds => taint address and make signature based on all xrefs + their next load/store operands, e.g.:
             ```
             build1: [xref1@func1:"R2=[0x1234]", xref2@func2:"[0x1234]=1"] => func1=r_ptr1_1234_r2, func2=w_ptr1_1234_1
             build2: [xref1@func1:"R3=[0x1200]", xref2@func2:"[0x1200]=1", xref3@func2:"[0x1234]=2"] => func1=r_ptr1_1200_r3, func2=w_ptr1_1200_1 (i.e. ptr1 is common across builds, despite diff regs, 0x1234 is a dead store in build2)
