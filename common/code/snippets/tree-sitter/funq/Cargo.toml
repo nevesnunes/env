@@ -1,0 +1,10 @@
+[package]
+name = "funq"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4.6.1", features = ["derive"] }
+streaming-iterator = "0.1.9"
+tree-sitter = "0.24"
+tree-sitter-cpp = "0.23.4"

@@ -9,6 +9,10 @@
 
 - [cdecl: C gibberish &harr; English](https://cdecl.org/)
 
+# ast
+
+- [enumerate functions](../snippets/tree-sitter/funq/)
+
 # repl
 
 ```bash

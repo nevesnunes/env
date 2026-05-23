@@ -88,7 +88,7 @@ let g:ale_linters = {
             \ 'go': ['gopls'],
             \ 'java': ['javac'],
             \ 'javascript': ['tsserver', 'eslint'],
-            \ 'python': ['pylsp'],
+            \ 'python': ['ty', 'pylsp'],
             \ 'rust': ['analyzer'],
             \ 'sh': ['shellcheck'],
             \ }

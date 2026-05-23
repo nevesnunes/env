@@ -39,7 +39,7 @@ public class AutoRenameFuncs extends GhidraScript {
                     true);
 
             FunctionManager fm = currentProgram.getFunctionManager();
-            AddressSetView asv = new AddressSet(addr(0xf0000), addr(0xfffff));
+            AddressSetView asv = new AddressSet(addr(0x80000), addr(0xfffff));
             FunctionIterator funcIt = fm.getFunctions(asv, true);
             while (funcIt.hasNext()) {
                 monitor.checkCancelled();
