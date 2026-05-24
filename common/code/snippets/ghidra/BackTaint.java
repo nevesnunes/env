@@ -180,6 +180,7 @@ public class BackTaint extends GhidraScript {
                 }
 
                 // TODO: Model stack for push/pop macros used as function prologue/epilogue.
+                // ghidra.program.util.SymbolicPropogator.applyPcode()
                 switch (pcodeOp.getOpcode()) {
                     case LOAD:
                         // TODO: Resolve segmented reg/mem values from ctx?

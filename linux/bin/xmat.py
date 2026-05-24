@@ -269,12 +269,15 @@ if __name__ == "__main__":
     workarea = None
     largest_intersection = 0
     for candidate_workarea in workareas:
+        if win_rect.x < candidate_workarea.x or win_rect.x > (candidate_workarea.x + candidate_workarea.width):
+            continue
         intersect_rect = intersect(win_rect, candidate_workarea)
-        if intersect_rect is not None:
-            intersection = intersect_rect.width * intersect_rect.height
-            if largest_intersection < intersection:
-                workarea = candidate_workarea
-                largest_intersection = intersection
+        if not intersect_rect:
+            continue
+        intersection = intersect_rect.width * intersect_rect.height
+        if largest_intersection < intersection:
+            workarea = candidate_workarea
+            largest_intersection = intersection
 
     if args.workarea:
         print(f"{workarea.x},{workarea.y},{workarea.width},{workarea.height}")

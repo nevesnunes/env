@@ -1,6 +1,7 @@
 # +
 
-- `~/code/snippets/*.cmake`
+- [snippets](../snippets/cmake/)
+- [How to generate a JSON compile commands database with CMake \- Joshtronic](https://joshtronic.com/2024/01/14/cmake-compile-commands-json/)
 
 ```sh
 (mkdir -p build && cd build && cmake .. && make)
