@@ -24,6 +24,7 @@ import ghidra.app.cmd.function.UpdateFunctionCommand;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.address.AddressSet;
+import ghidra.program.model.block.CodeBlockReference;
 import ghidra.program.model.block.SimpleBlockModel;
 import ghidra.program.model.data.ByteDataType;
 import ghidra.program.model.data.DWordDataType;
@@ -34,6 +35,7 @@ import ghidra.program.model.data.UnsignedInteger3DataType;
 import ghidra.program.model.data.UnsignedInteger5DataType;
 import ghidra.program.model.data.UnsignedInteger6DataType;
 import ghidra.program.model.data.UnsignedInteger7DataType;
+import ghidra.program.model.data.VoidDataType;
 import ghidra.program.model.data.WordDataType;
 import ghidra.program.model.lang.Language;
 import ghidra.program.model.lang.Register;
@@ -41,6 +43,7 @@ import ghidra.program.model.listing.Function;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
 import ghidra.program.model.listing.Instruction;
 import ghidra.program.model.listing.Listing;
+import ghidra.program.model.listing.Parameter;
 import ghidra.program.model.listing.ParameterImpl;
 import ghidra.program.model.listing.Variable;
 import ghidra.program.model.pcode.PcodeOp;
@@ -55,8 +58,9 @@ import ghidra.util.exception.InvalidInputException;
 
 public class MakeFuncParams extends GhidraScript {
 
-    private static final int PATTERN_REG = 0;
-    private static final int PATTERN_REG_SP = 1;
+    private static final int PATTERN_REG = 0b0000_0001_0000_0000;
+    private static final int PATTERN_SYM_SP = 0b0000_0000_0001_0000;
+    private static final int PATTERN_VAR_01 = 0b0000_0000_0000_0001;
 
     private static final Map<String, Set<String>> IGNORED_REGS = Map.of(
             "x86",
@@ -66,9 +70,16 @@ public class MakeFuncParams extends GhidraScript {
             Map.of("push",
                     List.of(
                             PatternElement.builder().opcode(PcodeOp.COPY).in(PATTERN_REG).build(),
-                            PatternElement.builder().opcode(PcodeOp.INT_SUB).in(PATTERN_REG_SP).build(),
+                            PatternElement.builder().opcode(PcodeOp.INT_SUB).in(PATTERN_REG | PATTERN_SYM_SP).build(),
                             PatternElement.builder().opcode(PcodeOp.CALLOTHER).build(),
-                            PatternElement.builder().opcode(PcodeOp.STORE).build())));
+                            PatternElement.builder().opcode(PcodeOp.STORE).build()),
+                    "readnull",
+                    List.of(
+                            PatternElement.builder()
+                                    .opcode(PcodeOp.INT_XOR)
+                                    .in(PATTERN_REG | PATTERN_VAR_01)
+                                    .in(PATTERN_REG | PATTERN_VAR_01)
+                                    .build())));
 
     Language lang;
     Listing lst;
@@ -94,7 +105,7 @@ public class MakeFuncParams extends GhidraScript {
             return;
         }
 
-        final Set<Address> terminalAddrs = new HashSet<>();
+        final Map<Address, DataType> originalFuncDataTypes = new HashMap<>();
         final Map<Address, Set<Address>> srcToDstAddrs = new HashMap<>();
         final var funcAddrSet = addressSetWithCallees(currentFunc,
                 currentFunc.getBody().getMinAddress(),
@@ -105,28 +116,19 @@ public class MakeFuncParams extends GhidraScript {
             final var bbBlock = bbIt.next();
             final var bbDestRefIt = bbBlock.getDestinations(monitor);
             while (bbDestRefIt.hasNext()) {
-                final var bbRef = bbDestRefIt.next();
+                final CodeBlockReference bbRef = bbDestRefIt.next();
                 final var src = bbRef.getReferent();
                 final var dst = bbRef.getReference();
                 srcToDstAddrs.computeIfAbsent(src, ignoredKey -> new HashSet<>());
                 srcToDstAddrs.get(src).add(dst);
-                println(String.format("@ (%06x..%06x) %06x -> %06x",
+                println(String.format("@ (%06x..%06x) %06x -> %06x (%s)",
                         bbBlock.getMinAddress().getUnsignedOffset(),
                         bbBlock.getMaxAddress().getUnsignedOffset(),
                         src.getUnsignedOffset(),
-                        dst.getUnsignedOffset()));
-            }
-
-            final var instrIr = lst.getInstructions(bbBlock, true);
-            while (instrIr.hasNext()) {
-                final var instr = instrIr.next();
-                if (Arrays.stream(instr.getPcode())
-                        .anyMatch(pcode -> pcode.getOpcode() == PcodeOp.RETURN)) {
-                    terminalAddrs.add(instr.getAddress());
-                }
+                        dst.getUnsignedOffset(),
+                        bbRef.getFlowType()));
             }
         }
-        print(terminalAddrs.toString());
 
         final Map<Address, Integer> writtenBeforeReads = new HashMap<>();
         final Map<Address, Integer> readBeforeWrites = new HashMap<>();
@@ -134,6 +136,24 @@ public class MakeFuncParams extends GhidraScript {
         final ContextEvaluator eval = new ContextEvaluatorAdapter() {
             @Override
             public boolean evaluateContextBefore(VarnodeContext context, Instruction instr) {
+                if (instr.getFlowType().isCall()) {
+                    // SymbolicPropagator only follows call flow for inline functions.
+                    final Function callee = Arrays.stream(instr.getReferencesFrom())
+                            .filter(ref -> ref.getReferenceType().isCall())
+                            .map(ref -> lst.getFunctionAt(ref.getToAddress()))
+                            .findFirst()
+                            .orElseThrow();
+                    if (!callee.isInline()) {
+                        originalFuncDataTypes.put(callee.getBody().getMinAddress(), callee.getReturnType());
+                        try {
+                            callee.setInline(true);
+                            callee.setReturnType(VoidDataType.dataType, SourceType.USER_DEFINED);
+                        } catch (final InvalidInputException ex) {
+                            printerr(ex.getMessage());
+                        }
+                    }
+                }
+
                 nextDstToWrittenRegs.computeIfPresent(instr.getAddress(), (k, v) -> {
                     writtenBeforeReads.clear();
                     writtenBeforeReads.putAll(v);
@@ -148,9 +168,19 @@ public class MakeFuncParams extends GhidraScript {
                 });
 
                 final boolean isStackPush = isStackPush(instr);
+                final boolean isReadNullified = isReadNullified(instr);
                 for (PcodeOp op : instr.getPcode()) {
                     for (Varnode in : op.getInputs()) {
                         if (in.isRegister()) {
+                            if (isReadNullified) {
+                                writtenBeforeReads.compute(in.getAddress(), (ignoredAddr, storedSize) -> {
+                                    return storedSize == null
+                                            ? in.getSize()
+                                            : Math.max(storedSize, in.getSize());
+                                });
+                                continue;
+                            }
+
                             final var inReg = context.getRegister(in);
                             if (isStackPush || isIgnored(inReg)) {
                                 continue;
@@ -178,7 +208,11 @@ public class MakeFuncParams extends GhidraScript {
 
                     final var out = op.getOutput();
                     if (out != null && out.isRegister()) {
-                        writtenBeforeReads.put(out.getAddress(), out.getSize());
+                        writtenBeforeReads.compute(out.getAddress(), (ignoredAddr, storedSize) -> {
+                            return storedSize == null
+                                    ? out.getSize()
+                                    : Math.max(storedSize, out.getSize());
+                        });
                     }
                 }
 
@@ -197,6 +231,16 @@ public class MakeFuncParams extends GhidraScript {
                 true,
                 getMonitor());
 
+        originalFuncDataTypes.forEach((addr, dataType) -> {
+            final Function callee = lst.getFunctionAt(addr);
+            try {
+                callee.setInline(false);
+                callee.setReturnType(dataType, SourceType.USER_DEFINED);
+            } catch (final InvalidInputException ex) {
+                printerr(ex.getMessage());
+            }
+        });
+
         println(String.format("R-b4-W: [%s]",
                 readBeforeWrites.keySet().stream()
                         .map(addr -> lang.getRegister(addr, readBeforeWrites.get(addr)).getName())
@@ -210,7 +254,7 @@ public class MakeFuncParams extends GhidraScript {
         println(String.format("Merged: %s", mergedReadBeforeWrites));
 
         Variable retVar = null;
-        final List<ParameterImpl> params = new ArrayList<>();
+        final List<Parameter> params = new ArrayList<>();
         for (Register reg : mergedReadBeforeWrites) {
             try {
                 final var name = String.format("p_%s", reg.getName().toUpperCase());
@@ -220,14 +264,21 @@ public class MakeFuncParams extends GhidraScript {
                 throw new RuntimeException(ex);
             }
         }
-        final var cmd = new UpdateFunctionCommand(currentFunc,
-                FunctionUpdateType.CUSTOM_STORAGE,
-                null,
-                retVar,
-                params,
-                SourceType.USER_DEFINED,
-                true);
-        cmd.applyTo(currentProgram);
+        if (!params.isEmpty()) {
+            for (final var param : currentFunc.getParameters()) {
+                if (param.isValid() && param.isStackVariable()) {
+                    params.add(param);
+                }
+            }
+            final var cmd = new UpdateFunctionCommand(currentFunc,
+                    FunctionUpdateType.CUSTOM_STORAGE,
+                    null,
+                    retVar,
+                    params,
+                    SourceType.USER_DEFINED,
+                    true);
+            cmd.applyTo(currentProgram);
+        }
     }
 
     private Set<Register> mergeRegs(Map<Address, Integer> readBeforeWrites) {
@@ -306,8 +357,21 @@ public class MakeFuncParams extends GhidraScript {
         return patternMap;
     }
 
+    /**
+     * @return {@code true} if the read operand is stored in the stack.
+     */
     private boolean isStackPush(final Instruction instr) {
         return isPattern(instr, patternMap().get("push"));
+    }
+
+    /**
+     * @return {@code true} if the read value is irrelevant for the operation (e.g.
+     *         {@code xor ax,ax}).
+     * @implNote TODO: Propagation over sequence of instructions (e.g.
+     *           {@code mov bx,ax; xor ax,bx;}).
+     */
+    private boolean isReadNullified(final Instruction instr) {
+        return isPattern(instr, patternMap().get("readnull"));
     }
 
     private boolean isPattern(final Instruction instr, final List<PatternElement> pattern) {
@@ -317,48 +381,71 @@ public class MakeFuncParams extends GhidraScript {
             return false;
         }
 
+        var pattern_i = 0;
         for (int i = 0; i < pcode.length; i++) {
-            if (pcode[i].getOpcode() != pattern.get(i).opcode()) {
+            if (pcode[i].getOpcode() != pattern.get(pattern_i).opcode()) {
+                continue;
+            }
+
+            if (pcode[i].getNumInputs() < pattern.get(pattern_i).in().size()) {
                 return false;
             }
 
-            if (pcode[i].getNumInputs() < pattern.get(i).in().size()) {
-                return false;
-            }
-            for (int j = 0; j < pattern.get(i).in().size(); j++) {
-                final var inPattern = pattern.get(i).in().get(j);
+            Varnode var01 = null;
+            for (int j = 0; j < pattern.get(pattern_i).in().size(); j++) {
+                final var inPattern = pattern.get(pattern_i).in().get(j);
                 final var in = pcode[i].getInput(j);
-                switch (inPattern) {
-                    case PATTERN_REG:
-                        if (!in.isRegister()) {
-                            return false;
-                        }
-                        break;
-                    case PATTERN_REG_SP:
+                if ((inPattern & PATTERN_REG) != 0) {
+                    if (!in.isRegister()) {
+                        return false;
+                    }
+                    if ((inPattern & PATTERN_SYM_SP) != 0) {
                         final var sp = currentProgram.getCompilerSpec().getStackPointer();
                         if (!in.isRegister() || !in.getAddress().equals(sp.getAddress())) {
                             return false;
                         }
-                        break;
+                    }
                 }
+                if ((inPattern & PATTERN_VAR_01) != 0) {
+                    if (var01 == null) {
+                        var01 = in;
+                    } else if (!(var01.getAddress().getAddressSpace().getName()
+                            .equals(in.getAddress().getAddressSpace().getName()))
+                            || (var01.getAddress().getUnsignedOffset() != in.getAddress().getUnsignedOffset())) {
+                        return false;
+                    }
+                }
+            }
+
+            pattern_i++;
+
+            if (pattern_i == pattern.size()) {
+                return true;
             }
         }
 
-        return true;
+        return pattern_i == pattern.size();
     }
 
     private boolean isReadBeforeWrites(final Map<Address, Integer> writtenBeforeReads,
                                        final Register inReg,
-                                       final int size) {
-        final var addr = inReg.getAddress();
-        if (writtenBeforeReads.containsKey(addr)) {
-            var storedSize = writtenBeforeReads.get(addr);
-            if (storedSize <= size) {
-                return false;
-            }
-            int targetSize = storedSize - size;
+                                       final int inSize) {
+
+        final boolean isContained = writtenBeforeReads.entrySet().stream()
+                .filter(entry -> entry.getKey().getUnsignedOffset() <= inReg.getAddress().getUnsignedOffset())
+                .anyMatch(entry -> entry.getKey().getUnsignedOffset()
+                        + entry.getValue() >= inReg.getAddress().getUnsignedOffset() + inReg.getNumBytes());
+        if (isContained) {
+            return false;
+        }
+
+        // Find contiguous smaller sized registers that cover input register size.
+        final var inAddr = inReg.getAddress();
+        if (writtenBeforeReads.containsKey(inAddr)) {
+            int storedSize = writtenBeforeReads.get(inAddr);
+            int targetSize = storedSize - inSize;
             while (targetSize > 0) {
-                final var targetAddr = inReg.getAddress().add(size);
+                final var targetAddr = inReg.getAddress().add(inSize);
                 if (writtenBeforeReads.containsKey(targetAddr)) {
                     targetSize -= writtenBeforeReads.get(targetAddr);
                 } else {
