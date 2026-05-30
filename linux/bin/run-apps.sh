@@ -115,9 +115,10 @@ run_app() {
         processed_ids+=("$id")
         wmctrl -i -r "$id" -t "$workspace"
 
-        if [ -n "$tile" ]; then
-          xsize.sh --id "$id" "$tile"
-        fi
+        # Uncomment if unmanaged by devilspie
+        # if [ -n "$tile" ]; then
+        #   xsize.sh --id "$id" "$tile"
+        # fi
       fi
     done <<< "$ids"
 
@@ -155,7 +156,7 @@ done
 
 switch_to_main_workspace &
 
-run_app keepassxc 1 -l &
+run_app keepassxc 1 --half-right &
 
 run_app_with_net thunderbird 1 -h &
 run_app_with_net browser 2 -h &

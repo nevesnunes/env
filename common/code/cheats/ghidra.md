@@ -6,6 +6,10 @@
 - [GitHub \- garyttierney/intellij\-ghidra: An IntelliJ IDEA plugin for working on Ghidra Extensions\.](https://github.com/garyttierney/intellij-ghidra)
 - [GitHub \- HackOvert/GhidraSnippets: Python snippets for Ghidra&\#39;s Program and Decompiler APIs](https://github.com/HackOvert/GhidraSnippets)
 
+# function signatures
+
+- if no calling convention, then apply parameters for registers read before writes: Ghidra script [`MakeFuncParams`](../snippets/ghidra/MakeFuncParams.java);
+
 # function ID (FID)
 
 - `Tools > Function ID > Populate FidDb from programs`
