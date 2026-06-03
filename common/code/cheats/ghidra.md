@@ -59,10 +59,20 @@ gradle -PGHIDRA_INSTALL_DIR=$HOME/opt/ghidra_12.0.4_PUBLIC buildExtension && mv 
 # processor
 ant -Dghidra.install.dir=$HOME/opt/ghidra_12.0.4_PUBLIC -f buildLanguage.xml && rsync --delete-excluded --exclude=.git --exclude=.gradle -uva ./foo/ ~/opt/ghidra_12.0.4_PUBLIC/Ghidra/Processors/foo/
 
+# dist
+# - replace `assert(ip != null)` with `if` in gradle/support/ip.gradle (https://github.com/NationalSecurityAgency/ghidra/issues/661)
+gradle -I gradle/support/fetchDependencies.gradle
+gradle yajswDevUnpack
+gradle buildGhidra
+mv build/dist/*.zip ~/opt/ && ( cd ~/opt && find . -maxdepth 1 -type f -iregex '.*\.zip' -exec sh -c 'atool -x "{}" && rm -f "{}"' \; )
+
 # parser/decompiler
 gradle generateGrammarSource Decompiler:buildNatives
 
-:Emulation:test --tests "ghidra.pcode.exec.SleighProgramCompilerTest.testGoto64BitOffset"
+# test
+gradle :Emulation:test --tests "ghidra.pcode.exec.SleighProgramCompilerTest.testGoto64BitOffset"
+gradle unitTestReport
+gradle integrationTest
 ```
 
 # import project

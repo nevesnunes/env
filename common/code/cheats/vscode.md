@@ -1,3 +1,11 @@
+# config compile commands
+
+c_cpp_properties.json:
+```diff
+             "compilerPath": "/usr/bin/gcc",
++            "compileCommands": "${workspaceFolder}/compile_commands.json",
+```
+
 # config sync
 
 https://code.visualstudio.com/docs/editor/settings-sync
