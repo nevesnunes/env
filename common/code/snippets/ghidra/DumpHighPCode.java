@@ -17,7 +17,9 @@ import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.lang.Register;
 import ghidra.program.model.listing.Function;
+import ghidra.program.model.pcode.HighFunction;
 import ghidra.program.model.pcode.PcodeOp;
+import ghidra.program.model.pcode.SequenceNumber;
 import ghidra.program.model.pcode.Varnode;
 
 public class DumpHighPCode extends GhidraScript {
@@ -53,21 +55,38 @@ public class DumpHighPCode extends GhidraScript {
                 }
                 while (!sorted.isEmpty()) {
                     var op = sorted.poll();
-                    print(String.format("0x%08x:%d: ",
-                            op.getSeqnum().getTarget().getUnsignedOffset(),
-                            op.getSeqnum().getOrder()));
-                    var out = op.getOutput();
-                    if (out != null) {
-                        print(String.format("%s = ", fmt(out)));
-                    }
-                    print(String.format("%s(", op.getMnemonic()));
-                    if (op.getNumInputs() > 0) {
-                        print(Arrays.stream(op.getInputs()).map(in -> fmt(in)).collect(Collectors.joining(", ")));
-                    }
-                    print(")\n");
+                    println(fmt(highFunc, op));
                 }
             }
         });
+    }
+
+    private String fmt(HighFunction highFunc, PcodeOp op) {
+        final StringBuilder sb = new StringBuilder();
+        sb.append(String.format("0x%08x:%d: ",
+                op.getSeqnum().getTarget().getUnsignedOffset(),
+                op.getSeqnum().getOrder()));
+        var out = op.getOutput();
+        if (out != null) {
+            sb.append(String.format("%s = ", fmt(out)));
+        }
+        sb.append(String.format("%s(", op.getMnemonic()));
+        if (op.getNumInputs() > 0) {
+            sb.append(Arrays.stream(op.getInputs()).map(in -> fmt(in)).collect(Collectors.joining(", ")));
+        }
+        sb.append(")");
+        if (op.getOpcode() == PcodeOp.INDIRECT) {
+            var sq = new SequenceNumber(op.getSeqnum().getTarget(),
+                    (int) op.getInput(op.getNumInputs() == 1
+                            ? 0
+                            : 1)
+                            .getOffset());
+            var iop = highFunc.getPcodeOp(sq);
+            if (iop != null) {
+                sb.append(String.format(" -> %s", fmt(highFunc, iop)));
+            }
+        }
+        return sb.toString();
     }
 
     private String fmt(Varnode vnode) {
