@@ -114,7 +114,7 @@ node --require './tracing.js' app.js
 - unix-domain sockets: SCM_CREDENTIALS, SO_PEERCRED
 - pkexec
     > The thing with setuid/setgid is that the invoked privileged process inherits a lot of implicit state and context that people aren't really aware of or fully understand. i.e. it's not just env vars and argv[], it's cgroup memberships, audit fields, security contexts, open fds, child pids, parent pids, cpu masks, IO/CPU scheduling priorities, various prctl() settings, tty control, signal masks + handlers, … and so on. And it's not even clear what gets inherited as many of these process properties are added all the time.
-    > If you do privileged execution of specific operations via IPC you get the guarantee that whatever is done, is done from a well-defined, pristine execution environment, without leaking context implicitly. The IPC message is the *full* vulnerable surface, and that's as minimal as it can get. And that's great. 
+    > If you do privileged execution of specific operations via IPC you get the guarantee that whatever is done, is done from a well-defined, pristine execution environment, without leaking context implicitly. The IPC message is the *full* vulnerable surface, and that's as minimal as it can get. And that's great.
     - [Fedora and pkexec \(LWN\.net\)](https://lwn.net/SubscriberLink/883547/d2b752eb979b3eb1/)
 
 # Authentication
@@ -158,3 +158,22 @@ node --require './tracing.js' app.js
 # Documentation
 
 - [sqlite/os\_unix\.c at 3245f3be67907a31431a4506908d981ab1354523 · sqlite/sqlite · GitHub](https://github.com/sqlite/sqlite/blob/3245f3be67907a31431a4506908d981ab1354523/src/os_unix.c#L1027)
+
+# Static analysis
+
+- alias analysis: which memory refs are the same
+    - `x0<-M[p]; x1<-M[p]` -> `x0<-M[p]; x1<-x0`
+- escape analysis: where a pointer can be accessed
+    - if a subroutine allocates an object and returns a pointer to it, the object can be accessed from undetermined places in the program – the pointer has "escaped"
+
+### Compiler optimizations
+
+- load-store elimination: remove write
+    - `M[p]<-x0; M[q]<-x1` -(p must-alias q)-> `M[q]<-x1`
+- load-store forwarding: remove read, reuse stored value
+    - `M[p]<-x0; x1<-M[q]; y1<-x1` -(p must-alias q)-> `M[p]<-x0; y1<-x0`
+    - GEN-KILL strategy: compute loads/stores available using local/global value numbering
+        - GEN set: (operator,inputs)->variable
+        - KILL set: calls/side-effects
+        - `OUT[P] = IN[P] - KILL[P] + GEN[P]`
+

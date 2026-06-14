@@ -277,8 +277,10 @@ docker run --platform linux/arm64 -it -v "$HOME/share:/share:z" arm64v8/alpine:3
     cd /opt/aports/main/"$app"
     # Override pkg-config dependencies (e.g. when specifying static libs)
     # References: [Static compilation errors \- tmux 2\.9, ncurses 6\.1, libevent 2\.1\.8 · Issue \#1729 · tmux/tmux · GitHub](https://github.com/tmux/tmux/issues/1729)
-    export PKG_CONFIG=/bin/true
-    # [Edit APKBUILD to include `-static` in CFLAGS]
+    # export PKG_CONFIG=/bin/true
+    export PKG_CONFIG='pkg-config --static'
+    # [Edit APKBUILD to include `-static` in CFLAGS / `LDFLAGS="-static" ./configure` / `make LDFLAGS="-static -all-static"`]
+    # [For curl: https://github.com/moparisthebest/static-curl/blob/master/build.sh]
     # [For strace: ~/share/alpine/static/strace613.sh]
     echo | abuild-keygen -a -i
     abuild -Fcr

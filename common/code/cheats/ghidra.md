@@ -5,10 +5,7 @@
 - [GitHub \- TorgoTorgo/ghidra\-findcrypt: Ghidra analysis plugin to locate cryptographic constants](https://github.com/TorgoTorgo/ghidra-findcrypt)
 - [GitHub \- garyttierney/intellij\-ghidra: An IntelliJ IDEA plugin for working on Ghidra Extensions\.](https://github.com/garyttierney/intellij-ghidra)
 - [GitHub \- HackOvert/GhidraSnippets: Python snippets for Ghidra&\#39;s Program and Decompiler APIs](https://github.com/HackOvert/GhidraSnippets)
-
-# function signatures
-
-- if no calling convention, then apply parameters for registers read before writes: Ghidra script [`MakeFuncParams`](../snippets/ghidra/MakeFuncParams.java);
+- [GitHub \- nevesnunes/isacrumbs: Ghidra scripts for program analysis](https://github.com/nevesnunes/isacrumbs)
 
 # function ID (FID)
 
@@ -70,7 +67,7 @@ mv build/dist/*.zip ~/opt/ && ( cd ~/opt && find . -maxdepth 1 -type f -iregex '
 gradle generateGrammarSource Decompiler:buildNatives
 
 # test
-gradle :Emulation:test --tests "ghidra.pcode.exec.SleighProgramCompilerTest.testGoto64BitOffset"
+gradle :Emulation:test --tests "ghidra.pcode.exec.SleighProgramCompilerTest.testGoto64BitOffset" -x buildHelp -x sleighCompile
 gradle unitTestReport
 gradle integrationTest
 ```

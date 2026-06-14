@@ -38,6 +38,7 @@ add_files() {
 
       # Only keep characters compatible with common filesystems (e.g. NTFS)
       regex_invalid_chars='s/"//g'
+      regex_invalid_chars+='; s/:\([^:\s]\)/ -\1/g'
       regex_invalid_chars+='; s/[<>:\/\\\|\?\*]\([^\s]\)/-\1/g'
       regex_invalid_chars+='; s/[<>:\/\\\|\?\*]//g'
       artist=$(exiftool -Artist -s -s -s "$i" \

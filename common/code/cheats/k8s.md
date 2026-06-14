@@ -1,10 +1,18 @@
 # +
 
-- On OOMKilled check dmesg on container host
-- https://github.com/kubeshark/kubeshark
+- https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.36/#api-overview
+- https://github.com/kelseyhightower/kubernetes-the-hard-way
+- https://training.linuxfoundation.org/training/introduction-to-kubernetes/
+- https://samof76.space/kubernetes-in-anger.html
+- https://matduggan.com/aws-eks/
+
+- [GitHub \- kubeshark/kubeshark: eBPF\-powered network observability for Kubernetes\. Indexes L4/L7 traffic with full K8s context, decrypts TLS without keys\. Queryable by AI agents via MCP and humans via dashboard\. · GitHub](https://github.com/kubeshark/kubeshark)
 - https://kubenomicon.com/
 
 # lifecycle
+
+- Test cluster: k3s with Deployment, Service, IngressRoute
+- On OOMKilled check dmesg on container host
 
 ```bash
 kubectl apply -f foo.yaml
