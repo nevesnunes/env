@@ -1,0 +1,377 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Latency Heatmap</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="dist/uPlot.min.css">
+        <style>
+                .uplot {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: min-content;
+                }
+
+                .u-over {
+                    box-shadow: 0px 0px 0px 0.5px #ccc;
+                }
+
+                .u-legend {
+                    display: none;
+                }
+
+                .u-inline tr {
+                    margin-right: 8px;
+                }
+
+                .u-label {
+                    font-size: 12px;
+                }
+
+                .u-tooltip {
+                    background: #fff;
+                    border: 2px solid black;
+                    display: none;
+                    font-family: monospace;
+                    font-size: 10px;
+                    padding: 4px;
+                    pointer-events: none;
+                    position: absolute;
+                    white-space: pre;
+                    z-index: 100;
+                }
+        </style>
+	</head>
+	<body>
+		<script src="dist/uPlot.iife.min.js"></script>
+		<script src="lib/placement.min.js"></script>
+		<script src="lib/rand.js"></script>
+		<script>
+            function binarySearch(arr, target, lo = 0, hi = arr.length - 1) {
+               if (target < arr[lo]) {return arr[0]}
+               if (target > arr[hi]) {return arr[hi]}
+
+               const mid = Math.floor((hi + lo) / 2);
+
+               return hi - lo < 2
+                 ? (target - arr[lo]) < (arr[hi] - target) ? arr[lo] : arr[hi]
+                 : target < arr[mid]
+                   ? binarySearch(arr, target, lo, mid)
+                   : target > arr[mid]
+                     ? binarySearch(arr, target, mid, hi)
+                     : arr[mid]
+            }
+
+			function tooltipPlugin(opts) {
+				let over, bound, bLeft, bTop;
+
+				function syncBounds() {
+					let bbox = over.getBoundingClientRect();
+					bLeft = bbox.left;
+					bTop = bbox.top;
+				}
+
+				const overlay = document.createElement("div");
+                overlay.className = "u-tooltip";
+				overlay.id = "overlay";
+				overlay.style.display = "none";
+				overlay.style.position = "absolute";
+				document.body.appendChild(overlay);
+
+				return {
+					hooks: {
+						init: u => {
+							over = u.over;
+
+							bound = over;
+
+							over.onmouseenter = () => {
+								overlay.style.display = "block";
+							};
+
+							over.onmouseleave = () => {
+								overlay.style.display = "none";
+							};
+						},
+						setSize: u => {
+							syncBounds();
+						},
+						setCursor: u => {
+                            // TODO: normalize using u.bbox
+                            // TODO: overlay next to point
+							const { left, top, idx } = u.cursor;
+							const x = binarySearch(gCacheKeys, left * gMaxX / gWidth);
+							const y = binarySearch(gCache[x], top * gMaxY / gHeight);
+							const anchor = { left: left + bLeft, top: top + bTop };
+							overlay.textContent = `${x},${y} at ${Math.round(left)},${Math.round(top)}`;
+							placement(overlay, anchor, "right", "start", { bound });
+						}
+					}
+				};
+			}
+
+            let gCache = {};
+            let gCacheKeys = [];
+            let gMinX = 0;
+            let gMinY = 0;
+            let gMaxX = 0x100;
+            let gMaxY = 1;
+            const gWidth = 1080;
+            const gHeight = 600;
+			function heatmap(xs, ys, opts) {
+				let xBinIncr = opts.x.binSize;
+				let yBinIncr = opts.y.binSize;
+				let len = xs.length;
+
+				for (let i = 0; i < len; i++) {
+                    gMinX = Math.min(gMinX, xs[i] || gMinX);
+                    gMaxX = Math.max(gMaxX, xs[i] || gMaxX);
+                    gMinY = Math.min(gMinY, ys[i] || gMinY);
+                    gMaxY = Math.max(gMaxY, ys[i] || gMaxY);
+				}
+
+				const binX = opts.x.bin;
+				const binY = opts.y.bin;
+
+				let minXBin = binX(gMinX);
+				let maxXBin = binX(gMaxX);
+				let minYBin = binY(gMinY);
+				let maxYBin = binY(gMaxY);
+
+				let xBinQty = (maxXBin - minXBin) / xBinIncr + 1;
+				let yBinQty = (maxYBin - minYBin) / yBinIncr + 1;
+
+				let [xs2, ys2, counts] = initHs(xBinQty, yBinQty, minXBin, xBinIncr, minYBin, yBinIncr);
+
+				for (let i = 0; i < len; i++) {
+                    let xi = (binX(xs[i]) - minXBin) / xBinIncr;
+                    let yi = (binY(ys[i]) - minYBin) / yBinIncr;
+                    let ci = xi * yBinQty + yi;
+                    counts[ci]++;
+				}
+
+				return {
+					counts,
+					xs: xs2,
+					ys: ys2,
+				};
+			}
+
+			function initHs(xQty, yQty, xMin, xIncr, yMin, yIncr) {
+				let len = xQty * yQty;
+				let xs = Array(len);
+				let ys = Array(len);
+				let counts = Array(len);
+
+				for (let i = 0, yi = 0, x = xMin; i < len; yi = ++i % yQty) {
+					counts[i] = 0;
+					ys[i] = yMin + yi * yIncr;
+
+					if (yi == 0 && i >= yQty)
+						x += xIncr;
+
+					xs[i] = x;
+				}
+
+				return [xs, ys, counts];
+			}
+
+			function heatmapPaths() {
+				return (u, seriesIdx, idx0, idx1) => {
+					uPlot.orient(u, seriesIdx, (series, dataX, dataY, scaleX, scaleY, valToPosX, valToPosY, xOff, yOff, xDim, yDim, moveTo, lineTo, rect, arc) => {
+						let d = u.data[seriesIdx];
+						let [xs, ys, counts] = d;
+						let dlen = xs.length;
+
+						// fill colors are mapped from interpolating densities / counts along some gradient
+						// (should be quantized to 64 colors/levels max. e.g. 16)
+						let fills = ["rgb(224,64,96)"];
+						let fillPalette = [...new Set(fills)];
+						let fillPaths = fillPalette.map(color => new Path2D());
+
+						// detect x and y bin qtys by detecting layout repetition in x & y data
+						let yBinQty = dlen - ys.lastIndexOf(ys[0]);
+						let xBinQty = dlen / yBinQty;
+						let yBinIncr = ys[1] - ys[0];
+						let xBinIncr = xs[yBinQty] - xs[0];
+
+						// uniform tile sizes based on zoom level
+						let xSize = Math.max(1, valToPosX(xBinIncr, scaleX, xDim, xOff) - valToPosX(0, scaleX, xDim, xOff));
+						let ySize = Math.max(1, valToPosY(yBinIncr, scaleY, yDim, yOff) - valToPosY(0, scaleY, yDim, yOff));
+
+						// pre-compute x and y offsets
+						let cys = ys.slice(0, yBinQty).map(y => Math.round(valToPosY(y, scaleY, yDim, yOff)));
+						let cxs = Array.from({length: xBinQty}, (v, i) => Math.round(valToPosX(xs[i * yBinQty], scaleX, xDim, xOff)));
+
+                        gCache = {};
+						for (let i = 0; i < dlen; i++) {
+							// filter out 0 counts and out of view
+							if (
+                                counts[i] > 0 &&
+								xs[i] >= scaleX.min && xs[i] <= scaleX.max &&
+								ys[i] >= scaleY.min && ys[i] <= scaleY.max
+							) {
+                                if (!gCache[xs[i]]) {
+                                    gCache[xs[i]] = new Set();
+                                }
+                                gCache[xs[i]].add(ys[i]);
+
+								let cx = cxs[~~(i / yBinQty)];
+								let cy = cys[i % yBinQty];
+
+								let fillPath = fillPaths[0];
+
+								rect(fillPath, cx, cy, xSize, ySize);
+							}
+						}
+
+                        gCacheKeys = Array.from(Object.keys(gCache)).map(x => {
+                            const k = ~~x;
+                            gCache[k] = Array.from(gCache[k]).sort((a, b) => { return a - b; });
+                            return k;
+                        }).sort((a, b) => { return a - b; });
+
+						u.ctx.save();
+						u.ctx.rect(u.bbox.left, u.bbox.top, u.bbox.width, u.bbox.height);
+						u.ctx.clip();
+						fillPaths.forEach((p, i) => {
+							u.ctx.fillStyle = fillPalette[i];
+							u.ctx.fill(p);
+						});
+						u.ctx.restore();
+					});
+				};
+			}
+
+			let opts = {
+				width: gWidth,
+				height: gHeight,
+				title: "Coverage Map",
+				mode: 2,
+                axes: [
+                    {
+                        font: '12px Monospace',
+                        side: 0,
+                        incrs: [0x01, 0x02, 0x08, 0x10, 0x100, 0x1000, 0x2000, 0x8000, 0x10_000, 0x100_000],
+                        values: (u, splits) => splits.map(v => v == null ? '' : '0x' + (~~v).toString(16).padStart(2, '0')),
+                    },
+                    {
+                        font: '12px Monospace',
+                        incrs: [0x01, 0x02, 0x08, 0x10, 0x100, 0x1000, 0x2000, 0x8000, 0x10_000, 0x100_000],
+                        size: 120,
+                        values: (u, splits) => splits.map(v => v == null ? '' : '0x' + (~~v*gMaxX).toString(16).padStart(8, '0')),
+                    }
+                ],
+				scales: {
+					x: {
+						time: false,
+					},
+                    y: {
+                        dir: -1,
+                    }
+				},
+				series: [
+					{},
+					{
+						paths: heatmapPaths(),
+						facets: [
+							{
+								scale: 'x',
+								auto: true,
+								sorted: 1,
+							},
+							{
+								scale: 'y',
+								auto: true,
+							},
+						],
+					},
+				],
+				plugins: [
+					tooltipPlugin(),
+				],
+			};
+
+			const fixFloat = v => roundDec(v, 14);
+			function incrRoundDn(num, incr) {
+				return fixFloat(Math.floor(fixFloat(num/incr))*incr);
+			}
+
+			// https://stackoverflow.com/a/48764436
+			// rounds half away from zero
+			function roundDec(val, dec = 0) {
+                if (Number.isInteger(val)) {
+					return val;
+                }
+
+				let p = 10 ** dec;
+				let n = (val * p) * (1 + Number.EPSILON);
+				return Math.round(n) / p;
+			}
+
+			let xBinIncr = 1;
+			let yBinIncr = 1;
+			let hopts = {
+				x: {
+					binSize: xBinIncr,
+					bin: v => incrRoundDn(v, xBinIncr),
+					sorted: true,
+				},
+				y: {
+					binSize: yBinIncr,
+					bin: v => incrRoundDn(v, yBinIncr)
+				},
+			};
+
+			function genData(len = 0x10000) {
+				let now = 0;
+				let xs = Array(len);
+				let ys = Array(len);
+
+				for (let i = 0; i < len; i++) {
+					xs[i] = now + i % gMaxX;
+					ys[i] = Math.max(0, Math.round(randomSkewNormal(Math.random, 30, 30, 3)));
+				}
+                xs[len - 1] = 0;
+                ys[len - 1] = 0xf0;
+
+			//	console.time("heatmap");
+				let hm = heatmap(xs, ys, hopts);
+			//	console.timeEnd("heatmap");
+
+				let data = [
+					hm.xs, // x0
+					hm.ys, // y0
+					hm.counts, // counts
+				];
+                console.log(data);
+                return data;
+			}
+
+			function genData2() {
+				let now = 0;
+				let xs = Array(gMaxX);
+				let ys = Array(gMaxX);
+
+                xs[0] = 0;
+                ys[0] = 0x10;
+
+                xs[1] = 0x04;
+                ys[1] = 0;
+
+                xs[2] = 0xf4;
+                ys[2] = 0;
+
+				let hm = heatmap(xs, ys, hopts);
+				return [
+					hm.xs, // x0
+					hm.ys, // y0
+					hm.counts, // counts
+                ];
+			}
+
+			let u = new uPlot(opts, [null, genData()], document.body);
+		</script>
+	</body>
+</html>
