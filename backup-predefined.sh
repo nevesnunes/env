@@ -94,6 +94,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/devilspie2 \
   /home/"$USER"/./.config/dunst \
   /home/"$USER"/./.config/flake8 \
+  /home/"$USER"/./.config/flameshot \
   /home/"$USER"/./.config/fontconfig \
   /home/"$USER"/./.config/ghostty \
   /home/"$USER"/./.config/gtkrc-2.0 \
