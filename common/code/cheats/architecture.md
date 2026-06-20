@@ -173,7 +173,7 @@ node --require './tracing.js' app.js
 - load-store forwarding: remove read, reuse stored value
     - `M[p]<-x0; x1<-M[q]; y1<-x1` -(p must-alias q)-> `M[p]<-x0; y1<-x0`
     - GEN-KILL strategy: compute loads/stores available using local/global value numbering
-        - GEN set: (operator,inputs)->variable
-        - KILL set: calls/side-effects
+        - GEN set: (operator,inputs)->variable (read var is generated)
+        - KILL set: calls/side-effects (written var is killed)
         - `OUT[P] = IN[P] - KILL[P] + GEN[P]`
 

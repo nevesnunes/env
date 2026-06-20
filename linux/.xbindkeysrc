@@ -225,15 +225,15 @@ Mod4 + s
 
 # "Screenshot to Pictures"
 "valid-screenshot.sh"
-Print
+Shift + Print
 
 # "Screenshot Area"
 "valid-screenshot.sh -a"
-Shift + Print
+Print
 
 # "Screenshot Window Contents"
-"valid-screenshot.sh -w"
-Mod1 + Print
+# "valid-screenshot.sh -w"
+# Mod1 + Print
 
 # "OCR Screenshot Text"
 "ocr-screenshot.sh"

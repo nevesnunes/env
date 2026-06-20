@@ -4,6 +4,7 @@ chromium
 compton
 feh
 firefox-esr
+flameshot
 fontconfig
 fonts-freefont-ttf
 openbox
