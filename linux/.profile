@@ -36,7 +36,7 @@ export ANDROID_SDK_HOME="$ANDROID_PREFS_ROOT"
 
 # Paths
 # Comment $HOME/.local/bin:$HOME/bin in global configs (i.e. /etc/...{env|rc|login})
-export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/.local/games:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$GOINSTALL/bin:$HOME/.cargo/bin:$SCALA_HOME/bin"
+export PATH="/usr/local/shim:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:$HOME/Dropbox/deploy:$HOME/.local/bin:$HOME/.local/games:$HOME/bin:$HOME/opt:$HOME/opt/mx:$GOROOT/bin:$GOPATH/bin:$GOINSTALL/bin:$HOME/.cargo/bin:$SCALA_HOME/bin:$HOME/.local/share/coursier/bin"
 export MANPATH="$MANPATH:/usr/local/man"
 
 # Editors

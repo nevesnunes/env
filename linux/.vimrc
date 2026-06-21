@@ -78,6 +78,8 @@ let b:ale_warn_about_trailing_whitespace = 0
 " - asm (uses `gcc -x assembler` but too slow on large listings)
 " - typescript-language-server
 " - 'java': ['eclipselsp', 'javac'],
+" TODO: fix scala completions
+" - let g:ale_scala_metals_project_root = '.'
 let g:ale_fixers = {
             \ 'c': ['clangtidy'],
             \ 'cpp': ['clangtidy'],
@@ -90,6 +92,7 @@ let g:ale_linters = {
             \ 'javascript': ['tsserver', 'eslint'],
             \ 'python': ['ty', 'pylsp'],
             \ 'rust': ['analyzer'],
+            \ 'scala': ['metals'],
             \ 'sh': ['shellcheck'],
             \ }
 let g:ale_linter_alias = {
