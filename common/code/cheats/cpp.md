@@ -168,6 +168,9 @@ LD_RUNTIME_PATH=. ./foo
 gcc -L. -lfoo -Wl,-rpath,$PWD foo.c -o foo
 ./foo
 
+# override dynamic linking behaviour, e.g. link libfirst.a and libsecond.so:
+gcc -Wl,-Bstatic -lfirst -Wl,-Bdynamic -lsecond
+
 # override system shared libraries
 ./configure LDFLAGS="-Wl,-rpath,$HOME/opt/libunwind/src/.libs -L$HOME/opt/libunwind/src/.libs"
 
@@ -720,6 +723,23 @@ void debugRequest(QNetworkRequest request, QByteArray data = QByteArray()) {
   }
   qDebug() << data;
 }
+```
+
+# linked libraries
+
+```sh
+ldd /bin/true
+LD_TRACE_LOADED_OBJECTS=1 /lib/ld-linux-x86-64.so.2 /bin/true
+
+# https://github.com/ncopa/lddtree
+objdump -x /bin/true | grep NEEDED
+readelf -d /bin/true | grep NEEDED
+```
+
+# triplet
+
+```sh
+gcc -dumpmachine
 ```
 
 # format

@@ -9,7 +9,7 @@
 
 ### Install / Update
 
-```bash
+```sh
 # Local install
 go mod init tmp
 
@@ -34,25 +34,28 @@ GO111MODULE=on go get -u $hostname/$module_path
 - [GitHub \- mitchellh/gox: A dead simple, no frills Go cross compile tool](https://github.com/mitchellh/gox)
 - [GitHub \- jpillora/cloud\-gox: A Go \(golang\) Cross\-Compiler in the cloud](https://github.com/jpillora/cloud-gox)
 
-```bash
-GOOS=darwin GOARCH=386 go build -v
+```sh
+CGO_ENABLED=1 GOOS=linux GOARCH=arm64 CC=$HOME/share/toolchains/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc go build -v foo.go
+
+# dynamically linked
+CGO_ENABLED=1 GOOS=linux GOARCH=arm64 CC=$HOME/share/toolchains/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc go build -ldflags "-linkmode 'external'" -x -work foo.go
+
+# statically linked
+CGO_ENABLED=1 GOOS=linux GOARCH=arm64 CC=$HOME/share/toolchains/aarch64-linux-musl-cross/bin/aarch64-linux-musl-gcc go build -ldflags "-linkmode 'external' -extldflags '-static'" -x -work foo.go
 ```
 
 # Language Server
 
-```bash
+```sh
 GO111MODULE=on go get golang.org/x/tools/gopls@latest
 ```
 
 # Dissassembly
 
-```bash
-# With compiler flag
-go tool compile '-d=unified=1' -p . -S <(printf '%s' 'package main
-func main() {
-    print(0xff)
-}
-')
+```sh
+go build -gcflags=-S foo.go
+# ||
+go tool compile -p . -S <(printf '%s\n%s\n' 'package main' 'func main() { print(0xff) }')
 ```
 
 - [GitHub \- felberj/gotools: Plugin for Ghidra to assist reversing Golang binaries](https://github.com/felberj/gotools)

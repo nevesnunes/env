@@ -26,9 +26,8 @@ export PULSE_LATENCY_MSEC=90
 export SCALA_HOME="$HOME/opt/scala-2.13.3"
 
 # Go
-#export GOROOT="$HOME/.local/share/go"
+export GOINSTALL="$HOME/.local/go"
 export GOPATH="$HOME/opt/go"
-export GOINSTALL=/usr/local/go
 
 # Android
 export ANDROID_PREFS_ROOT="/run/media/$USER/TOSHIBA\ EXT/FN-NUX/.android"
