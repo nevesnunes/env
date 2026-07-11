@@ -194,6 +194,13 @@ systemctl mask tmp.mount
 df -h /tmp
 ```
 
+# appimage
+
+```sh
+foo --appimage-extract
+strace -f ./squashfs-root/usr/bin/foo
+```
+
 # case studies
 
 - [diziet \| chiark’s skip\-skip\-cross\-up\-grade](https://diziet.dreamwidth.org/11840.html)

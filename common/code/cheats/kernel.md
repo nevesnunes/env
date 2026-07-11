@@ -413,6 +413,24 @@ References:
 - https://web.archive.org/web/20200924061451/https://01.org/linux-acpi/documentation/debug-how-isolate-linux-acpi-issues
     - https://bugzilla.kernel.org/show_bug.cgi?id=204251
 
+# backlight
+
+```bash
+busctl --user call org.gnome.SettingsDaemon.Power /org/gnome/SettingsDaemon/Power org.gnome.SettingsDaemon.Power.Screen StepDown
+busctl --user call org.gnome.SettingsDaemon.Power /org/gnome/SettingsDaemon/Power org.gnome.SettingsDaemon.Power.Screen StepUp
+
+xbacklight -dec 10
+xbacklight -inc 10
+
+cat /sys/class/backlight/intel_backlight/brightness
+echo 250 | sudo tee /sys/class/backlight/intel_backlight/brightness
+
+# software-level
+xrandr --output LVDS1 --brightness 0.3
+```
+
+- https://wiki.archlinux.org/title/Backlight
+
 # interrupts
 
 ```bash

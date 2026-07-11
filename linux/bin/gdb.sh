@@ -15,12 +15,12 @@ set -eu
 
 echo "source ~/.gdbinit-base" > "$HOME"/.gdbinit
 
-gdb_bin=$(realpath "$1")
-[ -f "$gdb_bin" ]
+gdb_bin=$(command -v -- "$1")
+[ -x "$gdb_bin" ]
 shift
 
 if [ $# -gt 0 ]; then
-  plugin_file=$(realpath "$1")
+  plugin_file=$(command -v -- "$1")
   if [ -f "$plugin_file" ]; then
     echo "source $plugin_file" >> "$HOME"/.gdbinit
     shift

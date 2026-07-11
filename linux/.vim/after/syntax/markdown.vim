@@ -19,7 +19,7 @@ silent! syn clear htmlTag
 syn region htmlTag start=+<[^/]+ end=+>+ fold contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster oneline
 
 "silent! syn clear markdownCodeBlock
-syn region markdownCodeBlock start="    \|\t" end="$" contains=markdownCode,markdownCodeDelimiter,markdownBlockquote,markdownListMarker,markdownOrderedListMarker,markdownLineBreak,markdownLinkText,markdownItalic,markdownItalicDelimiter,markdownBold,markdownBoldDelimiter,markdownBoldItalic,markdownBoldItalicDelimiter,markdownCode,markdownEscape,@htmlTop,markdownError,markdownValid,markdownInlineURL,mkdInlineURL contained
+"syn region markdownCodeBlock start="    \|\t" end="$" contains=markdownCode,markdownCodeDelimiter,markdownBlockquote,markdownListMarker,markdownOrderedListMarker,markdownLineBreak,markdownLinkText,markdownItalic,markdownItalicDelimiter,markdownBold,markdownBoldDelimiter,markdownBoldItalic,markdownBoldItalicDelimiter,markdownCode,markdownEscape,@htmlTop,markdownError,markdownValid,markdownInlineURL,mkdInlineURL contained
 
 silent! syn clear markdownBlockquote
 syn match markdownBlockquote /^\s*>\s*.*$/
@@ -33,10 +33,13 @@ endif
 execute printf("hi! mkdHeading ctermfg=6 guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 6, 'cyan'))
 execute printf("hi! mkdInlineURL ctermfg=6 guifg=%s cterm=underline,bold gui=underline,bold", get(g:terminal_ansi_colors, 6, 'cyan'))
 execute printf("hi! mkdTodo ctermfg=1 guifg=%s cterm=bold gui=bold", get(g:terminal_ansi_colors, 1, 'red'))
-execute printf("hi markdownId guifg=%s guibg=NONE gui=bold ctermbg=NONE ctermfg=5 cterm=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
-execute printf("hi markdownIdDeclaration guifg=%s guibg=NONE gui=NONE ctermbg=NONE ctermfg=5 cterm=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
+execute printf("hi! markdownId guifg=%s guibg=NONE gui=bold ctermbg=NONE ctermfg=5 cterm=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
+execute printf("hi! markdownIdDeclaration guifg=%s guibg=NONE gui=NONE ctermbg=NONE ctermfg=5 cterm=bold", get(g:terminal_ansi_colors, 5, 'magenta'))
 
 hi! def link markdownCode String
+hi! def link markdownCodeBlock String
+hi! def link markdownCodeDelimiter String
+hi! def link markdownRule Statement
 hi! def link markdownLinkText Title
 hi! def link markdownUrl mkdInlineURL
 hi! def link mkdURL mkdInlineURL

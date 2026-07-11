@@ -66,13 +66,13 @@ hi String    guifg=#145440 guibg=NONE gui=NONE ctermbg=NONE ctermfg=5
 hi Function   guifg=#507640 guibg=NONE gui=NONE ctermbg=NONE ctermfg=2
 hi Identifier guifg=#507640 guibg=NONE gui=bold ctermbg=NONE ctermfg=2 cterm=bold
 
-hi Conditional guifg=#b84c54 guibg=NONE gui=bold ctermbg=NONE ctermfg=3 cterm=bold
-hi Exception   guifg=#b84c54 guibg=NONE gui=bold ctermbg=NONE ctermfg=3 cterm=bold
+hi Conditional guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
+hi Exception   guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
 hi Keyword     guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
 hi Label       guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
 hi Operator    guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
-hi Repeat      guifg=#b84c54 guibg=NONE gui=bold ctermbg=NONE ctermfg=3 cterm=bold
-hi Statement   guifg=#b84c54 guibg=NONE gui=bold ctermbg=NONE ctermfg=3 cterm=bold
+hi Repeat      guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
+hi Statement   guifg=#b84c54 guibg=NONE gui=NONE ctermbg=NONE ctermfg=3
 
 hi Define    guifg=#921050 guibg=NONE gui=NONE ctermbg=NONE ctermfg=4
 hi Include   guifg=#921050 guibg=NONE gui=NONE ctermbg=NONE ctermfg=4

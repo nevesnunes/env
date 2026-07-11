@@ -20,7 +20,7 @@ rustc --explain E1234
 
 ```sh
 cargo new --bin foo
-cargo build
+cargo build -j 2 --release
 cargo run
 ```
 
@@ -34,6 +34,9 @@ debug = true   # Controls whether the compiler passes `-g`
 [profile.release]
 opt-level = 3
 debug = false
+
+[dependencies.foo]
+path = "./foo"
 ```
 
 # Build
@@ -41,11 +44,13 @@ debug = false
 ```bash
 rustc foo.rs
 
+# Add local crate to `Cargo.toml`
+cargo add --path ./foo
+
+# Install package containing binaries or examples
 cargo install --path .
 # ||
 cargo install --force --path .
-# ||
-cargo build -j 2 --release
 
 # compiler output
 # e.g. https://stackoverflow.com/questions/46388386/what-exactly-does-derivedebug-mean-in-rust

@@ -5,7 +5,6 @@
 - [GitHub \- TorgoTorgo/ghidra\-findcrypt: Ghidra analysis plugin to locate cryptographic constants](https://github.com/TorgoTorgo/ghidra-findcrypt)
 - [GitHub \- garyttierney/intellij\-ghidra: An IntelliJ IDEA plugin for working on Ghidra Extensions\.](https://github.com/garyttierney/intellij-ghidra)
 - [GitHub \- HackOvert/GhidraSnippets: Python snippets for Ghidra&\#39;s Program and Decompiler APIs](https://github.com/HackOvert/GhidraSnippets)
-- [GitHub \- nevesnunes/isacrumbs: Ghidra scripts for program analysis](https://github.com/nevesnunes/isacrumbs)
 
 # function ID (FID)
 
