@@ -543,12 +543,12 @@ jmp 0x1234
 - what if we want to know what contributed to a sink write?
     - see: [reverse taint analysis](https://blog.trailofbits.com/2019/08/29/reverse-taint-analysis-using-binary-ninja/)
         - can be static or dynamic (reg/mem tracepoints set with reverse debugger)
-        - wip: Ghidra script [`BackTaint`](https://github.com/nevesnunes/isacrumbs/blob/master/src/BackTaint.java);
+        - wip: Ghidra script [`BackTaint`](https://github.com/nevesnunes/isacrumbs/blob/master/ghidra/src/BackTaint.java);
     - xref. instruction coverage tracing
         - diff control-flows visited for distinct values of sink writes;
         - visualize control-flow pruned graph;
 - identify sources/sinks for coverage-guided fuzzing
-    - wip (x86-16/i286): MAME plugin [`fuzz`](../snippets/mame/plugins/fuzz/init.lua);
+    - wip (x86-16/i286): MAME plugin [`fuzz`](https://github.com/nevesnunes/isacrumbs/blob/master/mame/plugins/fuzz/init.lua);
 
 - [GitHub \- sandialabs/ctadl: CTADL is a static taint analysis tool · GitHub](https://github.com/sandialabs/ctadl)
 - [DNN\-decompiler/trace\_filter\.py at master · monkbai/DNN\-decompiler · GitHub](https://github.com/monkbai/DNN-decompiler/blob/master/trace_filter.py)
