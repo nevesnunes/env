@@ -11,5 +11,5 @@ fi
 compton &
 dunst &
 
-systemctl --user start ibus-daemon
+#systemctl --user start ibus-daemon
 systemctl --user start nm-applet

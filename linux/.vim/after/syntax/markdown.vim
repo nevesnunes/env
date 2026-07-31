@@ -18,6 +18,10 @@ syn region mkdInlineURL matchgroup=mkdDelimiter start="(\(\([A-Za-z0-9]\+\)\@<!\
 silent! syn clear htmlTag
 syn region htmlTag start=+<[^/]+ end=+>+ fold contains=htmlTagN,htmlString,htmlArg,htmlValue,htmlTagError,htmlEvent,htmlCssDefinition,@htmlPreproc,@htmlArgCluster oneline
 
+silent! syn clear markdownCode
+syn region markdownCode matchgroup=markdownCodeDelimiter start="`" end="`" keepend oneline contains=markdownLineStart
+syn region markdownCode matchgroup=markdownCodeDelimiter start="`` \=" end=" \=``" keepend contains=markdownLineStart
+
 "silent! syn clear markdownCodeBlock
 "syn region markdownCodeBlock start="    \|\t" end="$" contains=markdownCode,markdownCodeDelimiter,markdownBlockquote,markdownListMarker,markdownOrderedListMarker,markdownLineBreak,markdownLinkText,markdownItalic,markdownItalicDelimiter,markdownBold,markdownBoldDelimiter,markdownBoldItalic,markdownBoldItalicDelimiter,markdownCode,markdownEscape,@htmlTop,markdownError,markdownValid,markdownInlineURL,mkdInlineURL contained
 
