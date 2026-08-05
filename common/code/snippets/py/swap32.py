@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
+from pathlib import Path
 import sys
 
 filename = sys.argv[1]
-filename_swapped = f"{filename}.swapped" if len(sys.argv) == 2 else sys.argv[2]
+parent_dir = Path(filename).parent
+output_dir = parent_dir / 'swapped'
+output_dir.mkdir(parents=True, exist_ok=True)
 
 with open(filename, "rb") as f:
     a = bytearray(f.read())
@@ -14,10 +17,10 @@ for i in range(0, l, 4):
     x1 = a[i + 1]
     x2 = a[i + 2]
     x3 = a[i + 3]
-    a[i + 0] = x2
-    a[i + 1] = x3
-    a[i + 2] = x0
-    a[i + 3] = x1
+    a[i + 0] = x3
+    a[i + 1] = x2
+    a[i + 2] = x1
+    a[i + 3] = x0
 
-with open(filename_swapped, "wb") as f_out:
+with open(str(output_dir / filename), "wb") as f_out:
     f_out.write(a)

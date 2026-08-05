@@ -1,3 +1,12 @@
+# checksum
+
+* CRC16/CCITT-FALSE of 3 bytes = `0xA1` + 1 byte = alternate datamark + N bytes of sector data
+    * `write_MFM_sectordata()` @ ~/opt/HxCFloppyEmulator/libhxcfe/sources/tracks/track_formats/iso_ibm_mfm_track.c
+
+```python
+hex(crc16(b'\xa1\xa1\xa1\xfb' + (b'\x00' * 512))) = 0xda6e
+```
+
 # read raw disk image
 
 ```bash
@@ -83,6 +92,9 @@ gw seek --drive 0 0
 gw seek --drive 0 79
 gw seek --drive 0 80
 gw rpm
+
+# step slower
+gw delays --step 20000
 
 # 2 sides, 80 tracks
 gw read --tracks c=0-80:h=0-1 output.scp
@@ -217,9 +229,13 @@ ufiformat -i /dev/sdb
     ddrescue -v -d -b 1024 -c 8 /dev/fd0 test.img test.log
     ```
 
-# protection
+# copy protection
 
+- [Nerdly Pleasures: IBM PC Floppy Disks \- A Deeper Look at Disk Formats and Copy Protection](https://nerdlypleasures.blogspot.com/2015/11/ibm-pc-floppy-disks-deeper-look-at-disk.html)
+- [Detailed analysis of Atari ST Floppy Disks of Dungeon Master and Chaos Strikes Back \- Copy protection \- Documentation \- Community \- Dungeon Master Encyclopaedia](http://dmweb.free.fr/?q=node/1429)
 - [Security: Weak bits floppy disc protection: an alternate origins story on 8\-bit](https://scarybeastsecurity.blogspot.com/2020/06/weak-bits-floppy-disc-protection.html)
+- [Security: Turning a &\#163;400 BBC Micro \(1981\) into a $40,000 disc writer \(1987\)](https://scarybeastsecurity.blogspot.com/2020/07/turning-400-bbc-micro-1981-into-40000.html)
+- [Security: The cleverest floppy disc protection ever? Western Security Ltd\.](https://scarybeastsecurity.blogspot.com/2020/12/the-cleverest-floppy-disc-protection.html)
 
 # case studies
 

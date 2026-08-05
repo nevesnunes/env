@@ -12,11 +12,15 @@ with open(filename, "rb") as f:
     a = bytearray(f.read())
 
 l = len(a) & ~1
-for i in range(0, l, 2):
+for i in range(0, l, 4):
     x0 = a[i + 0]
     x1 = a[i + 1]
-    a[i + 0] = x1
-    a[i + 1] = x0
+    x2 = a[i + 2]
+    x3 = a[i + 3]
+    a[i + 0] = x2
+    a[i + 1] = x3
+    a[i + 2] = x0
+    a[i + 3] = x1
 
 with open(str(output_dir / filename), "wb") as f_out:
     f_out.write(a)

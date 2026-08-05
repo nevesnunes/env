@@ -49,6 +49,18 @@ def bcd_le(val):
     return acc
 
 
+def crc16(data: bytearray):
+    crc = 0xFFFF
+    for i in range(0, len(data)):
+        crc ^= data[i] << 8
+        for _ in range(0, 8):
+            if (crc & 0x8000) > 0:
+                crc = (crc << 1) ^ 0x1021
+            else:
+                crc = crc << 1
+    return crc & 0xFFFF
+
+
 def twos(val, bits):
     if (val & (1 << (bits - 1))) != 0:
         val = val - (1 << bits)

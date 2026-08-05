@@ -38,10 +38,13 @@ setopt share_history
 [ -f ~/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
     . ~/opt/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+[ -f ~/.atuin/bin/env ] && . ~/.atuin/bin/env && eval "$(atuin init zsh --disable-up-arrow)"
+[ -f ~/.rvm/scripts/rvm ] && . ~/.rvm/scripts/rvm
+
+# Less zsh-isms
+setopt no_extended_glob
+
 # Custom LS_COLORS was sourced after zsh plugin init
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 #zprof
-
-. "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh --disable-up-arrow)"
