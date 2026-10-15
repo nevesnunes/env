@@ -206,10 +206,17 @@ Restart-Service w32time
 # fix NTFS corruption
 
 ```bash
-# From: sudo fdisk -l
+# From: dmesg || fdisk -l
+# ntfs3(sdb2): It is recommened to use chkdsk.
+# ntfs3(sdb2): volume is dirty and "force" flag is not set!
+# clear dirty flag
 sudo ntfsfix /dev/sdb1
-# ||
+# overwrites MFT with MFTmirr (might leave files unrecoverable with MFT record checking)
+sudo ntfsfix -d /dev/sdb1
+sudo mount -t ntfs3 /dev/sdb1 /mnt/Data
+# || (might delete orphaned files not in MFT)
 chkdsk /R
+chkdsk /B
 # ||
 chkdsk /scan
 chkdsk /spotfix

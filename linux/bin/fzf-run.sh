@@ -55,25 +55,30 @@ if [ -n "$cmd_expanded" ]; then
     | grep -q '^\s*text/x-shellscript' \
     && grep -q '^[^#]*read ' "$cmd_expanded" \
     && requires_tty=1
+  set +e
   ldd "$cmd_expanded" 2>/dev/null \
     | awk '
-      /^[[:space:]]*lib(GLX|wayland|X11|xcb)/{t=0; exit !t}
+      /^[[:space:]]*lib(GLX|wayland|X11|xcb)/{t=2; exit t}
       /^[[:space:]]*lib(n?curses|tinfo)/{t=1} 
-      END{exit !t}
-    ' \
-    && requires_tty=1
+      END{exit t}
+    '
+  t=$?
+  echo "$requires_tty" | grep -qw '[12]' || requires_tty=$t
   objdump -C -T "$cmd_expanded" 2>/dev/null \
     | awk '
-      /[[:space:]]+(NativeWindow::(.*)|QApplication::(.*)|SDL_CreateWindow|SdlWindow::(.*)|wxWindow::(.*)|wl_display_connect|gdk_wayland|gdk_x11|gtk_window_destroy|XCreateWindow|XCreateSimpleWindow|xcb_create_window)$/{t=0; exit !t}
+      /[[:space:]]+(NativeWindow::(.*)|QApplication::(.*)|SDL_CreateWindow|SdlWindow::(.*)|wxWindow::(.*)|wl_display_connect|gdk_wayland|gdk_x11|gtk_window_destroy|XCreateWindow|XCreateSimpleWindow|xcb_create_window)$/{t=2; exit t}
       /[[:space:]]+stdin$/{t=1}
-      END{exit !t}
-    ' \
-    && requires_tty=1
-  # shellscript wrappers
+      END{exit t}
+    '
+  t=$?
+  echo "$requires_tty" | grep -qw '[12]' || requires_tty=$t
+  set -e
+
+  # Override shellscript wrappers for graphical apps
   echo "$cmd_expanded" | grep -qi 'chromium' \
     && requires_tty=
 
-  if [ -n "$requires_tty" ]; then
+  if echo "$requires_tty" | grep -qw 1; then
     exec "$cmd_expanded" "$@"
   else
     exec sh -c -i "nohup $cmd_expanded $* </dev/null >/dev/null 2>&1 &"

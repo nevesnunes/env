@@ -104,4 +104,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # . ~/.rvm/scripts/rvm
 # (rvm use 2.7 >/dev/null &)
 
+export PATH="$PATH:$HOME/.local/share/coursier/bin"
+
 # vim: filetype=sh

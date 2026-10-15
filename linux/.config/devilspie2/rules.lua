@@ -77,6 +77,7 @@ elseif (((string.match(name, "firefox") or
                 string.find(role, "browser")) and not
             string.find(role, "about")) or
         string.find(class, "calibre") or
+        string.find(class, "dsview") or
         string.find(class, "foliate") or
         string.find(name, "e%-bookviewer") or
         string.find(name, "fbreader") or
@@ -123,6 +124,9 @@ elseif (string.match(name, "mpv") or
         string.find(name, "quakespasm") or
         string.find(name, "zdoom")) then
     size_window(xid, "move_center")
+elseif (string.match(class, "zenity") and
+        string.find(n, "calendar")) then
+    size_window(xid, "move_bottom_right")
 elseif (x < 0) then
     set_window_position(0, y)
 end

@@ -21,7 +21,7 @@
 4. When I load in another binary (using the same functions), I use Set Active databases
 5. I turned on "Always apply FID Label" in the analyzer's settings
 
-> In my code browser when i go to File -> Configure... I do not see an option for Function ID (there are only sections Ghidra Core, Debugger, Miscellaneous, Developer, and Experimental), and under the experimental plugins there's no option for FidDebugPlugin. However, Function ID is availble under Tools -> Function ID. What could cause that? 
+> In my code browser when i go to File -> Configure... I do not see an option for Function ID (there are only sections Ghidra Core, Debugger, Miscellaneous, Developer, and Experimental), and under the experimental plugins there's no option for FidDebugPlugin. However, Function ID is availble under Tools -> Function ID. What could cause that?
 > I found it, they moved it to developer
 
 # data types (GDT)
@@ -45,6 +45,23 @@
     - Config > Add https://msdl.microsoft.com/download/symbols/
     - For ntoskrnl: ntkrnlmp.pdb
     - On linux: createPdbXmlFiles.bat
+
+### MAME
+
+Apply function symbols as debugger comments with script [Funcs2MameComs](../snippets/ghidra/Funcs2MameComs.java):
+
+```sh
+GHIDRA_INSTALL_DIR=$HOME/opt/ghidra_12.0.4_PUBLIC/
+GHIDRA_PROJECT_DIR=$HOME/code/ghidra/
+GHIDRA_PROJECT_NAME=fooPrj
+"$GHIDRA_INSTALL_DIR/support/analyzeHeadless" "$GHIDRA_PROJECT_DIR/" "$GHIDRA_PROJECT_NAME/fooDir" \
+    -process fooPrg \
+    -noanalysis \
+    -scriptPath ~/ghidra_scripts/ \
+    -postScript Funcs2MameComs.java
+
+mame -debugscript foo.mame.txt
+```
 
 # build
 
@@ -79,7 +96,7 @@ gradle integrationTest
 # debug project
 
 1. If "Multiple modules collided with same name", then remove installed extension || temporarily move from ~/.ghidra/
-2. Run > Debug Configrations... > Classpath 
+2. Run > Debug Configrations... > Classpath
     - Bootstrap Entries || User Entries > Add project...
 3. Debug (Ghidra instance is launched from Eclipse)
 

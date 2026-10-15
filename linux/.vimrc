@@ -137,7 +137,7 @@ let g:syntastic_sh_shellcheck_exe = 'shellcheck --exclude=SC1090,SC2004,SC2164'
 nnoremap <F5> :Autoformat<CR>
 let g:formatdef_autopep8 = '"autopep8 -".(g:DoesRangeEqualBuffer(a:firstline, a:lastline) ? " --range ".a:firstline." ".a:lastline : "")." ".(&textwidth ? "--max-line-length=".&textwidth : "")." --aggressive"'
 let g:formatdef_shfmt = '"shfmt -bn -sr -i ".(&expandtab ? shiftwidth() : "0")'
-let g:formatters_python = ['black', 'autopep8', 'yapf']
+let g:formatters_python = ['ruff', 'black', 'autopep8', 'yapf']
 
 " Clang
 let g:clang_auto_select=0

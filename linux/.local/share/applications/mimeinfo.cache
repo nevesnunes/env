@@ -70,4 +70,5 @@ x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/mendeley=mendeleydesktop.desktop;
 x-scheme-handler/tg=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop;
+x-scheme-handler/ton=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop;
 x-scheme-handler/tonsite=org.telegram.desktop._689f1519613eb10cfdb242a345cdf587.desktop;

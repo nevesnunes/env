@@ -4,7 +4,7 @@
 # some crc16 variants in python
 # expected values: https://crccalc.com/
 
-test_data = [b"\x00" * 0x200]
+test_data = [b'\xa1\xa1\xa1\xfb' + (b'\x00' * 512)]
 
 
 def test(name, fn):

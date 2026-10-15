@@ -69,6 +69,7 @@ dnf provides file_name
 ```bash
 dpkg --add-architecture i386
 apt update
+apt install foo:i386
 
 # chroot
 # https://jblevins.org/log/ubuntu-chroot

@@ -23,18 +23,22 @@ class Geo(enum.IntEnum):
     MINOR_RIGHT_BOTTOM = 9
     MINOR_RIGHT_TOP = 10
     MOVE_BOTTOM = 11
-    MOVE_TOP = 12
-    MOVE_LEFT = 13
-    MOVE_RIGHT = 14
-    MOVE_CENTER = 15
-    DECREMENT_BOTTOM = 16
-    DECREMENT_TOP = 17
-    DECREMENT_LEFT = 18
-    DECREMENT_RIGHT = 19
-    INCREMENT_BOTTOM = 20
-    INCREMENT_TOP = 21
-    INCREMENT_LEFT = 22
-    INCREMENT_RIGHT = 23
+    MOVE_BOTTOM_LEFT = 12
+    MOVE_BOTTOM_RIGHT = 13
+    MOVE_TOP = 14
+    MOVE_TOP_LEFT = 15
+    MOVE_TOP_RIGHT = 16
+    MOVE_LEFT = 17
+    MOVE_RIGHT = 18
+    MOVE_CENTER = 19
+    DECREMENT_BOTTOM = 20
+    DECREMENT_TOP = 21
+    DECREMENT_LEFT = 22
+    DECREMENT_RIGHT = 23
+    INCREMENT_BOTTOM = 24
+    INCREMENT_TOP = 25
+    INCREMENT_LEFT = 26
+    INCREMENT_RIGHT = 27
 
     def __str__(self):
         return self.name.lower()
@@ -381,12 +385,52 @@ if __name__ == "__main__":
             win_rect.width,
             win_rect.height,
         )
+    elif args.geo == Geo.MOVE_BOTTOM_LEFT:
+        relative_move_resize(
+            ewmh,
+            workarea,
+            win,
+            workarea.x,
+            workarea.y + workarea.height - win_rect.height,
+            win_rect.width,
+            win_rect.height,
+        )
+    elif args.geo == Geo.MOVE_BOTTOM_RIGHT:
+        relative_move_resize(
+            ewmh,
+            workarea,
+            win,
+            workarea.x + workarea.width - win_rect.width,
+            workarea.y + workarea.height - win_rect.height,
+            win_rect.width,
+            win_rect.height,
+        )
     elif args.geo == Geo.MOVE_TOP:
         relative_move_resize(
             ewmh,
             workarea,
             win,
             win_rect.x,
+            workarea.y,
+            win_rect.width,
+            win_rect.height,
+        )
+    elif args.geo == Geo.MOVE_TOP_LEFT:
+        relative_move_resize(
+            ewmh,
+            workarea,
+            win,
+            workarea.x,
+            workarea.y,
+            win_rect.width,
+            win_rect.height,
+        )
+    elif args.geo == Geo.MOVE_TOP_RIGHT:
+        relative_move_resize(
+            ewmh,
+            workarea,
+            win,
+            workarea.x + workarea.width - win_rect.width,
             workarea.y,
             win_rect.width,
             win_rect.height,

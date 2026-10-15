@@ -89,6 +89,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.chocolate-doom/*.cfg \
   /home/"$USER"/./.config/awesome \
   /home/"$USER"/./.config/atuin \
+  /home/"$USER"/./.config/black \
   /home/"$USER"/./.config/compton.conf \
   /home/"$USER"/./.config/dconf \
   /home/"$USER"/./.config/devilspie2 \
@@ -118,6 +119,7 @@ rsync -uva --relative --usermap=:"$USER" --groupmap=:"$USER" \
   /home/"$USER"/./.config/qt5ct \
   /home/"$USER"/./.config/ranger \
   /home/"$USER"/./.config/retroarch/*.cfg \
+  /home/"$USER"/./.config/ruff \
   /home/"$USER"/./.config/spacefm \
   /home/"$USER"/./.config/switchlayout \
   /home/"$USER"/./.config/sxiv \
