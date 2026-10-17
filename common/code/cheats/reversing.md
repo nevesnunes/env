@@ -547,6 +547,7 @@ jmp 0x1234
     - xref. instruction coverage tracing
         - diff control-flows visited for distinct values of sink writes;
         - visualize control-flow pruned graph;
+        - wip (x86): [Tenet](https://github.com/gaasedelen/tenet) trace log [standalone viewer](../snippets/tenet/trace-viewer/) (TODO: break on address / register / memory + reverse-continue, disassembly + semantics for pointer analysis);
 - identify sources/sinks for coverage-guided fuzzing
     - wip (x86-16/i286): MAME plugin [`fuzz`](https://github.com/nevesnunes/isacrumbs/blob/master/mame/plugins/fuzz/init.lua);
 
@@ -570,8 +571,8 @@ jmp 0x1234
 # side channels
 
 - timing attacks - On password validation routine, when a char is correct, more instructions are executed
-    - ~/code/snippets/pin/count_me_if_you_can.py
-    - [write\-up for dont\_panic \- Eternal Stories](http://eternal.red/2017/dont_panic-writeup/)
+    - [count_me_if_you_can.py](../snippets/pin/count_me_if_you_can.py);
+    - [write\-up for dont\_panic \- Eternal Stories](http://eternal.red/2017/dont_panic-writeup/);
 - syscall counting - `strace | sort | uniq -c`
 - ! instruction counting disturbed by OS scheduler
     - [performance \- Perf overcounting simple CPU\-bound loop: mysterious kernel work? \- Stack Overflow](https://stackoverflow.com/questions/39864416/perf-overcounting-simple-cpu-bound-loop-mysterious-kernel-work)
